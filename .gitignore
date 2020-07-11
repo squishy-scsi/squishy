@@ -1,0 +1,7 @@
+build/
+.pyc
+__pycache__/
+*.kicad_pcb-bak
+*.sch-bak
+_autosave-*
+*.slvs~
