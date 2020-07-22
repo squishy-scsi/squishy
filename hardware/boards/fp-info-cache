@@ -1,4 +1,4 @@
-18428654146170352
+18430248926255352
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -80952,8 +80952,8 @@ R-PVQFN-N16
 
 
 0
-0
-0
+17
+17
 lethalbit
 RClamp0512
 
@@ -81008,7 +81008,7 @@ VSON_8_3mm_x_3mm_1EP
 
 
 0
-13
+9
 9
 lethalbit-connectors
 FTSH-105-01-L-DV-K-TR
@@ -81017,6 +81017,13 @@ http://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-footprint.pdf
 0
 10
 10
+lethalbit-connectors
+MICRO-USB-B-(IN_PCB)
+
+
+0
+11
+6
 lethalbit-connectors
 TE_SODIMM_260
 
