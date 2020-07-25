@@ -29,24 +29,24 @@ $EndComp
 $Comp
 L FPGA_Lattice:ICE40HX8K-BG121 U2
 U 2 1 5EFFCC10
-P 7000 12200
-F 0 "U2" H 6950 10750 50  0000 L CNN
-F 1 "ICE40HX8K-BG121" H 6650 10850 50  0000 L CNN
-F 2 "Package_BGA:BGA-121_9.0x9.0mm_Layout11x11_P0.8mm_Ball0.4mm_Pad0.35mm_NSMD" H 7000 10750 50  0001 C CNN
-F 3 "http://www.latticesemi.com/Products/FPGAandCPLD/iCE40" H 6150 13200 50  0001 C CNN
-	2    7000 12200
+P 2400 14400
+F 0 "U2" H 2350 12950 50  0000 L CNN
+F 1 "ICE40HX8K-BG121" H 2050 13050 50  0000 L CNN
+F 2 "Package_BGA:BGA-121_9.0x9.0mm_Layout11x11_P0.8mm_Ball0.4mm_Pad0.35mm_NSMD" H 2400 12950 50  0001 C CNN
+F 3 "http://www.latticesemi.com/Products/FPGAandCPLD/iCE40" H 1550 15400 50  0001 C CNN
+	2    2400 14400
 	-1   0    0    -1  
 $EndComp
 $Comp
 L FPGA_Lattice:ICE40HX8K-BG121 U2
 U 1 1 5EFFE760
-P 1300 12700
-F 0 "U2" H 1200 11050 50  0000 L CNN
-F 1 "ICE40HX8K-BG121" H 950 11150 50  0000 L CNN
-F 2 "Package_BGA:BGA-121_9.0x9.0mm_Layout11x11_P0.8mm_Ball0.4mm_Pad0.35mm_NSMD" H 1300 11250 50  0001 C CNN
-F 3 "http://www.latticesemi.com/Products/FPGAandCPLD/iCE40" H 450 13700 50  0001 C CNN
-	1    1300 12700
-	-1   0    0    1   
+P 1100 14300
+F 0 "U2" H 1000 12650 50  0000 L CNN
+F 1 "ICE40HX8K-BG121" H 750 12750 50  0000 L CNN
+F 2 "Package_BGA:BGA-121_9.0x9.0mm_Layout11x11_P0.8mm_Ball0.4mm_Pad0.35mm_NSMD" H 1100 12850 50  0001 C CNN
+F 3 "http://www.latticesemi.com/Products/FPGAandCPLD/iCE40" H 250 15300 50  0001 C CNN
+	1    1100 14300
+	-1   0    0    -1  
 $EndComp
 $Comp
 L FPGA_Lattice:ICE40HX8K-BG121 U2
@@ -62,12 +62,12 @@ $EndComp
 $Comp
 L FPGA_Lattice:ICE40HX8K-BG121 U2
 U 4 1 5F0034A0
-P 8550 7250
-F 0 "U2" H 8450 5550 50  0000 L CNN
-F 1 "ICE40HX8K-BG121" H 8200 5650 50  0000 L CNN
-F 2 "Package_BGA:BGA-121_9.0x9.0mm_Layout11x11_P0.8mm_Ball0.4mm_Pad0.35mm_NSMD" H 8550 5800 50  0001 C CNN
-F 3 "http://www.latticesemi.com/Products/FPGAandCPLD/iCE40" H 7700 8250 50  0001 C CNN
-	4    8550 7250
+P 3700 14300
+F 0 "U2" H 3600 12600 50  0000 L CNN
+F 1 "ICE40HX8K-BG121" H 3350 12700 50  0000 L CNN
+F 2 "Package_BGA:BGA-121_9.0x9.0mm_Layout11x11_P0.8mm_Ball0.4mm_Pad0.35mm_NSMD" H 3700 12850 50  0001 C CNN
+F 3 "http://www.latticesemi.com/Products/FPGAandCPLD/iCE40" H 2850 15300 50  0001 C CNN
+	4    3700 14300
 	-1   0    0    -1  
 $EndComp
 $Comp
@@ -459,27 +459,27 @@ IO-
 $Comp
 L lethalbit:THVD1451 U4
 U 1 1 5F265FEE
-P 4650 9750
-F 0 "U4" H 4650 10100 50  0000 C CNN
-F 1 "THVD1451" H 4650 10000 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 9400 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 10050 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 9500 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 9600 50  0001 C CNN "MPN"
-	1    4650 9750
+P 8900 9950
+F 0 "U4" H 8900 10300 50  0000 C CNN
+F 1 "THVD1451" H 8900 10200 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 9600 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 10250 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 9700 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 9800 50  0001 C CNN "MPN"
+	1    8900 9950
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U4
 U 2 1 5F2676F8
-P 4650 10050
-F 0 "U4" H 4650 9900 50  0000 C CNN
-F 1 "THVD1451" H 4650 9800 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 9700 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 10350 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 9800 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 9900 50  0001 C CNN "MPN"
-	2    4650 10050
+P 8900 10250
+F 0 "U4" H 8900 10100 50  0000 C CNN
+F 1 "THVD1451" H 8900 10000 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 9900 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 10550 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 10000 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 10100 50  0001 C CNN "MPN"
+	2    8900 10250
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -498,27 +498,27 @@ $EndComp
 $Comp
 L lethalbit:THVD1451 U6
 U 1 1 5F26ADC4
-P 10500 15000
-F 0 "U6" H 10500 15348 50  0000 C CNN
-F 1 "THVD1451" H 10500 15257 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 14650 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 15300 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 14750 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 14850 50  0001 C CNN "MPN"
-	1    10500 15000
+P 12900 15250
+F 0 "U6" H 12900 15598 50  0000 C CNN
+F 1 "THVD1451" H 12900 15507 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 14900 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 15550 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 15000 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 15100 50  0001 C CNN "MPN"
+	1    12900 15250
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U6
 U 2 1 5F26ADCC
-P 10500 15300
-F 0 "U6" H 10500 15150 50  0000 C CNN
-F 1 "THVD1451" H 10500 15050 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 14950 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 15600 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 15050 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 15150 50  0001 C CNN "MPN"
-	2    10500 15300
+P 12900 15550
+F 0 "U6" H 12900 15400 50  0000 C CNN
+F 1 "THVD1451" H 12900 15300 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 15200 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 15850 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 15300 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 15400 50  0001 C CNN "MPN"
+	2    12900 15550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -537,27 +537,27 @@ $EndComp
 $Comp
 L lethalbit:THVD1451 U8
 U 1 1 5F271018
-P 16450 14850
-F 0 "U8" H 16450 15198 50  0000 C CNN
-F 1 "THVD1451" H 16450 15107 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 14500 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 15150 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 14600 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 14700 50  0001 C CNN "MPN"
-	1    16450 14850
+P 16850 15250
+F 0 "U8" H 16850 15598 50  0000 C CNN
+F 1 "THVD1451" H 16850 15507 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 14900 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 15550 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 15000 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 15100 50  0001 C CNN "MPN"
+	1    16850 15250
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U8
 U 2 1 5F271020
-P 16450 15150
-F 0 "U8" H 16450 15000 50  0000 C CNN
-F 1 "THVD1451" H 16450 14900 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 14800 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 15450 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 14900 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 15000 50  0001 C CNN "MPN"
-	2    16450 15150
+P 16850 15550
+F 0 "U8" H 16850 15400 50  0000 C CNN
+F 1 "THVD1451" H 16850 15300 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 15200 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 15850 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 15300 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 15400 50  0001 C CNN "MPN"
+	2    16850 15550
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -654,27 +654,27 @@ $EndComp
 $Comp
 L lethalbit:THVD1451 U3
 U 1 1 5F2C612C
-P 10500 9750
-F 0 "U3" H 10500 10098 50  0000 C CNN
-F 1 "THVD1451" H 10500 10007 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 9400 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 10050 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 9500 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 9600 50  0001 C CNN "MPN"
-	1    10500 9750
+P 12900 10000
+F 0 "U3" H 12900 10348 50  0000 C CNN
+F 1 "THVD1451" H 12900 10257 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 9650 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 10300 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 9750 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 9850 50  0001 C CNN "MPN"
+	1    12900 10000
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U3
 U 2 1 5F2C6134
-P 10500 10050
-F 0 "U3" H 10500 9900 50  0000 C CNN
-F 1 "THVD1451" H 10500 9800 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 9700 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 10350 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 9800 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 9900 50  0001 C CNN "MPN"
-	2    10500 10050
+P 12900 10300
+F 0 "U3" H 12900 10150 50  0000 C CNN
+F 1 "THVD1451" H 12900 10050 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 9950 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 10600 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 10050 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 10150 50  0001 C CNN "MPN"
+	2    12900 10300
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -693,27 +693,27 @@ $EndComp
 $Comp
 L lethalbit:THVD1451 U5
 U 1 1 5F2C6144
-P 4650 15000
-F 0 "U5" H 4650 15348 50  0000 C CNN
-F 1 "THVD1451" H 4650 15257 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 14650 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 15300 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 14750 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 14850 50  0001 C CNN "MPN"
-	1    4650 15000
+P 8900 15200
+F 0 "U5" H 8900 15548 50  0000 C CNN
+F 1 "THVD1451" H 8900 15457 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 14850 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 15500 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 14950 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 15050 50  0001 C CNN "MPN"
+	1    8900 15200
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U5
 U 2 1 5F2C614C
-P 4650 15300
-F 0 "U5" H 4650 15150 50  0000 C CNN
-F 1 "THVD1451" H 4650 15050 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 14950 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 15600 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 15050 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 15150 50  0001 C CNN "MPN"
-	2    4650 15300
+P 8900 15500
+F 0 "U5" H 8900 15350 50  0000 C CNN
+F 1 "THVD1451" H 8900 15250 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 15150 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 15800 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 15250 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 15350 50  0001 C CNN "MPN"
+	2    8900 15500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -732,27 +732,27 @@ $EndComp
 $Comp
 L lethalbit:THVD1451 U7
 U 1 1 5F2C615C
-P 16450 13800
-F 0 "U7" H 16450 14148 50  0000 C CNN
-F 1 "THVD1451" H 16450 14057 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 13450 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 14100 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 13550 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 13650 50  0001 C CNN "MPN"
-	1    16450 13800
+P 16850 14200
+F 0 "U7" H 16850 14548 50  0000 C CNN
+F 1 "THVD1451" H 16850 14457 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 13850 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 14500 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 13950 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 14050 50  0001 C CNN "MPN"
+	1    16850 14200
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U7
 U 2 1 5F2C6164
-P 16450 14100
-F 0 "U7" H 16450 13950 50  0000 C CNN
-F 1 "THVD1451" H 16450 13850 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 13750 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 14400 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 13850 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 13950 50  0001 C CNN "MPN"
-	2    16450 14100
+P 16850 14500
+F 0 "U7" H 16850 14350 50  0000 C CNN
+F 1 "THVD1451" H 16850 14250 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 14150 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 14800 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 14250 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 14350 50  0001 C CNN "MPN"
+	2    16850 14500
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1623,3889 +1623,3777 @@ Wire Wire Line
 $Comp
 L lethalbit:THVD1451 U19
 U 2 1 5F2C61F4
-P 10500 12150
-F 0 "U19" H 10500 12000 50  0000 C CNN
-F 1 "THVD1451" H 10500 11900 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 11800 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 12450 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 11900 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 12000 50  0001 C CNN "MPN"
-	2    10500 12150
+P 12900 12400
+F 0 "U19" H 12900 12250 50  0000 C CNN
+F 1 "THVD1451" H 12900 12150 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 12050 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 12700 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 12150 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 12250 50  0001 C CNN "MPN"
+	2    12900 12400
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U19
 U 1 1 5F2C61EC
-P 10500 11850
-F 0 "U19" H 10500 12198 50  0000 C CNN
-F 1 "THVD1451" H 10500 12107 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 11500 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 12150 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 11600 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 11700 50  0001 C CNN "MPN"
-	1    10500 11850
+P 12900 12100
+F 0 "U19" H 12900 12448 50  0000 C CNN
+F 1 "THVD1451" H 12900 12357 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 11750 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 12400 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 11850 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 11950 50  0001 C CNN "MPN"
+	1    12900 12100
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U17
 U 2 1 5F2C61DC
-P 4650 12150
-F 0 "U17" H 4650 12000 50  0000 C CNN
-F 1 "THVD1451" H 4650 11900 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 11800 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 12450 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 11900 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 12000 50  0001 C CNN "MPN"
-	2    4650 12150
+P 8900 12350
+F 0 "U17" H 8900 12200 50  0000 C CNN
+F 1 "THVD1451" H 8900 12100 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 12000 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 12650 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 12100 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 12200 50  0001 C CNN "MPN"
+	2    8900 12350
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U17
 U 1 1 5F2C61D4
-P 4650 11850
-F 0 "U17" H 4650 12198 50  0000 C CNN
-F 1 "THVD1451" H 4650 12107 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 11500 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 12150 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 11600 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 11700 50  0001 C CNN "MPN"
-	1    4650 11850
+P 8900 12050
+F 0 "U17" H 8900 12398 50  0000 C CNN
+F 1 "THVD1451" H 8900 12307 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 11700 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 12350 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 11800 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 11900 50  0001 C CNN "MPN"
+	1    8900 12050
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U15
 U 2 1 5F2C61C4
-P 10500 11100
-F 0 "U15" H 10500 10950 50  0000 C CNN
-F 1 "THVD1451" H 10500 10850 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 10750 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 11400 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 10850 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 10950 50  0001 C CNN "MPN"
-	2    10500 11100
+P 12900 11350
+F 0 "U15" H 12900 11200 50  0000 C CNN
+F 1 "THVD1451" H 12900 11100 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 11000 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 11650 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 11100 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 11200 50  0001 C CNN "MPN"
+	2    12900 11350
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U15
 U 1 1 5F2C61BC
-P 10500 10800
-F 0 "U15" H 10500 11148 50  0000 C CNN
-F 1 "THVD1451" H 10500 11057 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 10450 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 11100 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 10550 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 10650 50  0001 C CNN "MPN"
-	1    10500 10800
+P 12900 11050
+F 0 "U15" H 12900 11398 50  0000 C CNN
+F 1 "THVD1451" H 12900 11307 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 10700 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 11350 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 10800 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 10900 50  0001 C CNN "MPN"
+	1    12900 11050
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U13
 U 2 1 5F2C61AC
-P 16450 13050
-F 0 "U13" H 16450 12900 50  0000 C CNN
-F 1 "THVD1451" H 16450 12800 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 12700 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 13350 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 12800 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 12900 50  0001 C CNN "MPN"
-	2    16450 13050
+P 16850 13450
+F 0 "U13" H 16850 13300 50  0000 C CNN
+F 1 "THVD1451" H 16850 13200 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 13100 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 13750 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 13200 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 13300 50  0001 C CNN "MPN"
+	2    16850 13450
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U13
 U 1 1 5F2C61A4
-P 16450 12750
-F 0 "U13" H 16450 13098 50  0000 C CNN
-F 1 "THVD1451" H 16450 13007 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 12400 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 13050 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 12500 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 12600 50  0001 C CNN "MPN"
-	1    16450 12750
+P 16850 13150
+F 0 "U13" H 16850 13498 50  0000 C CNN
+F 1 "THVD1451" H 16850 13407 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 12800 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 13450 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 12900 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 13000 50  0001 C CNN "MPN"
+	1    16850 13150
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U11
 U 2 1 5F2C6194
-P 10500 14250
-F 0 "U11" H 10500 14100 50  0000 C CNN
-F 1 "THVD1451" H 10500 14000 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 13900 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 14550 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 14000 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 14100 50  0001 C CNN "MPN"
-	2    10500 14250
+P 12900 14500
+F 0 "U11" H 12900 14350 50  0000 C CNN
+F 1 "THVD1451" H 12900 14250 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 14150 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 14800 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 14250 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 14350 50  0001 C CNN "MPN"
+	2    12900 14500
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U11
 U 1 1 5F2C618C
-P 10500 13950
-F 0 "U11" H 10500 14298 50  0000 C CNN
-F 1 "THVD1451" H 10500 14207 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 13600 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 14250 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 13700 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 13800 50  0001 C CNN "MPN"
-	1    10500 13950
+P 12900 14200
+F 0 "U11" H 12900 14548 50  0000 C CNN
+F 1 "THVD1451" H 12900 14457 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 13850 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 14500 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 13950 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 14050 50  0001 C CNN "MPN"
+	1    12900 14200
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U9
 U 2 1 5F2C617C
-P 16450 9900
-F 0 "U9" H 16450 9750 50  0000 C CNN
-F 1 "THVD1451" H 16450 9650 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 9550 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 10200 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 9650 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 9750 50  0001 C CNN "MPN"
-	2    16450 9900
+P 16850 10300
+F 0 "U9" H 16850 10150 50  0000 C CNN
+F 1 "THVD1451" H 16850 10050 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 9950 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 10600 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 10050 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 10150 50  0001 C CNN "MPN"
+	2    16850 10300
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U9
 U 1 1 5F2C6174
-P 16450 9600
-F 0 "U9" H 16450 9948 50  0000 C CNN
-F 1 "THVD1451" H 16450 9857 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 9250 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 9900 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 9350 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 9450 50  0001 C CNN "MPN"
-	1    16450 9600
+P 16850 10000
+F 0 "U9" H 16850 10348 50  0000 C CNN
+F 1 "THVD1451" H 16850 10257 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 9650 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 10300 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 9750 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 9850 50  0001 C CNN "MPN"
+	1    16850 10000
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U20
 U 2 1 5F2AA777
-P 10500 13200
-F 0 "U20" H 10500 13050 50  0000 C CNN
-F 1 "THVD1451" H 10500 12950 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 12850 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 13500 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 12950 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 13050 50  0001 C CNN "MPN"
-	2    10500 13200
+P 12900 13450
+F 0 "U20" H 12900 13300 50  0000 C CNN
+F 1 "THVD1451" H 12900 13200 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 13100 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 13750 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 13200 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 13300 50  0001 C CNN "MPN"
+	2    12900 13450
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U20
 U 1 1 5F2AA76F
-P 10500 12900
-F 0 "U20" H 10500 13248 50  0000 C CNN
-F 1 "THVD1451" H 10500 13157 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 10500 12550 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 10500 13200 50  0001 C CNN
-F 4 "Texas Instruments" H 10500 12650 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 10500 12750 50  0001 C CNN "MPN"
-	1    10500 12900
+P 12900 13150
+F 0 "U20" H 12900 13498 50  0000 C CNN
+F 1 "THVD1451" H 12900 13407 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 12900 12800 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 12900 13450 50  0001 C CNN
+F 4 "Texas Instruments" H 12900 12900 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 12900 13000 50  0001 C CNN "MPN"
+	1    12900 13150
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U18
 U 2 1 5F281918
-P 4650 13200
-F 0 "U18" H 4650 13050 50  0000 C CNN
-F 1 "THVD1451" H 4650 12950 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 12850 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 13500 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 12950 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 13050 50  0001 C CNN "MPN"
-	2    4650 13200
+P 8900 13400
+F 0 "U18" H 8900 13250 50  0000 C CNN
+F 1 "THVD1451" H 8900 13150 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 13050 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 13700 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 13150 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 13250 50  0001 C CNN "MPN"
+	2    8900 13400
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U18
 U 1 1 5F281910
-P 4650 12900
-F 0 "U18" H 4650 13248 50  0000 C CNN
-F 1 "THVD1451" H 4650 13157 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 12550 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 13200 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 12650 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 12750 50  0001 C CNN "MPN"
-	1    4650 12900
+P 8900 13100
+F 0 "U18" H 8900 13448 50  0000 C CNN
+F 1 "THVD1451" H 8900 13357 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 12750 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 13400 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 12850 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 12950 50  0001 C CNN "MPN"
+	1    8900 13100
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U16
 U 2 1 5F281900
-P 16450 10950
-F 0 "U16" H 16450 10800 50  0000 C CNN
-F 1 "THVD1451" H 16450 10700 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 10600 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 11250 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 10700 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 10800 50  0001 C CNN "MPN"
-	2    16450 10950
+P 16850 11350
+F 0 "U16" H 16850 11200 50  0000 C CNN
+F 1 "THVD1451" H 16850 11100 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 11000 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 11650 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 11100 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 11200 50  0001 C CNN "MPN"
+	2    16850 11350
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U14
 U 2 1 5F2818E8
-P 16450 12000
-F 0 "U14" H 16450 11850 50  0000 C CNN
-F 1 "THVD1451" H 16450 11750 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 11650 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 12300 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 11750 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 11850 50  0001 C CNN "MPN"
-	2    16450 12000
+P 16850 12400
+F 0 "U14" H 16850 12250 50  0000 C CNN
+F 1 "THVD1451" H 16850 12150 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 12050 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 12700 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 12150 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 12250 50  0001 C CNN "MPN"
+	2    16850 12400
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U14
 U 1 1 5F2818E0
-P 16450 11700
-F 0 "U14" H 16450 12048 50  0000 C CNN
-F 1 "THVD1451" H 16450 11957 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 11350 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 12000 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 11450 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 11550 50  0001 C CNN "MPN"
-	1    16450 11700
+P 16850 12100
+F 0 "U14" H 16850 12448 50  0000 C CNN
+F 1 "THVD1451" H 16850 12357 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 11750 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 12400 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 11850 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 11950 50  0001 C CNN "MPN"
+	1    16850 12100
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U12
 U 2 1 5F2818D0
-P 4650 14250
-F 0 "U12" H 4650 14100 50  0000 C CNN
-F 1 "THVD1451" H 4650 14000 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 13900 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 14550 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 14000 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 14100 50  0001 C CNN "MPN"
-	2    4650 14250
+P 8900 14450
+F 0 "U12" H 8900 14300 50  0000 C CNN
+F 1 "THVD1451" H 8900 14200 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 14100 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 14750 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 14200 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 14300 50  0001 C CNN "MPN"
+	2    8900 14450
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U12
 U 1 1 5F2818C8
-P 4650 13950
-F 0 "U12" H 4650 14298 50  0000 C CNN
-F 1 "THVD1451" H 4650 14207 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 13600 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 14250 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 13700 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 13800 50  0001 C CNN "MPN"
-	1    4650 13950
+P 8900 14150
+F 0 "U12" H 8900 14498 50  0000 C CNN
+F 1 "THVD1451" H 8900 14407 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 13800 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 14450 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 13900 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 14000 50  0001 C CNN "MPN"
+	1    8900 14150
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U10
 U 2 1 5F271038
-P 4650 11100
-F 0 "U10" H 4650 10950 50  0000 C CNN
-F 1 "THVD1451" H 4650 10850 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 10750 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 11400 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 10850 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 10950 50  0001 C CNN "MPN"
-	2    4650 11100
+P 8900 11300
+F 0 "U10" H 8900 11150 50  0000 C CNN
+F 1 "THVD1451" H 8900 11050 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 10950 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 11600 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 11050 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 11150 50  0001 C CNN "MPN"
+	2    8900 11300
 	1    0    0    -1  
 $EndComp
 $Comp
 L lethalbit:THVD1451 U10
 U 1 1 5F271030
-P 4650 10800
-F 0 "U10" H 4650 11148 50  0000 C CNN
-F 1 "THVD1451" H 4650 11057 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 4650 10450 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 4650 11100 50  0001 C CNN
-F 4 "Texas Instruments" H 4650 10550 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 4650 10650 50  0001 C CNN "MPN"
-	1    4650 10800
+P 8900 11000
+F 0 "U10" H 8900 11348 50  0000 C CNN
+F 1 "THVD1451" H 8900 11257 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 8900 10650 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 8900 11300 50  0001 C CNN
+F 4 "Texas Instruments" H 8900 10750 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 8900 10850 50  0001 C CNN "MPN"
+	1    8900 11000
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	10850 12100 11000 12100
+	13250 12350 13400 12350
 Wire Wire Line
-	10850 12200 11000 12200
+	13250 12450 13400 12450
 Wire Wire Line
-	16800 11950 16950 11950
+	17200 12350 17350 12350
 Wire Wire Line
-	16800 12050 16950 12050
+	17200 12450 17350 12450
 Wire Wire Line
-	5000 12100 5150 12100
+	9250 12300 9400 12300
 Wire Wire Line
-	5000 12200 5150 12200
+	9250 12400 9400 12400
 Wire Wire Line
-	5000 13150 5150 13150
+	9250 13350 9400 13350
 Wire Wire Line
-	5000 13250 5150 13250
+	9250 13450 9400 13450
 Wire Wire Line
-	5000 14200 5150 14200
+	9250 14400 9400 14400
 Wire Wire Line
-	5000 14300 5150 14300
+	9250 14500 9400 14500
 Wire Wire Line
-	10850 11050 11000 11050
+	13250 11300 13400 11300
 Wire Wire Line
-	10850 11150 11000 11150
+	13250 11400 13400 11400
 Wire Wire Line
-	16800 10900 16950 10900
+	17200 11300 17350 11300
 Wire Wire Line
-	16800 11000 16950 11000
+	17200 11400 17350 11400
 Wire Wire Line
-	5000 11050 5150 11050
+	9250 11250 9400 11250
 Wire Wire Line
-	5000 11150 5150 11150
+	9250 11350 9400 11350
 Wire Wire Line
-	16800 13000 16950 13000
+	17200 13400 17350 13400
 Wire Wire Line
-	16800 13100 16950 13100
+	17200 13500 17350 13500
 Wire Wire Line
-	16800 14050 16950 14050
+	17200 14450 17350 14450
 Wire Wire Line
-	16800 14150 16950 14150
+	17200 14550 17350 14550
 Wire Wire Line
-	16800 15100 16950 15100
+	17200 15500 17350 15500
 Wire Wire Line
-	16800 15200 16950 15200
+	17200 15600 17350 15600
 Wire Wire Line
-	10850 14200 11000 14200
+	13250 14450 13400 14450
 Wire Wire Line
-	10850 14300 11000 14300
+	13250 14550 13400 14550
 Wire Wire Line
-	5000 15250 5150 15250
+	9250 15450 9400 15450
 Wire Wire Line
-	5000 15350 5150 15350
+	9250 15550 9400 15550
 Wire Wire Line
-	10850 15250 11000 15250
+	13250 15500 13400 15500
 Wire Wire Line
-	10850 15350 11000 15350
+	13250 15600 13400 15600
 Wire Wire Line
-	16800 9850 16950 9850
+	17200 10250 17350 10250
 Wire Wire Line
-	16800 9950 16950 9950
+	17200 10350 17350 10350
 Wire Wire Line
-	10850 10000 11000 10000
+	13250 10250 13400 10250
 Wire Wire Line
-	10850 10100 11000 10100
+	13250 10350 13400 10350
 Wire Wire Line
-	11300 10000 11200 10000
+	13700 10250 13600 10250
 Wire Wire Line
-	11200 10100 11400 10100
+	13600 10350 13800 10350
 Wire Wire Line
-	5000 10000 5150 10000
+	9250 10200 9400 10200
 Wire Wire Line
-	5000 10100 5150 10100
+	9250 10300 9400 10300
 $Comp
 L lethalbit:THVD1451 U16
 U 1 1 5F2818F8
-P 16450 10650
-F 0 "U16" H 16450 10998 50  0000 C CNN
-F 1 "THVD1451" H 16450 10907 50  0000 C CNN
-F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16450 10300 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16450 10950 50  0001 C CNN
-F 4 "Texas Instruments" H 16450 10400 50  0001 C CNN "MFR"
-F 5 "THVD1451DRBR" H 16450 10500 50  0001 C CNN "MPN"
-	1    16450 10650
+P 16850 11050
+F 0 "U16" H 16850 11398 50  0000 C CNN
+F 1 "THVD1451" H 16850 11307 50  0000 C CNN
+F 2 "lethalbit:VSON_8_3mm_x_3mm_1EP" H 16850 10700 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624" H 16850 11350 50  0001 C CNN
+F 4 "Texas Instruments" H 16850 10800 50  0001 C CNN "MFR"
+F 5 "THVD1451DRBR" H 16850 10900 50  0001 C CNN "MPN"
+	1    16850 11050
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D35
 U 1 1 615B9555
-P 11100 12100
-F 0 "D35" H 11200 12150 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 12300 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 12100 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 12100 50  0001 C CNN
-F 4 "Comchip" H 11100 12100 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 12100 50  0001 C CNN "MPN"
-	1    11100 12100
+P 13500 12350
+F 0 "D35" H 13600 12400 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 12550 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 12350 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 12350 50  0001 C CNN
+F 4 "Comchip" H 13500 12350 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 12350 50  0001 C CNN "MPN"
+	1    13500 12350
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D36
 U 1 1 615B955D
-P 11100 12200
-F 0 "D36" H 11200 12250 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 12400 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 12200 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 12200 50  0001 C CNN
-F 4 "Comchip" H 11100 12200 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 12200 50  0001 C CNN "MPN"
-	1    11100 12200
+P 13500 12450
+F 0 "D36" H 13600 12500 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 12650 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 12450 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 12450 50  0001 C CNN
+F 4 "Comchip" H 13500 12450 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 12450 50  0001 C CNN "MPN"
+	1    13500 12450
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D59
 U 1 1 6165CDF3
-P 17050 11950
-F 0 "D59" H 17150 12000 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 12150 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 11950 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 11950 50  0001 C CNN
-F 4 "Comchip" H 17050 11950 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 11950 50  0001 C CNN "MPN"
-	1    17050 11950
+P 17450 12350
+F 0 "D59" H 17550 12400 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 12550 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 12350 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 12350 50  0001 C CNN
+F 4 "Comchip" H 17450 12350 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 12350 50  0001 C CNN "MPN"
+	1    17450 12350
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D60
 U 1 1 6165CDFB
-P 17050 12050
-F 0 "D60" H 17150 12100 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 12250 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 12050 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 12050 50  0001 C CNN
-F 4 "Comchip" H 17050 12050 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 12050 50  0001 C CNN "MPN"
-	1    17050 12050
+P 17450 12450
+F 0 "D60" H 17550 12500 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 12650 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 12450 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 12450 50  0001 C CNN
+F 4 "Comchip" H 17450 12450 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 12450 50  0001 C CNN "MPN"
+	1    17450 12450
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D11
 U 1 1 616D56D8
-P 5250 12100
-F 0 "D11" H 5350 12150 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 12300 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 12100 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 12100 50  0001 C CNN
-F 4 "Comchip" H 5250 12100 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 12100 50  0001 C CNN "MPN"
-	1    5250 12100
+P 9500 12300
+F 0 "D11" H 9600 12350 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 12500 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 12300 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 12300 50  0001 C CNN
+F 4 "Comchip" H 9500 12300 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 12300 50  0001 C CNN "MPN"
+	1    9500 12300
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D12
 U 1 1 616D56E0
-P 5250 12200
-F 0 "D12" H 5350 12250 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 12400 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 12200 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 12200 50  0001 C CNN
-F 4 "Comchip" H 5250 12200 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 12200 50  0001 C CNN "MPN"
-	1    5250 12200
+P 9500 12400
+F 0 "D12" H 9600 12450 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 12600 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 12400 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 12400 50  0001 C CNN
+F 4 "Comchip" H 9500 12400 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 12400 50  0001 C CNN "MPN"
+	1    9500 12400
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D15
 U 1 1 616D56F8
-P 5250 13150
-F 0 "D15" H 5350 13200 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 13350 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 13150 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 13150 50  0001 C CNN
-F 4 "Comchip" H 5250 13150 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 13150 50  0001 C CNN "MPN"
-	1    5250 13150
+P 9500 13350
+F 0 "D15" H 9600 13400 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 13550 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 13350 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 13350 50  0001 C CNN
+F 4 "Comchip" H 9500 13350 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 13350 50  0001 C CNN "MPN"
+	1    9500 13350
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D16
 U 1 1 616D5700
-P 5250 13250
-F 0 "D16" H 5350 13300 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 13450 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 13250 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 13250 50  0001 C CNN
-F 4 "Comchip" H 5250 13250 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 13250 50  0001 C CNN "MPN"
-	1    5250 13250
+P 9500 13450
+F 0 "D16" H 9600 13500 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 13650 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 13450 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 13450 50  0001 C CNN
+F 4 "Comchip" H 9500 13450 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 13450 50  0001 C CNN "MPN"
+	1    9500 13450
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D19
 U 1 1 616D5718
-P 5250 14200
-F 0 "D19" H 5350 14250 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 14400 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 14200 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 14200 50  0001 C CNN
-F 4 "Comchip" H 5250 14200 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 14200 50  0001 C CNN "MPN"
-	1    5250 14200
+P 9500 14400
+F 0 "D19" H 9600 14450 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 14600 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 14400 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 14400 50  0001 C CNN
+F 4 "Comchip" H 9500 14400 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 14400 50  0001 C CNN "MPN"
+	1    9500 14400
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D20
 U 1 1 616D5720
-P 5250 14300
-F 0 "D20" H 5350 14350 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 14500 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 14300 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 14300 50  0001 C CNN
-F 4 "Comchip" H 5250 14300 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 14300 50  0001 C CNN "MPN"
-	1    5250 14300
+P 9500 14500
+F 0 "D20" H 9600 14550 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 14700 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 14500 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 14500 50  0001 C CNN
+F 4 "Comchip" H 9500 14500 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 14500 50  0001 C CNN "MPN"
+	1    9500 14500
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D31
 U 1 1 6172BBCD
-P 11100 11050
-F 0 "D31" H 11200 11100 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 11250 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 11050 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 11050 50  0001 C CNN
-F 4 "Comchip" H 11100 11050 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 11050 50  0001 C CNN "MPN"
-	1    11100 11050
+P 13500 11300
+F 0 "D31" H 13600 11350 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 11500 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 11300 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 11300 50  0001 C CNN
+F 4 "Comchip" H 13500 11300 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 11300 50  0001 C CNN "MPN"
+	1    13500 11300
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D32
 U 1 1 6172BBD5
-P 11100 11150
-F 0 "D32" H 11200 11200 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 11350 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 11150 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 11150 50  0001 C CNN
-F 4 "Comchip" H 11100 11150 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 11150 50  0001 C CNN "MPN"
-	1    11100 11150
+P 13500 11400
+F 0 "D32" H 13600 11450 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 11600 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 11400 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 11400 50  0001 C CNN
+F 4 "Comchip" H 13500 11400 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 11400 50  0001 C CNN "MPN"
+	1    13500 11400
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D55
 U 1 1 6172BBED
-P 17050 10900
-F 0 "D55" H 17150 10950 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 11100 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 10900 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 10900 50  0001 C CNN
-F 4 "Comchip" H 17050 10900 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 10900 50  0001 C CNN "MPN"
-	1    17050 10900
+P 17450 11300
+F 0 "D55" H 17550 11350 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 11500 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 11300 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 11300 50  0001 C CNN
+F 4 "Comchip" H 17450 11300 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 11300 50  0001 C CNN "MPN"
+	1    17450 11300
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D56
 U 1 1 6172BBF5
-P 17050 11000
-F 0 "D56" H 17150 11050 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 11200 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 11000 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 11000 50  0001 C CNN
-F 4 "Comchip" H 17050 11000 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 11000 50  0001 C CNN "MPN"
-	1    17050 11000
+P 17450 11400
+F 0 "D56" H 17550 11450 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 11600 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 11400 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 11400 50  0001 C CNN
+F 4 "Comchip" H 17450 11400 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 11400 50  0001 C CNN "MPN"
+	1    17450 11400
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D7
 U 1 1 6172BC0D
-P 5250 11050
-F 0 "D7" H 5350 11100 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 11250 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 11050 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 11050 50  0001 C CNN
-F 4 "Comchip" H 5250 11050 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 11050 50  0001 C CNN "MPN"
-	1    5250 11050
+P 9500 11250
+F 0 "D7" H 9600 11300 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 11450 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 11250 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 11250 50  0001 C CNN
+F 4 "Comchip" H 9500 11250 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 11250 50  0001 C CNN "MPN"
+	1    9500 11250
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D8
 U 1 1 6172BC15
-P 5250 11150
-F 0 "D8" H 5350 11200 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 11350 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 11150 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 11150 50  0001 C CNN
-F 4 "Comchip" H 5250 11150 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 11150 50  0001 C CNN "MPN"
-	1    5250 11150
+P 9500 11350
+F 0 "D8" H 9600 11400 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 11550 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 11350 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 11350 50  0001 C CNN
+F 4 "Comchip" H 9500 11350 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 11350 50  0001 C CNN "MPN"
+	1    9500 11350
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D63
 U 1 1 6177EFBA
-P 17050 13000
-F 0 "D63" H 17150 13050 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 13200 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 13000 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 13000 50  0001 C CNN
-F 4 "Comchip" H 17050 13000 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 13000 50  0001 C CNN "MPN"
-	1    17050 13000
+P 17450 13400
+F 0 "D63" H 17550 13450 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 13600 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 13400 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 13400 50  0001 C CNN
+F 4 "Comchip" H 17450 13400 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 13400 50  0001 C CNN "MPN"
+	1    17450 13400
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D64
 U 1 1 6177EFC2
-P 17050 13100
-F 0 "D64" H 17150 13150 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 13300 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 13100 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 13100 50  0001 C CNN
-F 4 "Comchip" H 17050 13100 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 13100 50  0001 C CNN "MPN"
-	1    17050 13100
+P 17450 13500
+F 0 "D64" H 17550 13550 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 13700 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 13500 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 13500 50  0001 C CNN
+F 4 "Comchip" H 17450 13500 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 13500 50  0001 C CNN "MPN"
+	1    17450 13500
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D43
 U 1 1 617D41E9
-P 11100 14200
-F 0 "D43" H 11200 14250 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 14400 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 14200 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 14200 50  0001 C CNN
-F 4 "Comchip" H 11100 14200 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 14200 50  0001 C CNN "MPN"
-	1    11100 14200
+P 13500 14450
+F 0 "D43" H 13600 14500 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 14650 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 14450 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 14450 50  0001 C CNN
+F 4 "Comchip" H 13500 14450 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 14450 50  0001 C CNN "MPN"
+	1    13500 14450
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D44
 U 1 1 617D41F1
-P 11100 14300
-F 0 "D44" H 11200 14350 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 14500 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 14300 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 14300 50  0001 C CNN
-F 4 "Comchip" H 11100 14300 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 14300 50  0001 C CNN "MPN"
-	1    11100 14300
+P 13500 14550
+F 0 "D44" H 13600 14600 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 14750 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 14550 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 14550 50  0001 C CNN
+F 4 "Comchip" H 13500 14550 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 14550 50  0001 C CNN "MPN"
+	1    13500 14550
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D23
 U 1 1 617D4209
-P 5250 15250
-F 0 "D23" H 5350 15300 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 15450 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 15250 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 15250 50  0001 C CNN
-F 4 "Comchip" H 5250 15250 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 15250 50  0001 C CNN "MPN"
-	1    5250 15250
+P 9500 15450
+F 0 "D23" H 9600 15500 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 15650 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 15450 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 15450 50  0001 C CNN
+F 4 "Comchip" H 9500 15450 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 15450 50  0001 C CNN "MPN"
+	1    9500 15450
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D24
 U 1 1 617D4211
-P 5250 15350
-F 0 "D24" H 5350 15400 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 15550 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 15350 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 15350 50  0001 C CNN
-F 4 "Comchip" H 5250 15350 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 15350 50  0001 C CNN "MPN"
-	1    5250 15350
+P 9500 15550
+F 0 "D24" H 9600 15600 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 15750 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 15550 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 15550 50  0001 C CNN
+F 4 "Comchip" H 9500 15550 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 15550 50  0001 C CNN "MPN"
+	1    9500 15550
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D47
 U 1 1 617D4229
-P 11100 15250
-F 0 "D47" H 11200 15300 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 15450 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 15250 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 15250 50  0001 C CNN
-F 4 "Comchip" H 11100 15250 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 15250 50  0001 C CNN "MPN"
-	1    11100 15250
+P 13500 15500
+F 0 "D47" H 13600 15550 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 15700 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 15500 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 15500 50  0001 C CNN
+F 4 "Comchip" H 13500 15500 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 15500 50  0001 C CNN "MPN"
+	1    13500 15500
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D48
 U 1 1 617D4231
-P 11100 15350
-F 0 "D48" H 11200 15400 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 15550 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 15350 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 15350 50  0001 C CNN
-F 4 "Comchip" H 11100 15350 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 15350 50  0001 C CNN "MPN"
-	1    11100 15350
+P 13500 15600
+F 0 "D48" H 13600 15650 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 15800 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 15600 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 15600 50  0001 C CNN
+F 4 "Comchip" H 13500 15600 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 15600 50  0001 C CNN "MPN"
+	1    13500 15600
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D51
 U 1 1 6182819E
-P 17050 9850
-F 0 "D51" H 17150 9900 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 10050 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 9850 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 9850 50  0001 C CNN
-F 4 "Comchip" H 17050 9850 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 9850 50  0001 C CNN "MPN"
-	1    17050 9850
+P 17450 10250
+F 0 "D51" H 17550 10300 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 10450 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 10250 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 10250 50  0001 C CNN
+F 4 "Comchip" H 17450 10250 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 10250 50  0001 C CNN "MPN"
+	1    17450 10250
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D52
 U 1 1 618281A6
-P 17050 9950
-F 0 "D52" H 17150 10000 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 10150 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 9950 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 9950 50  0001 C CNN
-F 4 "Comchip" H 17050 9950 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 9950 50  0001 C CNN "MPN"
-	1    17050 9950
+P 17450 10350
+F 0 "D52" H 17550 10400 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 10550 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 10350 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 10350 50  0001 C CNN
+F 4 "Comchip" H 17450 10350 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 10350 50  0001 C CNN "MPN"
+	1    17450 10350
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D27
 U 1 1 618281BE
-P 11100 10000
-F 0 "D27" H 11200 10050 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 10200 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 10000 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 10000 50  0001 C CNN
-F 4 "Comchip" H 11100 10000 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 10000 50  0001 C CNN "MPN"
-	1    11100 10000
+P 13500 10250
+F 0 "D27" H 13600 10300 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 10450 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 10250 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 10250 50  0001 C CNN
+F 4 "Comchip" H 13500 10250 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 10250 50  0001 C CNN "MPN"
+	1    13500 10250
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D28
 U 1 1 618281C6
-P 11100 10100
-F 0 "D28" H 11200 10150 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 10300 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 10100 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 10100 50  0001 C CNN
-F 4 "Comchip" H 11100 10100 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 10100 50  0001 C CNN "MPN"
-	1    11100 10100
+P 13500 10350
+F 0 "D28" H 13600 10400 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 10550 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 10350 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 10350 50  0001 C CNN
+F 4 "Comchip" H 13500 10350 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 10350 50  0001 C CNN "MPN"
+	1    13500 10350
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D3
 U 1 1 618281DE
-P 5250 10000
-F 0 "D3" H 5350 10050 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 10200 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 10000 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 10000 50  0001 C CNN
-F 4 "Comchip" H 5250 10000 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 10000 50  0001 C CNN "MPN"
-	1    5250 10000
+P 9500 10200
+F 0 "D3" H 9600 10250 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 10400 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 10200 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 10200 50  0001 C CNN
+F 4 "Comchip" H 9500 10200 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 10200 50  0001 C CNN "MPN"
+	1    9500 10200
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D4
 U 1 1 618281E6
-P 5250 10100
-F 0 "D4" H 5350 10150 50  0000 C CNN
-F 1 "D_Schottky_Small" H 5250 10300 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 5250 10100 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 5250 10100 50  0001 C CNN
-F 4 "Comchip" H 5250 10100 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 5250 10100 50  0001 C CNN "MPN"
-	1    5250 10100
+P 9500 10300
+F 0 "D4" H 9600 10350 50  0000 C CNN
+F 1 "D_Schottky_Small" H 9500 10500 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 9500 10300 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 9500 10300 50  0001 C CNN
+F 4 "Comchip" H 9500 10300 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 9500 10300 50  0001 C CNN "MPN"
+	1    9500 10300
 	-1   0    0    -1  
 $EndComp
-Text Notes 11550 9800 2    50   ~ 0
+Text Notes 13950 10050 2    50   ~ 0
 +
-Text Notes 11550 10050 2    50   ~ 0
+Text Notes 13950 10300 2    50   ~ 0
 -
 $Comp
 L Device:D_Schottky_Small D72
 U 1 1 6177F002
-P 17050 15200
-F 0 "D72" H 17150 15250 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 15400 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 15200 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 15200 50  0001 C CNN
-F 4 "Comchip" H 17050 15200 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 15200 50  0001 C CNN "MPN"
-	1    17050 15200
+P 17450 15600
+F 0 "D72" H 17550 15650 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 15800 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 15600 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 15600 50  0001 C CNN
+F 4 "Comchip" H 17450 15600 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 15600 50  0001 C CNN "MPN"
+	1    17450 15600
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D71
 U 1 1 6177EFFA
-P 17050 15100
-F 0 "D71" H 17150 15150 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 15300 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 15100 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 15100 50  0001 C CNN
-F 4 "Comchip" H 17050 15100 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 15100 50  0001 C CNN "MPN"
-	1    17050 15100
+P 17450 15500
+F 0 "D71" H 17550 15550 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 15700 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 15500 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 15500 50  0001 C CNN
+F 4 "Comchip" H 17450 15500 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 15500 50  0001 C CNN "MPN"
+	1    17450 15500
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D68
 U 1 1 6177EFE2
-P 17050 14150
-F 0 "D68" H 17150 14200 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 14350 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 14150 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 14150 50  0001 C CNN
-F 4 "Comchip" H 17050 14150 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 14150 50  0001 C CNN "MPN"
-	1    17050 14150
+P 17450 14550
+F 0 "D68" H 17550 14600 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 14750 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 14550 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 14550 50  0001 C CNN
+F 4 "Comchip" H 17450 14550 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 14550 50  0001 C CNN "MPN"
+	1    17450 14550
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D67
 U 1 1 6177EFDA
-P 17050 14050
-F 0 "D67" H 17150 14100 50  0000 C CNN
-F 1 "D_Schottky_Small" H 17050 14250 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 17050 14050 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17050 14050 50  0001 C CNN
-F 4 "Comchip" H 17050 14050 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 17050 14050 50  0001 C CNN "MPN"
-	1    17050 14050
+P 17450 14450
+F 0 "D67" H 17550 14500 50  0000 C CNN
+F 1 "D_Schottky_Small" H 17450 14650 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 17450 14450 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 17450 14450 50  0001 C CNN
+F 4 "Comchip" H 17450 14450 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 17450 14450 50  0001 C CNN "MPN"
+	1    17450 14450
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D40
 U 1 1 6160BC90
-P 11100 13250
-F 0 "D40" H 11200 13300 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 13450 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 13250 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 13250 50  0001 C CNN
-F 4 "Comchip" H 11100 13250 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 13250 50  0001 C CNN "MPN"
-	1    11100 13250
+P 13500 13500
+F 0 "D40" H 13600 13550 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 13700 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 13500 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 13500 50  0001 C CNN
+F 4 "Comchip" H 13500 13500 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 13500 50  0001 C CNN "MPN"
+	1    13500 13500
 	-1   0    0    -1  
 $EndComp
 $Comp
 L Device:D_Schottky_Small D39
 U 1 1 6160BC88
-P 11100 13150
-F 0 "D39" H 11200 13200 50  0000 C CNN
-F 1 "D_Schottky_Small" H 11100 13350 50  0001 C CNN
-F 2 "Diode_SMD:D_0402_1005Metric" V 11100 13150 50  0001 C CNN
-F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 11100 13150 50  0001 C CNN
-F 4 "Comchip" H 11100 13150 50  0001 C CNN "MFR"
-F 5 "CDBQR0230L-HF" H 11100 13150 50  0001 C CNN "MPN"
-	1    11100 13150
+P 13500 13400
+F 0 "D39" H 13600 13450 50  0000 C CNN
+F 1 "D_Schottky_Small" H 13500 13600 50  0001 C CNN
+F 2 "Diode_SMD:D_0402_1005Metric" V 13500 13400 50  0001 C CNN
+F 3 "https://www.comchiptech.com/admin/files/product/CDBQR0230L-HF-RevC431048.pdf" V 13500 13400 50  0001 C CNN
+F 4 "Comchip" H 13500 13400 50  0001 C CNN "MFR"
+F 5 "CDBQR0230L-HF" H 13500 13400 50  0001 C CNN "MPN"
+	1    13500 13400
 	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	10850 13250 11000 13250
+	13250 13500 13400 13500
 Wire Wire Line
-	10850 13150 11000 13150
+	13250 13400 13400 13400
 Wire Wire Line
-	17250 9650 17250 9800
+	17650 10050 17650 10200
 Wire Wire Line
-	17250 9850 17150 9850
+	17650 10250 17550 10250
 Wire Wire Line
-	17150 9950 17350 9950
+	17550 10350 17750 10350
 Wire Wire Line
-	17350 9950 17350 9700
-Connection ~ 17250 9800
+	17750 10350 17750 10100
+Connection ~ 17650 10200
 Wire Wire Line
-	17250 9800 17250 9850
+	17650 10200 17650 10250
 Wire Wire Line
-	17350 9700 17550 9700
-Connection ~ 17350 9700
+	17750 10100 17950 10100
+Connection ~ 17750 10100
 Wire Wire Line
-	17350 9700 17350 9550
-Text Notes 17500 9650 2    50   ~ 0
+	17750 10100 17750 9950
+Text Notes 17900 10050 2    50   ~ 0
 +
-Text Notes 17500 9900 2    50   ~ 0
+Text Notes 17900 10300 2    50   ~ 0
 -
 Wire Wire Line
-	5450 10000 5350 10000
+	9700 10200 9600 10200
 Wire Wire Line
-	5350 10100 5550 10100
-Text Notes 5700 9800 2    50   ~ 0
+	9600 10300 9800 10300
+Text Notes 9950 10000 2    50   ~ 0
 +
-Text Notes 5700 10050 2    50   ~ 0
+Text Notes 9950 10250 2    50   ~ 0
 -
 Wire Wire Line
-	5450 15250 5350 15250
+	9700 15450 9600 15450
 Wire Wire Line
-	5350 15350 5550 15350
-Text Notes 5700 15050 2    50   ~ 0
+	9600 15550 9800 15550
+Text Notes 9950 15250 2    50   ~ 0
 +
 Wire Wire Line
-	11300 14200 11200 14200
+	13700 14450 13600 14450
 Wire Wire Line
-	11200 14300 11400 14300
-Text Notes 11550 14000 2    50   ~ 0
+	13600 14550 13800 14550
+Text Notes 13950 14250 2    50   ~ 0
 +
-Text Notes 11550 14250 2    50   ~ 0
+Text Notes 13950 14500 2    50   ~ 0
 -
 Wire Wire Line
-	11300 15250 11200 15250
+	13700 15500 13600 15500
 Wire Wire Line
-	11200 15350 11400 15350
-Text Notes 11550 15050 2    50   ~ 0
+	13600 15600 13800 15600
+Text Notes 13950 15300 2    50   ~ 0
 +
-Text Notes 11550 15300 2    50   ~ 0
+Text Notes 13950 15550 2    50   ~ 0
 -
 Wire Wire Line
-	17250 14050 17150 14050
+	17650 14450 17550 14450
 Wire Wire Line
-	17150 14150 17350 14150
-Text Notes 17500 13850 2    50   ~ 0
+	17550 14550 17750 14550
+Text Notes 17900 14250 2    50   ~ 0
 +
-Text Notes 17500 14100 2    50   ~ 0
+Text Notes 17900 14500 2    50   ~ 0
 -
 Wire Wire Line
-	17250 13000 17150 13000
+	17650 13400 17550 13400
 Wire Wire Line
-	17150 13100 17350 13100
-Text Notes 17500 12800 2    50   ~ 0
+	17550 13500 17750 13500
+Text Notes 17900 13200 2    50   ~ 0
 +
-Text Notes 17500 13050 2    50   ~ 0
+Text Notes 17900 13450 2    50   ~ 0
 -
 Wire Wire Line
-	17250 15100 17150 15100
+	17650 15500 17550 15500
 Wire Wire Line
-	17150 15200 17350 15200
-Text Notes 17500 14900 2    50   ~ 0
+	17550 15600 17750 15600
+Text Notes 17900 15300 2    50   ~ 0
 +
-Text Notes 17500 15150 2    50   ~ 0
+Text Notes 17900 15550 2    50   ~ 0
 -
 Wire Wire Line
-	17250 10900 17150 10900
+	17650 11300 17550 11300
 Wire Wire Line
-	17150 11000 17350 11000
-Text Notes 17500 10700 2    50   ~ 0
+	17550 11400 17750 11400
+Text Notes 17900 11100 2    50   ~ 0
 +
-Text Notes 17500 10950 2    50   ~ 0
+Text Notes 17900 11350 2    50   ~ 0
 -
 Wire Wire Line
-	11300 11050 11200 11050
+	13700 11300 13600 11300
 Wire Wire Line
-	11200 11150 11400 11150
-Text Notes 11550 10850 2    50   ~ 0
+	13600 11400 13800 11400
+Text Notes 13950 11100 2    50   ~ 0
 +
-Text Notes 11550 11100 2    50   ~ 0
+Text Notes 13950 11350 2    50   ~ 0
 -
 Wire Wire Line
-	5450 11050 5350 11050
+	9700 11250 9600 11250
 Wire Wire Line
-	5350 11150 5550 11150
-Text Notes 5700 10850 2    50   ~ 0
+	9600 11350 9800 11350
+Text Notes 9950 11050 2    50   ~ 0
 +
-Text Notes 5700 11100 2    50   ~ 0
+Text Notes 9950 11300 2    50   ~ 0
 -
 Wire Wire Line
-	5450 13150 5350 13150
+	9700 13350 9600 13350
 Wire Wire Line
-	5350 13250 5550 13250
-Text Notes 5700 12950 2    50   ~ 0
+	9600 13450 9800 13450
+Text Notes 9950 13150 2    50   ~ 0
 +
-Text Notes 5700 13200 2    50   ~ 0
+Text Notes 9950 13400 2    50   ~ 0
 -
 Wire Wire Line
-	5450 12100 5350 12100
+	9700 12300 9600 12300
 Wire Wire Line
-	5350 12200 5550 12200
-Text Notes 5700 11900 2    50   ~ 0
+	9600 12400 9800 12400
+Text Notes 9950 12100 2    50   ~ 0
 +
-Text Notes 5700 12150 2    50   ~ 0
+Text Notes 9950 12350 2    50   ~ 0
 -
 Wire Wire Line
-	5450 14200 5350 14200
+	9700 14400 9600 14400
 Wire Wire Line
-	5350 14300 5550 14300
-Text Notes 5700 14000 2    50   ~ 0
+	9600 14500 9800 14500
+Text Notes 9950 14200 2    50   ~ 0
 +
-Text Notes 5700 14250 2    50   ~ 0
+Text Notes 9950 14450 2    50   ~ 0
 -
 Wire Wire Line
-	11300 13150 11200 13150
+	13700 13400 13600 13400
 Wire Wire Line
-	11200 13250 11400 13250
-Text Notes 11550 12950 2    50   ~ 0
+	13600 13500 13800 13500
+Text Notes 13950 13200 2    50   ~ 0
 +
-Text Notes 11550 13200 2    50   ~ 0
+Text Notes 13950 13450 2    50   ~ 0
 -
 Wire Wire Line
-	11300 12100 11200 12100
+	13700 12350 13600 12350
 Wire Wire Line
-	11200 12200 11400 12200
-Text Notes 11550 11900 2    50   ~ 0
+	13600 12450 13800 12450
+Text Notes 13950 12150 2    50   ~ 0
 +
-Text Notes 11550 12150 2    50   ~ 0
+Text Notes 13950 12400 2    50   ~ 0
 -
 Wire Wire Line
-	17250 11950 17150 11950
+	17650 12350 17550 12350
 Wire Wire Line
-	17150 12050 17350 12050
-Text Notes 17500 11750 2    50   ~ 0
+	17550 12450 17750 12450
+Text Notes 17900 12150 2    50   ~ 0
 +
-Text Notes 17500 12000 2    50   ~ 0
+Text Notes 17900 12400 2    50   ~ 0
 -
 $Comp
 L lethalbit:TXB0106 U22
 U 1 1 632849EA
-P 3350 14100
-F 0 "U22" H 3350 14775 50  0000 C CNN
-F 1 "TXB0106" H 3350 14684 50  0000 C CNN
-F 2 "lethalbit:R-PVQFN-N16" H 3350 14650 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 3350 14650 50  0001 C CNN
-F 4 "Texas Instruments" H 3350 13550 50  0001 C CNN "MFR"
-F 5 "TXB0106RGYR" H 3350 13450 50  0001 C CNN "MPN"
-	1    3350 14100
+P 7600 14300
+F 0 "U22" H 7600 14975 50  0000 C CNN
+F 1 "TXB0106" H 7600 14884 50  0000 C CNN
+F 2 "lethalbit:R-PVQFN-N16" H 7600 14850 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 7600 14850 50  0001 C CNN
+F 4 "Texas Instruments" H 7600 13750 50  0001 C CNN "MFR"
+F 5 "TXB0106RGYR" H 7600 13650 50  0001 C CNN "MPN"
+	1    7600 14300
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4050 12900 4300 12900
+	8300 13100 8550 13100
 Wire Wire Line
-	4150 13200 4300 13200
+	8400 13400 8550 13400
 Wire Wire Line
-	4250 14050 4250 13950
+	8500 14250 8500 14150
 Wire Wire Line
-	4250 13950 4300 13950
+	8500 14150 8550 14150
 Wire Wire Line
-	4250 14150 4250 14250
+	8500 14350 8500 14450
 Wire Wire Line
-	4250 14250 4300 14250
+	8500 14450 8550 14450
 Wire Wire Line
-	4150 15000 4300 15000
+	8400 15200 8550 15200
 Wire Wire Line
-	4050 15300 4300 15300
+	8300 15500 8550 15500
 $Comp
 L Device:C_Small C24
 U 1 1 6354A888
-P 3150 13050
-F 0 "C24" V 3250 13050 50  0000 C CNN
-F 1 "0.1uF" V 3050 13050 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 3150 13050 50  0001 C CNN
-F 3 "~" H 3150 13050 50  0001 C CNN
-F 4 "KEMET" V 3150 13050 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 3150 13050 50  0001 C CNN "MPN"
-	1    3150 13050
+P 7400 13250
+F 0 "C24" V 7500 13250 50  0000 C CNN
+F 1 "0.1uF" V 7300 13250 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 7400 13250 50  0001 C CNN
+F 3 "~" H 7400 13250 50  0001 C CNN
+F 4 "KEMET" V 7400 13250 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 7400 13250 50  0001 C CNN "MPN"
+	1    7400 13250
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:C_Small C26
 U 1 1 6386C2BA
-P 3550 13050
-F 0 "C26" V 3650 13050 50  0000 C CNN
-F 1 "0.1uF" V 3450 13050 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 3550 13050 50  0001 C CNN
-F 3 "~" H 3550 13050 50  0001 C CNN
-F 4 "KEMET" V 3550 13050 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 3550 13050 50  0001 C CNN "MPN"
-	1    3550 13050
+P 7800 13250
+F 0 "C26" V 7900 13250 50  0000 C CNN
+F 1 "0.1uF" V 7700 13250 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 7800 13250 50  0001 C CNN
+F 3 "~" H 7800 13250 50  0001 C CNN
+F 4 "KEMET" V 7800 13250 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 7800 13250 50  0001 C CNN "MPN"
+	1    7800 13250
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR0123
 U 1 1 63880BA2
-P 3800 14950
-F 0 "#PWR0123" H 3800 14700 50  0001 C CNN
-F 1 "GND" H 3805 14777 50  0000 C CNN
-F 2 "" H 3800 14950 50  0001 C CNN
-F 3 "" H 3800 14950 50  0001 C CNN
-	1    3800 14950
+P 8050 15150
+F 0 "#PWR0123" H 8050 14900 50  0001 C CNN
+F 1 "GND" H 8055 14977 50  0000 C CNN
+F 2 "" H 8050 15150 50  0001 C CNN
+F 3 "" H 8050 15150 50  0001 C CNN
+	1    8050 15150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3750 14550 3800 14550
+	8000 14750 8050 14750
 Wire Wire Line
-	3800 14550 3800 14750
+	8050 14750 8050 14950
 $Comp
 L power:GND #PWR0124
 U 1 1 63924DAE
-P 3350 13150
-F 0 "#PWR0124" H 3350 12900 50  0001 C CNN
-F 1 "GND" H 3355 12977 50  0000 C CNN
-F 2 "" H 3350 13150 50  0001 C CNN
-F 3 "" H 3350 13150 50  0001 C CNN
-	1    3350 13150
+P 7600 13350
+F 0 "#PWR0124" H 7600 13100 50  0001 C CNN
+F 1 "GND" H 7605 13177 50  0000 C CNN
+F 2 "" H 7600 13350 50  0001 C CNN
+F 3 "" H 7600 13350 50  0001 C CNN
+	1    7600 13350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3650 13050 3800 13050
+	7900 13250 8050 13250
 Wire Wire Line
-	3800 13050 3800 13650
+	8050 13250 8050 13850
 Wire Wire Line
-	3800 13650 3750 13650
+	8050 13850 8000 13850
 Wire Wire Line
-	3250 13050 3350 13050
+	7500 13250 7600 13250
 Wire Wire Line
-	3350 13050 3350 13150
+	7600 13250 7600 13350
 Wire Wire Line
-	3450 13050 3350 13050
-Connection ~ 3350 13050
+	7700 13250 7600 13250
+Connection ~ 7600 13250
 $Comp
 L power:+5V #PWR0126
 U 1 1 63BE88C6
-P 3800 12900
-F 0 "#PWR0126" H 3800 12750 50  0001 C CNN
-F 1 "+5V" H 3815 13073 50  0000 C CNN
-F 2 "" H 3800 12900 50  0001 C CNN
-F 3 "" H 3800 12900 50  0001 C CNN
-	1    3800 12900
+P 8050 13100
+F 0 "#PWR0126" H 8050 12950 50  0001 C CNN
+F 1 "+5V" H 8065 13273 50  0000 C CNN
+F 2 "" H 8050 13100 50  0001 C CNN
+F 3 "" H 8050 13100 50  0001 C CNN
+	1    8050 13100
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3800 12900 3800 13050
-Connection ~ 3800 13050
+	8050 13100 8050 13250
+Connection ~ 8050 13250
 $Comp
 L Device:R_Small R4
 U 1 1 63CA6295
-P 3350 14750
-F 0 "R4" V 3154 14750 50  0000 C CNN
-F 1 "10k" V 3245 14750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 3350 14750 50  0001 C CNN
-F 3 "~" H 3350 14750 50  0001 C CNN
-F 4 "Vishay Dale" V 3350 14750 50  0001 C CNN "MFR"
-F 5 "CRCW060310K0FKEA" V 3350 14750 50  0001 C CNN "MPN"
-	1    3350 14750
+P 7600 14950
+F 0 "R4" V 7404 14950 50  0000 C CNN
+F 1 "10k" V 7495 14950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7600 14950 50  0001 C CNN
+F 3 "~" H 7600 14950 50  0001 C CNN
+F 4 "Vishay Dale" V 7600 14950 50  0001 C CNN "MFR"
+F 5 "CRCW060310K0FKEA" V 7600 14950 50  0001 C CNN "MPN"
+	1    7600 14950
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	3450 14750 3800 14750
-Connection ~ 3800 14750
+	7700 14950 8050 14950
+Connection ~ 8050 14950
 Wire Wire Line
-	3800 14750 3800 14950
+	8050 14950 8050 15150
 Wire Wire Line
-	2950 14550 2900 14550
+	7200 14750 7150 14750
 Wire Wire Line
-	3250 14750 2900 14750
+	7500 14950 7150 14950
 Wire Wire Line
-	2900 14750 2900 14550
-Connection ~ 2900 14550
+	7150 14950 7150 14750
+Connection ~ 7150 14750
 $Comp
 L lethalbit:TXB0106 U21
 U 1 1 63EDE9E2
-P 3350 10950
-F 0 "U21" H 3350 11625 50  0000 C CNN
-F 1 "TXB0106" H 3350 11534 50  0000 C CNN
-F 2 "lethalbit:R-PVQFN-N16" H 3350 11500 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 3350 11500 50  0001 C CNN
-F 4 "Texas Instruments" H 3350 10400 50  0001 C CNN "MFR"
-F 5 "TXB0106RGYR" H 3350 10300 50  0001 C CNN "MPN"
-	1    3350 10950
+P 7600 11150
+F 0 "U21" H 7600 11825 50  0000 C CNN
+F 1 "TXB0106" H 7600 11734 50  0000 C CNN
+F 2 "lethalbit:R-PVQFN-N16" H 7600 11700 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 7600 11700 50  0001 C CNN
+F 4 "Texas Instruments" H 7600 10600 50  0001 C CNN "MFR"
+F 5 "TXB0106RGYR" H 7600 10500 50  0001 C CNN "MPN"
+	1    7600 11150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4050 10800 4050 9750
+	8300 11000 8300 9950
 Wire Wire Line
-	4050 9750 4300 9750
+	8300 9950 8550 9950
 Wire Wire Line
-	4150 10700 4150 10050
+	8400 10900 8400 10250
 Wire Wire Line
-	4150 10050 4300 10050
+	8400 10250 8550 10250
 Wire Wire Line
-	4150 11200 4150 11850
+	8400 11400 8400 12050
 Wire Wire Line
-	4150 11850 4300 11850
+	8400 12050 8550 12050
 Wire Wire Line
-	4050 11100 4050 12150
+	8300 11300 8300 12350
 Wire Wire Line
-	4050 12150 4300 12150
+	8300 12350 8550 12350
 $Comp
 L Device:C_Small C23
 U 1 1 63EDE9F8
-P 3150 9900
-F 0 "C23" V 3250 9900 50  0000 C CNN
-F 1 "0.1uF" V 3050 9900 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 3150 9900 50  0001 C CNN
-F 3 "~" H 3150 9900 50  0001 C CNN
-F 4 "KEMET" V 3150 9900 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 3150 9900 50  0001 C CNN "MPN"
-	1    3150 9900
+P 7400 10100
+F 0 "C23" V 7500 10100 50  0000 C CNN
+F 1 "0.1uF" V 7300 10100 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 7400 10100 50  0001 C CNN
+F 3 "~" H 7400 10100 50  0001 C CNN
+F 4 "KEMET" V 7400 10100 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 7400 10100 50  0001 C CNN "MPN"
+	1    7400 10100
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:C_Small C25
 U 1 1 63EDEA00
-P 3550 9900
-F 0 "C25" V 3650 9900 50  0000 C CNN
-F 1 "0.1uF" V 3450 9900 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 3550 9900 50  0001 C CNN
-F 3 "~" H 3550 9900 50  0001 C CNN
-F 4 "KEMET" V 3550 9900 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 3550 9900 50  0001 C CNN "MPN"
-	1    3550 9900
+P 7800 10100
+F 0 "C25" V 7900 10100 50  0000 C CNN
+F 1 "0.1uF" V 7700 10100 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 7800 10100 50  0001 C CNN
+F 3 "~" H 7800 10100 50  0001 C CNN
+F 4 "KEMET" V 7800 10100 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 7800 10100 50  0001 C CNN "MPN"
+	1    7800 10100
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR0127
 U 1 1 63EDEA06
-P 3800 11800
-F 0 "#PWR0127" H 3800 11550 50  0001 C CNN
-F 1 "GND" H 3805 11627 50  0000 C CNN
-F 2 "" H 3800 11800 50  0001 C CNN
-F 3 "" H 3800 11800 50  0001 C CNN
-	1    3800 11800
+P 8050 12000
+F 0 "#PWR0127" H 8050 11750 50  0001 C CNN
+F 1 "GND" H 8055 11827 50  0000 C CNN
+F 2 "" H 8050 12000 50  0001 C CNN
+F 3 "" H 8050 12000 50  0001 C CNN
+	1    8050 12000
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3750 11400 3800 11400
+	8000 11600 8050 11600
 Wire Wire Line
-	3800 11400 3800 11600
+	8050 11600 8050 11800
 $Comp
 L power:GND #PWR0128
 U 1 1 63EDEA0E
-P 3350 10000
-F 0 "#PWR0128" H 3350 9750 50  0001 C CNN
-F 1 "GND" H 3355 9827 50  0000 C CNN
-F 2 "" H 3350 10000 50  0001 C CNN
-F 3 "" H 3350 10000 50  0001 C CNN
-	1    3350 10000
+P 7600 10200
+F 0 "#PWR0128" H 7600 9950 50  0001 C CNN
+F 1 "GND" H 7605 10027 50  0000 C CNN
+F 2 "" H 7600 10200 50  0001 C CNN
+F 3 "" H 7600 10200 50  0001 C CNN
+	1    7600 10200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3650 9900 3800 9900
+	7900 10100 8050 10100
 Wire Wire Line
-	3800 9900 3800 10500
+	8050 10100 8050 10700
 Wire Wire Line
-	3800 10500 3750 10500
+	8050 10700 8000 10700
 Wire Wire Line
-	3050 9900 2850 9900
+	7300 10100 7100 10100
 Wire Wire Line
-	2850 9900 2850 10500
+	7100 10100 7100 10700
 Wire Wire Line
-	2850 10500 2950 10500
+	7100 10700 7200 10700
 Wire Wire Line
-	3250 9900 3350 9900
+	7500 10100 7600 10100
 Wire Wire Line
-	3350 9900 3350 10000
+	7600 10100 7600 10200
 Wire Wire Line
-	3450 9900 3350 9900
-Connection ~ 3350 9900
+	7700 10100 7600 10100
+Connection ~ 7600 10100
 Wire Wire Line
-	2850 9750 2850 9900
-Connection ~ 2850 9900
+	7100 9950 7100 10100
+Connection ~ 7100 10100
 $Comp
 L power:+5V #PWR0130
 U 1 1 63EDEA26
-P 3800 9750
-F 0 "#PWR0130" H 3800 9600 50  0001 C CNN
-F 1 "+5V" H 3815 9923 50  0000 C CNN
-F 2 "" H 3800 9750 50  0001 C CNN
-F 3 "" H 3800 9750 50  0001 C CNN
-	1    3800 9750
+P 8050 9950
+F 0 "#PWR0130" H 8050 9800 50  0001 C CNN
+F 1 "+5V" H 8065 10123 50  0000 C CNN
+F 2 "" H 8050 9950 50  0001 C CNN
+F 3 "" H 8050 9950 50  0001 C CNN
+	1    8050 9950
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	3800 9750 3800 9900
-Connection ~ 3800 9900
+	8050 9950 8050 10100
+Connection ~ 8050 10100
 $Comp
 L Device:R_Small R3
 U 1 1 63EDEA30
-P 3350 11600
-F 0 "R3" V 3154 11600 50  0000 C CNN
-F 1 "10k" V 3245 11600 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 3350 11600 50  0001 C CNN
-F 3 "~" H 3350 11600 50  0001 C CNN
-F 4 "Vishay Dale" V 3350 11600 50  0001 C CNN "MFR"
-F 5 "CRCW060310K0FKEA" V 3350 11600 50  0001 C CNN "MPN"
-	1    3350 11600
+P 7600 11800
+F 0 "R3" V 7404 11800 50  0000 C CNN
+F 1 "10k" V 7495 11800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 7600 11800 50  0001 C CNN
+F 3 "~" H 7600 11800 50  0001 C CNN
+F 4 "Vishay Dale" V 7600 11800 50  0001 C CNN "MFR"
+F 5 "CRCW060310K0FKEA" V 7600 11800 50  0001 C CNN "MPN"
+	1    7600 11800
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	3450 11600 3800 11600
-Connection ~ 3800 11600
+	7700 11800 8050 11800
+Connection ~ 8050 11800
 Wire Wire Line
-	3800 11600 3800 11800
+	8050 11800 8050 12000
 Wire Wire Line
-	2950 11400 2900 11400
+	7200 11600 7150 11600
 Wire Wire Line
-	3250 11600 2900 11600
+	7500 11800 7150 11800
 Wire Wire Line
-	2900 11600 2900 11400
-Connection ~ 2900 11400
+	7150 11800 7150 11600
+Connection ~ 7150 11600
 Wire Wire Line
-	2900 11400 2600 11400
+	7150 11600 6850 11600
 Wire Wire Line
-	4250 10900 4250 10800
+	8500 11100 8500 11000
 Wire Wire Line
-	4250 10800 4300 10800
+	8500 11000 8550 11000
 Wire Wire Line
-	4250 11000 4250 11100
+	8500 11200 8500 11300
 Wire Wire Line
-	4250 11100 4300 11100
+	8500 11300 8550 11300
 $Comp
 L lethalbit:TXB0106 U24
 U 1 1 6417DF32
-P 9200 14100
-F 0 "U24" H 9200 14775 50  0000 C CNN
-F 1 "TXB0106" H 9200 14684 50  0000 C CNN
-F 2 "lethalbit:R-PVQFN-N16" H 9200 14650 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 9200 14650 50  0001 C CNN
-F 4 "Texas Instruments" H 9200 13550 50  0001 C CNN "MFR"
-F 5 "TXB0106RGYR" H 9200 13450 50  0001 C CNN "MPN"
-	1    9200 14100
+P 11600 14350
+F 0 "U24" H 11600 15025 50  0000 C CNN
+F 1 "TXB0106" H 11600 14934 50  0000 C CNN
+F 2 "lethalbit:R-PVQFN-N16" H 11600 14900 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 11600 14900 50  0001 C CNN
+F 4 "Texas Instruments" H 11600 13800 50  0001 C CNN "MFR"
+F 5 "TXB0106RGYR" H 11600 13700 50  0001 C CNN "MPN"
+	1    11600 14350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9900 12900 10150 12900
+	12300 13150 12550 13150
 Wire Wire Line
-	10000 13200 10150 13200
+	12400 13450 12550 13450
 Wire Wire Line
-	10100 14050 10100 13950
+	12500 14300 12500 14200
 Wire Wire Line
-	10100 13950 10150 13950
+	12500 14200 12550 14200
 Wire Wire Line
-	10100 14150 10100 14250
+	12500 14400 12500 14500
 Wire Wire Line
-	10100 14250 10150 14250
+	12500 14500 12550 14500
 Wire Wire Line
-	10000 15000 10150 15000
+	12400 15250 12550 15250
 Wire Wire Line
-	9900 15300 10150 15300
+	12300 15550 12550 15550
 $Comp
 L Device:C_Small C28
 U 1 1 6417DF4C
-P 9000 13050
-F 0 "C28" V 9100 13050 50  0000 C CNN
-F 1 "0.1uF" V 8900 13050 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 9000 13050 50  0001 C CNN
-F 3 "~" H 9000 13050 50  0001 C CNN
-F 4 "KEMET" V 9000 13050 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 9000 13050 50  0001 C CNN "MPN"
-	1    9000 13050
+P 11400 13300
+F 0 "C28" V 11500 13300 50  0000 C CNN
+F 1 "0.1uF" V 11300 13300 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 11400 13300 50  0001 C CNN
+F 3 "~" H 11400 13300 50  0001 C CNN
+F 4 "KEMET" V 11400 13300 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 11400 13300 50  0001 C CNN "MPN"
+	1    11400 13300
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:C_Small C30
 U 1 1 6417DF54
-P 9400 13050
-F 0 "C30" V 9500 13050 50  0000 C CNN
-F 1 "0.1uF" V 9300 13050 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 9400 13050 50  0001 C CNN
-F 3 "~" H 9400 13050 50  0001 C CNN
-F 4 "KEMET" V 9400 13050 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 9400 13050 50  0001 C CNN "MPN"
-	1    9400 13050
+P 11800 13300
+F 0 "C30" V 11900 13300 50  0000 C CNN
+F 1 "0.1uF" V 11700 13300 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 11800 13300 50  0001 C CNN
+F 3 "~" H 11800 13300 50  0001 C CNN
+F 4 "KEMET" V 11800 13300 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 11800 13300 50  0001 C CNN "MPN"
+	1    11800 13300
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR0131
 U 1 1 6417DF5A
-P 9650 14950
-F 0 "#PWR0131" H 9650 14700 50  0001 C CNN
-F 1 "GND" H 9655 14777 50  0000 C CNN
-F 2 "" H 9650 14950 50  0001 C CNN
-F 3 "" H 9650 14950 50  0001 C CNN
-	1    9650 14950
+P 12050 15200
+F 0 "#PWR0131" H 12050 14950 50  0001 C CNN
+F 1 "GND" H 12055 15027 50  0000 C CNN
+F 2 "" H 12050 15200 50  0001 C CNN
+F 3 "" H 12050 15200 50  0001 C CNN
+	1    12050 15200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9600 14550 9650 14550
+	12000 14800 12050 14800
 Wire Wire Line
-	9650 14550 9650 14750
+	12050 14800 12050 15000
 $Comp
 L power:GND #PWR0132
 U 1 1 6417DF62
-P 9200 13150
-F 0 "#PWR0132" H 9200 12900 50  0001 C CNN
-F 1 "GND" H 9205 12977 50  0000 C CNN
-F 2 "" H 9200 13150 50  0001 C CNN
-F 3 "" H 9200 13150 50  0001 C CNN
-	1    9200 13150
+P 11600 13400
+F 0 "#PWR0132" H 11600 13150 50  0001 C CNN
+F 1 "GND" H 11605 13227 50  0000 C CNN
+F 2 "" H 11600 13400 50  0001 C CNN
+F 3 "" H 11600 13400 50  0001 C CNN
+	1    11600 13400
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9500 13050 9650 13050
+	11900 13300 12050 13300
 Wire Wire Line
-	9650 13050 9650 13650
+	12050 13300 12050 13900
 Wire Wire Line
-	9650 13650 9600 13650
+	12050 13900 12000 13900
 Wire Wire Line
-	8900 13050 8700 13050
+	11300 13300 11100 13300
 Wire Wire Line
-	8700 13050 8700 13650
+	11100 13300 11100 13900
 Wire Wire Line
-	8700 13650 8800 13650
+	11100 13900 11200 13900
 Wire Wire Line
-	9100 13050 9200 13050
+	11500 13300 11600 13300
 Wire Wire Line
-	9200 13050 9200 13150
+	11600 13300 11600 13400
 Wire Wire Line
-	9300 13050 9200 13050
-Connection ~ 9200 13050
+	11700 13300 11600 13300
+Connection ~ 11600 13300
 Wire Wire Line
-	8700 12900 8700 13050
-Connection ~ 8700 13050
+	11100 13150 11100 13300
+Connection ~ 11100 13300
 $Comp
 L power:+5V #PWR0134
 U 1 1 6417DF7A
-P 9650 12900
-F 0 "#PWR0134" H 9650 12750 50  0001 C CNN
-F 1 "+5V" H 9665 13073 50  0000 C CNN
-F 2 "" H 9650 12900 50  0001 C CNN
-F 3 "" H 9650 12900 50  0001 C CNN
-	1    9650 12900
+P 12050 13150
+F 0 "#PWR0134" H 12050 13000 50  0001 C CNN
+F 1 "+5V" H 12065 13323 50  0000 C CNN
+F 2 "" H 12050 13150 50  0001 C CNN
+F 3 "" H 12050 13150 50  0001 C CNN
+	1    12050 13150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9650 12900 9650 13050
-Connection ~ 9650 13050
+	12050 13150 12050 13300
+Connection ~ 12050 13300
 $Comp
 L Device:R_Small R6
 U 1 1 6417DF84
-P 9200 14750
-F 0 "R6" V 9004 14750 50  0000 C CNN
-F 1 "10k" V 9095 14750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 9200 14750 50  0001 C CNN
-F 3 "~" H 9200 14750 50  0001 C CNN
-F 4 "Vishay Dale" V 9200 14750 50  0001 C CNN "MFR"
-F 5 "CRCW060310K0FKEA" V 9200 14750 50  0001 C CNN "MPN"
-	1    9200 14750
+P 11600 15000
+F 0 "R6" V 11404 15000 50  0000 C CNN
+F 1 "10k" V 11495 15000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 11600 15000 50  0001 C CNN
+F 3 "~" H 11600 15000 50  0001 C CNN
+F 4 "Vishay Dale" V 11600 15000 50  0001 C CNN "MFR"
+F 5 "CRCW060310K0FKEA" V 11600 15000 50  0001 C CNN "MPN"
+	1    11600 15000
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	9300 14750 9650 14750
-Connection ~ 9650 14750
+	11700 15000 12050 15000
+Connection ~ 12050 15000
 Wire Wire Line
-	9650 14750 9650 14950
+	12050 15000 12050 15200
 Wire Wire Line
-	8800 14550 8750 14550
+	11200 14800 11150 14800
 Wire Wire Line
-	9100 14750 8750 14750
+	11500 15000 11150 15000
 Wire Wire Line
-	8750 14750 8750 14550
-Connection ~ 8750 14550
+	11150 15000 11150 14800
+Connection ~ 11150 14800
 $Comp
 L lethalbit:TXB0106 U23
 U 1 1 6417DF94
-P 9200 10950
-F 0 "U23" H 9200 11625 50  0000 C CNN
-F 1 "TXB0106" H 9200 11534 50  0000 C CNN
-F 2 "lethalbit:R-PVQFN-N16" H 9200 11500 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 9200 11500 50  0001 C CNN
-F 4 "Texas Instruments" H 9200 10400 50  0001 C CNN "MFR"
-F 5 "TXB0106RGYR" H 9200 10300 50  0001 C CNN "MPN"
-	1    9200 10950
+P 11600 11200
+F 0 "U23" H 11600 11875 50  0000 C CNN
+F 1 "TXB0106" H 11600 11784 50  0000 C CNN
+F 2 "lethalbit:R-PVQFN-N16" H 11600 11750 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 11600 11750 50  0001 C CNN
+F 4 "Texas Instruments" H 11600 10650 50  0001 C CNN "MFR"
+F 5 "TXB0106RGYR" H 11600 10550 50  0001 C CNN "MPN"
+	1    11600 11200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9900 9750 10150 9750
+	12300 10000 12550 10000
 Wire Wire Line
-	10000 10050 10150 10050
+	12400 10300 12550 10300
 Wire Wire Line
-	10000 11850 10150 11850
+	12400 12100 12550 12100
 Wire Wire Line
-	9900 12150 10150 12150
+	12300 12400 12550 12400
 $Comp
 L Device:C_Small C27
 U 1 1 6417DFAA
-P 9000 9900
-F 0 "C27" V 9100 9900 50  0000 C CNN
-F 1 "0.1uF" V 8900 9900 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 9000 9900 50  0001 C CNN
-F 3 "~" H 9000 9900 50  0001 C CNN
-F 4 "KEMET" V 9000 9900 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 9000 9900 50  0001 C CNN "MPN"
-	1    9000 9900
+P 11400 10150
+F 0 "C27" V 11500 10150 50  0000 C CNN
+F 1 "0.1uF" V 11300 10150 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 11400 10150 50  0001 C CNN
+F 3 "~" H 11400 10150 50  0001 C CNN
+F 4 "KEMET" V 11400 10150 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 11400 10150 50  0001 C CNN "MPN"
+	1    11400 10150
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:C_Small C29
 U 1 1 6417DFB2
-P 9400 9900
-F 0 "C29" V 9500 9900 50  0000 C CNN
-F 1 "0.1uF" V 9300 9900 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 9400 9900 50  0001 C CNN
-F 3 "~" H 9400 9900 50  0001 C CNN
-F 4 "KEMET" V 9400 9900 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 9400 9900 50  0001 C CNN "MPN"
-	1    9400 9900
+P 11800 10150
+F 0 "C29" V 11900 10150 50  0000 C CNN
+F 1 "0.1uF" V 11700 10150 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 11800 10150 50  0001 C CNN
+F 3 "~" H 11800 10150 50  0001 C CNN
+F 4 "KEMET" V 11800 10150 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 11800 10150 50  0001 C CNN "MPN"
+	1    11800 10150
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR0135
 U 1 1 6417DFB8
-P 9650 11800
-F 0 "#PWR0135" H 9650 11550 50  0001 C CNN
-F 1 "GND" H 9655 11627 50  0000 C CNN
-F 2 "" H 9650 11800 50  0001 C CNN
-F 3 "" H 9650 11800 50  0001 C CNN
-	1    9650 11800
+P 12050 12050
+F 0 "#PWR0135" H 12050 11800 50  0001 C CNN
+F 1 "GND" H 12055 11877 50  0000 C CNN
+F 2 "" H 12050 12050 50  0001 C CNN
+F 3 "" H 12050 12050 50  0001 C CNN
+	1    12050 12050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9600 11400 9650 11400
+	12000 11650 12050 11650
 Wire Wire Line
-	9650 11400 9650 11600
+	12050 11650 12050 11850
 $Comp
 L power:GND #PWR0136
 U 1 1 6417DFC0
-P 9200 10000
-F 0 "#PWR0136" H 9200 9750 50  0001 C CNN
-F 1 "GND" H 9205 9827 50  0000 C CNN
-F 2 "" H 9200 10000 50  0001 C CNN
-F 3 "" H 9200 10000 50  0001 C CNN
-	1    9200 10000
+P 11600 10250
+F 0 "#PWR0136" H 11600 10000 50  0001 C CNN
+F 1 "GND" H 11605 10077 50  0000 C CNN
+F 2 "" H 11600 10250 50  0001 C CNN
+F 3 "" H 11600 10250 50  0001 C CNN
+	1    11600 10250
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9500 9900 9650 9900
+	11900 10150 12050 10150
 Wire Wire Line
-	9650 9900 9650 10500
+	12050 10150 12050 10750
 Wire Wire Line
-	9650 10500 9600 10500
+	12050 10750 12000 10750
 Wire Wire Line
-	8900 9900 8700 9900
+	11300 10150 11100 10150
 Wire Wire Line
-	8700 9900 8700 10500
+	11100 10150 11100 10750
 Wire Wire Line
-	8700 10500 8800 10500
+	11100 10750 11200 10750
 Wire Wire Line
-	9100 9900 9200 9900
+	11500 10150 11600 10150
 Wire Wire Line
-	9200 9900 9200 10000
+	11600 10150 11600 10250
 Wire Wire Line
-	9300 9900 9200 9900
-Connection ~ 9200 9900
+	11700 10150 11600 10150
+Connection ~ 11600 10150
 Wire Wire Line
-	8700 9750 8700 9900
-Connection ~ 8700 9900
+	11100 10000 11100 10150
+Connection ~ 11100 10150
 $Comp
 L power:+5V #PWR0138
 U 1 1 6417DFD8
-P 9650 9750
-F 0 "#PWR0138" H 9650 9600 50  0001 C CNN
-F 1 "+5V" H 9665 9923 50  0000 C CNN
-F 2 "" H 9650 9750 50  0001 C CNN
-F 3 "" H 9650 9750 50  0001 C CNN
-	1    9650 9750
+P 12050 10000
+F 0 "#PWR0138" H 12050 9850 50  0001 C CNN
+F 1 "+5V" H 12065 10173 50  0000 C CNN
+F 2 "" H 12050 10000 50  0001 C CNN
+F 3 "" H 12050 10000 50  0001 C CNN
+	1    12050 10000
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	9650 9750 9650 9900
-Connection ~ 9650 9900
+	12050 10000 12050 10150
+Connection ~ 12050 10150
 $Comp
 L Device:R_Small R5
 U 1 1 6417DFE2
-P 9200 11600
-F 0 "R5" V 9004 11600 50  0000 C CNN
-F 1 "10k" V 9095 11600 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 9200 11600 50  0001 C CNN
-F 3 "~" H 9200 11600 50  0001 C CNN
-F 4 "Vishay Dale" V 9200 11600 50  0001 C CNN "MFR"
-F 5 "CRCW060310K0FKEA" V 9200 11600 50  0001 C CNN "MPN"
-	1    9200 11600
+P 11600 11850
+F 0 "R5" V 11404 11850 50  0000 C CNN
+F 1 "10k" V 11495 11850 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 11600 11850 50  0001 C CNN
+F 3 "~" H 11600 11850 50  0001 C CNN
+F 4 "Vishay Dale" V 11600 11850 50  0001 C CNN "MFR"
+F 5 "CRCW060310K0FKEA" V 11600 11850 50  0001 C CNN "MPN"
+	1    11600 11850
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	9300 11600 9650 11600
-Connection ~ 9650 11600
+	11700 11850 12050 11850
+Connection ~ 12050 11850
 Wire Wire Line
-	9650 11600 9650 11800
+	12050 11850 12050 12050
 Wire Wire Line
-	8800 11400 8750 11400
+	11200 11650 11150 11650
 Wire Wire Line
-	9100 11600 8750 11600
+	11500 11850 11150 11850
 Wire Wire Line
-	8750 11600 8750 11400
-Connection ~ 8750 11400
+	11150 11850 11150 11650
+Connection ~ 11150 11650
 Wire Wire Line
-	10100 10900 10100 10800
+	12500 11150 12500 11050
 Wire Wire Line
-	10100 10800 10150 10800
+	12500 11050 12550 11050
 Wire Wire Line
-	10100 11000 10100 11100
+	12500 11250 12500 11350
 Wire Wire Line
-	10100 11100 10150 11100
+	12500 11350 12550 11350
 $Comp
 L lethalbit:TXB0106 U26
 U 1 1 642C1F38
-P 15150 13950
-F 0 "U26" H 15150 14625 50  0000 C CNN
-F 1 "TXB0106" H 15150 14534 50  0000 C CNN
-F 2 "lethalbit:R-PVQFN-N16" H 15150 14500 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 15150 14500 50  0001 C CNN
-F 4 "Texas Instruments" H 15150 13400 50  0001 C CNN "MFR"
-F 5 "TXB0106RGYR" H 15150 13300 50  0001 C CNN "MPN"
-	1    15150 13950
+P 15550 14350
+F 0 "U26" H 15550 15025 50  0000 C CNN
+F 1 "TXB0106" H 15550 14934 50  0000 C CNN
+F 2 "lethalbit:R-PVQFN-N16" H 15550 14900 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 15550 14900 50  0001 C CNN
+F 4 "Texas Instruments" H 15550 13800 50  0001 C CNN "MFR"
+F 5 "TXB0106RGYR" H 15550 13700 50  0001 C CNN "MPN"
+	1    15550 14350
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	15850 12750 16100 12750
+	16250 13150 16500 13150
 Wire Wire Line
-	15950 13050 16100 13050
+	16350 13450 16500 13450
 Wire Wire Line
-	16050 13900 16050 13800
+	16450 14300 16450 14200
 Wire Wire Line
-	16050 13800 16100 13800
+	16450 14200 16500 14200
 Wire Wire Line
-	16050 14000 16050 14100
+	16450 14400 16450 14500
 Wire Wire Line
-	16050 14100 16100 14100
+	16450 14500 16500 14500
 Wire Wire Line
-	15950 14850 16100 14850
+	16350 15250 16500 15250
 Wire Wire Line
-	15850 15150 16100 15150
+	16250 15550 16500 15550
 $Comp
 L Device:C_Small C32
 U 1 1 642C1F52
-P 14950 12900
-F 0 "C32" V 15050 12900 50  0000 C CNN
-F 1 "0.1uF" V 14850 12900 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 14950 12900 50  0001 C CNN
-F 3 "~" H 14950 12900 50  0001 C CNN
-F 4 "KEMET" V 14950 12900 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 14950 12900 50  0001 C CNN "MPN"
-	1    14950 12900
+P 15350 13300
+F 0 "C32" V 15450 13300 50  0000 C CNN
+F 1 "0.1uF" V 15250 13300 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 15350 13300 50  0001 C CNN
+F 3 "~" H 15350 13300 50  0001 C CNN
+F 4 "KEMET" V 15350 13300 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 15350 13300 50  0001 C CNN "MPN"
+	1    15350 13300
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:C_Small C34
 U 1 1 642C1F5A
-P 15350 12900
-F 0 "C34" V 15450 12900 50  0000 C CNN
-F 1 "0.1uF" V 15250 12900 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 15350 12900 50  0001 C CNN
-F 3 "~" H 15350 12900 50  0001 C CNN
-F 4 "KEMET" V 15350 12900 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 15350 12900 50  0001 C CNN "MPN"
-	1    15350 12900
+P 15750 13300
+F 0 "C34" V 15850 13300 50  0000 C CNN
+F 1 "0.1uF" V 15650 13300 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 15750 13300 50  0001 C CNN
+F 3 "~" H 15750 13300 50  0001 C CNN
+F 4 "KEMET" V 15750 13300 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 15750 13300 50  0001 C CNN "MPN"
+	1    15750 13300
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR0139
 U 1 1 642C1F60
-P 15600 14800
-F 0 "#PWR0139" H 15600 14550 50  0001 C CNN
-F 1 "GND" H 15605 14627 50  0000 C CNN
-F 2 "" H 15600 14800 50  0001 C CNN
-F 3 "" H 15600 14800 50  0001 C CNN
-	1    15600 14800
+P 16000 15200
+F 0 "#PWR0139" H 16000 14950 50  0001 C CNN
+F 1 "GND" H 16005 15027 50  0000 C CNN
+F 2 "" H 16000 15200 50  0001 C CNN
+F 3 "" H 16000 15200 50  0001 C CNN
+	1    16000 15200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	15550 14400 15600 14400
+	15950 14800 16000 14800
 Wire Wire Line
-	15600 14400 15600 14600
+	16000 14800 16000 15000
 $Comp
 L power:GND #PWR0140
 U 1 1 642C1F68
-P 15150 13000
-F 0 "#PWR0140" H 15150 12750 50  0001 C CNN
-F 1 "GND" H 15155 12827 50  0000 C CNN
-F 2 "" H 15150 13000 50  0001 C CNN
-F 3 "" H 15150 13000 50  0001 C CNN
-	1    15150 13000
+P 15550 13400
+F 0 "#PWR0140" H 15550 13150 50  0001 C CNN
+F 1 "GND" H 15555 13227 50  0000 C CNN
+F 2 "" H 15550 13400 50  0001 C CNN
+F 3 "" H 15550 13400 50  0001 C CNN
+	1    15550 13400
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	15450 12900 15600 12900
+	15850 13300 16000 13300
 Wire Wire Line
-	15600 12900 15600 13500
+	16000 13300 16000 13900
 Wire Wire Line
-	15600 13500 15550 13500
+	16000 13900 15950 13900
 Wire Wire Line
-	14850 12900 14650 12900
+	15250 13300 15050 13300
 Wire Wire Line
-	14650 12900 14650 13500
+	15050 13300 15050 13900
 Wire Wire Line
-	14650 13500 14750 13500
+	15050 13900 15150 13900
 Wire Wire Line
-	15050 12900 15150 12900
+	15450 13300 15550 13300
 Wire Wire Line
-	15150 12900 15150 13000
+	15550 13300 15550 13400
 Wire Wire Line
-	15250 12900 15150 12900
-Connection ~ 15150 12900
+	15650 13300 15550 13300
+Connection ~ 15550 13300
 Wire Wire Line
-	14650 12750 14650 12900
-Connection ~ 14650 12900
+	15050 13150 15050 13300
+Connection ~ 15050 13300
 $Comp
 L power:+5V #PWR0142
 U 1 1 642C1F80
-P 15600 12750
-F 0 "#PWR0142" H 15600 12600 50  0001 C CNN
-F 1 "+5V" H 15615 12923 50  0000 C CNN
-F 2 "" H 15600 12750 50  0001 C CNN
-F 3 "" H 15600 12750 50  0001 C CNN
-	1    15600 12750
+P 16000 13150
+F 0 "#PWR0142" H 16000 13000 50  0001 C CNN
+F 1 "+5V" H 16015 13323 50  0000 C CNN
+F 2 "" H 16000 13150 50  0001 C CNN
+F 3 "" H 16000 13150 50  0001 C CNN
+	1    16000 13150
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	15600 12750 15600 12900
-Connection ~ 15600 12900
+	16000 13150 16000 13300
+Connection ~ 16000 13300
 $Comp
 L Device:R_Small R8
 U 1 1 642C1F8A
-P 15150 14600
-F 0 "R8" V 14954 14600 50  0000 C CNN
-F 1 "10k" V 15045 14600 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 15150 14600 50  0001 C CNN
-F 3 "~" H 15150 14600 50  0001 C CNN
-F 4 "Vishay Dale" V 15150 14600 50  0001 C CNN "MFR"
-F 5 "CRCW060310K0FKEA" V 15150 14600 50  0001 C CNN "MPN"
-	1    15150 14600
+P 15550 15000
+F 0 "R8" V 15354 15000 50  0000 C CNN
+F 1 "10k" V 15445 15000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 15550 15000 50  0001 C CNN
+F 3 "~" H 15550 15000 50  0001 C CNN
+F 4 "Vishay Dale" V 15550 15000 50  0001 C CNN "MFR"
+F 5 "CRCW060310K0FKEA" V 15550 15000 50  0001 C CNN "MPN"
+	1    15550 15000
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	15250 14600 15600 14600
-Connection ~ 15600 14600
+	15650 15000 16000 15000
+Connection ~ 16000 15000
 Wire Wire Line
-	15600 14600 15600 14800
+	16000 15000 16000 15200
 Wire Wire Line
-	14750 14400 14700 14400
+	15150 14800 15100 14800
 Wire Wire Line
-	15050 14600 14700 14600
+	15450 15000 15100 15000
 Wire Wire Line
-	14700 14600 14700 14400
-Connection ~ 14700 14400
+	15100 15000 15100 14800
+Connection ~ 15100 14800
 $Comp
 L lethalbit:TXB0106 U25
 U 1 1 642C1F9A
-P 15150 10800
-F 0 "U25" H 15150 11475 50  0000 C CNN
-F 1 "TXB0106" H 15150 11384 50  0000 C CNN
-F 2 "lethalbit:R-PVQFN-N16" H 15150 11350 50  0001 C CNN
-F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 15150 11350 50  0001 C CNN
-F 4 "Texas Instruments" H 15150 10250 50  0001 C CNN "MFR"
-F 5 "TXB0106RGYR" H 15150 10150 50  0001 C CNN "MPN"
-	1    15150 10800
+P 15550 11200
+F 0 "U25" H 15550 11875 50  0000 C CNN
+F 1 "TXB0106" H 15550 11784 50  0000 C CNN
+F 2 "lethalbit:R-PVQFN-N16" H 15550 11750 50  0001 C CNN
+F 3 "https://www.ti.com/lit/ds/symlink/txb0106.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594267308757" H 15550 11750 50  0001 C CNN
+F 4 "Texas Instruments" H 15550 10650 50  0001 C CNN "MFR"
+F 5 "TXB0106RGYR" H 15550 10550 50  0001 C CNN "MPN"
+	1    15550 11200
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	15850 9600 16100 9600
+	16250 10000 16500 10000
 Wire Wire Line
-	15950 9900 16100 9900
+	16350 10300 16500 10300
 Wire Wire Line
-	15950 11700 16100 11700
+	16350 12100 16500 12100
 Wire Wire Line
-	15850 12000 16100 12000
+	16250 12400 16500 12400
 $Comp
 L Device:C_Small C31
 U 1 1 642C1FB0
-P 14950 9750
-F 0 "C31" V 15050 9750 50  0000 C CNN
-F 1 "0.1uF" V 14850 9750 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 14950 9750 50  0001 C CNN
-F 3 "~" H 14950 9750 50  0001 C CNN
-F 4 "KEMET" V 14950 9750 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 14950 9750 50  0001 C CNN "MPN"
-	1    14950 9750
+P 15350 10150
+F 0 "C31" V 15450 10150 50  0000 C CNN
+F 1 "0.1uF" V 15250 10150 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 15350 10150 50  0001 C CNN
+F 3 "~" H 15350 10150 50  0001 C CNN
+F 4 "KEMET" V 15350 10150 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 15350 10150 50  0001 C CNN "MPN"
+	1    15350 10150
 	0    1    1    0   
 $EndComp
 $Comp
 L Device:C_Small C33
 U 1 1 642C1FB8
-P 15350 9750
-F 0 "C33" V 15450 9750 50  0000 C CNN
-F 1 "0.1uF" V 15250 9750 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 15350 9750 50  0001 C CNN
-F 3 "~" H 15350 9750 50  0001 C CNN
-F 4 "KEMET" V 15350 9750 50  0001 C CNN "MFR"
-F 5 "C0402C104M8PACTU" V 15350 9750 50  0001 C CNN "MPN"
-	1    15350 9750
+P 15750 10150
+F 0 "C33" V 15850 10150 50  0000 C CNN
+F 1 "0.1uF" V 15650 10150 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 15750 10150 50  0001 C CNN
+F 3 "~" H 15750 10150 50  0001 C CNN
+F 4 "KEMET" V 15750 10150 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 15750 10150 50  0001 C CNN "MPN"
+	1    15750 10150
 	0    1    1    0   
 $EndComp
 $Comp
 L power:GND #PWR0143
 U 1 1 642C1FBE
-P 15600 11650
-F 0 "#PWR0143" H 15600 11400 50  0001 C CNN
-F 1 "GND" H 15605 11477 50  0000 C CNN
-F 2 "" H 15600 11650 50  0001 C CNN
-F 3 "" H 15600 11650 50  0001 C CNN
-	1    15600 11650
+P 16000 12050
+F 0 "#PWR0143" H 16000 11800 50  0001 C CNN
+F 1 "GND" H 16005 11877 50  0000 C CNN
+F 2 "" H 16000 12050 50  0001 C CNN
+F 3 "" H 16000 12050 50  0001 C CNN
+	1    16000 12050
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	15550 11250 15600 11250
+	15950 11650 16000 11650
 Wire Wire Line
-	15600 11250 15600 11450
+	16000 11650 16000 11850
 $Comp
 L power:GND #PWR0144
 U 1 1 642C1FC6
-P 15150 9850
-F 0 "#PWR0144" H 15150 9600 50  0001 C CNN
-F 1 "GND" H 15155 9677 50  0000 C CNN
-F 2 "" H 15150 9850 50  0001 C CNN
-F 3 "" H 15150 9850 50  0001 C CNN
-	1    15150 9850
+P 15550 10250
+F 0 "#PWR0144" H 15550 10000 50  0001 C CNN
+F 1 "GND" H 15555 10077 50  0000 C CNN
+F 2 "" H 15550 10250 50  0001 C CNN
+F 3 "" H 15550 10250 50  0001 C CNN
+	1    15550 10250
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	15450 9750 15600 9750
+	15850 10150 16000 10150
 Wire Wire Line
-	15600 9750 15600 10350
+	16000 10150 16000 10750
 Wire Wire Line
-	15600 10350 15550 10350
+	16000 10750 15950 10750
 Wire Wire Line
-	14850 9750 14650 9750
+	15250 10150 15050 10150
 Wire Wire Line
-	14650 9750 14650 10350
+	15050 10150 15050 10750
 Wire Wire Line
-	14650 10350 14750 10350
+	15050 10750 15150 10750
 Wire Wire Line
-	15050 9750 15150 9750
+	15450 10150 15550 10150
 Wire Wire Line
-	15150 9750 15150 9850
+	15550 10150 15550 10250
 Wire Wire Line
-	15250 9750 15150 9750
-Connection ~ 15150 9750
+	15650 10150 15550 10150
+Connection ~ 15550 10150
 Wire Wire Line
-	14650 9600 14650 9750
-Connection ~ 14650 9750
+	15050 10000 15050 10150
+Connection ~ 15050 10150
 $Comp
 L power:+5V #PWR0146
 U 1 1 642C1FDE
-P 15600 9600
-F 0 "#PWR0146" H 15600 9450 50  0001 C CNN
-F 1 "+5V" H 15615 9773 50  0000 C CNN
-F 2 "" H 15600 9600 50  0001 C CNN
-F 3 "" H 15600 9600 50  0001 C CNN
-	1    15600 9600
+P 16000 10000
+F 0 "#PWR0146" H 16000 9850 50  0001 C CNN
+F 1 "+5V" H 16015 10173 50  0000 C CNN
+F 2 "" H 16000 10000 50  0001 C CNN
+F 3 "" H 16000 10000 50  0001 C CNN
+	1    16000 10000
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	15600 9600 15600 9750
-Connection ~ 15600 9750
+	16000 10000 16000 10150
+Connection ~ 16000 10150
 $Comp
 L Device:R_Small R7
 U 1 1 642C1FE8
-P 15150 11450
-F 0 "R7" V 14954 11450 50  0000 C CNN
-F 1 "10k" V 15045 11450 50  0000 C CNN
-F 2 "Resistor_SMD:R_0603_1608Metric" H 15150 11450 50  0001 C CNN
-F 3 "~" H 15150 11450 50  0001 C CNN
-F 4 "Vishay Dale" V 15150 11450 50  0001 C CNN "MFR"
-F 5 "CRCW060310K0FKEA" V 15150 11450 50  0001 C CNN "MPN"
-	1    15150 11450
+P 15550 11850
+F 0 "R7" V 15354 11850 50  0000 C CNN
+F 1 "10k" V 15445 11850 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 15550 11850 50  0001 C CNN
+F 3 "~" H 15550 11850 50  0001 C CNN
+F 4 "Vishay Dale" V 15550 11850 50  0001 C CNN "MFR"
+F 5 "CRCW060310K0FKEA" V 15550 11850 50  0001 C CNN "MPN"
+	1    15550 11850
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	15250 11450 15600 11450
-Connection ~ 15600 11450
+	15650 11850 16000 11850
+Connection ~ 16000 11850
 Wire Wire Line
-	15600 11450 15600 11650
+	16000 11850 16000 12050
 Wire Wire Line
-	14750 11250 14700 11250
+	15150 11650 15100 11650
 Wire Wire Line
-	15050 11450 14700 11450
+	15450 11850 15100 11850
 Wire Wire Line
-	14700 11450 14700 11250
-Connection ~ 14700 11250
+	15100 11850 15100 11650
+Connection ~ 15100 11650
 Wire Wire Line
-	16050 10750 16050 10650
+	16450 11150 16450 11050
 Wire Wire Line
-	16050 10650 16100 10650
+	16450 11050 16500 11050
 Wire Wire Line
-	16050 10850 16050 10950
+	16450 11250 16450 11350
 Wire Wire Line
-	16050 10950 16100 10950
+	16450 11350 16500 11350
 Wire Wire Line
-	2950 13850 2600 13850
+	7200 14050 6900 14050
 Wire Wire Line
-	1800 11300 2000 11300
+	6900 10900 7200 10900
 Wire Wire Line
-	2000 11300 2000 10700
+	6900 11000 7200 11000
 Wire Wire Line
-	2000 10700 2950 10700
+	6900 11100 7200 11100
 Wire Wire Line
-	1800 11400 2100 11400
+	6900 11200 7200 11200
 Wire Wire Line
-	2100 11400 2100 10800
+	6900 11300 7200 11300
 Wire Wire Line
-	2100 10800 2950 10800
+	6900 11400 7200 11400
 Wire Wire Line
-	1800 11500 2200 11500
+	6850 14750 7150 14750
 Wire Wire Line
-	2200 11500 2200 10900
+	6900 14550 7200 14550
 Wire Wire Line
-	2200 10900 2950 10900
+	6900 14450 7200 14450
 Wire Wire Line
-	1800 11600 2300 11600
+	6900 14350 7200 14350
 Wire Wire Line
-	2300 11600 2300 11000
+	6900 14250 7200 14250
 Wire Wire Line
-	2300 11000 2950 11000
+	6900 14150 7200 14150
 Wire Wire Line
-	2400 11700 2400 11100
+	7100 13850 7200 13850
+Connection ~ 7100 13250
 Wire Wire Line
-	2400 11100 2950 11100
+	7100 13100 7100 13250
 Wire Wire Line
-	1800 11700 2400 11700
+	7300 13250 7100 13250
 Wire Wire Line
-	1800 11800 2500 11800
+	7100 13250 7100 13850
 Wire Wire Line
-	2500 11800 2500 11200
+	10850 14800 11150 14800
 Wire Wire Line
-	2500 11200 2950 11200
+	10850 11650 11150 11650
 Wire Wire Line
-	1800 11900 2600 11900
+	10900 14100 11200 14100
 Wire Wire Line
-	2600 11900 2600 11400
+	10900 14200 11200 14200
 Wire Wire Line
-	1800 13500 2000 13500
+	10900 14300 11200 14300
 Wire Wire Line
-	2000 13500 2000 14550
+	10900 14400 11200 14400
 Wire Wire Line
-	2000 14550 2900 14550
+	10900 14500 11200 14500
 Wire Wire Line
-	1800 13400 2100 13400
+	10900 14600 11200 14600
 Wire Wire Line
-	2100 13400 2100 14350
+	10900 10950 11200 10950
 Wire Wire Line
-	2100 14350 2950 14350
+	10900 11050 11200 11050
 Wire Wire Line
-	1800 13300 2200 13300
+	10900 11150 11200 11150
 Wire Wire Line
-	2200 13300 2200 14250
+	10900 11250 11200 11250
 Wire Wire Line
-	2200 14250 2950 14250
+	10900 11350 11200 11350
 Wire Wire Line
-	1800 13200 2300 13200
+	10900 11450 11200 11450
 Wire Wire Line
-	2300 13200 2300 14150
+	14800 14800 15100 14800
 Wire Wire Line
-	2300 14150 2950 14150
+	14800 11650 15100 11650
 Wire Wire Line
-	1800 13100 2400 13100
+	14850 10950 15150 10950
 Wire Wire Line
-	2400 13100 2400 14050
+	14850 11050 15150 11050
 Wire Wire Line
-	2400 14050 2950 14050
+	14900 11150 15150 11150
 Wire Wire Line
-	1800 13000 2500 13000
+	14900 11250 15150 11250
 Wire Wire Line
-	2500 13000 2500 13950
+	14850 11350 15150 11350
 Wire Wire Line
-	2500 13950 2950 13950
+	14850 11450 15150 11450
 Wire Wire Line
-	1800 12900 2600 12900
+	14850 14100 15150 14100
 Wire Wire Line
-	2600 12900 2600 13850
+	14850 14200 15150 14200
 Wire Wire Line
-	2850 13650 2950 13650
-Connection ~ 2850 13050
+	14850 14300 15150 14300
 Wire Wire Line
-	2850 12900 2850 13050
+	14850 14400 15150 14400
 Wire Wire Line
-	3050 13050 2850 13050
+	14850 14500 15150 14500
 Wire Wire Line
-	2850 13050 2850 13650
+	14850 14600 15150 14600
 Wire Wire Line
-	7500 11400 7700 11400
+	2400 12850 2400 13000
 Wire Wire Line
-	7700 11400 7700 10700
+	17200 9950 17750 9950
 Wire Wire Line
-	7500 11500 7800 11500
+	17200 10050 17650 10050
 Wire Wire Line
-	7800 11500 7800 10800
+	17200 11100 17650 11100
 Wire Wire Line
-	7500 11600 7900 11600
+	17200 11000 17750 11000
 Wire Wire Line
-	7900 11600 7900 10900
+	17200 12150 17650 12150
 Wire Wire Line
-	7500 11700 8000 11700
+	17200 12050 17750 12050
 Wire Wire Line
-	8000 11700 8000 11000
+	17200 13200 17650 13200
 Wire Wire Line
-	8100 11800 8100 11100
+	17200 13100 17750 13100
 Wire Wire Line
-	7500 11800 8100 11800
+	17200 14150 17750 14150
 Wire Wire Line
-	7500 11900 8200 11900
+	17200 14250 17650 14250
 Wire Wire Line
-	8200 11900 8200 11200
+	17200 15200 17750 15200
 Wire Wire Line
-	7500 12000 8300 12000
+	17200 15300 17650 15300
 Wire Wire Line
-	8300 12000 8300 11400
+	13250 15300 13700 15300
 Wire Wire Line
-	7500 13400 7700 13400
+	13250 15200 13800 15200
 Wire Wire Line
-	7700 13400 7700 14550
+	13250 14250 13700 14250
 Wire Wire Line
-	7500 13300 7800 13300
+	13250 14150 13800 14150
 Wire Wire Line
-	7800 13300 7800 14350
+	13250 13200 13700 13200
 Wire Wire Line
-	7500 13200 7900 13200
+	13250 13100 13800 13100
 Wire Wire Line
-	7900 13200 7900 14250
+	13250 12150 13700 12150
 Wire Wire Line
-	7500 13100 8000 13100
+	13250 12050 13800 12050
 Wire Wire Line
-	8000 13100 8000 14150
+	13250 11100 13700 11100
 Wire Wire Line
-	7500 13000 8100 13000
+	13250 11000 13800 11000
 Wire Wire Line
-	8100 13000 8100 14050
+	13250 10050 13700 10050
 Wire Wire Line
-	7500 12900 8200 12900
+	13250 9950 13800 9950
 Wire Wire Line
-	8200 12900 8200 13950
+	9250 9900 9800 9900
 Wire Wire Line
-	7500 12800 8300 12800
+	9250 10000 9700 10000
 Wire Wire Line
-	8300 12800 8300 13850
+	9250 11050 9700 11050
 Wire Wire Line
-	7700 14550 8750 14550
+	9250 10950 9800 10950
 Wire Wire Line
-	8300 11400 8750 11400
+	9250 12100 9700 12100
 Wire Wire Line
-	8300 13850 8800 13850
+	9250 12000 9800 12000
 Wire Wire Line
-	8200 13950 8800 13950
+	9250 13050 9800 13050
 Wire Wire Line
-	8100 14050 8800 14050
+	9250 13150 9700 13150
 Wire Wire Line
-	8000 14150 8800 14150
+	9250 14100 9800 14100
 Wire Wire Line
-	7900 14250 8800 14250
+	9250 14200 9700 14200
 Wire Wire Line
-	7800 14350 8800 14350
+	9250 15150 9800 15150
 Wire Wire Line
-	7700 10700 8800 10700
-Wire Wire Line
-	7800 10800 8800 10800
-Wire Wire Line
-	7900 10900 8800 10900
-Wire Wire Line
-	8000 11000 8800 11000
-Wire Wire Line
-	8100 11100 8800 11100
-Wire Wire Line
-	8200 11200 8800 11200
-Wire Wire Line
-	14400 14400 14700 14400
-Wire Wire Line
-	14400 11250 14700 11250
-Wire Wire Line
-	14450 10550 14750 10550
-Wire Wire Line
-	14450 10650 14750 10650
-Wire Wire Line
-	14500 10750 14750 10750
-Wire Wire Line
-	14500 10850 14750 10850
-Wire Wire Line
-	14450 10950 14750 10950
-Wire Wire Line
-	14450 11050 14750 11050
-Wire Wire Line
-	14450 13700 14750 13700
-Wire Wire Line
-	14450 13800 14750 13800
-Wire Wire Line
-	14450 13900 14750 13900
-Wire Wire Line
-	14450 14000 14750 14000
-Wire Wire Line
-	14450 14100 14750 14100
-Wire Wire Line
-	14450 14200 14750 14200
-Wire Wire Line
-	7000 10650 7000 10800
-Wire Wire Line
-	16800 9550 17350 9550
-Wire Wire Line
-	16800 9650 17250 9650
-Wire Wire Line
-	16800 10700 17250 10700
-Wire Wire Line
-	16800 10600 17350 10600
-Wire Wire Line
-	16800 11750 17250 11750
-Wire Wire Line
-	16800 11650 17350 11650
-Wire Wire Line
-	16800 12800 17250 12800
-Wire Wire Line
-	16800 12700 17350 12700
-Wire Wire Line
-	16800 13750 17350 13750
-Wire Wire Line
-	16800 13850 17250 13850
-Wire Wire Line
-	16800 14800 17350 14800
-Wire Wire Line
-	16800 14900 17250 14900
-Wire Wire Line
-	10850 15050 11300 15050
-Wire Wire Line
-	10850 14950 11400 14950
-Wire Wire Line
-	10850 14000 11300 14000
-Wire Wire Line
-	10850 13900 11400 13900
-Wire Wire Line
-	10850 12950 11300 12950
-Wire Wire Line
-	10850 12850 11400 12850
-Wire Wire Line
-	10850 11900 11300 11900
-Wire Wire Line
-	10850 11800 11400 11800
-Wire Wire Line
-	10850 10850 11300 10850
-Wire Wire Line
-	10850 10750 11400 10750
-Wire Wire Line
-	10850 9800 11300 9800
-Wire Wire Line
-	10850 9700 11400 9700
-Wire Wire Line
-	5000 9700 5550 9700
-Wire Wire Line
-	5000 9800 5450 9800
-Wire Wire Line
-	5000 10850 5450 10850
-Wire Wire Line
-	5000 10750 5550 10750
-Wire Wire Line
-	5000 11900 5450 11900
-Wire Wire Line
-	5000 11800 5550 11800
-Wire Wire Line
-	5000 12850 5550 12850
-Wire Wire Line
-	5000 12950 5450 12950
-Wire Wire Line
-	5000 13900 5550 13900
-Wire Wire Line
-	5000 14000 5450 14000
-Wire Wire Line
-	5000 14950 5550 14950
-Wire Wire Line
-	5000 15050 5450 15050
+	9250 15250 9700 15250
 $Comp
 L Device:R_Small R46
 U 1 1 6A88297F
-P 17650 9750
-F 0 "R46" V 17700 9750 50  0000 C CNN
-F 1 "150" V 17545 9750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 9750 50  0001 C CNN
-F 3 "~" H 17650 9750 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 9750 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 17650 9750 50  0001 C CNN "MPN"
-	1    17650 9750
+P 18050 10150
+F 0 "R46" V 18100 10150 50  0000 C CNN
+F 1 "150" V 17945 10150 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 10150 50  0001 C CNN
+F 3 "~" H 18050 10150 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 10150 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 18050 10150 50  0001 C CNN "MPN"
+	1    18050 10150
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	17550 9700 17550 9650
+	17950 10100 17950 10050
 Wire Wire Line
-	17550 9650 17650 9650
-Connection ~ 17650 9650
+	17950 10050 18050 10050
+Connection ~ 18050 10050
 Wire Wire Line
-	5850 14000 6250 14000
+	10100 14200 10500 14200
 Wire Wire Line
-	17550 9800 17550 9850
+	17950 10200 17950 10250
 Wire Wire Line
-	17550 9850 17650 9850
+	17950 10250 18050 10250
 Wire Wire Line
-	17250 9800 17550 9800
-Connection ~ 17650 9850
+	17650 10200 17950 10200
+Connection ~ 18050 10250
 Wire Wire Line
-	5850 14200 6250 14200
+	10100 14400 10500 14400
 $Comp
 L Device:R_Small R45
 U 1 1 6AF9C1A5
-P 17650 9550
-F 0 "R45" V 17700 9550 50  0000 C CNN
-F 1 "330" V 17545 9550 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 9550 50  0001 C CNN
-F 3 "~" H 17650 9550 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 9550 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 9550 50  0001 C CNN "MPN"
-	1    17650 9550
+P 18050 9950
+F 0 "R45" V 18100 9950 50  0000 C CNN
+F 1 "330" V 17945 9950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 9950 50  0001 C CNN
+F 3 "~" H 18050 9950 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 9950 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 9950 50  0001 C CNN "MPN"
+	1    18050 9950
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0150
 U 1 1 6AFA0480
-P 17650 9450
-F 0 "#PWR0150" H 17650 9300 50  0001 C CNN
-F 1 "+5V" H 17665 9623 50  0000 C CNN
-F 2 "" H 17650 9450 50  0001 C CNN
-F 3 "" H 17650 9450 50  0001 C CNN
-	1    17650 9450
+P 18050 9850
+F 0 "#PWR0150" H 18050 9700 50  0001 C CNN
+F 1 "+5V" H 18065 10023 50  0000 C CNN
+F 2 "" H 18050 9850 50  0001 C CNN
+F 3 "" H 18050 9850 50  0001 C CNN
+	1    18050 9850
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R47
 U 1 1 6B06B930
-P 17650 9950
-F 0 "R47" V 17700 9950 50  0000 C CNN
-F 1 "330" V 17545 9950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 9950 50  0001 C CNN
-F 3 "~" H 17650 9950 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 9950 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 9950 50  0001 C CNN "MPN"
-	1    17650 9950
+P 18050 10350
+F 0 "R47" V 18100 10350 50  0000 C CNN
+F 1 "330" V 17945 10350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 10350 50  0001 C CNN
+F 3 "~" H 18050 10350 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 10350 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 10350 50  0001 C CNN "MPN"
+	1    18050 10350
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0151
 U 1 1 6B1419D2
-P 17650 10050
-F 0 "#PWR0151" H 17650 9800 50  0001 C CNN
-F 1 "GND" H 17655 9877 50  0000 C CNN
-F 2 "" H 17650 10050 50  0001 C CNN
-F 3 "" H 17650 10050 50  0001 C CNN
-	1    17650 10050
+P 18050 10450
+F 0 "#PWR0151" H 18050 10200 50  0001 C CNN
+F 1 "GND" H 18055 10277 50  0000 C CNN
+F 2 "" H 18050 10450 50  0001 C CNN
+F 3 "" H 18050 10450 50  0001 C CNN
+	1    18050 10450
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	17350 10600 17350 10750
+	17750 11000 17750 11150
 Wire Wire Line
-	17250 10700 17250 10850
+	17650 11100 17650 11250
 Wire Wire Line
-	17350 11650 17350 11800
+	17750 12050 17750 12200
 Wire Wire Line
-	17250 11750 17250 11900
+	17650 12150 17650 12300
 Wire Wire Line
-	17350 12700 17350 12850
+	17750 13100 17750 13250
 Wire Wire Line
-	17250 12800 17250 12950
+	17650 13200 17650 13350
 Wire Wire Line
-	17250 13850 17250 14000
+	17650 14250 17650 14400
 Wire Wire Line
-	17350 13750 17350 13900
+	17750 14150 17750 14300
 Wire Wire Line
-	17350 14800 17350 14950
+	17750 15200 17750 15350
 Wire Wire Line
-	17250 14900 17250 15050
+	17650 15300 17650 15450
 Wire Wire Line
-	11300 15050 11300 15200
+	13700 15300 13700 15450
 Wire Wire Line
-	11400 14950 11400 15100
+	13800 15200 13800 15350
 Wire Wire Line
-	11300 14000 11300 14150
+	13700 14250 13700 14400
 Wire Wire Line
-	11400 13900 11400 14050
+	13800 14150 13800 14300
 Wire Wire Line
-	11400 12850 11400 13000
+	13800 13100 13800 13250
 Wire Wire Line
-	11300 12950 11300 13100
+	13700 13200 13700 13350
 Wire Wire Line
-	11400 11800 11400 11950
+	13800 12050 13800 12200
 Wire Wire Line
-	11300 10850 11300 11000
+	13700 11100 13700 11250
 Wire Wire Line
-	11400 10750 11400 10900
+	13800 11000 13800 11150
 Wire Wire Line
-	11300 9800 11300 9950
+	13700 10050 13700 10200
 Wire Wire Line
-	11400 9700 11400 9850
+	13800 9950 13800 10100
 Wire Wire Line
-	5550 9700 5550 9850
+	9800 9900 9800 10050
 Wire Wire Line
-	5450 9800 5450 9950
+	9700 10000 9700 10150
 Wire Wire Line
-	5550 10750 5550 10900
+	9800 10950 9800 11100
 Wire Wire Line
-	5450 10850 5450 11000
+	9700 11050 9700 11200
 Wire Wire Line
-	5550 11800 5550 11950
+	9800 12000 9800 12150
 Wire Wire Line
-	5450 11900 5450 12050
+	9700 12100 9700 12250
 Wire Wire Line
-	5550 12850 5550 13000
+	9800 13050 9800 13200
 Wire Wire Line
-	5450 12950 5450 13100
+	9700 13150 9700 13300
 Wire Wire Line
-	5550 13900 5550 14050
+	9800 14100 9800 14250
 Wire Wire Line
-	5450 14000 5450 14150
+	9700 14200 9700 14350
 Wire Wire Line
-	5550 14950 5550 15100
-Text Notes 5700 15300 2    50   ~ 0
+	9800 15150 9800 15300
+Text Notes 9950 15500 2    50   ~ 0
 -
 Wire Wire Line
-	5450 15050 5450 15200
+	9700 15250 9700 15400
 $Comp
 L Device:R_Small R49
 U 1 1 6B1B80E4
-P 17650 10800
-F 0 "R49" V 17700 10800 50  0000 C CNN
-F 1 "150" V 17545 10800 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 10800 50  0001 C CNN
-F 3 "~" H 17650 10800 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 10800 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 17650 10800 50  0001 C CNN "MPN"
-	1    17650 10800
+P 18050 11200
+F 0 "R49" V 18100 11200 50  0000 C CNN
+F 1 "150" V 17945 11200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 11200 50  0001 C CNN
+F 3 "~" H 18050 11200 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 11200 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 18050 11200 50  0001 C CNN "MPN"
+	1    18050 11200
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	17550 10750 17550 10700
+	17950 11150 17950 11100
 Wire Wire Line
-	17550 10700 17650 10700
-Connection ~ 17650 10700
+	17950 11100 18050 11100
+Connection ~ 18050 11100
 Wire Wire Line
-	5850 15050 6250 15050
+	10100 15250 10500 15250
 Wire Wire Line
-	17550 10850 17550 10900
+	17950 11250 17950 11300
 Wire Wire Line
-	17550 10900 17650 10900
-Connection ~ 17650 10900
+	17950 11300 18050 11300
+Connection ~ 18050 11300
 Wire Wire Line
-	5850 15250 6250 15250
+	10100 15450 10500 15450
 $Comp
 L Device:R_Small R48
 U 1 1 6B1B80F5
-P 17650 10600
-F 0 "R48" V 17700 10600 50  0000 C CNN
-F 1 "330" V 17545 10600 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 10600 50  0001 C CNN
-F 3 "~" H 17650 10600 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 10600 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 10600 50  0001 C CNN "MPN"
-	1    17650 10600
+P 18050 11000
+F 0 "R48" V 18100 11000 50  0000 C CNN
+F 1 "330" V 17945 11000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 11000 50  0001 C CNN
+F 3 "~" H 18050 11000 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 11000 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 11000 50  0001 C CNN "MPN"
+	1    18050 11000
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0152
 U 1 1 6B1B80FB
-P 17650 10500
-F 0 "#PWR0152" H 17650 10350 50  0001 C CNN
-F 1 "+5V" H 17665 10673 50  0000 C CNN
-F 2 "" H 17650 10500 50  0001 C CNN
-F 3 "" H 17650 10500 50  0001 C CNN
-	1    17650 10500
+P 18050 10900
+F 0 "#PWR0152" H 18050 10750 50  0001 C CNN
+F 1 "+5V" H 18065 11073 50  0000 C CNN
+F 2 "" H 18050 10900 50  0001 C CNN
+F 3 "" H 18050 10900 50  0001 C CNN
+	1    18050 10900
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R50
 U 1 1 6B1B8104
-P 17650 11000
-F 0 "R50" V 17700 11000 50  0000 C CNN
-F 1 "330" V 17545 11000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 11000 50  0001 C CNN
-F 3 "~" H 17650 11000 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 11000 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 11000 50  0001 C CNN "MPN"
-	1    17650 11000
+P 18050 11400
+F 0 "R50" V 18100 11400 50  0000 C CNN
+F 1 "330" V 17945 11400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 11400 50  0001 C CNN
+F 3 "~" H 18050 11400 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 11400 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 11400 50  0001 C CNN "MPN"
+	1    18050 11400
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0153
 U 1 1 6B1B810B
-P 17650 11100
-F 0 "#PWR0153" H 17650 10850 50  0001 C CNN
-F 1 "GND" H 17655 10927 50  0000 C CNN
-F 2 "" H 17650 11100 50  0001 C CNN
-F 3 "" H 17650 11100 50  0001 C CNN
-	1    17650 11100
+P 18050 11500
+F 0 "#PWR0153" H 18050 11250 50  0001 C CNN
+F 1 "GND" H 18055 11327 50  0000 C CNN
+F 2 "" H 18050 11500 50  0001 C CNN
+F 3 "" H 18050 11500 50  0001 C CNN
+	1    18050 11500
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R52
 U 1 1 6B268963
-P 17650 11850
-F 0 "R52" V 17700 11850 50  0000 C CNN
-F 1 "150" V 17545 11850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 11850 50  0001 C CNN
-F 3 "~" H 17650 11850 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 11850 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 17650 11850 50  0001 C CNN "MPN"
-	1    17650 11850
+P 18050 12250
+F 0 "R52" V 18100 12250 50  0000 C CNN
+F 1 "150" V 17945 12250 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 12250 50  0001 C CNN
+F 3 "~" H 18050 12250 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 12250 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 18050 12250 50  0001 C CNN "MPN"
+	1    18050 12250
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	17550 11800 17550 11750
+	17950 12200 17950 12150
 Wire Wire Line
-	17550 11750 17650 11750
-Connection ~ 17650 11750
+	17950 12150 18050 12150
+Connection ~ 18050 12150
 Wire Wire Line
-	11700 11900 12100 11900
+	14100 12150 14500 12150
 Wire Wire Line
-	17550 11900 17550 11950
+	17950 12300 17950 12350
 Wire Wire Line
-	17550 11950 17650 11950
-Connection ~ 17650 11950
+	17950 12350 18050 12350
+Connection ~ 18050 12350
 Wire Wire Line
-	11700 12100 12100 12100
+	14100 12350 14500 12350
 $Comp
 L Device:R_Small R51
 U 1 1 6B268974
-P 17650 11650
-F 0 "R51" V 17700 11650 50  0000 C CNN
-F 1 "330" V 17545 11650 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 11650 50  0001 C CNN
-F 3 "~" H 17650 11650 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 11650 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 11650 50  0001 C CNN "MPN"
-	1    17650 11650
+P 18050 12050
+F 0 "R51" V 18100 12050 50  0000 C CNN
+F 1 "330" V 17945 12050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 12050 50  0001 C CNN
+F 3 "~" H 18050 12050 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 12050 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 12050 50  0001 C CNN "MPN"
+	1    18050 12050
 	-1   0    0    1   
 $EndComp
 $Comp
 L Device:R_Small R53
 U 1 1 6B268983
-P 17650 12050
-F 0 "R53" V 17700 12050 50  0000 C CNN
-F 1 "330" V 17545 12050 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 12050 50  0001 C CNN
-F 3 "~" H 17650 12050 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 12050 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 12050 50  0001 C CNN "MPN"
-	1    17650 12050
+P 18050 12450
+F 0 "R53" V 18100 12450 50  0000 C CNN
+F 1 "330" V 17945 12450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 12450 50  0001 C CNN
+F 3 "~" H 18050 12450 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 12450 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 12450 50  0001 C CNN "MPN"
+	1    18050 12450
 	-1   0    0    1   
 $EndComp
 $Comp
 L Device:R_Small R55
 U 1 1 6B31B38C
-P 17650 12900
-F 0 "R55" V 17700 12900 50  0000 C CNN
-F 1 "150" V 17545 12900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 12900 50  0001 C CNN
-F 3 "~" H 17650 12900 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 12900 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 17650 12900 50  0001 C CNN "MPN"
-	1    17650 12900
+P 18050 13300
+F 0 "R55" V 18100 13300 50  0000 C CNN
+F 1 "150" V 17945 13300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 13300 50  0001 C CNN
+F 3 "~" H 18050 13300 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 13300 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 18050 13300 50  0001 C CNN "MPN"
+	1    18050 13300
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	17550 12850 17550 12800
+	17950 13250 17950 13200
 Wire Wire Line
-	17550 12800 17650 12800
-Connection ~ 17650 12800
+	17950 13200 18050 13200
+Connection ~ 18050 13200
 Wire Wire Line
-	5850 11900 6250 11900
+	10100 12100 10500 12100
 Wire Wire Line
-	17550 12950 17550 13000
+	17950 13350 17950 13400
 Wire Wire Line
-	17550 13000 17650 13000
-Connection ~ 17650 13000
+	17950 13400 18050 13400
+Connection ~ 18050 13400
 Wire Wire Line
-	5850 12100 6250 12100
+	10100 12300 10500 12300
 $Comp
 L Device:R_Small R54
 U 1 1 6B31B39D
-P 17650 12700
-F 0 "R54" V 17700 12700 50  0000 C CNN
-F 1 "330" V 17545 12700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 12700 50  0001 C CNN
-F 3 "~" H 17650 12700 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 12700 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 12700 50  0001 C CNN "MPN"
-	1    17650 12700
+P 18050 13100
+F 0 "R54" V 18100 13100 50  0000 C CNN
+F 1 "330" V 17945 13100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 13100 50  0001 C CNN
+F 3 "~" H 18050 13100 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 13100 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 13100 50  0001 C CNN "MPN"
+	1    18050 13100
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0154
 U 1 1 6B31B3A3
-P 17650 12600
-F 0 "#PWR0154" H 17650 12450 50  0001 C CNN
-F 1 "+5V" H 17665 12773 50  0000 C CNN
-F 2 "" H 17650 12600 50  0001 C CNN
-F 3 "" H 17650 12600 50  0001 C CNN
-	1    17650 12600
+P 18050 13000
+F 0 "#PWR0154" H 18050 12850 50  0001 C CNN
+F 1 "+5V" H 18065 13173 50  0000 C CNN
+F 2 "" H 18050 13000 50  0001 C CNN
+F 3 "" H 18050 13000 50  0001 C CNN
+	1    18050 13000
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R56
 U 1 1 6B31B3AC
-P 17650 13100
-F 0 "R56" V 17700 13100 50  0000 C CNN
-F 1 "330" V 17545 13100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 13100 50  0001 C CNN
-F 3 "~" H 17650 13100 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 13100 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 13100 50  0001 C CNN "MPN"
-	1    17650 13100
+P 18050 13500
+F 0 "R56" V 18100 13500 50  0000 C CNN
+F 1 "330" V 17945 13500 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 13500 50  0001 C CNN
+F 3 "~" H 18050 13500 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 13500 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 13500 50  0001 C CNN "MPN"
+	1    18050 13500
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0155
 U 1 1 6B31B3B3
-P 17650 13200
-F 0 "#PWR0155" H 17650 12950 50  0001 C CNN
-F 1 "GND" H 17655 13027 50  0000 C CNN
-F 2 "" H 17650 13200 50  0001 C CNN
-F 3 "" H 17650 13200 50  0001 C CNN
-	1    17650 13200
+P 18050 13600
+F 0 "#PWR0155" H 18050 13350 50  0001 C CNN
+F 1 "GND" H 18055 13427 50  0000 C CNN
+F 2 "" H 18050 13600 50  0001 C CNN
+F 3 "" H 18050 13600 50  0001 C CNN
+	1    18050 13600
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R58
 U 1 1 6B3D1E81
-P 17650 13950
-F 0 "R58" V 17700 13950 50  0000 C CNN
-F 1 "150" V 17545 13950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 13950 50  0001 C CNN
-F 3 "~" H 17650 13950 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 13950 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 17650 13950 50  0001 C CNN "MPN"
-	1    17650 13950
+P 18050 14350
+F 0 "R58" V 18100 14350 50  0000 C CNN
+F 1 "150" V 17945 14350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 14350 50  0001 C CNN
+F 3 "~" H 18050 14350 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 14350 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 18050 14350 50  0001 C CNN "MPN"
+	1    18050 14350
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	17550 13900 17550 13850
+	17950 14300 17950 14250
 Wire Wire Line
-	17550 13850 17650 13850
-Connection ~ 17650 13850
+	17950 14250 18050 14250
+Connection ~ 18050 14250
 Wire Wire Line
-	5850 9800 6250 9800
+	10100 10000 10500 10000
 Wire Wire Line
-	17550 14000 17550 14050
+	17950 14400 17950 14450
 Wire Wire Line
-	17550 14050 17650 14050
-Connection ~ 17650 14050
+	17950 14450 18050 14450
+Connection ~ 18050 14450
 Wire Wire Line
-	5850 10000 6250 10000
+	10100 10200 10500 10200
 $Comp
 L Device:R_Small R57
 U 1 1 6B3D1E92
-P 17650 13750
-F 0 "R57" V 17700 13750 50  0000 C CNN
-F 1 "330" V 17545 13750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 13750 50  0001 C CNN
-F 3 "~" H 17650 13750 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 13750 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 13750 50  0001 C CNN "MPN"
-	1    17650 13750
+P 18050 14150
+F 0 "R57" V 18100 14150 50  0000 C CNN
+F 1 "330" V 17945 14150 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 14150 50  0001 C CNN
+F 3 "~" H 18050 14150 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 14150 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 14150 50  0001 C CNN "MPN"
+	1    18050 14150
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0156
 U 1 1 6B3D1E98
-P 17650 13650
-F 0 "#PWR0156" H 17650 13500 50  0001 C CNN
-F 1 "+5V" H 17665 13823 50  0000 C CNN
-F 2 "" H 17650 13650 50  0001 C CNN
-F 3 "" H 17650 13650 50  0001 C CNN
-	1    17650 13650
+P 18050 14050
+F 0 "#PWR0156" H 18050 13900 50  0001 C CNN
+F 1 "+5V" H 18065 14223 50  0000 C CNN
+F 2 "" H 18050 14050 50  0001 C CNN
+F 3 "" H 18050 14050 50  0001 C CNN
+	1    18050 14050
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R59
 U 1 1 6B3D1EA1
-P 17650 14150
-F 0 "R59" V 17700 14150 50  0000 C CNN
-F 1 "330" V 17545 14150 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 14150 50  0001 C CNN
-F 3 "~" H 17650 14150 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 14150 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 14150 50  0001 C CNN "MPN"
-	1    17650 14150
+P 18050 14550
+F 0 "R59" V 18100 14550 50  0000 C CNN
+F 1 "330" V 17945 14550 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 14550 50  0001 C CNN
+F 3 "~" H 18050 14550 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 14550 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 14550 50  0001 C CNN "MPN"
+	1    18050 14550
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0157
 U 1 1 6B3D1EA8
-P 17650 14250
-F 0 "#PWR0157" H 17650 14000 50  0001 C CNN
-F 1 "GND" H 17655 14077 50  0000 C CNN
-F 2 "" H 17650 14250 50  0001 C CNN
-F 3 "" H 17650 14250 50  0001 C CNN
-	1    17650 14250
+P 18050 14650
+F 0 "#PWR0157" H 18050 14400 50  0001 C CNN
+F 1 "GND" H 18055 14477 50  0000 C CNN
+F 2 "" H 18050 14650 50  0001 C CNN
+F 3 "" H 18050 14650 50  0001 C CNN
+	1    18050 14650
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R61
 U 1 1 6B48B384
-P 17650 15000
-F 0 "R61" V 17700 15000 50  0000 C CNN
-F 1 "150" V 17545 15000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 15000 50  0001 C CNN
-F 3 "~" H 17650 15000 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 15000 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 17650 15000 50  0001 C CNN "MPN"
-	1    17650 15000
+P 18050 15400
+F 0 "R61" V 18100 15400 50  0000 C CNN
+F 1 "150" V 17945 15400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 15400 50  0001 C CNN
+F 3 "~" H 18050 15400 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 15400 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 18050 15400 50  0001 C CNN "MPN"
+	1    18050 15400
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	17550 14950 17550 14900
+	17950 15350 17950 15300
 Wire Wire Line
-	17550 14900 17650 14900
-Connection ~ 17650 14900
+	17950 15300 18050 15300
+Connection ~ 18050 15300
 Wire Wire Line
-	5850 10850 6250 10850
+	10100 11050 10500 11050
 Wire Wire Line
-	17550 15050 17550 15100
+	17950 15450 17950 15500
 Wire Wire Line
-	17550 15100 17650 15100
-Connection ~ 17650 15100
+	17950 15500 18050 15500
+Connection ~ 18050 15500
 Wire Wire Line
-	5850 11050 6250 11050
+	10100 11250 10500 11250
 $Comp
 L Device:R_Small R60
 U 1 1 6B48B395
-P 17650 14800
-F 0 "R60" V 17700 14800 50  0000 C CNN
-F 1 "330" V 17545 14800 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 14800 50  0001 C CNN
-F 3 "~" H 17650 14800 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 14800 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 14800 50  0001 C CNN "MPN"
-	1    17650 14800
+P 18050 15200
+F 0 "R60" V 18100 15200 50  0000 C CNN
+F 1 "330" V 17945 15200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 15200 50  0001 C CNN
+F 3 "~" H 18050 15200 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 15200 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 15200 50  0001 C CNN "MPN"
+	1    18050 15200
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0158
 U 1 1 6B48B39B
-P 17650 14700
-F 0 "#PWR0158" H 17650 14550 50  0001 C CNN
-F 1 "+5V" H 17665 14873 50  0000 C CNN
-F 2 "" H 17650 14700 50  0001 C CNN
-F 3 "" H 17650 14700 50  0001 C CNN
-	1    17650 14700
+P 18050 15100
+F 0 "#PWR0158" H 18050 14950 50  0001 C CNN
+F 1 "+5V" H 18065 15273 50  0000 C CNN
+F 2 "" H 18050 15100 50  0001 C CNN
+F 3 "" H 18050 15100 50  0001 C CNN
+	1    18050 15100
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R62
 U 1 1 6B48B3A4
-P 17650 15200
-F 0 "R62" V 17700 15200 50  0000 C CNN
-F 1 "330" V 17545 15200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 17650 15200 50  0001 C CNN
-F 3 "~" H 17650 15200 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 17650 15200 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 17650 15200 50  0001 C CNN "MPN"
-	1    17650 15200
+P 18050 15600
+F 0 "R62" V 18100 15600 50  0000 C CNN
+F 1 "330" V 17945 15600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 18050 15600 50  0001 C CNN
+F 3 "~" H 18050 15600 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 18050 15600 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 18050 15600 50  0001 C CNN "MPN"
+	1    18050 15600
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0159
 U 1 1 6B48B3AB
-P 17650 15300
-F 0 "#PWR0159" H 17650 15050 50  0001 C CNN
-F 1 "GND" H 17655 15127 50  0000 C CNN
-F 2 "" H 17650 15300 50  0001 C CNN
-F 3 "" H 17650 15300 50  0001 C CNN
-	1    17650 15300
+P 18050 15700
+F 0 "#PWR0159" H 18050 15450 50  0001 C CNN
+F 1 "GND" H 18055 15527 50  0000 C CNN
+F 2 "" H 18050 15700 50  0001 C CNN
+F 3 "" H 18050 15700 50  0001 C CNN
+	1    18050 15700
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+5V #PWR0160
 U 1 1 6B26897A
-P 17650 11550
-F 0 "#PWR0160" H 17650 11400 50  0001 C CNN
-F 1 "+5V" H 17665 11723 50  0000 C CNN
-F 2 "" H 17650 11550 50  0001 C CNN
-F 3 "" H 17650 11550 50  0001 C CNN
-	1    17650 11550
+P 18050 11950
+F 0 "#PWR0160" H 18050 11800 50  0001 C CNN
+F 1 "+5V" H 18065 12123 50  0000 C CNN
+F 2 "" H 18050 11950 50  0001 C CNN
+F 3 "" H 18050 11950 50  0001 C CNN
+	1    18050 11950
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0161
 U 1 1 6B26898A
-P 17650 12150
-F 0 "#PWR0161" H 17650 11900 50  0001 C CNN
-F 1 "GND" H 17655 11977 50  0000 C CNN
-F 2 "" H 17650 12150 50  0001 C CNN
-F 3 "" H 17650 12150 50  0001 C CNN
-	1    17650 12150
+P 18050 12550
+F 0 "#PWR0161" H 18050 12300 50  0001 C CNN
+F 1 "GND" H 18055 12377 50  0000 C CNN
+F 2 "" H 18050 12550 50  0001 C CNN
+F 3 "" H 18050 12550 50  0001 C CNN
+	1    18050 12550
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R28
 U 1 1 6CB81FA2
-P 11700 9900
-F 0 "R28" V 11750 9900 50  0000 C CNN
-F 1 "150" V 11595 9900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 9900 50  0001 C CNN
-F 3 "~" H 11700 9900 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 9900 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 11700 9900 50  0001 C CNN "MPN"
-	1    11700 9900
+P 14100 10150
+F 0 "R28" V 14150 10150 50  0000 C CNN
+F 1 "150" V 13995 10150 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 10150 50  0001 C CNN
+F 3 "~" H 14100 10150 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 10150 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 14100 10150 50  0001 C CNN "MPN"
+	1    14100 10150
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	11600 9850 11600 9800
+	14000 10100 14000 10050
 Wire Wire Line
-	11600 9800 11700 9800
-Connection ~ 11700 9800
+	14000 10050 14100 10050
+Connection ~ 14100 10050
 Wire Wire Line
-	11700 14000 12100 14000
+	14100 14250 14500 14250
 Wire Wire Line
-	11600 9950 11600 10000
+	14000 10200 14000 10250
 Wire Wire Line
-	11600 10000 11700 10000
-Connection ~ 11700 10000
+	14000 10250 14100 10250
+Connection ~ 14100 10250
 Wire Wire Line
-	11700 14200 12100 14200
+	14100 14450 14500 14450
 $Comp
 L Device:R_Small R27
 U 1 1 6CB81FB3
-P 11700 9700
-F 0 "R27" V 11750 9700 50  0000 C CNN
-F 1 "330" V 11595 9700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 9700 50  0001 C CNN
-F 3 "~" H 11700 9700 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 9700 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 9700 50  0001 C CNN "MPN"
-	1    11700 9700
+P 14100 9950
+F 0 "R27" V 14150 9950 50  0000 C CNN
+F 1 "330" V 13995 9950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 9950 50  0001 C CNN
+F 3 "~" H 14100 9950 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 9950 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 9950 50  0001 C CNN "MPN"
+	1    14100 9950
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0162
 U 1 1 6CB81FB9
-P 11700 9600
-F 0 "#PWR0162" H 11700 9450 50  0001 C CNN
-F 1 "+5V" H 11715 9773 50  0000 C CNN
-F 2 "" H 11700 9600 50  0001 C CNN
-F 3 "" H 11700 9600 50  0001 C CNN
-	1    11700 9600
+P 14100 9850
+F 0 "#PWR0162" H 14100 9700 50  0001 C CNN
+F 1 "+5V" H 14115 10023 50  0000 C CNN
+F 2 "" H 14100 9850 50  0001 C CNN
+F 3 "" H 14100 9850 50  0001 C CNN
+	1    14100 9850
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R29
 U 1 1 6CB81FC1
-P 11700 10100
-F 0 "R29" V 11750 10100 50  0000 C CNN
-F 1 "330" V 11595 10100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 10100 50  0001 C CNN
-F 3 "~" H 11700 10100 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 10100 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 10100 50  0001 C CNN "MPN"
-	1    11700 10100
+P 14100 10350
+F 0 "R29" V 14150 10350 50  0000 C CNN
+F 1 "330" V 13995 10350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 10350 50  0001 C CNN
+F 3 "~" H 14100 10350 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 10350 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 10350 50  0001 C CNN "MPN"
+	1    14100 10350
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0163
 U 1 1 6CB81FC7
-P 11700 10200
-F 0 "#PWR0163" H 11700 9950 50  0001 C CNN
-F 1 "GND" H 11705 10027 50  0000 C CNN
-F 2 "" H 11700 10200 50  0001 C CNN
-F 3 "" H 11700 10200 50  0001 C CNN
-	1    11700 10200
+P 14100 10450
+F 0 "#PWR0163" H 14100 10200 50  0001 C CNN
+F 1 "GND" H 14105 10277 50  0000 C CNN
+F 2 "" H 14100 10450 50  0001 C CNN
+F 3 "" H 14100 10450 50  0001 C CNN
+	1    14100 10450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R31
 U 1 1 6CB81FD0
-P 11700 10950
-F 0 "R31" V 11750 10950 50  0000 C CNN
-F 1 "150" V 11595 10950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 10950 50  0001 C CNN
-F 3 "~" H 11700 10950 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 10950 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 11700 10950 50  0001 C CNN "MPN"
-	1    11700 10950
+P 14100 11200
+F 0 "R31" V 14150 11200 50  0000 C CNN
+F 1 "150" V 13995 11200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 11200 50  0001 C CNN
+F 3 "~" H 14100 11200 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 11200 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 14100 11200 50  0001 C CNN "MPN"
+	1    14100 11200
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	11600 10900 11600 10850
+	14000 11150 14000 11100
 Wire Wire Line
-	11600 10850 11700 10850
-Connection ~ 11700 10850
+	14000 11100 14100 11100
+Connection ~ 14100 11100
 Wire Wire Line
-	11700 15050 12100 15050
+	14100 15300 14500 15300
 Wire Wire Line
-	11600 11000 11600 11050
+	14000 11250 14000 11300
 Wire Wire Line
-	11600 11050 11700 11050
-Connection ~ 11700 11050
+	14000 11300 14100 11300
+Connection ~ 14100 11300
 Wire Wire Line
-	11700 15250 12100 15250
+	14100 15500 14500 15500
 $Comp
 L Device:R_Small R30
 U 1 1 6CB81FE1
-P 11700 10750
-F 0 "R30" V 11750 10750 50  0000 C CNN
-F 1 "330" V 11595 10750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 10750 50  0001 C CNN
-F 3 "~" H 11700 10750 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 10750 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 10750 50  0001 C CNN "MPN"
-	1    11700 10750
+P 14100 11000
+F 0 "R30" V 14150 11000 50  0000 C CNN
+F 1 "330" V 13995 11000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 11000 50  0001 C CNN
+F 3 "~" H 14100 11000 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 11000 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 11000 50  0001 C CNN "MPN"
+	1    14100 11000
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0164
 U 1 1 6CB81FE7
-P 11700 10650
-F 0 "#PWR0164" H 11700 10500 50  0001 C CNN
-F 1 "+5V" H 11715 10823 50  0000 C CNN
-F 2 "" H 11700 10650 50  0001 C CNN
-F 3 "" H 11700 10650 50  0001 C CNN
-	1    11700 10650
+P 14100 10900
+F 0 "#PWR0164" H 14100 10750 50  0001 C CNN
+F 1 "+5V" H 14115 11073 50  0000 C CNN
+F 2 "" H 14100 10900 50  0001 C CNN
+F 3 "" H 14100 10900 50  0001 C CNN
+	1    14100 10900
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R32
 U 1 1 6CB81FEF
-P 11700 11150
-F 0 "R32" V 11750 11150 50  0000 C CNN
-F 1 "330" V 11595 11150 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 11150 50  0001 C CNN
-F 3 "~" H 11700 11150 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 11150 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 11150 50  0001 C CNN "MPN"
-	1    11700 11150
+P 14100 11400
+F 0 "R32" V 14150 11400 50  0000 C CNN
+F 1 "330" V 13995 11400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 11400 50  0001 C CNN
+F 3 "~" H 14100 11400 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 11400 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 11400 50  0001 C CNN "MPN"
+	1    14100 11400
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0165
 U 1 1 6CB81FF5
-P 11700 11250
-F 0 "#PWR0165" H 11700 11000 50  0001 C CNN
-F 1 "GND" H 11705 11077 50  0000 C CNN
-F 2 "" H 11700 11250 50  0001 C CNN
-F 3 "" H 11700 11250 50  0001 C CNN
-	1    11700 11250
+P 14100 11500
+F 0 "#PWR0165" H 14100 11250 50  0001 C CNN
+F 1 "GND" H 14105 11327 50  0000 C CNN
+F 2 "" H 14100 11500 50  0001 C CNN
+F 3 "" H 14100 11500 50  0001 C CNN
+	1    14100 11500
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R34
 U 1 1 6CB81FFE
-P 11700 12000
-F 0 "R34" V 11750 12000 50  0000 C CNN
-F 1 "150" V 11595 12000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 12000 50  0001 C CNN
-F 3 "~" H 11700 12000 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 12000 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 11700 12000 50  0001 C CNN "MPN"
-	1    11700 12000
+P 14100 12250
+F 0 "R34" V 14150 12250 50  0000 C CNN
+F 1 "150" V 13995 12250 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 12250 50  0001 C CNN
+F 3 "~" H 14100 12250 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 12250 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 14100 12250 50  0001 C CNN "MPN"
+	1    14100 12250
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	11600 11950 11600 11900
+	14000 12200 14000 12150
 Wire Wire Line
-	11600 11900 11700 11900
-Connection ~ 11700 11900
+	14000 12150 14100 12150
+Connection ~ 14100 12150
 Wire Wire Line
-	17650 11750 18050 11750
+	18050 12150 18450 12150
 Wire Wire Line
-	11600 12050 11600 12100
+	14000 12300 14000 12350
 Wire Wire Line
-	11600 12100 11700 12100
-Connection ~ 11700 12100
+	14000 12350 14100 12350
+Connection ~ 14100 12350
 Wire Wire Line
-	17650 11950 18050 11950
+	18050 12350 18450 12350
 $Comp
 L Device:R_Small R33
 U 1 1 6CB8200F
-P 11700 11800
-F 0 "R33" V 11750 11800 50  0000 C CNN
-F 1 "330" V 11595 11800 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 11800 50  0001 C CNN
-F 3 "~" H 11700 11800 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 11800 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 11800 50  0001 C CNN "MPN"
-	1    11700 11800
+P 14100 12050
+F 0 "R33" V 14150 12050 50  0000 C CNN
+F 1 "330" V 13995 12050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 12050 50  0001 C CNN
+F 3 "~" H 14100 12050 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 12050 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 12050 50  0001 C CNN "MPN"
+	1    14100 12050
 	-1   0    0    1   
 $EndComp
 $Comp
 L Device:R_Small R35
 U 1 1 6CB82017
-P 11700 12200
-F 0 "R35" V 11750 12200 50  0000 C CNN
-F 1 "330" V 11595 12200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 12200 50  0001 C CNN
-F 3 "~" H 11700 12200 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 12200 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 12200 50  0001 C CNN "MPN"
-	1    11700 12200
+P 14100 12450
+F 0 "R35" V 14150 12450 50  0000 C CNN
+F 1 "330" V 13995 12450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 12450 50  0001 C CNN
+F 3 "~" H 14100 12450 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 12450 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 12450 50  0001 C CNN "MPN"
+	1    14100 12450
 	-1   0    0    1   
 $EndComp
 $Comp
 L Device:R_Small R37
 U 1 1 6CB82020
-P 11700 13050
-F 0 "R37" V 11750 13050 50  0000 C CNN
-F 1 "150" V 11595 13050 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 13050 50  0001 C CNN
-F 3 "~" H 11700 13050 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 13050 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 11700 13050 50  0001 C CNN "MPN"
-	1    11700 13050
+P 14100 13300
+F 0 "R37" V 14150 13300 50  0000 C CNN
+F 1 "150" V 13995 13300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 13300 50  0001 C CNN
+F 3 "~" H 14100 13300 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 13300 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 14100 13300 50  0001 C CNN "MPN"
+	1    14100 13300
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	11600 13000 11600 12950
+	14000 13250 14000 13200
 Wire Wire Line
-	11600 12950 11700 12950
-Connection ~ 11700 12950
+	14000 13200 14100 13200
+Connection ~ 14100 13200
 Wire Wire Line
-	5850 12950 6250 12950
+	10100 13150 10500 13150
 Wire Wire Line
-	11600 13100 11600 13150
+	14000 13350 14000 13400
 Wire Wire Line
-	11600 13150 11700 13150
-Connection ~ 11700 13150
+	14000 13400 14100 13400
+Connection ~ 14100 13400
 Wire Wire Line
-	5850 13150 6250 13150
+	10100 13350 10500 13350
 $Comp
 L Device:R_Small R36
 U 1 1 6CB82031
-P 11700 12850
-F 0 "R36" V 11750 12850 50  0000 C CNN
-F 1 "330" V 11595 12850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 12850 50  0001 C CNN
-F 3 "~" H 11700 12850 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 12850 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 12850 50  0001 C CNN "MPN"
-	1    11700 12850
+P 14100 13100
+F 0 "R36" V 14150 13100 50  0000 C CNN
+F 1 "330" V 13995 13100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 13100 50  0001 C CNN
+F 3 "~" H 14100 13100 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 13100 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 13100 50  0001 C CNN "MPN"
+	1    14100 13100
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0166
 U 1 1 6CB82037
-P 11700 12750
-F 0 "#PWR0166" H 11700 12600 50  0001 C CNN
-F 1 "+5V" H 11715 12923 50  0000 C CNN
-F 2 "" H 11700 12750 50  0001 C CNN
-F 3 "" H 11700 12750 50  0001 C CNN
-	1    11700 12750
+P 14100 13000
+F 0 "#PWR0166" H 14100 12850 50  0001 C CNN
+F 1 "+5V" H 14115 13173 50  0000 C CNN
+F 2 "" H 14100 13000 50  0001 C CNN
+F 3 "" H 14100 13000 50  0001 C CNN
+	1    14100 13000
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R38
 U 1 1 6CB8203F
-P 11700 13250
-F 0 "R38" V 11750 13250 50  0000 C CNN
-F 1 "330" V 11595 13250 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 13250 50  0001 C CNN
-F 3 "~" H 11700 13250 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 13250 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 13250 50  0001 C CNN "MPN"
-	1    11700 13250
+P 14100 13500
+F 0 "R38" V 14150 13500 50  0000 C CNN
+F 1 "330" V 13995 13500 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 13500 50  0001 C CNN
+F 3 "~" H 14100 13500 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 13500 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 13500 50  0001 C CNN "MPN"
+	1    14100 13500
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0167
 U 1 1 6CB82045
-P 11700 13350
-F 0 "#PWR0167" H 11700 13100 50  0001 C CNN
-F 1 "GND" H 11705 13177 50  0000 C CNN
-F 2 "" H 11700 13350 50  0001 C CNN
-F 3 "" H 11700 13350 50  0001 C CNN
-	1    11700 13350
+P 14100 13600
+F 0 "#PWR0167" H 14100 13350 50  0001 C CNN
+F 1 "GND" H 14105 13427 50  0000 C CNN
+F 2 "" H 14100 13600 50  0001 C CNN
+F 3 "" H 14100 13600 50  0001 C CNN
+	1    14100 13600
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R40
 U 1 1 6CB8204E
-P 11700 14100
-F 0 "R40" V 11750 14100 50  0000 C CNN
-F 1 "150" V 11595 14100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 14100 50  0001 C CNN
-F 3 "~" H 11700 14100 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 14100 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 11700 14100 50  0001 C CNN "MPN"
-	1    11700 14100
+P 14100 14350
+F 0 "R40" V 14150 14350 50  0000 C CNN
+F 1 "150" V 13995 14350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 14350 50  0001 C CNN
+F 3 "~" H 14100 14350 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 14350 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 14100 14350 50  0001 C CNN "MPN"
+	1    14100 14350
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	11600 14050 11600 14000
+	14000 14300 14000 14250
 Wire Wire Line
-	11600 14000 11700 14000
-Connection ~ 11700 14000
+	14000 14250 14100 14250
+Connection ~ 14100 14250
 Wire Wire Line
-	11700 9800 12100 9800
+	14100 10050 14500 10050
 Wire Wire Line
-	11600 14150 11600 14200
+	14000 14400 14000 14450
 Wire Wire Line
-	11600 14200 11700 14200
-Connection ~ 11700 14200
+	14000 14450 14100 14450
+Connection ~ 14100 14450
 Wire Wire Line
-	11700 10000 12100 10000
+	14100 10250 14500 10250
 $Comp
 L Device:R_Small R39
 U 1 1 6CB8205F
-P 11700 13900
-F 0 "R39" V 11750 13900 50  0000 C CNN
-F 1 "330" V 11595 13900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 13900 50  0001 C CNN
-F 3 "~" H 11700 13900 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 13900 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 13900 50  0001 C CNN "MPN"
-	1    11700 13900
+P 14100 14150
+F 0 "R39" V 14150 14150 50  0000 C CNN
+F 1 "330" V 13995 14150 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 14150 50  0001 C CNN
+F 3 "~" H 14100 14150 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 14150 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 14150 50  0001 C CNN "MPN"
+	1    14100 14150
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0168
 U 1 1 6CB82065
-P 11700 13800
-F 0 "#PWR0168" H 11700 13650 50  0001 C CNN
-F 1 "+5V" H 11715 13973 50  0000 C CNN
-F 2 "" H 11700 13800 50  0001 C CNN
-F 3 "" H 11700 13800 50  0001 C CNN
-	1    11700 13800
+P 14100 14050
+F 0 "#PWR0168" H 14100 13900 50  0001 C CNN
+F 1 "+5V" H 14115 14223 50  0000 C CNN
+F 2 "" H 14100 14050 50  0001 C CNN
+F 3 "" H 14100 14050 50  0001 C CNN
+	1    14100 14050
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R41
 U 1 1 6CB8206D
-P 11700 14300
-F 0 "R41" V 11750 14300 50  0000 C CNN
-F 1 "330" V 11595 14300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 14300 50  0001 C CNN
-F 3 "~" H 11700 14300 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 14300 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 14300 50  0001 C CNN "MPN"
-	1    11700 14300
+P 14100 14550
+F 0 "R41" V 14150 14550 50  0000 C CNN
+F 1 "330" V 13995 14550 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 14550 50  0001 C CNN
+F 3 "~" H 14100 14550 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 14550 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 14550 50  0001 C CNN "MPN"
+	1    14100 14550
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0169
 U 1 1 6CB82073
-P 11700 14400
-F 0 "#PWR0169" H 11700 14150 50  0001 C CNN
-F 1 "GND" H 11705 14227 50  0000 C CNN
-F 2 "" H 11700 14400 50  0001 C CNN
-F 3 "" H 11700 14400 50  0001 C CNN
-	1    11700 14400
+P 14100 14650
+F 0 "#PWR0169" H 14100 14400 50  0001 C CNN
+F 1 "GND" H 14105 14477 50  0000 C CNN
+F 2 "" H 14100 14650 50  0001 C CNN
+F 3 "" H 14100 14650 50  0001 C CNN
+	1    14100 14650
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R43
 U 1 1 6CB8207C
-P 11700 15150
-F 0 "R43" V 11750 15150 50  0000 C CNN
-F 1 "150" V 11595 15150 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 15150 50  0001 C CNN
-F 3 "~" H 11700 15150 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 15150 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 11700 15150 50  0001 C CNN "MPN"
-	1    11700 15150
+P 14100 15400
+F 0 "R43" V 14150 15400 50  0000 C CNN
+F 1 "150" V 13995 15400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 15400 50  0001 C CNN
+F 3 "~" H 14100 15400 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 15400 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 14100 15400 50  0001 C CNN "MPN"
+	1    14100 15400
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	11600 15100 11600 15050
+	14000 15350 14000 15300
 Wire Wire Line
-	11600 15050 11700 15050
-Connection ~ 11700 15050
+	14000 15300 14100 15300
+Connection ~ 14100 15300
 Wire Wire Line
-	11700 10850 12100 10850
+	14100 11100 14500 11100
 Wire Wire Line
-	11600 15200 11600 15250
+	14000 15450 14000 15500
 Wire Wire Line
-	11600 15250 11700 15250
-Connection ~ 11700 15250
+	14000 15500 14100 15500
+Connection ~ 14100 15500
 Wire Wire Line
-	11700 11050 12100 11050
+	14100 11300 14500 11300
 $Comp
 L Device:R_Small R42
 U 1 1 6CB8208D
-P 11700 14950
-F 0 "R42" V 11750 14950 50  0000 C CNN
-F 1 "330" V 11595 14950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 14950 50  0001 C CNN
-F 3 "~" H 11700 14950 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 14950 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 14950 50  0001 C CNN "MPN"
-	1    11700 14950
+P 14100 15200
+F 0 "R42" V 14150 15200 50  0000 C CNN
+F 1 "330" V 13995 15200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 15200 50  0001 C CNN
+F 3 "~" H 14100 15200 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 15200 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 15200 50  0001 C CNN "MPN"
+	1    14100 15200
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0170
 U 1 1 6CB82093
-P 11700 14850
-F 0 "#PWR0170" H 11700 14700 50  0001 C CNN
-F 1 "+5V" H 11715 15023 50  0000 C CNN
-F 2 "" H 11700 14850 50  0001 C CNN
-F 3 "" H 11700 14850 50  0001 C CNN
-	1    11700 14850
+P 14100 15100
+F 0 "#PWR0170" H 14100 14950 50  0001 C CNN
+F 1 "+5V" H 14115 15273 50  0000 C CNN
+F 2 "" H 14100 15100 50  0001 C CNN
+F 3 "" H 14100 15100 50  0001 C CNN
+	1    14100 15100
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R44
 U 1 1 6CB8209B
-P 11700 15350
-F 0 "R44" V 11750 15350 50  0000 C CNN
-F 1 "330" V 11595 15350 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 11700 15350 50  0001 C CNN
-F 3 "~" H 11700 15350 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 11700 15350 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 11700 15350 50  0001 C CNN "MPN"
-	1    11700 15350
+P 14100 15600
+F 0 "R44" V 14150 15600 50  0000 C CNN
+F 1 "330" V 13995 15600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 14100 15600 50  0001 C CNN
+F 3 "~" H 14100 15600 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 14100 15600 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 14100 15600 50  0001 C CNN "MPN"
+	1    14100 15600
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0171
 U 1 1 6CB820A1
-P 11700 15450
-F 0 "#PWR0171" H 11700 15200 50  0001 C CNN
-F 1 "GND" H 11705 15277 50  0000 C CNN
-F 2 "" H 11700 15450 50  0001 C CNN
-F 3 "" H 11700 15450 50  0001 C CNN
-	1    11700 15450
+P 14100 15700
+F 0 "#PWR0171" H 14100 15450 50  0001 C CNN
+F 1 "GND" H 14105 15527 50  0000 C CNN
+F 2 "" H 14100 15700 50  0001 C CNN
+F 3 "" H 14100 15700 50  0001 C CNN
+	1    14100 15700
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+5V #PWR0172
 U 1 1 6CB820A7
-P 11700 11700
-F 0 "#PWR0172" H 11700 11550 50  0001 C CNN
-F 1 "+5V" H 11715 11873 50  0000 C CNN
-F 2 "" H 11700 11700 50  0001 C CNN
-F 3 "" H 11700 11700 50  0001 C CNN
-	1    11700 11700
+P 14100 11950
+F 0 "#PWR0172" H 14100 11800 50  0001 C CNN
+F 1 "+5V" H 14115 12123 50  0000 C CNN
+F 2 "" H 14100 11950 50  0001 C CNN
+F 3 "" H 14100 11950 50  0001 C CNN
+	1    14100 11950
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0173
 U 1 1 6CB820AD
-P 11700 12300
-F 0 "#PWR0173" H 11700 12050 50  0001 C CNN
-F 1 "GND" H 11705 12127 50  0000 C CNN
-F 2 "" H 11700 12300 50  0001 C CNN
-F 3 "" H 11700 12300 50  0001 C CNN
-	1    11700 12300
+P 14100 12550
+F 0 "#PWR0173" H 14100 12300 50  0001 C CNN
+F 1 "GND" H 14105 12377 50  0000 C CNN
+F 2 "" H 14100 12550 50  0001 C CNN
+F 3 "" H 14100 12550 50  0001 C CNN
+	1    14100 12550
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R10
 U 1 1 6CC61767
-P 5850 9900
-F 0 "R10" V 5900 9900 50  0000 C CNN
-F 1 "150" V 5745 9900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 9900 50  0001 C CNN
-F 3 "~" H 5850 9900 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 9900 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 5850 9900 50  0001 C CNN "MPN"
-	1    5850 9900
+P 10100 10100
+F 0 "R10" V 10150 10100 50  0000 C CNN
+F 1 "150" V 9995 10100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 10100 50  0001 C CNN
+F 3 "~" H 10100 10100 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 10100 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 10100 10100 50  0001 C CNN "MPN"
+	1    10100 10100
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	5750 9850 5750 9800
+	10000 10050 10000 10000
 Wire Wire Line
-	5750 9800 5850 9800
-Connection ~ 5850 9800
+	10000 10000 10100 10000
+Connection ~ 10100 10000
 Wire Wire Line
-	17650 13850 18050 13850
+	18050 14250 18450 14250
 Wire Wire Line
-	5750 9950 5750 10000
+	10000 10150 10000 10200
 Wire Wire Line
-	5750 10000 5850 10000
-Connection ~ 5850 10000
+	10000 10200 10100 10200
+Connection ~ 10100 10200
 Wire Wire Line
-	17650 14050 18050 14050
+	18050 14450 18450 14450
 $Comp
 L Device:R_Small R9
 U 1 1 6CC61778
-P 5850 9700
-F 0 "R9" V 5900 9700 50  0000 C CNN
-F 1 "330" V 5745 9700 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 9700 50  0001 C CNN
-F 3 "~" H 5850 9700 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 9700 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 9700 50  0001 C CNN "MPN"
-	1    5850 9700
+P 10100 9900
+F 0 "R9" V 10150 9900 50  0000 C CNN
+F 1 "330" V 9995 9900 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 9900 50  0001 C CNN
+F 3 "~" H 10100 9900 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 9900 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 9900 50  0001 C CNN "MPN"
+	1    10100 9900
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0174
 U 1 1 6CC6177E
-P 5850 9600
-F 0 "#PWR0174" H 5850 9450 50  0001 C CNN
-F 1 "+5V" H 5865 9773 50  0000 C CNN
-F 2 "" H 5850 9600 50  0001 C CNN
-F 3 "" H 5850 9600 50  0001 C CNN
-	1    5850 9600
+P 10100 9800
+F 0 "#PWR0174" H 10100 9650 50  0001 C CNN
+F 1 "+5V" H 10115 9973 50  0000 C CNN
+F 2 "" H 10100 9800 50  0001 C CNN
+F 3 "" H 10100 9800 50  0001 C CNN
+	1    10100 9800
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R11
 U 1 1 6CC61786
-P 5850 10100
-F 0 "R11" V 5900 10100 50  0000 C CNN
-F 1 "330" V 5745 10100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 10100 50  0001 C CNN
-F 3 "~" H 5850 10100 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 10100 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 10100 50  0001 C CNN "MPN"
-	1    5850 10100
+P 10100 10300
+F 0 "R11" V 10150 10300 50  0000 C CNN
+F 1 "330" V 9995 10300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 10300 50  0001 C CNN
+F 3 "~" H 10100 10300 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 10300 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 10300 50  0001 C CNN "MPN"
+	1    10100 10300
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0175
 U 1 1 6CC6178C
-P 5850 10200
-F 0 "#PWR0175" H 5850 9950 50  0001 C CNN
-F 1 "GND" H 5855 10027 50  0000 C CNN
-F 2 "" H 5850 10200 50  0001 C CNN
-F 3 "" H 5850 10200 50  0001 C CNN
-	1    5850 10200
+P 10100 10400
+F 0 "#PWR0175" H 10100 10150 50  0001 C CNN
+F 1 "GND" H 10105 10227 50  0000 C CNN
+F 2 "" H 10100 10400 50  0001 C CNN
+F 3 "" H 10100 10400 50  0001 C CNN
+	1    10100 10400
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R13
 U 1 1 6CC61795
-P 5850 10950
-F 0 "R13" V 5900 10950 50  0000 C CNN
-F 1 "150" V 5745 10950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 10950 50  0001 C CNN
-F 3 "~" H 5850 10950 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 10950 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 5850 10950 50  0001 C CNN "MPN"
-	1    5850 10950
+P 10100 11150
+F 0 "R13" V 10150 11150 50  0000 C CNN
+F 1 "150" V 9995 11150 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 11150 50  0001 C CNN
+F 3 "~" H 10100 11150 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 11150 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 10100 11150 50  0001 C CNN "MPN"
+	1    10100 11150
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	5750 10900 5750 10850
+	10000 11100 10000 11050
 Wire Wire Line
-	5750 10850 5850 10850
-Connection ~ 5850 10850
+	10000 11050 10100 11050
+Connection ~ 10100 11050
 Wire Wire Line
-	17650 14900 18050 14900
+	18050 15300 18450 15300
 Wire Wire Line
-	5750 11000 5750 11050
+	10000 11200 10000 11250
 Wire Wire Line
-	5750 11050 5850 11050
-Connection ~ 5850 11050
+	10000 11250 10100 11250
+Connection ~ 10100 11250
 $Comp
 L Device:R_Small R12
 U 1 1 6CC617A6
-P 5850 10750
-F 0 "R12" V 5900 10750 50  0000 C CNN
-F 1 "330" V 5745 10750 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 10750 50  0001 C CNN
-F 3 "~" H 5850 10750 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 10750 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 10750 50  0001 C CNN "MPN"
-	1    5850 10750
+P 10100 10950
+F 0 "R12" V 10150 10950 50  0000 C CNN
+F 1 "330" V 9995 10950 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 10950 50  0001 C CNN
+F 3 "~" H 10100 10950 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 10950 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 10950 50  0001 C CNN "MPN"
+	1    10100 10950
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0176
 U 1 1 6CC617AC
-P 5850 10650
-F 0 "#PWR0176" H 5850 10500 50  0001 C CNN
-F 1 "+5V" H 5865 10823 50  0000 C CNN
-F 2 "" H 5850 10650 50  0001 C CNN
-F 3 "" H 5850 10650 50  0001 C CNN
-	1    5850 10650
+P 10100 10850
+F 0 "#PWR0176" H 10100 10700 50  0001 C CNN
+F 1 "+5V" H 10115 11023 50  0000 C CNN
+F 2 "" H 10100 10850 50  0001 C CNN
+F 3 "" H 10100 10850 50  0001 C CNN
+	1    10100 10850
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R14
 U 1 1 6CC617B4
-P 5850 11150
-F 0 "R14" V 5900 11150 50  0000 C CNN
-F 1 "330" V 5745 11150 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 11150 50  0001 C CNN
-F 3 "~" H 5850 11150 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 11150 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 11150 50  0001 C CNN "MPN"
-	1    5850 11150
+P 10100 11350
+F 0 "R14" V 10150 11350 50  0000 C CNN
+F 1 "330" V 9995 11350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 11350 50  0001 C CNN
+F 3 "~" H 10100 11350 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 11350 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 11350 50  0001 C CNN "MPN"
+	1    10100 11350
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0177
 U 1 1 6CC617BA
-P 5850 11250
-F 0 "#PWR0177" H 5850 11000 50  0001 C CNN
-F 1 "GND" H 5855 11077 50  0000 C CNN
-F 2 "" H 5850 11250 50  0001 C CNN
-F 3 "" H 5850 11250 50  0001 C CNN
-	1    5850 11250
+P 10100 11450
+F 0 "#PWR0177" H 10100 11200 50  0001 C CNN
+F 1 "GND" H 10105 11277 50  0000 C CNN
+F 2 "" H 10100 11450 50  0001 C CNN
+F 3 "" H 10100 11450 50  0001 C CNN
+	1    10100 11450
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R16
 U 1 1 6CC617C3
-P 5850 12000
-F 0 "R16" V 5900 12000 50  0000 C CNN
-F 1 "150" V 5745 12000 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 12000 50  0001 C CNN
-F 3 "~" H 5850 12000 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 12000 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 5850 12000 50  0001 C CNN "MPN"
-	1    5850 12000
+P 10100 12200
+F 0 "R16" V 10150 12200 50  0000 C CNN
+F 1 "150" V 9995 12200 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 12200 50  0001 C CNN
+F 3 "~" H 10100 12200 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 12200 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 10100 12200 50  0001 C CNN "MPN"
+	1    10100 12200
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	5750 11950 5750 11900
+	10000 12150 10000 12100
 Wire Wire Line
-	5750 11900 5850 11900
-Connection ~ 5850 11900
+	10000 12100 10100 12100
+Connection ~ 10100 12100
 Wire Wire Line
-	17650 12800 18050 12800
+	18050 13200 18450 13200
 Wire Wire Line
-	5750 12050 5750 12100
+	10000 12250 10000 12300
 Wire Wire Line
-	5750 12100 5850 12100
-Connection ~ 5850 12100
+	10000 12300 10100 12300
+Connection ~ 10100 12300
 Wire Wire Line
-	17650 13000 18050 13000
+	18050 13400 18450 13400
 $Comp
 L Device:R_Small R15
 U 1 1 6CC617D4
-P 5850 11800
-F 0 "R15" V 5900 11800 50  0000 C CNN
-F 1 "330" V 5745 11800 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 11800 50  0001 C CNN
-F 3 "~" H 5850 11800 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 11800 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 11800 50  0001 C CNN "MPN"
-	1    5850 11800
+P 10100 12000
+F 0 "R15" V 10150 12000 50  0000 C CNN
+F 1 "330" V 9995 12000 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 12000 50  0001 C CNN
+F 3 "~" H 10100 12000 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 12000 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 12000 50  0001 C CNN "MPN"
+	1    10100 12000
 	-1   0    0    1   
 $EndComp
 $Comp
 L Device:R_Small R17
 U 1 1 6CC617DC
-P 5850 12200
-F 0 "R17" V 5900 12200 50  0000 C CNN
-F 1 "330" V 5745 12200 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 12200 50  0001 C CNN
-F 3 "~" H 5850 12200 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 12200 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 12200 50  0001 C CNN "MPN"
-	1    5850 12200
+P 10100 12400
+F 0 "R17" V 10150 12400 50  0000 C CNN
+F 1 "330" V 9995 12400 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 12400 50  0001 C CNN
+F 3 "~" H 10100 12400 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 12400 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 12400 50  0001 C CNN "MPN"
+	1    10100 12400
 	-1   0    0    1   
 $EndComp
 $Comp
 L Device:R_Small R19
 U 1 1 6CC617E5
-P 5850 13050
-F 0 "R19" V 5900 13050 50  0000 C CNN
-F 1 "150" V 5745 13050 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 13050 50  0001 C CNN
-F 3 "~" H 5850 13050 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 13050 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 5850 13050 50  0001 C CNN "MPN"
-	1    5850 13050
+P 10100 13250
+F 0 "R19" V 10150 13250 50  0000 C CNN
+F 1 "150" V 9995 13250 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 13250 50  0001 C CNN
+F 3 "~" H 10100 13250 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 13250 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 10100 13250 50  0001 C CNN "MPN"
+	1    10100 13250
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	5750 13000 5750 12950
+	10000 13200 10000 13150
 Wire Wire Line
-	5750 12950 5850 12950
-Connection ~ 5850 12950
+	10000 13150 10100 13150
+Connection ~ 10100 13150
 Wire Wire Line
-	11700 12950 12100 12950
+	14100 13200 14500 13200
 Wire Wire Line
-	5750 13100 5750 13150
+	10000 13300 10000 13350
 Wire Wire Line
-	5750 13150 5850 13150
-Connection ~ 5850 13150
+	10000 13350 10100 13350
+Connection ~ 10100 13350
 Wire Wire Line
-	11700 13150 12100 13150
+	14100 13400 14500 13400
 $Comp
 L Device:R_Small R18
 U 1 1 6CC617F6
-P 5850 12850
-F 0 "R18" V 5900 12850 50  0000 C CNN
-F 1 "330" V 5745 12850 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 12850 50  0001 C CNN
-F 3 "~" H 5850 12850 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 12850 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 12850 50  0001 C CNN "MPN"
-	1    5850 12850
+P 10100 13050
+F 0 "R18" V 10150 13050 50  0000 C CNN
+F 1 "330" V 9995 13050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 13050 50  0001 C CNN
+F 3 "~" H 10100 13050 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 13050 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 13050 50  0001 C CNN "MPN"
+	1    10100 13050
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0178
 U 1 1 6CC617FC
-P 5850 12750
-F 0 "#PWR0178" H 5850 12600 50  0001 C CNN
-F 1 "+5V" H 5865 12923 50  0000 C CNN
-F 2 "" H 5850 12750 50  0001 C CNN
-F 3 "" H 5850 12750 50  0001 C CNN
-	1    5850 12750
+P 10100 12950
+F 0 "#PWR0178" H 10100 12800 50  0001 C CNN
+F 1 "+5V" H 10115 13123 50  0000 C CNN
+F 2 "" H 10100 12950 50  0001 C CNN
+F 3 "" H 10100 12950 50  0001 C CNN
+	1    10100 12950
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R20
 U 1 1 6CC61804
-P 5850 13250
-F 0 "R20" V 5900 13250 50  0000 C CNN
-F 1 "330" V 5745 13250 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 13250 50  0001 C CNN
-F 3 "~" H 5850 13250 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 13250 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 13250 50  0001 C CNN "MPN"
-	1    5850 13250
+P 10100 13450
+F 0 "R20" V 10150 13450 50  0000 C CNN
+F 1 "330" V 9995 13450 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 13450 50  0001 C CNN
+F 3 "~" H 10100 13450 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 13450 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 13450 50  0001 C CNN "MPN"
+	1    10100 13450
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0179
 U 1 1 6CC6180A
-P 5850 13350
-F 0 "#PWR0179" H 5850 13100 50  0001 C CNN
-F 1 "GND" H 5855 13177 50  0000 C CNN
-F 2 "" H 5850 13350 50  0001 C CNN
-F 3 "" H 5850 13350 50  0001 C CNN
-	1    5850 13350
+P 10100 13550
+F 0 "#PWR0179" H 10100 13300 50  0001 C CNN
+F 1 "GND" H 10105 13377 50  0000 C CNN
+F 2 "" H 10100 13550 50  0001 C CNN
+F 3 "" H 10100 13550 50  0001 C CNN
+	1    10100 13550
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R22
 U 1 1 6CC61813
-P 5850 14100
-F 0 "R22" V 5900 14100 50  0000 C CNN
-F 1 "150" V 5745 14100 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 14100 50  0001 C CNN
-F 3 "~" H 5850 14100 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 14100 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 5850 14100 50  0001 C CNN "MPN"
-	1    5850 14100
+P 10100 14300
+F 0 "R22" V 10150 14300 50  0000 C CNN
+F 1 "150" V 9995 14300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 14300 50  0001 C CNN
+F 3 "~" H 10100 14300 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 14300 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 10100 14300 50  0001 C CNN "MPN"
+	1    10100 14300
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	5750 14050 5750 14000
+	10000 14250 10000 14200
 Wire Wire Line
-	5750 14000 5850 14000
-Connection ~ 5850 14000
+	10000 14200 10100 14200
+Connection ~ 10100 14200
 Wire Wire Line
-	17650 9650 18050 9650
+	18050 10050 18450 10050
 Wire Wire Line
-	5750 14150 5750 14200
+	10000 14350 10000 14400
 Wire Wire Line
-	5750 14200 5850 14200
-Connection ~ 5850 14200
+	10000 14400 10100 14400
+Connection ~ 10100 14400
 Wire Wire Line
-	17650 9850 18050 9850
+	18050 10250 18450 10250
 $Comp
 L Device:R_Small R21
 U 1 1 6CC61824
-P 5850 13900
-F 0 "R21" V 5900 13900 50  0000 C CNN
-F 1 "330" V 5745 13900 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 13900 50  0001 C CNN
-F 3 "~" H 5850 13900 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 13900 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 13900 50  0001 C CNN "MPN"
-	1    5850 13900
+P 10100 14100
+F 0 "R21" V 10150 14100 50  0000 C CNN
+F 1 "330" V 9995 14100 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 14100 50  0001 C CNN
+F 3 "~" H 10100 14100 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 14100 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 14100 50  0001 C CNN "MPN"
+	1    10100 14100
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0180
 U 1 1 6CC6182A
-P 5850 13800
-F 0 "#PWR0180" H 5850 13650 50  0001 C CNN
-F 1 "+5V" H 5865 13973 50  0000 C CNN
-F 2 "" H 5850 13800 50  0001 C CNN
-F 3 "" H 5850 13800 50  0001 C CNN
-	1    5850 13800
+P 10100 14000
+F 0 "#PWR0180" H 10100 13850 50  0001 C CNN
+F 1 "+5V" H 10115 14173 50  0000 C CNN
+F 2 "" H 10100 14000 50  0001 C CNN
+F 3 "" H 10100 14000 50  0001 C CNN
+	1    10100 14000
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R23
 U 1 1 6CC61832
-P 5850 14300
-F 0 "R23" V 5900 14300 50  0000 C CNN
-F 1 "330" V 5745 14300 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 14300 50  0001 C CNN
-F 3 "~" H 5850 14300 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 14300 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 14300 50  0001 C CNN "MPN"
-	1    5850 14300
+P 10100 14500
+F 0 "R23" V 10150 14500 50  0000 C CNN
+F 1 "330" V 9995 14500 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 14500 50  0001 C CNN
+F 3 "~" H 10100 14500 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 14500 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 14500 50  0001 C CNN "MPN"
+	1    10100 14500
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0181
 U 1 1 6CC61838
-P 5850 14400
-F 0 "#PWR0181" H 5850 14150 50  0001 C CNN
-F 1 "GND" H 5855 14227 50  0000 C CNN
-F 2 "" H 5850 14400 50  0001 C CNN
-F 3 "" H 5850 14400 50  0001 C CNN
-	1    5850 14400
+P 10100 14600
+F 0 "#PWR0181" H 10100 14350 50  0001 C CNN
+F 1 "GND" H 10105 14427 50  0000 C CNN
+F 2 "" H 10100 14600 50  0001 C CNN
+F 3 "" H 10100 14600 50  0001 C CNN
+	1    10100 14600
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R25
 U 1 1 6CC61841
-P 5850 15150
-F 0 "R25" V 5900 15150 50  0000 C CNN
-F 1 "150" V 5745 15150 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 15150 50  0001 C CNN
-F 3 "~" H 5850 15150 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 15150 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F150R" V 5850 15150 50  0001 C CNN "MPN"
-	1    5850 15150
+P 10100 15350
+F 0 "R25" V 10150 15350 50  0000 C CNN
+F 1 "150" V 9995 15350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 15350 50  0001 C CNN
+F 3 "~" H 10100 15350 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 15350 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F150R" V 10100 15350 50  0001 C CNN "MPN"
+	1    10100 15350
 	-1   0    0    1   
 $EndComp
 Wire Wire Line
-	5750 15100 5750 15050
+	10000 15300 10000 15250
 Wire Wire Line
-	5750 15050 5850 15050
-Connection ~ 5850 15050
+	10000 15250 10100 15250
+Connection ~ 10100 15250
 Wire Wire Line
-	17650 10700 18050 10700
+	18050 11100 18450 11100
 Wire Wire Line
-	5750 15200 5750 15250
+	10000 15400 10000 15450
 Wire Wire Line
-	5750 15250 5850 15250
-Connection ~ 5850 15250
+	10000 15450 10100 15450
+Connection ~ 10100 15450
 Wire Wire Line
-	17650 10900 18050 10900
+	18050 11300 18450 11300
 $Comp
 L Device:R_Small R24
 U 1 1 6CC61852
-P 5850 14950
-F 0 "R24" V 5900 14950 50  0000 C CNN
-F 1 "330" V 5745 14950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 14950 50  0001 C CNN
-F 3 "~" H 5850 14950 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 14950 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 14950 50  0001 C CNN "MPN"
-	1    5850 14950
+P 10100 15150
+F 0 "R24" V 10150 15150 50  0000 C CNN
+F 1 "330" V 9995 15150 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 15150 50  0001 C CNN
+F 3 "~" H 10100 15150 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 15150 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 15150 50  0001 C CNN "MPN"
+	1    10100 15150
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:+5V #PWR0182
 U 1 1 6CC61858
-P 5850 14850
-F 0 "#PWR0182" H 5850 14700 50  0001 C CNN
-F 1 "+5V" H 5865 15023 50  0000 C CNN
-F 2 "" H 5850 14850 50  0001 C CNN
-F 3 "" H 5850 14850 50  0001 C CNN
-	1    5850 14850
+P 10100 15050
+F 0 "#PWR0182" H 10100 14900 50  0001 C CNN
+F 1 "+5V" H 10115 15223 50  0000 C CNN
+F 2 "" H 10100 15050 50  0001 C CNN
+F 3 "" H 10100 15050 50  0001 C CNN
+	1    10100 15050
 	1    0    0    -1  
 $EndComp
 $Comp
 L Device:R_Small R26
 U 1 1 6CC61860
-P 5850 15350
-F 0 "R26" V 5900 15350 50  0000 C CNN
-F 1 "330" V 5745 15350 50  0000 C CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" H 5850 15350 50  0001 C CNN
-F 3 "~" H 5850 15350 50  0001 C CNN
-F 4 "TE Connectivity Passive Product " V 5850 15350 50  0001 C CNN "MFR"
-F 5 "CRGCQ0402F330R" V 5850 15350 50  0001 C CNN "MPN"
-	1    5850 15350
+P 10100 15550
+F 0 "R26" V 10150 15550 50  0000 C CNN
+F 1 "330" V 9995 15550 50  0000 C CNN
+F 2 "Resistor_SMD:R_0402_1005Metric" H 10100 15550 50  0001 C CNN
+F 3 "~" H 10100 15550 50  0001 C CNN
+F 4 "TE Connectivity Passive Product " V 10100 15550 50  0001 C CNN "MFR"
+F 5 "CRGCQ0402F330R" V 10100 15550 50  0001 C CNN "MPN"
+	1    10100 15550
 	-1   0    0    1   
 $EndComp
 $Comp
 L power:GND #PWR0183
 U 1 1 6CC61866
-P 5850 15450
-F 0 "#PWR0183" H 5850 15200 50  0001 C CNN
-F 1 "GND" H 5855 15277 50  0000 C CNN
-F 2 "" H 5850 15450 50  0001 C CNN
-F 3 "" H 5850 15450 50  0001 C CNN
-	1    5850 15450
+P 10100 15650
+F 0 "#PWR0183" H 10100 15400 50  0001 C CNN
+F 1 "GND" H 10105 15477 50  0000 C CNN
+F 2 "" H 10100 15650 50  0001 C CNN
+F 3 "" H 10100 15650 50  0001 C CNN
+	1    10100 15650
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+5V #PWR0184
 U 1 1 6CC6186C
-P 5850 11700
-F 0 "#PWR0184" H 5850 11550 50  0001 C CNN
-F 1 "+5V" H 5865 11873 50  0000 C CNN
-F 2 "" H 5850 11700 50  0001 C CNN
-F 3 "" H 5850 11700 50  0001 C CNN
-	1    5850 11700
+P 10100 11900
+F 0 "#PWR0184" H 10100 11750 50  0001 C CNN
+F 1 "+5V" H 10115 12073 50  0000 C CNN
+F 2 "" H 10100 11900 50  0001 C CNN
+F 3 "" H 10100 11900 50  0001 C CNN
+	1    10100 11900
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0185
 U 1 1 6CC61872
-P 5850 12300
-F 0 "#PWR0185" H 5850 12050 50  0001 C CNN
-F 1 "GND" H 5855 12127 50  0000 C CNN
-F 2 "" H 5850 12300 50  0001 C CNN
-F 3 "" H 5850 12300 50  0001 C CNN
-	1    5850 12300
+P 10100 12500
+F 0 "#PWR0185" H 10100 12250 50  0001 C CNN
+F 1 "GND" H 10105 12327 50  0000 C CNN
+F 2 "" H 10100 12500 50  0001 C CNN
+F 3 "" H 10100 12500 50  0001 C CNN
+	1    10100 12500
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	17250 15050 17550 15050
-Connection ~ 17250 15050
+	17650 15450 17950 15450
+Connection ~ 17650 15450
 Wire Wire Line
-	17250 15050 17250 15100
+	17650 15450 17650 15500
 Wire Wire Line
-	17350 14950 17550 14950
-Connection ~ 17350 14950
+	17750 15350 17950 15350
+Connection ~ 17750 15350
 Wire Wire Line
-	17350 14950 17350 15200
+	17750 15350 17750 15600
 Wire Wire Line
-	17250 14000 17550 14000
-Connection ~ 17250 14000
+	17650 14400 17950 14400
+Connection ~ 17650 14400
 Wire Wire Line
-	17250 14000 17250 14050
+	17650 14400 17650 14450
 Wire Wire Line
-	17350 13900 17550 13900
-Connection ~ 17350 13900
+	17750 14300 17950 14300
+Connection ~ 17750 14300
 Wire Wire Line
-	17350 13900 17350 14150
+	17750 14300 17750 14550
 Wire Wire Line
-	17250 12950 17550 12950
-Connection ~ 17250 12950
+	17650 13350 17950 13350
+Connection ~ 17650 13350
 Wire Wire Line
-	17250 12950 17250 13000
+	17650 13350 17650 13400
 Wire Wire Line
-	17350 12850 17550 12850
-Connection ~ 17350 12850
+	17750 13250 17950 13250
+Connection ~ 17750 13250
 Wire Wire Line
-	17350 12850 17350 13100
+	17750 13250 17750 13500
 Wire Wire Line
-	17250 11900 17550 11900
-Connection ~ 17250 11900
+	17650 12300 17950 12300
+Connection ~ 17650 12300
 Wire Wire Line
-	17250 11900 17250 11950
+	17650 12300 17650 12350
 Wire Wire Line
-	17350 11800 17550 11800
-Connection ~ 17350 11800
+	17750 12200 17950 12200
+Connection ~ 17750 12200
 Wire Wire Line
-	17350 11800 17350 12050
+	17750 12200 17750 12450
 Wire Wire Line
-	17250 10850 17550 10850
-Connection ~ 17250 10850
+	17650 11250 17950 11250
+Connection ~ 17650 11250
 Wire Wire Line
-	17250 10850 17250 10900
+	17650 11250 17650 11300
 Wire Wire Line
-	17350 10750 17550 10750
-Connection ~ 17350 10750
+	17750 11150 17950 11150
+Connection ~ 17750 11150
 Wire Wire Line
-	17350 10750 17350 11000
+	17750 11150 17750 11400
 Wire Wire Line
-	11400 9850 11600 9850
-Connection ~ 11400 9850
+	13800 10100 14000 10100
+Connection ~ 13800 10100
 Wire Wire Line
-	11400 9850 11400 10100
+	13800 10100 13800 10350
 Wire Wire Line
-	11300 9950 11600 9950
-Connection ~ 11300 9950
+	13700 10200 14000 10200
+Connection ~ 13700 10200
 Wire Wire Line
-	11300 9950 11300 10000
+	13700 10200 13700 10250
 Wire Wire Line
-	11300 11000 11600 11000
-Connection ~ 11300 11000
+	13700 11250 14000 11250
+Connection ~ 13700 11250
 Wire Wire Line
-	11300 11000 11300 11050
+	13700 11250 13700 11300
 Wire Wire Line
-	11400 10900 11600 10900
-Connection ~ 11400 10900
+	13800 11150 14000 11150
+Connection ~ 13800 11150
 Wire Wire Line
-	11400 10900 11400 11150
+	13800 11150 13800 11400
 Wire Wire Line
-	11300 11900 11300 12050
+	13700 12150 13700 12300
 Wire Wire Line
-	11400 11950 11600 11950
-Connection ~ 11400 11950
+	13800 12200 14000 12200
+Connection ~ 13800 12200
 Wire Wire Line
-	11400 11950 11400 12200
+	13800 12200 13800 12450
 Wire Wire Line
-	11300 12050 11600 12050
-Connection ~ 11300 12050
+	13700 12300 14000 12300
+Connection ~ 13700 12300
 Wire Wire Line
-	11300 12050 11300 12100
+	13700 12300 13700 12350
 Wire Wire Line
-	11400 13000 11600 13000
-Connection ~ 11400 13000
+	13800 13250 14000 13250
+Connection ~ 13800 13250
 Wire Wire Line
-	11400 13000 11400 13250
+	13800 13250 13800 13500
 Wire Wire Line
-	11300 13100 11600 13100
-Connection ~ 11300 13100
+	13700 13350 14000 13350
+Connection ~ 13700 13350
 Wire Wire Line
-	11300 13100 11300 13150
+	13700 13350 13700 13400
 Wire Wire Line
-	11400 14050 11600 14050
-Connection ~ 11400 14050
+	13800 14300 14000 14300
+Connection ~ 13800 14300
 Wire Wire Line
-	11400 14050 11400 14300
+	13800 14300 13800 14550
 Wire Wire Line
-	11300 14150 11600 14150
-Connection ~ 11300 14150
+	13700 14400 14000 14400
+Connection ~ 13700 14400
 Wire Wire Line
-	11300 14150 11300 14200
+	13700 14400 13700 14450
 Wire Wire Line
-	11300 15200 11600 15200
-Connection ~ 11300 15200
+	13700 15450 14000 15450
+Connection ~ 13700 15450
 Wire Wire Line
-	11300 15200 11300 15250
+	13700 15450 13700 15500
 Wire Wire Line
-	11400 15100 11600 15100
-Connection ~ 11400 15100
+	13800 15350 14000 15350
+Connection ~ 13800 15350
 Wire Wire Line
-	11400 15100 11400 15350
+	13800 15350 13800 15600
 Wire Wire Line
-	5450 15200 5750 15200
-Connection ~ 5450 15200
+	9700 15400 10000 15400
+Connection ~ 9700 15400
 Wire Wire Line
-	5450 15200 5450 15250
+	9700 15400 9700 15450
 Wire Wire Line
-	5550 15100 5750 15100
-Connection ~ 5550 15100
+	9800 15300 10000 15300
+Connection ~ 9800 15300
 Wire Wire Line
-	5550 15100 5550 15350
+	9800 15300 9800 15550
 Wire Wire Line
-	5450 14150 5750 14150
-Connection ~ 5450 14150
+	9700 14350 10000 14350
+Connection ~ 9700 14350
 Wire Wire Line
-	5450 14150 5450 14200
+	9700 14350 9700 14400
 Wire Wire Line
-	5550 14050 5750 14050
-Connection ~ 5550 14050
+	9800 14250 10000 14250
+Connection ~ 9800 14250
 Wire Wire Line
-	5550 14050 5550 14300
+	9800 14250 9800 14500
 Wire Wire Line
-	5450 13100 5750 13100
-Connection ~ 5450 13100
+	9700 13300 10000 13300
+Connection ~ 9700 13300
 Wire Wire Line
-	5450 13100 5450 13150
+	9700 13300 9700 13350
 Wire Wire Line
-	5550 13000 5750 13000
-Connection ~ 5550 13000
+	9800 13200 10000 13200
+Connection ~ 9800 13200
 Wire Wire Line
-	5550 13000 5550 13250
+	9800 13200 9800 13450
 Wire Wire Line
-	5450 12050 5750 12050
-Connection ~ 5450 12050
+	9700 12250 10000 12250
+Connection ~ 9700 12250
 Wire Wire Line
-	5450 12050 5450 12100
+	9700 12250 9700 12300
 Wire Wire Line
-	5550 11950 5750 11950
-Connection ~ 5550 11950
+	9800 12150 10000 12150
+Connection ~ 9800 12150
 Wire Wire Line
-	5550 11950 5550 12200
+	9800 12150 9800 12400
 Wire Wire Line
-	5450 11000 5750 11000
-Connection ~ 5450 11000
+	9700 11200 10000 11200
+Connection ~ 9700 11200
 Wire Wire Line
-	5450 11000 5450 11050
+	9700 11200 9700 11250
 Wire Wire Line
-	5550 10900 5750 10900
-Connection ~ 5550 10900
+	9800 11100 10000 11100
+Connection ~ 9800 11100
 Wire Wire Line
-	5550 10900 5550 11150
+	9800 11100 9800 11350
 Wire Wire Line
-	5450 9950 5750 9950
-Connection ~ 5450 9950
+	9700 10150 10000 10150
+Connection ~ 9700 10150
 Wire Wire Line
-	5450 9950 5450 10000
+	9700 10150 9700 10200
 Wire Wire Line
-	5550 9850 5750 9850
-Connection ~ 5550 9850
+	9800 10050 10000 10050
+Connection ~ 9800 10050
 Wire Wire Line
-	5550 9850 5550 10100
+	9800 10050 9800 10300
 Wire Wire Line
-	3750 10800 4050 10800
+	8000 11000 8300 11000
 Wire Wire Line
-	3750 10700 4150 10700
+	8000 10900 8400 10900
 Wire Wire Line
-	4050 11100 3750 11100
+	8300 11300 8000 11300
 Wire Wire Line
-	4150 11200 3750 11200
+	8400 11400 8000 11400
 Wire Wire Line
-	4250 11000 4050 11000
+	8500 11200 8300 11200
 Wire Wire Line
-	4050 11000 3950 10900
+	8300 11200 8200 11100
 Wire Wire Line
-	3950 10900 3750 10900
+	8200 11100 8000 11100
 Wire Wire Line
-	4250 10900 4050 10900
+	8500 11100 8300 11100
 Wire Wire Line
-	4050 10900 3950 11000
+	8300 11100 8200 11200
 Wire Wire Line
-	3950 11000 3750 11000
+	8200 11200 8000 11200
 Wire Wire Line
-	4050 13950 4050 12900
+	8300 14150 8300 13100
 Wire Wire Line
-	4150 13850 4150 13200
+	8400 14050 8400 13400
 Wire Wire Line
-	4150 14350 4150 15000
+	8400 14550 8400 15200
 Wire Wire Line
-	4050 14250 4050 15300
+	8300 14450 8300 15500
 Wire Wire Line
-	3750 13950 4050 13950
+	8000 14150 8300 14150
 Wire Wire Line
-	3750 13850 4150 13850
+	8000 14050 8400 14050
 Wire Wire Line
-	4050 14250 3750 14250
+	8300 14450 8000 14450
 Wire Wire Line
-	4150 14350 3750 14350
+	8400 14550 8000 14550
 Wire Wire Line
-	4250 14150 4050 14150
+	8500 14350 8300 14350
 Wire Wire Line
-	4050 14150 3950 14050
+	8300 14350 8200 14250
 Wire Wire Line
-	3950 14050 3750 14050
+	8200 14250 8000 14250
 Wire Wire Line
-	4250 14050 4050 14050
+	8500 14250 8300 14250
 Wire Wire Line
-	4050 14050 3950 14150
+	8300 14250 8200 14350
 Wire Wire Line
-	3950 14150 3750 14150
+	8200 14350 8000 14350
 Wire Wire Line
-	9900 13950 9900 12900
+	12300 14200 12300 13150
 Wire Wire Line
-	10000 13850 10000 13200
+	12400 14100 12400 13450
 Wire Wire Line
-	10000 14350 10000 15000
+	12400 14600 12400 15250
 Wire Wire Line
-	9900 14250 9900 15300
+	12300 14500 12300 15550
 Wire Wire Line
-	9600 13950 9900 13950
+	12000 14200 12300 14200
 Wire Wire Line
-	9600 13850 10000 13850
+	12000 14100 12400 14100
 Wire Wire Line
-	9900 14250 9600 14250
+	12300 14500 12000 14500
 Wire Wire Line
-	10000 14350 9600 14350
+	12400 14600 12000 14600
 Wire Wire Line
-	10100 14150 9900 14150
+	12500 14400 12300 14400
 Wire Wire Line
-	9900 14150 9800 14050
+	12300 14400 12200 14300
 Wire Wire Line
-	9800 14050 9600 14050
+	12200 14300 12000 14300
 Wire Wire Line
-	10100 14050 9900 14050
+	12500 14300 12300 14300
 Wire Wire Line
-	9900 14050 9800 14150
+	12300 14300 12200 14400
 Wire Wire Line
-	9800 14150 9600 14150
+	12200 14400 12000 14400
 Wire Wire Line
-	9900 10800 9900 9750
+	12300 11050 12300 10000
 Wire Wire Line
-	10000 10700 10000 10050
+	12400 10950 12400 10300
 Wire Wire Line
-	10000 11200 10000 11850
+	12400 11450 12400 12100
 Wire Wire Line
-	9900 11100 9900 12150
+	12300 11350 12300 12400
 Wire Wire Line
-	9600 10800 9900 10800
+	12000 11050 12300 11050
 Wire Wire Line
-	9600 10700 10000 10700
+	12000 10950 12400 10950
 Wire Wire Line
-	9900 11100 9600 11100
+	12300 11350 12000 11350
 Wire Wire Line
-	10000 11200 9600 11200
+	12400 11450 12000 11450
 Wire Wire Line
-	10100 11000 9900 11000
+	12500 11250 12300 11250
 Wire Wire Line
-	9900 11000 9800 10900
+	12300 11250 12200 11150
 Wire Wire Line
-	9800 10900 9600 10900
+	12200 11150 12000 11150
 Wire Wire Line
-	10100 10900 9900 10900
+	12500 11150 12300 11150
 Wire Wire Line
-	9900 10900 9800 11000
+	12300 11150 12200 11250
 Wire Wire Line
-	9800 11000 9600 11000
+	12200 11250 12000 11250
 Wire Wire Line
-	15850 10650 15850 9600
+	16250 11050 16250 10000
 Wire Wire Line
-	15950 10550 15950 9900
+	16350 10950 16350 10300
 Wire Wire Line
-	15950 11050 15950 11700
+	16350 11450 16350 12100
 Wire Wire Line
-	15850 10950 15850 12000
+	16250 11350 16250 12400
 Wire Wire Line
-	15550 10650 15850 10650
+	15950 11050 16250 11050
 Wire Wire Line
-	15550 10550 15950 10550
+	15950 10950 16350 10950
 Wire Wire Line
-	15850 10950 15550 10950
+	16250 11350 15950 11350
 Wire Wire Line
-	15950 11050 15550 11050
+	16350 11450 15950 11450
 Wire Wire Line
-	16050 10850 15850 10850
+	16450 11250 16250 11250
 Wire Wire Line
-	15850 10850 15750 10750
+	16250 11250 16150 11150
 Wire Wire Line
-	15750 10750 15550 10750
+	16150 11150 15950 11150
 Wire Wire Line
-	16050 10750 15850 10750
+	16450 11150 16250 11150
 Wire Wire Line
-	15850 10750 15750 10850
+	16250 11150 16150 11250
 Wire Wire Line
-	15750 10850 15550 10850
+	16150 11250 15950 11250
 Wire Wire Line
-	15850 13800 15850 12750
+	16250 14200 16250 13150
 Wire Wire Line
-	15950 13700 15950 13050
+	16350 14100 16350 13450
 Wire Wire Line
-	15950 14200 15950 14850
+	16350 14600 16350 15250
 Wire Wire Line
-	15850 14100 15850 15150
+	16250 14500 16250 15550
 Wire Wire Line
-	15550 13800 15850 13800
+	15950 14200 16250 14200
 Wire Wire Line
-	15550 13700 15950 13700
+	15950 14100 16350 14100
 Wire Wire Line
-	15850 14100 15550 14100
+	16250 14500 15950 14500
 Wire Wire Line
-	15950 14200 15550 14200
+	16350 14600 15950 14600
 Wire Wire Line
-	16050 14000 15850 14000
+	16450 14400 16250 14400
 Wire Wire Line
-	15850 14000 15750 13900
+	16250 14400 16150 14300
 Wire Wire Line
-	15750 13900 15550 13900
+	16150 14300 15950 14300
 Wire Wire Line
-	16050 13900 15850 13900
+	16450 14300 16250 14300
 Wire Wire Line
-	15850 13900 15750 14000
+	16250 14300 16150 14400
 Wire Wire Line
-	15750 14000 15550 14000
+	16150 14400 15950 14400
 $Comp
 L Connector:USB_B_Micro J1
 U 1 1 70E3C85C
@@ -5533,11 +5421,7 @@ Wire Wire Line
 Wire Wire Line
 	1350 1000 1350 1350
 Wire Wire Line
-	750  14200 1300 14200
-Wire Wire Line
-	1300 14200 1300 14100
-Wire Wire Line
-	750  13950 750  14200
+	1100 12650 1100 12900
 Wire Wire Line
 	1200 1650 2100 1650
 Wire Wire Line
@@ -5680,89 +5564,89 @@ $EndComp
 $Comp
 L power:+3V3 #PWR0137
 U 1 1 73DBC7E9
-P 7000 10650
-F 0 "#PWR0137" H 7000 10500 50  0001 C CNN
-F 1 "+3V3" H 7015 10823 50  0000 C CNN
-F 2 "" H 7000 10650 50  0001 C CNN
-F 3 "" H 7000 10650 50  0001 C CNN
-	1    7000 10650
+P 2400 12850
+F 0 "#PWR0137" H 2400 12700 50  0001 C CNN
+F 1 "+3V3" H 2415 13023 50  0000 C CNN
+F 2 "" H 2400 12850 50  0001 C CNN
+F 3 "" H 2400 12850 50  0001 C CNN
+	1    2400 12850
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR0141
 U 1 1 73DD84F5
-P 750 13950
-F 0 "#PWR0141" H 750 13800 50  0001 C CNN
-F 1 "+3V3" H 765 14123 50  0000 C CNN
-F 2 "" H 750 13950 50  0001 C CNN
-F 3 "" H 750 13950 50  0001 C CNN
-	1    750  13950
+P 1100 12650
+F 0 "#PWR0141" H 1100 12500 50  0001 C CNN
+F 1 "+3V3" H 1115 12823 50  0000 C CNN
+F 2 "" H 1100 12650 50  0001 C CNN
+F 3 "" H 1100 12650 50  0001 C CNN
+	1    1100 12650
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR0145
 U 1 1 73DF3D21
-P 2850 9750
-F 0 "#PWR0145" H 2850 9600 50  0001 C CNN
-F 1 "+3V3" H 2865 9923 50  0000 C CNN
-F 2 "" H 2850 9750 50  0001 C CNN
-F 3 "" H 2850 9750 50  0001 C CNN
-	1    2850 9750
+P 7100 9950
+F 0 "#PWR0145" H 7100 9800 50  0001 C CNN
+F 1 "+3V3" H 7115 10123 50  0000 C CNN
+F 2 "" H 7100 9950 50  0001 C CNN
+F 3 "" H 7100 9950 50  0001 C CNN
+	1    7100 9950
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR0147
 U 1 1 73DF7CC7
-P 2850 12900
-F 0 "#PWR0147" H 2850 12750 50  0001 C CNN
-F 1 "+3V3" H 2865 13073 50  0000 C CNN
-F 2 "" H 2850 12900 50  0001 C CNN
-F 3 "" H 2850 12900 50  0001 C CNN
-	1    2850 12900
+P 7100 13100
+F 0 "#PWR0147" H 7100 12950 50  0001 C CNN
+F 1 "+3V3" H 7115 13273 50  0000 C CNN
+F 2 "" H 7100 13100 50  0001 C CNN
+F 3 "" H 7100 13100 50  0001 C CNN
+	1    7100 13100
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR0148
 U 1 1 73E1448F
-P 8700 9750
-F 0 "#PWR0148" H 8700 9600 50  0001 C CNN
-F 1 "+3V3" H 8715 9923 50  0000 C CNN
-F 2 "" H 8700 9750 50  0001 C CNN
-F 3 "" H 8700 9750 50  0001 C CNN
-	1    8700 9750
+P 11100 10000
+F 0 "#PWR0148" H 11100 9850 50  0001 C CNN
+F 1 "+3V3" H 11115 10173 50  0000 C CNN
+F 2 "" H 11100 10000 50  0001 C CNN
+F 3 "" H 11100 10000 50  0001 C CNN
+	1    11100 10000
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR0149
 U 1 1 73E15224
-P 8700 12900
-F 0 "#PWR0149" H 8700 12750 50  0001 C CNN
-F 1 "+3V3" H 8715 13073 50  0000 C CNN
-F 2 "" H 8700 12900 50  0001 C CNN
-F 3 "" H 8700 12900 50  0001 C CNN
-	1    8700 12900
+P 11100 13150
+F 0 "#PWR0149" H 11100 13000 50  0001 C CNN
+F 1 "+3V3" H 11115 13323 50  0000 C CNN
+F 2 "" H 11100 13150 50  0001 C CNN
+F 3 "" H 11100 13150 50  0001 C CNN
+	1    11100 13150
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR0186
 U 1 1 73E2DDBD
-P 14650 9600
-F 0 "#PWR0186" H 14650 9450 50  0001 C CNN
-F 1 "+3V3" H 14665 9773 50  0000 C CNN
-F 2 "" H 14650 9600 50  0001 C CNN
-F 3 "" H 14650 9600 50  0001 C CNN
-	1    14650 9600
+P 15050 10000
+F 0 "#PWR0186" H 15050 9850 50  0001 C CNN
+F 1 "+3V3" H 15065 10173 50  0000 C CNN
+F 2 "" H 15050 10000 50  0001 C CNN
+F 3 "" H 15050 10000 50  0001 C CNN
+	1    15050 10000
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:+3V3 #PWR0187
 U 1 1 73E301E0
-P 14650 12750
-F 0 "#PWR0187" H 14650 12600 50  0001 C CNN
-F 1 "+3V3" H 14665 12923 50  0000 C CNN
-F 2 "" H 14650 12750 50  0001 C CNN
-F 3 "" H 14650 12750 50  0001 C CNN
-	1    14650 12750
+P 15050 13150
+F 0 "#PWR0187" H 15050 13000 50  0001 C CNN
+F 1 "+3V3" H 15065 13323 50  0000 C CNN
+F 2 "" H 15050 13150 50  0001 C CNN
+F 3 "" H 15050 13150 50  0001 C CNN
+	1    15050 13150
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -5776,231 +5660,195 @@ F 3 "" H 3100 1400 50  0001 C CNN
 	1    3100 1400
 	1    0    0    -1  
 $EndComp
-Text Label 18050 12800 2    50   ~ 0
+Text Label 18450 13200 2    50   ~ 0
 DB0+
-Text Label 18050 13000 2    50   ~ 0
+Text Label 18450 13400 2    50   ~ 0
 DB0-
-Text Label 18050 13850 2    50   ~ 0
+Text Label 18450 14250 2    50   ~ 0
 DB1+
-Text Label 18050 14050 2    50   ~ 0
+Text Label 18450 14450 2    50   ~ 0
 DB1-
-Text Label 18050 9650 2    50   ~ 0
+Text Label 18450 10050 2    50   ~ 0
 DB2+
-Text Label 18050 9850 2    50   ~ 0
+Text Label 18450 10250 2    50   ~ 0
 DB2-
-Text Label 18050 11750 2    50   ~ 0
+Text Label 18450 12150 2    50   ~ 0
 DB3+
-Text Label 18050 11950 2    50   ~ 0
+Text Label 18450 12350 2    50   ~ 0
 DB3-
-Text Label 12100 14000 2    50   ~ 0
+Text Label 14500 14250 2    50   ~ 0
 DB4+
-Text Label 12100 14200 2    50   ~ 0
+Text Label 14500 14450 2    50   ~ 0
 DB4-
-Text Label 12100 9800 2    50   ~ 0
+Text Label 14500 10050 2    50   ~ 0
 DB5+
-Text Label 12100 10000 2    50   ~ 0
+Text Label 14500 10250 2    50   ~ 0
 DB5-
-Text Label 12100 11900 2    50   ~ 0
+Text Label 14500 12150 2    50   ~ 0
 DB6+
-Text Label 12100 12100 2    50   ~ 0
+Text Label 14500 12350 2    50   ~ 0
 DB6-
-Text Label 6250 14000 2    50   ~ 0
+Text Label 10500 14200 2    50   ~ 0
 DB7+
-Text Label 6250 14200 2    50   ~ 0
+Text Label 10500 14400 2    50   ~ 0
 DB7-
-Text Label 6250 9800 2    50   ~ 0
+Text Label 10500 10000 2    50   ~ 0
 DBP+
-Text Label 6250 10000 2    50   ~ 0
+Text Label 10500 10200 2    50   ~ 0
 DBP-
-Text Label 18050 10700 2    50   ~ 0
+Text Label 18450 11100 2    50   ~ 0
 BSY+
-Text Label 18050 10900 2    50   ~ 0
+Text Label 18450 11300 2    50   ~ 0
 BSY-
-Text Label 12100 12950 2    50   ~ 0
+Text Label 14500 13200 2    50   ~ 0
 ACK+
-Text Label 12100 13150 2    50   ~ 0
+Text Label 14500 13400 2    50   ~ 0
 ACK-
-Text Label 12100 15050 2    50   ~ 0
+Text Label 14500 15300 2    50   ~ 0
 RST+
-Text Label 12100 15250 2    50   ~ 0
+Text Label 14500 15500 2    50   ~ 0
 RST-
-Text Label 12100 10850 2    50   ~ 0
+Text Label 14500 11100 2    50   ~ 0
 MSG+
-Text Label 12100 11050 2    50   ~ 0
+Text Label 14500 11300 2    50   ~ 0
 MSG-
-Text Label 6250 12950 2    50   ~ 0
+Text Label 10500 13150 2    50   ~ 0
 SEL+
-Text Label 6250 13150 2    50   ~ 0
+Text Label 10500 13350 2    50   ~ 0
 SEL-
-Text Label 6250 15050 2    50   ~ 0
+Text Label 10500 15250 2    50   ~ 0
 CD+
-Text Label 6250 15250 2    50   ~ 0
+Text Label 10500 15450 2    50   ~ 0
 CD-
-Text Label 6250 10850 2    50   ~ 0
+Text Label 10500 11050 2    50   ~ 0
 REQ+
-Text Label 6250 11050 2    50   ~ 0
+Text Label 10500 11250 2    50   ~ 0
 REQ-
-Text Label 6250 11900 2    50   ~ 0
+Text Label 10500 12100 2    50   ~ 0
 IO+
-Text Label 6250 12100 2    50   ~ 0
+Text Label 10500 12300 2    50   ~ 0
 IO-
 Wire Wire Line
-	17650 15100 18050 15100
-Text Label 2650 11100 0    50   ~ 0
+	18050 15500 18450 15500
+Text Label 6900 11300 0    50   ~ 0
 DB0_TX
-Text Label 2650 11200 0    50   ~ 0
+Text Label 6900 11400 0    50   ~ 0
 DB0_RX
-Text Label 18050 14900 2    50   ~ 0
+Text Label 18450 15300 2    50   ~ 0
 ATN+
-Text Label 18050 15100 2    50   ~ 0
+Text Label 18450 15500 2    50   ~ 0
 ATN-
-Text Label 2650 10900 0    50   ~ 0
+Text Label 6900 11100 0    50   ~ 0
 ATN_TX
-Text Label 2650 11000 0    50   ~ 0
+Text Label 6900 11200 0    50   ~ 0
 ATN_RX
-Text Label 2650 10700 0    50   ~ 0
+Text Label 6900 10900 0    50   ~ 0
 DB1_TX
-Text Label 2650 10800 0    50   ~ 0
+Text Label 6900 11000 0    50   ~ 0
 DB1_RX
-Text Label 2650 14250 0    50   ~ 0
+Text Label 6900 14450 0    50   ~ 0
 BSY_TX
-Text Label 2650 14350 0    50   ~ 0
+Text Label 6900 14550 0    50   ~ 0
 BSY_RX
-Text Label 2650 14050 0    50   ~ 0
+Text Label 6900 14250 0    50   ~ 0
 DB2_TX
-Text Label 2650 14150 0    50   ~ 0
+Text Label 6900 14350 0    50   ~ 0
 DB2_RX
-Text Label 2650 13850 0    50   ~ 0
+Text Label 6900 14050 0    50   ~ 0
 ACK_TX
-Text Label 2650 13950 0    50   ~ 0
+Text Label 6900 14150 0    50   ~ 0
 ACK_RX
-Text Label 8500 14250 0    50   ~ 0
+Text Label 10900 14500 0    50   ~ 0
 MSG_TX
-Text Label 8500 14350 0    50   ~ 0
+Text Label 10900 14600 0    50   ~ 0
 MSG_RX
-Text Label 8500 14150 0    50   ~ 0
+Text Label 10900 14400 0    50   ~ 0
 DB5_RX
-Text Label 8500 14050 0    50   ~ 0
+Text Label 10900 14300 0    50   ~ 0
 DB5_TX
-Text Label 8500 13950 0    50   ~ 0
+Text Label 10900 14200 0    50   ~ 0
 SEL_RX
-Text Label 8500 13850 0    50   ~ 0
+Text Label 10900 14100 0    50   ~ 0
 SEL_TX
-Text Label 8500 11200 0    50   ~ 0
+Text Label 10900 11450 0    50   ~ 0
 DB3_RX
-Text Label 8500 11100 0    50   ~ 0
+Text Label 10900 11350 0    50   ~ 0
 DB3_TX
-Text Label 8500 11000 0    50   ~ 0
+Text Label 10900 11250 0    50   ~ 0
 RST_RX
-Text Label 8500 10900 0    50   ~ 0
+Text Label 10900 11150 0    50   ~ 0
 RST_TX
-Text Label 8500 10800 0    50   ~ 0
+Text Label 10900 11050 0    50   ~ 0
 DB4_RX
-Text Label 8500 10700 0    50   ~ 0
+Text Label 10900 10950 0    50   ~ 0
 DB4_TX
-Text Label 14450 14200 0    50   ~ 0
+Text Label 14850 14600 0    50   ~ 0
 REQ_RX
-Text Label 14450 14100 0    50   ~ 0
+Text Label 14850 14500 0    50   ~ 0
 REQ_TX
-Text Label 14450 14000 0    50   ~ 0
+Text Label 14850 14400 0    50   ~ 0
 DBP_RX
-Text Label 14450 13900 0    50   ~ 0
+Text Label 14850 14300 0    50   ~ 0
 DBP_TX
-Text Label 14450 13800 0    50   ~ 0
+Text Label 14850 14200 0    50   ~ 0
 IO_RX
-Text Label 14450 13700 0    50   ~ 0
+Text Label 14850 14100 0    50   ~ 0
 IO_TX
-Text Label 2600 11400 0    50   ~ 0
+Text Label 6850 11600 0    50   ~ 0
 BNK0_OE
-Text Label 2600 14550 0    50   ~ 0
+Text Label 6850 14750 0    50   ~ 0
 BNK1_OE
-Text Label 8450 11400 0    50   ~ 0
+Text Label 10850 11650 0    50   ~ 0
 BNK2_OE
-Text Label 8450 14550 0    50   ~ 0
+Text Label 10850 14800 0    50   ~ 0
 BNK3_OE
-Text Label 14400 11250 0    50   ~ 0
+Text Label 14800 11650 0    50   ~ 0
 BNK4_OE
-Text Label 14400 14400 0    50   ~ 0
+Text Label 14800 14800 0    50   ~ 0
 BNK5_OE
-Text Label 14450 11050 0    50   ~ 0
+Text Label 14850 11450 0    50   ~ 0
 DB6_RX
-Text Label 14450 10950 0    50   ~ 0
+Text Label 14850 11350 0    50   ~ 0
 DB6_TX
-Text Label 14500 10850 0    50   ~ 0
+Text Label 14900 11250 0    50   ~ 0
 CD_RX
-Text Label 14500 10750 0    50   ~ 0
+Text Label 14900 11150 0    50   ~ 0
 CD_TX
-Text Label 14450 10650 0    50   ~ 0
+Text Label 14850 11050 0    50   ~ 0
 DB7_RX
-Text Label 14450 10550 0    50   ~ 0
+Text Label 14850 10950 0    50   ~ 0
 DB7_TX
 Wire Wire Line
-	7850 12700 7500 12700
+	3250 15300 2900 15300
 Wire Wire Line
-	7800 12100 7500 12100
+	3200 14500 2900 14500
 Wire Wire Line
-	7800 12200 7500 12200
+	3200 14700 2900 14700
 Wire Wire Line
-	7750 12300 7500 12300
+	3200 14600 2900 14600
 Wire Wire Line
-	7750 12400 7500 12400
-Wire Wire Line
-	7800 12500 7500 12500
-Wire Wire Line
-	7800 12600 7500 12600
-Text Label 7850 12700 2    50   ~ 0
+	3200 15400 2900 15400
+Text Label 3250 15300 2    50   ~ 0
 BNK4_OE
-Text Label 7800 12600 2    50   ~ 0
+Text Label 3200 15400 2    50   ~ 0
 DB6_RX
-Text Label 7800 12500 2    50   ~ 0
+Text Label 3200 14600 2    50   ~ 0
 DB6_TX
-Text Label 7750 12400 2    50   ~ 0
-CD_RX
-Text Label 7750 12300 2    50   ~ 0
-CD_TX
-Text Label 7800 12200 2    50   ~ 0
+Text Label 3200 14700 2    50   ~ 0
 DB7_RX
-Text Label 7800 12100 2    50   ~ 0
+Text Label 3200 14500 2    50   ~ 0
 DB7_TX
 Wire Wire Line
-	2150 12600 1800 12600
-Wire Wire Line
-	2100 12000 1800 12000
-Wire Wire Line
-	2100 12100 1800 12100
-Wire Wire Line
-	2100 12200 1800 12200
-Wire Wire Line
-	2100 12300 1800 12300
-Wire Wire Line
-	2100 12400 1800 12400
-Wire Wire Line
-	2100 12500 1800 12500
-Text Label 2100 12500 2    50   ~ 0
-REQ_RX
-Text Label 2100 12400 2    50   ~ 0
-REQ_TX
-Text Label 2100 12300 2    50   ~ 0
-DBP_RX
-Text Label 2100 12200 2    50   ~ 0
-DBP_TX
-Text Label 2100 12100 2    50   ~ 0
-IO_RX
-Text Label 2100 12000 2    50   ~ 0
-IO_TX
-Text Label 2150 12600 2    50   ~ 0
-BNK5_OE
-Wire Wire Line
-	8550 5400 8550 5550
+	3700 12450 3700 12600
 $Comp
 L power:+3V3 #PWR0189
 U 1 1 6874E344
-P 8550 5400
-F 0 "#PWR0189" H 8550 5250 50  0001 C CNN
-F 1 "+3V3" H 8565 5573 50  0000 C CNN
-F 2 "" H 8550 5400 50  0001 C CNN
-F 3 "" H 8550 5400 50  0001 C CNN
-	1    8550 5400
+P 3700 12450
+F 0 "#PWR0189" H 3700 12300 50  0001 C CNN
+F 1 "+3V3" H 3715 12623 50  0000 C CNN
+F 2 "" H 3700 12450 50  0001 C CNN
+F 3 "" H 3700 12450 50  0001 C CNN
+	1    3700 12450
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -6019,14 +5867,14 @@ Wire Wire Line
 $Comp
 L Connector_Generic:Conn_02x05_Odd_Even J3
 U 1 1 5F401407
-P 16150 4600
-F 0 "J3" H 16200 5017 50  0000 C CNN
-F 1 "Conn_02x05_Odd_Even" H 16200 4926 50  0000 C CNN
-F 2 "lethalbit-connectors:FTSH-105-01-L-DV-K-TR" H 16150 4600 50  0001 C CNN
-F 3 "~" H 16150 4600 50  0001 C CNN
-F 4 "Samtec" H 16150 4600 50  0001 C CNN "MFR"
-F 5 "FTSH-105-01-L-DV-K-TR" H 16150 4600 50  0001 C CNN "MPN"
-	1    16150 4600
+P 16200 6600
+F 0 "J3" H 16250 7017 50  0000 C CNN
+F 1 "Conn_02x05_Odd_Even" H 16250 6926 50  0000 C CNN
+F 2 "lethalbit-connectors:FTSH-105-01-L-DV-K-TR" H 16200 6600 50  0001 C CNN
+F 3 "~" H 16200 6600 50  0001 C CNN
+F 4 "Samtec" H 16200 6600 50  0001 C CNN "MFR"
+F 5 "FTSH-105-01-L-DV-K-TR" H 16200 6600 50  0001 C CNN "MPN"
+	1    16200 6600
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -6401,57 +6249,53 @@ D6
 Text Label 3950 5850 0    50   ~ 0
 D7
 Wire Bus Line
-	9300 7250 9600 7250
-Text Label 9600 7250 2    50   ~ 0
+	4800 14300 5100 14300
+Text Label 5100 14300 2    50   ~ 0
 D[0..7]
 Entry Wire Line
-	9200 6950 9300 7050
+	4700 13900 4800 14000
 Entry Wire Line
-	9200 6850 9300 6950
+	4700 14200 4800 14300
 Entry Wire Line
-	9200 7150 9300 7250
+	4700 13800 4800 13900
 Entry Wire Line
-	9200 6750 9300 6850
-Entry Wire Line
-	9200 6550 9300 6650
+	4700 13600 4800 13700
 Wire Wire Line
-	9050 6950 9200 6950
+	4200 13900 4700 13900
 Wire Wire Line
-	9050 6850 9200 6850
+	4200 14200 4700 14200
 Wire Wire Line
-	9050 7150 9200 7150
+	4200 13800 4700 13800
 Wire Wire Line
-	9050 6750 9200 6750
-Wire Wire Line
-	9050 6550 9200 6550
-Text Label 9050 6750 0    50   ~ 0
+	4200 13600 4700 13600
+Text Label 4200 13800 0    50   ~ 0
 D0
-Text Label 9050 6950 0    50   ~ 0
+Text Label 4200 14000 0    50   ~ 0
 D1
-Text Label 9050 6850 0    50   ~ 0
+Text Label 4200 13900 0    50   ~ 0
 D2
-Text Label 9050 7150 0    50   ~ 0
+Text Label 4200 14200 0    50   ~ 0
 D4
-Text Label 9050 6650 0    50   ~ 0
+Text Label 4200 13700 0    50   ~ 0
 D7
-Text Label 9050 6150 0    50   ~ 0
+Text Label 4200 13200 0    50   ~ 0
 D6
-Text Label 9050 6250 0    50   ~ 0
+Text Label 4200 13300 0    50   ~ 0
 D3
 Wire Wire Line
-	9050 6250 9200 6250
+	4200 13300 4700 13300
 Wire Wire Line
-	9050 6150 9200 6150
+	4200 13200 4700 13200
 Entry Wire Line
-	9200 6250 9300 6350
+	4700 13300 4800 13400
 Entry Wire Line
-	9200 6150 9300 6250
-Text Label 9050 6550 0    50   ~ 0
+	4700 13200 4800 13300
+Text Label 4200 13600 0    50   ~ 0
 D5
 Wire Wire Line
-	9050 6650 9200 6650
+	4200 13700 4700 13700
 Entry Wire Line
-	9200 6650 9300 6750
+	4700 13700 4800 13800
 Wire Wire Line
 	3950 6150 4200 6150
 Wire Wire Line
@@ -6473,24 +6317,24 @@ Text Label 4200 6450 2    50   ~ 0
 Text Label 4200 6550 2    50   ~ 0
 ~SI_WU
 Wire Wire Line
-	9050 7750 9300 7750
+	4200 14800 4450 14800
 Wire Wire Line
-	9050 8250 9300 8250
+	4200 15300 4450 15300
 Wire Wire Line
-	9050 7350 9300 7350
+	4200 14400 4450 14400
 Wire Wire Line
-	9050 7850 9300 7850
+	4200 14900 4450 14900
 Wire Wire Line
-	9050 7450 9300 7450
-Text Label 9300 8250 2    50   ~ 0
+	4200 14500 4450 14500
+Text Label 4450 15300 2    50   ~ 0
 ~TXF
-Text Label 9300 7750 2    50   ~ 0
+Text Label 4450 14800 2    50   ~ 0
 ~RXF
-Text Label 9300 7350 2    50   ~ 0
+Text Label 4450 14400 2    50   ~ 0
 ~RD
-Text Label 9300 7850 2    50   ~ 0
+Text Label 4450 14900 2    50   ~ 0
 ~WR
-Text Label 9300 7450 2    50   ~ 0
+Text Label 4450 14500 2    50   ~ 0
 ~SI_WU
 NoConn ~ 3950 6650
 NoConn ~ 3950 6750
@@ -6510,86 +6354,865 @@ $EndComp
 $Comp
 L Oscillator:ASE-xxxMHz X1
 U 1 1 665021AB
-P 7800 4350
-F 0 "X1" H 8144 4396 50  0000 L CNN
-F 1 "ASEM-48MHz" H 8144 4305 50  0000 L CNN
-F 2 "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm" H 8500 4000 50  0001 C CNN
-F 3 "http://abracon.com/Oscillators/ASEMB.pdf" H 7700 4350 50  0001 C CNN
-F 4 "Abracon" H 7800 4350 50  0001 C CNN "MFR"
-F 5 "ASEMB-48.000MHZ-LY-T" H 7800 4350 50  0001 C CNN "FPN"
-	1    7800 4350
+P 20100 13850
+F 0 "X1" H 20444 13896 50  0000 L CNN
+F 1 "ASEM-48MHz" H 20444 13805 50  0000 L CNN
+F 2 "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm" H 20800 13500 50  0001 C CNN
+F 3 "http://abracon.com/Oscillators/ASEMB.pdf" H 20000 13850 50  0001 C CNN
+F 4 "Abracon" H 20100 13850 50  0001 C CNN "MFR"
+F 5 "ASEMB-48.000MHZ-LY-T" H 20100 13850 50  0001 C CNN "FPN"
+	1    20100 13850
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8100 4350 8800 4350
+	20400 13850 21100 13850
 Wire Wire Line
-	7500 4350 7450 4350
+	19800 13850 19750 13850
 Wire Wire Line
-	7450 4350 7450 4050
+	19750 13850 19750 13550
 Wire Wire Line
-	7450 4050 7800 4050
+	19750 13550 20100 13550
 Wire Wire Line
-	7800 3900 7800 3950
+	20100 13400 20100 13450
 $Comp
 L power:+3V3 #PWR0198
 U 1 1 668E97FB
-P 7800 3900
-F 0 "#PWR0198" H 7800 3750 50  0001 C CNN
-F 1 "+3V3" H 7815 4073 50  0000 C CNN
-F 2 "" H 7800 3900 50  0001 C CNN
-F 3 "" H 7800 3900 50  0001 C CNN
-	1    7800 3900
+P 20100 13400
+F 0 "#PWR0198" H 20100 13250 50  0001 C CNN
+F 1 "+3V3" H 20115 13573 50  0000 C CNN
+F 2 "" H 20100 13400 50  0001 C CNN
+F 3 "" H 20100 13400 50  0001 C CNN
+	1    20100 13400
 	1    0    0    -1  
 $EndComp
-Connection ~ 7800 4050
+Connection ~ 20100 13550
 $Comp
 L Device:C_Small C43
 U 1 1 66CE27CC
-P 7250 4200
-F 0 "C43" V 7150 4200 50  0000 C CNN
-F 1 "0.01uF" V 7350 4200 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 7250 4200 50  0001 C CNN
-F 3 "~" H 7250 4200 50  0001 C CNN
-F 4 "KEMET" V 7250 4200 50  0001 C CNN "MFR"
-F 5 "C0402C103K3RACTU" V 7250 4200 50  0001 C CNN "MPN"
-	1    7250 4200
+P 19550 13700
+F 0 "C43" V 19450 13700 50  0000 C CNN
+F 1 "0.01uF" V 19650 13700 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 19550 13700 50  0001 C CNN
+F 3 "~" H 19550 13700 50  0001 C CNN
+F 4 "KEMET" V 19550 13700 50  0001 C CNN "MFR"
+F 5 "C0402C103K3RACTU" V 19550 13700 50  0001 C CNN "MPN"
+	1    19550 13700
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0199
 U 1 1 66CF014C
-P 7800 4750
-F 0 "#PWR0199" H 7800 4500 50  0001 C CNN
-F 1 "GND" H 7805 4577 50  0000 C CNN
-F 2 "" H 7800 4750 50  0001 C CNN
-F 3 "" H 7800 4750 50  0001 C CNN
-	1    7800 4750
+P 20100 14250
+F 0 "#PWR0199" H 20100 14000 50  0001 C CNN
+F 1 "GND" H 20105 14077 50  0000 C CNN
+F 2 "" H 20100 14250 50  0001 C CNN
+F 3 "" H 20100 14250 50  0001 C CNN
+	1    20100 14250
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	7800 4650 7800 4700
+	20100 14150 20100 14200
 Wire Wire Line
-	7800 3950 7250 3950
+	20100 13450 19550 13450
 Wire Wire Line
-	7250 3950 7250 4100
-Connection ~ 7800 3950
+	19550 13450 19550 13600
+Connection ~ 20100 13450
 Wire Wire Line
-	7800 3950 7800 4050
+	20100 13450 20100 13550
 Wire Wire Line
-	7800 4700 7250 4700
+	20100 14200 19550 14200
 Wire Wire Line
-	7250 4700 7250 4300
-Connection ~ 7800 4700
+	19550 14200 19550 13800
+Connection ~ 20100 14200
 Wire Wire Line
-	7800 4700 7800 4750
-Text Label 8800 4350 2    50   ~ 0
+	20100 14200 20100 14250
+Text Label 21100 13850 2    50   ~ 0
 GLOBAL_CLK
 Wire Wire Line
-	9050 7650 9500 7650
-Text Label 9500 7650 2    50   ~ 0
+	4200 14700 4650 14700
+Text Label 4650 14700 2    50   ~ 0
 GLOBAL_CLK
+Wire Wire Line
+	1600 15700 1900 15700
+Wire Wire Line
+	1900 15300 1600 15300
+Wire Wire Line
+	1900 15600 1600 15600
+Wire Wire Line
+	1900 15400 1600 15400
+Wire Wire Line
+	1900 15500 1600 15500
+Text Label 1900 15500 2    50   ~ 0
+DB0_TX
+Text Label 1900 15400 2    50   ~ 0
+ATN_TX
+Text Label 1900 15300 2    50   ~ 0
+DB1_TX
+Text Label 1900 15600 2    50   ~ 0
+DB1_RX
+Text Label 1900 15700 2    50   ~ 0
+BNK0_OE
+Text Label 4500 13500 2    50   ~ 0
+DB0_RX
+Wire Wire Line
+	4500 13500 4200 13500
+Wire Wire Line
+	4500 13400 4200 13400
+Text Label 4500 13400 2    50   ~ 0
+ATN_RX
+Wire Wire Line
+	4200 14000 4700 14000
+Entry Wire Line
+	4700 14000 4800 14100
+Wire Wire Line
+	1600 14600 1900 14600
+Wire Wire Line
+	1900 15100 1600 15100
+Wire Wire Line
+	1900 15200 1600 15200
+Wire Wire Line
+	1900 15000 1600 15000
+Wire Wire Line
+	1900 14900 1600 14900
+Wire Wire Line
+	1900 14700 1600 14700
+Wire Wire Line
+	1900 14800 1600 14800
+Text Label 1900 15000 2    50   ~ 0
+BSY_TX
+Text Label 1900 15200 2    50   ~ 0
+BSY_RX
+Text Label 1900 14700 2    50   ~ 0
+DB2_TX
+Text Label 1900 14900 2    50   ~ 0
+DB2_RX
+Text Label 1900 14600 2    50   ~ 0
+ACK_TX
+Text Label 1900 14800 2    50   ~ 0
+ACK_RX
+Text Label 1900 15100 2    50   ~ 0
+BNK1_OE
+Wire Wire Line
+	1900 14200 1600 14200
+Wire Wire Line
+	1900 13700 1600 13700
+Wire Wire Line
+	1900 14300 1600 14300
+Wire Wire Line
+	1900 13900 1600 13900
+Wire Wire Line
+	1900 14100 1600 14100
+Wire Wire Line
+	1900 14500 1600 14500
+Text Label 1900 14500 2    50   ~ 0
+DB3_TX
+Text Label 1900 14100 2    50   ~ 0
+RST_RX
+Text Label 1900 13900 2    50   ~ 0
+RST_TX
+Text Label 1900 14300 2    50   ~ 0
+DB4_RX
+Text Label 1900 13700 2    50   ~ 0
+DB4_TX
+Text Label 1900 14200 2    50   ~ 0
+BNK2_OE
+Text Label 1900 14400 2    50   ~ 0
+DB3_RX
+Wire Wire Line
+	1900 14400 1600 14400
+Wire Wire Line
+	3200 14300 2900 14300
+Wire Wire Line
+	3200 13900 2900 13900
+Wire Wire Line
+	3200 13600 2900 13600
+Wire Wire Line
+	3200 13800 2900 13800
+Wire Wire Line
+	3200 14100 2900 14100
+Wire Wire Line
+	3200 14200 2900 14200
+Wire Wire Line
+	3200 14400 2900 14400
+Text Label 3200 14400 2    50   ~ 0
+REQ_RX
+Text Label 3200 14200 2    50   ~ 0
+REQ_TX
+Text Label 3200 14100 2    50   ~ 0
+DBP_RX
+Text Label 3200 13800 2    50   ~ 0
+DBP_TX
+Text Label 3200 13600 2    50   ~ 0
+IO_RX
+Text Label 3200 13900 2    50   ~ 0
+IO_TX
+Text Label 3200 14300 2    50   ~ 0
+BNK5_OE
+Text Label 1950 13500 2    50   ~ 0
+BNK3_OE
+Text Label 3200 14900 2    50   ~ 0
+SEL_TX
+Text Label 3200 15000 2    50   ~ 0
+SEL_RX
+Text Label 3200 15500 2    50   ~ 0
+DB5_TX
+Text Label 3200 15100 2    50   ~ 0
+DB5_RX
+Text Label 1900 13600 2    50   ~ 0
+MSG_RX
+Text Label 3200 15600 2    50   ~ 0
+MSG_TX
+Wire Wire Line
+	1900 13600 1600 13600
+Wire Wire Line
+	3200 15600 2900 15600
+Wire Wire Line
+	3200 15100 2900 15100
+Wire Wire Line
+	3200 15500 2900 15500
+Wire Wire Line
+	3200 15000 2900 15000
+Wire Wire Line
+	3200 14900 2900 14900
+Wire Wire Line
+	1950 13500 1600 13500
+NoConn ~ 14950 4750
+Text Label 3150 14800 2    50   ~ 0
+CD_TX
+Wire Wire Line
+	3150 14800 2900 14800
+Text Label 3150 15200 2    50   ~ 0
+CD_RX
+Wire Wire Line
+	3150 15200 2900 15200
+$Comp
+L Device:LED_Small D1
+U 1 1 72E27A6B
+P 21850 12500
+F 0 "D1" H 21850 12735 50  0000 C CNN
+F 1 "BLUE" H 21850 12644 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 21850 12500 50  0001 C CNN
+F 3 "~" V 21850 12500 50  0001 C CNN
+F 4 "Wurth Electronics" H 21850 12500 50  0001 C CNN "MFR"
+F 5 "150060BS75000" H 21850 12500 50  0001 C CNN "MPN"
+	1    21850 12500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED_Small D2
+U 1 1 7334CD76
+P 21850 12850
+F 0 "D2" H 21850 13085 50  0000 C CNN
+F 1 "PINK" H 21850 12994 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 21850 12850 50  0001 C CNN
+F 3 "~" V 21850 12850 50  0001 C CNN
+F 4 "Optosupply" H 21850 12850 50  0001 C CNN "MFR"
+F 5 "OSK40603C1E" H 21850 12850 50  0001 C CNN "MPN"
+	1    21850 12850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED_Small D5
+U 1 1 7348A600
+P 21850 13250
+F 0 "D5" H 21850 13485 50  0000 C CNN
+F 1 "WHITE" H 21850 13394 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 21850 13250 50  0001 C CNN
+F 3 "~" V 21850 13250 50  0001 C CNN
+F 4 "ROHM Semiconductor" H 21850 13250 50  0001 C CNN "MFR"
+F 5 "SMLEN3WBC8W1" H 21850 13250 50  0001 C CNN "MPN"
+	1    21850 13250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED_Small D9
+U 1 1 735CB479
+P 21850 14050
+F 0 "D9" H 21850 14285 50  0000 C CNN
+F 1 "BLUE" H 21850 14194 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 21850 14050 50  0001 C CNN
+F 3 "~" V 21850 14050 50  0001 C CNN
+F 4 "Wurth Electronics" H 21850 14050 50  0001 C CNN "MFR"
+F 5 "150060BS75000" H 21850 14050 50  0001 C CNN "MPN"
+	1    21850 14050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:LED_Small D6
+U 1 1 735CB481
+P 21850 13650
+F 0 "D6" H 21850 13885 50  0000 C CNN
+F 1 "PINK" H 21850 13794 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 21850 13650 50  0001 C CNN
+F 3 "~" V 21850 13650 50  0001 C CNN
+F 4 "Optosupply" H 21850 13650 50  0001 C CNN "MFR"
+F 5 "OSK40603C1E" H 21850 13650 50  0001 C CNN "MPN"
+	1    21850 13650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R66
+U 1 1 73775C4A
+P 22150 13650
+F 0 "R66" V 21954 13650 50  0000 C CNN
+F 1 "10k" V 22045 13650 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 22150 13650 50  0001 C CNN
+F 3 "~" H 22150 13650 50  0001 C CNN
+F 4 "Vishay Dale" V 22150 13650 50  0001 C CNN "MFR"
+F 5 "CRCW060310K0FKEA" V 22150 13650 50  0001 C CNN "MPN"
+	1    22150 13650
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R64
+U 1 1 73787E65
+P 22150 12850
+F 0 "R64" V 21954 12850 50  0000 C CNN
+F 1 "10k" V 22045 12850 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 22150 12850 50  0001 C CNN
+F 3 "~" H 22150 12850 50  0001 C CNN
+F 4 "Vishay Dale" V 22150 12850 50  0001 C CNN "MFR"
+F 5 "CRCW060310K0FKEA" V 22150 12850 50  0001 C CNN "MPN"
+	1    22150 12850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R67
+U 1 1 73A1A1B6
+P 22150 14050
+F 0 "R67" V 21954 14050 50  0000 C CNN
+F 1 "4k7" V 22045 14050 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 22150 14050 50  0001 C CNN
+F 3 "~" H 22150 14050 50  0001 C CNN
+F 4 "Vishay Dale" V 22150 14050 50  0001 C CNN "MFR"
+F 5 "CRCW06034K70FKEA" V 22150 14050 50  0001 C CNN "MPN"
+	1    22150 14050
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R65
+U 1 1 73A1A692
+P 22150 13250
+F 0 "R65" V 21954 13250 50  0000 C CNN
+F 1 "6k8" V 22045 13250 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 22150 13250 50  0001 C CNN
+F 3 "~" H 22150 13250 50  0001 C CNN
+F 4 "Vishay Dale" V 22150 13250 50  0001 C CNN "MFR"
+F 5 "CRCW06036K80FKEA" V 22150 13250 50  0001 C CNN "MPN"
+	1    22150 13250
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_Small R63
+U 1 1 73A281B7
+P 22150 12500
+F 0 "R63" V 21954 12500 50  0000 C CNN
+F 1 "4k7" V 22045 12500 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 22150 12500 50  0001 C CNN
+F 3 "~" H 22150 12500 50  0001 C CNN
+F 4 "Vishay Dale" V 22150 12500 50  0001 C CNN "MFR"
+F 5 "CRCW06034K70FKEA" V 22150 12500 50  0001 C CNN "MPN"
+	1    22150 12500
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR0200
+U 1 1 73A4337C
+P 21650 14150
+F 0 "#PWR0200" H 21650 13900 50  0001 C CNN
+F 1 "GND" H 21655 13977 50  0000 C CNN
+F 2 "" H 21650 14150 50  0001 C CNN
+F 3 "" H 21650 14150 50  0001 C CNN
+	1    21650 14150
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	22050 14050 21950 14050
+Wire Wire Line
+	21750 14050 21650 14050
+Wire Wire Line
+	21650 14050 21650 14150
+Wire Wire Line
+	21750 13650 21650 13650
+Wire Wire Line
+	21650 13650 21650 14050
+Connection ~ 21650 14050
+Wire Wire Line
+	21750 13250 21650 13250
+Wire Wire Line
+	21650 13250 21650 13650
+Connection ~ 21650 13650
+Wire Wire Line
+	21750 12850 21650 12850
+Wire Wire Line
+	21650 12850 21650 13250
+Connection ~ 21650 13250
+Wire Wire Line
+	21750 12500 21650 12500
+Wire Wire Line
+	21650 12500 21650 12850
+Connection ~ 21650 12850
+Wire Wire Line
+	22050 12500 21950 12500
+Wire Wire Line
+	22050 12850 21950 12850
+Wire Wire Line
+	22050 13250 21950 13250
+Wire Wire Line
+	22050 13650 21950 13650
+Wire Wire Line
+	22250 12500 22400 12500
+Wire Wire Line
+	22250 12850 22400 12850
+Wire Wire Line
+	22250 13250 22400 13250
+Wire Wire Line
+	22250 13650 22400 13650
+Wire Wire Line
+	22250 14050 22400 14050
+Text Label 22400 12500 2    50   ~ 0
+S1
+Text Label 22400 12850 2    50   ~ 0
+S2
+Text Label 22400 13250 2    50   ~ 0
+S3
+Text Label 22400 13650 2    50   ~ 0
+S4
+Text Label 22400 14050 2    50   ~ 0
+S5
+Wire Wire Line
+	4200 15200 4450 15200
+Wire Wire Line
+	4200 15400 4450 15400
+Wire Wire Line
+	4200 15500 4450 15500
+Wire Wire Line
+	10900 6000 10650 6000
+Wire Wire Line
+	10900 6200 10650 6200
+Text Label 4450 15200 2    50   ~ 0
+S1
+Text Label 4450 15400 2    50   ~ 0
+S2
+Text Label 4450 15500 2    50   ~ 0
+S3
+Text Label 10650 6000 0    50   ~ 0
+S4
+Text Label 10650 6200 0    50   ~ 0
+S5
+Wire Wire Line
+	15650 5800 15650 6400
+Wire Wire Line
+	15650 6400 16000 6400
+Connection ~ 15650 5800
+Wire Wire Line
+	15700 5900 15700 6500
+Wire Wire Line
+	15700 6500 16000 6500
+Connection ~ 15700 5900
+Wire Wire Line
+	15750 6000 15750 6600
+Wire Wire Line
+	15750 6600 16000 6600
+$Comp
+L power:+3V3 #PWR0201
+U 1 1 76732125
+P 16600 6300
+F 0 "#PWR0201" H 16600 6150 50  0001 C CNN
+F 1 "+3V3" H 16615 6473 50  0000 C CNN
+F 2 "" H 16600 6300 50  0001 C CNN
+F 3 "" H 16600 6300 50  0001 C CNN
+	1    16600 6300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	16600 6400 16500 6400
+Wire Wire Line
+	16600 6300 16600 6400
+Wire Wire Line
+	16800 5800 17050 5800
+Wire Wire Line
+	17050 5800 17050 6500
+Wire Wire Line
+	17050 6500 16500 6500
+Wire Wire Line
+	16950 5900 16950 6600
+Wire Wire Line
+	16950 6600 16500 6600
+Connection ~ 16950 5900
+Wire Wire Line
+	16850 6000 16850 6700
+Wire Wire Line
+	16850 6700 16500 6700
+Connection ~ 16850 6000
+$Comp
+L power:GND #PWR0202
+U 1 1 76DC4747
+P 15850 7000
+F 0 "#PWR0202" H 15850 6750 50  0001 C CNN
+F 1 "GND" H 15855 6827 50  0000 C CNN
+F 2 "" H 15850 7000 50  0001 C CNN
+F 3 "" H 15850 7000 50  0001 C CNN
+	1    15850 7000
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	16000 6700 15850 6700
+Wire Wire Line
+	15850 6700 15850 7000
+$Comp
+L power:GND #PWR0203
+U 1 1 773AACDB
+P 10300 6050
+F 0 "#PWR0203" H 10300 5800 50  0001 C CNN
+F 1 "GND" H 10305 5877 50  0000 C CNN
+F 2 "" H 10300 6050 50  0001 C CNN
+F 3 "" H 10300 6050 50  0001 C CNN
+	1    10300 6050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10300 5950 10300 6050
+$Comp
+L Device:R_Small R68
+U 1 1 77A76F0B
+P 10300 5850
+F 0 "R68" V 10104 5850 50  0000 C CNN
+F 1 "100k" V 10195 5850 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 10300 5850 50  0001 C CNN
+F 3 "~" H 10300 5850 50  0001 C CNN
+F 4 "Vishay Dale" V 10300 5850 50  0001 C CNN "MFR"
+F 5 "CRCW0603100KFKEA" V 10300 5850 50  0001 C CNN "MPN"
+	1    10300 5850
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	10900 5700 10300 5700
+Wire Wire Line
+	10300 5700 10300 5750
+Text Label 10300 5700 0    50   ~ 0
+~FPGA_RESET
+Wire Wire Line
+	12100 5700 12550 5700
+Text Label 12550 5700 2    50   ~ 0
+FPGA_DONE
+$Comp
+L Device:LED_Small D10
+U 1 1 7804195B
+P 21850 12150
+F 0 "D10" H 21850 12385 50  0000 C CNN
+F 1 "BLUE" H 21850 12294 50  0000 C CNN
+F 2 "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder" V 21850 12150 50  0001 C CNN
+F 3 "~" V 21850 12150 50  0001 C CNN
+F 4 "Wurth Electronics" H 21850 12150 50  0001 C CNN "MFR"
+F 5 "150060BS75000" H 21850 12150 50  0001 C CNN "MPN"
+	1    21850 12150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R_Small R69
+U 1 1 78041963
+P 22150 12150
+F 0 "R69" V 21954 12150 50  0000 C CNN
+F 1 "4k7" V 22045 12150 50  0000 C CNN
+F 2 "Resistor_SMD:R_0603_1608Metric" H 22150 12150 50  0001 C CNN
+F 3 "~" H 22150 12150 50  0001 C CNN
+F 4 "Vishay Dale" V 22150 12150 50  0001 C CNN "MFR"
+F 5 "CRCW06034K70FKEA" V 22150 12150 50  0001 C CNN "MPN"
+	1    22150 12150
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	22050 12150 21950 12150
+Wire Wire Line
+	21650 12500 21650 12150
+Wire Wire Line
+	21650 12150 21750 12150
+Connection ~ 21650 12500
+Wire Wire Line
+	22250 12150 22700 12150
+Text Label 22700 12150 2    50   ~ 0
+FPGA_DONE
+$Comp
+L Device:C_Small C48
+U 1 1 78726173
+P 16200 1050
+F 0 "C48" V 16300 1050 50  0000 C CNN
+F 1 "0.1uF" V 16100 1050 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 16200 1050 50  0001 C CNN
+F 3 "~" H 16200 1050 50  0001 C CNN
+F 4 "KEMET" V 16200 1050 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 16200 1050 50  0001 C CNN "MPN"
+	1    16200 1050
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C50
+U 1 1 788D1F61
+P 16500 1050
+F 0 "C50" V 16600 1050 50  0000 C CNN
+F 1 "0.1uF" V 16400 1050 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 16500 1050 50  0001 C CNN
+F 3 "~" H 16500 1050 50  0001 C CNN
+F 4 "KEMET" V 16500 1050 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 16500 1050 50  0001 C CNN "MPN"
+	1    16500 1050
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C52
+U 1 1 788D2291
+P 16800 1050
+F 0 "C52" V 16900 1050 50  0000 C CNN
+F 1 "0.1uF" V 16700 1050 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 16800 1050 50  0001 C CNN
+F 3 "~" H 16800 1050 50  0001 C CNN
+F 4 "KEMET" V 16800 1050 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 16800 1050 50  0001 C CNN "MPN"
+	1    16800 1050
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C46
+U 1 1 788D5192
+P 15900 1050
+F 0 "C46" V 16000 1050 50  0000 C CNN
+F 1 "0.1uF" V 15800 1050 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 15900 1050 50  0001 C CNN
+F 3 "~" H 15900 1050 50  0001 C CNN
+F 4 "KEMET" V 15900 1050 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 15900 1050 50  0001 C CNN "MPN"
+	1    15900 1050
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C44
+U 1 1 788DB0F1
+P 15600 1050
+F 0 "C44" V 15700 1050 50  0000 C CNN
+F 1 "0.1uF" V 15500 1050 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 15600 1050 50  0001 C CNN
+F 3 "~" H 15600 1050 50  0001 C CNN
+F 4 "KEMET" V 15600 1050 50  0001 C CNN "MFR"
+F 5 "C0603C475K8PACTU" V 15600 1050 50  0001 C CNN "MPN"
+	1    15600 1050
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	15600 1150 15600 1250
+Wire Wire Line
+	15600 1250 15900 1250
+Wire Wire Line
+	16800 1150 16800 1250
+Wire Wire Line
+	16500 1150 16500 1250
+Connection ~ 16500 1250
+Wire Wire Line
+	16500 1250 16800 1250
+Wire Wire Line
+	16200 1150 16200 1250
+Connection ~ 16200 1250
+Wire Wire Line
+	16200 1250 16350 1250
+Wire Wire Line
+	15900 1150 15900 1250
+Connection ~ 15900 1250
+Wire Wire Line
+	15900 1250 16200 1250
+Wire Wire Line
+	15600 950  15600 900 
+Wire Wire Line
+	15600 900  15900 900 
+Wire Wire Line
+	15900 950  15900 900 
+Connection ~ 15900 900 
+Wire Wire Line
+	15900 900  16200 900 
+Wire Wire Line
+	16200 950  16200 900 
+Connection ~ 16200 900 
+Wire Wire Line
+	16200 900  16350 900 
+Wire Wire Line
+	16500 950  16500 900 
+Connection ~ 16500 900 
+Wire Wire Line
+	16500 900  16800 900 
+Wire Wire Line
+	16800 950  16800 900 
+Wire Wire Line
+	16350 900  16350 800 
+Connection ~ 16350 900 
+Wire Wire Line
+	16350 900  16500 900 
+Wire Wire Line
+	16350 1250 16350 1350
+Connection ~ 16350 1250
+Wire Wire Line
+	16350 1250 16500 1250
+$Comp
+L power:GND #PWR0204
+U 1 1 7991A70B
+P 16350 1350
+F 0 "#PWR0204" H 16350 1100 50  0001 C CNN
+F 1 "GND" H 16355 1177 50  0000 C CNN
+F 2 "" H 16350 1350 50  0001 C CNN
+F 3 "" H 16350 1350 50  0001 C CNN
+	1    16350 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3V3 #PWR0205
+U 1 1 79A870D7
+P 16350 800
+F 0 "#PWR0205" H 16350 650 50  0001 C CNN
+F 1 "+3V3" H 16365 973 50  0000 C CNN
+F 2 "" H 16350 800 50  0001 C CNN
+F 3 "" H 16350 800 50  0001 C CNN
+	1    16350 800 
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C_Small C49
+U 1 1 79D520C0
+P 16200 2100
+F 0 "C49" V 16300 2100 50  0000 C CNN
+F 1 "0.1uF" V 16100 2100 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 16200 2100 50  0001 C CNN
+F 3 "~" H 16200 2100 50  0001 C CNN
+F 4 "KEMET" V 16200 2100 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 16200 2100 50  0001 C CNN "MPN"
+	1    16200 2100
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C51
+U 1 1 79D520C8
+P 16500 2100
+F 0 "C51" V 16600 2100 50  0000 C CNN
+F 1 "0.1uF" V 16400 2100 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 16500 2100 50  0001 C CNN
+F 3 "~" H 16500 2100 50  0001 C CNN
+F 4 "KEMET" V 16500 2100 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 16500 2100 50  0001 C CNN "MPN"
+	1    16500 2100
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C53
+U 1 1 79D520D0
+P 16800 2100
+F 0 "C53" V 16900 2100 50  0000 C CNN
+F 1 "0.1uF" V 16700 2100 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 16800 2100 50  0001 C CNN
+F 3 "~" H 16800 2100 50  0001 C CNN
+F 4 "KEMET" V 16800 2100 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 16800 2100 50  0001 C CNN "MPN"
+	1    16800 2100
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C47
+U 1 1 79D520E0
+P 15900 2100
+F 0 "C47" V 16000 2100 50  0000 C CNN
+F 1 "0.1uF" V 15800 2100 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0402_1005Metric" H 15900 2100 50  0001 C CNN
+F 3 "~" H 15900 2100 50  0001 C CNN
+F 4 "KEMET" V 15900 2100 50  0001 C CNN "MFR"
+F 5 "C0402C104M8PACTU" V 15900 2100 50  0001 C CNN "MPN"
+	1    15900 2100
+	-1   0    0    1   
+$EndComp
+$Comp
+L Device:C_Small C45
+U 1 1 79D520E8
+P 15600 2100
+F 0 "C45" V 15700 2100 50  0000 C CNN
+F 1 "0.1uF" V 15500 2100 50  0000 C CNN
+F 2 "Capacitor_SMD:C_0603_1608Metric" H 15600 2100 50  0001 C CNN
+F 3 "~" H 15600 2100 50  0001 C CNN
+F 4 "KEMET" V 15600 2100 50  0001 C CNN "MFR"
+F 5 "C0603C475K8PACTU" V 15600 2100 50  0001 C CNN "MPN"
+	1    15600 2100
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	15600 2200 15600 2300
+Wire Wire Line
+	15600 2300 15900 2300
+Wire Wire Line
+	16800 2200 16800 2300
+Wire Wire Line
+	16500 2200 16500 2300
+Connection ~ 16500 2300
+Wire Wire Line
+	16500 2300 16800 2300
+Wire Wire Line
+	16200 2200 16200 2300
+Connection ~ 16200 2300
+Wire Wire Line
+	16200 2300 16350 2300
+Wire Wire Line
+	15900 2200 15900 2300
+Connection ~ 15900 2300
+Wire Wire Line
+	15900 2300 16200 2300
+Wire Wire Line
+	15600 2000 15600 1950
+Wire Wire Line
+	15600 1950 15900 1950
+Wire Wire Line
+	15900 2000 15900 1950
+Connection ~ 15900 1950
+Wire Wire Line
+	15900 1950 16200 1950
+Wire Wire Line
+	16200 2000 16200 1950
+Connection ~ 16200 1950
+Wire Wire Line
+	16200 1950 16350 1950
+Wire Wire Line
+	16500 2000 16500 1950
+Connection ~ 16500 1950
+Wire Wire Line
+	16500 1950 16800 1950
+Wire Wire Line
+	16800 2000 16800 1950
+Wire Wire Line
+	16350 1950 16350 1850
+Connection ~ 16350 1950
+Wire Wire Line
+	16350 1950 16500 1950
+Wire Wire Line
+	16350 2300 16350 2400
+Connection ~ 16350 2300
+Wire Wire Line
+	16350 2300 16500 2300
+$Comp
+L power:GND #PWR0206
+U 1 1 79D52112
+P 16350 2400
+F 0 "#PWR0206" H 16350 2150 50  0001 C CNN
+F 1 "GND" H 16355 2227 50  0000 C CNN
+F 2 "" H 16350 2400 50  0001 C CNN
+F 3 "" H 16350 2400 50  0001 C CNN
+	1    16350 2400
+	1    0    0    -1  
+$EndComp
 Wire Bus Line
 	4200 5250 4200 5950
 Wire Bus Line
-	9300 6250 9300 7250
+	4800 13300 4800 14300
+$Comp
+L power:+1V2 #PWR0207
+U 1 1 79EC27EB
+P 16350 1850
+F 0 "#PWR0207" H 16350 1700 50  0001 C CNN
+F 1 "+1V2" H 16365 2023 50  0000 C CNN
+F 2 "" H 16350 1850 50  0001 C CNN
+F 3 "" H 16350 1850 50  0001 C CNN
+	1    16350 1850
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
