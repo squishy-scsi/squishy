@@ -155,6 +155,23 @@ X Pin_9 9 -200 400 150 R 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
+# Connector_TestPoint_Small
+#
+DEF Connector_TestPoint_Small TP 0 30 N N 1 F N
+F0 "TP" 0 150 50 H V C CNN
+F1 "Connector_TestPoint_Small" 0 80 50 H V C CNN
+F2 "" 200 0 50 H I C CNN
+F3 "" 200 0 50 H I C CNN
+$FPLIST
+ Pin*
+ Test*
+$ENDFPLIST
+DRAW
+C 0 0 20 0 1 0 N
+X 1 1 0 0 0 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # Connector_USB_B_Micro
 #
 DEF Connector_USB_B_Micro J 0 40 Y Y 1 F N
@@ -489,6 +506,21 @@ X DATA3 6 700 500 150 L 50 50 1 1 B
 X ~SI/WU 7 700 -600 150 L 50 50 1 1 I
 X ~RD 8 700 -400 150 L 50 50 1 1 I
 X ~WR 9 700 -500 150 L 50 50 1 1 I
+ENDDRAW
+ENDDEF
+#
+# Mechanical_Fiducial
+#
+DEF Mechanical_Fiducial FID 0 20 Y Y 1 F N
+F0 "FID" 0 200 50 H V C CNN
+F1 "Mechanical_Fiducial" 0 125 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ Fiducial*
+$ENDFPLIST
+DRAW
+C 0 0 50 0 1 20 f
 ENDDRAW
 ENDDEF
 #
