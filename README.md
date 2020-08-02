@@ -1,6 +1,6 @@
 # Squishy
 
-Squishy is a SCSI-1 to USB3.0 interface adapter, originally designed so a modern machine could boot off of a IBM 9348-002 9-track magnetic tape SCSI drive, but should allow for any modern machine to talk SCSI to things.
+Squishy is a SCSI-1 HVD to USB2.0 interface adapter, originally designed so a modern machine could boot off of a IBM 9348-002 9-track magnetic tape SCSI drive, but should allow for any modern machine to talk SCSI to things.
 
 ## Licenses
 
