@@ -5201,7 +5201,7 @@ Wire Wire Line
 Wire Wire Line
 	16150 14400 15950 14400
 $Comp
-L squishy-rescue:USB_B_Micro-Connector J1
+L Connector:USB_B_Micro J1
 U 1 1 70E3C85C
 P 900 1550
 F 0 "J1" H 957 2017 50  0000 C CNN
