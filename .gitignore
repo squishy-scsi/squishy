@@ -7,3 +7,5 @@ _autosave-*
 *.slvs~
 .venv/
 build/
+*.zip
+kibus.log
