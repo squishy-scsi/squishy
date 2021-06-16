@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from .utility import *
 
-from .board import Rev0, Rev1
+from .board import Rev1
 
 from .main import SquishyTop
 
@@ -34,7 +34,7 @@ def cli():
 
 	args = parser.parse_args()
 
-	plat = Rev0()
+	plat = Rev1()
 
 	if args.action == 'verify':
 		wrn('todo')

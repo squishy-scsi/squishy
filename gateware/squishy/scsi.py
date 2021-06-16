@@ -9,7 +9,10 @@ class SCSIInterface(Elaboratable):
 	def elaborate(self, platform):
 		m = Module()
 
-		scsi_raw = platform.request('scsi')
+		scsi_tx = platform.request('scsi_tx')
+		scsi_tx_ctl = platform.request('scsi_tx_ctl')
+		scsi_rx = platform.request('scsi_rx')
+
 
 		return m
 

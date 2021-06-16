@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from nmigen import *
 
-from .uart import UARTDevice
+from .usb import USBDevice
 from .scsi import SCSIInterface
 
 class SquishyTop(Elaboratable):
@@ -13,16 +13,12 @@ class SquishyTop(Elaboratable):
 		m.d.comb += ClockSignal().eq(clk.i)
 
 		m.submodules.scsi = scsi = SCSIInterface()
-		m.submodules.uart = uart = UARTDevice()
+		m.submodules.usb = usb = USBDevice()
 
 		leds = platform.request('leds')
 
 		m.d.comb += [
-			leds.led0.o.eq(scsi.activity_tx),
-			leds.led1.o.eq(scsi.activity_rx),
 
-			leds.led3.o.eq(uart.activity_tx),
-			leds.led4.o.eq(uart.activity_rx),
 		]
 
 		return m
