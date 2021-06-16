@@ -1,0 +1,60 @@
+[binaries]
+c = 'x86_64-w64-mingw32-gcc'
+cpp = 'x86_64-w64-mingw32-g++'
+ar = 'x86_64-w64-mingw32-ar'
+as = 'x86_64-w64-mingw32-as'
+ld = 'x86_64-w64-mingw32-ld'
+objcopy = 'x86_64-w64-mingw32-objcopy'
+strip = 'x86_64-w64-mingw32-strip'
+
+[properties]
+sizeof_char = 1
+sizeof_int = 4
+sizeof_void* = 8
+sizeof_long = 8
+sizeof_longdouble = 16
+sizeof_size_t = 8
+sizeof_wint_t = 4
+sizeof_float = 4
+sizeof_short = 2
+sizeof_int128 = 16
+sizeof_wchar_t = 4
+sizeof_double = 8
+sizeof_longlong = 8
+
+alignment_char = 1
+alignment_int = 4
+alignment_void* = 8
+alignment_long = 8
+alignment_longdouble = 16
+alignment_size_t = 8
+alignment_wint_t = 4
+alignment_float = 4
+alignment_short = 2
+alignment_int128 = 16
+alignment_wchar_t = 4
+alignment_double = 8
+alignment_longlong = 8
+
+needs_exe_wrapper = true
+has_function_printf = false
+
+c_args = ['-ffreestanding', '-nostdlib', '-fno-exceptions', '-fno-rtti']
+cpp_args = ['-ffreestanding', '-nostdlib','-fno-exceptions', '-fno-rtti']
+
+c_link_args = ['-nostdlib', '-Wl,-dll', '-shared', '-Wl,--subsystem,10', '-e', 'efi_main', '-lgcc']
+cpp_link_args = ['-nostdlib', '-Wl,-dll', '-shared', '-Wl,--subsystem,10', '-e', 'efi_main', '-lgcc']
+
+
+
+[target_machine]
+system = 'UEFI'
+cpu_family = 'x86'
+cpu = 'x86_64'
+endian = 'little'
+
+[host_machine]
+system = 'UEFI'
+cpu_family = 'x86'
+cpu = 'x86_64'
+endian = 'little'

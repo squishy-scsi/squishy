@@ -2,11 +2,11 @@
 from nmigen.build import *
 from nmigen.vendor.lattice_ice40 import *
 
-__all__ = ['Rev0']
+__all__ = ('Rev0', 'Rev1')
 
 class Rev0(LatticeICE40Platform):
 	device      = 'iCE40HX8K'
-	package     = 'bg121'
+	package     = 'BG121'
 	default_clk = 'clk'
 	toolchain   = 'Trellis'
 
@@ -14,7 +14,7 @@ class Rev0(LatticeICE40Platform):
 		Resource('clk', 0,
 			Pins('F3', dir='i'),
 			Clock(48000000),
-			Attrs(GLOBAL=True, IO_STANDARD='LVCMOS33')
+			Attrs(GLOBAL=True, IO_STANDARD='SB_LVCMOS')
 		),
 
 		Resource('uart_fifo', 0,
@@ -35,7 +35,7 @@ class Rev0(LatticeICE40Platform):
 			Subsignal('txe',  Pins('H2', dir='i')),
 			Subsignal('rxf',  Pins('G1', dir='i')),
 
-			Attrs(IO_STANDARD='LVCMOS33'),
+			Attrs(IO_STANDARD='SB_LVCMOS'),
 		),
 
 		Resource('scsi', 0,
@@ -100,7 +100,7 @@ class Rev0(LatticeICE40Platform):
 			Subsignal('bnk4_oe', Pins('D11', dir='o')),
 			Subsignal('bnk5_oe', Pins('G9',  dir='o')),
 
-			Attrs(IO_STANDARD='LVCMOS33'),
+			Attrs(IO_STANDARD='SB_LVCMOS'),
 		),
 
 		Resource('leds', 0,
@@ -110,7 +110,48 @@ class Rev0(LatticeICE40Platform):
 			Subsignal('led3', Pins('L1', dir='o')),
 			Subsignal('led4', Pins('L2', dir='o')),
 
-			Attrs(IO_STANDARD='LVCMOS33')
+			Attrs(IO_STANDARD='SB_LVCMOS')
+		)
+	]
+
+	connectors = []
+
+
+class Rev1(LatticeICE40Platform):
+	device      = 'iCE40HX8K'
+	package     = 'BG121'
+	default_clk = 'clk'
+	toolchain   = 'Trellis'
+
+	resources = [
+		Resource('clk', 0,
+			Pins('L5', dir = 'i'),
+			Clock(48e6),
+			Attrs(GLOBAL = True, IO_STANDARD = 'SB_LVCMOS')
+		),
+
+		Resource('ulpi', 0,
+			Subsignal('clk',
+				Pins('XX', dir = 'i'),
+				Clock(60e6)
+			),
+			Subsignal('data',
+				Pins('XX XX XX XX XX XX XX XX', dir = 'io')
+			),
+			Subsignal('dir',
+				Pins('XX', dir = 'i')
+			),
+			Subsignal('nxt',
+				Pins('XX', dir = 'i')
+			),
+			Subsignal('stp',
+				Pins('XX', dir = 'o')
+			),
+			Subsignal('rst',
+				Pins('XX', dir = 'o')
+			)
+
+			Attrs(IO_STANDARD = 'SB_LVCMOS')
 		)
 	]
 

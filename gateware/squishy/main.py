@@ -4,7 +4,7 @@ from nmigen import *
 from .uart import UARTDevice
 from .scsi import SCSIInterface
 
-class TopModule(Elaboratable):
+class SquishyTop(Elaboratable):
 	def elaborate(self, platform):
 		m = Module()
 
@@ -20,6 +20,7 @@ class TopModule(Elaboratable):
 		m.d.comb += [
 			leds.led0.o.eq(scsi.activity_tx),
 			leds.led1.o.eq(scsi.activity_rx),
+
 			leds.led3.o.eq(uart.activity_tx),
 			leds.led4.o.eq(uart.activity_rx),
 		]

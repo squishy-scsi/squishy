@@ -2,8 +2,6 @@
 from nmigen import Elaboratable, Module, Signal
 
 
-
-
 class UARTDevice(Elaboratable):
 	def __init__(self):
 		self.activity_tx = Signal()
