@@ -1,4 +1,12 @@
 {
+  "": {
+    "board": {
+      "design_settings": null
+    },
+    "erc": null,
+    "net_settings": null,
+    "schematic": null
+  },
   "board": {
     "design_settings": {
       "defaults": {
@@ -33,9 +41,9 @@
         "other_text_thickness": 0.15,
         "other_text_upright": false,
         "pads": {
-          "drill": 0.762,
-          "height": 1.524,
-          "width": 1.524
+          "drill": 0.0,
+          "height": 0.95,
+          "width": 0.9
         },
         "silk_line_width": 0.12,
         "silk_text_italic": false,
@@ -48,10 +56,95 @@
           "min_clearance": 0.09999999999999999
         }
       },
-      "diff_pair_dimensions": [],
-      "drc_exclusions": [],
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.0,
+          "via_gap": 0.0,
+          "width": 0.0
+        }
+      ],
+      "drc_exclusions": [
+        "clearance|166775000|70950000|7ae5bc9d-410b-4a8f-be97-79665e8b7af7|a07992b8-ac49-4012-afed-e151a6b5ed5a",
+        "clearance|167775000|70950000|b7e8860f-7a99-4cbf-9027-ba71ab9132b5|58eee1f3-8701-4a60-a6a5-4db23260f85e",
+        "clearance|170675000|70950000|f9e506f7-1d30-4ffa-9929-c927995019ca|ed85d380-67a5-478a-a2bd-b5012d05855e",
+        "clearance|171675000|70950000|b0687207-d4c3-4fb1-9470-1b7415e8a664|308f1dd5-aeed-4879-8b2f-3f983391a588",
+        "clearance|171749270|71200000|a4c0d0c5-207c-448e-94bb-f33963259eb8|308f1dd5-aeed-4879-8b2f-3f983391a588",
+        "clearance|174575000|70950000|4bb591f5-fbe7-425b-9b6f-e5cc1f085b96|a3164ebe-5c91-4bc3-bbbc-11ac79ed4618",
+        "clearance|175575000|70950000|41f00097-f303-4145-a082-17ff60c120cb|f589d848-3298-4c8d-9883-67f9675fb49b",
+        "clearance|175649270|71200000|f7654d67-3f05-4b34-8b68-cdb14e657996|f589d848-3298-4c8d-9883-67f9675fb49b",
+        "clearance|178475000|70950000|d1fb5e32-2fec-46f1-90ca-62ba884f4d97|0ceb5286-d1a6-47e7-853c-c50fd98f2908",
+        "clearance|179475000|70950000|bf514bcd-6a16-4153-a3bb-2168eb9efcee|03c6815b-454e-4b3c-80c6-979bc0809c26",
+        "clearance|179549270|71200000|c5bf51ed-1093-4e6a-b257-210d31509a5e|03c6815b-454e-4b3c-80c6-979bc0809c26",
+        "clearance|182375000|70950000|2e27f918-f83d-482d-82f3-7feff16922ec|849f3341-8709-4f21-9710-89b518592024",
+        "clearance|183375000|70950000|d5009abe-8d93-49c9-b543-e1fe889318a5|9f661d28-802b-4228-a582-76949db4aad4",
+        "clearance|183449270|71200000|1dff2daf-e23e-4443-a0d9-95031a2f180c|9f661d28-802b-4228-a582-76949db4aad4",
+        "clearance|186275000|70950000|2fddf3a5-8920-456d-9a0d-0900a06ee88d|dd45f25a-afae-4dfd-929e-206904ef2b8f",
+        "clearance|187275000|70950000|74ab0f16-28ef-426c-9e53-d52b11cf1bfe|d9a4e47f-7c3d-45f5-a447-4ef2bf678c76",
+        "clearance|187349270|71200000|b4b3050b-9c15-452a-a840-d679cd78f6e1|d9a4e47f-7c3d-45f5-a447-4ef2bf678c76",
+        "clearance|190175000|70950000|754e410e-2d23-466e-87c9-d907dfa767ce|885a38b3-5024-47e8-829d-84c6ab966223",
+        "clearance|191175000|70950000|16b2e305-7fa1-4db6-a4b1-9ec435736aa9|36b4eb85-9182-4269-b1d3-48e03815a15f",
+        "clearance|191249270|71200000|6f6db8f1-174c-4baa-95c8-48ea738bbd6a|36b4eb85-9182-4269-b1d3-48e03815a15f",
+        "clearance|194075000|70950000|cbbdc30a-2443-44d5-a8c0-1f74ce7b12a9|1fc9febb-b83c-40d7-804d-acfb7366bedb",
+        "clearance|195075000|70950000|41e92687-0d03-47fa-a4a4-5bbe48ec79b9|171ed92b-3ceb-4947-9b81-77f9779583b9",
+        "clearance|195149270|71200000|400ffb81-90c1-4fd2-b725-05b5b512c6ff|171ed92b-3ceb-4947-9b81-77f9779583b9",
+        "clearance|197975000|70950000|b4553523-a649-40dc-bfb4-d3967e777ad6|c66a3436-e94c-4f94-9eba-36e198c38397",
+        "clearance|198975000|70950000|72e9f8cc-d88a-40c0-85ae-f11baad4dc54|c8a9769f-c6cf-4f3b-b1a6-b90d9cf48241",
+        "clearance|199049270|71200000|0a5f02f0-dc69-4fd2-bc5d-4e3a503d3356|c8a9769f-c6cf-4f3b-b1a6-b90d9cf48241",
+        "clearance|201875000|70950000|adeee13c-9b42-4021-a91a-49572c339cef|6587211c-b7f1-4e1e-9892-790b3801ebee",
+        "clearance|202875000|70950000|c37b387b-be57-4582-970a-cdfb78ba425a|a6bcde56-a101-49cf-8ae0-2c5453d72824",
+        "clearance|202949270|71200000|e5650293-8eb2-476c-8d21-36192a2f2b38|a6bcde56-a101-49cf-8ae0-2c5453d72824",
+        "clearance|205775000|70950000|f251f0e7-9909-4ece-b140-b5c622b411b5|2379a6b1-51f3-4549-8b3d-c7c72c2e2490",
+        "clearance|206775000|70950000|43875970-d25d-44b4-bd3b-3f6b8e08114a|2af275ff-7334-4e7f-b95d-0a3bf7a1139c",
+        "clearance|206849270|71200000|b6a11215-3662-4754-8b0b-d77f1a159bb9|2af275ff-7334-4e7f-b95d-0a3bf7a1139c",
+        "clearance|209675000|70950000|e1222af1-18da-463c-a3a3-59c0dc1e8a61|a3c50ceb-023e-4fa6-a901-ecf5d9b6aa43",
+        "clearance|210675000|70950000|a8e54141-8b3e-47ac-a35b-f85d5d1d0a3f|d7eddaff-fec9-4a29-a13e-580cff9db4d0",
+        "clearance|210749270|71200000|2ae2812e-4cf8-4907-99fc-4a5de63ce643|d7eddaff-fec9-4a29-a13e-580cff9db4d0",
+        "clearance|213575000|70950000|48843cdf-875a-4db6-b68c-425ffce42a3c|43b44e72-2d3f-40c6-92ac-98428bbe84c4",
+        "clearance|214575000|70950000|63f7d017-5bc7-4be0-95e7-874c82f95c79|5e3ef183-5bf0-498a-8ad0-c3042989649d",
+        "clearance|214649270|71200000|4b3f4071-7107-4360-8baf-2bab43a619ad|5e3ef183-5bf0-498a-8ad0-c3042989649d",
+        "clearance|217475000|70950000|c445b5a8-8c44-411d-aee5-d78657cf5650|0a0f82da-8ffb-4041-8674-24fc1f7e5baf",
+        "clearance|218475000|70950000|de96a1a5-f230-412b-87c0-958a97fb5484|5cb694df-0c17-40ab-abb1-dafdd2dc68b6",
+        "clearance|218549270|71200000|dbe83a4a-dd96-41d6-a6d2-550465760e71|5cb694df-0c17-40ab-abb1-dafdd2dc68b6",
+        "clearance|221375000|70950000|1e624377-201d-41ac-9eb8-e0914beb4119|3a0e4a26-7227-4c9e-9b54-d512bde6b469",
+        "clearance|222375000|70950000|390bf8e9-2f26-4d1e-86c1-b3251c0ae907|e9cf14be-d596-4613-81d3-bc115b18eb67",
+        "clearance|222449270|71200000|9ca946b6-c410-46f0-929e-f8c405d3ab5d|e9cf14be-d596-4613-81d3-bc115b18eb67",
+        "clearance|225275000|70950000|8bdfae30-27bf-4f2a-9e14-8c84486dd00f|7df223a0-e4a8-4991-babf-b8bb9158a061",
+        "clearance|226275000|70950000|5288eadc-4d63-4881-b70d-8d7c8c4f64c5|cbc492e6-269b-41d2-a015-2aa227beeaaa",
+        "clearance|226349270|71200000|52864bf1-fe43-4c0c-abd2-e134c4c5502a|cbc492e6-269b-41d2-a015-2aa227beeaaa",
+        "clearance|229175000|70950000|a1f4fea1-ff4e-434d-9278-bda780439b17|19300724-3a94-45ce-93a5-cc3bf0973463",
+        "clearance|230175000|70950000|3e0b4b1a-166a-4a35-96aa-7ae2e169275c|b5281a7f-7425-4ecd-a822-dbf8f0e9d0db",
+        "clearance|230249270|71150000|97b6dd34-e5a5-4802-aaf5-4a5851c1b3bb|b5281a7f-7425-4ecd-a822-dbf8f0e9d0db",
+        "clearance|233075000|70950000|08caa0e0-6866-42f4-976a-0f714ee0eac2|31725657-f76d-4592-b64d-2fb3d26f7fe1",
+        "clearance|234075000|70950000|202c59c9-41c3-4f88-86a0-59db4f5f6a2c|12a160c5-1f55-4fc1-817e-2392c470e23b",
+        "clearance|234149270|71200000|d52d43e9-8150-4ffa-b23b-f93d5783fe77|12a160c5-1f55-4fc1-817e-2392c470e23b",
+        "courtyards_overlap|160070001|58070001|00000000-0000-0000-0000-00005efffc0a|00000000-0000-0000-0000-00005f03fff1",
+        "courtyards_overlap|161117317|42376121|00000000-0000-0000-0000-00005efffc0a|00000000-0000-0000-0000-00005f302619",
+        "courtyards_overlap|162170001|58070001|00000000-0000-0000-0000-00005efffc0a|00000000-0000-0000-0000-00005f03e2da",
+        "courtyards_overlap|184750001|75570001|8e7d3dc7-da7c-45dd-bdc5-f845154709e0|aaedf83d-415b-4e4d-80eb-e283e2f24d0c",
+        "courtyards_overlap|203300001|107500001|00000000-0000-0000-0000-00005f10b98e|00000000-0000-0000-0000-00005f1d00aa",
+        "courtyards_overlap|238117317|42376121|00000000-0000-0000-0000-00005efffc0a|00000000-0000-0000-0000-00005f302621",
+        "silk_over_copper|217241860|107974197|de16a755-87f1-46f1-9722-cc8e8ba8e85f|a074ff54-65c3-4d6d-a104-595c4c10f6df",
+        "silk_over_copper|220162804|77237337|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|c1436d68-753f-4ba8-b17b-d418309caae2",
+        "silk_over_copper|221625000|81550000|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|783dae06-57fa-48c6-8227-4efb62108116",
+        "silk_over_copper|221793085|79758295|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|cc9b362d-87a6-4623-adb5-5e99135a3e77",
+        "silk_over_copper|222950000|81693282|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|1ee95acf-a22b-44f6-b438-8bb23fb9257e",
+        "silk_over_copper|234715401|79920438|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|19e51b4e-96d2-4b99-aa47-5fbfa99288e2",
+        "silk_over_copper|236025000|79550000|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|8d7503fd-01d7-4cae-99d2-2a5d0f13f7c9",
+        "silk_overlap|219777500|76716510|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|1bb45b28-dc8a-40e6-8a76-24ab1974d294",
+        "silk_overlap|222278592|80560000|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|c36bf221-3f79-4e6a-9674-5b7e2272e0ec",
+        "silk_overlap|222540580|82060000|01f668b2-ddba-46f4-8a4c-ed853f808fb7|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3",
+        "silk_overlap|222558989|81028994|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|64b325d3-86d1-47d4-ad43-25b6331f5f0a",
+        "silk_overlap|234962742|80072500|ac93e93b-5bfc-4185-825d-86e450b67e4c|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3",
+        "silk_overlap|235328333|79027500|0ae38a1e-8b69-4bfa-8365-b1b342e9edd3|cdef79b5-093f-4d78-bdea-a22a9c75e41d",
+        "silk_overlap|236560000|75877577|2ed4d61a-78ef-4082-a821-c19266fcb291|153d9e50-4740-431e-8fcb-fc6ec7174c2c",
+        "zones_intersect|176000000|110900000|e0706ec2-f706-4904-9c2e-a2a5f849e54d|00000000-0000-0000-0000-00005f308514",
+        "zones_intersect|176000000|111400000|e0706ec2-f706-4904-9c2e-a2a5f849e54d|00000000-0000-0000-0000-00005f308514",
+        "zones_intersect|176900000|111400000|e0706ec2-f706-4904-9c2e-a2a5f849e54d|00000000-0000-0000-0000-00005f308514",
+        "zones_intersect|176900000|111950000|e0706ec2-f706-4904-9c2e-a2a5f849e54d|00000000-0000-0000-0000-00005f308514",
+        "zones_intersect|179200000|110900000|e0706ec2-f706-4904-9c2e-a2a5f849e54d|00000000-0000-0000-0000-00005f308514",
+        "zones_intersect|179200000|111950000|e0706ec2-f706-4904-9c2e-a2a5f849e54d|00000000-0000-0000-0000-00005f308514"
+      ],
       "meta": {
-        "filename": "board_design_settings.json",
         "version": 2
       },
       "rule_severities": {
@@ -99,7 +192,7 @@
         "allow_microvias": false,
         "max_error": 0.005,
         "min_clearance": 0.0,
-        "min_copper_edge_clearance": 0.024999999999999998,
+        "min_copper_edge_clearance": 0.01,
         "min_hole_clearance": 0.0,
         "min_hole_to_hole": 0.25,
         "min_microvia_diameter": 0.19999999999999998,
@@ -419,7 +512,7 @@
     "meta": {
       "version": 0
     },
-    "net_format_name": "Pcbnew",
+    "net_format_name": "",
     "ngspice": {
       "meta": {
         "version": 0
@@ -428,7 +521,7 @@
       "workbook_filename": ""
     },
     "page_layout_descr_file": "",
-    "plot_directory": "../rev0/",
+    "plot_directory": "",
     "spice_adjust_passive_values": false,
     "spice_external_command": "spice \"%I\"",
     "subpart_first_id": 65,
@@ -438,6 +531,18 @@
     [
       "66946989-0eb4-469a-822e-5001e4c71e1d",
       ""
+    ],
+    [
+      "f0186a61-a1ec-47af-8a71-f94e7ce0e59d",
+      "Mechanical"
+    ],
+    [
+      "135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983",
+      "Power Supply"
+    ],
+    [
+      "5a470513-af88-45a5-8151-68e0d8ddb252",
+      "SCSI Transceiver"
     ]
   ],
   "text_variables": {}

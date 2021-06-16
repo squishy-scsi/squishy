@@ -382,84 +382,12 @@ Wire Wire Line
 Connection ~ 20600 7150
 Wire Wire Line
 	20600 7150 20600 7500
-Text Label 19300 5050 0    50   ~ 0
-DB0+
-Text Label 19300 5150 0    50   ~ 0
-DB0-
-Text Label 19300 5250 0    50   ~ 0
-DB1+
-Text Label 19300 5350 0    50   ~ 0
-DB1-
-Text Label 19300 5450 0    50   ~ 0
-DB2+
-Text Label 19300 5550 0    50   ~ 0
-DB2-
-Text Label 19300 5650 0    50   ~ 0
-DB3+
-Text Label 19300 5750 0    50   ~ 0
-DB3-
-Text Label 19300 5850 0    50   ~ 0
-DB4+
-Text Label 19300 5950 0    50   ~ 0
-DB4-
-Text Label 19300 6050 0    50   ~ 0
-DB5+
-Text Label 19300 6150 0    50   ~ 0
-DB5-
-Text Label 19300 6250 0    50   ~ 0
-DB6+
-Text Label 19300 6350 0    50   ~ 0
-DB6-
-Text Label 19300 6450 0    50   ~ 0
-DB7+
-Text Label 19300 6550 0    50   ~ 0
-DB7-
-Text Label 19300 6650 0    50   ~ 0
-DBP+
-Text Label 19300 6750 0    50   ~ 0
-DBP-
 Text Label 19300 6850 0    50   ~ 0
 DIFF_SENSE
 Text Label 19300 7250 0    50   ~ 0
 TERMPWR
 Text Label 19300 7350 0    50   ~ 0
 TERMPWR
-Text Label 20400 5050 2    50   ~ 0
-ATN+
-Text Label 20400 5150 2    50   ~ 0
-ATN-
-Text Label 20400 5450 2    50   ~ 0
-BSY+
-Text Label 20400 5550 2    50   ~ 0
-BSY-
-Text Label 20400 5650 2    50   ~ 0
-ACK+
-Text Label 20400 5750 2    50   ~ 0
-ACK-
-Text Label 20400 5850 2    50   ~ 0
-RST+
-Text Label 20400 5950 2    50   ~ 0
-RST-
-Text Label 20400 6050 2    50   ~ 0
-MSG+
-Text Label 20400 6150 2    50   ~ 0
-MSG-
-Text Label 20400 6250 2    50   ~ 0
-SEL+
-Text Label 20400 6350 2    50   ~ 0
-SEL-
-Text Label 20400 6450 2    50   ~ 0
-CD+
-Text Label 20400 6550 2    50   ~ 0
-CD-
-Text Label 20400 6650 2    50   ~ 0
-REQ+
-Text Label 20400 6750 2    50   ~ 0
-REQ-
-Text Label 20400 6850 2    50   ~ 0
-IO+
-Text Label 20400 6950 2    50   ~ 0
-IO-
 $Comp
 L lethalbit:THVD1451 U4
 U 1 1 5F265FEE
@@ -5201,7 +5129,7 @@ Wire Wire Line
 Wire Wire Line
 	16150 14400 15950 14400
 $Comp
-L Connector:USB_B_Micro J1
+L squishy-rescue:USB_B_Micro-Connector J1
 U 1 1 70E3C85C
 P 900 1550
 F 0 "J1" H 957 2017 50  0000 C CNN
@@ -7721,4 +7649,76 @@ Wire Bus Line
 	21100 10550 21100 11250
 Wire Bus Line
 	4800 13300 4800 14300
+Text Label 19300 6650 0    50   ~ 0
+DBP+
+Text Label 19300 6750 0    50   ~ 0
+DBP-
+Text Label 19300 5050 0    50   ~ 0
+DB0+
+Text Label 19300 5150 0    50   ~ 0
+DB0-
+Text Label 19300 5250 0    50   ~ 0
+DB1+
+Text Label 19300 5350 0    50   ~ 0
+DB1-
+Text Label 19300 5450 0    50   ~ 0
+DB2+
+Text Label 19300 5550 0    50   ~ 0
+DB2-
+Text Label 19300 5650 0    50   ~ 0
+DB3+
+Text Label 19300 5750 0    50   ~ 0
+DB3-
+Text Label 19300 5850 0    50   ~ 0
+DB4+
+Text Label 19300 5950 0    50   ~ 0
+DB4-
+Text Label 19300 6050 0    50   ~ 0
+DB5+
+Text Label 19300 6150 0    50   ~ 0
+DB5-
+Text Label 19300 6250 0    50   ~ 0
+DB6+
+Text Label 19300 6350 0    50   ~ 0
+DB6-
+Text Label 19300 6450 0    50   ~ 0
+DB7+
+Text Label 19300 6550 0    50   ~ 0
+DB7-
+Text Label 20400 6950 2    50   ~ 0
+IO-
+Text Label 20400 6850 2    50   ~ 0
+IO+
+Text Label 20400 6550 2    50   ~ 0
+CD-
+Text Label 20400 6450 2    50   ~ 0
+CD+
+Text Label 20400 5750 2    50   ~ 0
+ACK-
+Text Label 20400 5650 2    50   ~ 0
+ACK+
+Text Label 20400 6350 2    50   ~ 0
+SEL-
+Text Label 20400 6250 2    50   ~ 0
+SEL+
+Text Label 20400 5150 2    50   ~ 0
+ATN-
+Text Label 20400 5050 2    50   ~ 0
+ATN+
+Text Label 20400 5550 2    50   ~ 0
+BSY-
+Text Label 20400 5450 2    50   ~ 0
+BSY+
+Text Label 20400 6150 2    50   ~ 0
+MSG-
+Text Label 20400 6050 2    50   ~ 0
+MSG+
+Text Label 20400 6750 2    50   ~ 0
+REQ-
+Text Label 20400 6650 2    50   ~ 0
+REQ+
+Text Label 20400 5950 2    50   ~ 0
+RST-
+Text Label 20400 5850 2    50   ~ 0
+RST+
 $EndSCHEMATC
