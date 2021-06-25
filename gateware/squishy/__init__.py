@@ -3,7 +3,7 @@ from .utility import *
 
 from .board import Rev1
 
-from .main import SquishyTop
+from .main import Squishy
 
 __all__ = [ 'cli' ]
 
@@ -39,5 +39,5 @@ def cli():
 	if args.action == 'verify':
 		wrn('todo')
 	else:
-		plat.build(SquishyTop(), name = 'squishy', build_dir = args.build_dir, do_build = True)
+		plat.build(Squishy(), name = 'squishy', build_dir = args.build_dir, do_build = True)
 	return 0

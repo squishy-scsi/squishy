@@ -2,6 +2,7 @@
 from nmigen.build import *
 from nmigen.vendor.lattice_ice40 import *
 from nmigen_boards.resources.memory import SPIFlashResources
+from nmigen_boards.resources.interface import UARTResource
 
 __all__ = ('Rev1')
 
@@ -159,7 +160,12 @@ class Rev1(LatticeICE40Platform):
 			cs_n = 'K10', clk = 'L10', copi = 'K9', cipo = 'J9',
 
 			attrs = Attrs(IO_STANDARD="SB_LVCMOS")
-		)
+		),
+
+		UARTResource(0,
+			rx = 'L7', tx = 'k7',
+			attrs = Attrs(IO_STANDARD="SB_LVCMOS")
+		),
 	]
 
 	connectors = []
