@@ -1,16 +1,47 @@
 # SPDX-License-Identifier: BSD-3-Clause
+from nmigen import *
 from nmigen.build import *
 from nmigen.vendor.lattice_ice40 import *
 from nmigen_boards.resources.memory import SPIFlashResources
 from nmigen_boards.resources.interface import UARTResource
 
-__all__ = ('Rev1')
+__all__ = ('Rev1', 'ICE40ClockDomainGenerator')
+
+# This is pain, why
+class ICE40ClockDomainGenerator(Elaboratable):
+	def __init__(self):
+		pass
+
+	def elaborate(self, platform):
+		m = Module()
+
+		m.domains.sync   = ClockDomain()
+		m.domains.usb    = ClockDomain()
+		m.domains.scsi   = ClockDomain()
+
+		platform.lookup(platform.default_clk).attrs['GLOBAL'] = False
+
+		clk48 = Signal()
+
+		platform.add_clock_constraint(clk48, 48e6)
+
+		m.d.comb += [
+			clk48.eq(platform.request(platform.default_clk).i),
+
+			ClockSignal('sync')   .eq(clk48),
+			ClockSignal('scsi')   .eq(clk48),
+		]
+
+		return m
+
 
 class Rev1(LatticeICE40Platform):
 	device      = 'iCE40HX8K'
 	package     = 'BG121'
 	default_clk = 'clk'
 	toolchain   = 'Trellis'
+
+	clock_domain_generator = ICE40ClockDomainGenerator
 
 	resources = [
 		Resource('clk', 0,
@@ -163,9 +194,13 @@ class Rev1(LatticeICE40Platform):
 		),
 
 		UARTResource(0,
-			rx = 'L7', tx = 'k7',
+			rx = 'L7', tx = 'K7',
 			attrs = Attrs(IO_STANDARD="SB_LVCMOS")
 		),
 	]
 
 	connectors = []
+
+
+
+

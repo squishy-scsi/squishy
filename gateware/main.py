@@ -3,6 +3,8 @@
 import sys
 from pathlib import Path
 
+sys.path.insert(0, '/pool/abyss/Projects/luna')
+
 gateware_path = Path(sys.argv[0]).resolve()
 
 if (gateware_path.parent / 'squishy').is_dir():

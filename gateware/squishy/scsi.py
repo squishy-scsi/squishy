@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from nmigen import Elaboratable, Module, Signal
 
+__all__ = ('SCSIInterface')
+
 class SCSIInterface(Elaboratable):
 	def __init__(self, *, rx, tx, tx_ctl):
 		self.rx       = rx

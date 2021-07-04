@@ -28,16 +28,24 @@ squishy_bitstream = custom_target(
 )
 
 nextpnr_ice40 = find_program('nextpnr-ice40', required: true)
-
 run_target(
 	'nextpnr-gui',
 	command: [
 		nextpnr_ice40.full_path(),
 		'--gui',
 		'--hx8k', '--package', 'bg121',
-		'--freq', '65',
+		'--freq', '65.00',
 		'--pcf', '@0@/squishy.pcf'.format(meson.current_build_dir()),
 		'--json', '@0@/squishy.json'.format(meson.current_build_dir()),
 	]
 
+)
+
+icebox_stat = find_program('icebox_stat', required: true)
+run_target(
+	'gateware-stats',
+	command: [
+		icebox_stat.full_path(),
+		meson.current_build_dir() / 'squishy.asc'
+	]
 )
