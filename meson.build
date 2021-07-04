@@ -75,7 +75,6 @@ py_modules = [
 	'usb',
 	'construct',
 	'nmigen',
-	'luna',
 ]
 
 py_inst = py.find_installation(
