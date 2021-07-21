@@ -11,5 +11,19 @@
 # 	]
 # )
 
+uwu_efi = dependency(
+	'uwu-efi',
+	required: true,
+	version: '>=0.0.1',
+	fallback: ['uwu-efi', 'uwuefi_dep'],
+	native: false,
+	default_options: [
+		'default_library=static',
+		'build_tests=false',
+		'build_uwuasm=false',
+		'build_examples=false',
+	]
+)
+
 subdir('squish')
 subdir('slurp')

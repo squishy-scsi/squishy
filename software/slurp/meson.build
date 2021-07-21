@@ -16,6 +16,10 @@ slurp = shared_module(
     name_suffix: 'efi',
     name_prefix: '',
 
+    dependencies: [
+        uwu_efi,
+    ],
+
     include_directories: [
     	slurp_inc,
     	include_directories(
