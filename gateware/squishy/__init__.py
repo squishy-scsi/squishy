@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from .utility import *
-from .main    import Squishy
+from .utility  import *
 from .platform import Rev1
+from .core     import Squishy
 
 __all__ = ('cli')
 
