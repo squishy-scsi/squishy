@@ -1,12 +1,17 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from nmigen              import *
 from nmigen_stdio.serial import AsyncSerial
+from nmigen_soc.wishbone import Interface
+from nmigen_soc.memory   import MemoryMap
 
 __all__ = ('UARTInterface')
 
 class UARTInterface(Elaboratable):
-	def __init__(self, *, config):
+	def __init__(self, *, config, ctl_bus):
 		self.config = config
+
+		self._ctl_bus = ctl_bus
+
 
 		self._uart = None
 

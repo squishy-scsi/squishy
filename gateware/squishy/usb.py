@@ -1,13 +1,24 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from nmigen import *
+from nmigen              import *
+from nmigen_soc.wishbone import Interface
+from nmigen_soc.memory   import MemoryMap
 
 from luna.usb2 import *
 
 __all__ = ('USBInterface')
 
 class USBInterface(Elaboratable):
-	def __init__(self, *, config):
+	def __init__(self, *, config, wb_config):
 		self.config = config
+		self._wb_cfg = wb_config
+
+		self.bus = Interface(
+			addr_width  = 4,
+			data_width  = self._wb_cfg['data'],
+			granularity = self._wb_cfg['gran'],
+			features    = self._wb_cfg['feat'],
+			name        = 'usb_wb'
+		)
 
 		self.activity = Signal()
 
