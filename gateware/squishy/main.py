@@ -9,6 +9,30 @@ from .spi  import SPIInterface
 
 __all__ = ('Squishy')
 
+"""
+	Squishy Architecture
+
+               ┌──────────┐
+      ┌────────►RAM BUFFER◄───────┐
+      │        └──────────┘       │
+  ┌───▼───┐                  ┌────▼───┐
+┌─┤USB PHY◄─────────┬────────►SCSI PHY│
+│ └─┬──▲──┘         │        └───┬────┘
+│   │  │            │            │
+│   │  │            │            │
+│ ┌─▼──┴──┐   ┌─────▼───────┐    │
+│ │SPI PHY├─┐ │BUS INITIATOR│    │
+│ └───────┘ │ └────┬──▲───┬─┘    │
+│           │      │  │   │      │
+└───────────┤      │  │   │      │
+            │     ┌▼──┴┐  │    ┌─▼──┐
+            │     │UART├──┴────►LEDS│
+            │     └────┘       └▲───┘
+            │                   │
+            └───────────────────┘
+
+"""
+
 class Squishy(Elaboratable):
 	def __init__(self, *, uart_config, usb_config, scsi_config):
 		# PHY Options
