@@ -168,19 +168,19 @@ class Rev1(LatticeICE40Platform):
 		),
 
 		Resource('leds', 0,
-			Subsignal('led_1',
+			Subsignal('led_1',			# BLUE
 				Pins('L1', dir = 'o')
 			),
-			Subsignal('led_2',
+			Subsignal('led_2',			# PINK
 				Pins('L2', dir = 'o')
 			),
-			Subsignal('led_3',
+			Subsignal('led_3',			# WHITE
 				Pins('K3', dir = 'o')
 			),
-			Subsignal('led_4',
+			Subsignal('led_4',			# PINK
 				Pins('L3', dir = 'o')
 			),
-			Subsignal('led_5',
+			Subsignal('led_5', 			# BLUE
 				Pins('K4', dir = 'o')
 			),
 
