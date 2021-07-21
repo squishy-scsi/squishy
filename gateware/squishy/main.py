@@ -8,9 +8,15 @@ from .scsi import SCSIInterface
 
 class Squishy(Elaboratable):
 	def __init__(self, *,
-		uart_baud = 9600 , enable_uart = True,
+		uart_baud   = 9600,
+		enable_uart = True,
 
-		vid = 0xFEED, pid = 0xACA7
+		vid = 0xFEED,
+		pid = 0xACA7,
+
+		manufacturer  = 'aki-nyan',
+		product       = 'squishy',
+		serial_number = 'ニャ〜'
 	):
 		# Debug UART
 		self.uart_baud   = uart_baud
@@ -19,6 +25,11 @@ class Squishy(Elaboratable):
 		self.vid = vid
 		self.pid = pid
 
+		self.manufacturer  = manufacturer
+		self.product       = product
+		self.serial_number = serial_number
+
+		# Module References
 		self.uart = None
 		self.scsi = None
 		self.usb  = None
@@ -38,7 +49,15 @@ class Squishy(Elaboratable):
 			tx     = platform.request('scsi_tx'),
 			tx_ctl = platform.request('scsi_tx_ctl')
 		)
-		self.usb  = USBInterface(vid = self.vid, pid = self.pid)
+
+		self.usb  = USBInterface(
+			vid = self.vid,
+			pid = self.pid,
+
+			manufacturer  = self.manufacturer,
+			product       = self.product,
+			serial_number = self.product
+		)
 
 
 		m = Module()

@@ -22,6 +22,27 @@ option(
 )
 
 option(
+	'manufacturer',
+	type: 'string',
+	value: 'aki-nyan',
+	description: 'The USB Device Manufacturer'
+)
+
+option(
+	'product',
+	type: 'string',
+	value: 'squishy',
+	description: 'The USB Device Product'
+)
+
+option(
+	'serial_number',
+	type: 'string',
+	value: 'ニャ〜',
+	description: 'The USB Device Serial Number'
+)
+
+option(
 	'uart_baud',
 	type: 'combo',
 	choices: [

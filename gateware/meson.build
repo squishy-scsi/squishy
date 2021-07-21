@@ -35,6 +35,10 @@ squishy_bitstream = custom_target(
 		# USB Configuration Options
 		'--vid', get_option('vid').to_string(),
 		'--pid', get_option('pid').to_string(),
+		'--manufacturer',  get_option('manufacturer'),
+		'--product',       get_option('product'),
+		'--serial_number', get_option('serial_number'),
+
 	] + optional_flags,
 	build_by_default: true,
 	build_always_stale: true,

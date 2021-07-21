@@ -7,9 +7,13 @@ from luna.usb2 import *
 __all__ = ('USBInterface')
 
 class USBInterface(Elaboratable):
-	def __init__(self, *, vid, pid):
+	def __init__(self, *, vid, pid, manufacturer, product, serial_number):
 		self.vid = vid
 		self.pid = pid
+
+		self.manufacturer  = manufacturer
+		self.product       = product
+		self.serial_number = serial_number
 
 		self.activity = Signal()
 
@@ -25,9 +29,9 @@ class USBInterface(Elaboratable):
 			dev.idVendor  = self.vid
 			dev.idProduct = self.pid
 
-			dev.iManufacturer = 'aki-nyan'
-			dev.iProduct      = 'squishy'
-			dev.iSerialNumber = 'ニャ〜'
+			dev.iManufacturer = self.manufacturer
+			dev.iProduct      = self.product
+			dev.iSerialNumber = self.serial_number
 
 			dev.bNumConfigurations = 1
 
