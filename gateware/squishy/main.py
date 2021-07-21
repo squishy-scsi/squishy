@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from nmigen import *
 
-from .usb import USBInterface
-from .scsi import SCSIInterface
+from .leds import LEDInterface
 from .uart import UARTInterface
+from .scsi import SCSIInterface
+from .usb  import USBInterface
 
 __all__ = ('Squishy')
 
@@ -15,12 +16,14 @@ class Squishy(Elaboratable):
 		self.scsi_config = scsi_config
 
 		# Module References
+		self.leds = None
 		self.uart = None
 		self.scsi = None
 		self.usb  = None
 
 	def elaborate(self, platform):
 		# Pull in the individual components
+		self.leds = LEDInterface()
 		if self.uart_config['enabled']:
 			self.uart = UARTInterface(config = self.uart_config)
 		self.scsi = SCSIInterface(config = self.scsi_config)
@@ -28,17 +31,12 @@ class Squishy(Elaboratable):
 
 		m = Module()
 
+		m.submodules.leds = self.leds
 		if self.uart is not None:
 			m.submodules.uart = self.uart
 
 		m.submodules.scsi = self.scsi
 		m.submodules.usb  = self.usb
 
-		leds = platform.request('leds')
-
-		m.d.comb += [
-			leds.led_1.eq(self.scsi.activity),
-			leds.led_2.eq(self.usb.activity)
-		]
 
 		return m
