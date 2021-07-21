@@ -1,0 +1,6 @@
+option(
+	'image_dpi',
+	type: 'integer',
+	value: 96,
+	description: 'The DPI at which to export the SVG files into PNGs'
+)
