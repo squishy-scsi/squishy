@@ -2,7 +2,6 @@
 from nmigen              import *
 from nmigen_soc.wishbone import Decoder, Arbiter
 
-from .leds import LEDInterface
 from .uart import UARTInterface
 from .scsi import SCSIInterface
 from .usb  import USBInterface
@@ -66,7 +65,6 @@ class Squishy(Elaboratable):
 		)
 
 		# Module References
-		self.leds = LEDInterface()
 		self.spi  = SPIInterface()
 		if self.uart_config['enabled']:
 			self.uart = UARTInterface(
@@ -86,8 +84,10 @@ class Squishy(Elaboratable):
 			wb_config = self._wb_cfg
 		)
 
+		self._status_led = None
 
 	def elaborate(self, platform):
+		self._status_led = platform.request('led', 4)
 		m = Module()
 
 		m.submodules.nya = platform.clock_domain_generator()
@@ -96,7 +96,6 @@ class Squishy(Elaboratable):
 		m.submodules.arbiter = self._wb_arbiter
 		m.submodules.decoder = self._wb_decoder
 
-		m.submodules.leds = self.leds
 		if self.uart is not None:
 			m.submodules.uart = self.uart
 

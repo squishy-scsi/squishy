@@ -12,10 +12,13 @@ class UARTInterface(Elaboratable):
 
 		self._ctl_bus = ctl_bus
 
+		self._status_led = None
 
 		self._uart = None
 
 	def elaborate(self, platform):
+		self._status_led = platform.request('led', 0)
+
 		if self.config['enabled']:
 			self._uart = AsyncSerial(
 				# TODO: Figure out how to extract the global clock freq and stuff it into the divisor calc

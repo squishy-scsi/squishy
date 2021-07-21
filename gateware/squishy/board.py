@@ -3,6 +3,7 @@ from nmigen                            import *
 from nmigen.build                      import *
 from nmigen.vendor.lattice_ice40       import *
 from nmigen_boards.resources.memory    import SPIFlashResources
+from nmigen_boards.resources.user      import LEDResources
 from nmigen_boards.resources.interface import UARTResource
 
 __all__ = ('Rev1', 'ICE40ClockDomainGenerator')
@@ -182,24 +183,15 @@ class Rev1(LatticeICE40Platform):
 			Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 
-		Resource('leds', 0,
-			Subsignal('led_1',			# BLUE
-				Pins('L1', dir = 'o')
-			),
-			Subsignal('led_2',			# PINK
-				Pins('L2', dir = 'o')
-			),
-			Subsignal('led_3',			# WHITE
-				Pins('K3', dir = 'o')
-			),
-			Subsignal('led_4',			# PINK
-				Pins('L3', dir = 'o')
-			),
-			Subsignal('led_5', 			# BLUE
-				Pins('K4', dir = 'o')
-			),
-
-			Attrs(IO_STANDARD = 'SB_LVCMOS')
+		*LEDResources(
+			pins = [
+				'L1', # [0] BLUE
+				'L2', # [1] PINK
+				'K3', # [2] WHITE
+				'L3', # [3] PINK
+				'K4'  # [4] BLUE
+			],
+			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS'),
 		),
 
 		*SPIFlashResources(0,

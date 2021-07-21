@@ -20,7 +20,7 @@ class USBInterface(Elaboratable):
 			name        = 'usb_wb'
 		)
 
-		self.activity = Signal()
+		self._status_led = None
 
 		self.usb_dev = None
 
@@ -71,9 +71,10 @@ class USBInterface(Elaboratable):
 	def elaborate(self, platform):
 		m = Module()
 
-		ulpi_bus = platform.request('ulpi')
+		self._status_led = platform.request('led', 2)
+		self._ulpi_bus = platform.request('ulpi')
 
-		m.submodules.usb = self.usb = USBDevice(bus = ulpi_bus)
+		m.submodules.usb = self.usb = USBDevice(bus = self._ulpi_bus)
 
 		descriptors = self.init_descriptors()
 		self.usb.add_standard_control_endpoint(descriptors)
@@ -81,7 +82,7 @@ class USBInterface(Elaboratable):
 		m.d.comb += [
 			self.usb.connect.eq(1),
 
-			self.activity.eq(self.usb.tx_activity_led | self.usb.rx_activity_led)
+			self._status_led.eq(self.usb.tx_activity_led | self.usb.rx_activity_led)
 		]
 
 		return m
