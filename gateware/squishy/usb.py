@@ -117,6 +117,10 @@ class USBInterface(Elaboratable):
 		]
 
 
+		m.d.comb += [
+			self._interface_status[0].eq(self.usb.tx_activity_led),
+			self._interface_status[1].eq(self.usb.rx_activity_led),
+		]
 
 		self._csr_elab(m)
 
