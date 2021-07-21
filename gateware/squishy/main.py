@@ -37,6 +37,7 @@ class Squishy(Elaboratable):
 	def elaborate(self, platform):
 		if self.enable_uart:
 			self.uart = AsyncSerial(
+				# TODO: Figure out how to extract the global clock freq and stuff it into the divisor calc
 				divisor      = int(48e6 // self.uart_baud),
 				divisor_bits = None, # Will force use of `bits_for(divisor)`,
 				data_bits    = 8,
