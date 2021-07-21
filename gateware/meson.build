@@ -34,7 +34,6 @@ run_target(
 		nextpnr_ice40.full_path(),
 		'--gui',
 		'--hx8k', '--package', 'bg121',
-		'--freq', '65.00',
 		'--pcf', '@0@/squishy.pcf'.format(meson.current_build_dir()),
 		'--json', '@0@/squishy.json'.format(meson.current_build_dir()),
 	]
