@@ -68,9 +68,10 @@ class Squishy(Elaboratable):
 		self.spi  = SPIInterface()
 		if self.uart_config['enabled']:
 			self.uart = UARTInterface(
-				config  = self.uart_config,
-				ctl_bus = self._wb_decoder.bus
+				config    = self.uart_config,
+				wb_config = self._wb_cfg
 			)
+			self._wb_arbiter.add(self.uart.ctl_bus)
 
 		else:
 			self.uart = None
@@ -78,11 +79,13 @@ class Squishy(Elaboratable):
 			config    = self.scsi_config,
 			wb_config = self._wb_cfg
 		)
+		self._wb_arbiter.add(self.scsi.ctl_bus)
 
 		self.usb  = USBInterface(
 			config    = self.usb_config,
 			wb_config = self._wb_cfg
 		)
+		self._wb_arbiter.add(self.usb.ctl_bus)
 
 		self._status_led = None
 
