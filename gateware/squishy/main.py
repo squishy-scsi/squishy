@@ -2,9 +2,10 @@
 from nmigen import *
 from nmigen_stdio.serial import AsyncSerial
 
-
 from .usb import USBInterface
 from .scsi import SCSIInterface
+
+__all__ = ('Squishy')
 
 class Squishy(Elaboratable):
 	def __init__(self, *, uart_config, usb_config, scsi_config):
