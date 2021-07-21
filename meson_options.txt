@@ -63,3 +63,25 @@ option(
 	description: 'The rate to run the debug UART'
 )
 
+option(
+	'uart_data_bits',
+	type: 'combo',
+	choices: [
+		'5', '6', '7', '8', '9'
+	],
+	value: '8',
+	description: 'The data bits to use for the UART'
+)
+
+option(
+	'uart_parity',
+	type: 'combo',
+	choices: [
+		'none', 'mark', 'space',
+		'even', 'odd'
+	],
+	value: 'none',
+	description: 'The parity mode for the debug UART'
+)
+
+

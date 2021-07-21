@@ -85,6 +85,24 @@ def cli():
 		help    = 'The rate at which to run the debug UART'
 	)
 
+	uart_options.add_argument(
+		'--data-bits', '-D',
+		type    = int,
+		default = 8,
+		help    = 'The data bits to use for the UART'
+	)
+
+	uart_options.add_argument(
+		'--parity', '-c',
+		type    = str,
+		choices = [
+			'none', 'mark', 'space'
+			'even', 'odd'
+		],
+		default = 'none',
+		help    = 'The parity mode for the debug UART'
+	)
+
 	args = parser.parse_args()
 
 	plat = Rev1()
@@ -92,6 +110,8 @@ def cli():
 	gateware = Squishy(
 		enable_uart = args.enable_uart,
 		uart_baud   = args.baud,
+		uart_parity = args.parity,
+		uart_data   = args.data_bits,
 
 		vid = args.vid,
 		pid = args.pid,

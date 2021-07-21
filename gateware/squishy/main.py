@@ -8,8 +8,10 @@ from .scsi import SCSIInterface
 
 class Squishy(Elaboratable):
 	def __init__(self, *,
-		uart_baud   = 9600,
 		enable_uart = True,
+		uart_baud   = 9600,
+		uart_parity = 'none',
+		uart_data   = 8,
 
 		vid = 0xFEED,
 		pid = 0xACA7,
@@ -19,8 +21,11 @@ class Squishy(Elaboratable):
 		serial_number = 'ニャ〜'
 	):
 		# Debug UART
-		self.uart_baud   = uart_baud
 		self.enable_uart = enable_uart
+		self.uart_baud   = uart_baud
+		self.uart_parity = uart_parity
+		self.uart_data   = uart_data
+
 		# USB
 		self.vid = vid
 		self.pid = pid
@@ -40,8 +45,8 @@ class Squishy(Elaboratable):
 				# TODO: Figure out how to extract the global clock freq and stuff it into the divisor calc
 				divisor      = int(48e6 // self.uart_baud),
 				divisor_bits = None, # Will force use of `bits_for(divisor)`,
-				data_bits    = 8,
-				parity       = 'none',
+				data_bits    = self.uart_data,
+				parity       = self.uart_parity,
 				pins         = platform.request('uart')
 			)
 

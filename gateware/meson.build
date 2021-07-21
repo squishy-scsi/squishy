@@ -7,7 +7,9 @@ optional_flags = []
 if get_option('enable_uart')
 	optional_flags += [
 		'--enable-uart',
-		'--baud', get_option('uart_baud'),
+		'--baud',      get_option('uart_baud'),
+		'--data-bits', get_option('uart_data_bits'),
+		'--parity',    get_option('uart_parity'),
 	]
 endif
 
