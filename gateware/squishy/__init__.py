@@ -1,11 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from .utility import *
+from .board   import Rev1
+from .main    import Squishy
 
-from .board import Rev1
-
-from .main import Squishy
-
-__all__ = [ 'cli' ]
+__all__ = ('cli')
 
 
 def cli():

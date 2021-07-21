@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import sys
 
-__all__ = [ 'log', 'err', 'wrn', 'inf', 'dbg', 'print_table' ]
+__all__ = ('log', 'err', 'wrn', 'inf', 'dbg', 'print_table')
 
 def log(str, end = '\n', file = sys.stdout):
 	print(f'\x1B[35m[*]\x1B[0m {str}', end = end, file = file)

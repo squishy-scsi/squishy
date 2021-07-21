@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from nmigen import *
+from nmigen              import *
 from nmigen_stdio.serial import AsyncSerial
 
 __all__ = ('UARTInterface')
