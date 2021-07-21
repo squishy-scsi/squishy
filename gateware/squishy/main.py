@@ -5,6 +5,7 @@ from .leds import LEDInterface
 from .uart import UARTInterface
 from .scsi import SCSIInterface
 from .usb  import USBInterface
+from .spi  import SPIInterface
 
 __all__ = ('Squishy')
 
@@ -17,6 +18,7 @@ class Squishy(Elaboratable):
 
 		# Module References
 		self.leds = LEDInterface()
+		self.spi  = SPIInterface()
 		if self.uart_config['enabled']:
 			self.uart = UARTInterface(config = self.uart_config)
 		else:
@@ -33,6 +35,6 @@ class Squishy(Elaboratable):
 
 		m.submodules.scsi = self.scsi
 		m.submodules.usb  = self.usb
-
+		m.submodules.spi  = self.spi
 
 		return m
