@@ -20,6 +20,12 @@ squishy_bitstream = custom_target(
 	command: [
 		py_inst.full_path(), '@INPUT@',
 		'--build-dir', meson.current_build_dir(),
+		# USB Configuration Options
+		'--vid', get_option('vid').to_string(),
+		'--pid', get_option('pid').to_string(),
+		# Debug UART Configuration Options
+		'--baud', get_option('uart_baud'),
+
 	],
 	build_by_default: true,
 	build_always_stale: true,

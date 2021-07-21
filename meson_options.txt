@@ -4,3 +4,32 @@ option(
 	value: 96,
 	description: 'The DPI at which to export the SVG files into PNGs'
 )
+
+option(
+	'vid',
+	type: 'integer',
+	min: 0, max: 65535,
+	value: 65261,
+	description: 'The USB Vendor ID to use'
+)
+
+option(
+	'pid',
+	type: 'integer',
+	min: 0, max: 65535,
+	value: 44199,
+	description: 'The USB Product ID to use'
+)
+
+option(
+	'uart_baud',
+	type: 'combo',
+	choices: [
+		'50', '75', '110', '134', '150', '200', '300',
+		'600', '1200', '1800', '2400', '4800', '9600',
+		'19200', '28800', '38400', '57600', '76800',
+		'115200', '230400', '460800', '576000', '921600'
+	],
+	value: '9600',
+	description: 'The rate to run the debug UART'
+)
