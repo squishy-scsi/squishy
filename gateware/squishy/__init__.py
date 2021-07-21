@@ -108,17 +108,23 @@ def cli():
 	plat = Rev1()
 
 	gateware = Squishy(
-		enable_uart = args.enable_uart,
-		uart_baud   = args.baud,
-		uart_parity = args.parity,
-		uart_data   = args.data_bits,
+		uart_config = {
+			'enabled'  : args.enable_uart,
+			'baud'     : args.baud,
+			'parity'   : args.parity,
+			'data_bits': args.data_bits,
+		},
 
-		vid = args.vid,
-		pid = args.pid,
+		usb_config = {
+			'vid': args.vid,
+			'pid': args.pid,
 
-		manufacturer  = args.manufacturer,
-		product       = args.product,
-		serial_number = args.serial_number
+			'mfr': args.manufacturer,
+			'prd': args.product,
+			'srn': args.serial_number,
+		},
+
+		scsi_config = {}
 	)
 
 	if args.action == 'verify':

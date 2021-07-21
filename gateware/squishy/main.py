@@ -7,32 +7,11 @@ from .usb import USBInterface
 from .scsi import SCSIInterface
 
 class Squishy(Elaboratable):
-	def __init__(self, *,
-		enable_uart = True,
-		uart_baud   = 9600,
-		uart_parity = 'none',
-		uart_data   = 8,
-
-		vid = 0xFEED,
-		pid = 0xACA7,
-
-		manufacturer  = 'aki-nyan',
-		product       = 'squishy',
-		serial_number = 'ニャ〜'
-	):
-		# Debug UART
-		self.enable_uart = enable_uart
-		self.uart_baud   = uart_baud
-		self.uart_parity = uart_parity
-		self.uart_data   = uart_data
-
-		# USB
-		self.vid = vid
-		self.pid = pid
-
-		self.manufacturer  = manufacturer
-		self.product       = product
-		self.serial_number = serial_number
+	def __init__(self, *, uart_config, usb_config, scsi_config):
+		# PHY Options
+		self.uart_config = uart_config
+		self.usb_config  = usb_config
+		self.scsi_config = scsi_config
 
 		# Module References
 		self.uart = None
@@ -40,35 +19,22 @@ class Squishy(Elaboratable):
 		self.usb  = None
 
 	def elaborate(self, platform):
-		if self.enable_uart:
+		if self.uart_config['enabled']:
 			self.uart = AsyncSerial(
 				# TODO: Figure out how to extract the global clock freq and stuff it into the divisor calc
-				divisor      = int(48e6 // self.uart_baud),
+				divisor      = int(48e6 // self.uart_config['baud']),
 				divisor_bits = None, # Will force use of `bits_for(divisor)`,
-				data_bits    = self.uart_data,
-				parity       = self.uart_parity,
+				data_bits    = self.uart_config['data_bits'],
+				parity       = self.uart_config['parity'],
 				pins         = platform.request('uart')
 			)
 
-		self.scsi = SCSIInterface(
-			rx     = platform.request('scsi_rx'),
-			tx     = platform.request('scsi_tx'),
-			tx_ctl = platform.request('scsi_tx_ctl')
-		)
-
-		self.usb  = USBInterface(
-			vid = self.vid,
-			pid = self.pid,
-
-			manufacturer  = self.manufacturer,
-			product       = self.product,
-			serial_number = self.product
-		)
-
+		self.scsi = SCSIInterface(config = self.scsi_config)
+		self.usb  = USBInterface(config = self.usb_config)
 
 		m = Module()
 
-		if self.enable_uart:
+		if self.uart_config['enabled']:
 			m.submodules.uart = self.uart
 
 		m.submodules.scsi = self.scsi
