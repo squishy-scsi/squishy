@@ -25,19 +25,45 @@ def cli():
 
 
 	core_options.add_argument(
-		'--build-dir',
-		type = str,
+		'--build-dir', '-b',
+		type    = str,
 		default = 'build',
-		help = 'The build directory for the Squishy gateware'
+		help    = 'The build directory for the Squishy gateware'
 	)
 
+	core_options.add_argument(
+		'--vid', '-V',
+		type    = int,
+		default = 0xFEED,
+		help    = 'The USB Vendor ID to use'
+	)
+
+	core_options.add_argument(
+		'--pid', '-P',
+		type    = int,
+		default = 0xACA7,
+		help    = 'The USB Product ID to use'
+	)
+
+	core_options.add_argument(
+		'--baud', '-B',
+		type    = int,
+		default = 9600,
+		help    = 'The rate at which to run the debug UART'
+	)
 
 	args = parser.parse_args()
 
 	plat = Rev1()
 
+	gateware = Squishy(
+		uart_baud = args.baud,
+		vid       = args.vid,
+		pid       = args.pid
+	)
+
 	if args.action == 'verify':
 		wrn('todo')
 	else:
-		plat.build(Squishy(), name = 'squishy', build_dir = args.build_dir, do_build = True)
+		plat.build(gateware, name = 'squishy', build_dir = args.build_dir, do_build = True)
 	return 0
