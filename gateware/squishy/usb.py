@@ -15,14 +15,6 @@ class USBInterface(Elaboratable):
 
 		self._wb_cfg = wb_config
 
-		self.bus = Interface(
-			addr_width  = 4,
-			data_width  = self._wb_cfg['data'],
-			granularity = self._wb_cfg['gran'],
-			features    = self._wb_cfg['feat'],
-			name        = 'usb_wb'
-		)
-
 		self.ctl_bus = Interface(
 			addr_width  = self._wb_cfg['addr'],
 			data_width  = self._wb_cfg['data'],
@@ -36,6 +28,7 @@ class USBInterface(Elaboratable):
 		}
 		self._init_csrs()
 		self._csr_bridge = WishboneCSRBridge(self._csr['mux'].bus)
+		self.bus = self._csr_bridge.wb_bus
 
 		self._status_led = None
 
@@ -98,15 +91,20 @@ class USBInterface(Elaboratable):
 		self._csr['mux'].add(self._csr['regs']['status'], addr = 0)
 
 	def _csr_elab(self, m):
-		m.submodules += self._csr_bridge
-		m.submodules.csr_mux = self._csr['mux']
+		m.d.comb += [
+			self._csr['regs']['status'].r_data.eq(self._interface_status)
+		]
 
 	def elaborate(self, platform):
 		self._status_led = platform.request('led', 2)
 		self._ulpi_bus = platform.request('ulpi')
 
+		self._interface_status = Signal(8)
+
 		m = Module()
-		self._csr_elab(m)
+		m.submodules += self._csr_bridge
+		m.submodules.csr_mux = self._csr['mux']
+
 
 		m.submodules.usb = self.usb = USBDevice(bus = self._ulpi_bus)
 
@@ -120,5 +118,6 @@ class USBInterface(Elaboratable):
 
 
 
+		self._csr_elab(m)
 
 		return m

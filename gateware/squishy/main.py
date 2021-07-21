@@ -79,12 +79,14 @@ class Squishy(Elaboratable):
 			config    = self.scsi_config,
 			wb_config = self._wb_cfg
 		)
+		self._wb_decoder.add(self.scsi.bus, addr = 0)
 		self._wb_arbiter.add(self.scsi.ctl_bus)
 
 		self.usb  = USBInterface(
 			config    = self.usb_config,
 			wb_config = self._wb_cfg
 		)
+		self._wb_decoder.add(self.usb.bus, addr = 16)
 		self._wb_arbiter.add(self.usb.ctl_bus)
 
 		self._status_led = None

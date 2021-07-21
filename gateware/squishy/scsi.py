@@ -12,14 +12,6 @@ class SCSIInterface(Elaboratable):
 
 		self._wb_cfg = wb_config
 
-		self.bus = Interface(
-			addr_width  = 4,
-			data_width  = self._wb_cfg['data'],
-			granularity = self._wb_cfg['gran'],
-			features    = self._wb_cfg['feat'],
-			name        = 'scsi_wb'
-		)
-
 		self.ctl_bus = Interface(
 			addr_width  = self._wb_cfg['addr'],
 			data_width  = self._wb_cfg['data'],
@@ -33,6 +25,7 @@ class SCSIInterface(Elaboratable):
 		}
 		self._init_csrs()
 		self._csr_bridge = WishboneCSRBridge(self._csr['mux'].bus)
+		self.bus = self._csr_bridge.wb_bus
 
 		self.rx     = None
 		self.tx     = None
@@ -55,8 +48,9 @@ class SCSIInterface(Elaboratable):
 		self._csr['mux'].add(self._csr['regs']['status'], addr = 0)
 
 	def _csr_elab(self, m):
-		m.submodules += self._csr_bridge
-		m.submodules.csr_mux = self._csr['mux']
+		m.d.comb += [
+			self._csr['regs']['status'].r_data.eq(self._interface_status)
+		]
 
 	def elaborate(self, platform):
 		self.rx     = platform.request('scsi_rx'),
@@ -64,7 +58,15 @@ class SCSIInterface(Elaboratable):
 		self.tx_ctl = platform.request('scsi_tx_ctl')
 		self._status_led = platform.request('led', 1)
 
+		self._interface_status = Signal(8)
+
 		m = Module()
+		m.submodules += self._csr_bridge
+		m.submodules.csr_mux = self._csr['mux']
+
+
+
+
 		self._csr_elab(m)
 
 
