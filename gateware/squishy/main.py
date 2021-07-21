@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from nmigen import *
-from nmigen_stdio.serial import AsyncSerial
 
 from .usb import USBInterface
 from .scsi import SCSIInterface
+from .uart import UARTInterface
 
 __all__ = ('Squishy')
 
@@ -20,22 +20,15 @@ class Squishy(Elaboratable):
 		self.usb  = None
 
 	def elaborate(self, platform):
+		# Pull in the individual components
 		if self.uart_config['enabled']:
-			self.uart = AsyncSerial(
-				# TODO: Figure out how to extract the global clock freq and stuff it into the divisor calc
-				divisor      = int(48e6 // self.uart_config['baud']),
-				divisor_bits = None, # Will force use of `bits_for(divisor)`,
-				data_bits    = self.uart_config['data_bits'],
-				parity       = self.uart_config['parity'],
-				pins         = platform.request('uart')
-			)
-
+			self.uart = UARTInterface(config = self.uart_config)
 		self.scsi = SCSIInterface(config = self.scsi_config)
 		self.usb  = USBInterface(config = self.usb_config)
 
 		m = Module()
 
-		if self.uart_config['enabled']:
+		if self.uart is not None:
 			m.submodules.uart = self.uart
 
 		m.submodules.scsi = self.scsi
