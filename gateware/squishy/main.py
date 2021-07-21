@@ -16,19 +16,15 @@ class Squishy(Elaboratable):
 		self.scsi_config = scsi_config
 
 		# Module References
-		self.leds = None
-		self.uart = None
-		self.scsi = None
-		self.usb  = None
-
-	def elaborate(self, platform):
-		# Pull in the individual components
 		self.leds = LEDInterface()
 		if self.uart_config['enabled']:
 			self.uart = UARTInterface(config = self.uart_config)
+		else:
+			self.uart = None
 		self.scsi = SCSIInterface(config = self.scsi_config)
 		self.usb  = USBInterface(config = self.usb_config)
 
+	def elaborate(self, platform):
 		m = Module()
 
 		m.submodules.leds = self.leds
