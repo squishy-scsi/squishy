@@ -3,19 +3,11 @@ from nmigen import *
 
 from luna.usb2 import *
 
-
 __all__ = ('USBInterface')
 
 class USBInterface(Elaboratable):
 	def __init__(self, *, config):
 		self.config = config
-
-		self.vid = self.config['vid']
-		self.pid = self.config['pid']
-
-		self.manufacturer  = self.config['mfr']
-		self.product       = self.config['prd']
-		self.serial_number = self.config['srn']
 
 		self.activity = Signal()
 
@@ -28,12 +20,12 @@ class USBInterface(Elaboratable):
 
 		# Device Descriptor
 		with desc.DeviceDescriptor() as dev:
-			dev.idVendor  = self.vid
-			dev.idProduct = self.pid
+			dev.idVendor  = self.config['vid']
+			dev.idProduct = self.config['pid']
 
-			dev.iManufacturer = self.manufacturer
-			dev.iProduct      = self.product
-			dev.iSerialNumber = self.serial_number
+			dev.iManufacturer = self.config['mfr']
+			dev.iProduct      = self.config['prd']
+			dev.iSerialNumber = self.config['srn']
 
 			dev.bNumConfigurations = 1
 
@@ -71,8 +63,6 @@ class USBInterface(Elaboratable):
 		ulpi_bus = platform.request('ulpi')
 
 		m.submodules.car = platform.clock_domain_generator()
-
-
 		m.submodules.usb = self.usb = USBDevice(bus = ulpi_bus)
 
 		descriptors = self.init_descriptors()
