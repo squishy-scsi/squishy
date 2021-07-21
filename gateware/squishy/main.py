@@ -90,6 +90,8 @@ class Squishy(Elaboratable):
 	def elaborate(self, platform):
 		m = Module()
 
+		m.submodules.nya = platform.clock_domain_generator()
+
 		# Wishbone stuff
 		m.submodules.arbiter = self._wb_arbiter
 		m.submodules.decoder = self._wb_decoder

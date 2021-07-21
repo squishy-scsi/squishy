@@ -73,7 +73,6 @@ class USBInterface(Elaboratable):
 
 		ulpi_bus = platform.request('ulpi')
 
-		m.submodules.car = platform.clock_domain_generator()
 		m.submodules.usb = self.usb = USBDevice(bus = ulpi_bus)
 
 		descriptors = self.init_descriptors()

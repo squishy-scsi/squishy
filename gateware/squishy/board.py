@@ -15,21 +15,36 @@ class ICE40ClockDomainGenerator(Elaboratable):
 	def elaborate(self, platform):
 		m = Module()
 
-		m.domains.sync   = ClockDomain()
 		m.domains.usb    = ClockDomain()
-		m.domains.scsi   = ClockDomain()
+		m.domains.sync   = ClockDomain()
+
 
 		platform.lookup(platform.default_clk).attrs['GLOBAL'] = False
 
-		clk48 = Signal()
+		clk200 = Signal()
+		m.submodules.pll = Instance(
+			'SB_PLL40_PAD',
+			i_PACKAGEPIN = platform.request(platform.default_clk, dir = 'i'),
+			i_RESETB     = Const(1),
+			i_BYPASS     = Const(0),
 
-		platform.add_clock_constraint(clk48, 48e6)
+			o_PLLOUTGLOBAL = clk200,
+
+			p_FEEDBACK_PATH = 'SIMPLE',
+			p_PLLOUT_SELECT = 'GENCLK',
+
+			# 200MHz
+			p_DIVR         = 2,
+			p_DIVF         = 49,
+			p_DIVQ         = 2,
+			p_FILTER_RANGE = 1,
+		)
+
+
+		platform.add_clock_constraint(clk200, 2e8)
 
 		m.d.comb += [
-			clk48.eq(platform.request(platform.default_clk).i),
-
-			ClockSignal('sync')   .eq(clk48),
-			ClockSignal('scsi')   .eq(clk48),
+			ClockSignal('sync').eq(clk200),
 		]
 
 		return m
