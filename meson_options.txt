@@ -33,3 +33,10 @@ option(
 	value: '9600',
 	description: 'The rate to run the debug UART'
 )
+
+option(
+	'enable_uart',
+	type: 'boolean',
+	value: true,
+	description: 'Enable the debut UART'
+)

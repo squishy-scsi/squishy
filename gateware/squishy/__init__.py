@@ -46,6 +46,13 @@ def cli():
 	)
 
 	core_options.add_argument(
+		'--enable-uart', '-U',
+		default = False,
+		action  = 'store_true',
+		help    = 'Enable the debug UART',
+	)
+
+	core_options.add_argument(
 		'--baud', '-B',
 		type    = int,
 		default = 9600,
@@ -57,9 +64,10 @@ def cli():
 	plat = Rev1()
 
 	gateware = Squishy(
-		uart_baud = args.baud,
-		vid       = args.vid,
-		pid       = args.pid
+		uart_baud   = args.baud,
+		enable_uart = args.enable_uart,
+		vid         = args.vid,
+		pid         = args.pid
 	)
 
 	if args.action == 'verify':

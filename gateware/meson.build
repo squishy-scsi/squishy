@@ -1,6 +1,18 @@
 # SPDX-License-Identifier: BSD-3-Clause
 gateware_gen = meson.current_source_dir() / 'main.py'
 
+
+optional_flags = []
+
+if get_option('enable_uart')
+	optional_flags += [
+		'--enable-uart',
+		'--baud', get_option('uart_baud'),
+	]
+endif
+
+
+
 squishy_bitstream = custom_target(
 	'squishy-gateware',
 	input: gateware_gen,
@@ -23,10 +35,7 @@ squishy_bitstream = custom_target(
 		# USB Configuration Options
 		'--vid', get_option('vid').to_string(),
 		'--pid', get_option('pid').to_string(),
-		# Debug UART Configuration Options
-		'--baud', get_option('uart_baud'),
-
-	],
+	] + optional_flags,
 	build_by_default: true,
 	build_always_stale: true,
 	console: true,
