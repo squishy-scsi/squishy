@@ -27,7 +27,7 @@ class UARTInterface(Elaboratable):
 
 		self._uart = AsyncSerial(
 			# TODO: Figure out how to extract the global clock freq and stuff it into the divisor calc
-			divisor      = int(2e8 // self.config['baud']),
+			divisor      = int(platform.pll_config['freq'] // self.config['baud']),
 			divisor_bits = None, # Will force use of `bits_for(divisor)`,
 			data_bits    = self.config['data_bits'],
 			parity       = self.config['parity'],

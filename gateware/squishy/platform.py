@@ -10,8 +10,8 @@ __all__ = ('Rev1', 'ICE40ClockDomainGenerator')
 
 # This is pain, why
 class ICE40ClockDomainGenerator(Elaboratable):
-	def __init__(self):
-		pass
+	def __init__(self, *, pll_cfg):
+		self._pll_cfg = pll_cfg
 
 	def elaborate(self, platform):
 		m = Module()
@@ -22,30 +22,30 @@ class ICE40ClockDomainGenerator(Elaboratable):
 
 		platform.lookup(platform.default_clk).attrs['GLOBAL'] = False
 
-		clk200 = Signal()
+		clk100 = Signal()
 		m.submodules.pll = Instance(
 			'SB_PLL40_PAD',
 			i_PACKAGEPIN = platform.request(platform.default_clk, dir = 'i'),
 			i_RESETB     = Const(1),
 			i_BYPASS     = Const(0),
 
-			o_PLLOUTGLOBAL = clk200,
+			o_PLLOUTGLOBAL = clk100,
 
 			p_FEEDBACK_PATH = 'SIMPLE',
 			p_PLLOUT_SELECT = 'GENCLK',
 
 			# 200MHz
-			p_DIVR         = 2,
-			p_DIVF         = 49,
-			p_DIVQ         = 2,
-			p_FILTER_RANGE = 1,
+			p_DIVR         = self._pll_cfg['divr'],
+			p_DIVF         = self._pll_cfg['divf'],
+			p_DIVQ         = self._pll_cfg['divq'],
+			p_FILTER_RANGE = self._pll_cfg['frange'],
 		)
 
 
-		platform.add_clock_constraint(clk200, 2e8)
+		platform.add_clock_constraint(clk100, self._pll_cfg['freq'])
 
 		m.d.comb += [
-			ClockSignal('sync').eq(clk200),
+			ClockSignal('sync').eq(clk100),
 		]
 
 		return m
@@ -58,6 +58,14 @@ class Rev1(LatticeICE40Platform):
 	toolchain   = 'Trellis'
 
 	clock_domain_generator = ICE40ClockDomainGenerator
+
+	pll_config = {
+		'freq'  : 1e8,
+		'divr'  : 2,
+		'divf'  : 49,
+		'divq'  : 3,
+		'frange': 1,
+	}
 
 	resources = [
 		Resource('clk', 0,
