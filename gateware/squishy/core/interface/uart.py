@@ -36,5 +36,6 @@ class UARTInterface(Elaboratable):
 
 		m = Module()
 
+		m.submodules += self._uart
 
 		return m
