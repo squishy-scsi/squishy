@@ -102,13 +102,13 @@ class Squishy(Elaboratable):
 			width = self._fifo_cfg['width'],
 			depth = self._fifo_cfg['depth'],
 			r_domain = 'sync',
-			w_domain = 'sync'
+			w_domain = 'usb'
 		)
 
 		self._usb_in_fifo = AsyncFIFO(
 			width = self._fifo_cfg['width'],
 			depth = self._fifo_cfg['depth'],
-			r_domain = 'sync',
+			r_domain = 'usb',
 			w_domain = 'sync'
 		)
 
