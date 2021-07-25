@@ -6,6 +6,7 @@ from nmigen_soc.csr.wishbone import WishboneCSRBridge
 
 __all__ = ('SCSIInterface')
 
+# SCSI: Small Catgirl Scritches Interface
 class SCSIInterface(Elaboratable):
 	def __init__(self, *, config, wb_config):
 		self.config = config
