@@ -30,9 +30,19 @@ class USBInterface(Elaboratable):
 		self._csr_bridge = WishboneCSRBridge(self._csr['mux'].bus)
 		self.bus = self._csr_bridge.wb_bus
 
+		self._usb_in_fifo   = None
+		self._scsi_out_fifo = None
+
 		self._status_led = None
 
 		self.usb_dev = None
+
+	def connect_fifo(self, *, usb_in, scsi_out):
+		if not len(usb_in) == 4 or not len(scsi_out) == 4:
+			raise ValueError(f'expected a tuple of four signals for usb_in and scsi_out, got {usb_in}, {scsi_out}')
+
+		self._usb_in_fifo   = usb_in
+		self._scsi_out_fifo = scsi_out
 
 	def init_descriptors(self):
 		from usb_protocol.emitters import DeviceDescriptorCollection

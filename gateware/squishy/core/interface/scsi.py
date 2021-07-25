@@ -31,9 +31,17 @@ class SCSIInterface(Elaboratable):
 		self.tx     = None
 		self.tx_ctl = None
 
+		self._scsi_in_fifo = None
+		self._usb_out_fifo = None
+
 		self._status_led = None
 
-		self.activity = Signal()
+	def connect_fifo(self, *, scsi_in, usb_out):
+		if not len(scsi_in) == 4 or not len(usb_out) == 4:
+			raise ValueError(f'expected a tuple of four signals for scsi_in and usb_out, got {scsi_in}, {usb_out}')
+
+		self._scsi_in_fifo = scsi_in
+		self._usb_out_fifo = usb_out
 
 	def _init_csrs(self):
 		self._csr['regs'] = {

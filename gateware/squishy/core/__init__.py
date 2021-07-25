@@ -25,8 +25,9 @@ __all__ = ('Squishy')
             └───────────────────┘
 
 """
-# SPDX-License-Identifier: BSD-3-Clause
+
 from nmigen              import *
+from nmigen.lib.fifo     import AsyncFIFO
 from nmigen_soc.wishbone import Decoder, Arbiter
 
 from .interface import UARTInterface
@@ -92,6 +93,25 @@ class Squishy(Elaboratable):
 		self._wb_decoder.add(self.usb.bus, addr = 16)
 		self._wb_arbiter.add(self.usb.ctl_bus)
 
+		self._fifo_cfg = {
+			'width': 8,
+			'depth': 1024,
+		}
+
+		self._scsi_in_fifo = AsyncFIFO(
+			width = self._fifo_cfg['width'],
+			depth = self._fifo_cfg['depth'],
+			r_domain = 'sync',
+			w_domain = 'sync'
+		)
+
+		self._usb_in_fifo = AsyncFIFO(
+			width = self._fifo_cfg['width'],
+			depth = self._fifo_cfg['depth'],
+			r_domain = 'sync',
+			w_domain = 'sync'
+		)
+
 		self._status_led = None
 
 	def elaborate(self, platform):
@@ -106,6 +126,40 @@ class Squishy(Elaboratable):
 
 		if self.uart is not None:
 			m.submodules.uart = self.uart
+
+		# USB <-> SCSI FIFOs
+		m.submodules += self._usb_in_fifo, self._scsi_in_fifo
+
+		self.usb.connect_fifo(
+			usb_in = (
+				self._usb_in_fifo.r_data,
+				self._usb_in_fifo.r_rdy,
+				self._usb_in_fifo.r_en,
+				self._usb_in_fifo.r_level,
+			),
+			scsi_out = (
+				self._scsi_in_fifo.w_data,
+				self._scsi_in_fifo.w_rdy,
+				self._scsi_in_fifo.w_en,
+				self._scsi_in_fifo.w_level,
+			)
+		)
+
+		self.scsi.connect_fifo(
+			scsi_in = (
+				self._scsi_in_fifo.r_data,
+				self._scsi_in_fifo.r_rdy,
+				self._scsi_in_fifo.r_en,
+				self._scsi_in_fifo.r_level,
+			),
+			usb_out = (
+				self._usb_in_fifo.w_data,
+				self._usb_in_fifo.w_rdy,
+				self._usb_in_fifo.w_en,
+				self._usb_in_fifo.w_level,
+			)
+		)
+
 
 		m.submodules.scsi = self.scsi
 		m.submodules.usb  = self.usb
