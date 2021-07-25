@@ -72,12 +72,40 @@ class SCSIInterface(Elaboratable):
 		m.submodules += self._csr_bridge
 		m.submodules.csr_mux = self._csr['mux']
 
-
-
-
 		self._csr_elab(m)
 
+		with m.FSM(reset = 'bus_free'):
+			with m.State('bus_free'):
+				# All signals are left high-z due to no target/initiator
+				m.next = 'bus_free'
 
+			with m.State('arbitration'):
+				# Bus Arbitration
+				m.next = 'bus_free'
+
+			with m.State('selection'):
+				m.next = 'bus_free'
+
+			with m.State('reselection'):
+				m.next = 'bus_free'
+
+			with m.State('command'):
+				m.next = 'bus_free'
+
+			with m.State('data_in'):
+				m.next = 'bus_free'
+
+			with m.State('data_out'):
+				m.next = 'bus_free'
+
+			with m.State('message_in'):
+				m.next = 'bus_free'
+
+			with m.State('message_out'):
+				m.next = 'bus_free'
+
+			with m.State('status'):
+				m.next = 'bus_free'
 
 		return m
 
