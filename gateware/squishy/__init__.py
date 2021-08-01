@@ -10,21 +10,18 @@ def cli():
 	import sys
 	from os import path, mkdir
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-	from nmigen import cli as nmigen_cli
 
 	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
-	nmigen_cli.main_parser(parser)
-	actions = parser._subparsers._group_actions[0]
+	actions = parser.add_subparsers(dest = 'action')
 
 	do_verify = actions.add_parser('verify', help = 'Run formal verification')
 	verify_options = do_verify.add_argument_group('Verification options')
 
+	do_build       = actions.add_parser('build', help = 'Build the gateware')
 	core_options   = parser.add_argument_group('Core configuration options')
 	usb_options    = parser.add_argument_group('USB PHY Options')
 	uart_options   = parser.add_argument_group('Debug UART Options')
 	scsi_options   = parser.add_argument_group('SCSI Options')
-
-
 
 	core_options.add_argument(
 		'--build-dir', '-b',
@@ -105,28 +102,30 @@ def cli():
 
 	plat = Rev1()
 
-	gateware = Squishy(
-		uart_config = {
-			'enabled'  : args.enable_uart,
-			'baud'     : args.baud,
-			'parity'   : args.parity,
-			'data_bits': args.data_bits,
-		},
-
-		usb_config = {
-			'vid': args.vid,
-			'pid': args.pid,
-
-			'mfr': args.manufacturer,
-			'prd': args.product,
-			'srn': args.serial_number,
-		},
-
-		scsi_config = {}
-	)
-
 	if args.action == 'verify':
 		wrn('todo')
-	else:
+	elif args.action == 'build':
+		gateware = Squishy(
+			uart_config = {
+				'enabled'  : args.enable_uart,
+				'baud'     : args.baud,
+				'parity'   : args.parity,
+				'data_bits': args.data_bits,
+			},
+
+			usb_config = {
+				'vid': args.vid,
+				'pid': args.pid,
+
+				'mfr': args.manufacturer,
+				'prd': args.product,
+				'srn': args.serial_number,
+			},
+
+			scsi_config = {}
+		)
+
 		plat.build(gateware, name = 'squishy', build_dir = args.build_dir, do_build = True)
+	else:
+		inf('ニャー')
 	return 0

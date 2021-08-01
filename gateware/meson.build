@@ -41,11 +41,31 @@ squishy_bitstream = custom_target(
 		'--product',       get_option('product'),
 		'--serial_number', get_option('serial_number'),
 
-	] + optional_flags,
+	] + optional_flags + [
+		'build'
+	],
 	build_by_default: true,
 	build_always_stale: true,
 	console: true,
 	install: false,
+)
+
+
+run_target(
+	'verify',
+	command: [
+		py_inst.full_path(), gateware_gen,
+		'--build-dir', meson.current_build_dir(),
+		# USB Configuration Options
+		'--vid', get_option('vid').to_string(),
+		'--pid', get_option('pid').to_string(),
+		'--manufacturer',  get_option('manufacturer'),
+		'--product',       get_option('product'),
+		'--serial_number', get_option('serial_number'),
+
+	] + optional_flags + [
+		'verify'
+	],
 )
 
 nextpnr_ice40 = find_program('nextpnr-ice40', required: true)
