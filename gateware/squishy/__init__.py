@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from .utility  import *
-from .platform import Rev1
-from .core     import Squishy
+from .utility    import *
+from .platform   import Rev1
+from .core       import Squishy
+from .simulation import *
 
 __all__ = (
 	'cli',
@@ -19,7 +20,11 @@ def cli():
 	do_verify = actions.add_parser('verify', help = 'Run formal verification')
 	verify_options = do_verify.add_argument_group('Verification options')
 
+	do_simulation  = actions.add_parser('simulate', help = 'Run simulation test cases')
+	sim_options    = do_simulation.add_argument_group('Simulation Options')
+
 	do_build       = actions.add_parser('build', help = 'Build the gateware')
+
 	core_options   = parser.add_argument_group('Core configuration options')
 	usb_options    = parser.add_argument_group('USB PHY Options')
 	uart_options   = parser.add_argument_group('Debug UART Options')
@@ -106,6 +111,8 @@ def cli():
 
 	if args.action == 'verify':
 		wrn('todo')
+	elif args.action == 'simulate':
+		run_sims(args)
 	elif args.action == 'build':
 		gateware = Squishy(
 			uart_config = {

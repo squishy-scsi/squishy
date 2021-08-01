@@ -50,6 +50,22 @@ squishy_bitstream = custom_target(
 	install: false,
 )
 
+run_target(
+	'sim',
+	command: [
+		py_inst.full_path(), gateware_gen,
+		'--build-dir', meson.current_build_dir(),
+		# USB Configuration Options
+		'--vid', get_option('vid').to_string(),
+		'--pid', get_option('pid').to_string(),
+		'--manufacturer',  get_option('manufacturer'),
+		'--product',       get_option('product'),
+		'--serial_number', get_option('serial_number'),
+
+	] + optional_flags + [
+		'simulate'
+	],
+)
 
 run_target(
 	'verify',
