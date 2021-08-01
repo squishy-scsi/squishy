@@ -1,7 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from nmigen import *
 
-__all__ = ('SPIInterface')
+__all__ = (
+	'SPIInterface',
+)
 
 class SPIInterface(Elaboratable):
 	def __init__(self):

@@ -3,7 +3,9 @@ from .utility  import *
 from .platform import Rev1
 from .core     import Squishy
 
-__all__ = ('cli')
+__all__ = (
+	'cli',
+)
 
 
 def cli():

@@ -4,7 +4,9 @@ from nmigen_soc.wishbone     import Interface
 from nmigen_soc.csr.bus      import Element, Multiplexer
 from nmigen_soc.csr.wishbone import WishboneCSRBridge
 
-__all__ = ('SCSIInterface')
+__all__ = (
+	'SCSIInterface',
+)
 
 # SCSI: Small Catgirl Scritches Interface
 class SCSIInterface(Elaboratable):

@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-__all__ = ('Squishy')
+__all__ = (
+	'Squishy',
+)
 
 """
 	Squishy Architecture

@@ -5,7 +5,9 @@ from nmigen_stdio.serial import AsyncSerial
 from nmigen_soc.wishbone import Interface
 
 
-__all__ = ('UARTInterface')
+__all__ = (
+	'UARTInterface',
+)
 
 class UARTInterface(Elaboratable):
 	def __init__(self, *, config, wb_config):

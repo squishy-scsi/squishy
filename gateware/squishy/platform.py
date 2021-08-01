@@ -6,9 +6,11 @@ from nmigen_boards.resources.memory    import SPIFlashResources
 from nmigen_boards.resources.user      import LEDResources
 from nmigen_boards.resources.interface import UARTResource
 
-__all__ = ('Rev1', 'ICE40ClockDomainGenerator')
+__all__ = (
+	'Rev1',
+	'ICE40ClockDomainGenerator',
+)
 
-# This is pain, why
 class ICE40ClockDomainGenerator(Elaboratable):
 	def __init__(self, *, pll_cfg):
 		self._pll_cfg = pll_cfg

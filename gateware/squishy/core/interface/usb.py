@@ -7,7 +7,9 @@ from nmigen_soc.csr.wishbone import WishboneCSRBridge
 
 from luna.usb2 import *
 
-__all__ = ('USBInterface')
+__all__ = (
+	'USBInterface',
+)
 
 class USBInterface(Elaboratable):
 	def __init__(self, *, config, wb_config):
