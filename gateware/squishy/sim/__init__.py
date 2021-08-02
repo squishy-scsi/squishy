@@ -10,8 +10,6 @@ def sim_case(*, domains, dut):
 		for d, clk in domains:
 			sim.add_clock(1 / clk, domain = d)
 
-		cases = func(sim, dut)
-
 		for case, d in func(sim, dut):
 			sim.add_sync_process(case, domain = d)
 

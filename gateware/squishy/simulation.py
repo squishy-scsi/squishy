@@ -37,9 +37,9 @@ def run_sims(args):
 		if not path.exists(output_dir):
 			mkdir(output_dir)
 
-		for sim, name in sim['cases']:
 			inf(f'  Running case: {name}')
+		for case, name in sim['cases']:
 
-			with sim.write_vcd(path.join(output_dir, f'{name}.vcd')):
-				sim.reset()
-				sim.run()
+			with case.write_vcd(path.join(output_dir, f'{name}.vcd')):
+				case.reset()
+				case.run()
