@@ -30,11 +30,14 @@ class SimPlatform():
 				])
 			])
 
-def sim_case(*, domains, dut):
+def sim_case(*, domains, dut, platform = None):
 	def _reg_sim(func):
-		from nmigen.sim import Simulator
+		from nmigen.sim    import Simulator
+		from nmigen.hdl.ir import Fragment
 
-		sim = Simulator(dut)
+		sim = Simulator(
+			Fragment.get(dut, platform = platform)
+		)
 
 		for d, clk in domains:
 			sim.add_clock(1 / clk, domain = d)

@@ -1,8 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from nmigen                import *
 from nmigen.sim            import Simulator, Settle
-from nmigen.hdl.ir         import Fragment
-
 
 from .                     import sim_case, SimPlatform
 from ..core.interface.uart import UARTInterface
@@ -25,12 +23,12 @@ _wb_cfg = {
 	}
 }
 
-uart = Fragment.get(
-	UARTInterface(config = _uart_config, wb_config = _wb_cfg),
-	platform = SimPlatform()
-)
+uart = UARTInterface(
+			config    = _uart_config,
+			wb_config = _wb_cfg
+		)
 
-@sim_case(domains = [ ('sync', 1e8) ], dut = uart)
+@sim_case(domains = [ ('sync', 1e8) ], dut = uart, platform = SimPlatform())
 def sim_uart(sim, dut):
 	def nya():
 		from random import randint
