@@ -40,6 +40,8 @@ def run_sims(args):
 		for case, name in sim['cases']:
 			inf(f' => Running {name}')
 
-			with case.write_vcd(path.join(output_dir, f'{name}.vcd')):
+			basename = path.join(output_dir, name)
+
+			with case.write_vcd(f'{basename}.vcd', f'{basename}.gtkw'):
 				case.reset()
 				case.run()

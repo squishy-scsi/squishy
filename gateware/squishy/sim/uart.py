@@ -35,8 +35,6 @@ def sim_uart(sim, dut):
 		yield Settle()
 		for _ in range(1024):
 			yield
-			yield
-			yield dut._uart.rx.data.eq(randint(0,255))
 
 	return [
 		(nya, 'sync')
