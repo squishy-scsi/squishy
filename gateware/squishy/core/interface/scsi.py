@@ -77,6 +77,11 @@ class SCSIInterface(Elaboratable):
 
 		self._csr_elab(m)
 
+		m.d.comb += [
+			self._interface_status[0:6].eq(self.tx_ctl)
+		]
+
+
 		with m.FSM(reset = 'bus_free'):
 			with m.State('bus_free'):
 				# All signals are left high-z due to no target/initiator
