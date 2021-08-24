@@ -82,7 +82,7 @@ class Rev1(LatticeICE40Platform):
 				Clock(60e6)
 			),
 			Subsignal('data',
-				Pins('E1 E2 F1 F2 H1 H2 J1 J2', dir = 'io')
+				Pins('E1 E2 F1 F2 G2 H1 H2 J1', dir = 'io')
 			),
 			Subsignal('dir',
 				Pins('D1', dir = 'i')

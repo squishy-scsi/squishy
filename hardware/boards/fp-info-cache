@@ -1,4 +1,4 @@
-19052976087618564
+19066014147952593
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -48783,6 +48783,13 @@ QFN NoLead
 29
 25
 DX-MON
+QFN-64-1EP_9x9mm_P0.5mm_EP6x6mm
+QFN, 64 Pin (http://ww1.microchip.com/downloads/en/DeviceDoc/doc7593.pdf (page 432)), generated with kicad-footprint-generator ipc_noLead_generator.py
+QFN NoLead
+0
+90
+65
+DX-MON
 QFN-64-1EP_9x9mm_P0.5mm_EP7.5x7.5mm
 QFN, 64 Pin (http://ww1.microchip.com/downloads/en/DeviceDoc/doc7593.pdf (page 432)), generated with kicad-footprint-generator ipc_noLead_generator.py
 QFN NoLead
@@ -48797,12 +48804,26 @@ UDFN-8-1EP_6x5mm_P1.27mm_EP3.4x4mm
 9
 9
 DX-MON
+VQFN-24-1EP_4x4mm_P0.5mm_EP2x2mm
+VQFN, 24 Pin (https://fscdn.rohm.com/en/techdata_basic/ic/package/Jisso_VQFN024V4040-1-2_Rev004s_E2(MSL1).pdf)
+VQFN NoLead
+0
+29
+25
+DX-MON
 VQFN-32-1EP_5x5mm_P0.5mm_EP3.5x3.5mm
 VQFN, 32 Pin (https://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT4222H.pdf#page=40), generated with kicad-footprint-generator ipc_noLead_generator.py
 VQFN NoLead
 0
 37
 33
+DX-MON
+WQFN-28-1EP_3.5x5.5_P0.5mm_EP2x4mm
+
+
+0
+29
+29
 Diode_SMD
 D_0201_0603Metric
 Diode SMD 0201 (0603 Metric), square (rectangular) end terminal, IPC_7351 nominal, (Body size source: https://www.vishay.com/docs/20052/crcw0201e3.pdf), generated with kicad-footprint-generator
@@ -82110,6 +82131,13 @@ ran-outline
 0
 0
 lethalbit-graphics
+xenia
+
+
+0
+0
+0
+lethalbit-graphics
 yuki_10x11
 
 
@@ -82347,3 +82375,31 @@ OSHPark recommended panel tab
 0
 0
 0
+rhais_usb
+MICRO-USB-B-(IN_PCB)
+
+
+0
+11
+6
+rhais_usb
+USB-3.1-Type-C_In-PCB
+
+net tie
+0
+28
+25
+rhais_usb
+USB_A_Receptical_Amphenol
+
+
+0
+6
+5
+rhais_usb
+USB_C_Receptacle_HRO_TYPE-C-31-M-12
+USB Type-C receptacle for USB 2.0 and PD, http://www.krhro.com/uploads/soft/180320/1-1P320120243.pdf
+usb usb-c 2.0 pd
+0
+20
+17
