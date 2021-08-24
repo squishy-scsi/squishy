@@ -35,11 +35,13 @@ squishy_bitstream = custom_target(
 		py_inst.full_path(), '@INPUT@',
 		'--build-dir', meson.current_build_dir(),
 		# USB Configuration Options
-		'--vid', get_option('vid').to_string(),
-		'--pid', get_option('pid').to_string(),
-		'--manufacturer',  get_option('manufacturer'),
-		'--product',       get_option('product'),
-		'--serial_number', get_option('serial_number'),
+		'--usb-vid', get_option('usb_vid').to_string(),
+		'--usb-pid', get_option('usb_pid').to_string(),
+		'--usb-manufacturer',  get_option('usb_manufacturer'),
+		'--usb-product',       get_option('usb_product'),
+		'--usb-serial-number', get_option('usb_serial_number'),
+		# SCSI Configuration Options
+		'--scsi-vid', get_option('scsi_vid'),
 
 	] + optional_flags + [
 		'build'
@@ -56,11 +58,13 @@ run_target(
 		py_inst.full_path(), gateware_gen,
 		'--build-dir', meson.current_build_dir(),
 		# USB Configuration Options
-		'--vid', get_option('vid').to_string(),
-		'--pid', get_option('pid').to_string(),
-		'--manufacturer',  get_option('manufacturer'),
-		'--product',       get_option('product'),
-		'--serial_number', get_option('serial_number'),
+		'--usb-vid', get_option('usb_vid').to_string(),
+		'--usb-pid', get_option('usb_pid').to_string(),
+		'--usb-manufacturer',  get_option('usb_manufacturer'),
+		'--usb-product',       get_option('usb_product'),
+		'--usb-serial-number', get_option('usb_serial_number'),
+		# SCSI Configuration Options
+		'--scsi-vid', get_option('scsi_vid'),
 
 	] + optional_flags + [
 		'simulate'
@@ -73,11 +77,13 @@ run_target(
 		py_inst.full_path(), gateware_gen,
 		'--build-dir', meson.current_build_dir(),
 		# USB Configuration Options
-		'--vid', get_option('vid').to_string(),
-		'--pid', get_option('pid').to_string(),
-		'--manufacturer',  get_option('manufacturer'),
-		'--product',       get_option('product'),
-		'--serial_number', get_option('serial_number'),
+		'--usb-vid', get_option('usb_vid').to_string(),
+		'--usb-pid', get_option('usb_pid').to_string(),
+		'--usb-manufacturer',  get_option('usb_manufacturer'),
+		'--usb-product',       get_option('usb_product'),
+		'--usb-serial-number', get_option('usb_serial_number'),
+		# SCSI Configuration Options
+		'--scsi-vid', get_option('scsi_vid'),
 
 	] + optional_flags + [
 		'verify'
@@ -94,7 +100,16 @@ run_target(
 		'--pcf', '@0@/squishy.pcf'.format(meson.current_build_dir()),
 		'--json', '@0@/squishy.json'.format(meson.current_build_dir()),
 	]
+)
 
+run_target(
+	'nextpnr-cli',
+	command: [
+		nextpnr_ice40.full_path(),
+		'--hx8k', '--package', 'bg121',
+		'--pcf', '@0@/squishy.pcf'.format(meson.current_build_dir()),
+		'--json', '@0@/squishy.json'.format(meson.current_build_dir()),
+	]
 )
 
 icebox_stat = find_program('icebox_stat', required: true)

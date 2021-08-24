@@ -7,8 +7,6 @@ from ..core.interface.scsi import SCSIInterface
 
 SIM_NAME = 'SCSI'
 
-DONT_LOAD = 1
-
 class dummy(Elaboratable):
 	def elaborate(self, platform):
 		m = Module()

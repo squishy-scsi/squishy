@@ -6,7 +6,7 @@ option(
 )
 
 option(
-	'vid',
+	'usb_vid',
 	type: 'integer',
 	min: 0, max: 65535,
 	value: 65261,
@@ -14,7 +14,7 @@ option(
 )
 
 option(
-	'pid',
+	'usb_pid',
 	type: 'integer',
 	min: 0, max: 65535,
 	value: 44199,
@@ -22,24 +22,31 @@ option(
 )
 
 option(
-	'manufacturer',
+	'usb_manufacturer',
 	type: 'string',
 	value: 'aki-nyan',
 	description: 'The USB Device Manufacturer'
 )
 
 option(
-	'product',
+	'usb_product',
 	type: 'string',
 	value: 'squishy',
 	description: 'The USB Device Product'
 )
 
 option(
-	'serial_number',
+	'usb_serial_number',
 	type: 'string',
 	value: 'ニャ〜',
 	description: 'The USB Device Serial Number'
+)
+
+option(
+	'scsi_vid',
+	type: 'string',
+	value: 'Shrine-0',
+	description: 'The SCSI Vendor ID'
 )
 
 option(

@@ -38,38 +38,45 @@ def cli():
 	)
 
 	usb_options.add_argument(
-		'--vid', '-V',
+		'--usb-vid', '-V',
 		type    = int,
 		default = 0xFEED,
 		help    = 'The USB Vendor ID to use'
 	)
 
 	usb_options.add_argument(
-		'--pid', '-P',
+		'--usb-pid', '-P',
 		type    = int,
 		default = 0xACA7,
 		help    = 'The USB Product ID to use'
 	)
 
 	usb_options.add_argument(
-		'--manufacturer', '-m',
+		'--usb-manufacturer', '-m',
 		type    = str,
 		default = 'aki-nyan',
 		help    = 'The USB Device Manufacturer'
 	)
 
 	usb_options.add_argument(
-		'--product', '-p',
+		'--usb-product', '-p',
 		type    = str,
 		default = 'squishy',
 		help    = 'The USB Device Product'
 	)
 
 	usb_options.add_argument(
-		'--serial_number', '-s',
+		'--usb-serial-number', '-s',
 		type    = str,
 		default = 'ニャ〜',
 		help    = 'The USB Device Serial Number'
+	)
+
+	scsi_options.add_argument(
+		'--scsi-vid',
+		type    = str,
+		default = 'Shrine-0',
+		help    = 'The SCSI Vendor ID to use'
 	)
 
 
@@ -123,15 +130,17 @@ def cli():
 			},
 
 			usb_config = {
-				'vid': args.vid,
-				'pid': args.pid,
+				'vid': args.usb_vid,
+				'pid': args.usb_pid,
 
-				'mfr': args.manufacturer,
-				'prd': args.product,
-				'srn': args.serial_number,
+				'mfr': args.usb_manufacturer,
+				'prd': args.usb_product,
+				'srn': args.usb_serial_number,
 			},
 
-			scsi_config = {}
+			scsi_config = {
+				'vid': args.scsi_vid,
+			}
 		)
 
 		plat.build(gateware, name = 'squishy', build_dir = args.build_dir, do_build = True)
