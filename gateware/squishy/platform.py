@@ -207,12 +207,12 @@ class Rev1(LatticeICE40Platform):
 		*SPIFlashResources(0,
 			cs_n = 'K10', clk = 'L10', copi = 'K9', cipo = 'J9',
 
-			attrs = Attrs(IO_STANDARD="SB_LVCMOS")
+			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 
 		UARTResource(0,
 			rx = 'L7', tx = 'K7',
-			attrs = Attrs(IO_STANDARD="SB_LVCMOS")
+			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 	]
 
