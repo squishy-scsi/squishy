@@ -64,8 +64,8 @@ class SCSIInterface(Elaboratable):
 		]
 
 	def elaborate(self, platform):
-		self.rx     = platform.request('scsi_rx'),
-		self.tx     = platform.request('scsi_tx'),
+		self.rx     = platform.request('scsi_rx')
+		self.tx     = platform.request('scsi_tx')
 		self.tx_ctl = platform.request('scsi_tx_ctl')
 		self._status_led = platform.request('led', 1)
 
