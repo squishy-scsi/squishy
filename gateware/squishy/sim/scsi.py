@@ -30,7 +30,6 @@ scsi = SCSIInterface(
 @sim_case(domains = [ ('sync', 48e9) ], dut = scsi, platform = SimPlatform())
 def sim_dummy(sim, dut):
 	def nya():
-		yield Settle()
 		for _ in range(8192):
 			yield
 
