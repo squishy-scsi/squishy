@@ -2,26 +2,36 @@
 from nmigen                import *
 from nmigen.sim            import Simulator, Settle
 
-from .                     import sim_case
+from .                     import sim_case, SimPlatform
 from ..core.interface.scsi import SCSIInterface
 
 SIM_NAME = 'SCSI'
 
-class dummy(Elaboratable):
-	def elaborate(self, platform):
-		m = Module()
+_scsi_cfg = {
+	'vid': 'Shrine-0',
+	'did': 1,
+}
 
-		n = Signal()
 
-		m.d.sync += n.eq(~n)
+_wb_cfg = {
+	'addr': 8,	# Address width
+	'data': 8,	# Data Width
+	'gran': 8,	# Bus Granularity
+	'feat': {	# Bus Features
+		'cti', 'bte'
+	}
+}
 
-		return m
+scsi = SCSIInterface(
+	config    = _scsi_cfg,
+	wb_config = _wb_cfg,
+)
 
-@sim_case(domains = [ ('sync', 48e9) ], dut = dummy())
+@sim_case(domains = [ ('sync', 48e9) ], dut = scsi, platform = SimPlatform())
 def sim_dummy(sim, dut):
 	def nya():
 		yield Settle()
-		for _ in range(1024):
+		for _ in range(8192):
 			yield
 
 	return [
