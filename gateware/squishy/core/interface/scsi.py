@@ -12,6 +12,8 @@ __all__ = (
 class SCSIInterface(Elaboratable):
 	def __init__(self, *, config, wb_config):
 		self.config = config
+		self._scsi_id = Signal(8)
+
 
 		self._wb_cfg = wb_config
 
@@ -89,34 +91,71 @@ class SCSIInterface(Elaboratable):
 					self.tx_ctl.eq(0b111111),
 					self.tx.eq(0),
 				]
+
+
 				m.next = 'bus_free'
 
 			with m.State('arbitration'):
 				# Bus Arbitration
+				m.d.sync += [
+					self.tx_ctl.bsy_en.eq(0),
+					self.tx.bsy.eq(1),
+					self.tx.data[0:7].eq(self._scsi_id),
+					self.tx.data[8].eq(1),
+				]
+
+
+
 				m.next = 'bus_free'
 
 			with m.State('selection'):
+
+
+
+
 				m.next = 'bus_free'
 
 			with m.State('reselection'):
+
+
+
+
 				m.next = 'bus_free'
 
 			with m.State('command'):
+
+
+
 				m.next = 'bus_free'
 
 			with m.State('data_in'):
+
+
+
+
 				m.next = 'bus_free'
 
 			with m.State('data_out'):
+
+
+
 				m.next = 'bus_free'
 
 			with m.State('message_in'):
+
+
+
 				m.next = 'bus_free'
 
 			with m.State('message_out'):
+
+
+
 				m.next = 'bus_free'
 
 			with m.State('status'):
+
+
 				m.next = 'bus_free'
 
 		return m
