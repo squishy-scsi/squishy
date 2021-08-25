@@ -18,6 +18,7 @@ class SimPlatform():
 
 		if name == 'led':
 			return Signal(name = f'led_{num}')
+
 		if name == 'uart':
 			return Record([
 				('rx', [
@@ -29,6 +30,120 @@ class SimPlatform():
 					('o', 1)
 				])
 			])
+
+		if name == 'ulpi':
+			return Record([
+				('clk', [
+					('i', 1)
+				]),
+				('data', [
+					('i', 8),
+					('o', 8)
+				]),
+				('dir', [
+					('i', 1)
+				]),
+				('nxt', [
+					('i', 1)
+				]),
+				('stp', [
+					('o', 1)
+				]),
+				('rst', [
+					('o', 1)
+				])
+			])
+
+		if name == 'scsi_rx':
+			return Record([
+				('data', [
+					('i', 9),
+				]),
+				('io', [
+					('i', 1)
+				]),
+				('cd', [
+					('i', 1)
+				]),
+				('req', [
+					('i', 1)
+				]),
+				('sel', [
+					('i', 1)
+				]),
+				('msg', [
+					('i', 1)
+				]),
+				('rst', [
+					('i', 1)
+				]),
+				('ack', [
+					('i', 1)
+				]),
+				('bsy', [
+					('i', 1)
+				]),
+				('atn', [
+					('i', 1)
+				])
+			])
+
+		if name == 'scsi_tx':
+			return Record([
+				('data', [
+					('o', 9),
+				]),
+				('io', [
+					('o', 1)
+				]),
+				('cd', [
+					('o', 1)
+				]),
+				('req', [
+					('o', 1)
+				]),
+				('sel', [
+					('o', 1)
+				]),
+				('msg', [
+					('o', 1)
+				]),
+				('rst', [
+					('o', 1)
+				]),
+				('ack', [
+					('o', 1)
+				]),
+				('bsy', [
+					('o', 1)
+				]),
+				('atn', [
+					('o', 1)
+				])
+			])
+
+		if name == 'scsi_tx_ctl':
+			return Record([
+				('tp_en', [
+					('o', 1)
+				]),
+				('tx_en', [
+					('o', 1)
+				]),
+				('aa_en', [
+					('o', 1)
+				]),
+				('bsy_en', [
+					('o', 1)
+				]),
+				('sel_en', [
+					('o', 1)
+				]),
+				('mr_en', [
+					('o', 1)
+				])
+			])
+
 
 def sim_case(*, domains, dut, platform = None):
 	def _reg_sim(func):
