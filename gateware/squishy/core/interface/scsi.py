@@ -78,7 +78,7 @@ class SCSIInterface(Elaboratable):
 		self._csr_elab(m)
 
 		m.d.comb += [
-			self._interface_status[0:6].eq(self.tx_ctl)
+			self._interface_status[0:6].eq(~self.tx_ctl)
 		]
 
 
