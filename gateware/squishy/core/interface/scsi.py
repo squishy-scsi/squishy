@@ -85,6 +85,9 @@ class SCSIInterface(Elaboratable):
 		with m.FSM(reset = 'bus_free'):
 			with m.State('bus_free'):
 				# All signals are left high-z due to no target/initiator
+				m.d.sync += [
+					self.tx_ctl.eq(0b111111)
+				]
 				m.next = 'bus_free'
 
 			with m.State('arbitration'):
