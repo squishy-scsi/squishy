@@ -79,6 +79,12 @@ def cli():
 		help    = 'The SCSI Vendor ID to use'
 	)
 
+	scsi_options.add_argument(
+		'--scsi-did',
+		type    = int,
+		default = 0x01,
+		help    = 'The SCSI Device ID to use'
+	)
 
 	uart_options.add_argument(
 		'--enable-uart', '-U',
@@ -140,6 +146,7 @@ def cli():
 
 			scsi_config = {
 				'vid': args.scsi_vid,
+				'did': args.scsi_did,
 			}
 		)
 

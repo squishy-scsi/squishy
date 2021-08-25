@@ -42,6 +42,7 @@ squishy_bitstream = custom_target(
 		'--usb-serial-number', get_option('usb_serial_number'),
 		# SCSI Configuration Options
 		'--scsi-vid', get_option('scsi_vid'),
+		'--scsi-did', get_option('scsi_did').to_string(),
 
 	] + optional_flags + [
 		'build'
@@ -65,6 +66,7 @@ run_target(
 		'--usb-serial-number', get_option('usb_serial_number'),
 		# SCSI Configuration Options
 		'--scsi-vid', get_option('scsi_vid'),
+		'--scsi-did', get_option('scsi_did').to_string(),
 
 	] + optional_flags + [
 		'simulate'
@@ -84,6 +86,7 @@ run_target(
 		'--usb-serial-number', get_option('usb_serial_number'),
 		# SCSI Configuration Options
 		'--scsi-vid', get_option('scsi_vid'),
+		'--scsi-did', get_option('scsi_did').to_string(),
 
 	] + optional_flags + [
 		'verify'

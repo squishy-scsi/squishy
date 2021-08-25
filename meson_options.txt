@@ -50,6 +50,14 @@ option(
 )
 
 option(
+	'scsi_did',
+	type: 'integer',
+	min: 0, max: 255,
+	value: 1,
+	description: 'The SCSI Device ID'
+)
+
+option(
 	'enable_uart',
 	type: 'boolean',
 	value: true,
