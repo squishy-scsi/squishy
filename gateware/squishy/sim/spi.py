@@ -19,7 +19,7 @@ class dummy(Elaboratable):
 
 		return m
 
-@sim_case(domains = [ ('sync', 48e9) ], dut = dummy())
+@sim_case(domains = [ ('sync', 100e6) ], dut = dummy())
 def sim_dummy(sim, dut):
 	def nya():
 		yield Settle()

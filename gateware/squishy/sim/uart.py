@@ -28,7 +28,7 @@ uart = UARTInterface(
 			wb_config = _wb_cfg
 		)
 
-@sim_case(domains = [ ('sync', 1e8) ], dut = uart, platform = SimPlatform())
+@sim_case(domains = [ ('sync', 100e6) ], dut = uart, platform = SimPlatform())
 def sim_uart(sim, dut):
 	def nya():
 		from random import randint

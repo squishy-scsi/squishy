@@ -27,7 +27,7 @@ scsi = SCSIInterface(
 	wb_config = _wb_cfg,
 )
 
-@sim_case(domains = [ ('sync', 48e9) ], dut = scsi, platform = SimPlatform())
+@sim_case(domains = [ ('sync', 100e6) ], dut = scsi, platform = SimPlatform())
 def sim_dummy(sim, dut):
 	def nya():
 		for _ in range(8192):
