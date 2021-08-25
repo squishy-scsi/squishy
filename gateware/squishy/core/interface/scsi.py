@@ -64,6 +64,7 @@ class SCSIInterface(Elaboratable):
 		]
 
 	def elaborate(self, platform):
+		# rx/tx data[0:8] = 0, 1, 2, 3, 4, 5, 6, 7, P
 		self.rx     = platform.request('scsi_rx')
 		self.tx     = platform.request('scsi_tx')
 		self.tx_ctl = platform.request('scsi_tx_ctl')

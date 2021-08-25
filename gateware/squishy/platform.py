@@ -102,6 +102,7 @@ class Rev1(LatticeICE40Platform):
 
 		Resource('scsi_rx', 0,
 			Subsignal('data',
+				# 0, 1, 2, 3, 4, 5, 6, 7, P
 				Pins('J10 G10 F10 D10 A11 C7 A9 A7 A5', dir = 'i')
 			),
 			Subsignal('io',
@@ -137,6 +138,7 @@ class Rev1(LatticeICE40Platform):
 
 		Resource('scsi_tx', 0,
 			Subsignal('data',
+				# 0, 1, 2, 3, 4, 5, 6, 7, P
 				Pins('J11 G11 F11 D11 A10 C8 C9 B8 B6', dir = 'o')
 			),
 			Subsignal('io',
