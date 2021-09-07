@@ -84,7 +84,28 @@ class SCSIInterface(Elaboratable):
 			self._interface_status[0:6].eq(~self.tx_ctl)
 		]
 
-		with m.FSM(reset = 'bus_free'):
+		# SCSI Bus timings:
+		# 	min arbitration delay  - 2.2us
+		# 	min assertion period   - 90ns
+		# 	min bus clear delay    - 800ns
+		# 	max bus clear delay    - 1.2us
+		# 	min bus free delay     - 800ns
+		# 	max bus set delay      - 1.8us
+		# 	min bus settle delay   - 400ns
+		# 	max cable skew delay   - 10ns
+		# 	max data release delay - 400ns
+		# 	min deskew delay       - 45ns
+		# 	min hold time          - 45ns
+		# 	min negation period    - 90ns
+		# 	min reset hold time    - 25us
+		# 	max sel abort time     - 200us
+		# 	min sel timeout delay  - 250ms (recommended)
+		with m.FSM(reset = 'rst'):
+			with m.State('rst'):
+
+				m.next = 'rst'
+			# bus_free - no scsi device is using the bus
+			#
 			with m.State('bus_free'):
 				# All signals are left high-z due to no target/initiator
 				m.d.sync += [
