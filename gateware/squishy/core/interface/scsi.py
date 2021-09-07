@@ -116,27 +116,7 @@ class SCSIInterface(Elaboratable):
 
 				m.next = 'bus_free'
 
-			with m.State('arbitration'):
-				# Bus Arbitration
-				m.d.sync += [
-					self.tx_ctl.bsy_en.eq(0),
-					self.tx.bsy.eq(1),
-					self.tx.data[0:7].eq(self._scsi_id),
-					self.tx.data[8].eq(1),
-				]
-
-
-
-				m.next = 'bus_free'
-
 			with m.State('selection'):
-
-
-
-
-				m.next = 'bus_free'
-
-			with m.State('reselection'):
 
 
 
