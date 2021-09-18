@@ -1,4 +1,4 @@
 git+https://github.com/nmigen/nmigen.git@master
 git+https://github.com/nmigen/nmigen-boards.git@master
 git+https://github.com/nmigen/nmigen-stdio.git@master
-git+https://github.com/greatscottgadgets/luna.git@master
+git+https://github.com/lethalbit/luna.git@master
