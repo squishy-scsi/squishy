@@ -53,6 +53,8 @@ squishy_bitstream = custom_target(
 	install: false,
 )
 
+alias_target('gateware', squishy_bitstream)
+
 run_target(
 	'sim',
 	command: [
