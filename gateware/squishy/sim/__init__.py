@@ -124,22 +124,22 @@ class SimPlatform():
 
 		if name == 'scsi_tx_ctl':
 			return Record([
-				('tp_en', [
+				('tp_en_n', [
 					('o', 1)
 				]),
-				('tx_en', [
+				('tx_en_n', [
 					('o', 1)
 				]),
-				('aa_en', [
+				('aa_en_n', [
 					('o', 1)
 				]),
-				('bsy_en', [
+				('bsy_en_n', [
 					('o', 1)
 				]),
-				('sel_en', [
+				('sel_en_n', [
 					('o', 1)
 				]),
-				('mr_en', [
+				('mr_en_n', [
 					('o', 1)
 				])
 			])

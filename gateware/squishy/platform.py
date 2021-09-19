@@ -173,22 +173,22 @@ class Rev1(LatticeICE40Platform):
 		),
 
 		Resource('scsi_tx_ctl', 0,
-			Subsignal('tp_en',
+			Subsignal('tp_en_n',
 				Pins('A1', dir = 'o')
 			),
-			Subsignal('tx_en',
+			Subsignal('tx_en_n',
 				Pins('K11', dir = 'o')
 			),
-			Subsignal('aa_en',
+			Subsignal('aa_en_n',
 				Pins('G8', dir = 'o')
 			),
-			Subsignal('bsy_en',
+			Subsignal('bsy_en_n',
 				Pins('G9', dir = 'o')
 			),
-			Subsignal('sel_en',
+			Subsignal('sel_en_n',
 				Pins('F9', dir = 'o')
 			),
-			Subsignal('mr_en',
+			Subsignal('mr_en_n',
 				Pins('E8', dir = 'o')
 			),
 
