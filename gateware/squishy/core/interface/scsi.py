@@ -1,8 +1,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
+from math                    import ceil, log2
+
 from nmigen                  import *
 from nmigen_soc.wishbone     import Interface
 from nmigen_soc.csr.bus      import Element, Multiplexer
 from nmigen_soc.csr.wishbone import WishboneCSRBridge
+
+from ...utility              import us_to_s, ns_to_s
 
 __all__ = (
 	'SCSIInterface',
@@ -13,7 +17,6 @@ class SCSIInterface(Elaboratable):
 	def __init__(self, *, config, wb_config):
 		self.config = config
 		self._scsi_id = Signal(8)
-
 
 		self._wb_cfg = wb_config
 
@@ -74,16 +77,6 @@ class SCSIInterface(Elaboratable):
 
 		self._interface_status = Signal(8)
 
-		m = Module()
-		m.submodules += self._csr_bridge
-		m.submodules.csr_mux = self._csr['mux']
-
-		self._csr_elab(m)
-
-		m.d.comb += [
-			self._interface_status[0:6].eq(~self.tx_ctl)
-		]
-
 		# SCSI Bus timings:
 		# 	min arbitration delay  - 2.2us
 		# 	min assertion period   - 90ns
@@ -100,10 +93,40 @@ class SCSIInterface(Elaboratable):
 		# 	min reset hold time    - 25us
 		# 	max sel abort time     - 200us
 		# 	min sel timeout delay  - 250ms (recommended)
+
+		bus_settle_cnt = int(ceil(ns_to_s(400) * platform.pll_config['freq']) + 2)
+		bus_settle_tmr = Signal(range(bus_settle_cnt))
+		bus_settled    = Signal()
+
+		m = Module()
+		m.submodules += self._csr_bridge
+		m.submodules.csr_mux = self._csr['mux']
+
+		self._csr_elab(m)
+
+		m.d.comb += [
+			self._interface_status[0:6].eq(~self.tx_ctl),
+			bus_settled.eq(0)
+		]
+
+		with m.If((~self.rx.sel) & (~self.rx.bsy)):
+			with m.If(bus_settle_tmr == (bus_settle_cnt - 1)):
+				m.d.comb += bus_settled.eq(1)
+			with m.Else():
+				m.d.sync += bus_settle_tmr.eq(bus_settle_tmr + 1)
+		with m.Else():
+			m.d.sync += bus_settle_tmr.eq(0)
+
 		with m.FSM(reset = 'rst'):
 			with m.State('rst'):
+				m.d.sync += [
+					self.tx_ctl.eq(0b111111),
+					self.tx.eq(0),
+				]
 
-				m.next = 'rst'
+				with m.If(bus_settled):
+					m.next = 'bus_free'
+
 			# bus_free - no scsi device is using the bus
 			#
 			with m.State('bus_free'):
@@ -113,18 +136,23 @@ class SCSIInterface(Elaboratable):
 					self.tx.eq(0),
 				]
 
+				with m.If(self._scsi_in_fifo.r_rdy):
+					m.next = 'selection'
+
 
 				m.next = 'bus_free'
 
 			with m.State('selection'):
-
+				m.d.sync += [
+					self.tx_ctl.mr_en_n.eq(0),
+					self.tx.io.eq(~self.tx.io)
+				]
 
 
 
 				m.next = 'bus_free'
 
 			with m.State('command'):
-
 
 
 				m.next = 'bus_free'
