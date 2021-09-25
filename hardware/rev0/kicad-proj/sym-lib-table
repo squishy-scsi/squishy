@@ -1,3 +1,0 @@
-(sym_lib_table
-  (lib (name squishy-rescue)(type Legacy)(uri ${KIPRJMOD}/squishy-rescue.lib)(options "")(descr ""))
-)
