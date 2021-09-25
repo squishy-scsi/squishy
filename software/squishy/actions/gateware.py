@@ -139,7 +139,7 @@ def action_main(args):
 			}
 		)
 
-		plat.build(gateware, name = 'squishy', build_dir = args.build_dir, do_build = True)
+		plat.build(gateware, name = 'squishy', build_dir = args.build_dir, do_build = True, synth_opts = '-abc9')
 	else:
 		inf('ニャー')
 	return 0
