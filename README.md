@@ -14,7 +14,7 @@ The squishy hardware is your gateway into the world of old SCSI devices via a mo
 
 ## Documentation
 
-**TODO**
+The documentation for Squishy can be found at [https://lethalbit.github.io/squishy](https://lethalbit.github.io/squishy).
 
 ## Licenses
 
