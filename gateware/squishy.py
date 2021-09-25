@@ -10,7 +10,12 @@ luna_dir = os.environ.get('LUNA_DIR', str(squishy_path.parent.parent / 'deps/lun
 
 sys.path.insert(0, luna_dir)
 
+if (squishy_path.parent / 'squishy').is_dir():
+	sys.path.insert(0, str(squishy_path.parent))
+
 from squishy import main
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 	sys.exit(main())
+
+

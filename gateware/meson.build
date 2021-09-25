@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-gateware_gen = meson.current_source_dir() / '__main__.py'
+gateware_gen = meson.current_source_dir() / 'squishy.py'
 
 
 optional_flags = []
