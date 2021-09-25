@@ -1,156 +1,70 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from .utility             import *
-from .gateware.platform   import Rev1
-from .gateware.core       import Squishy
-from .gateware.simulation import *
+
 
 __all__ = (
 	'main',
 )
 
 
+def _collect_actions():
+	import pkgutil
+	from . import actions
+
+	acts = []
+	for _, name, is_pkg in pkgutil.iter_modules(path = getattr(actions, '__path__')):
+		if not is_pkg:
+			__import__(f'{getattr(actions, "__name__")}.{name}')
+			if not hasattr(getattr(actions, name), 'DONT_LOAD'):
+				acts.append({
+					'name': getattr(actions, name).ACTION_NAME,
+					'description': getattr(actions, name).ACTION_DESC,
+					'parser_init': getattr(actions, name).parser_init,
+					'main': getattr(actions, name).action_main,
+				})
+
+	return acts
+
 def main():
 	import sys
 	from os import path, mkdir
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
+	ACTIONS = _collect_actions()
+
 	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
-	actions = parser.add_subparsers(dest = 'action')
-
-	do_verify = actions.add_parser('verify', help = 'Run formal verification')
-	verify_options = do_verify.add_argument_group('Verification options')
-
-	do_simulation  = actions.add_parser('simulate', help = 'Run simulation test cases')
-	sim_options    = do_simulation.add_argument_group('Simulation Options')
-
-	do_build       = actions.add_parser('build', help = 'Build the gateware')
 
 	core_options   = parser.add_argument_group('Core configuration options')
-	usb_options    = parser.add_argument_group('USB PHY Options')
-	uart_options   = parser.add_argument_group('Debug UART Options')
-	scsi_options   = parser.add_argument_group('SCSI Options')
 
 	core_options.add_argument(
 		'--build-dir', '-b',
 		type    = str,
 		default = 'build',
-		help    = 'The build directory for the Squishy gateware'
+		help    = 'The output directory for Squishy binaries and images'
 	)
 
-	usb_options.add_argument(
-		'--usb-vid', '-V',
-		type    = int,
-		default = 0xFEED,
-		help    = 'The USB Vendor ID to use'
+	action_parser = parser.add_subparsers(
+		dest = 'action',
+		required = True
 	)
 
-	usb_options.add_argument(
-		'--usb-pid', '-P',
-		type    = int,
-		default = 0xACA7,
-		help    = 'The USB Product ID to use'
-	)
-
-	usb_options.add_argument(
-		'--usb-manufacturer', '-m',
-		type    = str,
-		default = 'aki-nyan',
-		help    = 'The USB Device Manufacturer'
-	)
-
-	usb_options.add_argument(
-		'--usb-product', '-p',
-		type    = str,
-		default = 'squishy',
-		help    = 'The USB Device Product'
-	)
-
-	usb_options.add_argument(
-		'--usb-serial-number', '-s',
-		type    = str,
-		default = 'ニャ〜',
-		help    = 'The USB Device Serial Number'
-	)
-
-	scsi_options.add_argument(
-		'--scsi-vid',
-		type    = str,
-		default = 'Shrine-0',
-		help    = 'The SCSI Vendor ID to use'
-	)
-
-	scsi_options.add_argument(
-		'--scsi-did',
-		type    = int,
-		default = 0x01,
-		help    = 'The SCSI Device ID to use'
-	)
-
-	uart_options.add_argument(
-		'--enable-uart', '-U',
-		default = False,
-		action  = 'store_true',
-		help    = 'Enable the debug UART',
-	)
-
-	uart_options.add_argument(
-		'--baud', '-B',
-		type    = int,
-		default = 9600,
-		help    = 'The rate at which to run the debug UART'
-	)
-
-	uart_options.add_argument(
-		'--data-bits', '-D',
-		type    = int,
-		default = 8,
-		help    = 'The data bits to use for the UART'
-	)
-
-	uart_options.add_argument(
-		'--parity', '-c',
-		type    = str,
-		choices = [
-			'none', 'mark', 'space'
-			'even', 'odd'
-		],
-		default = 'none',
-		help    = 'The parity mode for the debug UART'
-	)
+	for act in ACTIONS:
+		a = action_parser.add_parser(
+				act['name'],
+				help = act['description']
+			)
+		act['parser_init'](a)
 
 	args = parser.parse_args()
 
-	plat = Rev1()
+	if not path.exists(args.build_dir):
+		mkdir(args.build_dir)
 
-	if args.action == 'verify':
-		wrn('todo')
-	elif args.action == 'simulate':
-		run_sims(args)
-	elif args.action == 'build':
-		gateware = Squishy(
-			uart_config = {
-				'enabled'  : args.enable_uart,
-				'baud'     : args.baud,
-				'parity'   : args.parity,
-				'data_bits': args.data_bits,
-			},
-
-			usb_config = {
-				'vid': args.usb_vid,
-				'pid': args.usb_pid,
-
-				'mfr': args.usb_manufacturer,
-				'prd': args.usb_product,
-				'srn': args.usb_serial_number,
-			},
-
-			scsi_config = {
-				'vid': args.scsi_vid,
-				'did': args.scsi_did,
-			}
-		)
-
-		plat.build(gateware, name = 'squishy', build_dir = args.build_dir, do_build = True)
+	if args.action not in map(lambda a: a['name'], ACTIONS):
+		err(f'Unknown action {args.action}')
+		err(f'Known actions {", ".join(map(lambda a: a["name"], ACTIONS))}')
+		return 1
 	else:
-		inf('ニャー')
-	return 0
+		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
+
+	return act['main'](args)

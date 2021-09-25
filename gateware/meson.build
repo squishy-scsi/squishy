@@ -34,6 +34,7 @@ squishy_bitstream = custom_target(
 	command: [
 		py_inst.full_path(), '@INPUT@',
 		'--build-dir', meson.current_build_dir(),
+		'gateware',
 		# USB Configuration Options
 		'--usb-vid', get_option('usb_vid').to_string(),
 		'--usb-pid', get_option('usb_pid').to_string(),
@@ -60,6 +61,7 @@ run_target(
 	command: [
 		py_inst.full_path(), gateware_gen,
 		'--build-dir', meson.current_build_dir(),
+		'gateware',
 		# USB Configuration Options
 		'--usb-vid', get_option('usb_vid').to_string(),
 		'--usb-pid', get_option('usb_pid').to_string(),
