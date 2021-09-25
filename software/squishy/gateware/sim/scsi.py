@@ -27,6 +27,43 @@ scsi = SCSIInterface(
 	wb_config = _wb_cfg,
 )
 
+from nmigen.hdl import Record
+
+usb_uart = Record([
+	('w_data', [
+		('o', 8),
+	]),
+	('w_rdy', [
+		('o', 1),
+	]),
+	('w_en', [
+		('o', 1),
+	]),
+	('w_level', [
+		('o', 1)
+	])
+])
+
+scsi_uart = Record([
+	('r_data', [
+		('o', 8),
+	]),
+	('r_rdy', [
+		('o', 1),
+	]),
+	('r_en', [
+		('o', 1),
+	]),
+	('r_level', [
+		('o', 1)
+	])
+])
+
+scsi.connect_fifo(
+	scsi_in = scsi_uart,
+	usb_out = usb_uart
+)
+
 @sim_case(domains = [ ('sync', 100e6) ], dut = scsi, platform = SimPlatform())
 def sim_dummy(sim, dut):
 	def nya():
