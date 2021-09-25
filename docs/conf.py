@@ -2,11 +2,7 @@
 import os, sys
 sys.path.insert(0, os.path.abspath('.'))
 
-import squishy
-
 project = 'Squishy'
-version = squishy.__version__
-release = version.split('+')[0]
 copyright = '2021, Aki "lethalbit"'
 
 extensions = [
