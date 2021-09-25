@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-gateware_gen = meson.current_source_dir() / 'main.py'
+gateware_gen = meson.current_source_dir() / '__main__.py'
 
 
 optional_flags = []

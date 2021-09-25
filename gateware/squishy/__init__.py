@@ -5,11 +5,11 @@ from .core       import Squishy
 from .simulation import *
 
 __all__ = (
-	'cli',
+	'main',
 )
 
 
-def cli():
+def main():
 	import sys
 	from os import path, mkdir
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
