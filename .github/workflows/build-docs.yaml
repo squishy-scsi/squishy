@@ -1,0 +1,40 @@
+name: "Squishy Docs"
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  document:
+    runs-on: ubuntu-18.04
+    steps:
+      - name: Initialize Envrionment
+        shell: bash
+        env:
+          WORKSPACE: ${{ github.workspace }}
+        run: |
+          echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
+          echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+          submodules: true
+      - name: Setup
+        shell: bash
+        run: |
+          sudo apt-get update
+          sudo apt-get install graphviz
+          sudo pip3 install --upgrade pip setuptools wheel
+          pip3 install --user -r ./docs/requirements.txt
+          pip3 install --user -e .
+      - name: Build Docs
+        shell: bash
+        run: |
+          sphinx-build -b html ./docs ./_build/
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@3.7.1
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: _build
+          CLEAN: true

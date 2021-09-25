@@ -9,3 +9,4 @@ _autosave-*
 build/
 *.zip
 kibus.log
+_build/
