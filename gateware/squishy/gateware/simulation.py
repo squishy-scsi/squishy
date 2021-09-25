@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from .utility import *
+from ..utility import *
 
 __all__ = (
 	'run_sims',

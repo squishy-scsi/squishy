@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from .utility    import *
-from .platform   import Rev1
-from .core       import Squishy
-from .simulation import *
+from .utility             import *
+from .gateware.platform   import Rev1
+from .gateware.core       import Squishy
+from .gateware.simulation import *
 
 __all__ = (
 	'main',

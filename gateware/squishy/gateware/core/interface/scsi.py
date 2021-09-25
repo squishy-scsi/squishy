@@ -6,7 +6,7 @@ from nmigen_soc.wishbone     import Interface
 from nmigen_soc.csr.bus      import Element, Multiplexer
 from nmigen_soc.csr.wishbone import WishboneCSRBridge
 
-from ...utility              import us_to_s, ns_to_s
+from ....utility             import us_to_s, ns_to_s
 
 __all__ = (
 	'SCSIInterface',
