@@ -109,10 +109,13 @@ def action_main(args):
 	plat = Rev1()
 
 	if args.gateware_action == 'verify':
+		inf('Running verification pass')
 		wrn('todo')
 	elif args.gateware_action == 'simulate':
+		inf('Running simulations')
 		run_sims(args)
 	elif args.gateware_action == 'build':
+		inf('Building generic gateware')
 		gateware = Squishy(
 			uart_config = {
 				'enabled'  : args.enable_uart,

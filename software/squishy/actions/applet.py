@@ -9,4 +9,5 @@ def parser_init(parser):
 	pass
 
 def action_main(args):
+	wrn('The applet action is currently unimplemented')
 	return 0

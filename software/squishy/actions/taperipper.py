@@ -8,6 +8,7 @@ ACTION_DESC = 'project taperipper options'
 
 
 def build_bootimage(args):
+	inf('Running taperipper boot image generation')
 	if not path.exists(args.efi_fw):
 		err(f'UEFI firmware {args.efi_fw} does not exist')
 		return 1
@@ -15,6 +16,7 @@ def build_bootimage(args):
 	return 0
 
 def pack_flash(args):
+	inf('Running taperipper flash packing')
 	if not path.exists(args.boot_img):
 		err(f'Boot image {args.boot_img} does not exist')
 		return 1
@@ -26,6 +28,7 @@ def pack_flash(args):
 	return 0
 
 def mkboot_tape(args):
+	inf('Running taperipper make boot tape')
 	from ..taperipper import tape_image_fmt
 
 	if not path.exists(args.kernel_image):
