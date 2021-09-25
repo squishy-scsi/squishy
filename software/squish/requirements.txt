@@ -1,4 +1,0 @@
-Jinja2
-construct
-pyusb
-tqdm

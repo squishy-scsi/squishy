@@ -64,7 +64,6 @@ option(
 	description: 'Enable the debut UART'
 )
 
-
 option(
 	'uart_baud',
 	type: 'combo',
@@ -99,4 +98,9 @@ option(
 	description: 'The parity mode for the debug UART'
 )
 
-
+option(
+	'taperipper',
+	type: 'boolean',
+	value: true,
+	description: 'Enable the meson targets for taperipper support'
+)

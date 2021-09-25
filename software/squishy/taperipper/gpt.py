@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
-"""
-	This file is used for reading, writing, and modifying GPT disk images
-"""
 from construct import *
+
+__all__ = ()
+
 
 
 guid = Struct(

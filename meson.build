@@ -86,44 +86,8 @@ py_inst = py.find_installation(
 
 subdir('etc')
 
-subdir('gateware')
+if get_option('taperipper')
+	subdir('firmware')
+endif
+
 subdir('software')
-
-# Generate the packed GPT/FAT16 Image
-
-bootimg = custom_target(
-	'squishy-bootimg',
-	input: squish_util,
-	output: 'squishy.boot',
-	command: [
-		py_inst.full_path(), '@INPUT@',
-		'--build-dir', meson.current_build_dir(),
-		'gen-boot-img',
-		'--efi-fw', slurp
-	],
-	build_by_default: true,
-	console: true,
-	install: true,
-	install_dir: get_option('datadir') / 'squishy',
-	install_mode: 'rw-rw----'
-)
-
-# Pack the bitstream and boot image together
-
-flashimg = custom_target(
-	'squishy-flashimg',
-	input: squish_util,
-	output: 'squishy.bin',
-	command: [
-		py_inst.full_path(), '@INPUT@',
-		'--build-dir', meson.current_build_dir(),
-		'pack-image',
-		'--boot-img', bootimg,
-		'--bitstream', squishy_bitstream,
-	],
-	build_by_default: true,
-	console: true,
-	install: true,
-	install_dir: get_option('datadir') / 'squishy',
-	install_mode: 'rw-rw----'
-)

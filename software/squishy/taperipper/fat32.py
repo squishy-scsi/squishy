@@ -1,8 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
-"""
-	This file is used for reading, writing, and modifying FAT32 FS images
-"""
 from construct import *
+
+__all__ = ()
 
 boot_sector = Struct(
 	'jmp'      / Const(b'\xEB\x00\x90'),
