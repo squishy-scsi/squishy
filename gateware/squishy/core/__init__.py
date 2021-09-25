@@ -135,33 +135,13 @@ class Squishy(Elaboratable):
 		m.submodules += self._usb_in_fifo, self._scsi_in_fifo
 
 		self.usb.connect_fifo(
-			usb_in = (
-				self._usb_in_fifo.r_data,
-				self._usb_in_fifo.r_rdy,
-				self._usb_in_fifo.r_en,
-				self._usb_in_fifo.r_level,
-			),
-			scsi_out = (
-				self._scsi_in_fifo.w_data,
-				self._scsi_in_fifo.w_rdy,
-				self._scsi_in_fifo.w_en,
-				self._scsi_in_fifo.w_level,
-			)
+			usb_in   = self._usb_in_fifo,
+			scsi_out = self._scsi_in_fifo
 		)
 
 		self.scsi.connect_fifo(
-			scsi_in = (
-				self._scsi_in_fifo.r_data,
-				self._scsi_in_fifo.r_rdy,
-				self._scsi_in_fifo.r_en,
-				self._scsi_in_fifo.r_level,
-			),
-			usb_out = (
-				self._usb_in_fifo.w_data,
-				self._usb_in_fifo.w_rdy,
-				self._usb_in_fifo.w_en,
-				self._usb_in_fifo.w_level,
-			)
+			scsi_in = self._scsi_in_fifo,
+			usb_out = self._usb_in_fifo
 		)
 
 
