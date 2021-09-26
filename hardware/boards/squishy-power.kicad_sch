@@ -223,7 +223,7 @@
         )
       )
     )
-    (symbol "lethalbit:FXL4TD245BQX" (pin_numbers hide) (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
+    (symbol "lethalbit:FXL4TD245BQX" (pin_names (offset 1.016)) (in_bom yes) (on_board yes)
       (property "Reference" "U" (id 0) (at 0 5.08 0)
         (effects (font (size 1.27 1.27)))
       )

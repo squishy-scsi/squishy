@@ -2973,7 +2973,7 @@
     (stroke (width 0) (type solid) (color 0 0 0 0))
     (uuid aec18fc9-da9e-410e-8a51-a70297ce9a9a)
   )
-  (wire (pts (xy 34.29 270.51) (xy 41.91 270.51))
+  (wire (pts (xy 34.29 270.51) (xy 45.72 270.51))
     (stroke (width 0) (type solid) (color 0 0 0 0))
     (uuid aec18fc9-da9e-410e-8a51-a70297ce9a9a)
   )
@@ -5635,6 +5635,24 @@
     (pin "1" (uuid 71fe3fde-affe-4467-8d10-20f1942e0b1c))
   )
 
+  (symbol (lib_id "Connector:TestPoint_Small") (at 45.72 270.51 0) (unit 1)
+    (in_bom yes) (on_board yes)
+    (uuid 759194d7-42b0-4264-b119-81cc9b5a7c65)
+    (property "Reference" "TP14" (id 0) (at 46.9392 269.3416 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "~{TPWRE}" (id 1) (at 46.9392 271.653 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm" (id 2) (at 50.8 270.51 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (id 3) (at 50.8 270.51 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid e1269e0b-4cb0-4971-a709-da558e8e89f9))
+  )
+
   (symbol (lib_id "Connector:TestPoint_Small") (at 208.28 133.35 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 2a8fa390-c167-43b7-859a-1e63be9544b5)
@@ -7238,7 +7256,7 @@
     (property "Footprint" "Package_TO_SOT_SMD:SOT-323_SC-70" (id 2) (at 36.83 250.19 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (id 3) (at 34.29 255.27 0)
+    (property "Datasheet" "https://www.mouser.com/datasheet/2/427/VISH_S_A0001109972_1-2566876.pdf" (id 3) (at 34.29 255.27 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "MFR" "Vishay Siliconix" (id 4) (at 34.29 255.27 90)
@@ -8604,6 +8622,18 @@
     (path "/f0186a61-a1ec-47af-8a71-f94e7ce0e59d/dcb0eb95-7972-4de1-b793-645864d4506c"
       (reference "G2") (unit 1) (value "Antifaschistische_Aktion") (footprint "lethalbit-graphics:Antifaschistische Aktion_600dpi")
     )
+    (path "/f0186a61-a1ec-47af-8a71-f94e7ce0e59d/4796079e-d2f0-415f-b61b-9f8efd53ee55"
+      (reference "H1") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_3.2mm_M3")
+    )
+    (path "/f0186a61-a1ec-47af-8a71-f94e7ce0e59d/02330466-6efc-497e-a93e-e5c6ed458b8e"
+      (reference "H2") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_3.2mm_M3")
+    )
+    (path "/f0186a61-a1ec-47af-8a71-f94e7ce0e59d/6384a1ab-12d7-4c05-8cd8-82c34178ee08"
+      (reference "H3") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_3.2mm_M3")
+    )
+    (path "/f0186a61-a1ec-47af-8a71-f94e7ce0e59d/92d55441-3aca-4558-afb6-38b34087dbcd"
+      (reference "H4") (unit 1) (value "MountingHole") (footprint "MountingHole:MountingHole_3.2mm_M3")
+    )
     (path "/00000000-0000-0000-0000-000070e3c85c"
       (reference "J1") (unit 1) (value "USB_B_Micro") (footprint "lethalbit-connectors:MICRO-USB-B-(IN_PCB)")
     )
@@ -8927,6 +8957,9 @@
     )
     (path "/2a8fa390-c167-43b7-859a-1e63be9544b5"
       (reference "TP13") (unit 1) (value "TPWR") (footprint "TestPoint:TestPoint_Pad_D1.0mm")
+    )
+    (path "/759194d7-42b0-4264-b119-81cc9b5a7c65"
+      (reference "TP14") (unit 1) (value "~{TPWRE}") (footprint "TestPoint:TestPoint_Pad_D1.0mm")
     )
     (path "/5a470513-af88-45a5-8151-68e0d8ddb252/e92069a5-6c92-4eed-8047-3aa5e4866d5d"
       (reference "U1") (unit 1) (value "THVD1452DGSR") (footprint "Package_SO:VSSOP-10_3x3mm_P0.5mm")
