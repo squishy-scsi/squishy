@@ -2342,9 +2342,9 @@
     )
   )
 
-  (bus_alias "ULPI" (members "D[0..7]" "CLK" "STP" "DIR" "NXT"))
   (bus_alias "SCSI-DIFF" (members "DBP+" "DBP-" "ATN+" "ATN-" "BSY+" "BSY-" "ACK+" "ACK-" "RST+" "RST-" "MSG+" "MSG-" "SEL+" "SEL-" "CD+" "CD-" "REQ+" "REQ-" "IO+" "IO-" "DB0+" "DB0-" "DB1+" "DB1-" "DB2+" "DB2-" "DB3+" "DB3-" "DB4+" "DB4-" "DB5+" "DB5-" "DB6+" "DB6-" "DB7+" "DB7-"))
   (bus_alias "SCSI-SE" (members "DB[0..7]" "DBP" "IO" "REQ" "CD" "SEL" "MSG" "RST" "ACK" "BSY" "ATN"))
+  (bus_alias "ULPI" (members "D[0..7]" "CLK" "STP" "DIR" "NXT"))
   (junction (at 19.05 55.88) (diameter 1.016) (color 0 0 0 0))
   (junction (at 27.94 49.53) (diameter 1.016) (color 0 0 0 0))
   (junction (at 27.94 55.88) (diameter 1.016) (color 0 0 0 0))
@@ -8387,6 +8387,15 @@
     (path "/cf219933-5b49-4a2e-a9bc-163e88ee7173"
       (reference "#PWR0239") (unit 1) (value "GND") (footprint "")
     )
+    (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/0db0c5e8-df43-4fef-bc8b-66dcbf841b86"
+      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/6f9a69da-1a3a-477d-a884-3c2a5f094604"
+      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/ae107d56-6c6a-46e0-b4ee-ae76a6262fca"
+      (reference "#PWR?") (unit 1) (value "+5V") (footprint "")
+    )
     (path "/00000000-0000-0000-0000-00005f193b45"
       (reference "C1") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
@@ -8593,6 +8602,9 @@
     )
     (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/a8127ce3-18cf-423c-bad8-3719147cfecc"
       (reference "C69") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
+    )
+    (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/12018f46-3cd4-4ada-98dd-ad785911f894"
+      (reference "C?") (unit 1) (value "1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
     (path "/00000000-0000-0000-0000-000072e27a6b"
       (reference "D1") (unit 1) (value "BLUE") (footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
@@ -8935,6 +8947,9 @@
     )
     (path "/5a470513-af88-45a5-8151-68e0d8ddb252/fc43fa57-7d95-4796-b88b-ec57f0da77d6"
       (reference "R85") (unit 1) (value "330") (footprint "Resistor_SMD:R_0603_1608Metric")
+    )
+    (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/14988e9d-0731-4f35-891c-0cdcce294cdc"
+      (reference "SW?") (unit 1) (value "RST") (footprint "lethalbit:SW_Tactile_SPST_Angled_TC-1109DE")
     )
     (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/e31261ca-bfe8-49da-82ba-d2d83d0636c3"
       (reference "TP1") (unit 1) (value "3v3") (footprint "TestPoint:TestPoint_Pad_D1.0mm")
@@ -9310,6 +9325,9 @@
     )
     (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/e730c6ed-6d8e-4c2f-b77d-afa0f7e36038"
       (reference "U34") (unit 3) (value "THVD1452DGSR") (footprint "Package_SO:VSSOP-10_3x3mm_P0.5mm")
+    )
+    (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/3cd17d59-9727-4c74-8a44-5692d0e356fa"
+      (reference "U?") (unit 1) (value "APX811-40UG-7") (footprint "Package_TO_SOT_SMD:SOT-143")
     )
     (path "/b815a8ec-c187-4e06-9203-b853a6ecfa93"
       (reference "X1") (unit 1) (value "16MHz") (footprint "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm")
