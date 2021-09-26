@@ -1,4 +1,4 @@
-19066014147952593
+19074181107276597
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -48776,12 +48776,26 @@ DQFN16_1EP_2.5x3.5mm_P0.5mm
 17
 17
 DX-MON
+QFN-16-1EP_3x3mm_P0.5mm_EP1.7x1.7mm
+QFN, 16 Pin (https://www.st.com/resource/en/datasheet/tsv521.pdf), generated with kicad-footprint-generator ipc_noLead_generator.py
+QFN NoLead
+0
+21
+17
+DX-MON
 QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm
 QFN, 24 Pin (http://ww1.microchip.com/downloads/en/PackagingSpec/00000049BQ.pdf#page=278), generated with kicad-footprint-generator ipc_noLead_generator.py
 QFN NoLead
 0
 29
 25
+DX-MON
+QFN-48-1EP_7x7mm_P0.5mm_EP5.6x5.6mm
+QFN, 48 Pin (http://www.st.com/resource/en/datasheet/stm32f042k6.pdf#page=94), generated with kicad-footprint-generator ipc_noLead_generator.py
+QFN NoLead
+0
+65
+49
 DX-MON
 QFN-64-1EP_9x9mm_P0.5mm_EP6x6mm
 QFN, 64 Pin (http://ww1.microchip.com/downloads/en/DeviceDoc/doc7593.pdf (page 432)), generated with kicad-footprint-generator ipc_noLead_generator.py
@@ -48797,12 +48811,33 @@ QFN NoLead
 101
 65
 DX-MON
+UDFN-6L
+
+
+0
+6
+6
+DX-MON
+UDFN-8-1EP_3x2mm_P0.5mm_EP1.4x1.4mm
+
+
+0
+9
+9
+DX-MON
 UDFN-8-1EP_6x5mm_P1.27mm_EP3.4x4mm
 
 
 0
 9
 9
+DX-MON
+USON-10_2.5x1.0mm_P0.5mm
+USON-10 2.5x1.0mm_ Pitch 0.5mm http://www.ti.com/lit/ds/symlink/tpd4e02b04.pdf
+USON-10 2.5x1.0mm Pitch 0.5mm
+0
+10
+10
 DX-MON
 VQFN-24-1EP_4x4mm_P0.5mm_EP2x2mm
 VQFN, 24 Pin (https://fscdn.rohm.com/en/techdata_basic/ic/package/Jisso_VQFN024V4040-1-2_Rev004s_E2(MSL1).pdf)
