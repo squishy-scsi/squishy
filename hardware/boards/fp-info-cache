@@ -1,4 +1,4 @@
-19096887782463375
+19100153128954186
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -82019,6 +82019,13 @@ SLP3-150-XXX-X
 0
 0
 lethalbit
+SW_Tactile_SPST_Angled_TC-1109DE
+tactile switch SPST right angle, TC-1109DE
+tactile switch SPST angled XKB TC-1109DE
+0
+3
+3
+lethalbit
 Si564_2.5mm_3.2mm
 
 
@@ -82132,6 +82139,13 @@ Antifaschistische Aktion_600dpi
 0
 lethalbit-graphics
 Antifaschistische_Aktion_900dpi
+
+
+0
+0
+0
+lethalbit-graphics
+LAYER-MARKER-2
 
 
 0
