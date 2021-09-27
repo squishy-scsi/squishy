@@ -8,5 +8,6 @@ _autosave-*
 .venv/
 build/
 *.zip
+*.tar*
 kibus.log
 _build/
