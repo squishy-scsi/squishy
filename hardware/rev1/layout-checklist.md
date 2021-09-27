@@ -3,7 +3,7 @@
 ## General
 
 - [x] [Schematic review](schematic-checklist.md) complete and signed off, including pin swaps done during layout
-- [ ] Layout DRC 100% clean
+- [x] Layout DRC 100% clean
 
 ## Decoupling
 
@@ -111,6 +111,6 @@ bending stress
 
 ## CAM production
 
-- [ ] KiCAD specific: rerun DRC and zone fills before exporting CAM files to ensure proper results
-- [ ] Export gerber/drill files at the same time to ensure consistency
-- [ ] Visually verify final CAM files to ensure no obvious misalignments
+- [x] KiCAD specific: rerun DRC and zone fills before exporting CAM files to ensure proper results
+- [x] Export gerber/drill files at the same time to ensure consistency
+- [x] Visually verify final CAM files to ensure no obvious misalignments
