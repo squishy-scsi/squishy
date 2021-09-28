@@ -31,14 +31,14 @@ def run_sims(args):
 		mkdir(sim_dir)
 
 	for sim in _collect_sims():
-		log(f'Running simulation {sim["name"]}')
+		log(f' => Running simulation set \'{sim["name"]}\'')
 
 		output_dir = path.join(sim_dir, sim['name'])
 		if not path.exists(output_dir):
 			mkdir(output_dir)
 
 		for case, name in sim['cases']:
-			inf(f' => Running {name}')
+			log(f' ===> Running \'{name}\'')
 
 			basename = path.join(output_dir, name)
 
