@@ -8,7 +8,8 @@ try:
 except ImportError:
 	__version__ = ':nya_confused:' # :nocov:
 
-from .utility             import *
+from .gateware import platform
+from .utility  import *
 
 __all__ = (
 	'main',
@@ -33,6 +34,7 @@ def _collect_actions():
 
 	return acts
 
+
 def main():
 	import sys
 	from os import path, mkdir
@@ -49,6 +51,15 @@ def main():
 		type    = str,
 		default = 'build',
 		help    = 'The output directory for Squishy binaries and images'
+	)
+
+	core_options.add_argument(
+		'--platform', '-p',
+		dest    = 'hardware_platform',
+		type    = str,
+		default = list(platform.AVAILABLE_PLATFORMS.keys())[-1],
+		choices = list(platform.AVAILABLE_PLATFORMS.keys()),
+		help    = 'The target hardware platform',
 	)
 
 	action_parser = parser.add_subparsers(
@@ -75,4 +86,5 @@ def main():
 	else:
 		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
 
+	log(f'Targeting platform \'{args.hardware_platform}\'')
 	return act['main'](args)

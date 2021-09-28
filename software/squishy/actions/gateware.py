@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from ..utility             import *
-from ..gateware.platform   import Rev1
+from ..gateware.platform   import AVAILABLE_PLATFORMS
 from ..gateware.core       import Squishy
 from ..gateware.simulation import *
 
@@ -106,7 +106,7 @@ def parser_init(parser):
 
 def action_main(args):
 
-	plat = Rev1()
+	plat = AVAILABLE_PLATFORMS[args.hardware_platform]()
 
 	if args.gateware_action == 'verify':
 		inf('Running verification pass')

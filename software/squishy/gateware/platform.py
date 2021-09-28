@@ -8,6 +8,9 @@ from nmigen_boards.resources.interface import UARTResource
 
 __all__ = (
 	'Rev1',
+
+
+	'AVAILABLE_PLATFORMS',
 	'ICE40ClockDomainGenerator',
 )
 
@@ -51,7 +54,6 @@ class ICE40ClockDomainGenerator(Elaboratable):
 		]
 
 		return m
-
 
 class Rev1(LatticeICE40Platform):
 	device      = 'iCE40HX8K'
@@ -230,3 +232,6 @@ class Rev1(LatticeICE40Platform):
 
 
 
+AVAILABLE_PLATFORMS = {
+	'rev1': Rev1,
+}
