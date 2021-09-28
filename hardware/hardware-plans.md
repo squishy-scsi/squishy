@@ -11,3 +11,5 @@ The following are the planned design requirements for rev2 of the hardware, as w
 - [ ] Button for rebooting into bootloader for DFU
 
 ## Wishlist Items
+
+- [ ] Support for bus arbitration and multi-host bus'
