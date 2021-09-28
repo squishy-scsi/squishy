@@ -97,6 +97,9 @@ class SCSIInterface(Elaboratable):
 		bus_settle_tmr = Signal(range(bus_settle_cnt))
 		bus_settled    = Signal()
 
+		hold_time_cnt = int(ceil(ns_to_s(45) * platform.pll_config['freq']) + 2)
+		hold_time_tmr = Signal(range(hold_time_cnt))
+
 		m = Module()
 		m.submodules += self._csr_bridge
 		m.submodules.csr_mux = self._csr['mux']
@@ -104,7 +107,7 @@ class SCSIInterface(Elaboratable):
 		self._csr_elab(m)
 
 		m.d.comb += [
-			self._interface_status[0:6].eq(~self.tx_ctl),
+			self._interface_status[0:7].eq(Cat(~self.tx_ctl, self.ctl.diff_sense)),
 			bus_settled.eq(0)
 		]
 
