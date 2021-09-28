@@ -103,3 +103,33 @@ mode_select = 'Mode Select' / Struct(
 	'Param Len' / Int8ul,
 	'Control'   / ctl_byte,
 )
+
+medium_type = 'Medium Type' / Enum(Int8ul,
+	Default         = 0x00,
+	FlexibleDisk_SS = 0x01,
+	FlexibleDisk_DS = 0x02,
+
+)
+
+density_code = 'Density Code' / Enum(Int8ul,
+	Default         = 0x00,
+	FlexibleDisk_SD = 0x01,
+	FlexibleDisk_DD = 0x02,
+	ReservedStart   = 0x03,
+	ReservedEnd     = 0x7F,
+	VendorStart     = 0x80,
+	VendorEnd       = 0xFF,
+)
+
+mode_params = 'Mode Select Parameters' / Struct(
+	'Reserved'              / Int8ul,
+	'Medium Type'           / medium_type,
+	'Reserved'              / Int8ul,
+	'Block Descriptor Len'  / Int8ul,
+	'Block Descriptors'     / Array(this.Block_Descriptor_Len // 8, Struct(
+		'Density Code'      / density_code,
+		'Number Of Blocks'  / Int24ul,
+		'Reserved'          / Int8ul,
+		'Block Length'      / Int24ul,
+	))
+)

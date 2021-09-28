@@ -36,30 +36,62 @@ setup(
 	description     = 'SCSI Multi-tool',
 	license         = 'BSD-3-Clause',
 	python_requires = '>=3.6',
+
 	setup_requires  = [
-		'wheel', 'setuptools', 'setuptools_scm'
+		'wheel',
+		'setuptools',
+		'setuptools_scm'
 	],
+
 	install_requires = [
 		'git+https://github.com/nmigen/nmigen.git@master',
 		'git+https://github.com/nmigen/nmigen-boards.git@master',
 		'git+https://github.com/nmigen/nmigen-stdio.git@master',
 		'git+https://github.com/lethalbit/luna.git@master',
+
 		'Jinja2',
 		'construct',
 		'pyusb',
 		'tqdm',
 	],
+
 	packages = find_packages(
 		exclude = [
 			'tests*'
 		]
 	),
 
+	extras_require = {
+		'toolchain': [
+			'nmigen-yosys',
+			'yowasp-yosys',
+			'yowasp-nextpnr-ice40-5k',
+			'yowasp-nextpnr-ice40-8k',
+		],
+
+		'firmware': [
+			'meson',
+		]
+	},
+
 	entry_points = {
 		'console_scripts': [
 			'squishy = squishy:main',
 		]
 	},
+
+	classifiers = [
+		'Development Status :: 3 - Alpha',
+		'License :: OSI Approved :: BSD License',
+
+		'Intended Audience :: Developers',
+		'Intended Audience :: Information Technology',
+		'Intended Audience :: System Administrators',
+
+		'Topic :: Software Development',
+		'Topic :: System :: Hardware',
+
+	],
 
 	project_urls = {
 		'Documentation': 'https://lethalbit.github.io/squishy/',
