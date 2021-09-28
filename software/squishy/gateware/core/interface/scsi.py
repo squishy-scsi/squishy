@@ -38,6 +38,7 @@ class SCSIInterface(Elaboratable):
 		self.rx     = None
 		self.tx     = None
 		self.tx_ctl = None
+		self.ctl    = None
 
 		self._scsi_in_fifo = None
 		self._usb_out_fifo = None
@@ -70,6 +71,7 @@ class SCSIInterface(Elaboratable):
 		self.rx     = platform.request('scsi_rx')
 		self.tx     = platform.request('scsi_tx')
 		self.tx_ctl = platform.request('scsi_tx_ctl')
+		self.ctl    = platform.request('scsi_ctl')
 		self._status_led = platform.request('led', 1)
 
 		self._interface_status = Signal(8)

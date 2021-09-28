@@ -195,6 +195,13 @@ class Rev1(LatticeICE40Platform):
 			Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 
+		Resource('scsi_ctl', 0,
+			Subsignal('diff_sense',
+				PinsN('D7', dir = 'i')
+			),
+			Attrs(IO_STANDARD = 'SB_LVCMOS')
+		),
+
 		*LEDResources(
 			pins = [
 				'L1', # [0] BLUE

@@ -144,6 +144,13 @@ class SimPlatform():
 				])
 			])
 
+		if name == 'scsi_ctl':
+			return Record([
+				('diff_sense', [
+					('i', 1)
+				])
+			])
+
 
 def sim_case(*, domains, dut, platform = None):
 	def _reg_sim(func):
