@@ -15,6 +15,12 @@ __all__ = (
 	'main',
 )
 
+def _check_pyside():
+	try:
+		import PySide6
+		return True
+	except:
+		return False
 
 def _collect_actions():
 	import pkgutil
@@ -44,7 +50,7 @@ def main():
 
 	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
 
-	core_options   = parser.add_argument_group('Core configuration options')
+	core_options = parser.add_argument_group('Core configuration options')
 
 	core_options.add_argument(
 		'--build-dir', '-b',
@@ -61,6 +67,17 @@ def main():
 		choices = list(platform.AVAILABLE_PLATFORMS.keys()),
 		help    = 'The target hardware platform',
 	)
+
+	if _check_pyside():
+		gui_options  = parser.add_argument_group('GUI options')
+
+		gui_options.add_argument(
+			'--gui', '-G',
+			dest    = 'enable_gui',
+			action  = 'store_true',
+			default = False,
+			help    = 'If the target action or applet has a GUI, use it',
+		)
 
 	action_parser = parser.add_subparsers(
 		dest = 'action',
