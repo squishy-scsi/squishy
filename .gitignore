@@ -11,3 +11,4 @@ build/
 *.tar*
 kibus.log
 _build/
+*.FCStd[0-9]
