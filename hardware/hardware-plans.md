@@ -9,7 +9,11 @@ The following are the planned design requirements for rev2 of the hardware, as w
 - [ ] Termpower detection
 - [ ] Length-Match the inputs to the SCSI-Phy
 - [ ] Button for rebooting into bootloader for DFU
+- [ ] Upgrade FPGA
+  - [ ] ECP5?
 
 ## Wishlist Items
 
+- [ ] USB-C Connector
+  - [ ] USB3?
 - [ ] Support for bus arbitration and multi-host bus'
