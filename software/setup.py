@@ -71,6 +71,10 @@ setup(
 
 		'firmware': [
 			'meson',
+		],
+
+		'gui': [
+			'pyside6',
 		]
 	},
 
