@@ -1,0 +1,44 @@
+Reference,Quantity,Value,Footprint,Datasheet,MFR,MPN
+C1 C11 C12 C13 C14 C15 C16 C17 C18 C19 C20 C21 C22 C23 C24 C25 C26 C27 C31 C32 C36 C37 C42 C43 C45 C47 C49 C50 C51 C53 C54 C55 C56 C58 C59 C61 C62 C63 C64 C65 C66 C67 C68 C69,44,0.1uF,Capacitor_SMD:C_0603_1608Metric,,KEMET,C0603C104M5RACTU
+C2 C9,2,47uF,Capacitor_SMD:C_1210_3225Metric,https://ds.yuden.co.jp/TYCOMPAS/eu/detail?pn=EMK325ABJ476KMHP&u=M,Taiyo Yuden,EMK325ABJ476KMHP
+C29 C57,2,0.01uF,Capacitor_SMD:C_0603_1608Metric,,KEMET,C0402C103K3RACTU
+C30 C48,2,10uF,Capacitor_SMD:C_0603_1608Metric,,Murata Electronics,GRJ21BR61E106KE01K
+C33 C34 C35 C38 C39 C40 C41 C44,8,0.1uF,Capacitor_SMD:C_0402_1005Metric,,KEMET,C0402C104M8PACTU
+C5,1,100uF,Capacitor_SMD:C_1210_3225Metric,https://content.kemet.com/datasheets/KEM_C1006_X5R_SMD.pdf,KEMET,C1210C107M4PAC7800
+C3 C4 C6 C8 C28 C46 C52,7,4.7uF,Capacitor_SMD:C_0603_1608Metric,,KEMET,C0603C475K8PACTU
+C7 C10 C60 C70,4,1uF,Capacitor_SMD:C_0603_1608Metric,,Taiyo Yuden,UMK107BJ105KA-T
+D1 D5 D6,3,BLUE,LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,,Wurth Electronics,150060BS75000
+D2 D4,2,PINK,LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,,Optosupply,OSK40603C1E
+D3 D7,2,WHITE,LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder,,ROHM Semiconductor,SMLEN3WBC8W1
+F1,1,250mA,Fuse:Fuse_1210_3225Metric_Castellated,https://www.belfuse.com/resources/datasheets/circuitprotection/ds-cp-0zch-series.pdf,Bel Fuse,0ZCH0050FF2G
+G1,1,Graphic,lethalbit-graphics:ran-filled,,N/A,N/A
+G2,1,Antifaschistische_Aktion,lethalbit-graphics:Antifaschistische Aktion_600dpi,,N/A,N/A
+J1,1,USB_B_Micro,lethalbit-connectors:MICRO-USB-B-(IN_PCB),https://cdn.amphenol-icc.com/media/wysiwyg/files/drawing/10103593.pdf,Amphenol ICC,10103593-0001lf
+J2,1,Conn_02x26_Top_Bottom,lethalbit:SCSI-50-PIN,https://content.norcomp.net/rohspdfs/SCSI-050Ribbon/11Y/112/112-YYY-113RYY1.pdf,NorComp,112-050-113R001
+J3,1,Conn_01x04,Connector_PinHeader_1.27mm:PinHeader_1x04_P1.27mm_Vertical,,,
+J4,1,Conn_02x05_Odd_Even,lethalbit-connectors:FTSH-105-01-L-DV-K-TR,,Samtec,FTSH-105-01-L-DV-K-TR
+Q1 Q2,2,Q_PMOS_DGS,Package_TO_SOT_SMD:SOT-323_SC-70,https://www.mouser.com/datasheet/2/427/VISH_S_A0001109972_1-2566876.pdf,Vishay Siliconix,SI1317DL-T1-GE3
+Q3 Q4,2,Q_DUAL_PMOS_S1G1D2S2G2D1,Package_TO_SOT_SMD:SOT-363_SC-70-6,https://www.mouser.com/datasheet/2/427/VISHS99213_1-2566626.pdf,Vishay Siliconx,SI1967DH-T1-GE3
+Q5,1,Q_NMOS_GSD,Package_TO_SOT_SMD:SOT-23,https://www.diodes.com/assets/Datasheets/DMN65D8L.pdf,Diodes Inc,DMN65D8L-7
+R1 R7 R14 R17 R29 R30 R32 R35 R37 R38 R40 R44 R46 R52 R53 R65 R67 R68 R70 R73 R75 R77 R86 R87 R88,25,10k,Resistor_SMD:R_0603_1608Metric,,Vishay Dale,CRCW060310K0FKEA
+R13 R19 R20,3,4k7,Resistor_SMD:R_0603_1608Metric,,Vishay Dale,CRCW06034K70FKEA
+R16,1,6k8,Resistor_SMD:R_0603_1608Metric,,Vishay Dale,CRCW06036K80FKEA
+R2 R10,2,1M,Resistor_SMD:R_0603_1608Metric,,Vishay Dale,CRCW06031M00FKEA
+R3 R4 R5 R6 R8 R9 R11 R12 R15 R18 R21 R22 R23 R24 R25 R26 R27 R28,18,150,Resistor_SMD:R_0603_1608Metric,,TE Connectivity Passive Product ,CRGCQ0402F150R
+R31 R33 R34 R36 R39 R41 R42 R43 R45 R47 R48 R49 R50 R51 R54 R55 R56 R58 R59 R60 R61 R63 R64 R66 R69 R71 R74 R76 R78 R79 R80 R81 R82 R83 R84 R85,36,330,Resistor_SMD:R_0603_1608Metric,,TE Connectivity Passive Product ,CRGCQ0402F330R
+R57 R62,2,100,Resistor_SMD:R_0603_1608Metric,,TE Connectivity Passive Product,CRG0603F100R
+R72,1,8k06,Resistor_SMD:R_0603_1608Metric,,Vishay Dale,CRCW06038K06FKEAC
+R89,1,30k,Resistor_SMD:R_0603_1608Metric,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_11.pdf,YAGEO,RC0603FR-0730KL
+SW1,1,RST,lethalbit:SW_Tactile_SPST_Angled_TC-1109DE,,XKB Connectivity,TC-1109DE-C-D
+U1 U4 U6 U9 U10 U13 U15 U17 U18 U21 U22 U24 U25 U28 U29 U31 U32 U34,18,THVD1452DGSR,Package_SO:VSSOP-10_3x3mm_P0.5mm,https://www.ti.com/lit/ds/symlink/thvd1410.pdf?HQS=TI-null-null-digikeymode-df-pf-null-wwe&ts=1594256188624,Texas Instruments,THVD1452DGSR
+U12,1,SP3400-02UTG,rhais_package-qfn:UDFN-6L,https://www.littelfuse.com/~/media/electronics/datasheets/tvs_diode_arrays/littelfuse_tvs_diode_array_sp3400_datasheet.pdf,Littlefuse,SP3400-02UTG
+U14,1,USB3318,Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm,https://ww1.microchip.com/downloads/en/DeviceDoc/3318.pdf,Microchip Technology,USB3318-CP-TR
+U19,1,ICE40HX8K-BG121,Package_BGA:BGA-121_9.0x9.0mm_Layout11x11_P0.8mm_Ball0.4mm_Pad0.35mm_NSMD,http://www.latticesemi.com/Products/FPGAandCPLD/iCE40,Lattice Semiconductors,ICE40HX8K-BG121
+U2 U8 U11 U16 U20 U23 U27 U30 U33,9,FXL4TD245BQX,DX-MON:DQFN16_1EP_2.5x3.5mm_P0.5mm,https://www.farnell.com/datasheets/2298347.pdf,ON Semi,FXL4TD245BQX‎
+U26,1,W25N01GVZEIG,lethalbit-memory:WSON-8-1EP-6.0x8.0mm,https://www.winbond.com/resource-files/w25n01gv%20revl%20050918%20unsecured.pdf,Winbond,W25N01GVZEIG TR
+U3,1,TLV755533PDRVR,Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm,http://www.ti.com/lit/ds/symlink/tlv733p-q1.pdf,Texas Instruments,TLV75533PDRVR
+U35,1,APX811-40UG-7,Package_TO_SOT_SMD:SOT-143,https://www.diodes.com/assets/Datasheets/APX811_812.pdf,Diodes Incorporated,APX811-40UG-7
+U5,1,TLV73312PQDRVRQ1,Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm,http://www.ti.com/lit/ds/symlink/tlv755p.pdf,Texas Instruments,TLV73312PQDRVRQ1
+U7,1,LP5910-1.8DRVR,Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias,https://www.ti.com/lit/ds/symlink/lp5910.pdf?HQS=dis-dk-null-digikeymode-dsf-pf-null-wwe&ts=1622766436293,Texas Instruments,LP5910-1.8DRVR
+X1,1,16MHz,Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm,http://abracon.com/Oscillators/ASEMB.pdf,Abracon,ASEMB-16.000MHZ-LY-T
+X2,1,48MHz,Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm,http://abracon.com/Oscillators/ASEMB.pdf,Abracon,ASEMB-48.000MHZ-LY-T
