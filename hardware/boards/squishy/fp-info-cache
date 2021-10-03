@@ -1,4 +1,4 @@
-19100171414088695
+19103438048911175
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -48853,6 +48853,13 @@ VQFN NoLead
 37
 33
 DX-MON
+WDFN-8-1EP_4x4.5mm_P0.95mm_EP2.6x3.6mm
+
+
+0
+9
+9
+DX-MON
 WQFN-28-1EP_3.5x5.5_P0.5mm_EP2x4mm
 
 
@@ -82515,6 +82522,13 @@ VQFN NoLead
 0
 37
 33
+rhais_package-qfn
+WDFN-8-1EP_4x4.5mm_P0.95mm_EP2.6x3.6mm
+
+
+0
+9
+9
 rhais_package-qfn
 WQFN-28-1EP_3.5x5.5_P0.5mm_EP2x4mm
 
