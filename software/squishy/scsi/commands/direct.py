@@ -1,135 +1,205 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from construct import *
 
-from .common   import lun_res, opcode, ctl_byte
-
 __all__ = (
 	'rezero_unit',
 	'format_unit',
-	'defect_list',
+	'reassign_blocks',
+	'read',
+	'write',
+	'seek',
+	'mode_select',
+	'reserve',
+	'release',
+	'mode_sense',
+	'start_stop_unit',
+	'prevent_allow_media_removal',
+	'read_capacity',
+	'read',
+	'write',
+	'seek',
+	'write_and_verify',
+	'verify',
+	'search_data',
+	'set_limits',
 )
+
 
 # Group: 0 | Peripheral Device: Direct Access | Type: Optional
-rezero_unit = 'Re-Zero Unit' / Struct(
-	'OP Code'  / Const(b'\x01'),
-	'LUN'      / lun_res,
-	'Reserved' / Int8ul,
-	'Reserved' / Int8ul,
-	'Reserved' / Int8ul,
-	'Control'  / ctl_byte,
+rezero_unit = 'Re-Zero Unit' / BitStruct(
+	'LUN'      / BitsInteger(3),
+	'Reserved' / BitsInteger(29),
 )
 
 # Group: 0 | Peripheral Device: Direct Access | Type: Mandatory
-format_unit = 'Format Unit' / Struct(
-	'OP Code'  / Const(b'\x04'),
-	BitStruct(
-		'LUN'             / BitsInteger(3),
-		'Format Data'     / Flag,
-		'Compare List'    / Flag,
-		'Defect List Fmt' / BitsInteger(3),
-	),
-	'Vendor'     / Int8ul,
-	'Interleave' / Int16ul,
-	'Control'    / ctl_byte,
+format_unit = 'Format Unit' / BitStruct(
+	'LUN'           / BitsInteger(3),
+	'FormatData'    / Flag,
+	'CompareList'   / Flag,
+	'DefectListFmt' / BitsInteger(3),
+	'Vendor'        / Int8ul,
+	'Interleave'    / Int16ul,
 )
 
-defect_list_blk = 'Defect List (blk)' / Struct(
-	'Reserved'        / Int8ul,
-	'Reserved'        / Int8ul,
-	'Defect List Len' / Int16ul,
-	'Defects'         / Array(this.Defect_List_Len, Int32ul),
-)
-
-
-defect_list = 'Defect List (bytes/sector)' / Struct(
-	'Reserved'        / Int8ul,
-	'Reserved'        / Int8ul,
-	'Defect List Len' / Int16ul,
-	'Defects'         / Array(this.Defect_List_Len, Struct(
-		'Cylinder'         / Int24ul,
-		'Head Number'      / Int8ul,
-		'Bytes From Index' / Int32ul,
-	)),
-)
 
 # Group: 0 | Peripheral Device: Direct Access, WORM | Type: Optional
-reassign_blocks = 'Reassign Blocks' / Struct(
-	'OP Code'  / Const(b'\x07'),
-	'LUN'      / lun_res,
-	'Reserved' / Int8ul,
-	'Reserved' / Int8ul,
-	'Control'  / ctl_byte,
+reassign_blocks = 'Reassign Blocks' / BitStruct(
+	'LUN'      / BitsInteger(3),
+	'Reserved' / BitsInteger(29),
 )
 
 # Group: 0 | Peripheral Device: Direct Access | Type: Mandatory
-read = 'Read' / Struct(
-	'OP Code'  / Const(b'\x08'),
-	BitStruct(
-		'LUN' / BitsInteger(3),
-		'LBA' / BitsInteger(20),
-	),
-	'TX Len'   / Int8ul,
-	'Control'  / ctl_byte,
+read = 'Read' / BitStruct(
+	'LUN'   / BitsInteger(3),
+	'LBA'   / BitsInteger(21),
+	'TxLen' / Int8ul,
 )
 
 # Group: 0 | Peripheral Device: Direct Access | Type: Mandatory
-write = 'Write' / Struct(
-	'OP Code'  / Const(b'\x0A'),
-	BitStruct(
-		'LUN' / BitsInteger(3),
-		'LBA' / BitsInteger(20),
-	),
-	'TX Len'   / Int8ul,
-	'Control'  / ctl_byte,
+write = 'Write' / BitStruct(
+	'LUN'   / BitsInteger(3),
+	'LBA'   / BitsInteger(21),
+	'TxLen' / Int8ul,
 )
 
 # Group: 0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional
-seek = 'Seek' / Struct(
-	'OP Code'  / Const(b'\x0B'),
-	BitStruct(
-		'LUN' / BitsInteger(3),
-		'LBA' / BitsInteger(20),
-	),
+seek = 'Seek' / BitStruct(
+	'LUN'      / BitsInteger(3),
+	'LBA'      / BitsInteger(21),
 	'Reserved' / Int8ul,
-	'Control'  / ctl_byte,
 )
 
 # Group: 0 | Peripheral Device: Direct Access | Type: Optional
-mode_select = 'Mode Select' / Struct(
-	'OP Code'   / Const(b'\x15'),
-	'LUN'       / lun_res,
-	'Reserved'  / Int8ul,
-	'Reserved'  / Int8ul,
-	'Param Len' / Int8ul,
-	'Control'   / ctl_byte,
+mode_select = 'Mode Select' / BitStruct(
+	'LUN'      / BitsInteger(3),
+	'Reserved' / BitsInteger(21),
+	'ParamLen' / Int8ul,
 )
 
-medium_type = 'Medium Type' / Enum(Int8ul,
-	Default         = 0x00,
-	FlexibleDisk_SS = 0x01,
-	FlexibleDisk_DS = 0x02,
-
+# Group: 0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional
+reserve = 'Reserve' / BitStruct(
+	'LUN'           / BitsInteger(3),
+	'ThirdParty'    / Flag,
+	'ThirdPartyDID' / BitsInteger(3),
+	'Extent'        / Flag,
+	'ReservationID' / Int8ul,
+	'ExtentListLen' / Int16ul,
 )
 
-density_code = 'Density Code' / Enum(Int8ul,
-	Default         = 0x00,
-	FlexibleDisk_SD = 0x01,
-	FlexibleDisk_DD = 0x02,
-	ReservedStart   = 0x03,
-	ReservedEnd     = 0x7F,
-	VendorStart     = 0x80,
-	VendorEnd       = 0xFF,
+# Group: 0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional
+release = 'Release' / BitStruct(
+	'LUN'           / BitsInteger(3),
+	'ThirdParty'    / Flag,
+	'ThirdPartyDID' / BitsInteger(3),
+	'Extent'        / Flag,
+	'ReservationID' / Int8ul,
+	'Reserved'      / Int16ul,
 )
 
-mode_params = 'Mode Select Parameters' / Struct(
-	'Reserved'              / Int8ul,
-	'Medium Type'           / medium_type,
-	'Reserved'              / Int8ul,
-	'Block Descriptor Len'  / Int8ul,
-	'Block Descriptors'     / Array(this.Block_Descriptor_Len // 8, Struct(
-		'Density Code'      / density_code,
-		'Number Of Blocks'  / Int24ul,
-		'Reserved'          / Int8ul,
-		'Block Length'      / Int24ul,
-	))
+# Group: 0 | Peripheral Device: Direct Access | Type: Optional
+mode_sense = 'Mode Sense' / BitStruct(
+	'LUN'      / BitsInteger(3),
+	'Reserved' / BitsInteger(21),
+	'AllocLen' / Int8ul,
+)
+
+# Group: 0 | Peripheral Device: Direct Access | Type: Optional
+start_stop_unit = 'Start/Stop Unit' / BitStruct(
+	'LUN'       / BitsInteger(3),
+	'Reserved'  / BitsInteger(4),
+	'Immediate' / Flag,
+	'Reserved'  / BitsInteger(23),
+	'Start'     / Flag,
+)
+
+# Group: 0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional
+prevent_allow_media_removal = 'Prevent/Allow Media Removal' / BitStruct(
+	'LUN'      / BitsInteger(3),
+	'Reserved' / BitsInteger(28),
+	'Prevent'  / Flag,
+)
+
+# Group: 1 | Peripheral Device: Direct Access, WORM, RO DA | Type: Extended
+read_capacity = 'Read Capacity' / BitStruct(
+	'LUN'          / BitsInteger(3),
+	'Reserved'     / BitsInteger(4),
+	'RelativeAddr' / Flag,
+	'LBA'          / Int32ul,
+	'Reserved'     / Int16ul,
+	'Vendor'       / BitsInteger(2),
+	'Reserved'     / BitsInteger(5),
+	'PMI'          / Flag,
+)
+
+# Group: 1 | Peripheral Device: Direct Access | Type: Extended
+read = 'Read (Direct Access)' / BitStruct(
+	'LUN'          / BitsInteger(3),
+	'Reserved'     / BitsInteger(4),
+	'RelativeAddr' / Flag,
+	'LBA'          / Int32ul,
+	'Reserved'     / Int8ul,
+	'TXLen'        / Int16ul,
+)
+
+# Group: 1 | Peripheral Device: Direct Access | Type: Extended
+write = 'Write (Direct Access)' / BitStruct(
+	'LUN'          / BitsInteger(3),
+	'Reserved'     / BitsInteger(4),
+	'RelativeAddr' / Flag,
+	'LBA'          / Int32ul,
+	'Reserved'     / Int8ul,
+	'TXLen'        / Int16ul,
+)
+
+# Group: 1 | Peripheral Device: Direct Access | Type: Extended
+seek = 'Seek (Direct Access)' / BitStruct(
+	'LUN'          / BitsInteger(3),
+	'Reserved'     / BitsInteger(5),
+	'LBA'          / Int32ul,
+	'Reserved'     / Int24ul,
+)
+
+# Group: 1 | Peripheral Device: Direct Access | Type: Optional
+write_and_verify = 'Write and Verify' / BitStruct(
+	'LUN'          / BitsInteger(3),
+	'Reserved'     / BitsInteger(3),
+	'ByteCheck'    / Flag,
+	'RelativeAddr' / Flag,
+	'LBA'          / Int32ul,
+	'Reserved'     / Int8ul,
+	'TXLen'        / Int16ul,
+)
+
+# Group: 1 | Peripheral Device: Direct Access | Type: Optional
+verify = 'Verify' / BitStruct(
+	'LUN'          / BitsInteger(3),
+	'Reserved'     / BitsInteger(3),
+	'ByteCheck'    / Flag,
+	'RelativeAddr' / Flag,
+	'LBA'          / Int32ul,
+	'Reserved'     / Int8ul,
+	'VerifLen'     / Int16ul,
+)
+
+# Group: 1 | Peripheral Device: Direct Access | Type: Optional
+search_data = 'Search Data' / BitStruct(
+	'LUN'          / BitsInteger(3),
+	'Invert'       / Flag,
+	'Reserved'     / BitsInteger(2),
+	'SpannedData'  / Flag,
+	'RelativeAddr' / Flag,
+	'LBA'          / Int32ul,
+	'Reserved'     / Int8ul,
+	'TXLen'        / Int16ul,
+)
+
+# Group: 1 | Peripheral Device: Direct Access | Type: Optional
+set_limits = 'Set Limits' / BitStruct(
+	'LUN'          / BitsInteger(3),
+	'Reserved'     / BitsInteger(3),
+	'ReadInhibit'  / Flag,
+	'WriteInhibit' / Flag,
+	'LBA'          / Int32ul,
+	'Reserved'     / Int8ul,
+	'BlkCount'     / Int16ul,
 )
