@@ -8,12 +8,12 @@ The following are the planned design requirements for rev2 of the hardware, as w
 - [ ] Single Ended support
 - [ ] Termpower detection
 - [ ] Length-Match the inputs to the SCSI-Phy
-- [ ] Button for rebooting into bootloader for DFU
-- [ ] Upgrade FPGA
-  - [ ] ECP5?
+- [x] Button for rebooting into bootloader for DFU
+- [x] Upgrade FPGA
+  - [x] ECP5? - LFE5U-45F-8BG256C
+- [ ] Fix USB (USB3318 -> USB3343)
 
 ## Wishlist Items
 
-- [ ] USB-C Connector
-  - [ ] USB3?
+- [x] USB-C Connector
 - [ ] Support for bus arbitration and multi-host bus'
