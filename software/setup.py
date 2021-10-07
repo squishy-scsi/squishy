@@ -53,6 +53,7 @@ setup(
 		'construct',
 		'pyusb',
 		'tqdm',
+		'prompt_toolkit',
 	],
 
 	packages = find_packages(
