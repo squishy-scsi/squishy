@@ -21,6 +21,21 @@ def _check_pyside():
 		return True
 	except:
 		return False
+def _init_dirs():
+	from .  import config
+	from os import path, mkdir
+
+	dirs = (
+		config.SQUISHY_CACHE,
+		config.SQUISHY_DATA,
+		config.SQUISHY_CONFIG,
+
+		config.SQUISHY_APPLETS,
+	)
+
+	for d in dirs:
+		if not path.exists(d):
+			mkdir(d)
 
 def _collect_actions():
 	import pkgutil
@@ -46,6 +61,7 @@ def main():
 	from os import path, mkdir
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
+	_init_dirs()
 	ACTIONS = _collect_actions()
 
 	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
