@@ -1,0 +1,812 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1570</width>
+    <height>1003</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1024</width>
+    <height>768</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Squishy</string>
+  </property>
+  <property name="tabShape">
+   <enum>QTabWidget::Triangular</enum>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks|QMainWindow::VerticalTabs</set>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QListView" name="capture_filter"/>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="capture_log"/>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1570</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="action_file_new_session"/>
+    <addaction name="separator"/>
+    <addaction name="action_file_open"/>
+    <addaction name="action_file_save"/>
+    <addaction name="action_file_save_as"/>
+    <addaction name="separator"/>
+    <addaction name="action_file_export_as"/>
+    <addaction name="separator"/>
+    <addaction name="action_quit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <widget class="QMenu" name="menuCopy_As">
+     <property name="title">
+      <string>Copy As</string>
+     </property>
+     <addaction name="action_copy_binary"/>
+     <addaction name="action_hex"/>
+     <addaction name="action_copy_c_array"/>
+     <addaction name="action_copy_cpp_array"/>
+     <addaction name="action_copy_json"/>
+    </widget>
+    <addaction name="menuCopy_As"/>
+    <addaction name="action_edit_find"/>
+    <addaction name="action_edit_find_next"/>
+    <addaction name="action_edit_find_previous"/>
+    <addaction name="separator"/>
+    <addaction name="action_edit_chrono_shift"/>
+    <addaction name="separator"/>
+    <addaction name="action_edit_preferences"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="action_view_hex"/>
+    <addaction name="action_view_dissector"/>
+    <addaction name="action_view_repl"/>
+    <addaction name="separator"/>
+    <addaction name="action_view_toolbar"/>
+    <addaction name="separator"/>
+    <addaction name="action_view_bus_topology"/>
+   </widget>
+   <widget class="QMenu" name="menuGo">
+    <property name="title">
+     <string>Go</string>
+    </property>
+    <addaction name="action_go_message"/>
+    <addaction name="action_go_next"/>
+    <addaction name="action_go_previous"/>
+    <addaction name="action_go_first"/>
+    <addaction name="action_go_last"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuCapture">
+    <property name="title">
+     <string>Capture</string>
+    </property>
+    <addaction name="action_capture_start"/>
+    <addaction name="action_capture_stop"/>
+    <addaction name="action_capture_restart"/>
+    <addaction name="action_capture_replay"/>
+    <addaction name="separator"/>
+    <addaction name="action_capture_filters"/>
+    <addaction name="action_capture_triggers"/>
+    <addaction name="separator"/>
+    <addaction name="action_capture_select_device"/>
+    <addaction name="separator"/>
+    <addaction name="action_capture_auto_scroll"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="action_help_website"/>
+    <addaction name="separator"/>
+    <addaction name="action_help_about"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuGo"/>
+   <addaction name="menuCapture"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QDockWidget" name="repl_dock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>REPL</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QListView" name="repl_output"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="repl_input"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="dissector_doc">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Dissector</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QVBoxLayout" name="verticalLayout_4">
+     <item>
+      <widget class="QTreeView" name="dissector_tree"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="hex_dock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFloatable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Hex View</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <layout class="QVBoxLayout" name="verticalLayout_3">
+     <item>
+      <widget class="HexViewWidget" name="hex_view"/>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QToolBar" name="toolBar">
+   <property name="windowTitle">
+    <string>Toolbar</string>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_capture_start"/>
+   <addaction name="action_capture_stop"/>
+   <addaction name="action_capture_restart"/>
+   <addaction name="action_capture_filters"/>
+   <addaction name="action_capture_auto_scroll"/>
+   <addaction name="separator"/>
+   <addaction name="action_file_new_session"/>
+   <addaction name="action_file_open"/>
+   <addaction name="action_file_save"/>
+   <addaction name="separator"/>
+   <addaction name="action_edit_find"/>
+   <addaction name="action_go_previous"/>
+   <addaction name="action_go_next"/>
+   <addaction name="action_go_message"/>
+   <addaction name="action_go_first"/>
+   <addaction name="action_go_last"/>
+   <addaction name="separator"/>
+   <addaction name="action_view_dissector"/>
+   <addaction name="action_view_hex"/>
+   <addaction name="action_view_repl"/>
+   <addaction name="separator"/>
+   <addaction name="action_capture_select_device"/>
+   <addaction name="action_view_bus_topology"/>
+  </widget>
+  <action name="action_file_new_session">
+   <property name="icon">
+    <iconset theme="document-new">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>New Session</string>
+   </property>
+   <property name="toolTip">
+    <string>Create a new capture session</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_file_open">
+   <property name="icon">
+    <iconset theme="document-open">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="toolTip">
+    <string>Open a saved capture file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_file_save">
+   <property name="icon">
+    <iconset theme="document-save">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="toolTip">
+    <string>Save current capture session</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="action_file_save_as">
+   <property name="icon">
+    <iconset theme="document-save-as">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Save As...</string>
+   </property>
+   <property name="toolTip">
+    <string>Save current capture session as...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="action_file_export_as">
+   <property name="icon">
+    <iconset theme="text-x-generic">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Export As...</string>
+   </property>
+   <property name="toolTip">
+    <string>Export current capture session as...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+X</string>
+   </property>
+  </action>
+  <action name="action_quit">
+   <property name="icon">
+    <iconset theme="application-exit">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Quit</string>
+   </property>
+   <property name="toolTip">
+    <string>Quit Squishy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="action_view_repl">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="utilities-terminal">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>REPL</string>
+   </property>
+   <property name="toolTip">
+    <string>Show/Hide the Squishy REPL</string>
+   </property>
+  </action>
+  <action name="action_view_hex">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="debug-step-into">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Hex View</string>
+   </property>
+   <property name="toolTip">
+    <string>Show/Hide the raw hex view</string>
+   </property>
+  </action>
+  <action name="action_view_dissector">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="document-edit-encrypt">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Dissector</string>
+   </property>
+   <property name="toolTip">
+    <string>Show/Hide Message Dissector</string>
+   </property>
+  </action>
+  <action name="action_view_bus_topology">
+   <property name="icon">
+    <iconset theme="distribute-graph-directed">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Bus Topology</string>
+   </property>
+   <property name="toolTip">
+    <string>View SCSI Bus topology</string>
+   </property>
+  </action>
+  <action name="action_capture_start">
+   <property name="icon">
+    <iconset theme="media-playback-start">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Start</string>
+   </property>
+   <property name="toolTip">
+    <string>Start capturing</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="action_capture_stop">
+   <property name="icon">
+    <iconset theme="media-playback-stop">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Stop</string>
+   </property>
+   <property name="toolTip">
+    <string>Stop capturing</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="action_capture_restart">
+   <property name="icon">
+    <iconset theme="view-refresh">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Restart</string>
+   </property>
+   <property name="toolTip">
+    <string>Restart the current capture</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="action_capture_replay">
+   <property name="icon">
+    <iconset theme="document-revert">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Replay</string>
+   </property>
+   <property name="toolTip">
+    <string>Replay capture via Squishy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+R</string>
+   </property>
+  </action>
+  <action name="action_capture_filters">
+   <property name="icon">
+    <iconset theme="document-preview">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Filters</string>
+   </property>
+   <property name="toolTip">
+    <string>Configure capture filters</string>
+   </property>
+  </action>
+  <action name="action_capture_triggers">
+   <property name="icon">
+    <iconset theme="quickopen">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Triggers</string>
+   </property>
+   <property name="toolTip">
+    <string>Configure capture triggers</string>
+   </property>
+  </action>
+  <action name="action_help_about">
+   <property name="icon">
+    <iconset theme="help-about">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+   <property name="toolTip">
+    <string>About Squishy</string>
+   </property>
+  </action>
+  <action name="action_capture_select_device">
+   <property name="icon">
+    <iconset theme="show_table_column">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Select Device</string>
+   </property>
+   <property name="toolTip">
+    <string>Select an attached Squishy device</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="action_capture_auto_scroll">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset theme="arrow-down-double">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Live Auto Scroll</string>
+   </property>
+   <property name="toolTip">
+    <string>Automatically scroll to bottom when doing a capture</string>
+   </property>
+  </action>
+  <action name="action_edit_find">
+   <property name="icon">
+    <iconset theme="edit-find">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Find...</string>
+   </property>
+   <property name="toolTip">
+    <string>Find a message</string>
+   </property>
+  </action>
+  <action name="action_edit_find_next">
+   <property name="icon">
+    <iconset theme="go-next">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Find Next</string>
+   </property>
+  </action>
+  <action name="action_edit_find_previous">
+   <property name="icon">
+    <iconset theme="go-previous">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Find Previous</string>
+   </property>
+  </action>
+  <action name="action_edit_preferences">
+   <property name="icon">
+    <iconset theme="preferences-other">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+   <property name="toolTip">
+    <string>Edit Preferences</string>
+   </property>
+  </action>
+  <action name="action_go_message">
+   <property name="icon">
+    <iconset theme="go-jump">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Go To Message</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to specified message</string>
+   </property>
+  </action>
+  <action name="action_go_next">
+   <property name="icon">
+    <iconset theme="go-next">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Next Message</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to the next message</string>
+   </property>
+  </action>
+  <action name="action_go_previous">
+   <property name="icon">
+    <iconset theme="go-previous">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Previous Message</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to the previous message</string>
+   </property>
+  </action>
+  <action name="action_go_first">
+   <property name="icon">
+    <iconset theme="go-first">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>First Message</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to the first message</string>
+   </property>
+  </action>
+  <action name="action_go_last">
+   <property name="icon">
+    <iconset theme="go-last">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Last Message</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to the last message</string>
+   </property>
+  </action>
+  <action name="action_view_toolbar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Toolbar</string>
+   </property>
+   <property name="toolTip">
+    <string>Show/Hide toolbar</string>
+   </property>
+  </action>
+  <action name="action_help_website">
+   <property name="icon">
+    <iconset theme="text-html">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Website</string>
+   </property>
+   <property name="toolTip">
+    <string>Go to the squishy website</string>
+   </property>
+  </action>
+  <action name="action_copy_binary">
+   <property name="icon">
+    <iconset theme="document-export">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Raw Binary</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy message as raw binary</string>
+   </property>
+  </action>
+  <action name="action_hex">
+   <property name="icon">
+    <iconset theme="format-justify-fill">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Hex Encoded String</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy message as hex string</string>
+   </property>
+  </action>
+  <action name="action_copy_c_array">
+   <property name="icon">
+    <iconset theme="format-line-spacing-normal">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>C Style Array</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy as a C style array</string>
+   </property>
+  </action>
+  <action name="action_copy_cpp_array">
+   <property name="icon">
+    <iconset theme="edit-table-cell-merge">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>C++ Style Array</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy as  C++ style array</string>
+   </property>
+  </action>
+  <action name="action_edit_chrono_shift">
+   <property name="icon">
+    <iconset theme="chronometer">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>Chrono Shift</string>
+   </property>
+   <property name="toolTip">
+    <string>Apply a chrono shift to capture timestamps</string>
+   </property>
+  </action>
+  <action name="action_copy_json">
+   <property name="icon">
+    <iconset theme="code-context">
+     <normaloff>.</normaloff>.</iconset>
+   </property>
+   <property name="text">
+    <string>JSON</string>
+   </property>
+   <property name="toolTip">
+    <string>Copy as a JSON document</string>
+   </property>
+  </action>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>HexViewWidget</class>
+   <extends>QTableView</extends>
+   <header>widgets/hex_view.py</header>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>action_quit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>784</x>
+     <y>501</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_view_hex</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>hex_dock</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1225</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_view_repl</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>repl_dock</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>784</x>
+     <y>839</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_view_dissector</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>dissector_doc</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1225</x>
+     <y>180</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_view_toolbar</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>toolBar</receiver>
+   <slot>setVisible(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>784</x>
+     <y>52</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

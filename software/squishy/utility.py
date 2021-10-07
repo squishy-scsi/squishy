@@ -31,7 +31,7 @@ def dbg(str, end = '\n', file = sys.stdout):
 
 def print_table(lst, columns = 2):
 	for idx, itm in enumerate(lst):
-		print(f'{itm:>25}', end='\t')
+		print(f'{itm:<20}', end='\t')
 		if (idx + 1) % columns == 0:
 			print('')
 	print('')
