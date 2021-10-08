@@ -188,7 +188,7 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="dissector_doc">
+  <widget class="QDockWidget" name="dissector_dock">
    <property name="windowIcon">
     <iconset theme="document-edit-encrypt">
      <normaloff>.</normaloff>.</iconset>
@@ -845,7 +845,7 @@
   <connection>
    <sender>action_view_dissector</sender>
    <signal>toggled(bool)</signal>
-   <receiver>dissector_doc</receiver>
+   <receiver>dissector_dock</receiver>
    <slot>setVisible(bool)</slot>
    <hints>
     <hint type="sourcelabel">
@@ -871,6 +871,54 @@
     <hint type="destinationlabel">
      <x>784</x>
      <y>52</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>hex_dock</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>action_view_hex</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1439</x>
+     <y>555</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>repl_dock</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>action_view_repl</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>784</x>
+     <y>847</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>dissector_dock</sender>
+   <signal>visibilityChanged(bool)</signal>
+   <receiver>action_view_dissector</receiver>
+   <slot>setChecked(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1439</x>
+     <y>235</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>-1</x>
+     <y>-1</y>
     </hint>
    </hints>
   </connection>

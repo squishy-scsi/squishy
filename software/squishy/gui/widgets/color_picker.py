@@ -12,6 +12,7 @@ class ColorPicker(QWidget):
 
 		self.color = QColor(kwargs.get('color', '#2b2b2b'))
 
+
 		self.resize(size)
 		self.setMinimumSize(size)
 		self.setMaximumSize(size)
@@ -28,12 +29,14 @@ class ColorPicker(QWidget):
 		self._layout.addWidget(self.btn_pick, 0, 1, 1, 1)
 
 		self.btn_pick.clicked.connect(self._pick_color)
+		self.frm_display.setStyleSheet(f'background-color: {self.color.name()};')
 
 
 	def _pick_color(self):
-		res = QColorDialog.getColor()
+		dialog = QColorDialog(self)
+		dialog.setCurrentColor(self.color)
 
-		if res is not None:
-			self.color = res
+		if dialog.exec_():
+			self.color = dialog.selectedColor()
 			self.frm_display.setStyleSheet(f'background-color: {self.color.name()};')
 
