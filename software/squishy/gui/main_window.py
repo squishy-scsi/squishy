@@ -1,12 +1,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
+import json
 from os import path
 
 from PySide6.QtCore       import *
 from PySide6.QtWidgets    import *
 from PySide6.QtUiTools    import QUiLoader
 
-from .widgets             import HexViewWidget
+from ..config             import SQUISHY_GUI_SETTINGS
 
+from .widgets             import HexViewWidget
 from .about_window        import AboutWindow
 from .bus_topology_window import BusTopologyWindow
 from .devices_window      import DevicesWindow
@@ -15,6 +17,9 @@ from .preferences_window  import PreferencesWindow
 from .triggers_window     import TriggersWindow
 
 class MainWindow:
+	def _populate_settings(self):
+		pass
+
 	def __init__(self):
 		self.loader = QUiLoader()
 		self._ui_file = QFile(
@@ -23,6 +28,10 @@ class MainWindow:
 				'main_window.ui'
 			)
 		)
+
+		# load settings
+		with open(SQUISHY_GUI_SETTINGS, 'r') as cfg:
+			self.settings = json.load(cfg)
 
 		self.loader.registerCustomWidget(HexViewWidget)
 
@@ -47,6 +56,8 @@ class MainWindow:
 		self.window.action_file_open.triggered.connect(self.open_file)
 		self.window.action_file_save.triggered.connect(self.save_file)
 
+
+		self._populate_settings()
 
 
 	def open_file(self, _):

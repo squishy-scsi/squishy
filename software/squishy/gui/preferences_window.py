@@ -5,6 +5,8 @@ from PySide6.QtCore    import *
 from PySide6.QtWidgets import *
 from PySide6.QtUiTools import QUiLoader
 
+from .widgets          import FontPicker, ColorPicker
+
 class PreferencesWindow:
 	def __init__(self):
 		self.loader = QUiLoader()
@@ -14,6 +16,9 @@ class PreferencesWindow:
 				'preferences_window.ui'
 			)
 		)
+
+		self.loader.registerCustomWidget(FontPicker)
+		self.loader.registerCustomWidget(ColorPicker)
 
 		self.window = self.loader.load(self._ui_file)
 
