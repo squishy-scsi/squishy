@@ -13,7 +13,7 @@ class FontPicker(QWidget):
 		self.font = kwargs.get('font', QFont('Noto Sans', 12))
 		self._font_info = QFontInfo(self.font)
 
-		self._spacer = QSpacerItem(40, 1, QSizePolicy.Expanding, QSizePolicy.Minimum)
+		self._spacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 		self._layout.addItem(self._spacer)
 
 		self.lbl_font_name = QLabel(self)

@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>850</width>
+    <height>750</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -18,14 +18,14 @@
   </property>
   <property name="minimumSize">
    <size>
-    <width>800</width>
-    <height>600</height>
+    <width>850</width>
+    <height>750</height>
    </size>
   </property>
   <property name="maximumSize">
    <size>
-    <width>800</width>
-    <height>600</height>
+    <width>850</width>
+    <height>750</height>
    </size>
   </property>
   <property name="windowTitle">
@@ -81,7 +81,7 @@
            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
           </property>
           <property name="labelAlignment">
-           <set>Qt::AlignBottom|Qt::AlignRight|Qt::AlignTrailing</set>
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
           </property>
           <property name="formAlignment">
            <set>Qt::AlignHCenter|Qt::AlignTop</set>
@@ -117,8 +117,8 @@
            <widget class="FontPicker" name="fp_main" native="true">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>0</height>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
            </widget>
@@ -155,7 +155,7 @@
            <enum>QFormLayout::AllNonFixedFieldsGrow</enum>
           </property>
           <property name="rowWrapPolicy">
-           <enum>QFormLayout::WrapLongRows</enum>
+           <enum>QFormLayout::DontWrapRows</enum>
           </property>
           <property name="labelAlignment">
            <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
@@ -178,14 +178,17 @@
             <property name="text">
              <string>Font:</string>
             </property>
+            <property name="alignment">
+             <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+            </property>
            </widget>
           </item>
           <item row="1" column="1">
            <widget class="FontPicker" name="fp_hex" native="true">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>0</height>
+              <width>40</width>
+              <height>20</height>
              </size>
             </property>
            </widget>
@@ -201,8 +204,14 @@
            <widget class="ColorPicker" name="clr_zero" native="true">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>0</height>
+              <width>114</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>114</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -232,8 +241,14 @@
            <widget class="ColorPicker" name="clr_high" native="true">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>0</height>
+              <width>114</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>114</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -242,8 +257,14 @@
            <widget class="ColorPicker" name="clr_low" native="true">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>0</height>
+              <width>114</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>114</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -252,8 +273,14 @@
            <widget class="ColorPicker" name="clr_max" native="true">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>0</height>
+              <width>114</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>114</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
@@ -269,8 +296,14 @@
            <widget class="ColorPicker" name="clr_printable" native="true">
             <property name="minimumSize">
              <size>
-              <width>0</width>
-              <height>0</height>
+              <width>114</width>
+              <height>60</height>
+             </size>
+            </property>
+            <property name="maximumSize">
+             <size>
+              <width>114</width>
+              <height>60</height>
              </size>
             </property>
            </widget>
