@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
+from .. import __version__
 
 ACTION_NAME = 'gui'
 ACTION_DESC = 'Interactive SCSI gui'
 
-
 def _check_pyside():
 	try:
-		import PySide6
+		import PySide2
 		return True
 	except:
 		return False
@@ -14,8 +14,8 @@ def _check_pyside():
 if not _check_pyside():
 	DONT_LOAD = 1
 
-from PySide6.QtWidgets import QApplication
-from PySide6.QtCore    import QCoreApplication, Qt
+from PySide2.QtWidgets import QApplication
+from PySide2.QtCore    import QCoreApplication, Qt
 from ..gui             import MainWindow
 
 _DEFAULT_GUI_SETTINGS = {
@@ -59,10 +59,10 @@ _DEFAULT_GUI_SETTINGS = {
 class SquishyGui:
 	def __init__(self):
 		import json
-		from os             import path
-		from signal         import signal, SIGINT, SIG_DFL
+		from os       import path
+		from signal   import signal, SIGINT, SIG_DFL
 
-		from ..config       import SQUISHY_GUI_SETTINGS
+		from ..config import SQUISHY_GUI_SETTINGS
 
 		QCoreApplication.setAttribute(Qt.AA_ShareOpenGLContexts)
 		signal(SIGINT, SIG_DFL)
@@ -76,12 +76,10 @@ class SquishyGui:
 
 		self.main_window = MainWindow()
 
-
-
 	def run(self):
 		self.main_window.show()
-		ret = self.app.exec()
-		self.halt()
+		ret = self.app.exec_()
+		# self.halt()
 		return ret
 
 	def halt(self):
@@ -94,5 +92,20 @@ def parser_init(parser):
 
 def action_main(args):
 	gui = SquishyGui()
+	banner = fr'''
+------------------------------------------
+ ####   ####  #    # #  ####  #    # #   #
+#      #    # #    # # #      #    #  # #
+ ####  #    # #    # #  ####  ######   #
+     # #  # # #    # #      # #    #   #
+#    # #   #  #    # # #    # #    #   #
+ ####   ### #  ####  #  ####  #    #   #
+------------------------------------------
+################ QT5 GUI #################
+------------------------------------------
+squishy version: {__version__}
+	'''
+
+	print(banner, end = '')
 
 	return gui.run()

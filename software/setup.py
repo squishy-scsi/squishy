@@ -74,7 +74,7 @@ setup(
 		],
 
 		'gui': [
-			'pyside6',
+			'PySide2',
 		]
 	},
 

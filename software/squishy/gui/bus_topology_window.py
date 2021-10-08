@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from os import path
 
-from PySide6.QtCore    import *
-from PySide6.QtWidgets import *
-from PySide6.QtUiTools import QUiLoader
+from PySide2.QtCore    import *
+from PySide2.QtWidgets import *
+from PySide2.QtUiTools import QUiLoader
 
 from .widgets          import BusTopologyWidget
 

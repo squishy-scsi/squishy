@@ -291,11 +291,10 @@
      </widget>
      <widget class="QWidget" name="tab_device">
       <attribute name="icon">
-       <iconset theme="show_table_column">
-        <normaloff>.</normaloff>.</iconset>
+       <iconset theme="show_table_column"/>
       </attribute>
       <attribute name="title">
-       <string>Device        </string>
+       <string>Device</string>
       </attribute>
      </widget>
     </widget>
