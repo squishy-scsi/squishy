@@ -80,7 +80,6 @@ class HexViewWidget(QTableView):
 		self.verticalHeader().setHighlightSections(False)
 		self.horizontalHeader().setHighlightSections(False)
 		self.verticalHeader().setSectionsClickable(False)
-		self.verticalHeader().
 
 		# Don't let the user edit the table cells.
 		self.setEditTriggers(self.NoEditTriggers)
