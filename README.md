@@ -22,6 +22,8 @@ The Squishy project is licensed under 3 individual licenses, one for the hardwar
 
 The hardware is licensed under the [CERN-OHL-S](https://ohwr.org/cern_ohl_s_v2.txt), the license for which can be found in [LICENSE.hardware](LICENSE.hardware)
 
-The software and gateware are licensed under the BSD-3-Clause and can be found in [LICENSE.software](LICENSE.software).
+The software and gateware are licensed under the [BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.html) and can be found in [LICENSE.software](LICENSE.software).
 
 The documentation is licensed under the Creative Commons [CC-BY-SA](https://creativecommons.org/licenses/by-sa/2.0/) and can be found in [LICENSE.docs](LICENSE.docs)
+
+The icons used in the GUI are from the [KDE](https://kde.org) project. They are the [breeze-icons](https://github.com/KDE/breeze-icons/) and they are licensed under the [LGPL v2.1](https://spdx.org/licenses/LGPL-2.1-only.html), nd can be found in [LICENSE.icons](LICENSE.icons) 
