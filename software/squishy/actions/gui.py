@@ -104,7 +104,7 @@ def action_main(args):
 ################ QT5 GUI #################
 ------------------------------------------
 squishy version: {__version__}
-	'''
+'''
 
 	print(banner, end = '')
 

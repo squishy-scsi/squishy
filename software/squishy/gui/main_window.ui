@@ -180,7 +180,11 @@
       <number>3</number>
      </property>
      <item>
-      <widget class="QListView" name="repl_output"/>
+      <widget class="QTextEdit" name="repl_output">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+      </widget>
      </item>
      <item>
       <widget class="QLineEdit" name="repl_input"/>
