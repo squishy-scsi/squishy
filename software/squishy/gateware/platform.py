@@ -61,6 +61,18 @@ class Rev1(LatticeICE40Platform):
 	default_clk = 'clk'
 	toolchain   = 'Trellis'
 
+	USB_VID             = 0x1209
+	USB_PID_BOOTLOADER  = 0xCA71
+	USB_PID_APPLICATION = 0xCA70
+	USB_MANUFACTURER    = 'aki-nyan'
+	USB_PRODUCT = {
+		USB_PID_BOOTLOADER : 'Squishy Bootloader',
+		USB_PID_APPLICATION: 'Squishy',
+	}
+	USB_SERIAL_NUMBER   = 'ニャ〜'
+
+	SCSI_VID            = 'Shrine-0'
+
 	clock_domain_generator = ICE40ClockDomainGenerator
 
 	pll_config = {

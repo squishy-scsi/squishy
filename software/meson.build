@@ -35,14 +35,7 @@ squishy_bitstream = custom_target(
 		py_inst.full_path(), '@INPUT@',
 		'--build-dir', meson.current_build_dir(),
 		'gateware',
-		# USB Configuration Options
-		'--usb-vid', get_option('usb_vid').to_string(),
-		'--usb-pid', get_option('usb_pid').to_string(),
-		'--usb-manufacturer',  get_option('usb_manufacturer'),
-		'--usb-product',       get_option('usb_product'),
-		'--usb-serial-number', get_option('usb_serial_number'),
 		# SCSI Configuration Options
-		'--scsi-vid', get_option('scsi_vid'),
 		'--scsi-did', get_option('scsi_did').to_string(),
 
 	] + optional_flags + [
@@ -62,14 +55,7 @@ run_target(
 		py_inst.full_path(), squishy,
 		'--build-dir', meson.current_build_dir(),
 		'gateware',
-		# USB Configuration Options
-		'--usb-vid', get_option('usb_vid').to_string(),
-		'--usb-pid', get_option('usb_pid').to_string(),
-		'--usb-manufacturer',  get_option('usb_manufacturer'),
-		'--usb-product',       get_option('usb_product'),
-		'--usb-serial-number', get_option('usb_serial_number'),
 		# SCSI Configuration Options
-		'--scsi-vid', get_option('scsi_vid'),
 		'--scsi-did', get_option('scsi_did').to_string(),
 
 	] + optional_flags + [
@@ -83,14 +69,7 @@ run_target(
 		py_inst.full_path(), squishy,
 		'--build-dir', meson.current_build_dir(),
 		'gateware',
-		# USB Configuration Options
-		'--usb-vid', get_option('usb_vid').to_string(),
-		'--usb-pid', get_option('usb_pid').to_string(),
-		'--usb-manufacturer',  get_option('usb_manufacturer'),
-		'--usb-product',       get_option('usb_product'),
-		'--usb-serial-number', get_option('usb_serial_number'),
 		# SCSI Configuration Options
-		'--scsi-vid', get_option('scsi_vid'),
 		'--scsi-did', get_option('scsi_did').to_string(),
 
 	] + optional_flags + [

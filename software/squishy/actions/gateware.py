@@ -18,52 +18,9 @@ def parser_init(parser):
 
 	do_build       = actions.add_parser('build', help = 'Build the gateware')
 
-
-	usb_options    = parser.add_argument_group('USB PHY Options')
+	# usb_options    = parser.add_argument_group('USB PHY Options')
 	uart_options   = parser.add_argument_group('Debug UART Options')
 	scsi_options   = parser.add_argument_group('SCSI Options')
-
-	usb_options.add_argument(
-		'--usb-vid', '-V',
-		type    = int,
-		default = 0xFEED,
-		help    = 'The USB Vendor ID to use'
-	)
-
-	usb_options.add_argument(
-		'--usb-pid', '-P',
-		type    = int,
-		default = 0xACA7,
-		help    = 'The USB Product ID to use'
-	)
-
-	usb_options.add_argument(
-		'--usb-manufacturer', '-m',
-		type    = str,
-		default = 'aki-nyan',
-		help    = 'The USB Device Manufacturer'
-	)
-
-	usb_options.add_argument(
-		'--usb-product', '-p',
-		type    = str,
-		default = 'squishy',
-		help    = 'The USB Device Product'
-	)
-
-	usb_options.add_argument(
-		'--usb-serial-number', '-s',
-		type    = str,
-		default = 'ニャ〜',
-		help    = 'The USB Device Serial Number'
-	)
-
-	scsi_options.add_argument(
-		'--scsi-vid',
-		type    = str,
-		default = 'Shrine-0',
-		help    = 'The SCSI Vendor ID to use'
-	)
 
 	scsi_options.add_argument(
 		'--scsi-did',
@@ -125,16 +82,9 @@ def action_main(args):
 			},
 
 			usb_config = {
-				'vid': args.usb_vid,
-				'pid': args.usb_pid,
-
-				'mfr': args.usb_manufacturer,
-				'prd': args.usb_product,
-				'srn': args.usb_serial_number,
 			},
 
 			scsi_config = {
-				'vid': args.scsi_vid,
 				'did': args.scsi_did,
 			}
 		)

@@ -43,19 +43,19 @@ class USBInterface(Elaboratable):
 		self._usb_in_fifo   = usb_in
 		self._scsi_out_fifo = scsi_out
 
-	def init_descriptors(self):
+	def init_descriptors(self, platform):
 		from usb_protocol.emitters import DeviceDescriptorCollection
 
 		desc = DeviceDescriptorCollection()
 
 		# Device Descriptor
 		with desc.DeviceDescriptor() as dev:
-			dev.idVendor  = self.config['vid']
-			dev.idProduct = self.config['pid']
+			dev.idVendor  = platform.USB_VID
+			dev.idProduct = platform.USB_PID_APPLICATION
 
-			dev.iManufacturer = self.config['mfr']
-			dev.iProduct      = self.config['prd']
-			dev.iSerialNumber = self.config['srn']
+			dev.iManufacturer = platform.USB_MANUFACTURER
+			dev.iProduct      = platform.USB_PRODUCT[dev.idProduct]
+			dev.iSerialNumber = platform.USB_SERIAL_NUMBER
 
 			dev.bNumConfigurations = 1
 
@@ -117,7 +117,7 @@ class USBInterface(Elaboratable):
 
 		m.submodules.usb = self.usb = USBDevice(bus = self._ulpi_bus)
 
-		descriptors = self.init_descriptors()
+		descriptors = self.init_descriptors(platform)
 		self.usb.add_standard_control_endpoint(descriptors)
 
 		m.d.comb += [
