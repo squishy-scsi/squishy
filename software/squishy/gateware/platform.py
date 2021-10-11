@@ -55,23 +55,33 @@ class ICE40ClockDomainGenerator(Elaboratable):
 
 		return m
 
+USB_VID             = 0x1209
+USB_PID_BOOTLOADER  = 0xCA71
+USB_PID_APPLICATION = 0xCA70
+USB_MANUFACTURER    = 'aki-nyan'
+USB_PRODUCT = {
+	USB_PID_BOOTLOADER : 'Squishy Bootloader',
+	USB_PID_APPLICATION: 'Squishy',
+}
+USB_SERIAL_NUMBER   = 'ニャ〜'
+
+SCSI_VID            = 'Shrine-0'
+
 class Rev1(LatticeICE40Platform):
-	device      = 'iCE40HX8K'
-	package     = 'BG121'
-	default_clk = 'clk'
-	toolchain   = 'Trellis'
+	device       = 'iCE40HX8K'
+	package      = 'BG121'
+	default_clk  = 'clk'
+	toolchain    = 'Trellis'
 
-	USB_VID             = 0x1209
-	USB_PID_BOOTLOADER  = 0xCA71
-	USB_PID_APPLICATION = 0xCA70
-	USB_MANUFACTURER    = 'aki-nyan'
-	USB_PRODUCT = {
-		USB_PID_BOOTLOADER : 'Squishy Bootloader',
-		USB_PID_APPLICATION: 'Squishy',
-	}
-	USB_SERIAL_NUMBER   = 'ニャ〜'
+	usb_vid      = USB_VID
+	usb_pid_app  = USB_PID_APPLICATION
+	usb_pid_boot = USB_PID_BOOTLOADER
 
-	SCSI_VID            = 'Shrine-0'
+	usb_mfr      = USB_MANUFACTURER
+	usb_prod     = USB_PRODUCT
+	usb_snum     = USB_SERIAL_NUMBER
+
+	scsi_vid     = SCSI_VID
 
 	clock_domain_generator = ICE40ClockDomainGenerator
 

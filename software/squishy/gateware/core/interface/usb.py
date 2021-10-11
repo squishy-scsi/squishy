@@ -50,12 +50,12 @@ class USBInterface(Elaboratable):
 
 		# Device Descriptor
 		with desc.DeviceDescriptor() as dev:
-			dev.idVendor  = platform.USB_VID
-			dev.idProduct = platform.USB_PID_APPLICATION
+			dev.idVendor  = platform.usb_vid
+			dev.idProduct = platform.usb_pid_app
 
-			dev.iManufacturer = platform.USB_MANUFACTURER
-			dev.iProduct      = platform.USB_PRODUCT[dev.idProduct]
-			dev.iSerialNumber = platform.USB_SERIAL_NUMBER
+			dev.iManufacturer = platform.usb_mfr
+			dev.iProduct      = platform.usb_prod[dev.idProduct]
+			dev.iSerialNumber = platform.usb_snum
 
 			dev.bNumConfigurations = 1
 
