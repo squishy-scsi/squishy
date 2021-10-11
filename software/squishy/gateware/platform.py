@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from nmigen                            import *
 from nmigen.build                      import *
-from nmigen.vendor.lattice_ice40       import *
+
+from nmigen.vendor.lattice_ice40       import LatticeICE40Platform
 from nmigen_boards.resources.memory    import SPIFlashResources
 from nmigen_boards.resources.user      import LEDResources
 from nmigen_boards.resources.interface import UARTResource
