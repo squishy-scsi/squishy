@@ -12,8 +12,19 @@ __all__ = (
 
 
 	'AVAILABLE_PLATFORMS',
-	'ICE40ClockDomainGenerator',
 )
+
+USB_VID             = 0x1209
+USB_PID_BOOTLOADER  = 0xCA71
+USB_PID_APPLICATION = 0xCA70
+USB_MANUFACTURER    = 'aki-nyan'
+USB_PRODUCT = {
+	USB_PID_BOOTLOADER : 'Squishy Bootloader',
+	USB_PID_APPLICATION: 'Squishy',
+}
+USB_SERIAL_NUMBER   = 'ニャ〜'
+
+SCSI_VID            = 'Shrine-0'
 
 class ICE40ClockDomainGenerator(Elaboratable):
 	def elaborate(self, platform):
@@ -52,18 +63,6 @@ class ICE40ClockDomainGenerator(Elaboratable):
 		]
 
 		return m
-
-USB_VID             = 0x1209
-USB_PID_BOOTLOADER  = 0xCA71
-USB_PID_APPLICATION = 0xCA70
-USB_MANUFACTURER    = 'aki-nyan'
-USB_PRODUCT = {
-	USB_PID_BOOTLOADER : 'Squishy Bootloader',
-	USB_PID_APPLICATION: 'Squishy',
-}
-USB_SERIAL_NUMBER   = 'ニャ〜'
-
-SCSI_VID            = 'Shrine-0'
 
 class Rev1(LatticeICE40Platform):
 	device       = 'iCE40HX8K'
