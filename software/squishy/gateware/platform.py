@@ -3,6 +3,8 @@ from nmigen                            import *
 from nmigen.build                      import *
 
 from nmigen.vendor.lattice_ice40       import LatticeICE40Platform
+from nmigen.vendor.lattice_ecp5        import LatticeECP5Platform
+
 from nmigen_boards.resources.memory    import SPIFlashResources
 from nmigen_boards.resources.user      import LEDResources
 from nmigen_boards.resources.interface import UARTResource
@@ -212,7 +214,33 @@ class Rev1(LatticeICE40Platform):
 	connectors = []
 
 
+class Rev2(LatticeECP5Platform):
+	device       = 'LFE5U-45F'
+	package      = 'BG256'
+	default_clk  = 'clk'
+	toolchain    = 'Trellis'
 
+	usb_vid      = USB_VID
+	usb_pid_app  = USB_PID_APPLICATION
+	usb_pid_boot = USB_PID_BOOTLOADER
+
+	usb_mfr      = USB_MANUFACTURER
+	usb_prod     = USB_PRODUCT
+	usb_snum     = USB_SERIAL_NUMBER
+
+	scsi_vid     = SCSI_VID
+
+	clock_domain_generator = ECP5ClockDomainGenerator
+
+	pll_config = {
+		'freq'  : 4e8,
+		'divr'  : 1,
+		'divf'  : 25,
+		'divq'  : 1,
+	}
+
+	resources  = [ ]
+	connectors = [ ]
 
 AVAILABLE_PLATFORMS = {
 	'rev1': Rev1,
