@@ -25,11 +25,11 @@ jobs:
           sudo apt-get update
           sudo apt-get install graphviz
           sudo pip3 install --upgrade pip setuptools wheel
-          pip3 install --user -r ./docs/requirements.txt
+          pip3 install --user -r ./docs/web/requirements.txt
       - name: Build Docs
         shell: bash
         run: |
-          sphinx-build -b html ./docs ./_build/
+          sphinx-build -b html ./docs/web ./_build/
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
