@@ -232,11 +232,14 @@ class Rev2(LatticeECP5Platform):
 
 	clock_domain_generator = ECP5ClockDomainGenerator
 
+	# generated with `ecppll -i 16 -o 400 -f /dev/stdout`
 	pll_config = {
-		'freq'  : 4e8,
-		'divr'  : 1,
-		'divf'  : 25,
-		'divq'  : 1,
+		'freq'     : 4e8,
+		'ifreq'    : 16,
+		'ofreq'    : 400,
+		'clki_div' : 1,
+		'clkop_div': 1,
+		'clkfb_div': 25,
 	}
 
 	resources  = [ ]

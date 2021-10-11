@@ -58,8 +58,54 @@ class ECP5ClockDomainGenerator(Elaboratable):
 
 		clk = Signal()
 
-		# TODO: Actually do pll nyoom things
-		m.submodules.pll = Instance()
+		# TODO: Verify PLL settings
+		m.submodules.pll = Instance(
+			'EHXPLLL',
+
+			i_CLKI    = platform.request(platform.default_clk, dir = 'i'),
+
+			o_CLKOP   = clk,
+			i_CLKFB   = clk,
+			i_ENCLKOP = Const(1),
+			o_LOCK    = self.pll_locked,
+
+			i_RST       = Const(0),
+			i_STDBY     = Const(0),
+
+			i_PHASESEL0    = Const(0),
+			i_PHASESEL1    = Const(0),
+			i_PHASEDIR     = Const(1),
+			i_PHASESTEP    = Const(1),
+			i_PHASELOADREG = Const(1),
+			i_PLLWAKESYNC  = Const(0),
+
+			# Params
+			p_PLLRST_ENA      = 'DISABLED',
+			p_INTFB_WAKE      = 'DISABLED',
+			p_STDBY_ENABLE    = 'DISABLED',
+			p_DPHASE_SOURCE   = 'DISABLED',
+			p_OUTDIVIDER_MUXA = 'DIVA',
+			p_OUTDIVIDER_MUXB = 'DIVB',
+			p_OUTDIVIDER_MUXC = 'DIVC',
+			p_OUTDIVIDER_MUXD = 'DIVD',
+			p_CLKOP_ENABLE    = 'ENABLED',
+			p_CLKOP_CPHASE    = Const(0),
+			p_CLKOP_FPHASE    = Const(0),
+			p_FEEDBACK_PATH   = 'CLKOP',
+
+			p_CLKI_DIV        = platform.pll_config['clki_div'],
+			p_CLKOP_DIV       = platform.pll_config['clkop_div'],
+			p_CLKFB_DIV       = platform.pll_config['clkfb_div'],
+
+
+			# Attributes for synth
+			a_FREQUENCY_PIN_CLKI     = str(platform.pll_config['ifreq']),
+			a_FREQUENCY_PIN_CLKOP    = str(platform.pll_config['ofreq']),
+			a_ICP_CURRENT            = '12',
+			a_LPF_RESISTOR           = '8',
+			a_MFG_ENABLE_FILTEROPAMP = '1',
+			a_MFG_GMCREF_SEL         = '2',
+		)
 
 		platform.add_clock_constraint(clk, platform.pll_config['freq'])
 
