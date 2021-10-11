@@ -15,14 +15,11 @@ __all__ = (
 )
 
 class ICE40ClockDomainGenerator(Elaboratable):
-	def __init__(self, *, pll_cfg):
-		self._pll_cfg = pll_cfg
-
 	def elaborate(self, platform):
 		m = Module()
 
-		m.domains.usb    = ClockDomain()
-		m.domains.sync   = ClockDomain()
+		m.domains.usb  = ClockDomain()
+		m.domains.sync = ClockDomain()
 
 
 		platform.lookup(platform.default_clk).attrs['GLOBAL'] = False
@@ -40,14 +37,14 @@ class ICE40ClockDomainGenerator(Elaboratable):
 			p_PLLOUT_SELECT = 'GENCLK',
 
 			# 200MHz
-			p_DIVR         = self._pll_cfg['divr'],
-			p_DIVF         = self._pll_cfg['divf'],
-			p_DIVQ         = self._pll_cfg['divq'],
-			p_FILTER_RANGE = self._pll_cfg['frange'],
+			p_DIVR         = platform.pll_config['divr'],
+			p_DIVF         = platform.pll_config['divf'],
+			p_DIVQ         = platform.pll_config['divq'],
+			p_FILTER_RANGE = platform.pll_config['frange'],
 		)
 
 
-		platform.add_clock_constraint(clk100, self._pll_cfg['freq'])
+		platform.add_clock_constraint(clk100, platform.pll_config['freq'])
 
 		m.d.comb += [
 			ClockSignal('sync').eq(clk100),

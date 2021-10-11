@@ -120,9 +120,7 @@ class Squishy(Elaboratable):
 		self._status_led = platform.request('led', 4)
 		m = Module()
 
-		m.submodules.nya = platform.clock_domain_generator(
-			pll_cfg = platform.pll_config
-		)
+		m.submodules.nya = platform.clock_domain_generator()
 
 		# Wishbone stuff
 		m.submodules.arbiter = self._wb_arbiter
