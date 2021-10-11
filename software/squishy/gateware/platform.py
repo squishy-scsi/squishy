@@ -64,6 +64,31 @@ class ICE40ClockDomainGenerator(Elaboratable):
 
 		return m
 
+class ECP5ClockDomainGenerator(Elaboratable):
+	def __init__(self):
+		self.pll_locked = Signal()
+
+	def elaborate(self, platform):
+		m = Module()
+
+		m.domain.usb   = ClockDomain()
+		m.domains.sync = ClockDomain()
+
+		platform.lookup(platform.default_clk).attrs['GLOBAL'] = False
+
+		clk = Signal()
+
+		# TODO: Actually do pll nyoom things
+		m.submodules.pll = Instance()
+
+		platform.add_clock_constraint(clk, platform.pll_config['freq'])
+
+		m.d.comb += [
+			ClockSignal('sync').eq(clk)
+		]
+
+		return m
+
 class Rev1(LatticeICE40Platform):
 	device       = 'iCE40HX8K'
 	package      = 'BG121'
