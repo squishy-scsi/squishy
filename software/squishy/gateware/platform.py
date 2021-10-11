@@ -71,7 +71,7 @@ class Rev1(LatticeICE40Platform):
 	device       = 'iCE40HX8K'
 	package      = 'BG121'
 	default_clk  = 'clk'
-	toolchain    = 'Trellis'
+	toolchain    = 'IceStorm'
 
 	usb_vid      = USB_VID
 	usb_pid_app  = USB_PID_APPLICATION
