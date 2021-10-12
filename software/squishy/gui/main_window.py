@@ -6,7 +6,7 @@ from PySide2.QtCore       import *
 from PySide2.QtWidgets    import *
 from PySide2.QtUiTools    import QUiLoader
 
-from ..config             import SQUISHY_GUI_SETTINGS
+from ..config             import SQUISHY_SETTINGS_FILE
 
 from .widgets             import HexViewWidget
 from .about_window        import AboutWindow
@@ -30,7 +30,7 @@ class MainWindow:
 		)
 
 		# load settings
-		with open(SQUISHY_GUI_SETTINGS, 'r') as cfg:
+		with open(SQUISHY_SETTINGS_FILE, 'r') as cfg:
 			self.settings = json.load(cfg)
 
 		self.loader.registerCustomWidget(HexViewWidget)

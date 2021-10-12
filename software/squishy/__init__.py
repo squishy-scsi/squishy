@@ -53,10 +53,18 @@ def _collect_actions():
 
 def main():
 	import sys
+	import json
 	from os import path, mkdir
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
+	from .config import SQUISHY_SETTINGS_FILE, DEFAULT_SETTINGS
+
 	_init_dirs()
+
+	if not path.exists(SQUISHY_SETTINGS_FILE):
+		with open(SQUISHY_SETTINGS_FILE, 'w') as cfg:
+			json.dump(DEFAULT_SETTINGS, cfg)
+
 	ACTIONS = _collect_actions()
 
 	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')

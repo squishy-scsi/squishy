@@ -17,4 +17,48 @@ SQUISHY_CONFIG  = path.join(XDG_CONFIG_HOME, SQUISHY_NAME)
 SQUISHY_APPLETS = path.join(SQUISHY_DATA, 'applets')
 
 # File path constants
-SQUISHY_GUI_SETTINGS = path.join(SQUISHY_CONFIG, 'gui-settings.json')
+SQUISHY_SETTINGS_FILE = path.join(SQUISHY_CONFIG, 'settings.json')
+
+
+
+# Defaults
+DEFAULT_SETTINGS = {
+	'gui': {
+		'appearance': {
+			'theme'          : 'system',
+			'language'       : 'en_US',
+			'font': {
+				'name': 'Noto Sans',
+				'size': 12,
+			},
+
+			'toolbar_style': 'icon_only',
+
+			'hex_view': {
+				'byte_format': 'hex',
+				'font': {
+					'name': 'Fira Code',
+					'size': 12
+				},
+
+				'color_map': {
+					'zero'     : '#494A50',
+					'low'      : '#00994D',
+					'high'     : '#CD427E',
+					'ones'     : '#6C2DBE',
+					'printable': '#FFB45B',
+				}
+			}
+		},
+		'hotkeys': {
+
+		},
+	},
+	'capture': {
+
+	},
+	'device': {
+
+	},
+
+}
