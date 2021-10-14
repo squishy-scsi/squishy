@@ -55,7 +55,10 @@ DEFAULT_SETTINGS = {
 		},
 	},
 	'capture': {
-
+		'buffer': {
+			'size'   : 4294967296,
+			'backend': 'mmap',
+		},
 	},
 	'device': {
 
