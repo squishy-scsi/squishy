@@ -19,12 +19,18 @@ SQUISHY_APPLETS = path.join(SQUISHY_DATA, 'applets')
 # File path constants
 SQUISHY_SETTINGS_FILE = path.join(SQUISHY_CONFIG, 'settings.json')
 
+# Some cute/funny splash messages
+SQUISHY_SPLASH_MESSAGES = [
+	'moe moe kyun~',
+	'SCSI - Soft Catgirl Snuggles Interface',
+]
 
 
 # Defaults
 DEFAULT_SETTINGS = {
 	'gui': {
 		'appearance': {
+			'show_splash'    : True,
 			'theme'          : 'system',
 			'language'       : 'en_US',
 			'font': {

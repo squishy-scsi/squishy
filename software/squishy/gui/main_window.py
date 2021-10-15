@@ -1,12 +1,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import json
-from os import path
+from os                   import path
+from random               import choice
 
 from PySide2.QtCore       import *
 from PySide2.QtWidgets    import *
 from PySide2.QtUiTools    import QUiLoader
 
-from ..config             import SQUISHY_SETTINGS_FILE
+from ..config             import SQUISHY_SPLASH_MESSAGES
 
 from .widgets             import HexViewWidget
 from .about_window        import AboutWindow
@@ -20,7 +20,7 @@ class MainWindow:
 	def _populate_settings(self):
 		pass
 
-	def __init__(self):
+	def __init__(self, settings):
 		self.loader = QUiLoader()
 		self._ui_file = QFile(
 			path.join(
@@ -29,9 +29,7 @@ class MainWindow:
 			)
 		)
 
-		# load settings
-		with open(SQUISHY_SETTINGS_FILE, 'r') as cfg:
-			self.settings = json.load(cfg)
+		self._settings = settings
 
 		self.loader.registerCustomWidget(HexViewWidget)
 
@@ -78,3 +76,4 @@ class MainWindow:
 
 	def show(self):
 		self.window.show()
+		self.window.statusbar.showMessage(choice(SQUISHY_SPLASH_MESSAGES), 10e4)
