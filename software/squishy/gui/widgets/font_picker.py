@@ -28,11 +28,19 @@ class FontPicker(QWidget):
 
 		self.btn_pick_font.clicked.connect(self._pick_font)
 
+	def set_font(self, family, size):
+		self.font = QFont(family, size)
+		self._font_info = QFontInfo(self.font)
+		self._update_text()
+
+	def _update_text(self):
+		self.lbl_font_name.setText(
+			f'{self._font_info.family()}, {self._font_info.pointSize()}'
+		)
+
 	def _pick_font(self):
 		res = QFontDialog.getFont()
 		if res[0]:
 			self.font = res[1]
 			self._font_info = QFontInfo(self.font)
-			self.lbl_font_name.setText(
-				f'{self._font_info.family()}, {self._font_info.pointSize()}'
-			)
+			self._update_text()

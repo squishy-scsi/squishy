@@ -31,6 +31,9 @@ class ColorPicker(QWidget):
 		self.btn_pick.clicked.connect(self._pick_color)
 		self.frm_display.setStyleSheet(f'background-color: {self.color.name()};')
 
+	def set_color(self, color):
+		self.color = QColor(color)
+		self.frm_display.setStyleSheet(f'background-color: {self.color.name()};')
 
 	def _pick_color(self):
 		dialog = QColorDialog(self)
