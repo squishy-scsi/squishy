@@ -23,7 +23,7 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>About Squish</string>
+   <string>About Squishy</string>
   </property>
   <property name="modal">
    <bool>true</bool>
