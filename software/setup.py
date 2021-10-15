@@ -44,16 +44,16 @@ setup(
 	],
 
 	install_requires = [
-		'git+https://github.com/nmigen/nmigen.git@master#egg=nmigen',
-		'git+https://github.com/nmigen/nmigen-boards.git@master#egg=nmigen-boards',
-		'git+https://github.com/nmigen/nmigen-stdio.git@master#egg=nmigen-stdio',
-		'git+https://github.com/lethalbit/luna.git@master#egg=luna',
-
 		'Jinja2',
 		'construct',
 		'pyusb',
 		'tqdm',
 		'prompt_toolkit',
+
+		'nmigen @ git+https://github.com/nmigen/nmigen.git@master#egg=nmigen',
+		'nmigen-boards @ git+https://github.com/nmigen/nmigen-boards.git@master#egg=nmigen-boards',
+		'nmigen-stdio @ git+https://github.com/nmigen/nmigen-stdio.git@master#egg=nmigen-stdio',
+		'luna @ git+https://github.com/lethalbit/luna.git@master#egg=luna',
 	],
 
 	packages = find_packages(
