@@ -44,10 +44,10 @@ setup(
 	],
 
 	install_requires = [
-		'git+https://github.com/nmigen/nmigen.git@master',
-		'git+https://github.com/nmigen/nmigen-boards.git@master',
-		'git+https://github.com/nmigen/nmigen-stdio.git@master',
-		'git+https://github.com/lethalbit/luna.git@master',
+		'git+https://github.com/nmigen/nmigen.git@master#egg=nmigen',
+		'git+https://github.com/nmigen/nmigen-boards.git@master#egg=nmigen-boards',
+		'git+https://github.com/nmigen/nmigen-stdio.git@master#egg=nmigen-stdio',
+		'git+https://github.com/lethalbit/luna.git@master#egg=luna',
 
 		'Jinja2',
 		'construct',
