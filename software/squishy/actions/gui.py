@@ -53,7 +53,8 @@ class SquishyGui:
 
 	def run(self):
 		self.main_window.show()
-		self.splash.finish(self.main_window.window)
+		if self.settings['gui']['appearance']['show_splash']:
+			self.splash.finish(self.main_window.window)
 		ret = self.app.exec_()
 		# self.halt()
 		return ret
