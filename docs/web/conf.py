@@ -36,3 +36,5 @@ html_static_path = [
 html_css_files = [
 	'styles.css'
 ]
+
+autosectionlabel_prefix_document = True

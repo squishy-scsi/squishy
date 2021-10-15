@@ -1,8 +1,9 @@
 ```{toctree}
 :hidden:
 
+install/index
 
 ```
 
-```{include} ../README.md
+```{include} ../../README.md
 ```

@@ -16,6 +16,16 @@ The squishy hardware is your gateway into the world of old SCSI devices via a mo
 
 The documentation for Squishy can be found at [https://lethalbit.github.io/squishy](https://lethalbit.github.io/squishy).
 
+## Installation
+
+The installation instructions for squishy on various platforms can be found on the [https://lethalbit.github.io/squishy/install](https://lethalbit.github.io/squishy/install) page. 
+
+Alternatively, follow one of the following links for your platform:
+
+ * [Linux Install Instructions](https://lethalbit.github.io/squishy/install/index.html#linux)
+ * [macOS Install Instructions](https://lethalbit.github.io/squishy/install/index.html#macos)
+ * [Windows Install Instructions](https://lethalbit.github.io/squishy/install/index.html#windows)
+
 ## Licenses
 
 The Squishy project is licensed under 3 individual licenses, one for the hardware and gateware, one for the software and one for the documentation.
