@@ -61,6 +61,37 @@ setup(
 			'tests*'
 		]
 	),
+	package_data = {
+		'squishy.gui.resources.fonts': [
+			'FiraCode-Regular.ttf',
+			'NotoSans-Regular.ttf',
+		],
+		'squishy.gui.resources.icons': [
+			'computer.svg',
+			'cpu.svg',
+			'drive-harddisk.svg',
+			'drive-multidisk.svg',
+			'drive-partition.svg',
+			'media-optical.svg',
+			'media-tape.svg',
+			'printer.svg',
+		],
+		'squishy.gui.resources.images': [
+
+		],
+		'squishy.gui.resources.themes': [
+
+		],
+		'squishy.gui': [
+			'about_window.ui',
+			'bus_topology_window.ui',
+			'devices_window.ui',
+			'filters_window.ui',
+			'main_window.ui',
+			'preferences_window.ui',
+			'triggers_window.ui',
+		],
+	}
 
 	extras_require = {
 		'toolchain': [
