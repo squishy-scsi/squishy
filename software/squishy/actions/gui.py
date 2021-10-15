@@ -15,7 +15,7 @@ if not _check_pyside():
 	DONT_LOAD = 1
 
 from PySide2.QtWidgets import QApplication, QSplashScreen
-from PySide2.QtGui     import QPixmap
+from PySide2.QtGui     import QPixmap, QIcon
 from PySide2.QtCore    import QCoreApplication, Qt
 
 from ..config          import SQUISHY_SETTINGS_FILE
@@ -36,6 +36,12 @@ class SquishyGui:
 			self.settings = json.load(cfg)
 
 		self.app = QApplication.instance() or QApplication([])
+
+		# Ensure we can find our themes/resources
+		QIcon.setThemeSearchPaths([
+			':/icons',
+			f'{SQUISHY_GUI_RESOURCES_LOC}/themes',
+		])
 
 		if self.settings['gui']['appearance']['show_splash']:
 			self.splash = QSplashScreen(
