@@ -35,7 +35,7 @@ setup(
 	author_email    = 'nya@catgirl.link',
 	description     = 'SCSI Multi-tool',
 	license         = 'BSD-3-Clause',
-	python_requires = '>=3.6',
+	python_requires = '>=3.8,<3.10',
 
 	setup_requires  = [
 		'wheel',
@@ -45,15 +45,15 @@ setup(
 
 	install_requires = [
 		'Jinja2',
-		'construct',
-		'pyusb',
-		'tqdm',
-		'prompt_toolkit',
+		'construct>=2.10.67',
+		'pyusb>=1.2.1',
+		'tqdm>=4.62.3',
+		'prompt_toolkit>=3.0.20',
 
-		'nmigen @ git+https://github.com/nmigen/nmigen.git@master#egg=nmigen',
-		'nmigen-boards @ git+https://github.com/nmigen/nmigen-boards.git@master#egg=nmigen-boards',
-		'nmigen-stdio @ git+https://github.com/nmigen/nmigen-stdio.git@master#egg=nmigen-stdio',
-		'luna @ git+https://github.com/lethalbit/luna.git@master#egg=luna',
+		'nmigen @ git+https://github.com/nmigen/nmigen.git@master',
+		'nmigen-boards @ git+https://github.com/nmigen/nmigen-boards.git@master',
+		'nmigen-stdio @ git+https://github.com/nmigen/nmigen-stdio.git@master',
+		'luna @ git+https://github.com/lethalbit/luna.git@master#egg=luna-0.1.0.dev0',
 	],
 
 	packages = find_packages(
@@ -105,7 +105,7 @@ setup(
 		],
 
 		'gui': [
-			'PySide2',
+			'PySide2==5.15.2',
 		]
 	},
 
