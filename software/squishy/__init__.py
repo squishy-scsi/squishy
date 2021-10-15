@@ -17,7 +17,7 @@ __all__ = (
 
 def _init_dirs():
 	from .  import config
-	from os import path, mkdir
+	from os import path, makedirs
 
 	dirs = (
 		config.SQUISHY_CACHE,
@@ -29,7 +29,7 @@ def _init_dirs():
 
 	for d in dirs:
 		if not path.exists(d):
-			mkdir(d)
+			makedirs(d, exist_ok = True)
 
 def _collect_actions():
 	import pkgutil
