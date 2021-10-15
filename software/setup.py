@@ -91,7 +91,7 @@ setup(
 			'preferences_window.ui',
 			'triggers_window.ui',
 		],
-	}
+	},
 
 	extras_require = {
 		'toolchain': [
