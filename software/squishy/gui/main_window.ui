@@ -34,25 +34,7 @@
   <property name="dockOptions">
    <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
   </property>
-  <widget class="QWidget" name="centralwidget">
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="spacing">
-     <number>3</number>
-    </property>
-    <property name="topMargin">
-     <number>3</number>
-    </property>
-    <property name="bottomMargin">
-     <number>3</number>
-    </property>
-    <item>
-     <widget class="QListView" name="capture_filter"/>
-    </item>
-    <item>
-     <widget class="QLineEdit" name="capture_log"/>
-    </item>
-   </layout>
-  </widget>
+  <widget class="CaptureLog" name="centralwidget"/>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
@@ -821,6 +803,12 @@
    <class>HexViewWidget</class>
    <extends>QTableView</extends>
    <header>widgets/hex_view.py</header>
+  </customwidget>
+  <customwidget>
+   <class>CaptureLog</class>
+   <extends>QWidget</extends>
+   <header>widgets/capture_log.py</header>
+   <container>1</container>
   </customwidget>
  </customwidgets>
  <resources/>

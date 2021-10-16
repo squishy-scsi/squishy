@@ -8,7 +8,7 @@ from PySide2.QtUiTools    import QUiLoader
 
 from ..config             import SQUISHY_SPLASH_MESSAGES
 
-from .widgets             import HexViewWidget
+from .widgets             import HexViewWidget, CaptureLog
 from .about_window        import AboutWindow
 from .bus_topology_window import BusTopologyWindow
 from .devices_window      import DevicesWindow
@@ -31,6 +31,7 @@ class MainWindow:
 
 		self._settings = settings
 
+		self.loader.registerCustomWidget(CaptureLog)
 		self.loader.registerCustomWidget(HexViewWidget)
 
 		self.window = self.loader.load(self._ui_file)
