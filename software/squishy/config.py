@@ -68,7 +68,58 @@ DEFAULT_SETTINGS = {
 			}
 		},
 		'hotkeys': {
-
+			'Menu': {
+				'File': {
+					'action_file_new_session': 'Ctrl+N',
+					'action_file_open'       : 'Ctrl+O',
+					'action_file_save'       : 'Ctrl+S',
+					'action_file_save_as'    : 'Ctrl+Shift+S',
+					'action_file_export_as'  : 'Ctrl+Shift+X',
+					'action_file_quit'       : 'Ctrl+Q',
+				},
+				'Edit': {
+					'Copy As...': {
+						'action_copy_binary'   : '',
+						'action_copy_hex'      : '',
+						'action_copy_c_array'  : '',
+						'action_copy_cpp_array': '',
+						'action_copy_json'     : '',
+					},
+					'action_edit_find'         : 'Ctrl+F',
+					'action_edit_find_next'    : 'Ctrl+Shift+N',
+					'action_edit_find_previous': 'Ctrl+Shift+B',
+					'action_edit_chrono_shift' : 'Ctrl+Shift+T',
+					'action_edit_preferences'  : 'Ctrl+Shift+P',
+				},
+				'View': {
+					'action_view_hex'         : '',
+					'action_view_dissector'   : '',
+					'action_view_repl'        : '',
+					'action_view_toolbar'     : '',
+					'action_view_bus_topology': '',
+				},
+				'Go': {
+					'action_go_message' : 'Ctrl+G',
+					'action_go_previous': 'Ctrl+Down',
+					'action_go_next'    : 'Ctrl+Up',
+					'action_go_first'   : 'Ctrl+Home',
+					'action_go_last'    : 'Ctrl+End',
+				},
+				'Capture': {
+					'action_capture_start'        : 'Ctrl+E',
+					'action_capture_stop'         : 'Ctrl+Shift+E',
+					'action_capture_restart'      : 'Ctrl+R',
+					'action_capture_replay'       : 'Ctrl+Shift+R',
+					'action_capture_filters'      : '',
+					'action_capture_triggers'     : '',
+					'action_capture_select_device': 'Ctrl+D',
+					'action_capture_auto_scroll'  : '',
+				},
+				'Help': {
+					'action_help_website': '',
+					'action_help_about'  : '',
+				}
+			}
 		},
 	},
 	'capture': {

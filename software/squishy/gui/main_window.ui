@@ -85,7 +85,7 @@
       <string>Copy As</string>
      </property>
      <addaction name="action_copy_binary"/>
-     <addaction name="action_hex"/>
+     <addaction name="action_copy_hex"/>
      <addaction name="action_copy_c_array"/>
      <addaction name="action_copy_cpp_array"/>
      <addaction name="action_copy_json"/>
@@ -608,6 +608,9 @@
    <property name="text">
     <string>Find Next</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+N</string>
+   </property>
   </action>
   <action name="action_edit_find_previous">
    <property name="icon">
@@ -616,6 +619,9 @@
    </property>
    <property name="text">
     <string>Find Previous</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+B</string>
    </property>
   </action>
   <action name="action_edit_preferences">
@@ -629,6 +635,9 @@
    <property name="toolTip">
     <string>Edit Preferences</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+P</string>
+   </property>
   </action>
   <action name="action_go_message">
    <property name="icon">
@@ -640,6 +649,9 @@
    </property>
    <property name="toolTip">
     <string>Go to specified message</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
    </property>
   </action>
   <action name="action_go_next">
@@ -653,6 +665,9 @@
    <property name="toolTip">
     <string>Go to the next message</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Down</string>
+   </property>
   </action>
   <action name="action_go_previous">
    <property name="icon">
@@ -664,6 +679,9 @@
    </property>
    <property name="toolTip">
     <string>Go to the previous message</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Up</string>
    </property>
   </action>
   <action name="action_go_first">
@@ -677,6 +695,9 @@
    <property name="toolTip">
     <string>Go to the first message</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+Home</string>
+   </property>
   </action>
   <action name="action_go_last">
    <property name="icon">
@@ -688,6 +709,9 @@
    </property>
    <property name="toolTip">
     <string>Go to the last message</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+End</string>
    </property>
   </action>
   <action name="action_view_toolbar">
@@ -728,7 +752,7 @@
     <string>Copy message as raw binary</string>
    </property>
   </action>
-  <action name="action_hex">
+  <action name="action_copy_hex">
    <property name="icon">
     <iconset theme="format-justify-fill">
      <normaloff>.</normaloff>.</iconset>
@@ -774,6 +798,9 @@
    </property>
    <property name="toolTip">
     <string>Apply a chrono shift to capture timestamps</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+T</string>
    </property>
   </action>
   <action name="action_copy_json">
