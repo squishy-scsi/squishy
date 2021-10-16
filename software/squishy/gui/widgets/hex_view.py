@@ -432,4 +432,4 @@ if __name__ == '__main__':
 	with open('/usr/bin/echo', 'rb') as f:
 		mw._widget.populate(f.read())
 
-	sys.exit(app.exec())
+	sys.exit(app.exec_())
