@@ -4,6 +4,8 @@ from PySide2.QtCore    import *
 from PySide2.QtGui     import *
 from PySide2.QtWidgets import *
 
+from ..key_helper      import SquishyGuiKey
+
 class HotkeySelect(QWidget):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
@@ -63,7 +65,7 @@ class HotkeySelect(QWidget):
 			if key == Qt.Key_Meta and (e.nativeModifiers() & Qt.ShiftModifier) == Qt.ShiftModifier:
 				key = Qt.Key_Alt
 
-			self._keys.append(str(e.key()))
+			self._keys.append(SquishyGuiKey.to_str(e))
 			self._update_label()
 			self._rst_timer.start()
 
