@@ -23,6 +23,16 @@ SQUISHY_SETTINGS_FILE = path.join(SQUISHY_CONFIG, 'settings.json')
 SQUISHY_SPLASH_MESSAGES = [
 	'moe moe kyun~',
 	'SCSI - Soft Catgirl Snuggles Interface',
+	'Antifascist Action',
+	':nya_hearts:',
+	'fpga cat people love brushies - it’s comb logic',
+	'are there lots of cat girl programmers because they enjoy hunting bugs',
+	'no gods, no masters, only catgirls',
+	'when in doubt, snuggle blåhaj',
+	'*smol nya*',
+	'ITAR export-restricted catgirl',
+	'catgirl go *squimsh*',
+	'tape go nyooooooooooooooooooom',
 ]
 
 
