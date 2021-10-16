@@ -2,7 +2,7 @@
 from os             import path
 
 from ..             import __version__
-from ..config       import SQUISHY_CACHE, SQUISHY_SETTINGS_FILE, SQUISHY_SPLASH_MESSAGES
+from ..config       import SQUISHY_HISTORY_FILE, SQUISHY_SETTINGS_FILE, SQUISHY_SPLASH_MESSAGES
 from ..utility      import print_table
 
 
@@ -89,7 +89,7 @@ type 'exit' or press ^D to exit
 
 	session = PromptSession(
 		completer = command_cmplt,
-		history   = FileHistory(path.join(SQUISHY_CACHE, 'repl-history'))
+		history   = FileHistory(SQUISHY_HISTORY_FILE)
 	)
 
 	print(banner)

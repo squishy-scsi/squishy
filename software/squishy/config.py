@@ -18,6 +18,7 @@ SQUISHY_APPLETS = path.join(SQUISHY_DATA, 'applets')
 
 # File path constants
 SQUISHY_SETTINGS_FILE = path.join(SQUISHY_CONFIG, 'settings.json')
+SQUISHY_HISTORY_FILE  = path.join(SQUISHY_CACHE, '.repl-history')
 
 # Some cute/funny splash messages
 SQUISHY_SPLASH_MESSAGES = [
