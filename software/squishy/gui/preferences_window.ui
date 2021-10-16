@@ -421,295 +421,24 @@
       <attribute name="title">
        <string>Hotkeys</string>
       </attribute>
-      <layout class="QVBoxLayout" name="verticalLayout_2">
+      <layout class="QHBoxLayout" name="horizontalLayout_2">
+       <property name="spacing">
+        <number>0</number>
+       </property>
+       <property name="leftMargin">
+        <number>0</number>
+       </property>
+       <property name="topMargin">
+        <number>0</number>
+       </property>
+       <property name="rightMargin">
+        <number>0</number>
+       </property>
+       <property name="bottomMargin">
+        <number>0</number>
+       </property>
        <item>
-        <widget class="QLineEdit" name="le_keybind_search">
-         <property name="placeholderText">
-          <string>Search...</string>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QTreeWidget" name="tv_hotkeys">
-         <property name="alternatingRowColors">
-          <bool>true</bool>
-         </property>
-         <property name="selectionBehavior">
-          <enum>QAbstractItemView::SelectItems</enum>
-         </property>
-         <property name="rootIsDecorated">
-          <bool>true</bool>
-         </property>
-         <property name="uniformRowHeights">
-          <bool>true</bool>
-         </property>
-         <property name="sortingEnabled">
-          <bool>false</bool>
-         </property>
-         <property name="allColumnsShowFocus">
-          <bool>false</bool>
-         </property>
-         <property name="columnCount">
-          <number>2</number>
-         </property>
-         <attribute name="headerCascadingSectionResizes">
-          <bool>true</bool>
-         </attribute>
-         <attribute name="headerDefaultSectionSize">
-          <number>256</number>
-         </attribute>
-         <attribute name="headerHighlightSections">
-          <bool>true</bool>
-         </attribute>
-         <attribute name="headerShowSortIndicator" stdset="0">
-          <bool>false</bool>
-         </attribute>
-         <column>
-          <property name="text">
-           <string>Action</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Shortcut</string>
-          </property>
-         </column>
-         <item>
-          <property name="text">
-           <string>Menu</string>
-          </property>
-          <item>
-           <property name="text">
-            <string>File</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>New Session</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Open</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Save</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Save As...</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Export As...</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Quit</string>
-            </property>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>Edit</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Copy As...</string>
-            </property>
-            <item>
-             <property name="text">
-              <string>Raw Binary</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Hex Encoded String</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>C Style Array</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>C++ Style Array</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>JSON</string>
-             </property>
-            </item>
-           </item>
-           <item>
-            <property name="text">
-             <string>Find</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Find Next</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Find Previous</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Chrono Shift</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Preferences</string>
-            </property>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>View</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <item>
-            <property name="text">
-             <string>Hex View</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Dissector</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>REPL</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Toolbar</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Bus Topology</string>
-            </property>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>Go</string>
-           </property>
-           <property name="text">
-            <string/>
-           </property>
-           <item>
-            <property name="text">
-             <string>Go To Message</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Next Message</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Previous Message</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>First Message</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Last Message</string>
-            </property>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>Capture</string>
-           </property>
-           <item>
-            <property name="text">
-             <string>Triggers</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Stop</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Start</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Select Device</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Restart</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Replay</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Live Scroll</string>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>Filters</string>
-            </property>
-            <property name="flags">
-             <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsEnabled</set>
-            </property>
-           </item>
-          </item>
-          <item>
-           <property name="text">
-            <string>Help</string>
-           </property>
-           <property name="flags">
-            <set>ItemIsSelectable|ItemIsDragEnabled|ItemIsDropEnabled|ItemIsEnabled</set>
-           </property>
-           <item>
-            <property name="text">
-             <string>Website</string>
-            </property>
-            <property name="text">
-             <string/>
-            </property>
-           </item>
-           <item>
-            <property name="text">
-             <string>About</string>
-            </property>
-           </item>
-          </item>
-         </item>
-        </widget>
+        <widget class="HotkeyEdit" name="hotkey_editor" native="true"/>
        </item>
       </layout>
      </widget>
@@ -784,6 +513,12 @@
    <class>ColorPicker</class>
    <extends>QWidget</extends>
    <header>widgets/color_picker.py</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>HotkeyEdit</class>
+   <extends>QWidget</extends>
+   <header>widgets/hotkey_edit.py</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
