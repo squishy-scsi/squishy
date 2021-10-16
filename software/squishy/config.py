@@ -35,6 +35,8 @@ SQUISHY_SPLASH_MESSAGES = [
 	'ITAR export-restricted catgirl',
 	'catgirl go *squimsh*',
 	'tape go nyooooooooooooooooooom',
+	'*slow blink*',
+	'Sachi is a good foxgirl'
 ]
 
 # Defaults
