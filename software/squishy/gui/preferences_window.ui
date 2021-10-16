@@ -450,7 +450,7 @@
           <bool>false</bool>
          </property>
          <property name="columnCount">
-          <number>3</number>
+          <number>2</number>
          </property>
          <attribute name="headerCascadingSectionResizes">
           <bool>true</bool>
@@ -472,11 +472,6 @@
          <column>
           <property name="text">
            <string>Shortcut</string>
-          </property>
-         </column>
-         <column>
-          <property name="text">
-           <string>Alternate</string>
           </property>
          </column>
          <item>
