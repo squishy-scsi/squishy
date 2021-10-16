@@ -2,7 +2,7 @@
 from os             import path
 
 from ..             import __version__
-from ..config       import SQUISHY_CACHE
+from ..config       import SQUISHY_CACHE, SQUISHY_SETTINGS_FILE, SQUISHY_SPLASH_MESSAGES
 from ..utility      import print_table
 
 
@@ -45,6 +45,8 @@ def _repl_ctx_to_prompt(ctx):
 		return f'{ctx["interface"]!s}> '
 
 def action_main(args):
+	from random import choice
+
 	banner = fr'''
 ------------------------------------------
  ####   ####  #    # #  ####  #    # #   #
@@ -56,13 +58,15 @@ def action_main(args):
 ------------------------------------------
 ############ Interactive REPL ############
 ------------------------------------------
+> '{choice(SQUISHY_SPLASH_MESSAGES)}'
+
 squishy version: {__version__}
 
 type 'help <command>' for help on a command,
 and 'list' to list commands.
 
 type 'exit' or press ^D to exit
-	'''
+'''
 
 	repl_ctx = {
 		'device': None,
@@ -107,6 +111,8 @@ type 'exit' or press ^D to exit
 				break
 			elif text == 'list':
 				print_table(map(lambda a: a['name'], commands))
+			elif text == 'nya':
+				print(choice(SQUISHY_SPLASH_MESSAGES))
 			else:
 				line = text.split(' ')
 
