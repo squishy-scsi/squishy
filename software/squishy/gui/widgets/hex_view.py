@@ -18,6 +18,29 @@ class ByteFormat(enum.Enum):
 	base08 = enum.auto()
 	base02 = enum.auto()
 
+	def __str__(self):
+		if self == ByteFormat.base16:
+			return 'Hexadecimal'
+		elif self == ByteFormat.base10:
+			return 'Decimal'
+		elif self == ByteFormat.base08:
+			return 'Octal'
+		elif self == ByteFormat.base02:
+			return 'Binary'
+		else:
+			return '?'
+
+	@staticmethod
+	def from_str(s):
+		if s == 'Decimal':
+			return ByteFormat.base10
+		elif s == 'Octal':
+			return ByteFormat.base08
+		elif s == 'Binary':
+			return ByteFormat.base02
+		else:
+			return ByteFormat.base16
+
 	def __float__(self):
 		if self == ByteFormat.base16:
 			return 1.0

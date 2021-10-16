@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 from os import path, environ
+import enum
 
 SQUISHY_NAME = 'squishy'
 
@@ -36,7 +37,6 @@ SQUISHY_SPLASH_MESSAGES = [
 	'tape go nyooooooooooooooooooom',
 ]
 
-
 # Defaults
 DEFAULT_SETTINGS = {
 	'gui': {
@@ -49,10 +49,10 @@ DEFAULT_SETTINGS = {
 				'size': 12,
 			},
 
-			'toolbar_style': 'icon_only',
+			'toolbar_style': 'Icons Only',
 
 			'hex_view': {
-				'byte_format': 'hex',
+				'byte_format': 'Hexadecimal',
 				'font': {
 					'name': 'Fira Code',
 					'size': 12
@@ -73,7 +73,8 @@ DEFAULT_SETTINGS = {
 	},
 	'capture': {
 		'buffer': {
-			'size'   : 4294967296,
+			'size'   : 4096,
+			'type'   : 'Ring Buffer',
 			'backend': 'mmap',
 		},
 	},
@@ -82,3 +83,50 @@ DEFAULT_SETTINGS = {
 	},
 
 }
+
+# Various enums that don't have a home yet
+@enum.unique
+class BufferType(enum.Enum):
+	Ring       = enum.auto()
+	Contiguous = enum.auto()
+
+	def __str__(self):
+		if self == BufferType.Ring:
+			return 'Ring Buffer'
+		elif self == BufferType.Contiguous:
+			return 'Contiguous'
+		else:
+			return '?'
+
+	@staticmethod
+	def from_str(s):
+		if s == 'Contiguous':
+			return BufferType.Contiguous
+		else:
+			return BufferType.Ring
+
+
+@enum.unique
+class BufferBackend(enum.Enum):
+	mmap     = enum.auto()
+	file     = enum.auto()
+	bytes_io = enum.auto()
+
+	def __str__(self):
+		if self == BufferBackend.mmap:
+			return 'mmap'
+		elif self == BufferBackend.file:
+			return 'File'
+		elif self == BufferBackend.bytes_io:
+			return 'BytesIO'
+		else:
+			return '?'
+
+	@staticmethod
+	def from_str(s):
+		if s == 'File':
+			return BufferBackend.file
+		elif s == 'BytesIO':
+			return BufferBackend.bytes_io
+		else:
+			return BufferBackend.mmap
