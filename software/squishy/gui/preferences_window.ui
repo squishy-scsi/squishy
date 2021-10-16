@@ -345,6 +345,14 @@
        <string>Device</string>
       </attribute>
      </widget>
+     <widget class="QWidget" name="tab_hotkeys">
+      <attribute name="icon">
+       <iconset theme="help-keybord-shortcuts"/>
+      </attribute>
+      <attribute name="title">
+       <string>Hotkeys</string>
+      </attribute>
+     </widget>
     </widget>
    </item>
    <item>
