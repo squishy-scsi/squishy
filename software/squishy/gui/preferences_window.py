@@ -8,7 +8,7 @@ from PySide2.QtUiTools import QUiLoader
 
 from ..config          import SQUISHY_SETTINGS_FILE, DEFAULT_SETTINGS
 from ..config          import BufferType, BufferBackend
-from .widgets          import FontPicker, ColorPicker
+from .widgets          import FontPicker, ColorPicker, HotkeySelect
 from .widgets.hex_view import ByteFormat
 
 class PreferencesWindow:
@@ -151,6 +151,7 @@ class PreferencesWindow:
 
 		self.loader.registerCustomWidget(FontPicker)
 		self.loader.registerCustomWidget(ColorPicker)
+		self.loader.registerCustomWidget(HotkeySelect)
 
 		with open(SQUISHY_SETTINGS_FILE, 'r') as cfg:
 			self.settings = json.load(cfg)
