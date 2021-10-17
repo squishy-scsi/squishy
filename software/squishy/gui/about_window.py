@@ -3,7 +3,10 @@ from os import path
 
 from PySide2.QtCore    import *
 from PySide2.QtWidgets import *
+from PySide2.QtGui     import QPixmap
 from PySide2.QtUiTools import QUiLoader
+
+from .resources   import SQUISHY_GUI_RESOURCES_LOC
 
 class AboutWindow:
 	def __init__(self):
