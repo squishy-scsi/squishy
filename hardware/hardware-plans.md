@@ -9,6 +9,7 @@ The following are the planned design requirements for rev2 of the hardware, as w
 - [ ] Termpower detection
  - [ ] Fix termpower enable, seems to be enabled on powerup,
  - [ ] Bi-dir termpower support
+ - [ ] Allow power from termpower or USB?
 - [ ] Length-Match the inputs to the SCSI-Phy
 - [x] Button for rebooting into bootloader for DFU
 - [x] Upgrade FPGA
