@@ -58,6 +58,8 @@ class MainWindow:
 
 		self._populate_settings()
 
+	def status_message(self, msg, time = 10e4):
+		self.window.statusbar.showMessage(msg, time)
 
 	def open_file(self, _):
 		file = QFileDialog.getOpenFileName(
@@ -77,4 +79,4 @@ class MainWindow:
 
 	def show(self):
 		self.window.show()
-		self.window.statusbar.showMessage(choice(SQUISHY_SPLASH_MESSAGES), 10e4)
+		self.status_message(choice(SQUISHY_SPLASH_MESSAGES))
