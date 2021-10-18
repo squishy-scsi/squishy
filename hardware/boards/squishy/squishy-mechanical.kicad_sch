@@ -36,7 +36,9 @@
         (effects (font (size 1.27 1.27)) hide)
       )
       (symbol "Fiducial_0_1"
-        (circle (center 0 0) (radius 1.27) (stroke (width 0.508)) (fill (type background)))
+        (circle (center 0 0) (radius 1.27) (stroke (width 0.508))           (stroke (width 0.508) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
       )
     )
     (symbol "Mechanical:MountingHole_Pad" (pin_numbers hide) (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
@@ -62,7 +64,9 @@
         (effects (font (size 1.27 1.27)) hide)
       )
       (symbol "MountingHole_Pad_0_1"
-        (circle (center 0 1.27) (radius 1.27) (stroke (width 1.27)) (fill (type none)))
+        (circle (center 0 1.27) (radius 1.27) (stroke (width 1.27))           (stroke (width 1.27) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
       )
       (symbol "MountingHole_Pad_1_1"
         (pin input line (at 0 -2.54 90) (length 2.54)
@@ -102,7 +106,8 @@
             (xy -36.83 -32.258)
             (xy -36.7792 -32.2326)
           )
-          (stroke (width 0.0254)) (fill (type outline))
+          (stroke (width 0.0254) (type default) (color 0 0 0 0))
+          (fill (type outline))
         )
         (polyline
           (pts
@@ -122,7 +127,8 @@
             (xy -17.1958 -12.6492)
             (xy -16.8656 -12.5984)
           )
-          (stroke (width 0.0254)) (fill (type outline))
+          (stroke (width 0.0254) (type default) (color 0 0 0 0))
+          (fill (type outline))
         )
         (polyline
           (pts
@@ -144,7 +150,8 @@
             (xy 9.4996 -93.1926)
             (xy 10.3886 -93.1164)
           )
-          (stroke (width 0.0254)) (fill (type outline))
+          (stroke (width 0.0254) (type default) (color 0 0 0 0))
+          (fill (type outline))
         )
         (polyline
           (pts
@@ -167,7 +174,8 @@
             (xy -16.9672 -88.7984)
             (xy -16.8148 -88.5698)
           )
-          (stroke (width 0.0254)) (fill (type outline))
+          (stroke (width 0.0254) (type default) (color 0 0 0 0))
+          (fill (type outline))
         )
         (polyline
           (pts
@@ -259,7 +267,8 @@
             (xy -1.397 -85.09)
             (xy 3.7338 -70.9168)
           )
-          (stroke (width 0.0254)) (fill (type outline))
+          (stroke (width 0.0254) (type default) (color 0 0 0 0))
+          (fill (type outline))
         )
         (polyline
           (pts
@@ -397,7 +406,8 @@
             (xy 11.2522 -83.5152)
             (xy 12.0396 -83.2612)
           )
-          (stroke (width 0.0254)) (fill (type outline))
+          (stroke (width 0.0254) (type default) (color 0 0 0 0))
+          (fill (type outline))
         )
         (polyline
           (pts
@@ -1479,7 +1489,8 @@
             (xy -1.2446 -96.9264)
             (xy 3.5814 -96.8248)
           )
-          (stroke (width 0.0254)) (fill (type outline))
+          (stroke (width 0.0254) (type default) (color 0 0 0 0))
+          (fill (type outline))
         )
       )
     )
@@ -1531,7 +1542,8 @@
             (xy -1.27 -1.27)
             (xy 0 -1.27)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "GND_1_1"

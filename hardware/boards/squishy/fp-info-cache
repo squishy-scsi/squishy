@@ -1,4 +1,4 @@
-19119626663884025
+19124501639213461
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -82397,6 +82397,13 @@ RF
 8
 1
 lethalbit-rf
+Molex_SMA_732512120
+
+
+0
+5
+2
+lethalbit-rf
 TCM2-43X+
 
 
@@ -82501,6 +82508,20 @@ connector Molex PicoBlade side entry
 0
 8
 7
+rhais_osc
+SMD2520
+
+
+0
+4
+4
+rhais_osc
+SMD3225
+
+
+0
+4
+4
 rhais_package-qfn
 DHVQFN-14-1EP_2.5x3mm_P0.5mm_EP1x1.5mm
 

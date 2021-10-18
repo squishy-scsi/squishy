@@ -36,7 +36,9 @@
         (effects (font (size 1.27 1.27)) hide)
       )
       (symbol "TestPoint_Small_0_1"
-        (circle (center 0 0) (radius 0.508) (stroke (width 0)) (fill (type none)))
+        (circle (center 0 0) (radius 0.508) (stroke (width 0))           (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
       )
       (symbol "TestPoint_Small_1_1"
         (pin passive line (at 0 0 90) (length 0)
@@ -73,14 +75,16 @@
             (xy -1.524 -0.508)
             (xy 1.524 -0.508)
           )
-          (stroke (width 0.3302)) (fill (type none))
+          (stroke (width 0.3302) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy -1.524 0.508)
             (xy 1.524 0.508)
           )
-          (stroke (width 0.3048)) (fill (type none))
+          (stroke (width 0.3048) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "C_Small_1_1"
@@ -122,14 +126,16 @@
             (xy -0.762 -1.016)
             (xy -0.762 1.016)
           )
-          (stroke (width 0.254)) (fill (type none))
+          (stroke (width 0.254) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 1.016 0)
             (xy -0.762 0)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
@@ -138,7 +144,8 @@
             (xy 0.762 1.016)
             (xy 0.762 -1.016)
           )
-          (stroke (width 0.254)) (fill (type none))
+          (stroke (width 0.254) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
@@ -148,7 +155,8 @@
             (xy -0.508 1.27)
             (xy -0.508 1.016)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
@@ -158,7 +166,8 @@
             (xy 0 1.778)
             (xy 0 1.524)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "LED_Small_1_1"
@@ -196,7 +205,8 @@
       )
       (symbol "R_Small_0_1"
         (rectangle (start -0.762 1.778) (end 0.762 -1.778)
-          (stroke (width 0.2032)) (fill (type none))
+          (stroke (width 0.2032) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "R_Small_1_1"
@@ -227,11 +237,12 @@
         (effects (font (size 1.27 1.27)))
       )
       (symbol "W25N01GVZEIG_1_0"
+        (rectangle (start -6.35 0) (end 6.35 -2.54)
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
         (text "POWER" (at 0 1.27 0)
           (effects (font (size 1.27 1.27)))
-        )
-        (rectangle (start -6.35 0) (end 6.35 -2.54)
-          (stroke (width 0)) (fill (type background))
         )
       )
       (symbol "W25N01GVZEIG_1_1"
@@ -249,11 +260,12 @@
         )
       )
       (symbol "W25N01GVZEIG_2_0"
+        (rectangle (start -10.16 0) (end 11.43 -7.62)
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
         (text "SPI" (at 0 1.27 0)
           (effects (font (size 1.27 1.27)))
-        )
-        (rectangle (start -10.16 0) (end 11.43 -7.62)
-          (stroke (width 0)) (fill (type background))
         )
       )
       (symbol "W25N01GVZEIG_2_1"
@@ -307,7 +319,8 @@
       )
       (symbol "APX811-40UG-7_0_1"
         (rectangle (start -5.08 3.81) (end 5.08 -3.81)
-          (stroke (width 0.1524)) (fill (type background))
+          (stroke (width 0.1524) (type default) (color 0 0 0 0))
+          (fill (type background))
         )
       )
       (symbol "APX811-40UG-7_1_1"
@@ -364,7 +377,8 @@
       )
       (symbol "LFE5U-45F-8BG381_1_1"
         (rectangle (start -13.97 2.54) (end 12.7 -17.78)
-          (stroke (width 0)) (fill (type background))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
         )
         (pin passive line (at -16.51 -15.24 0) (length 2.54) hide
           (name "GND" (effects (font (size 1.27 1.27))))
@@ -560,11 +574,12 @@
         )
       )
       (symbol "LFE5U-45F-8BG381_2_0"
+        (rectangle (start -15.24 2.54) (end 15.24 -30.48)
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
         (text "BANK 0" (at 0 3.81 0)
           (effects (font (size 1.27 1.27)))
-        )
-        (rectangle (start -15.24 2.54) (end 15.24 -30.48)
-          (stroke (width 0)) (fill (type background))
         )
       )
       (symbol "LFE5U-45F-8BG381_2_1"
@@ -666,11 +681,12 @@
         )
       )
       (symbol "LFE5U-45F-8BG381_3_0"
+        (rectangle (start -16.51 2.54) (end 16.51 -40.64)
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
         (text "BANK 1" (at 0 3.81 0)
           (effects (font (size 1.27 1.27)))
-        )
-        (rectangle (start -16.51 2.54) (end 16.51 -40.64)
-          (stroke (width 0)) (fill (type background))
         )
       )
       (symbol "LFE5U-45F-8BG381_3_1"
@@ -804,11 +820,12 @@
         )
       )
       (symbol "LFE5U-45F-8BG381_4_0"
+        (rectangle (start -16.51 2.54) (end 16.51 -40.64)
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
         (text "BANK 2" (at 0 3.81 0)
           (effects (font (size 1.27 1.27)))
-        )
-        (rectangle (start -16.51 2.54) (end 16.51 -40.64)
-          (stroke (width 0)) (fill (type background))
         )
       )
       (symbol "LFE5U-45F-8BG381_4_1"
@@ -942,11 +959,12 @@
         )
       )
       (symbol "LFE5U-45F-8BG381_5_0"
+        (rectangle (start -15.24 2.54) (end 15.24 -40.64)
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
         (text "BANK 3" (at 0 3.81 0)
           (effects (font (size 1.27 1.27)))
-        )
-        (rectangle (start -15.24 2.54) (end 15.24 -40.64)
-          (stroke (width 0)) (fill (type background))
         )
       )
       (symbol "LFE5U-45F-8BG381_5_1"
@@ -1080,11 +1098,12 @@
         )
       )
       (symbol "LFE5U-45F-8BG381_6_1"
+        (rectangle (start -15.24 2.54) (end 15.24 -40.64)
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
         (text "BANK 6" (at 0 3.81 0)
           (effects (font (size 1.27 1.27)))
-        )
-        (rectangle (start -15.24 2.54) (end 15.24 -40.64)
-          (stroke (width 0)) (fill (type background))
         )
         (pin bidirectional line (at -17.78 -10.16 0) (length 2.54)
           (name "PL38A/GR_PCLK6_0" (effects (font (size 1.27 1.27))))
@@ -1216,11 +1235,12 @@
         )
       )
       (symbol "LFE5U-45F-8BG381_7_0"
+        (rectangle (start -15.24 2.54) (end 15.24 -40.64)
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
         (text "BANK 7" (at 0 3.81 0)
           (effects (font (size 1.27 1.27)))
-        )
-        (rectangle (start -15.24 2.54) (end 15.24 -40.64)
-          (stroke (width 0)) (fill (type background))
         )
       )
       (symbol "LFE5U-45F-8BG381_7_1"
@@ -1354,14 +1374,9 @@
         )
       )
       (symbol "LFE5U-45F-8BG381_8_0"
-        (text "BANK 40" (at 17.78 -25.4 900)
-          (effects (font (size 1.27 1.27)))
-        )
-        (text "BANK 8/40" (at 0 3.81 0)
-          (effects (font (size 1.27 1.27)))
-        )
         (rectangle (start -22.86 2.54) (end 25.4 -30.48)
-          (stroke (width 0)) (fill (type background))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
         )
         (polyline
           (pts
@@ -1369,7 +1384,14 @@
             (xy 15.24 -20.32)
             (xy 15.24 -30.48)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+        (text "BANK 40" (at 17.78 -25.4 900)
+          (effects (font (size 1.27 1.27)))
+        )
+        (text "BANK 8/40" (at 0 3.81 0)
+          (effects (font (size 1.27 1.27)))
         )
       )
       (symbol "LFE5U-45F-8BG381_8_1"
@@ -1491,24 +1513,31 @@
         (effects (font (size 1.27 1.27)) hide)
       )
       (symbol "SW_Push_Shield_0_1"
-        (circle (center -1.905 0) (radius 0.508) (stroke (width 0)) (fill (type none)))
-        (circle (center 1.905 0) (radius 0.508) (stroke (width 0)) (fill (type none)))
         (rectangle (start -2.794 1.778) (end 2.794 -1.016)
-          (stroke (width 0)) (fill (type background))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type background))
+        )
+        (circle (center -1.905 0) (radius 0.508) (stroke (width 0))           (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 1.27)
             (xy 0 3.048)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 1.905 1.27)
             (xy -1.905 1.27)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
+        )
+        (circle (center 1.905 0) (radius 0.508) (stroke (width 0))           (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (pin passive line (at -5.08 0 0) (length 2.54)
           (name "1" (effects (font (size 1.27 1.27))))
@@ -1548,7 +1577,8 @@
       )
       (symbol "TPS737xx_0_1"
         (rectangle (start -7.62 3.81) (end 7.62 -3.81)
-          (stroke (width 0.1524)) (fill (type none))
+          (stroke (width 0.1524) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "TPS737xx_1_1"
@@ -1606,7 +1636,8 @@
       )
       (symbol "TPS7A11xx_0_1"
         (rectangle (start -7.62 3.81) (end 7.62 -3.81)
-          (stroke (width 0.1524)) (fill (type none))
+          (stroke (width 0.1524) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "TPS7A11xx_1_1"
@@ -1665,21 +1696,24 @@
             (xy -0.762 1.27)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 0)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 2.54)
             (xy 0.762 1.27)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "+1V1_1_1"
@@ -1714,21 +1748,24 @@
             (xy -0.762 1.27)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 0)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 2.54)
             (xy 0.762 1.27)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "+1V8_1_1"
@@ -1763,21 +1800,24 @@
             (xy -0.762 1.27)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 0)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 2.54)
             (xy 0.762 1.27)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "+2V5_1_1"
@@ -1812,21 +1852,24 @@
             (xy -0.762 1.27)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 0)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 2.54)
             (xy 0.762 1.27)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "+3V3_1_1"
@@ -1861,21 +1904,24 @@
             (xy -0.762 1.27)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 0)
             (xy 0 2.54)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
         (polyline
           (pts
             (xy 0 2.54)
             (xy 0.762 1.27)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "+5V_1_1"
@@ -1914,7 +1960,8 @@
             (xy -1.27 -1.27)
             (xy 0 -1.27)
           )
-          (stroke (width 0)) (fill (type none))
+          (stroke (width 0) (type default) (color 0 0 0 0))
+          (fill (type none))
         )
       )
       (symbol "GND_1_1"
