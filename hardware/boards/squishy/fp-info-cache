@@ -1,4 +1,4 @@
-19124501639213461
+19126136195600124
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -82103,26 +82103,12 @@ X2-DFN1310-6
 6
 6
 lethalbit-connectors
-2129320-3
-Mini Display Port
-
-0
-24
-21
-lethalbit-connectors
 FTSH-105-01-L-DV-K-TR
 http://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-footprint.pdf
 
 0
 10
 10
-lethalbit-connectors
-GCT_USB4115-03-C_REVA
-
-
-0
-28
-25
 lethalbit-connectors
 KUSBX-SL2-CS1N24-B-TR
 
@@ -82158,6 +82144,13 @@ TE_SODIMM_260
 0
 262
 261
+lethalbit-connectors
+syzygy_standard_x1
+
+
+0
+46
+45
 lethalbit-graphics
 Antifaschistische Aktion_100dpi
 
@@ -82401,7 +82394,7 @@ Molex_SMA_732512120
 
 
 0
-5
+6
 2
 lethalbit-rf
 TCM2-43X+
