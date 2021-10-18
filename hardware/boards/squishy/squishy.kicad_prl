@@ -1,10 +1,12 @@
 {
   "board": {
-    "active_layer": 31,
+    "active_layer": 0,
     "active_layer_preset": "",
     "auto_track_width": false,
-    "hidden_nets": [],
-    "high_contrast_mode": 0,
+    "hidden_nets": [
+      "Net-(C5-Pad2)"
+    ],
+    "high_contrast_mode": 1,
     "net_color_mode": 1,
     "opacity": {
       "pads": 1.0,
@@ -18,7 +20,7 @@
       "footprints": true,
       "graphics": true,
       "keepouts": true,
-      "lockedItems": true,
+      "lockedItems": false,
       "otherItems": true,
       "pads": true,
       "text": true,
@@ -63,7 +65,7 @@
       35,
       36
     ],
-    "visible_layers": "003de34_80000007",
+    "visible_layers": "002ff3f_8000000d",
     "zone_display_mode": 1
   },
   "meta": {

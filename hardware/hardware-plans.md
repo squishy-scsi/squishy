@@ -6,10 +6,8 @@ The following are the planned design requirements for rev2 of the hardware, as w
 
 - [ ] Allow for both HVD and LVD
 - [ ] Single Ended support
-- [ ] Termpower detection
- - [ ] Fix termpower enable, seems to be enabled on powerup,
- - [ ] Bi-dir termpower support
- - [ ] Allow power from termpower or USB?
+- [x] Termpower detection
+ - [x] Fix termpower enable, seems to be enabled on powerup,
 - [ ] Length-Match the inputs to the SCSI-Phy
 - [x] Button for rebooting into bootloader for DFU
 - [x] Upgrade FPGA

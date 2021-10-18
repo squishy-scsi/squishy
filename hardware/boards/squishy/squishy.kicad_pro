@@ -42,8 +42,8 @@
         "other_text_upright": false,
         "pads": {
           "drill": 0.0,
-          "height": 3.0,
-          "width": 2.5
+          "height": 2.7,
+          "width": 1.15
         },
         "silk_line_width": 0.12,
         "silk_text_italic": false,
@@ -425,8 +425,22 @@
     }
   },
   "libraries": {
-    "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_footprint_libs": [
+      "lethalbit",
+      "lethalbit-connectors",
+      "lethalbit-graphics",
+      "lethalbit-memory",
+      "lethalbit-pcie",
+      "lethalbit-rf"
+    ],
+    "pinned_symbol_libs": [
+      "lethalbit",
+      "lethalbit-connectors",
+      "lethalbit-graphics",
+      "lethalbit-memory",
+      "lethalbit-pcie",
+      "lethalbit-rf"
+    ]
   },
   "meta": {
     "filename": "squishy.kicad_pro",
@@ -525,6 +539,10 @@
     [
       "5a470513-af88-45a5-8151-68e0d8ddb252",
       "SCSI Transceiver"
+    ],
+    [
+      "243ea74a-8966-4639-91c5-a5945f4a1fd7",
+      "Termination Power"
     ]
   ],
   "text_variables": {}
