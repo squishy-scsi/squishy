@@ -1883,7 +1883,7 @@
     (uuid fdb0195e-111b-43da-b19d-312715a51108)
     (property "Reference" "G2" (id 0) (at 27.94 156.21 0))
     (property "Value" "Ran-Filled" (id 1) (at 27.94 163.83 0))
-    (property "Footprint" "lethalbit-graphics:ran-filled" (id 2) (at 27.94 160.02 0)
+    (property "Footprint" "lethalbit-graphics:yuki_10x11" (id 2) (at 27.94 160.02 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "" (id 3) (at 27.94 160.02 0)
