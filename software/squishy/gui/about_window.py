@@ -19,6 +19,8 @@ class AboutWindow:
 		)
 
 		self.window = self.loader.load(self._ui_file)
+		self._sachi = QPixmap(f'{SQUISHY_GUI_RESOURCES_LOC}/images/about.png')
+		self.window.lbl_sachi.setPixmap(self._sachi)
 
 
 	def show(self):
