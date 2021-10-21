@@ -58,6 +58,15 @@ class MainWindow:
 
 		self._populate_settings()
 
+	def write_to_repl(self, data, is_err = False):
+		# text = ''
+		# QMetaObject.invokeMethod(self.window.repl_output, 'toMarkdown', Qt.DirectConnection, QGenericReturnArgument(aName = b'text'))
+		# text += data
+		# QMetaObject.invokeMethod(self.window.repl_output, 'setMarkdown', Qt.DirectConnection, QGenericReturnArgument(), QGenericArgument(aName = b'text'))
+		# nya = self.window.repl_output.toMarkdown()
+		# self.window.repl_output.setMarkdown(nya + data)
+		pass
+
 	def status_message(self, msg, time = 10e4):
 		self.window.statusbar.showMessage(msg, time)
 
