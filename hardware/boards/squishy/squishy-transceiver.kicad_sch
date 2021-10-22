@@ -15,17 +15,17 @@
   )
 
 
-  (wire (pts (xy 33.02 30.48) (xy 22.86 30.48))
+  (wire (pts (xy 26.67 19.05) (xy 16.51 19.05))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid c0a91cad-f396-43a4-be13-9119fa787365)
   )
 
-  (label "TERMPWR" (at 22.86 30.48 0)
+  (label "TERMPWR" (at 16.51 19.05 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 1c823c12-b8ec-47c3-8d55-d285a8c00fa2)
   )
 
-  (hierarchical_label "TERMPWR" (shape passive) (at 33.02 30.48 0)
+  (hierarchical_label "TERMPWR" (shape passive) (at 26.67 19.05 0)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 74852bbf-23f5-4631-9ad6-6c3970b5a3be)
   )

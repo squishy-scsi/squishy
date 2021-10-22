@@ -1,4 +1,4 @@
-19126136195600124
+19127771365732718
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -82117,6 +82117,13 @@ KUSBX-SL2-CS1N24-B-TR
 28
 25
 lethalbit-connectors
+LSHM-140-02.5-L-DV-A-N-K-TR
+
+
+0
+80
+80
+lethalbit-connectors
 MICRO-USB-B-(IN_PCB)
 
 
@@ -82394,7 +82401,7 @@ Molex_SMA_732512120
 
 
 0
-6
+7
 2
 lethalbit-rf
 TCM2-43X+
