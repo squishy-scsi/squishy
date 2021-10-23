@@ -36,6 +36,7 @@ setup(
 	description     = 'SCSI Multi-tool',
 	license         = 'BSD-3-Clause',
 	python_requires = '>=3.8,<3.10',
+	zip_safe        = False,
 
 	setup_requires  = [
 		'wheel',
@@ -114,7 +115,7 @@ setup(
 			'squishy = squishy:main',
 		],
 		'gui_scripts': [
-			'squishy-gui = squishy:main_gui',
+			'squishy-gui = squishy:main_gui [gui]',
 		]
 	},
 
