@@ -1,0 +1,10 @@
+# SPDX-License-Identifier: BSD-3-Clause
+# This file is part of the Squishy SCSI
+# multi-tool project.
+# https://github.com/lethalbit/Squishy
+ACTION!="add|change",GOTO="squishy_rules_end"
+
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="1209", ATTR{idProduct}=="ca70", SYMLINK+="squishy%k", MODE="0666", GROUP="users"
+SUBSYSTEM=="usb", ENV{DEVTYPE}=="usb_device", ATTR{idVendor}=="1209", ATTR{idProduct}=="ca71", SYMLINK+="squishyboot%k", MODE="0666", GROUP="users"
+
+LABEL="squishy_rules_end"
