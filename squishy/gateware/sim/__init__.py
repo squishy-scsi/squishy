@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 __all__ = ()
 
-
 class SimPlatform():
 
 	default_clk = 'clk'
@@ -150,7 +149,6 @@ class SimPlatform():
 					('i', 1)
 				])
 			])
-
 
 def sim_case(*, domains, dut, platform = None):
 	def _reg_sim(func):

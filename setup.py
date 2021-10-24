@@ -57,11 +57,7 @@ setup(
 		'luna @ git+https://github.com/lethalbit/luna.git@master#egg=luna-0.1.0.dev0',
 	],
 
-	packages = find_packages(
-		exclude = [
-			'tests*'
-		]
-	),
+	packages = find_packages(),
 	package_data = {
 		'squishy.gui.resources.fonts': [
 			'FiraCode-Regular.ttf',
