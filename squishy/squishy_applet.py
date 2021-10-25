@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from abc import ABCMeta
+from abc import ABCMeta, abstractmethod
 
 __all__ = (
 	'SquishyApplet',
