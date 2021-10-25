@@ -1,35 +1,18 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from nmigen                            import *
 from nmigen.build                      import *
-
 from nmigen.vendor.lattice_ice40       import LatticeICE40Platform
-from nmigen.vendor.lattice_ecp5        import LatticeECP5Platform
-
 from nmigen_boards.resources.memory    import SPIFlashResources
 from nmigen_boards.resources.user      import LEDResources
 from nmigen_boards.resources.interface import UARTResource
 
-from .clk                              import ICE40ClockDomainGenerator, ECP5ClockDomainGenerator
+from ...config                         import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
+from ...config                         import USB_MANUFACTURER, USB_PRODUCT, USB_SERIAL_NUMBER
+from ...config                         import SCSI_VID
 
-__all__ = (
-	'Rev1',
+from ..core.clk                        import ICE40ClockDomainGenerator
 
-	'AVAILABLE_PLATFORMS',
-)
-
-USB_VID             = 0x1209
-USB_PID_BOOTLOADER  = 0xCA71
-USB_PID_APPLICATION = 0xCA70
-USB_MANUFACTURER    = 'aki-nyan'
-USB_PRODUCT = {
-	USB_PID_BOOTLOADER : 'Squishy Bootloader',
-	USB_PID_APPLICATION: 'Squishy',
-}
-USB_SERIAL_NUMBER   = 'ニャ〜'
-
-SCSI_VID            = 'Shrine-0'
-
-class Rev1(LatticeICE40Platform):
+class SquishyRev1(LatticeICE40Platform):
 	device       = 'iCE40HX8K'
 	package      = 'BG121'
 	default_clk  = 'clk'
@@ -212,39 +195,3 @@ class Rev1(LatticeICE40Platform):
 	]
 
 	connectors = []
-
-
-class Rev2(LatticeECP5Platform):
-	device       = 'LFE5U-45F'
-	package      = 'BG256'
-	default_clk  = 'clk'
-	toolchain    = 'Trellis'
-
-	usb_vid      = USB_VID
-	usb_pid_app  = USB_PID_APPLICATION
-	usb_pid_boot = USB_PID_BOOTLOADER
-
-	usb_mfr      = USB_MANUFACTURER
-	usb_prod     = USB_PRODUCT
-	usb_snum     = USB_SERIAL_NUMBER
-
-	scsi_vid     = SCSI_VID
-
-	clock_domain_generator = ECP5ClockDomainGenerator
-
-	# generated with `ecppll -i 16 -o 400 -f /dev/stdout`
-	pll_config = {
-		'freq'     : 4e8,
-		'ifreq'    : 16,
-		'ofreq'    : 400,
-		'clki_div' : 1,
-		'clkop_div': 1,
-		'clkfb_div': 25,
-	}
-
-	resources  = [ ]
-	connectors = [ ]
-
-AVAILABLE_PLATFORMS = {
-	'rev1': Rev1,
-}
