@@ -28,7 +28,7 @@ SQUISHY_SPLASH_MESSAGES = [
 	'Antifascist Action',
 	':nya_hearts:',
 	'fpga cat people love brushies - it’s comb logic',
-	'are there lots of cat girl programmers because they enjoy hunting bugs',
+	'are there lots of cat girl programmers because they enjoy hunting bugs?',
 	'no gods, no masters, only catgirls',
 	'when in doubt, snuggle blåhaj',
 	'*smol nya*',
@@ -36,7 +36,9 @@ SQUISHY_SPLASH_MESSAGES = [
 	'catgirl go *squimsh*',
 	'tape go nyooooooooooooooooooom',
 	'*slow blink*',
-	'Sachi is a good foxgirl'
+	'Sachi is a good foxgirl',
+	'bappy pawbs',
+	'Trans rights are human rights',
 ]
 
 # Defaults
