@@ -1,61 +1,29 @@
 (version 1)
 
-(rule "in1-clearance"
+(rule "in1-rules"
   (layer "In1.Cu")
   (constraint clearance (min 0.127mm))
-)
-
-(rule "in1-track_width"
-  (layer "In1.Cu")
   (constraint track_width (min 0.127mm))
-)
-
-(rule "in1-hole_clearance"
-  (layer "In1.Cu")
   (constraint hole_clearance (min 0.127mm))
 )
 
-(rule "in2-clearance"
+(rule "in2-rules"
   (layer "In2.Cu")
   (constraint clearance (min 0.127mm))
-)
-
-(rule "in2-track_width"
-  (layer "In2.Cu")
   (constraint track_width (min 0.127mm))
-)
-
-(rule "in2-hole_clearance"
-  (layer "In2.Cu")
   (constraint hole_clearance (min 0.127mm))
 )
 
-(rule "in3-clearance"
+(rule "in3-rules"
   (layer "In3.Cu")
   (constraint clearance (min 0.127mm))
-)
-
-(rule "in3-track_width"
-  (layer "In3.Cu")
   (constraint track_width (min 0.127mm))
-)
-
-(rule "in3-hole_clearance"
-  (layer "In3.Cu")
   (constraint hole_clearance (min 0.127mm))
 )
 
-(rule "in4-clearance"
+(rule "in4-rules"
   (layer "In4.Cu")
   (constraint clearance (min 0.127mm))
-)
-
-(rule "in4-track_width"
-  (layer "In4.Cu")
   (constraint track_width (min 0.127mm))
-)
-
-(rule "in4-hole_clearance"
-  (layer "In4.Cu")
   (constraint hole_clearance (min 0.127mm))
 )

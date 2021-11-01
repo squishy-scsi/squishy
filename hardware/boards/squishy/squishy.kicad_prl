@@ -1,8 +1,8 @@
 {
   "board": {
-    "active_layer": 0,
+    "active_layer": 31,
     "active_layer_preset": "",
-    "auto_track_width": true,
+    "auto_track_width": false,
     "hidden_nets": [
       "Net-(C5-Pad2)"
     ],
@@ -20,7 +20,7 @@
       "footprints": true,
       "graphics": true,
       "keepouts": true,
-      "lockedItems": false,
+      "lockedItems": true,
       "otherItems": true,
       "pads": true,
       "text": true,
@@ -65,8 +65,8 @@
       35,
       36
     ],
-    "visible_layers": "002ff3f_8000000d",
-    "zone_display_mode": 1
+    "visible_layers": "000ff3f_8000000d",
+    "zone_display_mode": 0
   },
   "meta": {
     "filename": "squishy.kicad_prl",

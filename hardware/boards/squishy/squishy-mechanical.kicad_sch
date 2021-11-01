@@ -1906,7 +1906,7 @@
     (property "Value" "Antifaschistische_Aktion" (id 1) (at 125.5522 97.7646 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
-    (property "Footprint" "lethalbit-graphics:Antifaschistische Aktion_600dpi" (id 2) (at 76.2 43.18 0)
+    (property "Footprint" "DX-MON:Antifaschistische-Aktion_Inv_600dpi" (id 2) (at 76.2 43.18 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "" (id 3) (at 76.2 43.18 0)
