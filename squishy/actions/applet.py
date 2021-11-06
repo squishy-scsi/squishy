@@ -30,7 +30,7 @@ def _collect_all_applets():
 	return [*_collect_applets(applets.__file__), *_collect_applets(SQUISHY_APPLETS)]
 
 def parser_init(parser):
-	applets = _collect_applets()
+	applets = _collect_all_applets()
 
 	applet_parser = parser.add_subparsers(
 		dest     = 'applet',
