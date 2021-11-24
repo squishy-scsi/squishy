@@ -46,6 +46,17 @@ class SquishyRev2(LatticeECP5Platform):
 			Clock(16e6),
 			Attrs(GLOBAL = True, IO_STANDARD = 'SB_LVCMOS')
 		),
+
+		Resource('tio', 0,
+			Subsignal('trigger',
+				Pins('N16', dir = 'io')
+			),
+			Subsignal('refclk',
+				Pins('M15', dir = 'io')
+			),
+			Attrs(IO_STANDARD = 'SB_LVCMOS')
+		),
+
 		Resource('ulpi', 0,
 			Subsignal('clk',
 				Pins('P5', dir = 'i'),
@@ -70,6 +81,34 @@ class SquishyRev2(LatticeECP5Platform):
 			Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 
+		Resource('termpwr', 0,
+			Subsignal('adc_rst',
+				PinsN('B2', dir = 'o')
+			),
+			Subsignal('sda',
+				Pins('C2', dir = 'io')
+			),
+			Subsignal('scl',
+				Pins('B1', dir = 'oe')
+			),
+
+			Attrs(IO_STANDARD = 'SB_LVCMOS')
+		),
+
+		Resource('syzygy', 0,
+			Subsignal('data',
+				Pins('E3 K3 J2 J1 H2 G2 G1 F2 F1 E2 E1 D3 G3 D1 F3 C3 F4', dir = 'io')
+			),
+
+			Subsignal('clk',
+				DiffPairs('K1', 'K2', dir = 'o'),
+				Clock(50e6)
+			),
+
+
+			Attrs(IO_STANDARD = 'SB_LVCMOS')
+		),
+
 		*LEDResources(
 			pins = [
 				'R7', # [4] White
@@ -83,10 +122,14 @@ class SquishyRev2(LatticeECP5Platform):
 		),
 
 
-
 		*SPIFlashResources(0,
 			cs_n = 'R8', clk = 'N9', copi = 'T8', cipo = 'T7',
 
+			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS')
+		),
+
+		UARTResource(0,
+			rx = 'T14', tx = 'R14',
 			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 	]
