@@ -35,10 +35,7 @@ class SCSIInterface(Elaboratable):
 		self._csr_bridge = WishboneCSRBridge(self._csr['mux'].bus)
 		self.bus = self._csr_bridge.wb_bus
 
-		self.rx     = None
-		self.tx     = None
-		self.tx_ctl = None
-		self.ctl    = None
+		self.scsi_phy      = None
 
 		self._scsi_in_fifo = None
 		self._usb_out_fifo = None
@@ -67,11 +64,7 @@ class SCSIInterface(Elaboratable):
 		]
 
 	def elaborate(self, platform):
-		# rx/tx data[0:8] = 0, 1, 2, 3, 4, 5, 6, 7, P
-		self.rx     = platform.request('scsi_rx')
-		self.tx     = platform.request('scsi_tx')
-		self.tx_ctl = platform.request('scsi_tx_ctl')
-		self.ctl    = platform.request('scsi_ctl')
+		self.scsi_phy     = platform.request('scsi_phy', 0)
 		self._status_led = platform.request('led', 1)
 
 		self._interface_status = Signal(8)
@@ -107,11 +100,11 @@ class SCSIInterface(Elaboratable):
 		self._csr_elab(m)
 
 		m.d.comb += [
-			self._interface_status[0:7].eq(Cat(~self.tx_ctl, self.ctl.diff_sense)),
+			# self._interface_status[0:7].eq(Cat(~self.tx_ctl, self.ctl.diff_sense)),
 			bus_settled.eq(0)
 		]
 
-		with m.If((~self.rx.sel) & (~self.rx.bsy)):
+		with m.If((~self.scsi_phy.sel.rx) & (~self.scsi_phy.bsy.rx)):
 			with m.If(bus_settle_tmr == (bus_settle_cnt - 1)):
 				m.d.comb += bus_settled.eq(1)
 			with m.Else():
@@ -122,8 +115,9 @@ class SCSIInterface(Elaboratable):
 		with m.FSM(reset = 'rst'):
 			with m.State('rst'):
 				m.d.sync += [
-					self.tx_ctl.eq(0b111111),
-					self.tx.eq(0),
+					# self.tx_ctl.eq(0b111111),
+					self.scsi_phy.d0.tx.eq(0),
+					self.scsi_phy.dp0.tx.eq(0),
 				]
 
 				with m.If(bus_settled):
@@ -134,8 +128,9 @@ class SCSIInterface(Elaboratable):
 			with m.State('bus_free'):
 				# All signals are left high-z due to no target/initiator
 				m.d.sync += [
-					self.tx_ctl.eq(0b111111),
-					self.tx.eq(0),
+					# self.tx_ctl.eq(0b111111),
+					self.scsi_phy.d0.tx.eq(0),
+					self.scsi_phy.dp0.tx.eq(0),
 				]
 
 				with m.If(self._scsi_in_fifo.r_rdy):
@@ -146,8 +141,8 @@ class SCSIInterface(Elaboratable):
 
 			with m.State('selection'):
 				m.d.sync += [
-					self.tx_ctl.mr_en_n.eq(0),
-					self.tx.io.eq(~self.tx.io)
+					self.scsi_phy.mr_en.eq(1),
+					self.scsi_phy.io.tx.eq(~self.scsi_phy.io.tx)
 				]
 
 
