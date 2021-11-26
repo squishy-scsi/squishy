@@ -1555,8 +1555,8 @@
     )
   )
 
-  (junction (at 67.31 36.83) (diameter 0) (color 0 0 0 0))
   (junction (at 67.31 26.67) (diameter 0) (color 0 0 0 0))
+  (junction (at 67.31 36.83) (diameter 0) (color 0 0 0 0))
 
   (wire (pts (xy 67.31 38.1) (xy 67.31 36.83))
     (stroke (width 0) (type default) (color 0 0 0 0))
@@ -1567,11 +1567,11 @@
     (uuid 1e81269c-0b8a-4074-b133-9291ddfbd85d)
   )
 
-  (wire (pts (xy 67.31 26.67) (xy 72.39 26.67))
+  (wire (pts (xy 62.23 26.67) (xy 67.31 26.67))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 1f354683-bf6b-4a1e-973f-92c1ee77e8db)
   )
-  (wire (pts (xy 62.23 26.67) (xy 67.31 26.67))
+  (wire (pts (xy 67.31 26.67) (xy 72.39 26.67))
     (stroke (width 0) (type default) (color 0 0 0 0))
     (uuid 1f354683-bf6b-4a1e-973f-92c1ee77e8db)
   )
