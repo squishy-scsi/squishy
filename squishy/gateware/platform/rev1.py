@@ -12,6 +12,8 @@ from ...config                         import SCSI_VID
 
 from ..core.clk                        import ICE40ClockDomainGenerator
 
+from .resources                        import SCSIPhyResource
+
 class SquishyRev1(LatticeICE40Platform):
 	device       = 'iCE40HX8K'
 	package      = 'BG121'
@@ -69,106 +71,19 @@ class SquishyRev1(LatticeICE40Platform):
 			Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 
-		Resource('scsi_rx', 0,
-			Subsignal('data',
-				# 0, 1, 2, 3, 4, 5, 6, 7, P
-				Pins('J10 G10 F10 D10 A11 C7 A9 A7 A5', dir = 'i')
-			),
-			Subsignal('io',
-				Pins('A2', dir = 'i')
-			),
-			Subsignal('cd',
-				Pins('A4', dir = 'i')
-			),
-			Subsignal('req',
-				Pins('A3', dir = 'i')
-			),
-			Subsignal('sel',
-				Pins('A6', dir = 'i')
-			),
-			Subsignal('msg',
-				Pins('A8', dir = 'i')
-			),
-			Subsignal('rst',
-				Pins('D9', dir = 'i')
-			),
-			Subsignal('ack',
-				Pins('B11', dir = 'i')
-			),
-			Subsignal('bsy',
-				Pins('E10', dir = 'i')
-			),
-			Subsignal('atn',
-				Pins('H10', dir = 'i')
-			),
+		SCSIPhyResource(0,
+			ack = ('C11', 'B11'), atn = ('H11', 'H10'), bsy = ('E11', 'E10'),
+			cd  = ('B5',  'A4' ), io  = ('B3',  'A2' ), msg = ('A8',  'B9' ),
+			sel = ('B7',  'A6' ), req = ('B4',  'A3' ), rst = ('E9',  'D9' ),
+			d0  = ('J11 G11 F11 D11 A10 C8 C9 B8',
+				   'J10 G10 F10 D10 A11 C7 A9 A7'),     dp0 = ('B6',  'A5' ),
 
-			Attrs(IO_STANDARD = 'SB_LVCMOS')
-		),
+			tp_en  = 'A1', tx_en  = 'K11', aa_en = 'G8',
+			bsy_en = 'G9', sel_en = 'F9',  mr_en = 'E8',
 
-		Resource('scsi_tx', 0,
-			Subsignal('data',
-				# 0, 1, 2, 3, 4, 5, 6, 7, P
-				Pins('J11 G11 F11 D11 A10 C8 C9 B8 B6', dir = 'o')
-			),
-			Subsignal('io',
-				Pins('B3', dir = 'o')
-			),
-			Subsignal('cd',
-				Pins('B5', dir = 'o')
-			),
-			Subsignal('req',
-				Pins('B4', dir = 'o')
-			),
-			Subsignal('sel',
-				Pins('B7', dir = 'o')
-			),
-			Subsignal('msg',
-				Pins('B9', dir = 'o')
-			),
-			Subsignal('rst',
-				Pins('E9', dir = 'o')
-			),
-			Subsignal('ack',
-				Pins('C11', dir = 'o')
-			),
-			Subsignal('bsy',
-				Pins('E11', dir = 'o')
-			),
-			Subsignal('atn',
-				Pins('H11', dir = 'o')
-			),
+			diff_sense = 'D7',
 
-			Attrs(IO_STANDARD = 'SB_LVCMOS')
-		),
-
-		Resource('scsi_tx_ctl', 0,
-			Subsignal('tp_en_n',
-				Pins('A1', dir = 'o')
-			),
-			Subsignal('tx_en_n',
-				Pins('K11', dir = 'o')
-			),
-			Subsignal('aa_en_n',
-				Pins('G8', dir = 'o')
-			),
-			Subsignal('bsy_en_n',
-				Pins('G9', dir = 'o')
-			),
-			Subsignal('sel_en_n',
-				Pins('F9', dir = 'o')
-			),
-			Subsignal('mr_en_n',
-				Pins('E8', dir = 'o')
-			),
-
-			Attrs(IO_STANDARD = 'SB_LVCMOS')
-		),
-
-		Resource('scsi_ctl', 0,
-			Subsignal('diff_sense',
-				PinsN('D7', dir = 'i')
-			),
-			Attrs(IO_STANDARD = 'SB_LVCMOS')
+			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 
 		*LEDResources(
