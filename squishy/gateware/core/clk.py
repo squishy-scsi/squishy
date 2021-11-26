@@ -16,14 +16,14 @@ class ICE40ClockDomainGenerator(Elaboratable):
 
 		platform.lookup(platform.default_clk).attrs['GLOBAL'] = False
 
-		clk100 = Signal()
+		pll_clk = Signal()
 		m.submodules.pll = Instance(
 			'SB_PLL40_PAD',
 			i_PACKAGEPIN = platform.request(platform.default_clk, dir = 'i'),
 			i_RESETB     = Const(1),
 			i_BYPASS     = Const(0),
 
-			o_PLLOUTGLOBAL = clk100,
+			o_PLLOUTGLOBAL = pll_clk,
 
 			p_FEEDBACK_PATH = 'SIMPLE',
 			p_PLLOUT_SELECT = 'GENCLK',
@@ -36,10 +36,10 @@ class ICE40ClockDomainGenerator(Elaboratable):
 		)
 
 
-		platform.add_clock_constraint(clk100, platform.pll_config['freq'])
+		platform.add_clock_constraint(pll_clk, platform.pll_config['freq'])
 
 		m.d.comb += [
-			ClockSignal('sync').eq(clk100),
+			ClockSignal('sync').eq(pll_clk),
 		]
 
 		return m
@@ -56,7 +56,7 @@ class ECP5ClockDomainGenerator(Elaboratable):
 
 		platform.lookup(platform.default_clk).attrs['GLOBAL'] = False
 
-		clk = Signal()
+		pll_clk = Signal()
 
 		# TODO: Verify PLL settings
 		m.submodules.pll = Instance(
@@ -64,8 +64,8 @@ class ECP5ClockDomainGenerator(Elaboratable):
 
 			i_CLKI    = platform.request(platform.default_clk, dir = 'i'),
 
-			o_CLKOP   = clk,
-			i_CLKFB   = clk,
+			o_CLKOP   = pll_clk,
+			i_CLKFB   = pll_clk,
 			i_ENCLKOP = Const(1),
 			o_LOCK    = self.pll_locked,
 
@@ -107,10 +107,10 @@ class ECP5ClockDomainGenerator(Elaboratable):
 			a_MFG_GMCREF_SEL         = '2',
 		)
 
-		platform.add_clock_constraint(clk, platform.pll_config['freq'])
+		platform.add_clock_constraint(pll_clk, platform.pll_config['freq'])
 
 		m.d.comb += [
-			ClockSignal('sync').eq(clk)
+			ClockSignal('sync').eq(pll_clk)
 		]
 
 		return m
