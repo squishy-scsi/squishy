@@ -112,7 +112,7 @@ def SCSIPhyResource(*args,
 		Subsignal('bsy_en',               PinsN(bsy_en,     dir = 'o',  assert_width = 1)),
 		Subsignal('sel_en',               PinsN(sel_en,     dir = 'o',  assert_width = 1)),
 		Subsignal('mr_en',                PinsN(mr_en,      dir = 'o',  assert_width = 1)),
-		Subsignal('diff_sense',            Pins(diff_sense, dir = 'io', assert_width = 1)),
+		Subsignal('diff_sense',            Pins(diff_sense, dir = 'i',  assert_width = 1)),
 	]
 
 	if d1 is not None:

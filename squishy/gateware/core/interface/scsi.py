@@ -64,7 +64,7 @@ class SCSIInterface(Elaboratable):
 		]
 
 	def elaborate(self, platform):
-		self.scsi_phy     = platform.request('scsi_phy', 0)
+		self.scsi_phy     = platform.request('scsi_phy')
 		self._status_led = platform.request('led', 1)
 
 		self._interface_status = Signal(8)
@@ -100,7 +100,15 @@ class SCSIInterface(Elaboratable):
 		self._csr_elab(m)
 
 		m.d.comb += [
-			# self._interface_status[0:7].eq(Cat(~self.tx_ctl, self.ctl.diff_sense)),
+			self._interface_status[0:7].eq(Cat(
+					self.scsi_phy.tp_en,
+					self.scsi_phy.tx_en,
+					self.scsi_phy.aa_en,
+					self.scsi_phy.bsy_en,
+					self.scsi_phy.sel_en,
+					self.scsi_phy.mr_en,
+					self.scsi_phy.diff_sense
+			)),
 			bus_settled.eq(0)
 		]
 
@@ -115,7 +123,13 @@ class SCSIInterface(Elaboratable):
 		with m.FSM(reset = 'rst'):
 			with m.State('rst'):
 				m.d.sync += [
-					# self.tx_ctl.eq(0b111111),
+					self.scsi_phy.tp_en.eq(0),
+					self.scsi_phy.tx_en.eq(0),
+					self.scsi_phy.aa_en.eq(0),
+					self.scsi_phy.bsy_en.eq(0),
+					self.scsi_phy.sel_en.eq(0),
+					self.scsi_phy.mr_en.eq(0),
+
 					self.scsi_phy.d0.tx.eq(0),
 					self.scsi_phy.dp0.tx.eq(0),
 				]
@@ -128,7 +142,13 @@ class SCSIInterface(Elaboratable):
 			with m.State('bus_free'):
 				# All signals are left high-z due to no target/initiator
 				m.d.sync += [
-					# self.tx_ctl.eq(0b111111),
+					self.scsi_phy.tp_en.eq(0),
+					self.scsi_phy.tx_en.eq(0),
+					self.scsi_phy.aa_en.eq(0),
+					self.scsi_phy.bsy_en.eq(0),
+					self.scsi_phy.sel_en.eq(0),
+					self.scsi_phy.mr_en.eq(0),
+
 					self.scsi_phy.d0.tx.eq(0),
 					self.scsi_phy.dp0.tx.eq(0),
 				]
