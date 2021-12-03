@@ -16,7 +16,8 @@ class ICE40ClockDomainGenerator(Elaboratable):
 
 		platform.lookup(platform.default_clk).attrs['GLOBAL'] = False
 
-		pll_clk = Signal()
+		# :nya_a:
+		pll_clk = Signal(attrs = {'keep': 'true'})
 		m.submodules.pll = Instance(
 			'SB_PLL40_PAD',
 			i_PACKAGEPIN = platform.request(platform.default_clk, dir = 'i'),
@@ -56,7 +57,8 @@ class ECP5ClockDomainGenerator(Elaboratable):
 
 		platform.lookup(platform.default_clk).attrs['GLOBAL'] = False
 
-		pll_clk = Signal()
+		# :nya_a:
+		pll_clk = Signal(attrs = {'keep': 'true'})
 
 		# TODO: Verify PLL settings
 		m.submodules.pll = Instance(
