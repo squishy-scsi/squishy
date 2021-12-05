@@ -1,4 +1,4 @@
-(kicad_sch (version 20210621) (generator eeschema)
+(kicad_sch (version 20211123) (generator eeschema)
 
   (uuid 96bbde23-bda0-41c0-afcc-6c3525b87ec5)
 
@@ -36,7 +36,8 @@
         (effects (font (size 1.27 1.27)) hide)
       )
       (symbol "Fiducial_0_1"
-        (circle (center 0 0) (radius 1.27)           (stroke (width 0.508) (type default) (color 0 0 0 0))
+        (circle (center 0 0) (radius 1.27)
+          (stroke (width 0.508) (type default) (color 0 0 0 0))
           (fill (type background))
         )
       )
@@ -64,7 +65,8 @@
         (effects (font (size 1.27 1.27)) hide)
       )
       (symbol "MountingHole_Pad_0_1"
-        (circle (center 0 1.27) (radius 1.27)           (stroke (width 1.27) (type default) (color 0 0 0 0))
+        (circle (center 0 1.27) (radius 1.27)
+          (stroke (width 1.27) (type default) (color 0 0 0 0))
           (fill (type none))
         )
       )
@@ -1555,8 +1557,12 @@
     )
   )
 
-  (junction (at 67.31 26.67) (diameter 0) (color 0 0 0 0))
-  (junction (at 67.31 36.83) (diameter 0) (color 0 0 0 0))
+  (junction (at 67.31 36.83) (diameter 0) (color 0 0 0 0)
+    (uuid 5d5b0a64-b828-4f15-a96b-3a0ad38c9616)
+  )
+  (junction (at 67.31 26.67) (diameter 0) (color 0 0 0 0)
+    (uuid eb245694-5d4a-4580-b58e-31acf2bba517)
+  )
 
   (wire (pts (xy 67.31 38.1) (xy 67.31 36.83))
     (stroke (width 0) (type default) (color 0 0 0 0))
@@ -1573,7 +1579,7 @@
   )
   (wire (pts (xy 67.31 26.67) (xy 72.39 26.67))
     (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid 1f354683-bf6b-4a1e-973f-92c1ee77e8db)
+    (uuid 1f354683-bf6b-4a1e-973f-92c1ee77e8dc)
   )
   (polyline (pts (xy 48.26 13.97) (xy 13.97 13.97))
     (stroke (width 0) (type dash) (color 0 0 0 0))
@@ -1627,7 +1633,7 @@
   )
   (wire (pts (xy 67.31 36.83) (xy 62.23 36.83))
     (stroke (width 0) (type default) (color 0 0 0 0))
-    (uuid a4c0e4db-76f3-4ec3-9ef1-04195ce222ed)
+    (uuid a4c0e4db-76f3-4ec3-9ef1-04195ce222ee)
   )
   (polyline (pts (xy 85.09 13.97) (xy 50.8 13.97))
     (stroke (width 0) (type dash) (color 0 0 0 0))
