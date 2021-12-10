@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from nmigen              import *
-from nmigen.lib.fifo     import AsyncFIFO
-from nmigen_stdio.serial import AsyncSerial
-from nmigen_soc.wishbone import Interface
+from amaranth              import *
+from amaranth.lib.fifo     import AsyncFIFO
+from amaranth_stdio.serial import AsyncSerial
+from amaranth_soc.wishbone import Interface
 
 
 __all__ = (

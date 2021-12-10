@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from nmigen                  import *
-from nmigen_soc.wishbone     import Interface
-from nmigen_soc.csr.bus      import Element, Multiplexer
-from nmigen_soc.csr.wishbone import WishboneCSRBridge
+from amaranth                  import *
+from amaranth_soc.wishbone     import Interface
+from amaranth_soc.csr.bus      import Element, Multiplexer
+from amaranth_soc.csr.wishbone import WishboneCSRBridge
 
 
 from luna.usb2 import *

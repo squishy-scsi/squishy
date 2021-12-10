@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from nmigen                            import *
-from nmigen.build                      import *
-from nmigen.vendor.lattice_ecp5        import LatticeECP5Platform
-from nmigen_boards.resources.memory    import SPIFlashResources
-from nmigen_boards.resources.user      import LEDResources
-from nmigen_boards.resources.interface import UARTResource
+from amaranth                            import *
+from amaranth.build                      import *
+from amaranth.vendor.lattice_ecp5        import LatticeECP5Platform
+from amaranth_boards.resources.memory    import SPIFlashResources
+from amaranth_boards.resources.user      import LEDResources
+from amaranth_boards.resources.interface import UARTResource
 
-from ...config                         import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
-from ...config                         import USB_MANUFACTURER, USB_PRODUCT, USB_SERIAL_NUMBER
-from ...config                         import SCSI_VID
+from ...config                           import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
+from ...config                           import USB_MANUFACTURER, USB_PRODUCT, USB_SERIAL_NUMBER
+from ...config                           import SCSI_VID
 
-from ..core.clk                        import ECP5ClockDomainGenerator
+from ..core.clk                          import ECP5ClockDomainGenerator
 
 class SquishyRev2(LatticeECP5Platform):
 	device       = 'LFE5U-45F'

@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from unittest import TestCase
 
-from nmigen   import Signal
+from amaranth   import Signal
 
 __all__ = (
 	'SquishyGatewareTestCase',
@@ -36,8 +36,8 @@ class SquishyGatewareTestCase(TestCase):
 
 	def setUp(self):
 		from os            import path, mkdir, getcwd
-		from nmigen.sim    import Simulator
-		from nmigen.hdl.ir import Fragment
+		from amaranth.sim    import Simulator
+		from amaranth.hdl.ir import Fragment
 
 		self.dut     = Fragment.get(self._dut, platform = self.platform)
 		self.sim     = Simulator(self.dut)

@@ -28,9 +28,9 @@ __all__ = (
 
 """
 
-from nmigen              import *
-from nmigen.lib.fifo     import AsyncFIFO
-from nmigen_soc.wishbone import Decoder, Arbiter
+from amaranth              import *
+from amaranth.lib.fifo     import AsyncFIFO
+from amaranth_soc.wishbone import Decoder, Arbiter
 
 from .interface import UARTInterface
 from .interface import SCSIInterface

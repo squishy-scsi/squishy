@@ -12,8 +12,8 @@ class SimPlatform():
 	# clock_domain_generator
 
 	def request(self, name, num = 0):
-		from nmigen     import Signal
-		from nmigen.hdl import Record
+		from amaranth     import Signal
+		from amaranth.hdl import Record
 
 		if name == 'led':
 			return Signal(name = f'led_{num}')
@@ -229,8 +229,8 @@ class SimPlatform():
 
 def sim_case(*, domains, dut, platform = None):
 	def _reg_sim(func):
-		from nmigen.sim    import Simulator
-		from nmigen.hdl.ir import Fragment
+		from amaranth.sim    import Simulator
+		from amaranth.hdl.ir import Fragment
 
 		sim = Simulator(
 			Fragment.get(dut, platform = platform)

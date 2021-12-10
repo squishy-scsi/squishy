@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from nmigen                import *
-from nmigen.sim            import Simulator, Settle
+from amaranth                import *
+from amaranth.sim            import Simulator, Settle
 
 from .                     import sim_case, SimPlatform
 from ..core.interface.scsi import SCSIInterface
@@ -27,7 +27,7 @@ scsi = SCSIInterface(
 	wb_config = _wb_cfg,
 )
 
-from nmigen.hdl import Record
+from amaranth.hdl import Record
 
 usb_uart = Record([
 	('w_data', [

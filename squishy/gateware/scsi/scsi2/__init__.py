@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from math         import ceil, log2
 
-from nmigen       import *
+from amaranth       import *
 
 from .....utility import us_to_s, ns_to_s
 

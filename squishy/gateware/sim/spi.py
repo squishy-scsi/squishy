@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from nmigen               import *
-from nmigen.sim           import Simulator, Settle
+from amaranth               import *
+from amaranth.sim           import Simulator, Settle
 
 from .                    import sim_case
 from ..core.interface.spi import SPIInterface
