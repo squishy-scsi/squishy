@@ -6,7 +6,7 @@ from PySide2.QtWidgets import *
 from PySide2.QtGui     import QPixmap
 from PySide2.QtUiTools import QUiLoader
 
-from .resources   import SQUISHY_GUI_RESOURCES_LOC
+from .resources        import *
 
 class AboutWindow:
 	def __init__(self):
@@ -19,7 +19,7 @@ class AboutWindow:
 		)
 
 		self.window = self.loader.load(self._ui_file)
-		self._sachi = QPixmap(f'{SQUISHY_GUI_RESOURCES_LOC}/images/about.png')
+		self._sachi = QPixmap(get_resource('about.png', ResourceCategory.IMAGE, ResourceType.PATH))
 		self.window.lbl_sachi.setPixmap(self._sachi)
 
 

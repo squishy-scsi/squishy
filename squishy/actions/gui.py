@@ -20,7 +20,7 @@ from PySide2.QtCore    import QCoreApplication, Qt
 
 from ..config          import SQUISHY_SETTINGS_FILE
 from ..gui             import MainWindow
-from ..gui.resources   import SQUISHY_GUI_RESOURCES_LOC
+from ..gui.resources   import *
 
 class SquishyGui:
 	def __init__(self):
@@ -40,12 +40,11 @@ class SquishyGui:
 		# Ensure we can find our themes/resources
 		QIcon.setThemeSearchPaths([
 			':/icons',
-			f'{SQUISHY_GUI_RESOURCES_LOC}/themes',
 		])
 
 		if self.settings['gui']['appearance']['show_splash']:
 			self.splash = QSplashScreen(
-				QPixmap(f'{SQUISHY_GUI_RESOURCES_LOC}/images/splash.png')
+				QPixmap(get_resource('splash.png', ResourceCategory.IMAGE, ResourceType.PATH))
 			)
 			self.splash.show()
 
