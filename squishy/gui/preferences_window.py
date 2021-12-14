@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import json
-from os import path
 
 from PySide2.QtCore    import *
 from PySide2.QtWidgets import *
@@ -8,6 +7,8 @@ from PySide2.QtUiTools import QUiLoader
 
 from ..config          import SQUISHY_SETTINGS_FILE, DEFAULT_SETTINGS
 from ..config          import BufferType, BufferBackend
+
+from .resources        import *
 from .widgets          import FontPicker, ColorPicker, HotkeyEdit
 from .widgets.hex_view import ByteFormat
 
@@ -143,10 +144,7 @@ class PreferencesWindow:
 	def __init__(self):
 		self.loader = QUiLoader()
 		self._ui_file = QFile(
-			path.join(
-				path.dirname(path.realpath(__file__)),
-				'preferences_window.ui'
-			)
+			get_resource('preferences_window.ui', ResourceCategory.UI, ResourceType.PATH)
 		)
 
 		self.loader.registerCustomWidget(FontPicker)

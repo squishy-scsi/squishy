@@ -79,7 +79,7 @@ setup(
 		'squishy.gui.resources.themes': [
 
 		],
-		'squishy.gui': [
+		'squishy.gui.resources.ui': [
 			'about_window.ui',
 			'bus_topology_window.ui',
 			'devices_window.ui',

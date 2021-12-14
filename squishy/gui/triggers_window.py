@@ -5,14 +5,13 @@ from PySide2.QtCore    import *
 from PySide2.QtWidgets import *
 from PySide2.QtUiTools import QUiLoader
 
+from .resources        import *
+
 class TriggersWindow:
 	def __init__(self):
 		self.loader = QUiLoader()
 		self._ui_file = QFile(
-			path.join(
-				path.dirname(path.realpath(__file__)),
-				'triggers_window.ui'
-			)
+			get_resource('triggers_window.ui', ResourceCategory.UI, ResourceType.PATH)
 		)
 
 		self.window = self.loader.load(self._ui_file)

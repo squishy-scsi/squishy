@@ -16,6 +16,7 @@ class ResourceCategory(Enum):
 	ICON  = 1
 	IMAGE = 2
 	THEME = 3
+	UI    = 4
 
 	def __str__(self):
 		if self == ResourceCategory.FONT:
@@ -26,6 +27,8 @@ class ResourceCategory(Enum):
 			return 'images'
 		elif self == ResourceCategory.THEME:
 			return 'themes'
+		elif self == ResourceCategory.UI:
+			return 'ui'
 		else:
 			return ''
 

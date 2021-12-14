@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from os                   import path
 from random               import choice
 
 from PySide2.QtCore       import *
@@ -8,6 +7,7 @@ from PySide2.QtUiTools    import QUiLoader
 
 from ..config             import SQUISHY_SPLASH_MESSAGES
 
+from .resources           import *
 from .widgets             import HexViewWidget, CaptureLog
 from .about_window        import AboutWindow
 from .bus_topology_window import BusTopologyWindow
@@ -23,10 +23,7 @@ class MainWindow:
 	def __init__(self, settings):
 		self.loader = QUiLoader()
 		self._ui_file = QFile(
-			path.join(
-				path.dirname(path.realpath(__file__)),
-				'main_window.ui'
-			)
+			get_resource('main_window.ui', ResourceCategory.UI, ResourceType.PATH)
 		)
 
 		self._settings = settings
