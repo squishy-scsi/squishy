@@ -35,7 +35,7 @@ setup(
 	author_email    = 'nya@catgirl.link',
 	description     = 'SCSI Multi-tool',
 	license         = 'BSD-3-Clause',
-	python_requires = '>=3.8,<3.10',
+	python_requires = '~=3.8',
 	zip_safe        = False,
 
 	setup_requires  = [
