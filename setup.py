@@ -51,9 +51,9 @@ setup(
 		'tqdm>=4.62.3',
 		'prompt_toolkit>=3.0.20',
 
-		'amaranth @ git+https://github.com/amaranth-lang/amaranth.git@master',
-		'amaranth-boards @ git+https://github.com/amaranth-lang/amaranth-boards.git@master',
-		'amaranth-stdio @ git+https://github.com/amaranth-lang/amaranth-stdio.git@master',
+		'amaranth @ git+https://github.com/amaranth-lang/amaranth.git@main',
+		'amaranth-boards @ git+https://github.com/amaranth-lang/amaranth-boards.git@main',
+		'amaranth-stdio @ git+https://github.com/amaranth-lang/amaranth-stdio.git@main',
 		'luna @ git+https://github.com/lethalbit/luna.git@master#egg=luna-0.1.0.dev0',
 	],
 
