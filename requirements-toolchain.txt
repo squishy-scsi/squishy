@@ -1,0 +1,3 @@
+amaranth-yosys
+yowasp-yosys
+yowasp-nextpnr-ice40-8k
