@@ -1,3 +1,0 @@
-[submodule "deps/luna"]
-	path = deps/luna
-	url = https://github.com/lethalbit/luna.git
