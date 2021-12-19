@@ -10,7 +10,7 @@ from ...config                           import USB_VID, USB_PID_APPLICATION, US
 from ...config                           import USB_MANUFACTURER, USB_PRODUCT, USB_SERIAL_NUMBER
 from ...config                           import SCSI_VID
 
-from ..core.clk                          import ICE40ClockDomainGenerator
+from ..core.pll                          import ICE40ClockDomainGenerator
 
 from .resources                          import SCSIPhyResource
 
