@@ -1,7 +1,15 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
+from .scsi import SCSI as SCSIPhy
+from .spi  import SPI  as SPIPhy
+from .uart import UART as UARTPhy
+from .usb  import USB  as USBPhy
+
 __all__ = (
-	'Squishy',
+	'SCSIPhy',
+    'SPIPhy',
+    'UARTPhy',
+    'USBPhy',
 )
 
 """
@@ -31,13 +39,6 @@ __all__ = (
 from amaranth              import *
 from amaranth.lib.fifo     import AsyncFIFO
 from amaranth_soc.wishbone import Decoder, Arbiter
-
-from .interface import UARTInterface
-from .interface import SCSIInterface
-from .interface import USBInterface
-from .interface import SPIInterface
-
-
 
 class Squishy(Elaboratable):
 	def __init__(self, *, uart_config, usb_config, scsi_config):
@@ -73,7 +74,7 @@ class Squishy(Elaboratable):
 		# Module References
 		self.spi  = SPIInterface()
 		if self.uart_config['enabled']:
-			self.uart = UARTInterface(
+			self.uart = UARTPhy(
 				config    = self.uart_config,
 				wb_config = self._wb_cfg
 			)
@@ -81,14 +82,14 @@ class Squishy(Elaboratable):
 
 		else:
 			self.uart = None
-		self.scsi = SCSIInterface(
+		self.scsi = SCSIPhy(
 			config    = self.scsi_config,
 			wb_config = self._wb_cfg
 		)
 		self._wb_decoder.add(self.scsi.bus, addr = 0)
 		self._wb_arbiter.add(self.scsi.ctl_bus)
 
-		self.usb  = USBInterface(
+		self.usb  = USBPhy(
 			config    = self.usb_config,
 			wb_config = self._wb_cfg
 		)

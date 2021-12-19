@@ -6,14 +6,13 @@ from amaranth_soc.wishbone     import Interface
 from amaranth_soc.csr.bus      import Element, Multiplexer
 from amaranth_soc.csr.wishbone import WishboneCSRBridge
 
-from ....utility               import us_to_s, ns_to_s
 
 __all__ = (
-	'SCSIInterface',
+	'SCSI',
 )
 
-# SCSI: Small Catgirl Scritches Interface
-class SCSIInterface(Elaboratable):
+# This is the SCSI 1,2,3 HVD,LVD,SE 50,68,80 PHY Block
+class SCSI(Elaboratable):
 	def __init__(self, *, config, wb_config):
 		self.config = config
 		self._scsi_id = Signal(8)

@@ -6,10 +6,10 @@ from amaranth_soc.wishbone import Interface
 
 
 __all__ = (
-	'UARTInterface',
+	'UART',
 )
 
-class UARTInterface(Elaboratable):
+class UART(Elaboratable):
 	def __init__(self, *, config, wb_config):
 		self.config = config
 		self._wb_cfg = wb_config
