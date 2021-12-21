@@ -2,7 +2,18 @@
 
   (uuid 624fb1ff-9239-4e3c-aef0-ae7bfa232090)
 
-  (paper "A4")
+  (paper "A3")
+
+  (title_block
+    (title "Squishy - Multitool - SCSI PHY")
+    (date "2021-12-21")
+    (rev "2")
+    (company "Shrine Maiden Heavy Industries")
+    (comment 1 "License:  CERN-OHL-S")
+    (comment 2 "© 2020 Aki 'lethalbit' Van Ness, et. al.")
+    (comment 3 "Multi-voltaga diff/se SCSI PHY for SCSI-1 2 and 3")
+    (comment 4 "Squishy - SCSI multitool and gateware library")
+  )
 
   (lib_symbols
     (symbol "Connector:TestPoint_Small" (pin_numbers hide) (pin_names (offset 0.762) hide) (in_bom yes) (on_board yes)
@@ -1604,7 +1615,7 @@
   (symbol (lib_id "power:GND") (at 199.39 74.93 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 1fcbd8e3-1891-4b99-a2bd-169bce762ce6)
-    (property "Reference" "#PWR?" (id 0) (at 199.39 81.28 0)
+    (property "Reference" "#PWR024" (id 0) (at 199.39 81.28 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 199.517 79.3242 0))
@@ -1661,7 +1672,7 @@
   (symbol (lib_id "power:+3V3") (at 199.39 49.53 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 63c44f8f-f216-4abb-be88-c70f1e7120f1)
-    (property "Reference" "#PWR?" (id 0) (at 199.39 53.34 0)
+    (property "Reference" "#PWR023" (id 0) (at 199.39 53.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (id 1) (at 199.771 45.1358 0))

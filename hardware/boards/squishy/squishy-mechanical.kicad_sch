@@ -5,11 +5,14 @@
   (paper "A3")
 
   (title_block
-    (title "Squishy")
-    (date "2021-10-02")
+    (title "Squishy - Multitool - Mechanical / Graphics")
+    (date "2021-12-21")
     (rev "2")
-    (company "Aki")
-    (comment 1 "Mechanical")
+    (company "Shrine Maiden Heavy Industries")
+    (comment 1 "License:  CERN-OHL-S")
+    (comment 2 "© 2020 Aki 'lethalbit' Van Ness, et. al.")
+    (comment 3 "Mechanical and graphic elements")
+    (comment 4 "Squishy - SCSI multitool and gateware library")
   )
 
   (lib_symbols

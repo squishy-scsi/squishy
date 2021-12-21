@@ -5,11 +5,14 @@
   (paper "A3")
 
   (title_block
-    (title "Squishy")
-    (date "2021-10-02")
+    (title "Squishy - Multitool - Root")
+    (date "2021-12-21")
     (rev "2")
-    (company "Aki")
-    (comment 1 "Root")
+    (company "Shrine Maiden Heavy Industries")
+    (comment 1 "License:  CERN-OHL-S")
+    (comment 2 "© 2020 Aki 'lethalbit' Van Ness, et. al.")
+    (comment 3 "Squishy FPGA / USB PHY / Glue")
+    (comment 4 "Squishy - SCSI multitool and gateware library")
   )
 
   (lib_symbols
@@ -7747,7 +7750,7 @@
   (symbol (lib_id "lethalbit-connectors:QXH-060") (at 171.45 144.78 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 1a31b1fe-0846-4001-810b-84f69f5d18e2)
-    (property "Reference" "J?" (id 0) (at 171.45 124.46 0))
+    (property "Reference" "J10" (id 0) (at 171.45 124.46 0))
     (property "Value" "QXH-060" (id 1) (at 171.45 172.72 0))
     (property "Footprint" "lethalbit-connectors:QTH-060-01-X-D-RA-PGP" (id 2) (at 179.07 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -8142,7 +8145,7 @@
   (symbol (lib_id "lethalbit-connectors:QXH-060") (at 199.39 144.78 0) (unit 2)
     (in_bom yes) (on_board yes)
     (uuid 4b604d2b-ca9f-4a55-b07a-f94ef9915e36)
-    (property "Reference" "J?" (id 0) (at 199.39 124.46 0))
+    (property "Reference" "J10" (id 0) (at 199.39 124.46 0))
     (property "Value" "QXH-060" (id 1) (at 199.39 172.72 0))
     (property "Footprint" "lethalbit-connectors:QTH-060-01-X-D-RA-PGP" (id 2) (at 207.01 142.24 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -8600,7 +8603,7 @@
   (symbol (lib_id "lethalbit-connectors:QXH-060") (at 171.45 204.47 0) (unit 3)
     (in_bom yes) (on_board yes)
     (uuid 7c96dcb4-f285-4fce-bd6e-cf5479f3e0b9)
-    (property "Reference" "J?" (id 0) (at 171.45 184.15 0))
+    (property "Reference" "J10" (id 0) (at 171.45 184.15 0))
     (property "Value" "QXH-060" (id 1) (at 171.45 232.41 0))
     (property "Footprint" "lethalbit-connectors:QTH-060-01-X-D-RA-PGP" (id 2) (at 179.07 201.93 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -9552,7 +9555,7 @@
   (symbol (lib_id "lethalbit-connectors:QXH-060") (at 196.85 205.74 0) (unit 4)
     (in_bom yes) (on_board yes)
     (uuid e2d25310-cea4-47c6-b9c2-3668140a8953)
-    (property "Reference" "J?" (id 0) (at 196.85 185.42 0))
+    (property "Reference" "J10" (id 0) (at 196.85 185.42 0))
     (property "Value" "QXH-060" (id 1) (at 196.85 233.68 0))
     (property "Footprint" "lethalbit-connectors:QTH-060-01-X-D-RA-PGP" (id 2) (at 204.47 203.2 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -9975,6 +9978,12 @@
     (path "/86068b2e-11d5-4b87-9288-f54ae7aa09fd"
       (reference "#PWR022") (unit 1) (value "+5V") (footprint "")
     )
+    (path "/de707440-a3c6-4b49-832e-b7263045abb4/63c44f8f-f216-4abb-be88-c70f1e7120f1"
+      (reference "#PWR023") (unit 1) (value "+3V3") (footprint "")
+    )
+    (path "/de707440-a3c6-4b49-832e-b7263045abb4/1fcbd8e3-1891-4b99-a2bd-169bce762ce6"
+      (reference "#PWR024") (unit 1) (value "GND") (footprint "")
+    )
     (path "/243ea74a-8966-4639-91c5-a5945f4a1fd7/ee8c87f9-7975-46e9-91d1-8a31e9dc5731"
       (reference "#PWR025") (unit 1) (value "+5V") (footprint "")
     )
@@ -10236,12 +10245,6 @@
     (path "/c5d8bf32-88fc-4c9d-bafe-e9e94a64894d"
       (reference "#PWR0128") (unit 1) (value "+3V3") (footprint "")
     )
-    (path "/de707440-a3c6-4b49-832e-b7263045abb4/1fcbd8e3-1891-4b99-a2bd-169bce762ce6"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/de707440-a3c6-4b49-832e-b7263045abb4/63c44f8f-f216-4abb-be88-c70f1e7120f1"
-      (reference "#PWR?") (unit 1) (value "+3V3") (footprint "")
-    )
     (path "/8f583346-1f09-4133-a8d5-9ebea2335739"
       (reference "C1") (unit 1) (value "0.01uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
@@ -10483,16 +10486,16 @@
       (reference "J9") (unit 1) (value "REFCLK") (footprint "lethalbit-rf:Molex_SMA_732512120")
     )
     (path "/1a31b1fe-0846-4001-810b-84f69f5d18e2"
-      (reference "J?") (unit 1) (value "QXH-060") (footprint "lethalbit-connectors:QTH-060-01-X-D-RA-PGP")
+      (reference "J10") (unit 1) (value "QXH-060") (footprint "lethalbit-connectors:QTH-060-01-X-D-RA-PGP")
     )
     (path "/4b604d2b-ca9f-4a55-b07a-f94ef9915e36"
-      (reference "J?") (unit 2) (value "QXH-060") (footprint "lethalbit-connectors:QTH-060-01-X-D-RA-PGP")
+      (reference "J10") (unit 2) (value "QXH-060") (footprint "lethalbit-connectors:QTH-060-01-X-D-RA-PGP")
     )
     (path "/7c96dcb4-f285-4fce-bd6e-cf5479f3e0b9"
-      (reference "J?") (unit 3) (value "QXH-060") (footprint "lethalbit-connectors:QTH-060-01-X-D-RA-PGP")
+      (reference "J10") (unit 3) (value "QXH-060") (footprint "lethalbit-connectors:QTH-060-01-X-D-RA-PGP")
     )
     (path "/e2d25310-cea4-47c6-b9c2-3668140a8953"
-      (reference "J?") (unit 4) (value "QXH-060") (footprint "lethalbit-connectors:QTH-060-01-X-D-RA-PGP")
+      (reference "J10") (unit 4) (value "QXH-060") (footprint "lethalbit-connectors:QTH-060-01-X-D-RA-PGP")
     )
     (path "/de707440-a3c6-4b49-832e-b7263045abb4/81f65ea4-a4dc-47d7-9ed4-032499b665e0"
       (reference "Q2") (unit 1) (value "Q_NMOS_GSD") (footprint "Package_TO_SOT_SMD:SOT-23")
