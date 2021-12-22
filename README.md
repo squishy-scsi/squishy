@@ -6,7 +6,11 @@ It was originally developed as a one-off solution for the [taperipper](https://l
 
 ## Software
 
-Squishy is designed as both a set of utilities, and an extendable platform for dealing with SCSI. Along with the core Squishy gateware, it has things such as traffic generators and dissectors.
+Squishy includes an [Amaranth HDL](https://github.com/amaranth-lang/amaranth) gateware library to allow one to add SCSI functionality to any project.
+
+In addition to the gateware library, it also includes a set of utilities for interacting with SCSI devices, hosts, and existing bus'. It has a traffic analyzer, traffic generator, protocol dissector, and other utilities to allow for an out-of-the box experience.
+
+Along with this, it has a powerful applet infrastructure that leverages the hardware and existing gateware library to develop custom applets that allow you to interact with SCSI at any layer.
 
 ## Hardware
 
