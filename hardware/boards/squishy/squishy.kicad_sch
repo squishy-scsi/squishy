@@ -4792,8 +4792,8 @@
     )
   )
 
-  (bus_alias "SCSI-SE" (members "DB[0..15]" "DBP[0..1]" "IO" "REQ" "CD" "SEL" "MSG" "RST" "ACK" "BSY" "ATN"))
   (bus_alias "ULPI" (members "D[0..7]" "CLK" "STP" "DIR" "NXT"))
+  (bus_alias "SCSI-SE" (members "DB[0..15]" "DBP[0..1]" "IO" "REQ" "CD" "SEL" "MSG" "RST" "ACK" "BSY" "ATN"))
   (junction (at 335.28 240.03) (diameter 0) (color 0 0 0 0)
     (uuid 014d13cd-26ad-4d0e-86ad-a43b541cab14)
   )
@@ -11733,15 +11733,6 @@
     (path "/0f199568-c774-4ee6-a99b-e0201ec4a051"
       (reference "#PWR081") (unit 1) (value "GND") (footprint "")
     )
-    (path "/243ea74a-8966-4639-91c5-a5945f4a1fd7/cfbea69f-dde3-4010-9e64-610b8b2ee43d"
-      (reference "#PWR082") (unit 1) (value "+3V3") (footprint "")
-    )
-    (path "/243ea74a-8966-4639-91c5-a5945f4a1fd7/7f1c77d6-212b-47b7-b397-48ace321b66f"
-      (reference "#PWR083") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/243ea74a-8966-4639-91c5-a5945f4a1fd7/6dcb754a-7759-4385-96fe-06ed965816c9"
-      (reference "#PWR084") (unit 1) (value "+5V") (footprint "")
-    )
     (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/b757983f-1268-4c12-a3c4-739ed6b06e21"
       (reference "#PWR0101") (unit 1) (value "+1V1") (footprint "")
     )
@@ -12056,9 +12047,6 @@
     )
     (path "/9cec36ec-2bfa-4967-807b-26a249f107bf"
       (reference "J6") (unit 1) (value "Conn_01x04") (footprint "rhais_connector-molex:Molex_PicoBlade_53261-0471_1x04-1MP_P1.25mm_Horizontal")
-    )
-    (path "/243ea74a-8966-4639-91c5-a5945f4a1fd7/213b5658-a963-4ec8-b925-7bb6b2a2525a"
-      (reference "J7") (unit 1) (value "syzygy_standard_x1") (footprint "lethalbit-connectors:syzygy_standard_x1")
     )
     (path "/690d44bc-389f-40c9-8dec-32836359f020"
       (reference "J8") (unit 1) (value "TRIGGER") (footprint "lethalbit-rf:Molex_SMA_732512120")
