@@ -11992,7 +11992,7 @@
       (reference "D14") (unit 1) (value "WHITE") (footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
     )
     (path "/243ea74a-8966-4639-91c5-a5945f4a1fd7/196858d1-1f9b-45ca-b923-e04fb93388a2"
-      (reference "F1") (unit 1) (value "250mA") (footprint "Fuse:Fuse_1210_3225Metric_Castellated")
+      (reference "F1") (unit 1) (value "250mA") (footprint "Fuse:Fuse_1210_3225Metric")
     )
     (path "/f0186a61-a1ec-47af-8a71-f94e7ce0e59d/5436caa9-e45a-4999-bf93-0f9c21c42e31"
       (reference "FID1") (unit 1) (value "Fiducial") (footprint "Fiducial:Fiducial_0.75mm_Mask1.5mm")

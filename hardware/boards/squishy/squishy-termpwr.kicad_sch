@@ -3042,7 +3042,7 @@
     (uuid 196858d1-1f9b-45ca-b923-e04fb93388a2)
     (property "Reference" "F1" (id 0) (at 48.26 205.613 90))
     (property "Value" "250mA" (id 1) (at 48.26 211.7344 90))
-    (property "Footprint" "Fuse:Fuse_1210_3225Metric_Castellated" (id 2) (at 43.18 209.55 0)
+    (property "Footprint" "Fuse:Fuse_1210_3225Metric" (id 2) (at 43.18 209.55 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
     (property "Datasheet" "https://www.belfuse.com/resources/datasheets/circuitprotection/ds-cp-0zch-series.pdf" (id 3) (at 48.26 208.28 0)
