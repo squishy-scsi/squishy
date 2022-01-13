@@ -6168,7 +6168,7 @@
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 4d957653-6494-4b9b-ac97-9068625ffbbf)
   )
-  (text "FPGA: LFE5U-45F-8BG256C" (at 252.73 2.54 0)
+  (text "FPGA: LFE5UM5G-45F-8BG381C" (at 252.73 2.54 0)
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 55aeb596-6011-49e1-9577-37206efca37c)
   )
