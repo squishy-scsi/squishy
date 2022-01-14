@@ -13,8 +13,8 @@ from ...config                           import SCSI_VID
 from ..core.pll                          import ECP5ClockDomainGenerator
 
 class SquishyRev2(LatticeECP5Platform):
-	device       = 'LFE5U-45F'
-	package      = 'BG256'
+	device       = 'LFE5UM5G-45F'
+	package      = 'BG381'
 	default_clk  = 'clk'
 	toolchain    = 'Trellis'
 
