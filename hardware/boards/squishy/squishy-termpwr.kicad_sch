@@ -6,11 +6,11 @@
 
   (title_block
     (title "Squishy - Multitool - Termination Power / Expansion")
-    (date "2022-01-14")
+    (date "2022-01-19")
     (rev "2")
     (company "Shrine Maiden Heavy Industries")
     (comment 1 "License:  CERN-OHL-S")
-    (comment 2 "© 2020 Aki 'lethalbit' Van Ness, et. al.")
+    (comment 2 "© 2022 Aki 'lethalbit' Van Ness, et. al.")
     (comment 3 "SCSI PHY Termination power managment and expansion header")
     (comment 4 "Squishy - SCSI multitool and gateware library")
   )
