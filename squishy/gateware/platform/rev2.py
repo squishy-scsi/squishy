@@ -14,6 +14,7 @@ from ..core.pll                          import ECP5ClockDomainGenerator
 
 class SquishyRev2(LatticeECP5Platform):
 	device       = 'LFE5UM5G-45F'
+	speed        = '8'
 	package      = 'BG381'
 	default_clk  = 'clk'
 	toolchain    = 'Trellis'
@@ -44,7 +45,7 @@ class SquishyRev2(LatticeECP5Platform):
 		Resource('clk', 0,
 			Pins('P1', dir = 'i'),
 			Clock(16e6),
-			Attrs(GLOBAL = True, IO_STANDARD = 'SB_LVCMOS')
+			Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
 		Resource('tio', 0,
@@ -54,7 +55,7 @@ class SquishyRev2(LatticeECP5Platform):
 			Subsignal('refclk',
 				Pins('M15', dir = 'io')
 			),
-			Attrs(IO_STANDARD = 'SB_LVCMOS')
+			Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
 		Resource('ulpi', 0,
@@ -78,7 +79,7 @@ class SquishyRev2(LatticeECP5Platform):
 				Pins('M1', dir = 'o')
 			),
 
-			Attrs(IO_STANDARD = 'SB_LVCMOS')
+			Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
 		Resource('termpwr', 0,
@@ -92,21 +93,7 @@ class SquishyRev2(LatticeECP5Platform):
 				Pins('B1', dir = 'oe')
 			),
 
-			Attrs(IO_STANDARD = 'SB_LVCMOS')
-		),
-
-		Resource('syzygy', 0,
-			Subsignal('data',
-				Pins('E3 K3 J2 J1 H2 G2 G1 F2 F1 E2 E1 D3 G3 D1 F3 C3 F4', dir = 'io')
-			),
-
-			Subsignal('clk',
-				DiffPairs('K1', 'K2', dir = 'o'),
-				Clock(50e6)
-			),
-
-
-			Attrs(IO_STANDARD = 'SB_LVCMOS')
+			Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
 		*LEDResources(
@@ -118,19 +105,19 @@ class SquishyRev2(LatticeECP5Platform):
 				'P7', # [8] Blue
 				'P6'  # [9] Blue
 			],
-			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS'),
+			attrs = Attrs(IO_TYPE = 'LVCMOS33'),
 		),
 
 
 		*SPIFlashResources(0,
 			cs_n = 'R8', clk = 'N9', copi = 'T8', cipo = 'T7',
 
-			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS')
+			attrs = Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
 		UARTResource(0,
 			rx = 'T14', tx = 'R14',
-			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS')
+			attrs = Attrs(IO_TYPE = 'LVCMOS33')
 		),
 	]
 
