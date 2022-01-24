@@ -9155,6 +9155,9 @@
   )
 
   (symbol_instances
+    (path "/897376f2-0c69-4736-a5dd-4d1ec77915b7/56e314f5-dafa-403b-af4a-f13ea59b3884"
+      (reference "#FLG?") (unit 1) (value "PWR_FLAG") (footprint "")
+    )
     (path "/694c5ee9-91da-4bc2-9bf7-1ad0acce1a5b"
       (reference "#PWR02") (unit 1) (value "+3V3") (footprint "")
     )
@@ -9859,6 +9862,9 @@
     )
     (path "/243ea74a-8966-4639-91c5-a5945f4a1fd7/e3ec539d-8996-423c-9277-d162f8ac7dfe"
       (reference "R33") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
+    )
+    (path "/897376f2-0c69-4736-a5dd-4d1ec77915b7/792e2b04-62eb-4fee-ba3d-90fccaf2d256"
+      (reference "R?") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/14988e9d-0731-4f35-891c-0cdcce294cdc"
       (reference "SW1") (unit 1) (value "RST") (footprint "lethalbit:SW_Tactile_SPST_Angled_TC-1109DE")
