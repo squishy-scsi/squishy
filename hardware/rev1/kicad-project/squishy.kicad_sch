@@ -2665,9 +2665,9 @@
     )
   )
 
-  (bus_alias "SCSI-DIFF" (members "DBP+" "DBP-" "ATN+" "ATN-" "BSY+" "BSY-" "ACK+" "ACK-" "RST+" "RST-" "MSG+" "MSG-" "SEL+" "SEL-" "CD+" "CD-" "REQ+" "REQ-" "IO+" "IO-" "DB0+" "DB0-" "DB1+" "DB1-" "DB2+" "DB2-" "DB3+" "DB3-" "DB4+" "DB4-" "DB5+" "DB5-" "DB6+" "DB6-" "DB7+" "DB7-"))
-  (bus_alias "SCSI-SE" (members "DB[0..7]" "DBP" "IO" "REQ" "CD" "SEL" "MSG" "RST" "ACK" "BSY" "ATN"))
   (bus_alias "ULPI" (members "D[0..7]" "CLK" "STP" "DIR" "NXT"))
+  (bus_alias "SCSI-SE" (members "DB[0..7]" "DBP" "IO" "REQ" "CD" "SEL" "MSG" "RST" "ACK" "BSY" "ATN"))
+  (bus_alias "SCSI-DIFF" (members "DBP+" "DBP-" "ATN+" "ATN-" "BSY+" "BSY-" "ACK+" "ACK-" "RST+" "RST-" "MSG+" "MSG-" "SEL+" "SEL-" "CD+" "CD-" "REQ+" "REQ-" "IO+" "IO-" "DB0+" "DB0-" "DB1+" "DB1-" "DB2+" "DB2-" "DB3+" "DB3-" "DB4+" "DB4-" "DB5+" "DB5-" "DB6+" "DB6-" "DB7+" "DB7-"))
   (junction (at 339.09 93.98) (diameter 1.016) (color 0 0 0 0)
     (uuid 0a1a4d88-972a-46ce-b25e-6cb796bd41f7)
   )
