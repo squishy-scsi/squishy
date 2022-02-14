@@ -7658,7 +7658,7 @@
     (uuid 5c54b14d-4313-46c4-a724-67a09637aef7)
     (property "Reference" "J2" (id 0) (at 218.44 214.5243 0))
     (property "Value" "Conn_02x20_Odd_Even_Shielded" (id 1) (at 218.44 217.2994 0))
-    (property "Footprint" "" (id 2) (at 217.17 242.57 0)
+    (property "Footprint" "lethalbit-connectors:LSHM-120-01-L-RH-A-S-TR" (id 2) (at 217.17 242.57 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://suddendocs.samtec.com/prints/lshm-1xx-xx-xxx-dh-a-x-x-xr-mkt.pdf" (id 3) (at 217.17 242.57 0)
@@ -7667,7 +7667,7 @@
     (property "MFR" "Samtec" (id 4) (at 217.17 242.57 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "MPN" "LSHM-120-01-L-DH-A-S-TR" (id 5) (at 217.17 242.57 0)
+    (property "MPN" "LSHM-120-01-L-RH-A-S-TR" (id 5) (at 217.17 242.57 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (pin "1" (uuid 68215bc7-6d98-405c-820b-1d5bc8d0edb4))
@@ -9782,7 +9782,7 @@
       (reference "J1") (unit 1) (value "USB_C_Receptacle") (footprint "rhais_usb:USB-3.1-Type-C_In-PCB")
     )
     (path "/5c54b14d-4313-46c4-a724-67a09637aef7"
-      (reference "J2") (unit 1) (value "Conn_02x20_Odd_Even_Shielded") (footprint "")
+      (reference "J2") (unit 1) (value "Conn_02x20_Odd_Even_Shielded") (footprint "lethalbit-connectors:LSHM-120-01-L-RH-A-S-TR")
     )
     (path "/690d44bc-389f-40c9-8dec-32836359f020"
       (reference "J8") (unit 1) (value "TRIGGER") (footprint "lethalbit-rf:Molex_SMA_732512120")
