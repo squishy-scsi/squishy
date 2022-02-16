@@ -1,4 +1,4 @@
-19964351195641978
+19987171463956716
 Battery
 BatteryHolder_Bulgin_BX0036_1xC
 Bulgin Battery Holder, BX0036, Battery Type C (https://www.bulgin.com/products/pub/media/bulgin/data/Battery_holders.pdf)
@@ -84385,6 +84385,13 @@ http://suddendocs.samtec.com/prints/ftsh-1xx-xx-xxx-dv-xxx-footprint.pdf
 10
 10
 lethalbit-connectors
+GCT_MEM2061-01-188-00-A_REVA
+
+
+0
+12
+12
+lethalbit-connectors
 GCT_USB4115-03-C_REVA
 
 
@@ -84404,14 +84411,14 @@ LSHM-120-01-L-DH-A-S-TR
 
 0
 42
-42
+41
 lethalbit-connectors
 LSHM-120-01-L-RH-A-S-TR
 
 
 0
 46
-46
+41
 lethalbit-connectors
 LSHM-140-02.5-L-DV-A-N-K-TR
 
@@ -84958,6 +84965,97 @@ WSON NoLead
 0
 9
 7
+rhais_package-smd
+SO-4_4.4x3.6mm_P2.54mm
+4-Lead Plastic Small Outline (SO), see https://www.elpro.org/de/index.php?controller=attachment&id_attachment=339
+SO SOIC 2.54
+0
+4
+4
+rhais_package-smd
+SO-5_4.4x3.6mm_P1.27mm
+5-Lead Plastic Small Outline (SO), see https://docs.broadcom.com/cs/Satellite?blobcol=urldata&blobheader=application%2Fpdf&blobheadername1=Content-Disposition&blobheadername2=Content-Type&blobheadername3=MDT-Type&blobheadervalue1=attachment%3Bfilename%3DIPD-Selection-Guide_AV00-0254EN_030617.pdf&blobheadervalue2=application%2Fx-download&blobheadervalue3=abinary%253B%2Bcharset%253DUTF-8&blobkey=id&blobnocache=true&blobtable=MungoBlobs&blobwhere=1430884105675&ssbinary=true
+SO SOIC 1.27
+0
+5
+5
+rhais_package-smd
+SO-5_4.4x4.3mm_P1.27mm
+5-Lead Plastic Small Outline (SO), see https://docs.broadcom.com/cs/Satellite?blobcol=urldata&blobheader=application%2Fpdf&blobheadername1=Content-Disposition&blobheadername2=Content-Type&blobheadername3=MDT-Type&blobheadervalue1=attachment%3Bfilename%3DIPD-Selection-Guide_AV00-0254EN_030617.pdf&blobheadervalue2=application%2Fx-download&blobheadervalue3=abinary%253B%2Bcharset%253DUTF-8&blobkey=id&blobnocache=true&blobtable=MungoBlobs&blobwhere=1430884105675&ssbinary=true
+SO SOIC 1.27
+0
+5
+5
+rhais_package-smd
+SO-8_3.9x4.9mm_P1.27mm
+SO, 8 Pin (https://www.nxp.com/docs/en/data-sheet/PCF8523.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
+SO SO
+0
+8
+8
+rhais_package-smd
+SO-8_5.3x5.3mm_P1.27mm
+SO, 8 Pin (https://www.nxp.com/docs/en/data-sheet/PCF8523.pdf), generated with kicad-footprint-generator ipc_gullwing_generator.py
+SO SO
+0
+8
+8
+rhais_package-smd
+SOT-23
+SOT-23, Standard
+SOT-23
+0
+3
+3
+rhais_package-smd
+SOT-23-5
+5-pin SOT23 package
+SOT-23-5
+0
+5
+5
+rhais_package-smd
+SOT-26
+
+
+0
+6
+6
+rhais_package-smd
+SOT-143
+SOT-143
+SOT-143
+0
+4
+4
+rhais_package-smd
+SOT-223
+module CMS SOT223 4 pins
+CMS SOT
+0
+4
+4
+rhais_package-smd
+SOT-363_SC-70-6
+SOT-363, SC-70-6
+SOT-363 SC-70-6
+0
+6
+6
+rhais_package-smd
+SSOP-20_3.9x8.7mm_P0.635mm
+SSOP20: plastic shrink small outline package; 24 leads; body width 3.9 mm; lead pitch 0.635; (see http://www.ftdichip.com/Support/Documents/DataSheets/ICs/DS_FT231X.pdf)
+SSOP 0.635
+0
+20
+20
+rhais_package-smd
+SSOP-28_5.3x10.2mm_P0.65mm
+28-Lead Plastic Shrink Small Outline (SS)-5.30 mm Body [SSOP] (see Microchip Packaging Specification 00000049BS.pdf)
+SSOP 0.65
+0
+28
+28
 rhais_usb
 MICRO-USB-B-(IN_PCB)
 
