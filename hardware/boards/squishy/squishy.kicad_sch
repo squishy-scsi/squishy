@@ -7112,7 +7112,7 @@
   (symbol (lib_id "power:+3V3") (at 274.32 81.28 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 1125f626-31a8-4c15-a457-34bafe0f7a8a)
-    (property "Reference" "#PWR?" (id 0) (at 274.32 85.09 0)
+    (property "Reference" "#PWR0115" (id 0) (at 274.32 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (id 1) (at 272.161 76.8858 0)
@@ -7343,7 +7343,7 @@
   (symbol (lib_id "power:GND") (at 83.82 251.46 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 201843ce-0114-45ba-8c8c-d6507d3ce53f)
-    (property "Reference" "#PWR?" (id 0) (at 83.82 257.81 0)
+    (property "Reference" "#PWR0158" (id 0) (at 83.82 257.81 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 83.693 255.8542 0))
@@ -7910,7 +7910,7 @@
   (symbol (lib_id "Device:R_Small") (at 163.83 213.36 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 60333297-0f1e-4367-8965-c6e47559c1c4)
-    (property "Reference" "R?" (id 0) (at 161.3916 213.36 90))
+    (property "Reference" "R3" (id 0) (at 161.3916 213.36 90))
     (property "Value" "10k" (id 1) (at 163.703 213.36 90)
       (effects (font (size 1 1)))
     )
@@ -8485,7 +8485,7 @@
   (symbol (lib_id "power:GND") (at 151.13 250.19 0) (mirror y) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 9db86f43-7048-4d31-878a-5f9d9de3030c)
-    (property "Reference" "#PWR?" (id 0) (at 151.13 256.54 0)
+    (property "Reference" "#PWR0121" (id 0) (at 151.13 256.54 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (id 1) (at 151.003 254.5842 0))
@@ -8584,7 +8584,7 @@
   (symbol (lib_id "power:+3V3") (at 163.83 209.55 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid a6a73655-f18c-45f8-9222-2775c6d60cd7)
-    (property "Reference" "#PWR?" (id 0) (at 163.83 213.36 0)
+    (property "Reference" "#PWR0117" (id 0) (at 163.83 213.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (id 1) (at 164.211 205.1558 0))
@@ -8706,7 +8706,7 @@
     (property "Value" "48MHz" (id 1) (at 387.1976 36.957 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm" (id 2) (at 396.24 29.21 0)
+    (property "Footprint" "rhais_osc:SMD3225" (id 2) (at 396.24 29.21 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "http://abracon.com/Oscillators/ASEMB.pdf" (id 3) (at 375.92 38.1 0)
@@ -9187,7 +9187,7 @@
   (symbol (lib_id "power:+3V3") (at 83.82 209.55 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid efa27d01-23aa-4804-9887-3774a4e1a8f8)
-    (property "Reference" "#PWR?" (id 0) (at 83.82 213.36 0)
+    (property "Reference" "#PWR0159" (id 0) (at 83.82 213.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "+3V3" (id 1) (at 84.201 205.1558 0))
@@ -9227,7 +9227,7 @@
   (symbol (lib_id "Device:R_Small") (at 274.32 85.09 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid f59782f8-1313-4c85-8ca3-879016495e5b)
-    (property "Reference" "R?" (id 0) (at 271.8816 85.09 90))
+    (property "Reference" "R10" (id 0) (at 271.8816 85.09 90))
     (property "Value" "4k7" (id 1) (at 274.193 85.09 90)
       (effects (font (size 1 1)))
     )
@@ -9655,8 +9655,14 @@
     (path "/4b57ae78-7c53-40a7-9ff1-ca0a1b0551e3"
       (reference "#PWR0114") (unit 1) (value "+3V3") (footprint "")
     )
+    (path "/1125f626-31a8-4c15-a457-34bafe0f7a8a"
+      (reference "#PWR0115") (unit 1) (value "+3V3") (footprint "")
+    )
     (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/ae01d070-dcbe-48d1-a6bf-bae5c1d66bea"
       (reference "#PWR0116") (unit 1) (value "+2V5") (footprint "")
+    )
+    (path "/a6a73655-f18c-45f8-9222-2775c6d60cd7"
+      (reference "#PWR0117") (unit 1) (value "+3V3") (footprint "")
     )
     (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/83c9ce5e-8c50-463e-8693-7640b1cfd54d"
       (reference "#PWR0118") (unit 1) (value "+2V5") (footprint "")
@@ -9666,6 +9672,9 @@
     )
     (path "/2f849d89-e309-4bbc-910d-7a5db1852249"
       (reference "#PWR0120") (unit 1) (value "GND") (footprint "")
+    )
+    (path "/9db86f43-7048-4d31-878a-5f9d9de3030c"
+      (reference "#PWR0121") (unit 1) (value "GND") (footprint "")
     )
     (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/cd34942c-ad54-4437-ba74-2b44f817dfe1"
       (reference "#PWR0122") (unit 1) (value "+1V2") (footprint "")
@@ -9775,20 +9784,11 @@
     (path "/897376f2-0c69-4736-a5dd-4d1ec77915b7/ea889ca5-2f6e-468c-838d-6a55c791a018"
       (reference "#PWR0157") (unit 1) (value "+5V") (footprint "")
     )
-    (path "/1125f626-31a8-4c15-a457-34bafe0f7a8a"
-      (reference "#PWR?") (unit 1) (value "+3V3") (footprint "")
-    )
     (path "/201843ce-0114-45ba-8c8c-d6507d3ce53f"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/9db86f43-7048-4d31-878a-5f9d9de3030c"
-      (reference "#PWR?") (unit 1) (value "GND") (footprint "")
-    )
-    (path "/a6a73655-f18c-45f8-9222-2775c6d60cd7"
-      (reference "#PWR?") (unit 1) (value "+3V3") (footprint "")
+      (reference "#PWR0158") (unit 1) (value "GND") (footprint "")
     )
     (path "/efa27d01-23aa-4804-9887-3774a4e1a8f8"
-      (reference "#PWR?") (unit 1) (value "+3V3") (footprint "")
+      (reference "#PWR0159") (unit 1) (value "+3V3") (footprint "")
     )
     (path "/8f583346-1f09-4133-a8d5-9ebea2335739"
       (reference "C1") (unit 1) (value "0.01uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
@@ -10063,6 +10063,9 @@
     (path "/897376f2-0c69-4736-a5dd-4d1ec77915b7/792e2b04-62eb-4fee-ba3d-90fccaf2d256"
       (reference "R2") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
+    (path "/60333297-0f1e-4367-8965-c6e47559c1c4"
+      (reference "R3") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
+    )
     (path "/00000000-0000-0000-0000-000078041963"
       (reference "R4") (unit 1) (value "4k7") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
@@ -10080,6 +10083,9 @@
     )
     (path "/00000000-0000-0000-0000-000073a1a1b6"
       (reference "R9") (unit 1) (value "4k7") (footprint "Resistor_SMD:R_0603_1608Metric")
+    )
+    (path "/f59782f8-1313-4c85-8ca3-879016495e5b"
+      (reference "R10") (unit 1) (value "4k7") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/897376f2-0c69-4736-a5dd-4d1ec77915b7/e13c08c5-7ab4-4df6-92fd-05d8877c8155"
       (reference "R11") (unit 1) (value "1M") (footprint "Resistor_SMD:R_0603_1608Metric")
@@ -10143,12 +10149,6 @@
     )
     (path "/243ea74a-8966-4639-91c5-a5945f4a1fd7/e3ec539d-8996-423c-9277-d162f8ac7dfe"
       (reference "R33") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
-    )
-    (path "/60333297-0f1e-4367-8965-c6e47559c1c4"
-      (reference "R?") (unit 1) (value "10k") (footprint "Resistor_SMD:R_0603_1608Metric")
-    )
-    (path "/f59782f8-1313-4c85-8ca3-879016495e5b"
-      (reference "R?") (unit 1) (value "4k7") (footprint "Resistor_SMD:R_0603_1608Metric")
     )
     (path "/135fa4cc-bf68-4ed2-9d1e-cefa9ceb3983/14988e9d-0731-4f35-891c-0cdcce294cdc"
       (reference "SW1") (unit 1) (value "RST") (footprint "lethalbit:SW_Tactile_SPST_Angled_TC-1109DE")
@@ -10355,10 +10355,10 @@
       (reference "U17") (unit 1) (value "USB3318") (footprint "Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm")
     )
     (path "/b815a8ec-c187-4e06-9203-b853a6ecfa93"
-      (reference "X1") (unit 1) (value "48MHz") (footprint "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm")
+      (reference "X1") (unit 1) (value "48MHz") (footprint "rhais_osc:SMD3225")
     )
     (path "/897376f2-0c69-4736-a5dd-4d1ec77915b7/9e3a6acb-75f1-42be-91a6-4338c72aea98"
-      (reference "X2") (unit 1) (value "13MHz") (footprint "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm")
+      (reference "X2") (unit 1) (value "13MHz") (footprint "rhais_osc:SMD3225")
     )
   )
 )

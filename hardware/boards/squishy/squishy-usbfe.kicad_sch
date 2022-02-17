@@ -6233,7 +6233,7 @@
     (property "Value" "13MHz" (id 1) (at 115.57 139.7 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm" (id 2) (at 130.81 138.43 0)
+    (property "Footprint" "rhais_osc:SMD3225" (id 2) (at 130.81 138.43 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "" (id 3) (at 110.49 147.32 0)
