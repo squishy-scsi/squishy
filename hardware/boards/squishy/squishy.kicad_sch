@@ -10253,6 +10253,12 @@
     (path "/897376f2-0c69-4736-a5dd-4d1ec77915b7/cc65570e-1693-4e32-a759-238c60494594"
       (reference "C50") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0603_1608Metric")
     )
+    (path "/897376f2-0c69-4736-a5dd-4d1ec77915b7/faf06bfb-0872-4f01-bb56-7dab71730df2"
+      (reference "C51") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0402_1005Metric")
+    )
+    (path "/897376f2-0c69-4736-a5dd-4d1ec77915b7/0ca498ae-ed5a-4da7-8c65-f34d4f6bdc14"
+      (reference "C52") (unit 1) (value "0.1uF") (footprint "Capacitor_SMD:C_0402_1005Metric")
+    )
     (path "/00000000-0000-0000-0000-00007804195b"
       (reference "D1") (unit 1) (value "BLUE") (footprint "LED_SMD:LED_0603_1608Metric_Pad1.05x0.95mm_HandSolder")
     )
