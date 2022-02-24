@@ -379,7 +379,14 @@
       "lethalbit-pcie",
       "lethalbit-rf"
     ],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "lethalbit",
+      "lethalbit-connectors",
+      "lethalbit-graphics",
+      "lethalbit-memory",
+      "lethalbit-pcie",
+      "lethalbit-rf"
+    ]
   },
   "meta": {
     "filename": "squishy.kicad_pro",
