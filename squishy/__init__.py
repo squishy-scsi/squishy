@@ -64,17 +64,7 @@ def _main_common():
 		with open(SQUISHY_SETTINGS_FILE, 'w') as cfg:
 			json.dump(DEFAULT_SETTINGS, cfg)
 
-def main_gui():
-	import sys
-	from os import path, mkdir
-	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-
-	from .actions import gui
-
-	_main_common()
-
-	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
-
+def _common_options(parser):
 	core_options = parser.add_argument_group('Core configuration options')
 
 	core_options.add_argument(
@@ -92,6 +82,19 @@ def main_gui():
 		choices = list(platform.AVAILABLE_PLATFORMS.keys()),
 		help    = 'The target hardware platform',
 	)
+
+def main_gui():
+	import sys
+	from os import path, mkdir
+	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+
+	from .actions import gui
+
+	_main_common()
+
+	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
+
+	_common_options(parser)
 
 	gui.parser_init(parser)
 
@@ -113,23 +116,7 @@ def main():
 
 	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
 
-	core_options = parser.add_argument_group('Core configuration options')
-
-	core_options.add_argument(
-		'--build-dir', '-b',
-		type    = str,
-		default = 'build',
-		help    = 'The output directory for Squishy binaries and images'
-	)
-
-	core_options.add_argument(
-		'--platform', '-p',
-		dest    = 'hardware_platform',
-		type    = str,
-		default = list(platform.AVAILABLE_PLATFORMS.keys())[-1],
-		choices = list(platform.AVAILABLE_PLATFORMS.keys()),
-		help    = 'The target hardware platform',
-	)
+	_common_options(parser)
 
 	action_parser = parser.add_subparsers(
 		dest = 'action',
