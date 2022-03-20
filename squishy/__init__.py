@@ -8,6 +8,7 @@ try:
 except ImportError:
 	__version__ = ':nya_confused:' # :nocov:
 
+from .i18n     import init_i18n
 from .gateware import platform
 from .utility  import *
 
@@ -57,6 +58,7 @@ def _main_common():
 	from .config import SQUISHY_SETTINGS_FILE, DEFAULT_SETTINGS
 
 	_init_dirs()
+	init_i18n()
 
 	if not path.exists(SQUISHY_SETTINGS_FILE):
 		with open(SQUISHY_SETTINGS_FILE, 'w') as cfg:
