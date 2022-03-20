@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from math                      import ceil, log2
 
+
+from ...utility              import ns_to_s
+
 from amaranth                  import *
 from amaranth_soc.wishbone     import Interface
 from amaranth_soc.csr.bus      import Element, Multiplexer
@@ -47,7 +50,7 @@ class SCSI(Elaboratable):
 
 	def _init_csrs(self):
 		self._csr['regs'] = {
-			'status': Element(8, 'r')
+			'status': Element(8, 'r', name = 'scsi_status')
 		}
 
 		self._csr['mux'] = Multiplexer(

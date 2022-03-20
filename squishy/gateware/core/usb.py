@@ -89,7 +89,7 @@ class USBInterface(Elaboratable):
 
 	def _init_csrs(self):
 		self._csr['regs'] = {
-			'status': Element(8, 'r')
+			'status': Element(8, 'r', name = 'usb_status')
 		}
 
 		self._csr['mux'] = Multiplexer(

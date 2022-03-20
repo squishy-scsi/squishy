@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from ..utility             import *
+from ..gateware            import Squishy
 from ..gateware.platform   import AVAILABLE_PLATFORMS
-from ..gateware.core       import Squishy
 from ..gateware.simulation import *
 
 ACTION_NAME = 'gateware'
@@ -67,29 +67,25 @@ def parser_init(parser):
 	# Build Options
 	do_build.add_argument(
 		'--verbose',
-		type   = bool,
 		action = 'store_true',
 		help   = 'Enable verbose output during synth and pnr'
 	)
 
 	## Synth / Route Options
 	pnr_options.add_argument(
-		'--use-router1',
-		type   = bool,
+		'--use-router2',
 		action = 'store_true',
 		help   = 'Use nextpnr\'s \'router1\' router rather than \'router2\''
 	)
 
 	pnr_options.add_argument(
 		'--no-tmg-ripup',
-		type    = bool,
 		action  = 'store_true',
 		help    = 'Don\'t use the timing-driven ripup router'
 	)
 
 	pnr_options.add_argument(
 		'--detailed-timing-report',
-		type   = bool,
 		action = 'store_true',
 		help   = 'Have nextpnr output a detailed net timing report'
 	)
@@ -103,7 +99,6 @@ def parser_init(parser):
 
 	synth_options.add_argument(
 		'--no-abc9',
-		type = bool,
 		action = 'store_true',
 		help   = 'Disable use of Yosys\' ABC9'
 	)
@@ -140,13 +135,13 @@ def action_main(args):
 		)
 
 		## PNR Opts
-		if args.use_router1:
-			pnr_opts.append('--router router1')
-		else:
+		if args.use_router2:
 			pnr_opts.append('--router router2')
+		else:
+			pnr_opts.append('--router router1')
 
-		if !pnr_opts.no_tmg_ripup:
-			pnr_opts.append('--tmg-ripup')
+		# if not pnr_opts.no_tmg_ripup:
+		# 	pnr_opts.append('--tmg-ripup')
 
 		if args.detailed_timing_report:
 			pnr_opts.append('--report timing.json')
@@ -156,7 +151,7 @@ def action_main(args):
 			pnr_opts.append(f' --routed-svg {args.routed_svg}')
 
 		## Synth Opts
-		if !args.no_abc9:
+		if not args.no_abc9:
 			synth_opts.append('-abc9')
 
 		plat.build(
