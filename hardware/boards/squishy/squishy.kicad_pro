@@ -504,7 +504,7 @@
     "meta": {
       "version": 1
     },
-    "net_format_name": "",
+    "net_format_name": "Spice",
     "ngspice": {
       "fix_include_paths": true,
       "fix_passive_vals": false,
@@ -541,6 +541,10 @@
     [
       "897376f2-0c69-4736-a5dd-4d1ec77915b7",
       "USB Frontend"
+    ],
+    [
+      "0795558f-0cb3-47d2-a17a-fa391bdc7ad6",
+      "HyperRAM"
     ]
   ],
   "text_variables": {}
