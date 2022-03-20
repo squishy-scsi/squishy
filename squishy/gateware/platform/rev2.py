@@ -10,7 +10,7 @@ from ...config                           import USB_VID, USB_PID_APPLICATION, US
 from ...config                           import USB_MANUFACTURER, USB_PRODUCT, USB_SERIAL_NUMBER
 from ...config                           import SCSI_VID
 
-from ..core.pll                          import ECP5ClockDomainGenerator
+from ..core                              import ECP5ClockDomainGenerator
 
 class SquishyRev2(LatticeECP5Platform):
 	device       = 'LFE5UM5G-45F'
