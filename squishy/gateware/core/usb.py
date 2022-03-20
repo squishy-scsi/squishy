@@ -104,7 +104,8 @@ class USBInterface(Elaboratable):
 			self._csr['regs']['status'].r_data.eq(self._interface_status)
 		]
 
-	def elaborate(self, platform):
+
+	def _elab_rev1(self, platform):
 		self._status_led = platform.request('led', 2)
 		self._ulpi_bus = platform.request('ulpi')
 
@@ -134,3 +135,21 @@ class USBInterface(Elaboratable):
 		self._csr_elab(m)
 
 		return m
+
+	def _elab_rev2(self, platform):
+		m = Module()
+
+		return m
+
+	def elaborate(self, platform):
+		if platform is None:
+			m = Module()
+			return m
+		else:
+			if platform.revision == 1:
+				return self._elab_rev1(platform)
+			elif platform.revision == 2:
+				return self._elab_rev2(platform)
+			else:
+				raise ValueError(f'Unknown platform revision {platform.revision}')
+

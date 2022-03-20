@@ -29,6 +29,8 @@ class SquishyRev2(LatticeECP5Platform):
 
 	scsi_vid     = SCSI_VID
 
+	revision     = 2
+
 	clock_domain_generator = ECP5ClockDomainGenerator
 
 	# generated with `ecppll -i 16 -o 400 -f /dev/stdout`

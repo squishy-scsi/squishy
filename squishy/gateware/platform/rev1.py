@@ -30,6 +30,8 @@ class SquishyRev1(LatticeICE40Platform):
 
 	scsi_vid     = SCSI_VID
 
+	revision     = 1
+
 	clock_domain_generator = ICE40ClockDomainGenerator
 
 	pll_config = {
