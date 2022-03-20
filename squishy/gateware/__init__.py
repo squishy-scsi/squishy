@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
-
-from .platform             import SquishyRev1, SquishyRev2
-from .core                 import *
+from .core                 import SCSIInterface, SPIInterface
+from .core                 import UARTInterface, USBInterface
 
 from amaranth              import *
 from amaranth.lib.fifo     import AsyncFIFO
@@ -77,7 +76,7 @@ class Squishy(Elaboratable):
 
 		else:
 			self.uart = None
-		self.scsi = SCSIPhy(
+		self.scsi = SCSIInterface(
 			config    = self.scsi_config,
 			wb_config = self._wb_cfg
 		)

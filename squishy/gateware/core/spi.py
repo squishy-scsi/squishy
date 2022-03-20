@@ -2,10 +2,10 @@
 from amaranth import *
 
 __all__ = (
-	'SPI',
+	'SPIInterface',
 )
 
-class SPI(Elaboratable):
+class SPIInterface(Elaboratable):
 	def __init__(self):
 
 		self._status_led = None

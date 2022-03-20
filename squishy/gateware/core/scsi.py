@@ -11,11 +11,11 @@ from amaranth_soc.csr.wishbone import WishboneCSRBridge
 
 
 __all__ = (
-	'SCSI',
+	'SCSIInterface',
 )
 
 # This is the SCSI 1,2,3 HVD,LVD,SE 50,68,80 PHY Block
-class SCSI(Elaboratable):
+class SCSIInterface(Elaboratable):
 	def __init__(self, *, config, wb_config):
 		self.config = config
 		self._scsi_id = Signal(8)
