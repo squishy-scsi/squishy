@@ -17,7 +17,7 @@ def _get_locale():
 	else:
 		lname = l[0]
 
-	return frozenset(lname, l)
+	return (lname, l)
 
 def init_i18n():
 	lc = _get_locale()
