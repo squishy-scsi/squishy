@@ -50,7 +50,8 @@ class SquishyRev1(LatticeICE40Platform):
 		Resource('ulpi', 0,
 			Subsignal('clk',
 				Pins('G1', dir = 'i'),
-				Clock(60e6)
+				Clock(60e6),
+				Attrs(GLOBAL = True)
 			),
 			Subsignal('data',
 				Pins('E1 E2 F1 F2 G2 H1 H2 J1', dir = 'io')
@@ -65,7 +66,7 @@ class SquishyRev1(LatticeICE40Platform):
 				Pins('C2', dir = 'o')
 			),
 			Subsignal('rst',
-				Pins('C1', dir = 'o')
+				PinsN('C1', dir = 'o')
 			),
 
 			Attrs(IO_STANDARD = 'SB_LVCMOS')

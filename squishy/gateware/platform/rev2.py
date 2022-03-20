@@ -61,7 +61,8 @@ class SquishyRev2(LatticeECP5Platform):
 		Resource('ulpi', 0,
 			Subsignal('clk',
 				Pins('P5', dir = 'i'),
-				Clock(60e6)
+				Clock(60e6),
+				Attrs(GLOBAL = True),
 			),
 			Subsignal('data',
 				Pins('P1 R2 R1 T2 T3 R3 T4 R4', dir = 'io')
@@ -76,7 +77,7 @@ class SquishyRev2(LatticeECP5Platform):
 				Pins('M2', dir = 'o')
 			),
 			Subsignal('rst',
-				Pins('M1', dir = 'o')
+				PinsN('M1', dir = 'o')
 			),
 
 			Attrs(IO_TYPE = 'LVCMOS33')
