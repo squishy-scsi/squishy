@@ -4,7 +4,6 @@ from amaranth_soc.wishbone     import Interface
 from amaranth_soc.csr.bus      import Element, Multiplexer
 from amaranth_soc.csr.wishbone import WishboneCSRBridge
 
-
 from luna.usb2 import *
 
 __all__ = (
@@ -50,40 +49,58 @@ class USBInterface(Elaboratable):
 
 		# Device Descriptor
 		with desc.DeviceDescriptor() as dev:
-			dev.idVendor  = platform.usb_vid
-			dev.idProduct = platform.usb_pid_app
+			dev.idVendor        = platform.usb_vid
+			dev.idProduct       = platform.usb_pid_app
 
-			dev.iManufacturer = platform.usb_mfr
-			dev.iProduct      = platform.usb_prod[dev.idProduct]
-			dev.iSerialNumber = platform.usb_snum
+			dev.iManufacturer   = platform.usb_mfr
+			dev.iProduct        = platform.usb_prod[dev.idProduct]
+			dev.iSerialNumber   = platform.usb_snum
+
+			dev.bcdDevice       = 0.1
+
+			dev.bDeviceClass    = 0x00
+			dev.bDeviceSubClass = 0x00
+			dev.bDeviceProtocol = 0x00
 
 			dev.bNumConfigurations = 1
 
 		# Configuration Descriptor
 		with desc.ConfigurationDescriptor() as cfg:
+			cfg.iConfiguration      = 'SCSI Multitool'
+			cfg.bCOnfigurationValue = 1
+			cfg.bmAttributes        = 0x80
+			cfg.bMaxPower           = 250
+
 			# Mass-Storage Interface
 			with cfg.InterfaceDescriptor() as i0:
-				i0.bInterfaceNumber = 0
+				i0.bInterfaceClass    = 0x08
+				i0.bInterfaceSubClass = 0x00
+				i0.bInterfaceProtocol = 0x00
+				i1.iInterface         = 'Storage Interface'
 
 				with i0.EndpointDescriptor() as e0_out:
+					e0_out.bmAttributes     = 0b00000010
 					e0_out.bEndpointAddress = 0x01
-					e0_out.wMaxPacketSize   = 64
+					e0_out.wMaxPacketSize   = 0x07FF
 
 				with i0.EndpointDescriptor() as e0_in:
 					e0_in.bEndpointAddress = 0x81
-					e0_in.wMaxPacketSize   = 64
+					e0_in.wMaxPacketSize   = 0x07FF
 
 			# SCSI Interface
 			with cfg.InterfaceDescriptor() as i1:
-				i1.bInterfaceNumber = 1
+				i1.bInterfaceClass    = 0x08
+				i1.bInterfaceSubClass = 0x06
+				i1.bInterfaceProtocol = 0xFF
+				i1.iInterface         = 'SCSI Command Interface'
 
 				with i1.EndpointDescriptor() as e1_out:
 					e1_out.bEndpointAddress = 0x02
-					e1_out.wMaxPacketSize   = 64
+					e1_out.wMaxPacketSize   = 0x07FF
 
 				with i1.EndpointDescriptor() as e1_in:
 					e1_in.bEndpointAddress = 0x82
-					e1_in.wMaxPacketSize   = 64
+					e1_in.wMaxPacketSize   = 0x07FF
 
 		return desc
 
