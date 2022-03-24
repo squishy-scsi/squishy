@@ -59,6 +59,7 @@ setup(
 
 	packages = find_packages(),
 	package_data = {
+		# GUI Resources
 		'squishy.gui.resources.fonts': [
 			'FiraCode-Regular.ttf',
 			'NotoSans-Regular.ttf',
@@ -88,17 +89,25 @@ setup(
 			'preferences_window.ui',
 			'triggers_window.ui',
 		],
+		# localization bits
+		'squishy.i18n.locales.en.LC_MESSAGES': [
+
+		]
 	},
 
 	extras_require = {
 		'toolchain': [
 			'amaranth-yosys',
 			'yowasp-yosys',
+			# For rev1
 			'yowasp-nextpnr-ice40-8k',
+			# For rev2
+			'yowasp-nextpnr-ecp5-45k'
 		],
 
 		'firmware': [
 			'meson',
+			'ninja',
 		],
 
 		'gui': [
