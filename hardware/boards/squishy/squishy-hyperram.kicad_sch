@@ -759,6 +759,11 @@
     (uuid ff2520eb-01ae-459c-8d8f-a7d2ba3173e3)
   )
 
+  (hierarchical_label "RAM{HR}" (shape bidirectional) (at 74.93 83.82 180)
+    (effects (font (size 1.27 1.27)) (justify right))
+    (uuid bba2bb0f-dda2-4a86-b46e-958f396b916b)
+  )
+
   (symbol (lib_id "Device:R_Small") (at 179.07 83.82 0) (unit 1)
     (in_bom yes) (on_board yes)
     (uuid 1782bde4-6955-428a-927b-e1fa353b871c)
