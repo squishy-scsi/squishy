@@ -2,6 +2,8 @@
 :hidden:
 
 install/index
+mascot
+
 
 ```
 
