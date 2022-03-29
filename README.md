@@ -36,7 +36,7 @@ Alternatively, follow one of the following links for your platform:
 
 More information about Sachi is available on her [mascot page](https://lethalbit.github.io/squishy/mascot.html) in the documentation.
 
-Sachi was designed and illustrated by the amazing [Tyson Tan (tysontan.com)](https://tysontan.com).
+Sachi was designed and illustrated by the amazing [Tyson Tan (tysontan.com)](https://tysontan.com). He provides mascot design service for free and open source software projects, free of charge, under free license.
 
 ## Licenses
 
