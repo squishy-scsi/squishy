@@ -1,7 +1,13 @@
 ```{toctree}
 :hidden:
 
-install/index
+introduction
+install
+hardware
+getting_started
+cli
+gui
+applets
 mascot
 
 

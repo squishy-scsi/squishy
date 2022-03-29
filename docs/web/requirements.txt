@@ -1,4 +1,5 @@
 sphinx
 sphinx-rtd-theme
+sphinxcontrib-platformpicker
 sphinxcontrib-mermaid
 myst-parser

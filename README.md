@@ -22,13 +22,7 @@ The documentation for Squishy can be found at [https://lethalbit.github.io/squis
 
 ## Installation
 
-The installation instructions for squishy on various platforms can be found on the [https://lethalbit.github.io/squishy/install](https://lethalbit.github.io/squishy/install) page. 
-
-Alternatively, follow one of the following links for your platform:
-
- * [Linux Install Instructions](https://lethalbit.github.io/squishy/install/index.html#linux)
- * [macOS Install Instructions](https://lethalbit.github.io/squishy/install/index.html#macos)
- * [Windows Install Instructions](https://lethalbit.github.io/squishy/install/index.html#windows)
+The installation instructions for squishy on various platforms can be found on the [https://lethalbit.github.io/squishy/install.html](https://lethalbit.github.io/squishy/install.html) page. 
 
 ## Mascot - Sachi
 

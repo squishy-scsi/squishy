@@ -3,7 +3,7 @@ import os, sys
 sys.path.insert(0, os.path.abspath('.'))
 
 project = 'Squishy'
-copyright = '2021, Aki "lethalbit"'
+copyright = '2021, Aki "lethalbit" Van Ness, et. al.'
 
 extensions = [
 	'sphinx.ext.intersphinx',
@@ -11,6 +11,7 @@ extensions = [
 	'sphinx.ext.todo',
 	'sphinx.ext.githubpages',
 	'sphinx.ext.graphviz',
+	'sphinxcontrib.platformpicker',
 	'sphinx_rtd_theme',
 	'myst_parser',
 ]
