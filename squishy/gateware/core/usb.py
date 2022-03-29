@@ -59,7 +59,7 @@ class USBInterface(Elaboratable):
 			dev.bcdDevice       = 0.1
 
 			dev.bDeviceClass    = 0x00
-			dev.bDeviceSubClass = 0x00
+			# dev.bDeviceSubClass = 0x00
 			dev.bDeviceProtocol = 0x00
 
 			dev.bNumConfigurations = 1
@@ -67,16 +67,17 @@ class USBInterface(Elaboratable):
 		# Configuration Descriptor
 		with desc.ConfigurationDescriptor() as cfg:
 			cfg.iConfiguration      = 'SCSI Multitool'
-			cfg.bCOnfigurationValue = 1
+			cfg.bConfigurationValue = 1
 			cfg.bmAttributes        = 0x80
 			cfg.bMaxPower           = 250
 
 			# Mass-Storage Interface
 			with cfg.InterfaceDescriptor() as i0:
+				i0.bInterfaceNumber   = 0
 				i0.bInterfaceClass    = 0x08
-				i0.bInterfaceSubClass = 0x00
+				# i0.bInterfaceSubClass = 0x00
 				i0.bInterfaceProtocol = 0x00
-				i1.iInterface         = 'Storage Interface'
+				i0.iInterface         = 'Storage Interface'
 
 				with i0.EndpointDescriptor() as e0_out:
 					e0_out.bmAttributes     = 0b00000010
@@ -89,8 +90,9 @@ class USBInterface(Elaboratable):
 
 			# SCSI Interface
 			with cfg.InterfaceDescriptor() as i1:
+				i1.bInterfaceNumber   = 1
 				i1.bInterfaceClass    = 0x08
-				i1.bInterfaceSubClass = 0x06
+				# i1.bInterfaceSubClass = 0x06
 				i1.bInterfaceProtocol = 0xFF
 				i1.iInterface         = 'SCSI Command Interface'
 
