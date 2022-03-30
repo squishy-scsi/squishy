@@ -4,7 +4,14 @@ from amaranth_soc.wishbone     import Interface
 from amaranth_soc.csr.bus      import Element, Multiplexer
 from amaranth_soc.csr.wishbone import WishboneCSRBridge
 
-from luna.usb2 import *
+from luna.usb2                 import *
+
+from usb_protocol.types        import USBTransferType, USBUsageType
+
+from usb_protocol.emitters.descriptors.standard import (
+	DeviceDescriptorCollection, DeviceClassCodes, InterfaceClassCodes,
+	MassStorageSubclassCodes, MassStorageProtocolCodes,
+)
 
 __all__ = (
 	'USBInterface',
@@ -58,8 +65,8 @@ class USBInterface(Elaboratable):
 
 			dev.bcdDevice       = 0.1
 
-			dev.bDeviceClass    = 0x00
-			# dev.bDeviceSubClass = 0x00
+			dev.bDeviceClass    = DeviceClassCodes.INTERFACE
+			dev.bDeviceSubclass = 0x00
 			dev.bDeviceProtocol = 0x00
 
 			dev.bNumConfigurations = 1
@@ -74,33 +81,37 @@ class USBInterface(Elaboratable):
 			# Mass-Storage Interface
 			with cfg.InterfaceDescriptor() as i0:
 				i0.bInterfaceNumber   = 0
-				i0.bInterfaceClass    = 0x08
-				# i0.bInterfaceSubClass = 0x00
-				i0.bInterfaceProtocol = 0x00
+				i0.bInterfaceClass    = InterfaceClassCodes.MASS_STORAGE
+				i0.bInterfaceSubclass = MassStorageSubclassCodes.NON_SPECIFIC
+				i0.bInterfaceProtocol = MassStorageProtocolCodes.CBI_INTERRUPT
 				i0.iInterface         = 'Storage Interface'
 
 				with i0.EndpointDescriptor() as e0_out:
-					e0_out.bmAttributes     = 0b00000010
+					e0_out.bmAttributes     = USBTransferType.BULK
 					e0_out.bEndpointAddress = 0x01
 					e0_out.wMaxPacketSize   = 0x07FF
 
 				with i0.EndpointDescriptor() as e0_in:
+					e0_in.bmAttributes     = USBTransferType.INTERRUPT | USBUsageType.FEEDBACK
 					e0_in.bEndpointAddress = 0x81
 					e0_in.wMaxPacketSize   = 0x07FF
 
 			# SCSI Interface
 			with cfg.InterfaceDescriptor() as i1:
 				i1.bInterfaceNumber   = 1
-				i1.bInterfaceClass    = 0x08
-				# i1.bInterfaceSubClass = 0x06
-				i1.bInterfaceProtocol = 0xFF
+				i1.bInterfaceClass    = InterfaceClassCodes.MASS_STORAGE
+				i1.bInterfaceSubclass = MassStorageSubclassCodes.TRANSPARENT
+				# Might want to make this CBI_NO_INTERRUPT,,,
+				i1.bInterfaceProtocol = MassStorageProtocolCodes.VENDOR
 				i1.iInterface         = 'SCSI Command Interface'
 
 				with i1.EndpointDescriptor() as e1_out:
+					e1_out.bmAttributes     = USBTransferType.BULK
 					e1_out.bEndpointAddress = 0x02
 					e1_out.wMaxPacketSize   = 0x07FF
 
 				with i1.EndpointDescriptor() as e1_in:
+					e1_in.bmAttributes     = USBTransferType.INTERRUPT | USBUsageType.FEEDBACK
 					e1_in.bEndpointAddress = 0x82
 					e1_in.wMaxPacketSize   = 0x07FF
 
