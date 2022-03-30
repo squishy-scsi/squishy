@@ -49,18 +49,25 @@ Squishy requires Python 3.8 or newer, It has been tested with [CPython](https://
 	.. platform-choice:: linux
 		:title: Other Linux
 		
-		TODO
+		.. todo::
+
+			Write this section
 
 	.. platform-choice:: macos
 		:title: macOS
-		
-		TODO
+			
+		.. todo::
+
+			Write this section
 
 
 	.. platform-choice:: windows
 		:title: Windows
 		
-		TODO
+		
+		.. todo::
+
+			Write this section
 
 
 
@@ -101,17 +108,23 @@ Squishy requires Python 3.8 or newer, It has been tested with [CPython](https://
 	.. platform-choice:: linux
 		:title: Other Linux
 		
-		TODO
+		.. todo::
+
+			Write this section
 
 	.. platform-choice:: macos
 		:title: macOS
-		
-		TODO
+			
+		.. todo::
+
+			Write this section
 
 	.. platform-choice:: windows
 		:title: Windows
 		
-		TODO
+		.. todo::
+
+			Write this section
 
 ```
 
@@ -130,18 +143,24 @@ Squishy requires Python 3.8 or newer, It has been tested with [CPython](https://
 
 	.. platform-choice:: linux
 		:title: Other Linux
-		
-		TODO
+			
+		.. todo::
+
+			Write this section
 
 	.. platform-choice:: macos
 		:title: macOS
 		
-		TODO
+		.. todo::
+
+			Write this section
 
 	.. platform-choice:: windows
 		:title: Windows
 		
-		TODO
+		.. todo::
+
+			Write this section
 
 
 ```
@@ -165,17 +184,23 @@ There is also the ability in squishy to build machine code components, which nee
 	.. platform-choice:: linux
 		:title: Other Linux
 		
-		TODO
+		.. todo::
+
+			Write this section
 
 	.. platform-choice:: macos
 		:title: macOS
 		
-		TODO
+		.. todo::
+
+			Write this section
 
 	.. platform-choice:: windows
 		:title: Windows
 		
-		TODO
+		.. todo::
+
+			Write this section
 
 
 ```

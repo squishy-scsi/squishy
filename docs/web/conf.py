@@ -22,7 +22,7 @@ source_suffix = {
 }
 
 graphviz_output_format = 'svg'
-
+todo_include_todos = True
 
 import sphinx_rtd_theme
 
