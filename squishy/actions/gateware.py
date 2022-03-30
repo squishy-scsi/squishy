@@ -79,9 +79,9 @@ def parser_init(parser):
 	)
 
 	pnr_options.add_argument(
-		'--no-tmg-ripup',
+		'--tmg-ripup',
 		action  = 'store_true',
-		help    = 'Don\'t use the timing-driven ripup router'
+		help    = 'Use the timing-driven ripup router'
 	)
 
 	pnr_options.add_argument(
@@ -140,8 +140,8 @@ def action_main(args):
 		else:
 			pnr_opts.append('--router router1')
 
-		# if not pnr_opts.no_tmg_ripup:
-		# 	pnr_opts.append('--tmg-ripup')
+		if args.tmg_ripup:
+			pnr_opts.append('--tmg-ripup')
 
 		if args.detailed_timing_report:
 			pnr_opts.append('--report timing.json')
