@@ -21,10 +21,27 @@ def parser_init(parser):
 	pnr_options    = do_build.add_argument_group('Gateware Place and Route Options')
 	synth_options  = do_build.add_argument_group('Gateware Synth Options')
 
-	# usb_options    = parser.add_argument_group('USB PHY Options')
+	usb_options    = parser.add_argument_group('USB Options')
 	uart_options   = parser.add_argument_group('Debug UART Options')
 	scsi_options   = parser.add_argument_group('SCSI Options')
 
+	# USB Options
+
+	# WebUSB options
+	usb_options.add_argument(
+		'--enable-webusb',
+		action = 'store_true',
+		help   = 'Enable the experimental WebUSB descriptors'
+	)
+
+	usb_options.add_argument(
+		'--webusb-url',
+		type    = str,
+		default = 'https://localhost',
+		help    = 'The location URL to encode in the device descriptor'
+	)
+
+	# SCSI Options
 	scsi_options.add_argument(
 		'--scsi-did',
 		type    = int,
@@ -32,6 +49,7 @@ def parser_init(parser):
 		help    = 'The SCSI Device ID to use'
 	)
 
+	# UART Options
 	uart_options.add_argument(
 		'--enable-uart', '-U',
 		default = False,
@@ -127,6 +145,10 @@ def action_main(args):
 			},
 
 			usb_config = {
+				'webusb': {
+					'enabled': args.enable_webusb,
+					'url'    : args.webusb_url,
+				}
 			},
 
 			scsi_config = {
