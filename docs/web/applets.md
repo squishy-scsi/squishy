@@ -2,7 +2,7 @@
 
 ## What is an Applet?
 
-An applet is a portion of Amaranth HDL and supporting Python code that give functionality to the Squishy hardware.
+An applet is a portion of [Amaranth HDL](https://github.com/amaranth-lang) and supporting Python code that give functionality to the Squishy hardware.
 
 ## Built-in Applets
 
