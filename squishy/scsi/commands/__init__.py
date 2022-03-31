@@ -1,15 +1,18 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from construct import *
 
-import common
-import direct
-import sequential
-import printer
-import processor
-import worm
-import ro_direct
+from . import common
+from . import direct
+from . import sequential
+from . import printer
+from . import processor
+from . import worm
+from . import ro_direct
 
-__all__ = ()
+__all__ = (
+	'group_code',
+	'command',
+)
 
 group_code = 'Command Group Code' / Enum(BitsInteger(3),
 	Group0 = 0b000, # Six-Byte Commands
