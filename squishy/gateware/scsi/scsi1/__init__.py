@@ -3,7 +3,7 @@ from math         import ceil
 
 from amaranth       import *
 
-from .....utility import ms_to_s, us_to_s, ns_to_s
+from ...utility import us_to_s, ns_to_s
 
 from ..common     import *
 

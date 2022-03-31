@@ -3,7 +3,7 @@ from math         import ceil, log2
 
 from amaranth       import *
 
-from .....utility import us_to_s, ns_to_s
+from ...utility import us_to_s, ns_to_s
 
 __all__ = (
 	'Device',
