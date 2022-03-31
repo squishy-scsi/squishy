@@ -2,7 +2,15 @@
 import os, sys
 sys.path.insert(0, os.path.abspath('.'))
 
+try:
+	import squishy
+	version = squishy.__version__
+
+except ImportError:
+	version = ':nya_confused:' # :nocov:
+
 project = 'Squishy'
+release = version.split('+')[0]
 copyright = '2021, Aki "lethalbit" Van Ness, et. al.'
 
 extensions = [
