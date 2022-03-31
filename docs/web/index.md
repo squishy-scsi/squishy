@@ -8,7 +8,7 @@ library/index
 getting_started
 cli
 gui
-applets
+applets/index
 tutorials/index
 mascot
 ```

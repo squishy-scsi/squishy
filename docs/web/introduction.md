@@ -15,7 +15,7 @@ The Squishy hardware is a bespoke physical interface into the world of SCSI. Out
 
 Combined with the software, it provides and out-of-the box way of inspecting traffic on a SCSI bus, as well as capturing the traffic for analysis or even replay!
 
-With the power of [Amaranth](https://github.com/amaranth-lang), you can also write your own [applets](./applets.md) to do things such as emulate devices, or hosts, or anything else you could imagine.
+With the power of [Amaranth](https://github.com/amaranth-lang), you can also write your own [applets](./applets/index.md) to do things such as emulate devices, or hosts, or anything else you could imagine.
 
 For more information on the Squishy hardware, see the [Hardware](./hardware.md) section in the documentation.
 

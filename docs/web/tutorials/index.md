@@ -2,7 +2,7 @@
 
 ```{toctree}
 :hidden:
-custom_applet
+applets/index
 
 ```
 
