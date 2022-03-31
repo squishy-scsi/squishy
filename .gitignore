@@ -14,3 +14,4 @@ _build/
 *.FCStd[0-9]
 \#auto_saved_files\#
 .eggs/
+*.egg-info/
