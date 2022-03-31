@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from ..utility             import *
 import logging
 
 from ..gateware            import Squishy
@@ -133,13 +132,13 @@ def action_main(args):
 	synth_opts = []
 
 	if args.gateware_action == 'verify':
-		inf('Running verification pass')
-		wrn('todo')
+		log.info('Running verification pass')
+		log.warning('todo')
 	elif args.gateware_action == 'simulate':
-		inf('Running simulations')
+		log.info('Running simulations')
 		run_sims(args)
 	elif args.gateware_action == 'build':
-		inf('Building generic gateware')
+		log.info('Building generic gateware')
 		gateware = Squishy(
 			uart_config = {
 				'enabled'  : args.enable_uart,
@@ -190,5 +189,5 @@ def action_main(args):
 			nextpnr_opts = pnr_opts
 		)
 	else:
-		inf('ニャー')
+		log.info('ニャー')
 	return 0

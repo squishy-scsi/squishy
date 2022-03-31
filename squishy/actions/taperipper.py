@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from ..utility             import *
 import logging
 
 ACTION_NAME = 'taperipper'
@@ -8,35 +7,35 @@ ACTION_DESC = 'project taperipper options'
 log = logging.getLogger('squishy')
 
 def build_bootimage(args):
-	inf('Running taperipper boot image generation')
+	log.info('Running taperipper boot image generation')
 	if not path.exists(args.efi_fw):
-		err(f'UEFI firmware {args.efi_fw} does not exist')
+		log.error(f'UEFI firmware {args.efi_fw} does not exist')
 		return 1
 
 	return 0
 
 def pack_flash(args):
-	inf('Running taperipper flash packing')
+	log.info('Running taperipper flash packing')
 	if not path.exists(args.boot_img):
-		err(f'Boot image {args.boot_img} does not exist')
+		log.error(f'Boot image {args.boot_img} does not exist')
 		return 1
 
 	if not path.exists(args.bitstream):
-		err(f'Bitstream {args.bitstream} does not exist')
+		log.error(f'Bitstream {args.bitstream} does not exist')
 		return 1
 
 	return 0
 
 def mkboot_tape(args):
-	inf('Running taperipper make boot tape')
+	log.info('Running taperipper make boot tape')
 	from ..taperipper import tape_image_fmt
 
 	if not path.exists(args.kernel_image):
-		err(f'Kernel image {args.kernel_image} does not exist')
+		log.error(f'Kernel image {args.kernel_image} does not exist')
 		return 1
 
 	if not path.exists(args.initramfs_image):
-		err(f'Kernel initramfs image {args.initramfs_image} does not exist')
+		log.error(f'Kernel initramfs image {args.initramfs_image} does not exist')
 		return 1
 
 	kernel_size = stat(args.kernel_image).st_size
@@ -45,14 +44,14 @@ def mkboot_tape(args):
 
 	tape_img_file = path.join(args.build_dir, args.image_file_name)
 
-	log(f'Kernel is {kernel_size} bytes long')
-	log(f'initramfs is {initramfs_size} bytes long')
+	log.info(f'Kernel is {kernel_size} bytes long')
+	log.info(f'initramfs is {initramfs_size} bytes long')
 
 	if tape_img_size > args.tape_size:
-		err(f'The total size of the tape image ({tape_img_size} bytes) exceeds that of the total size available on the tape ({args.tape_size} bytes)')
+		log.error(f'The total size of the tape image ({tape_img_size} bytes) exceeds that of the total size available on the tape ({args.tape_size} bytes)')
 
-	log(f'Total tape image length will be {tape_img_size} bytes')
-	log(f'Output file {tape_img_file}')
+	log.info(f'Total tape image length will be {tape_img_size} bytes')
+	log.info(f'Output file {tape_img_file}')
 
 	with open(tape_img_file, 'wb') as tape_image:
 		kimg_data = None

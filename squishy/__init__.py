@@ -12,7 +12,6 @@ import logging as log
 
 from .i18n     import init_i18n
 from .gateware import platform
-from .utility  import *
 
 __all__ = (
 	'main',
@@ -143,11 +142,11 @@ def main():
 		mkdir(args.build_dir)
 
 	if args.action not in map(lambda a: a['name'], ACTIONS):
-		err(f'Unknown action {args.action}')
-		err(f'Known actions {", ".join(map(lambda a: a["name"], ACTIONS))}')
+		log.error(f'Unknown action {args.action}')
+		log.error(f'Known actions {", ".join(map(lambda a: a["name"], ACTIONS))}')
 		return 1
 	else:
 		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
 
-	log(f'Targeting platform \'{args.hardware_platform}\'')
+	log.info(f'Targeting platform \'{args.hardware_platform}\'')
 	return act['main'](args)

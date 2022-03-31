@@ -3,7 +3,6 @@ import logging
 
 from ..squishy_applet import SquishyApplet
 from ..config         import SQUISHY_APPLETS
-from ..utility        import *
 
 ACTION_NAME = 'applet'
 ACTION_DESC = 'Squishy applets'
@@ -42,5 +41,5 @@ def parser_init(parser):
 	)
 
 def action_main(args):
-	wrn('The applet action is currently unimplemented')
+	log.warning('The applet action is currently unimplemented')
 	return 0

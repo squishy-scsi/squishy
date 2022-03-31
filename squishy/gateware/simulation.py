@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging
 
-from ..utility import *
 log = logging.getLogger('squishy')
 
 __all__ = (
@@ -33,14 +32,14 @@ def run_sims(args):
 		mkdir(sim_dir)
 
 	for sim in _collect_sims():
-		log(f' => Running simulation set \'{sim["name"]}\'')
+		log.info(f' => Running simulation set \'{sim["name"]}\'')
 
 		output_dir = path.join(sim_dir, sim['name'])
 		if not path.exists(output_dir):
 			mkdir(output_dir)
 
 		for case, name in sim['cases']:
-			log(f' ===> Running \'{name}\'')
+			log.info(f' ===> Running \'{name}\'')
 
 			basename = path.join(output_dir, name)
 
