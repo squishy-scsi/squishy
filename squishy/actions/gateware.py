@@ -1,11 +1,15 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from ..utility             import *
+import logging
+
 from ..gateware            import Squishy
 from ..gateware.platform   import AVAILABLE_PLATFORMS
 from ..gateware.simulation import *
 
 ACTION_NAME = 'gateware'
 ACTION_DESC = 'Core Squishy gateware actions'
+
+log = logging.getLogger('squishy')
 
 def parser_init(parser):
 	actions = parser.add_subparsers(dest = 'gateware_action')

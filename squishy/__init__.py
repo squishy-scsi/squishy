@@ -8,12 +8,19 @@ try:
 except ImportError:
 	__version__ = ':nya_confused:' # :nocov:
 
+import logging as log
+
 from .i18n     import init_i18n
 from .gateware import platform
 from .utility  import *
 
 __all__ = (
 	'main',
+)
+
+log.basicConfig(
+    format = '\x1B[35m[*]\x1B[0m \x1B[34m%(levelname)s\x1B[0m: \x1B[32m%(message)s\x1B[0m',
+    level  = log.DEBUG
 )
 
 def _init_dirs():

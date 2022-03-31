@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
+import logging
 
 from ..utility import *
+log = logging.getLogger('squishy')
 
 __all__ = (
 	'run_sims',

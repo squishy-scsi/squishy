@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from ..utility             import *
+import logging
 
 ACTION_NAME = 'taperipper'
 ACTION_DESC = 'project taperipper options'
 
-
-
+log = logging.getLogger('squishy')
 
 def build_bootimage(args):
 	inf('Running taperipper boot image generation')
