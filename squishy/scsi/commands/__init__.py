@@ -79,7 +79,6 @@ command = 'SCSI Command' / Struct(
 					0b10011: sequential.verify,
 					0b10100: Union(None,
 						sequential.recover_buffered_data,
-						printer.recover_buffered_data,
 					),
 					0b10101: Union(None,
 						direct.mode_select,
