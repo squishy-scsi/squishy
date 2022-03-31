@@ -55,7 +55,7 @@ setup(
 		'amaranth-boards @ git+https://github.com/amaranth-lang/amaranth-boards.git@main',
 		'amaranth-stdio @ git+https://github.com/amaranth-lang/amaranth-stdio.git@main',
 
-		'usb_protocol @ git+https://github.com/shrine-maiden-heavy-industries/python-usb-protocol.git@main'
+		'usb_protocol @ git+https://github.com/shrine-maiden-heavy-industries/python-usb-protocol.git@main',
 		'luna @ git+https://github.com/shrine-maiden-heavy-industries/luna.git@amaranth#egg=luna-0.1.0.dev0',
 	],
 
