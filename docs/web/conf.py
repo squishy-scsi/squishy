@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import os, sys
+import os, sys, datetime
 sys.path.insert(0, os.path.abspath('.'))
 
 try:
@@ -11,7 +11,7 @@ except ImportError:
 
 project = 'Squishy'
 release = version.split('+')[0]
-copyright = '2021, Aki "lethalbit" Van Ness, et. al.'
+copyright = f'{datetime.date.today().year}, Aki "lethalbit" Van Ness, et. al.'
 
 extensions = [
 	'sphinx.ext.autodoc',
