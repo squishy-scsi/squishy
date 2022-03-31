@@ -63,7 +63,8 @@ class USBInterface(Elaboratable):
 			dev.iProduct        = platform.usb_prod[dev.idProduct]
 			dev.iSerialNumber   = platform.usb_snum
 
-			dev.bcdDevice       = 0.1
+			dev.bcdDevice       = 0.01
+			dev.bcdUSB          = 2.10
 
 			dev.bDeviceClass    = DeviceClassCodes.INTERFACE
 			dev.bDeviceSubclass = 0x00
@@ -89,12 +90,13 @@ class USBInterface(Elaboratable):
 				with i0.EndpointDescriptor() as e0_out:
 					e0_out.bmAttributes     = USBTransferType.BULK
 					e0_out.bEndpointAddress = 0x01
-					e0_out.wMaxPacketSize   = 0x07FF
+					e0_out.wMaxPacketSize   = 0x0200
 
 				with i0.EndpointDescriptor() as e0_in:
 					e0_in.bmAttributes     = USBTransferType.INTERRUPT | USBUsageType.FEEDBACK
+					e0_in.bInterval        = 0x0A
 					e0_in.bEndpointAddress = 0x81
-					e0_in.wMaxPacketSize   = 0x07FF
+					e0_in.wMaxPacketSize   = 0x0400
 
 			# SCSI Interface
 			with cfg.InterfaceDescriptor() as i1:
@@ -108,12 +110,25 @@ class USBInterface(Elaboratable):
 				with i1.EndpointDescriptor() as e1_out:
 					e1_out.bmAttributes     = USBTransferType.BULK
 					e1_out.bEndpointAddress = 0x02
-					e1_out.wMaxPacketSize   = 0x07FF
+					e1_out.wMaxPacketSize   = 0x0200
 
 				with i1.EndpointDescriptor() as e1_in:
 					e1_in.bmAttributes     = USBTransferType.INTERRUPT | USBUsageType.FEEDBACK
+					e1_in.bInterval        = 0x0A
 					e1_in.bEndpointAddress = 0x82
-					e1_in.wMaxPacketSize   = 0x07FF
+					e1_in.wMaxPacketSize   = 0x0400
+
+		if self.config['webusb']['enabled']:
+			from usb_protocol.emitters.descriptors.standard import BinaryObjectStoreDescriptorEmitter
+			from usb_protocol.emitters.descriptors.webusb   import PlatformDescriptorEmitter
+
+			bos = BinaryObjectStoreDescriptorEmitter()
+			webusb_plat = PlatformDescriptorEmitter(desc)
+
+			webusb_plat.iLandingPage = self.config['webusb']['url']
+
+			bos.add_subordinate_descriptor(webusb_plat)
+			desc.add_descriptor(bos)
 
 		return desc
 
