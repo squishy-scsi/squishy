@@ -14,6 +14,7 @@ release = version.split('+')[0]
 copyright = '2021, Aki "lethalbit" Van Ness, et. al.'
 
 extensions = [
+	'sphinx.ext.autodoc',
 	'sphinx.ext.intersphinx',
 	'sphinx.ext.doctest',
 	'sphinx.ext.todo',
@@ -31,6 +32,18 @@ source_suffix = {
 
 graphviz_output_format = 'svg'
 todo_include_todos = True
+
+intersphinx_mapping = {
+	'python'   : ('https://docs.python.org/3', None),
+	'luna'     : ('https://luna.readthedocs.io/en/latest', None),
+	'amaranth' : ('https://amaranth-lang.org/docs/amaranth/latest', None),
+	'construct': ('https://construct.readthedocs.io/en/latest', None),
+}
+
+napoleon_google_docstring = False
+napoleon_numpy_docstring = True
+napoleon_use_ivar = True
+napoleon_custom_sections = ["Platform overrides"]
 
 import sphinx_rtd_theme
 

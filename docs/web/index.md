@@ -4,15 +4,13 @@
 introduction
 install
 hardware
-library
+library/index
 getting_started
 cli
 gui
 applets
 tutorials/index
 mascot
-
-
 ```
 
 ```{include} ../../README.md
