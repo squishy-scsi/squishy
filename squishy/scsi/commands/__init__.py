@@ -9,6 +9,10 @@ from . import processor
 from . import worm
 from . import ro_direct
 
+__doc__ = """
+This modules defines the core SCSI command structure.
+"""
+
 __all__ = (
 	'group_code',
 	'command',
@@ -24,6 +28,7 @@ group_code = 'Command Group Code' / Enum(BitsInteger(3),
 	Group6 = 0b110, # Vendor
 	Group7 = 0b111, # Vendor
 )
+""" SCSI Command Group Codes """
 
 command = 'SCSI Command' / Struct(
 	'Opcode' / Union(0,
@@ -163,6 +168,7 @@ command = 'SCSI Command' / Struct(
 		'Link'     / Flag,
 	),
 )
+""" SCSI Command Structure """
 
 _cmds = 'SCSI Commands' / GreedyRange(command)
 
