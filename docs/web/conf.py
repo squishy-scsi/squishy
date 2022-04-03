@@ -23,6 +23,7 @@ extensions = [
 	'sphinxcontrib.platformpicker',
 	'sphinx_rtd_theme',
 	'myst_parser',
+	'sphinx_construct',
 ]
 
 source_suffix = {

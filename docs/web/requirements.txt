@@ -3,3 +3,4 @@ sphinx-rtd-theme
 sphinxcontrib-platformpicker
 sphinxcontrib-mermaid
 myst-parser
+git+https://github.com/lethalbit/sphinx-construct
