@@ -1,0 +1,10 @@
+/* nya */
+@import 'theme.css';       /* for the Read the Docs theme */
+
+
+div.wy-nav-content {
+	padding: 1.618em 3.236em;
+    height: 100%;
+    max-width: 1000px;
+    margin: auto;
+}

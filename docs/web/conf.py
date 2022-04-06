@@ -59,7 +59,9 @@ html_static_path = [
 	'_static'
 ]
 html_css_files = [
-	'styles.css'
+	'css/styles.css'
 ]
+
+html_style = 'css/styles.css'
 
 autosectionlabel_prefix_document = True
