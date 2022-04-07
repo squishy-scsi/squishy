@@ -6,16 +6,18 @@ import enum
 SQUISHY_NAME = 'squishy'
 
 # XDG directories
-XDG_CACHE_DIR   = path.join(path.expanduser('~'), '.cache') if 'XDG_CACHE_HOME' not in environ else environ['XDG_CACHE_HOME']
-XDG_DATA_HOME   = path.join(path.expanduser('~'), '.local/share') if 'XDG_DATA_HOME' not in environ else environ['XDG_DATA_HOME']
-XDG_CONFIG_HOME = path.join(path.expanduser('~'), '.config') if 'XDG_CONFIG_HOME' not in environ else environ['XDG_CONFIG_HOME']
+XDG_HOME        = path.expanduser('~') if 'XDG_HOME' not in environ else environ['XDG_HOME']
+XDG_CACHE_DIR   = path.join(XDG_HOME, '.cache') if 'XDG_CACHE_HOME' not in environ else environ['XDG_CACHE_HOME']
+XDG_DATA_HOME   = path.join(XDG_HOME, '.local/share') if 'XDG_DATA_HOME' not in environ else environ['XDG_DATA_HOME']
+XDG_CONFIG_HOME = path.join(XDG_HOME, '.config') if 'XDG_CONFIG_HOME' not in environ else environ['XDG_CONFIG_HOME']
 
 # Squishy-specific sub dirs
 SQUISHY_CACHE   = path.join(XDG_CACHE_DIR, SQUISHY_NAME)
 SQUISHY_DATA    = path.join(XDG_DATA_HOME, SQUISHY_NAME)
 SQUISHY_CONFIG  = path.join(XDG_CONFIG_HOME, SQUISHY_NAME)
 
-SQUISHY_APPLETS = path.join(SQUISHY_DATA, 'applets')
+SQUISHY_APPLETS      = path.join(SQUISHY_DATA, 'applets')
+SQUISHY_APPLET_CACHE = path.join(SQUISHY_CACHE, 'applets')
 
 # File path constants
 SQUISHY_SETTINGS_FILE = path.join(SQUISHY_CONFIG, 'settings.json')

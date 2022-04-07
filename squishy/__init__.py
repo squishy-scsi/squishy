@@ -37,6 +37,7 @@ def _init_dirs():
 		config.SQUISHY_CONFIG,
 
 		config.SQUISHY_APPLETS,
+		config.SQUISHY_APPLET_CACHE,
 	)
 
 	for d in dirs:
