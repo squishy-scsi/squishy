@@ -6,15 +6,29 @@ __all__ = (
 )
 
 class SquishyApplet(metaclass = ABCMeta):
+	preview      = False
 	help         = '<HELP MISSING>'
 	description  = '<DESCRIPTION MISSING>'
 	required_rev = 'rev1'
 
 	@abstractmethod
-	def synth(self, target):
+	def init_gui(self, main_window, args):
 		pass
 
 	@abstractmethod
-	def run(self, device, args):
+	def init_repl(self, repl_ctx, args):
 		pass
+
+	@abstractmethod
+	def init_applet(self, args):
+		raise NotImplementedError('Applets must implement this method')
+
+
+	@abstractmethod
+	def build(self, target):
+		raise NotImplementedError('Applets must implement this method')
+
+	@abstractmethod
+	def run(self, device, args):
+		raise NotImplementedError('Applets must implement this method')
 
