@@ -85,13 +85,6 @@ def parser_init(parser):
 		help    = 'The parity mode for the debug UART'
 	)
 
-	# Build Options
-	do_build.add_argument(
-		'--verbose',
-		action = 'store_true',
-		help   = 'Enable verbose output during synth and pnr'
-	)
-
 	## Synth / Route Options
 	pnr_options.add_argument(
 		'--use-router2',

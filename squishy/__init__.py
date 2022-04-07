@@ -17,10 +17,15 @@ __all__ = (
 	'main',
 )
 
-log.basicConfig(
-    format = '\x1B[35m[*]\x1B[0m \x1B[34m%(levelname)s\x1B[0m: \x1B[32m%(message)s\x1B[0m',
-    level  = log.DEBUG
-)
+def _set_logging(args):
+	level = log.INFO
+	if args.verbose:
+		level = log.DEBUG
+
+	log.basicConfig(
+    	format = '\x1B[35m[*]\x1B[0m \x1B[34m%(levelname)s\x1B[0m: \x1B[32m%(message)s\x1B[0m',
+    	level  = level
+	)
 
 def _init_dirs():
 	from .  import config
@@ -89,6 +94,12 @@ def _common_options(parser):
 		help    = 'The target hardware platform',
 	)
 
+	core_options.add_argument(
+		'--verbose',
+		action = 'store_true',
+		help   = 'Enable verbose output during synth and pnr'
+	)
+
 def main_gui():
 	import sys
 	from os import path, mkdir
@@ -105,6 +116,8 @@ def main_gui():
 	gui.parser_init(parser)
 
 	args = parser.parse_args()
+
+	_set_logging(args)
 
 	if not path.exists(args.build_dir):
 		mkdir(args.build_dir)
@@ -137,6 +150,8 @@ def main():
 		act['parser_init'](a)
 
 	args = parser.parse_args()
+
+	_set_logging(args)
 
 	if not path.exists(args.build_dir):
 		mkdir(args.build_dir)
