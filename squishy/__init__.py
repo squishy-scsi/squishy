@@ -154,6 +154,7 @@ def main():
 	_set_logging(args)
 
 	if not path.exists(args.build_dir):
+		log.debug(f'Making build directory {args.build_dir}')
 		mkdir(args.build_dir)
 
 	if args.action not in map(lambda a: a['name'], ACTIONS):
