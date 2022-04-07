@@ -105,8 +105,11 @@ def main_gui():
 	import sys
 	from os import path, mkdir
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-
-	from .actions import gui
+	try:
+		from .actions import gui
+	except ImportError:
+		log.error('To use the Squishy GUI please install PySide2')
+		return 1
 
 	_main_common()
 

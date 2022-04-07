@@ -1,4 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
+import logging as log
+
 from .. import __version__
 
 ACTION_NAME = 'gui'
@@ -11,16 +13,18 @@ def _check_pyside():
 	except:
 		return False
 
-if not _check_pyside():
+try:
+	from PySide2.QtWidgets import QApplication, QSplashScreen
+	from PySide2.QtGui     import QPixmap, QIcon
+	from PySide2.QtCore    import QCoreApplication, Qt
+
+	from ..config          import SQUISHY_SETTINGS_FILE
+	from ..gui             import MainWindow
+	from ..gui.resources   import *
+except ImportError:
 	DONT_LOAD = 1
-
-from PySide2.QtWidgets import QApplication, QSplashScreen
-from PySide2.QtGui     import QPixmap, QIcon
-from PySide2.QtCore    import QCoreApplication, Qt
-
-from ..config          import SQUISHY_SETTINGS_FILE
-from ..gui             import MainWindow
-from ..gui.resources   import *
+	if not _check_pyside():
+		log.warning('To use the GUI please install PySide2')
 
 class SquishyGui:
 	def __init__(self):
