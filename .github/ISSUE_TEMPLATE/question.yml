@@ -1,0 +1,45 @@
+name: Question
+description: Is something not addressed in the documentation? Ask your questions here.
+title: "[QUESTION]: "
+labels: ["Question"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question that is not answered by previous questions or the documentation?
+
+        Sorry to hear that, fill out the form as best as you can with you question, and we'll get to it ASAP.
+
+  - type: textarea
+    id: question-desc
+    attributes:
+      label: Question Summary
+      description: A clear and detailed as possible
+    validations:
+      required: true
+
+  - type: dropdown
+    id: subsystem
+    attributes:
+      label: Which part of Squishy does this relate to?
+      options:
+        - Install
+        - Hardware
+        - GUI
+        - CLI
+        - REPL
+        - Gateware Library
+        - Python Library
+        - Applet
+      multiple: true
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/lethalbit/squishy/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
