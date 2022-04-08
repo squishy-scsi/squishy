@@ -77,7 +77,7 @@ setup(
 			'printer.svg',
 		],
 		'squishy.gui.resources.images': [
-
+			'about.png',
 		],
 		'squishy.gui.resources.themes': [
 
