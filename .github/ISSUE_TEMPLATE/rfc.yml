@@ -1,0 +1,85 @@
+name: RFC
+description: Submit a Request for Comments (RFC)
+title: "[RFC]: "
+labels: ["RFC"]
+body:
+  - type: textarea
+    id: rfc-summary
+    attributes:
+      label: Summary
+      description: One paragraph explanation of the feature.
+    validations:
+      required: true
+
+  - type: textarea
+    id: rfc-motivation
+    attributes:
+      label: Motivation
+      description: Why are we doing this? What use cases does it support? What is the expected outcome?
+    validations:
+      required: true
+
+  - type: textarea
+    id: rfc-guide-explanation
+    attributes:
+      label: Guide-level explanation
+      description: Explain the proposal as if it was already included in the language and you were teaching it to another Squishy user.
+    validations:
+      required: true
+
+  - type: textarea
+    id: rfc-reference-explination
+    attributes:
+      label: Reference-level explanation
+      description: This is the technical portion of the RFC. Explain the design in sufficient detail.
+    validations:
+      required: true
+
+  - type: textarea
+    id: rfc-drawbacks
+    attributes:
+      label: Drawbacks
+      description: Why should we not do this?
+    validations:
+      required: true
+
+  - type: textarea
+    id: rfc-rationale
+    attributes:
+      label: Rationale and alternatives
+      description: Why is this design the best in the space of possible designs? What other designs have been considered and what is the rationale for not choosing them?
+    validations:
+      required: true
+
+  - type: textarea
+    id: rfc-prior-art
+    attributes:
+      label: Prior art
+      description: Discuss prior art, both the good and the bad, in relation to this proposal.
+    validations:
+      required: true
+
+  - type: textarea
+    id: rfc-questions
+    attributes:
+      label: Unresolved questions
+      description: What parts of the design do you expect to resolve through the RFC process before this gets merged? What parts of the design do you expect to resolve through the implementation of this feature before stabilization?
+    validations:
+      required: true
+
+  - type: textarea
+    id: rfc-future
+    attributes:
+      label: Future possibilities
+      description: Think about what the natural extension and evolution of your proposal would be and how it would affect Squishy as a whole in a holistic way.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/lethalbit/squishy/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
