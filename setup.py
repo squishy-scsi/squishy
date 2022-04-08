@@ -78,6 +78,7 @@ setup(
 		],
 		'squishy.gui.resources.images': [
 			'about.png',
+			'splash.png',
 		],
 		'squishy.gui.resources.themes': [
 
