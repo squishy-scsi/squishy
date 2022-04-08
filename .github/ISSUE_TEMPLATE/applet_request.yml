@@ -1,0 +1,44 @@
+name: Applet Request
+description: Do you think we're missing a built in Applet?
+title: "[APPLET REQ]: "
+labels: ["Applets"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for wanting to suggest an applet!
+
+        Fill out the details best you can below to let us know what it is.
+
+  - type: textarea
+    id: applet-desc
+    attributes:
+      label: Applet Summary
+      description: A clear and detailed as possible
+    validations:
+      required: true
+
+  - type: textarea
+    id: applet-uses
+    attributes:
+      label: Applet Uses
+      description: What does this applet allow Squishy to do?
+    validations:
+      required: true
+
+  - type: textarea
+    id: applet-target
+    attributes:
+      label: Applet Target Audience
+      description: Who is the target for this Applet?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/lethalbit/squishy/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
