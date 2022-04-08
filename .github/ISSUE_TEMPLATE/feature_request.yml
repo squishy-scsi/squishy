@@ -1,0 +1,44 @@
+name: Feature Request
+description: Have a feature you'd like? Let us know.
+title: "[FEATURE]: "
+labels: ["Feature"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for wanting to suggest a feature!
+
+        Fill out the details best you can below to let us know what it is.
+
+
+  - type: dropdown
+    id: subsystem
+    attributes:
+      label: Which part of Squishy does this feature generally fit into?
+      options:
+        - GUI
+        - CLI
+        - REPL
+        - Gateware Library
+        - Python Library
+        - Applet
+      multiple: true
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature-desc
+    attributes:
+      label: Feature Summary
+      description: A clear and detailed as possible
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/lethalbit/squishy/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
