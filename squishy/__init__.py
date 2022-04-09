@@ -45,25 +45,6 @@ def _init_dirs():
 		if not d.exists():
 			d.mkdir(exist_ok = True)
 
-def _collect_actions():
-	import pkgutil
-	from . import actions
-
-	# todo make this not garbage by using importlib
-	acts = []
-	for _, name, is_pkg in pkgutil.iter_modules(path = getattr(actions, '__path__')):
-		if not is_pkg:
-			__import__(f'{getattr(actions, "__name__")}.{name}')
-			if not hasattr(getattr(actions, name), 'DONT_LOAD'):
-				acts.append({
-					'name': getattr(actions, name).ACTION_NAME,
-					'description': getattr(actions, name).ACTION_DESC,
-					'parser_init': getattr(actions, name).parser_init,
-					'main': getattr(actions, name).action_main,
-				})
-
-	return acts
-
 def _main_common():
 	import json
 
@@ -133,12 +114,19 @@ def main_gui():
 
 def main():
 	import sys
-	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-	from pathlib  import Path
+	from argparse  import ArgumentParser, ArgumentDefaultsHelpFormatter
+	from pathlib   import Path
+
+	from .collect  import collect_members, predicate_action
+	from .         import actions
 
 	_main_common()
 
-	ACTIONS = _collect_actions()
+	ACTIONS = collect_members(
+		Path(actions.__path__[0]),
+		predicate_action,
+		f'{actions.__name__}.'
+	)
 
 	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
 
@@ -149,12 +137,14 @@ def main():
 		required = True
 	)
 
-	for act in ACTIONS:
-		a = action_parser.add_parser(
-				act['name'],
-				help = act['description']
-			)
-		act['parser_init'](a)
+	if len(ACTIONS) > 0:
+		for act in ACTIONS:
+			action = act['instance']
+			p = action_parser.add_parser(
+					act['name'],
+					help = action.short_help,
+				)
+			action.register_args(p)
 
 	args = parser.parse_args()
 
@@ -174,4 +164,4 @@ def main():
 		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
 
 	log.info(f'Targeting platform \'{args.hardware_platform}\'')
-	return act['main'](args)
+	return act['instance'].run(args)
