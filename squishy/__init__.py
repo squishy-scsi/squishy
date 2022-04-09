@@ -37,6 +37,8 @@ def _init_dirs():
 
 		config.SQUISHY_APPLETS,
 		config.SQUISHY_APPLET_CACHE,
+
+		config.SQUISHY_BUILD_DIR,
 	)
 
 	for d in dirs:
@@ -80,7 +82,7 @@ def _common_options(parser):
 	core_options.add_argument(
 		'--build-dir', '-b',
 		type    = str,
-		default = 'build',
+		default = config.SQUISHY_BUILD_DIR,
 		help    = 'The output directory for Squishy binaries and images'
 	)
 
