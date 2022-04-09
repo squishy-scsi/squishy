@@ -11,6 +11,9 @@ class Analyzer(SquishyApplet):
 		'rev1', 'rev2'
 	)
 
+	def build(self, target, args):
+		pass
+
 	def register_args(self, parser):
 		pass
 

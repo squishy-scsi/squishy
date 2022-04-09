@@ -48,8 +48,9 @@ class SquishyApplet(metaclass = ABCMeta):
 	def register_args(self, parser):
 		raise NotImplementedError('Applets must implement this method')
 
-	def build(self, target):
-		pass
+	@abstractmethod
+	def build(self, target, args):
+		raise NotImplementedError('Applets must implement this method')
 
 	@abstractmethod
 	def run(self, device, args):

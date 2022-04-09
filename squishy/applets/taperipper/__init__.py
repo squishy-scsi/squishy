@@ -173,6 +173,9 @@ class Taperipper(SquishyApplet):
 			help = 'The size of the native block on the tape'
 		)
 
+	def build(self, target, args):
+		pass
+
 	def init_applet(self, args):
 		pass
 
