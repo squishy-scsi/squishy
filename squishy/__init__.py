@@ -70,7 +70,7 @@ def main_gui():
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 	from pathlib  import Path
 	try:
-		from .actions import gui
+		from .actions.gui import GUI
 	except ImportError:
 		log.error('To use the Squishy GUI please install PySide2')
 		return 1
@@ -81,13 +81,15 @@ def main_gui():
 
 	_common_options(parser)
 
-	gui.parser_init(parser)
+	gui = GUI()
+
+	gui.register_args(parser)
 
 	args = parser.parse_args()
 
 	_set_logging(args)
 
-	return gui.action_main(args)
+	return gui.run(args)
 
 def main():
 	import sys
