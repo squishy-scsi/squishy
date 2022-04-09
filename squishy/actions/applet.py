@@ -2,12 +2,14 @@
 import logging as log
 from pathlib              import Path
 
-from ..applets            import SquishyApplet
-from ..config             import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
-from ..collect            import collect_members, predicate_applet
+from ..applets           import SquishyApplet
+from ..config            import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
+from ..collect           import collect_members, predicate_applet
 
-from ..gateware.platform  import AVAILABLE_PLATFORMS
-from .                    import SquishyAction
+from ..gateware          import Squishy
+from ..gateware.platform import AVAILABLE_PLATFORMS
+from .                   import SquishyAction
+
 
 class Applet(SquishyAction):
 	pretty_name = 'Squishy Applets'
@@ -71,6 +73,12 @@ class Applet(SquishyAction):
 			type    = str,
 			default = SQUISHY_BUILD_DIR,
 			help    = 'The output directory for Squishy binaries and images'
+		)
+
+		build_options.add_argument(
+			'--loud',
+			action = 'store_true',
+			help   = 'Enables the output of the Synth and PnR to the console'
 		)
 
 		# PnR Options
@@ -227,30 +235,35 @@ class Applet(SquishyAction):
 			'baud'     : args.baud,
 			'parity'   : args.parity,
 			'data_bits': args.data_bits,
-		},
+		}
 
 		usb_config = {
 			'webusb': {
 				'enabled': args.enable_webusb,
 				'url'    : args.webusb_url,
 			}
-		},
+		}
 
 		scsi_config = {
 			'did': args.scsi_did,
 		}
 
+		gateware = Squishy(
+			uart_config = uart_config,
+			usb_config  = usb_config,
+			scsi_config = scsi_config
+		)
 
-		# device.build(
-		# 	gateware,
-		# 	name = f'squishy_applet_{name}',
-		# 	build_dir = args.build_dir,
-		# 	do_build = True,
-		# 	synth_opts = synth_opts,
-		# 	verbose = args.verbose,
-		# 	nextpnr_opts = pnr_opts,
-		# 	skip_cache = args.skip_cache,
-		# )
+		device.build(
+			gateware,
+			name = f'squishy_applet_{name}',
+			build_dir = args.build_dir,
+			do_build = True,
+			synth_opts = synth_opts,
+			verbose = args.loud,
+			nextpnr_opts = pnr_opts,
+			skip_cache = args.skip_cache,
+		)
 
 
 		return applet.run(device, args)

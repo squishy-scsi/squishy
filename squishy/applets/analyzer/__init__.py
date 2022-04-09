@@ -2,8 +2,6 @@
 
 from .. import SquishyApplet
 
-
-
 class Analyzer(SquishyApplet):
 	preview      = True
 	pretty_name  = 'SCSI Analyzer'
