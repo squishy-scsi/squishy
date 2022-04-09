@@ -7,6 +7,7 @@ from ..gateware.simulation import *
 
 ACTION_NAME = 'gateware'
 ACTION_DESC = 'Core Squishy gateware actions'
+DONT_LOAD = 1
 
 log = logging.getLogger('squishy')
 
