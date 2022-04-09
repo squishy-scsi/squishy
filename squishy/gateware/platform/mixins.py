@@ -29,7 +29,7 @@ class SquishyCacheMixin:
 			BarColumn(bar_width = None),
 			transient = True
 		) as progress:
-			task = progress.add_task("Building Bitstream", total=100, start=False)
+			task = progress.add_task('Building Bitstream', start=False)
 
 			plan = super().build(elab, name,
 					build_dir, do_build = False,

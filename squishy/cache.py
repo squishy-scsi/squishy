@@ -58,13 +58,13 @@ class SquishyBitstreamCache:
 		cache_dir = self._get_cache_dir(digest)
 		bitstream = cache_dir / bitstream_name
 
-		log.debug(f'Looking up bitstream \'{bitstream_name}\' in \'{cache_dir}\'')
+		log.debug(f'Looking up bitstream \'{bitstream_name}\' in {cache_dir}')
 
 		if not bitstream.exists():
 			log.debug(f'Bitstream not found in cache')
 			return None
 
-		log.info(f'Using cached bitstream \'{bitstream}\'')
+		log.info(f'Using cached bitstream {bitstream}')
 
 		return {
 			'name'    : bitstream_name,
@@ -76,7 +76,7 @@ class SquishyBitstreamCache:
 		cache_dir = self._get_cache_dir(digest)
 		bitstream = cache_dir / bitstream_name
 
-		log.debug(f'Caching bitstream \'{name}\' in \'{cache_dir}\'')
+		log.debug(f'Caching bitstream \'{name}\' in {cache_dir}')
 		log.debug(f'New bitstream name: \'{bitstream_name}\'')
 
 		with open(bitstream, 'wb') as bit:
