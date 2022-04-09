@@ -1,22 +1,36 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from abc import ABCMeta, abstractmethod
+from abc import ABCMeta, abstractmethod, abstractproperty
 
 __all__ = (
 	'SquishyApplet',
 )
 
 class SquishyApplet(metaclass = ABCMeta):
-	preview      = False
+	preview      = abstractproperty()
+	pretty_name  = abstractproperty()
+	short_help   = abstractproperty()
 	help         = '<HELP MISSING>'
 	description  = '<DESCRIPTION MISSING>'
-	required_rev = 'rev1'
+	hardware_rev = abstractproperty()
 
-	@abstractmethod
+	def __init__(self):
+		if not (
+			isinstance(self.hardware_rev, str) or
+			(
+				isinstance(self.hardware_rev, tuple) and
+				all(isinstance(r, str) for r in self.hardware_rev)
+			)
+		):
+			raise ValueError(f'Applet `hardware_rev` must be a str or tuple of str not `{type(self.hardware_rev)!r}`')
+
+
+	def show_help(self):
+		pass
+
 	def init_gui(self, main_window, args):
 		pass
 
-	@abstractmethod
 	def init_repl(self, repl_ctx, args):
 		pass
 
@@ -24,12 +38,13 @@ class SquishyApplet(metaclass = ABCMeta):
 	def init_applet(self, args):
 		raise NotImplementedError('Applets must implement this method')
 
-
 	@abstractmethod
-	def build(self, target):
+	def register_args(self, parser):
 		raise NotImplementedError('Applets must implement this method')
+
+	def build(self, target):
+		pass
 
 	@abstractmethod
 	def run(self, device, args):
 		raise NotImplementedError('Applets must implement this method')
-
