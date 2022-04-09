@@ -29,25 +29,25 @@ class SquishyGatewareTestCase(TestCase):
 
 	def sim(self, *, suffix = None):
 		out_name = f'{self.vcd_name}{f"-{suffix}" if suffix is not None else ""}'
-		out_file = path.join(self.out_dir, out_name)
+		out_file = self.out_dir / out_name
 		with self.sim.write_vcd(f'{out_file}.vcd', f'{out_file}.gtkw'):
 			self.sim.reset()
 			self.sim.run()
 
 	def setUp(self):
-		from os            import path, mkdir, getcwd
+		from pathlib         import Path
 		from amaranth.sim    import Simulator
 		from amaranth.hdl.ir import Fragment
 
 		self.dut     = Fragment.get(self._dut, platform = self.platform)
 		self.sim     = Simulator(self.dut)
 		if self.out_dir is None:
-			self.out_dir = getcwd()
+			self.out_dir = Path.cwd()
 
 		self.sim.add_clock(self.clk_period, domain = self.domain)
 
-		if not path.exists(self.out_dir):
-			mkdir(self.out_dir)
+		if not self.out_dir.exists():
+			self.out_dir.mkdir()
 
 	def init_dut(self):
 		return self.dut(**self.dut_args)

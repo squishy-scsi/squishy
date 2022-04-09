@@ -25,23 +25,23 @@ def _collect_sims():
 	return sims
 
 def run_sims(args):
-	from os import path, mkdir
+	from pathlib import Path
 
-	sim_dir = path.join(args.build_dir, 'sim')
-	if not path.exists(sim_dir):
-		mkdir(sim_dir)
+	sim_dir = Path(args.build_dir) / 'sim'
+	if not sim_dir.exists():
+		sim_dir.mkdir()
 
 	for sim in _collect_sims():
 		log.info(f' => Running simulation set \'{sim["name"]}\'')
 
-		output_dir = path.join(sim_dir, sim['name'])
-		if not path.exists(output_dir):
-			mkdir(output_dir)
+		output_dir = sim_dir / sim['name']
+		if not output_dir.exists():
+			output_dir.mkdir()
 
 		for case, name in sim['cases']:
 			log.info(f' ===> Running \'{name}\'')
 
-			basename = path.join(output_dir, name)
+			basename = output_dir / name
 
 			with case.write_vcd(f'{basename}.vcd', f'{basename}.gtkw'):
 				case.reset()

@@ -29,7 +29,6 @@ def _set_logging(args):
 
 def _init_dirs():
 	from .  import config
-	from os import path, makedirs
 
 	dirs = (
 		config.SQUISHY_CACHE,
@@ -41,8 +40,8 @@ def _init_dirs():
 	)
 
 	for d in dirs:
-		if not path.exists(d):
-			makedirs(d, exist_ok = True)
+		if not d.exists():
+			d.mkdir(exist_ok = True)
 
 def _collect_actions():
 	import pkgutil
@@ -65,15 +64,14 @@ def _collect_actions():
 
 def _main_common():
 	import json
-	from os import path
 
 	from .config import SQUISHY_SETTINGS_FILE, DEFAULT_SETTINGS
 
 	_init_dirs()
 	init_i18n()
 
-	if not path.exists(SQUISHY_SETTINGS_FILE):
-		with open(SQUISHY_SETTINGS_FILE, 'w') as cfg:
+	if not SQUISHY_SETTINGS_FILE.exists():
+		with SQUISHY_SETTINGS_FILE.open('w') as cfg:
 			json.dump(DEFAULT_SETTINGS, cfg)
 
 def _common_options(parser):
@@ -103,8 +101,8 @@ def _common_options(parser):
 
 def main_gui():
 	import sys
-	from os import path, mkdir
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+	from pathlib  import Path
 	try:
 		from .actions import gui
 	except ImportError:
@@ -123,15 +121,18 @@ def main_gui():
 
 	_set_logging(args)
 
-	if not path.exists(args.build_dir):
-		mkdir(args.build_dir)
+	build_dir = Path(args.build_dir)
+
+	if not build_dir.exists():
+		log.debug(f'Making build directory {args.build_dir}')
+		build_dir.mkdir()
 
 	return gui.action_main(args)
 
 def main():
 	import sys
-	from os import path, mkdir
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+	from pathlib  import Path
 
 	_main_common()
 
@@ -157,9 +158,11 @@ def main():
 
 	_set_logging(args)
 
-	if not path.exists(args.build_dir):
+	build_dir = Path(args.build_dir)
+
+	if not build_dir.exists():
 		log.debug(f'Making build directory {args.build_dir}')
-		mkdir(args.build_dir)
+		build_dir.mkdir()
 
 	if args.action not in map(lambda a: a['name'], ACTIONS):
 		log.error(f'Unknown action {args.action}')

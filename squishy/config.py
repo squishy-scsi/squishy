@@ -1,27 +1,28 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from os import path, environ
+from pathlib import Path
+from os      import environ
 import enum
 
 SQUISHY_NAME = 'squishy'
 
 # XDG directories
-XDG_HOME        = path.expanduser('~') if 'XDG_HOME' not in environ else environ['XDG_HOME']
-XDG_CACHE_DIR   = path.join(XDG_HOME, '.cache') if 'XDG_CACHE_HOME' not in environ else environ['XDG_CACHE_HOME']
-XDG_DATA_HOME   = path.join(XDG_HOME, '.local/share') if 'XDG_DATA_HOME' not in environ else environ['XDG_DATA_HOME']
-XDG_CONFIG_HOME = path.join(XDG_HOME, '.config') if 'XDG_CONFIG_HOME' not in environ else environ['XDG_CONFIG_HOME']
+XDG_HOME        = Path.home()                 if 'XDG_HOME'        not in environ else Path(environ['XDG_HOME'])
+XDG_CACHE_DIR   = (XDG_HOME / '.cache')       if 'XDG_CACHE_HOME'  not in environ else Path(environ['XDG_CACHE_HOME'])
+XDG_DATA_HOME   = (XDG_HOME / '.local/share') if 'XDG_DATA_HOME'   not in environ else Path(environ['XDG_DATA_HOME'])
+XDG_CONFIG_HOME = (XDG_HOME / '.config')      if 'XDG_CONFIG_HOME' not in environ else Path(environ['XDG_CONFIG_HOME'])
 
 # Squishy-specific sub dirs
-SQUISHY_CACHE   = path.join(XDG_CACHE_DIR, SQUISHY_NAME)
-SQUISHY_DATA    = path.join(XDG_DATA_HOME, SQUISHY_NAME)
-SQUISHY_CONFIG  = path.join(XDG_CONFIG_HOME, SQUISHY_NAME)
+SQUISHY_CACHE   = (XDG_CACHE_DIR   / SQUISHY_NAME)
+SQUISHY_DATA    = (XDG_DATA_HOME   / SQUISHY_NAME)
+SQUISHY_CONFIG  = (XDG_CONFIG_HOME / SQUISHY_NAME)
 
-SQUISHY_APPLETS      = path.join(SQUISHY_DATA, 'applets')
-SQUISHY_APPLET_CACHE = path.join(SQUISHY_CACHE, 'applets')
+SQUISHY_APPLETS      = (SQUISHY_DATA  / 'applets')
+SQUISHY_APPLET_CACHE = (SQUISHY_CACHE / 'applets')
 
 # File path constants
-SQUISHY_SETTINGS_FILE = path.join(SQUISHY_CONFIG, 'settings.json')
-SQUISHY_HISTORY_FILE  = path.join(SQUISHY_CACHE, '.repl-history')
+SQUISHY_SETTINGS_FILE = (SQUISHY_CONFIG / 'settings.json')
+SQUISHY_HISTORY_FILE  = (SQUISHY_CACHE  / '.repl-history')
 
 # Some cute/funny splash messages
 SQUISHY_SPLASH_MESSAGES = [

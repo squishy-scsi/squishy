@@ -24,6 +24,7 @@ class SquishyCacheMixin:
 
 		if not do_build:
 			return plan
+
 		if not kwargs.get('skip_cache', False):
 			digest = plan.digest(size = 32).hex()
 			cache_obj = self._cache.get(digest)
