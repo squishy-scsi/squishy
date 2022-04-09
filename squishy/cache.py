@@ -2,6 +2,7 @@
 
 import logging as log
 from pathlib            import Path
+from lzma               import LZMACompressor
 
 from amaranth.build.run import LocalBuildProducts
 
@@ -38,8 +39,9 @@ class SquishyBitstreamCache:
 			]
 		)
 
-	def __init__(self, do_init = True, tree_depth = 1):
+	def __init__(self, do_init = True, tree_depth = 1, cache_rtl = True):
 		self.tree_depth  = tree_depth
+		self.cache_rtl   = cache_rtl
 		self._cache_root = Path(SQUISHY_APPLET_CACHE)
 
 		if do_init:
@@ -76,8 +78,21 @@ class SquishyBitstreamCache:
 		cache_dir = self._get_cache_dir(digest)
 		bitstream = cache_dir / bitstream_name
 
-		log.debug(f'Caching bitstream \'{name}\' in {cache_dir}')
+		log.debug(f'Caching bitstream \'{name}.bin\' in {cache_dir}')
 		log.debug(f'New bitstream name: \'{bitstream_name}\'')
 
 		with open(bitstream, 'wb') as bit:
 			bit.write(products.get(f'{name}.bin'))
+
+		if self.cache_rtl:
+			rtl_name = f'{digest}.v.xz'
+			rtl = cache_dir / rtl_name
+
+			log.debug(f'Caching RTL \'{name}.debug.v\' in {cache_dir}')
+			log.debug(f'New RTL name: \'{rtl_name}\'')
+
+			cpr = LZMACompressor()
+
+			with open(rtl, 'wb') as r:
+				r.write(cpr.compress(products.get(f'{name}.debug.v')))
+				r.write(cpr.flush())
