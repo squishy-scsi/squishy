@@ -23,8 +23,8 @@ def _set_logging(args):
 		level = log.DEBUG
 
 	log.basicConfig(
-    	format = '\x1B[35m[*]\x1B[0m \x1B[34m%(levelname)s\x1B[0m: \x1B[32m%(message)s\x1B[0m',
-    	level  = level
+		format = '\x1B[35m[*]\x1B[0m \x1B[34m%(levelname)s\x1B[0m: \x1B[32m%(message)s\x1B[0m',
+		level  = level
 	)
 
 def _init_dirs():
