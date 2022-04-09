@@ -1,8 +1,0 @@
-git+https://github.com/amaranth-lang/amaranth.git@main
-git+https://github.com/amaranth-lang/amaranth-boards.git@main
-git+https://github.com/amaranth-lang/amaranth-stdio.git@main
-git+https://github.com/shrine-maiden-heavy-industries/luna.git@amaranth
-Jinja2
-construct
-pyusb
-tqdm
