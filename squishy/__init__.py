@@ -10,6 +10,8 @@ except ImportError:
 
 import logging as log
 
+from rich.logging import RichHandler
+
 from .i18n import init_i18n
 
 __all__ = (
@@ -22,8 +24,12 @@ def _set_logging(args):
 		level = log.DEBUG
 
 	log.basicConfig(
-		format = '\x1B[35m[*]\x1B[0m \x1B[34m%(levelname)s\x1B[0m: \x1B[32m%(message)s\x1B[0m',
-		level  = level
+		format   = "%(message)s",
+		datefmt  = "[%X]",
+		level    = level,
+		handlers = [
+			RichHandler(rich_tracebacks = True)
+		]
 	)
 
 def _init_dirs():
@@ -47,7 +53,11 @@ def _init_dirs():
 def _main_common():
 	import json
 
+	from rich    import traceback
+
 	from .config import SQUISHY_SETTINGS_FILE, DEFAULT_SETTINGS
+
+	traceback.install()
 
 	_init_dirs()
 	init_i18n()
