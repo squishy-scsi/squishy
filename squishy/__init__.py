@@ -10,8 +10,7 @@ except ImportError:
 
 import logging as log
 
-from .i18n     import init_i18n
-from .gateware import platform
+from .i18n import init_i18n
 
 __all__ = (
 	'main',
@@ -61,22 +60,6 @@ def _common_options(parser):
 	core_options = parser.add_argument_group('Core configuration options')
 
 	core_options.add_argument(
-		'--build-dir', '-b',
-		type    = str,
-		default = config.SQUISHY_BUILD_DIR,
-		help    = 'The output directory for Squishy binaries and images'
-	)
-
-	core_options.add_argument(
-		'--platform', '-p',
-		dest    = 'hardware_platform',
-		type    = str,
-		default = list(platform.AVAILABLE_PLATFORMS.keys())[-1],
-		choices = list(platform.AVAILABLE_PLATFORMS.keys()),
-		help    = 'The target hardware platform',
-	)
-
-	core_options.add_argument(
 		'--verbose',
 		action = 'store_true',
 		help   = 'Enable verbose output during synth and pnr'
@@ -103,12 +86,6 @@ def main_gui():
 	args = parser.parse_args()
 
 	_set_logging(args)
-
-	build_dir = Path(args.build_dir)
-
-	if not build_dir.exists():
-		log.debug(f'Making build directory {args.build_dir}')
-		build_dir.mkdir()
 
 	return gui.action_main(args)
 
@@ -150,18 +127,7 @@ def main():
 
 	_set_logging(args)
 
-	build_dir = Path(args.build_dir)
-
-	if not build_dir.exists():
-		log.debug(f'Making build directory {args.build_dir}')
-		build_dir.mkdir()
-
-	if args.action not in map(lambda a: a['name'], ACTIONS):
-		log.error(f'Unknown action {args.action}')
-		log.error(f'Known actions {", ".join(map(lambda a: a["name"], ACTIONS))}')
-		return 1
-	else:
-		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
+	act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
 
 	log.info(f'Targeting platform \'{args.hardware_platform}\'')
 	return act['instance'].run(args)

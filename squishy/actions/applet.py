@@ -1,12 +1,15 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging as log
-from pathlib   import Path
+from pathlib              import Path
 
-from ..applets import SquishyApplet
-from ..config  import SQUISHY_APPLETS
-from ..collect import collect_members, predicate_applet
+from ..applets            import SquishyApplet
+from ..config             import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
+from ..collect            import collect_members, predicate_applet
 
-from .         import SquishyAction
+from ..gateware.platform  import AVAILABLE_PLATFORMS
+
+
+from .                    import SquishyAction
 
 class Applet(SquishyAction):
 	pretty_name = 'Squishy Applets'
@@ -41,8 +44,7 @@ class Applet(SquishyAction):
 		# do_simulation  = actions.add_parser('simulate', help = 'Run simulation test cases')
 		# sim_options    = do_simulation.add_argument_group('Simulation Options')
 
-		# do_build       = actions.add_parser('build', help = 'Build the gateware')
-
+		build_options  = parser.add_argument_group('Build Options')
 		pnr_options    = parser.add_argument_group('Gateware Place and Route Options')
 		synth_options  = parser.add_argument_group('Gateware Synth Options')
 
@@ -50,9 +52,63 @@ class Applet(SquishyAction):
 		uart_options   = parser.add_argument_group('Debug UART Options')
 		scsi_options   = parser.add_argument_group('SCSI Options')
 
-		# USB Options
+		parser.add_argument(
+			'--platform', '-p',
+			dest    = 'hardware_platform',
+			type    = str,
+			default = list(AVAILABLE_PLATFORMS.keys())[-1],
+			choices = list(AVAILABLE_PLATFORMS.keys()),
+			help    = 'The target hardware platform',
+		)
 
-		# WebUSB options
+		# Build Options
+		build_options.add_argument(
+			'--skip-cache',
+			action = 'store_true',
+			help   = 'Skip the cache lookup and subsequent caching of resultant bitstream'
+		)
+
+		build_options.add_argument(
+			'--build-dir', '-b',
+			type    = str,
+			default = SQUISHY_BUILD_DIR,
+			help    = 'The output directory for Squishy binaries and images'
+		)
+
+		# PnR Options
+		pnr_options.add_argument(
+			'--use-router2',
+			action = 'store_true',
+			help   = 'Use nextpnr\'s \'router1\' router rather than \'router2\''
+		)
+
+		pnr_options.add_argument(
+			'--tmg-ripup',
+			action  = 'store_true',
+			help    = 'Use the timing-driven ripup router'
+		)
+
+		pnr_options.add_argument(
+			'--detailed-timing-report',
+			action = 'store_true',
+			help   = 'Have nextpnr output a detailed net timing report'
+		)
+
+		pnr_options.add_argument(
+			'--routed-svg',
+			type    = str,
+			default = None,
+			help    = 'Write a render of the routing to an SVG'
+		)
+
+		# Synth Options
+		synth_options.add_argument(
+			'--no-abc9',
+			action = 'store_true',
+			help   = 'Disable use of Yosys\' ABC9'
+		)
+
+		# USB Options
 		usb_options.add_argument(
 			'--enable-webusb',
 			action = 'store_true',
@@ -106,39 +162,6 @@ class Applet(SquishyAction):
 			default = 'none',
 			help    = 'The parity mode for the debug UART'
 		)
-
-		## Synth / Route Options
-		pnr_options.add_argument(
-			'--use-router2',
-			action = 'store_true',
-			help   = 'Use nextpnr\'s \'router1\' router rather than \'router2\''
-		)
-
-		pnr_options.add_argument(
-			'--tmg-ripup',
-			action  = 'store_true',
-			help    = 'Use the timing-driven ripup router'
-		)
-
-		pnr_options.add_argument(
-			'--detailed-timing-report',
-			action = 'store_true',
-			help   = 'Have nextpnr output a detailed net timing report'
-		)
-
-		pnr_options.add_argument(
-			'--routed-svg',
-			type    = str,
-			default = None,
-			help    = 'Write a render of the routing to an SVG'
-		)
-
-		synth_options.add_argument(
-			'--no-abc9',
-			action = 'store_true',
-			help   = 'Disable use of Yosys\' ABC9'
-		)
-
 
 		applet_parser = parser.add_subparsers(
 			dest     = 'applet',
