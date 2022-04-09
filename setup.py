@@ -48,8 +48,6 @@ setup(
 		'Jinja2',
 		'construct>=2.10.67',
 		'pyusb>=1.2.1',
-		'tqdm>=4.62.3',
-		'prompt_toolkit>=3.0.20',
 
 		'amaranth @ git+https://github.com/amaranth-lang/amaranth.git@main',
 		'amaranth-boards @ git+https://github.com/amaranth-lang/amaranth-boards.git@main',
