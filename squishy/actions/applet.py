@@ -178,5 +178,78 @@ class Applet(SquishyAction):
 				applet.register_args(p)
 
 	def run(self, args):
-		log.warning('The applet action is currently unimplemented')
-		return 0
+		build_dir = Path(args.build_dir)
+
+		if not build_dir.exists():
+			log.debug(f'Making build directory {args.build_dir}')
+			build_dir.mkdir()
+		else:
+			log.debug(f'Using build directory {args.build_dir}')
+
+		apl = list(filter(lambda a: a['name'] == args.applet, self.applets))[0]
+
+		name   = apl['name']
+		applet = apl['instance']
+
+		if not applet.supported_platform(args.hardware_platform):
+			log.error(f'Applet {name} does not support platform {args.hardware_platform}')
+			log.error(f'Supported platform(s) {applet.hardware_rev}')
+			return 1
+
+		device = AVAILABLE_PLATFORMS[args.hardware_platform]()
+
+		pnr_opts = []
+		synth_opts = []
+
+		# PNR Opts
+		if args.use_router2:
+			pnr_opts.append('--router router2')
+		else:
+			pnr_opts.append('--router router1')
+
+		if args.tmg_ripup:
+			pnr_opts.append('--tmg-ripup')
+
+		if args.detailed_timing_report:
+			pnr_opts.append('--report timing.json')
+			pnr_opts.append('--detailed-timing-report')
+
+		if args.routed_svg is not None:
+			pnr_opts.append(f' --routed-svg {args.routed_svg}')
+
+		# Synth Opts
+		if not args.no_abc9:
+			synth_opts.append('-abc9')
+
+		uart_config = {
+			'enabled'  : args.enable_uart,
+			'baud'     : args.baud,
+			'parity'   : args.parity,
+			'data_bits': args.data_bits,
+		},
+
+		usb_config = {
+			'webusb': {
+				'enabled': args.enable_webusb,
+				'url'    : args.webusb_url,
+			}
+		},
+
+		scsi_config = {
+			'did': args.scsi_did,
+		}
+
+
+		# device.build(
+		# 	gateware,
+		# 	name = f'squishy_applet_{name}',
+		# 	build_dir = args.build_dir,
+		# 	do_build = True,
+		# 	synth_opts = synth_opts,
+		# 	verbose = args.verbose,
+		# 	nextpnr_opts = pnr_opts,
+		# 	skip_cache = args.skip_cache,
+		# )
+
+
+		return applet.run(device, args)
