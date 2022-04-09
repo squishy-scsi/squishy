@@ -220,6 +220,8 @@ class Applet(SquishyAction):
 		if not args.no_abc9:
 			synth_opts.append('-abc9')
 
+		applet.init_applet(args)
+
 		uart_config = {
 			'enabled'  : args.enable_uart,
 			'baud'     : args.baud,
