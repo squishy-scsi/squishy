@@ -25,6 +25,12 @@ class SquishyApplet(metaclass = ABCMeta):
 			raise ValueError(f'Applet `hardware_rev` must be a str or tuple of str not `{type(self.hardware_rev)!r}`')
 
 
+	def supported_platform(self, platform):
+		if isinstance(self.hardware_rev, str):
+			return platform == self.hardware_rev
+		else:
+			return platform in self.hardware_rev
+
 	def show_help(self):
 		pass
 
