@@ -34,7 +34,7 @@ protective_mbr = Struct(
 		'starting_chs'   / Const(b'\x00\x02\x00'),
 		'os_type'        / Const(b'\xEE'),
 		'ending_chs'	 / Bytes(3),
-		'starting_lba'   / Const(b'\x01\x00\x00\x00')
+		'starting_lba'   / Const(b'\x01\x00\x00\x00'),
 		'size_in_lba'    / Int32ul,
 	)),
 	'signature'      / Const(b'\x55\xAA'),
