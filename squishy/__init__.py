@@ -130,6 +130,4 @@ def main():
 	_set_logging(args)
 
 	act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
-
-	log.info(f'Targeting platform \'{args.hardware_platform}\'')
 	return act['instance'].run(args)

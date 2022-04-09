@@ -7,8 +7,6 @@ from ..config             import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
 from ..collect            import collect_members, predicate_applet
 
 from ..gateware.platform  import AVAILABLE_PLATFORMS
-
-
 from .                    import SquishyAction
 
 class Applet(SquishyAction):
@@ -179,6 +177,7 @@ class Applet(SquishyAction):
 
 	def run(self, args):
 		build_dir = Path(args.build_dir)
+		log.info(f'Targeting platform \'{args.hardware_platform}\'')
 
 		if not build_dir.exists():
 			log.debug(f'Making build directory {args.build_dir}')
