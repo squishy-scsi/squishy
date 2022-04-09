@@ -4,169 +4,156 @@ from pathlib   import Path
 
 from ..applets import SquishyApplet
 from ..config  import SQUISHY_APPLETS
+from ..collect import collect_members, predicate_applet
 
-ACTION_NAME = 'applet'
-ACTION_DESC = 'Squishy applets'
+from .         import SquishyAction
 
-def _collect_applets(pkg, prefix):
-	from pkgutil    import walk_packages
-	from importlib  import import_module
-	from inspect    import getmembers, isclass
+class Applet(SquishyAction):
+	pretty_name = 'Squishy Applets'
+	short_help  = 'Squishy applet subsystem'
+	description = 'Build and run Squishy applets'
 
-	pkg = str(pkg)
+	def _collect_all_applets(self):
+		from .. import applets
+		return [
+			*collect_members(
+				Path(applets.__path__[0]),
+				predicate_applet,
+				f'{applets.__name__}.'
+			),
+			*collect_members(
+				SQUISHY_APPLETS,
+				predicate_applet,
+				''
+			)
+		]
 
-	applets = []
+	def __init__(self):
+		super().__init__()
+		self.applets = self._collect_all_applets()
 
-	def _filter(member):
-		if isclass(member):
-			return issubclass(member, SquishyApplet) and member is not SquishyApplet
-		return False
+	def register_args(self, parser):
+		# actions = parser.add_subparsers(dest = 'gateware_action')
 
-	for _, name, is_pkg in walk_packages(path = (pkg,), prefix = prefix):
-		pkg_import = import_module(name)
-		found_applets = getmembers(pkg_import, _filter)
+		# do_verify = actions.add_parser('verify', help = 'Run formal verification')
+		# verify_options = do_verify.add_argument_group('Verification options')
 
-		if len(found_applets) > 0:
-			for applet_name, applet in found_applets:
-				applets.append({
-					'name' : applet_name.lower(),
-					'instance': applet()
-				})
+		# do_simulation  = actions.add_parser('simulate', help = 'Run simulation test cases')
+		# sim_options    = do_simulation.add_argument_group('Simulation Options')
 
-	return applets
+		# do_build       = actions.add_parser('build', help = 'Build the gateware')
 
-def _collect_all_applets():
-	from .. import applets
-	return [
-		*_collect_applets(Path(applets.__path__[0]), f'{applets.__name__}.'),
-		*_collect_applets(SQUISHY_APPLETS, '')
-	]
+		pnr_options    = parser.add_argument_group('Gateware Place and Route Options')
+		synth_options  = parser.add_argument_group('Gateware Synth Options')
 
-def parser_init(parser):
-	applets = _collect_all_applets()
+		usb_options    = parser.add_argument_group('USB Options')
+		uart_options   = parser.add_argument_group('Debug UART Options')
+		scsi_options   = parser.add_argument_group('SCSI Options')
 
+		# USB Options
 
-	# actions = parser.add_subparsers(dest = 'gateware_action')
+		# WebUSB options
+		usb_options.add_argument(
+			'--enable-webusb',
+			action = 'store_true',
+			help   = 'Enable the experimental WebUSB descriptors'
+		)
 
-	# do_verify = actions.add_parser('verify', help = 'Run formal verification')
-	# verify_options = do_verify.add_argument_group('Verification options')
+		usb_options.add_argument(
+			'--webusb-url',
+			type    = str,
+			default = 'https://localhost',
+			help    = 'The location URL to encode in the device descriptor'
+		)
 
-	# do_simulation  = actions.add_parser('simulate', help = 'Run simulation test cases')
-	# sim_options    = do_simulation.add_argument_group('Simulation Options')
+		# SCSI Options
+		scsi_options.add_argument(
+			'--scsi-did',
+			type    = int,
+			default = 0x01,
+			help    = 'The SCSI Device ID to use'
+		)
 
-	# do_build       = actions.add_parser('build', help = 'Build the gateware')
+		# UART Options
+		uart_options.add_argument(
+			'--enable-uart', '-U',
+			default = False,
+			action  = 'store_true',
+			help    = 'Enable the debug UART',
+		)
 
-	pnr_options    = parser.add_argument_group('Gateware Place and Route Options')
-	synth_options  = parser.add_argument_group('Gateware Synth Options')
+		uart_options.add_argument(
+			'--baud', '-B',
+			type    = int,
+			default = 9600,
+			help    = 'The rate at which to run the debug UART'
+		)
 
-	usb_options    = parser.add_argument_group('USB Options')
-	uart_options   = parser.add_argument_group('Debug UART Options')
-	scsi_options   = parser.add_argument_group('SCSI Options')
+		uart_options.add_argument(
+			'--data-bits', '-D',
+			type    = int,
+			default = 8,
+			help    = 'The data bits to use for the UART'
+		)
 
-	# USB Options
+		uart_options.add_argument(
+			'--parity', '-c',
+			type    = str,
+			choices = [
+				'none', 'mark', 'space'
+				'even', 'odd'
+			],
+			default = 'none',
+			help    = 'The parity mode for the debug UART'
+		)
 
-	# WebUSB options
-	usb_options.add_argument(
-		'--enable-webusb',
-		action = 'store_true',
-		help   = 'Enable the experimental WebUSB descriptors'
-	)
+		## Synth / Route Options
+		pnr_options.add_argument(
+			'--use-router2',
+			action = 'store_true',
+			help   = 'Use nextpnr\'s \'router1\' router rather than \'router2\''
+		)
 
-	usb_options.add_argument(
-		'--webusb-url',
-		type    = str,
-		default = 'https://localhost',
-		help    = 'The location URL to encode in the device descriptor'
-	)
+		pnr_options.add_argument(
+			'--tmg-ripup',
+			action  = 'store_true',
+			help    = 'Use the timing-driven ripup router'
+		)
 
-	# SCSI Options
-	scsi_options.add_argument(
-		'--scsi-did',
-		type    = int,
-		default = 0x01,
-		help    = 'The SCSI Device ID to use'
-	)
+		pnr_options.add_argument(
+			'--detailed-timing-report',
+			action = 'store_true',
+			help   = 'Have nextpnr output a detailed net timing report'
+		)
 
-	# UART Options
-	uart_options.add_argument(
-		'--enable-uart', '-U',
-		default = False,
-		action  = 'store_true',
-		help    = 'Enable the debug UART',
-	)
+		pnr_options.add_argument(
+			'--routed-svg',
+			type    = str,
+			default = None,
+			help    = 'Write a render of the routing to an SVG'
+		)
 
-	uart_options.add_argument(
-		'--baud', '-B',
-		type    = int,
-		default = 9600,
-		help    = 'The rate at which to run the debug UART'
-	)
-
-	uart_options.add_argument(
-		'--data-bits', '-D',
-		type    = int,
-		default = 8,
-		help    = 'The data bits to use for the UART'
-	)
-
-	uart_options.add_argument(
-		'--parity', '-c',
-		type    = str,
-		choices = [
-			'none', 'mark', 'space'
-			'even', 'odd'
-		],
-		default = 'none',
-		help    = 'The parity mode for the debug UART'
-	)
-
-	## Synth / Route Options
-	pnr_options.add_argument(
-		'--use-router2',
-		action = 'store_true',
-		help   = 'Use nextpnr\'s \'router1\' router rather than \'router2\''
-	)
-
-	pnr_options.add_argument(
-		'--tmg-ripup',
-		action  = 'store_true',
-		help    = 'Use the timing-driven ripup router'
-	)
-
-	pnr_options.add_argument(
-		'--detailed-timing-report',
-		action = 'store_true',
-		help   = 'Have nextpnr output a detailed net timing report'
-	)
-
-	pnr_options.add_argument(
-		'--routed-svg',
-		type    = str,
-		default = None,
-		help    = 'Write a render of the routing to an SVG'
-	)
-
-	synth_options.add_argument(
-		'--no-abc9',
-		action = 'store_true',
-		help   = 'Disable use of Yosys\' ABC9'
-	)
+		synth_options.add_argument(
+			'--no-abc9',
+			action = 'store_true',
+			help   = 'Disable use of Yosys\' ABC9'
+		)
 
 
-	applet_parser = parser.add_subparsers(
-		dest     = 'applet',
-		required = True
-	)
+		applet_parser = parser.add_subparsers(
+			dest     = 'applet',
+			required = True
+		)
 
-	if len(applets) > 0:
-		for apl in applets:
-			applet = apl['instance']
-			p = applet_parser.add_parser(
-					apl['name'],
-					help = applet.short_help,
-				)
-			applet.register_args(p)
+		if len(self.applets) > 0:
+			for apl in self.applets:
+				applet = apl['instance']
+				p = applet_parser.add_parser(
+						apl['name'],
+						help = applet.short_help,
+					)
+				applet.register_args(p)
 
-def action_main(args):
-	log.warning('The applet action is currently unimplemented')
-	return 0
+	def run(self, args):
+		log.warning('The applet action is currently unimplemented')
+		return 0
