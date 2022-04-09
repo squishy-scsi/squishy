@@ -14,7 +14,9 @@ from ..core                              import ICE40ClockDomainGenerator
 
 from .resources                          import SCSIPhyResource
 
-class SquishyRev1(LatticeICE40Platform):
+from .mixins                             import SquishyCacheMixin
+
+class SquishyRev1(SquishyCacheMixin, LatticeICE40Platform):
 	device       = 'iCE40HX8K'
 	package      = 'BG121'
 	default_clk  = 'clk'
