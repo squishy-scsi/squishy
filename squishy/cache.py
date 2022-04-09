@@ -64,7 +64,7 @@ class SquishyBitstreamCache:
 			log.debug(f'Bitstream not found in cache')
 			return None
 
-		log.info(f'Using cached bitstream {bitstream}')
+		log.debug(f'Bitstream found')
 
 		return {
 			'name'    : bitstream_name,

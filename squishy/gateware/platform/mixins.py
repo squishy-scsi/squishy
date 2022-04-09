@@ -23,6 +23,11 @@ class SquishyCacheMixin:
 				build_dir = 'build', do_build = False,
 				program_opts = None, do_program = False, **kwargs):
 
+		skip_cache = kwargs.get('skip_cache', False)
+
+		if skip_cache:
+			log.warning('Skipping cache lookup, this might take a [yellow][i]while[/][/]', extra = { 'markup': True })
+
 		with Progress(
 			SpinnerColumn(),
 			TextColumn('[progress.description]{task.description}'),
@@ -38,20 +43,25 @@ class SquishyCacheMixin:
 			if not do_build:
 				return plan
 
-			if not kwargs.get('skip_cache', False):
-				digest = plan.digest(size = 32).hex()
-				cache_obj = self._cache.get(digest)
+			digest = plan.digest(size = 32).hex()
+			cache_obj = self._cache.get(digest)
 
-				if cache_obj is None:
-					log.debug(f'Bitstream is not cached, building')
-					prod = plan.execute_local(build_dir)
-					self._cache.store(digest, prod, name)
-				else:
-					name = cache_obj['name']
-					prod = cache_obj['products']
-			else:
-				log.warning('Skipping cache lookup, this might take a [yellow][i]while[/][/]', extra = { 'markup': True })
+			if cache_obj is None or skip_cache:
+				if not skip_cache:
+					log.debug(f'Bitstream is not cached, building. This might take a [yellow][i]while[/][/]', extra = { 'markup': True })
+
 				prod = plan.execute_local(build_dir)
+				log.debug(f'Bitstream built')
+
+
+				if not skip_cache:
+					self._cache.store(digest, prod, name)
+			else:
+				name = cache_obj['name']
+				prod = cache_obj['products']
+
+				log.info(f'Using cached bitstream \'{name}\'')
+
 
 			if not do_program:
 				return prod
