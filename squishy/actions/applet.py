@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging
 
-from ..squishy_applet import SquishyApplet
-from ..config         import SQUISHY_APPLETS
+from ..applets import SquishyApplet
+from ..config  import SQUISHY_APPLETS
 
 ACTION_NAME = 'applet'
 ACTION_DESC = 'Squishy applets'
