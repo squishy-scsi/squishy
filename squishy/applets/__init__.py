@@ -10,7 +10,7 @@ class SquishyApplet(metaclass = ABCMeta):
 	'''Squishy applet base class
 
 	This is the abstract base class that is used
-	to implement any possible applet for squisy.
+	to implement any possible applet for squishy.
 
 	It represents a combination of client-side python,
 	and gateware that will run the the hardware platform.
