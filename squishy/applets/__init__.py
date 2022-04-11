@@ -163,15 +163,15 @@ class SquishyApplet(metaclass = ABCMeta):
 		raise NotImplementedError('Applets must implement this method')
 
 	@abstractmethod
-	def build(self, target, args):
+	def build(self, interfaces, platform, args):
 		'''Applet build step
 
 		Called to build the gateware for the applet.
 
 		Parameters
 		----------
-		target
-			TBD
+		interfaces : squishy.gateware.Meta
+			The gateware meta object for interfacing with the rest of the gateware.
 
 		platform : amaranth.build.plat.TemplatedPlatform
 			The hardware platform being used for synthesis.
