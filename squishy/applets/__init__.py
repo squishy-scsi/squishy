@@ -92,11 +92,29 @@ class SquishyApplet(metaclass = ABCMeta):
 		pass
 
 	def init_gui(self, main_window, args):
-		'''Initializes applet GUI component'''
+		'''Initializes applet GUI component
+
+		Parameters
+		----------
+		main_window : squishy.gui.MainWindow
+			The main GUI window.
+
+		args : argsparse.Namespace
+			Any command line arguments passed.
+		'''
 		pass
 
 	def init_repl(self, repl_ctx, args):
-		'''Initializes applet REPL component'''
+		'''Initializes applet REPL component
+
+		Parameters
+		----------
+		repl_ctx : None
+			The REPL context
+
+		args : argsparse.Namespace
+			Any command line arguments passed.
+		'''
 
 		pass
 
@@ -109,7 +127,7 @@ class SquishyApplet(metaclass = ABCMeta):
 
 		Parameters
 		----------
-		args
+		args : argsparse.Namespace
 			Any command line arguments passed.
 
 		Returns
@@ -133,7 +151,7 @@ class SquishyApplet(metaclass = ABCMeta):
 
 		Parameters
 		----------
-		parser
+		parser : argparse.ArgumentParser
 			The root argparse parser.
 
 		Raises
@@ -155,8 +173,16 @@ class SquishyApplet(metaclass = ABCMeta):
 		target
 			TBD
 
-		args
+		platform : amaranth.build.plat.TemplatedPlatform
+			The hardware platform being used for synthesis.
+
+		args : argsparse.Namespace
 			Any command line arguments passed.
+
+		Returns
+		-------
+		Union[amaranth.Elaboratable, amaranth.Module]
+			Either a complete elaboratable or a Module.
 
 		Raises
 		------
@@ -179,6 +205,11 @@ class SquishyApplet(metaclass = ABCMeta):
 
 		args
 			Any command line arguments passed.
+
+		Returns
+		-------
+		int
+			0 if run was successful, otherwise an error code.
 
 		Raises
 		------
