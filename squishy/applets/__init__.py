@@ -39,14 +39,22 @@ class SquishyApplet(metaclass = ABCMeta):
 
 	hardware_rev : str, tuple
 		A single string, or a tuple of strings for supported hardware revisions
+
+	supports_gui : bool
+		Indicates if the applet has a GUI mode.
+
+	supports_repl : bool
+		Indicates if the applet has a REPL mode.
 	'''
 
-	preview      = abstractproperty()
-	pretty_name  = abstractproperty()
-	short_help   = abstractproperty()
-	help         = '<HELP MISSING>'
-	description  = '<DESCRIPTION MISSING>'
-	hardware_rev = abstractproperty()
+	preview       = abstractproperty()
+	pretty_name   = abstractproperty()
+	short_help    = abstractproperty()
+	help          = '<HELP MISSING>'
+	description   = '<DESCRIPTION MISSING>'
+	hardware_rev  = abstractproperty()
+	supports_gui  = abstractproperty()
+	supports_repl = abstractproperty()
 
 	def __init__(self):
 		if not (
