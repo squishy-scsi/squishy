@@ -203,6 +203,9 @@ class Applet(SquishyAction):
 			log.error(f'Supported platform(s) {applet.hardware_rev}')
 			return 1
 
+		if applet.preview:
+			log.warning(f'This applet is a preview, it may be buggy or not work at all')
+
 		device = AVAILABLE_PLATFORMS[args.hardware_platform]()
 
 		pnr_opts = []
@@ -248,11 +251,14 @@ class Applet(SquishyAction):
 			'did': args.scsi_did,
 		}
 
+
 		gateware = Squishy(
 			uart_config = uart_config,
 			usb_config  = usb_config,
 			scsi_config = scsi_config
 		)
+
+
 
 		device.build(
 			gateware,
