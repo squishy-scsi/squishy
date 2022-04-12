@@ -21,7 +21,6 @@ class SquishyApplet(metaclass = ABCMeta):
 
 	Attributes
 	----------
-
 	preview : bool
 		If the applet is a preview/pre-release applet.
 
@@ -45,6 +44,7 @@ class SquishyApplet(metaclass = ABCMeta):
 
 	supports_repl : bool
 		Indicates if the applet has a REPL mode.
+
 	'''
 
 	preview       = abstractproperty()
@@ -114,6 +114,7 @@ class SquishyApplet(metaclass = ABCMeta):
 
 		args : argsparse.Namespace
 			Any command line arguments passed.
+
 		'''
 
 		pass
@@ -139,6 +140,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		------
 		NotImplementedError
 			The abstract method must be implemented by the applet
+
 		'''
 
 		raise NotImplementedError('Applets must implement this method')
@@ -158,6 +160,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		------
 		NotImplementedError
 			The abstract method must be implemented by the applet
+
 		'''
 
 		raise NotImplementedError('Applets must implement this method')
@@ -188,6 +191,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		------
 		NotImplementedError
 			The abstract method must be implemented by the applet
+
 		'''
 
 		raise NotImplementedError('Applets must implement this method')
@@ -215,6 +219,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		------
 		NotImplementedError
 			The abstract method must be implemented by the applet
+
 		'''
 
 		raise NotImplementedError('Applets must implement this method')
