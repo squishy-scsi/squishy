@@ -21,6 +21,7 @@ extensions = [
 	'sphinx.ext.githubpages',
 	'sphinx.ext.graphviz',
 	'sphinxcontrib.platformpicker',
+	'sphinx.ext.napoleon',
 	'sphinx_rtd_theme',
 	'myst_parser',
 	'sphinx_construct',
