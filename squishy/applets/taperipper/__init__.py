@@ -82,13 +82,15 @@ from .. import SquishyApplet
 # }
 
 class Taperipper(SquishyApplet):
-	preview      = True
-	pretty_name  = 'Project Taperipper'
-	description  = 'UEFI Boot from 9-track tape'
-	short_help   = description
-	hardware_rev = (
+	preview       = True
+	pretty_name   = 'Project Taperipper'
+	description   = 'UEFI Boot from 9-track tape'
+	short_help    = description
+	hardware_rev  = (
 		'rev1', 'rev2'
 	)
+	supports_gui  = False
+	supports_repl = False
 
 	def register_args(self, parser):
 		actions = parser.add_subparsers(dest = 'taperipper_actions')
