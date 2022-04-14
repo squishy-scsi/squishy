@@ -17,6 +17,7 @@ from .i18n import init_i18n
 
 __all__ = (
 	'main',
+	'main_gui',
 )
 
 def _set_logging(args):
@@ -154,3 +155,6 @@ def main():
 		return act['instance'].run(args)
 	except KeyboardInterrupt:
 		log.info('bye!')
+
+if __name__ == '__main__':
+	sys.exit(main())
