@@ -1,14 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import sys
 
 __all__ = (
-	'log',
-	'err',
-	'wrn',
-	'inf',
-	'dbg',
-	'print_table',
-
 	'ns_to_s',
 	'us_to_s',
 	'ms_to_s',
@@ -16,27 +8,22 @@ __all__ = (
 	'iec_size',
 )
 
-def print_table(lst, columns = 2):
-	for idx, itm in enumerate(lst):
-		print(f'{itm:<20}', end='\t')
-		if (idx + 1) % columns == 0:
-			print('')
-	print('')
 
-ns = 1e-9
-us = 1e-6
-ms = 1e-3
 
-def ns_to_s(val):
-	return val * ns
+NS = 1e-9
+US = 1e-6
+MS = 1e-3
 
-def us_to_s(val):
-	return val * us
+def ns_to_s(val : float) -> float:
+	return val * NS
 
-def ms_to_s(val):
-	return val * ms
+def us_to_s(val : float) -> float:
+	return val * US
 
-def iec_size(size):
+def ms_to_s(val : float) -> float:
+	return val * MS
+
+def iec_size(size : int) -> str:
 	from math import floor, log, pow
 
 	suffixes = (
