@@ -150,7 +150,7 @@ class BufferType(enum.Enum):
 	Ring       = enum.auto()
 	Contiguous = enum.auto()
 
-	def __str__(self):
+	def __str__(self) -> str:
 		if self == BufferType.Ring:
 			return 'Ring Buffer'
 		elif self == BufferType.Contiguous:
@@ -159,7 +159,7 @@ class BufferType(enum.Enum):
 			return '?'
 
 	@staticmethod
-	def from_str(s):
+	def from_str(s : str):
 		if s == 'Contiguous':
 			return BufferType.Contiguous
 		else:
@@ -172,7 +172,7 @@ class BufferBackend(enum.Enum):
 	file     = enum.auto()
 	bytes_io = enum.auto()
 
-	def __str__(self):
+	def __str__(self) -> str:
 		if self == BufferBackend.mmap:
 			return 'mmap'
 		elif self == BufferBackend.file:
@@ -183,7 +183,7 @@ class BufferBackend(enum.Enum):
 			return '?'
 
 	@staticmethod
-	def from_str(s):
+	def from_str(s : str):
 		if s == 'File':
 			return BufferBackend.file
 		elif s == 'BytesIO':
