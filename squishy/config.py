@@ -195,11 +195,12 @@ class BufferBackend(enum.Enum):
 USB_VID             = 0x1209
 USB_PID_BOOTLOADER  = 0xCA71
 USB_PID_APPLICATION = 0xCA70
-USB_MANUFACTURER    = 'aki-nyan'
+USB_MANUFACTURER    = 'Shrine Maiden Heavy Industries'
 USB_PRODUCT         = {
 	USB_PID_BOOTLOADER : 'Squishy Bootloader',
 	USB_PID_APPLICATION: 'Squishy',
 }
+# This is the temporary serial number
 USB_SERIAL_NUMBER   = 'ニャ〜'
 
 SCSI_VID            = 'Shrine-0'
