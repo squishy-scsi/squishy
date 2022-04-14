@@ -88,7 +88,11 @@ def main_gui():
 	try:
 		_main_common()
 
-		parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
+		parser = ArgumentParser(
+			formatter_class = ArgumentDefaultsHelpFormatter,
+			description     = 'Squishy SCSI Multitool GUI',
+			prog            = 'squishy-gui'
+		)
 
 		_common_options(parser)
 
@@ -120,7 +124,11 @@ def main():
 			f'{actions.__name__}.'
 		)
 
-		parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
+		parser = ArgumentParser(
+			formatter_class = ArgumentDefaultsHelpFormatter,
+			description     = 'Squishy SCSI Multitool',
+			prog            = 'squishy'
+		)
 
 		_common_options(parser)
 
