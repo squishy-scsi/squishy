@@ -11,9 +11,9 @@ from ...config                           import USB_MANUFACTURER, USB_PRODUCT, U
 from ...config                           import SCSI_VID
 
 from ..core                              import ECP5ClockDomainGenerator
-from .mixins                             import SquishyCacheMixin
+from .mixins                             import SquishyCacheMixin, SquishyProgramMixin
 
-class SquishyRev2(SquishyCacheMixin, LatticeECP5Platform):
+class SquishyRev2(SquishyCacheMixin, SquishyProgramMixin, LatticeECP5Platform):
 	device       = 'LFE5UM5G-45F'
 	speed        = '8'
 	package      = 'BG381'

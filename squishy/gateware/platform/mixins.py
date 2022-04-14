@@ -10,8 +10,15 @@ from ...cache import SquishyBitstreamCache
 
 __all__ = (
 	'SquishyCacheMixin',
+	'SquishyProgramMixin',
 )
 
+class SquishyProgramMixin:
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
+	def toolchain_program(self, products, name, **kwargs):
+		log.info(f'Programming')
 
 class SquishyCacheMixin:
 	def __init__(self, *args, **kwargs):
