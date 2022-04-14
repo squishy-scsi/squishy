@@ -5,6 +5,7 @@
 
 analyzer
 taperipper
+api
 ```
 Squishy allows for the development of modular pieces of combined code and [Amaranth HDL](https://github.com/amaranth-lang) gateware called an applet. It gives Squishy it's functionality and allows for the extension of said functionality and/or entirely new custom functionality.
 

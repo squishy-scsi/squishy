@@ -15,7 +15,6 @@ class SquishyApplet(metaclass = ABCMeta):
 	It represents a combination of client-side python,
 	and gateware that will run the the hardware platform.
 
-
 	Users can then invoke the build and execution of implemented
 	applets by name.
 
