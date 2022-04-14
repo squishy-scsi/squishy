@@ -13,6 +13,12 @@ class Analyzer(SquishyApplet):
 	supports_gui  = True
 	supports_repl = True
 
+	def init_gui(self, main_window, args):
+		pass
+
+	def init_repl(self, repl_ctx, args):
+		pass
+
 	def build(self, interfaces, platform, args):
 		pass
 
