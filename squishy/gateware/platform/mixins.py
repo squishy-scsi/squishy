@@ -34,7 +34,7 @@ class SquishyCacheMixin:
 			BarColumn(bar_width = None),
 			transient = True
 		) as progress:
-			task = progress.add_task('Building Bitstream', start=False)
+			task = progress.add_task('Elaborating Bitstream', start=False)
 
 			plan = super().build(elab, name,
 					build_dir, do_build = False,
@@ -46,6 +46,7 @@ class SquishyCacheMixin:
 			digest = plan.digest(size = 32).hex()
 			cache_obj = self._cache.get(digest)
 
+			progress.update(task, description = 'Building Bitstream')
 			if cache_obj is None or skip_cache:
 				if not skip_cache:
 					log.debug(f'Bitstream is not cached, building. This might take a [yellow][i]while[/][/]', extra = { 'markup': True })
@@ -66,4 +67,5 @@ class SquishyCacheMixin:
 			if not do_program:
 				return prod
 
+			progress.update(task, description = 'Programming Device')
 			super().toolchain_program(prod, name, **(program_opts or {}))
