@@ -9,6 +9,7 @@ except ImportError:
 	__version__ = ':nya_confused:' # :nocov:
 
 import logging as log
+import sys
 
 from rich.logging import RichHandler
 
@@ -76,7 +77,6 @@ def _common_options(parser):
 	)
 
 def main_gui():
-	import sys
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 	from pathlib  import Path
 	try:
@@ -85,59 +85,64 @@ def main_gui():
 		log.error('To use the Squishy GUI please install PySide2')
 		return 1
 
-	_main_common()
+	try:
+		_main_common()
 
-	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
+		parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
 
-	_common_options(parser)
+		_common_options(parser)
 
-	gui = GUI()
+		gui = GUI()
 
-	gui.register_args(parser)
+		gui.register_args(parser)
 
-	args = parser.parse_args()
+		args = parser.parse_args()
 
-	_set_logging(args)
+		_set_logging(args)
 
-	return gui.run(args)
+		return gui.run(args)
+	except KeyboardInterrupt:
+		log.info('bye!')
 
 def main():
-	import sys
 	from argparse  import ArgumentParser, ArgumentDefaultsHelpFormatter
 	from pathlib   import Path
 
 	from .collect  import collect_members, predicate_action
 	from .         import actions
 
-	_main_common()
+	try:
+		_main_common()
 
-	ACTIONS = collect_members(
-		Path(actions.__path__[0]),
-		predicate_action,
-		f'{actions.__name__}.'
-	)
+		ACTIONS = collect_members(
+			Path(actions.__path__[0]),
+			predicate_action,
+			f'{actions.__name__}.'
+		)
 
-	parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
+		parser = ArgumentParser(formatter_class = ArgumentDefaultsHelpFormatter, description = 'Squishy gateware generation')
 
-	_common_options(parser)
+		_common_options(parser)
 
-	action_parser = parser.add_subparsers(
-		dest = 'action',
-		required = True
-	)
+		action_parser = parser.add_subparsers(
+			dest = 'action',
+			required = True
+		)
 
-	if len(ACTIONS) > 0:
-		for act in ACTIONS:
-			action = act['instance']
-			p = action_parser.add_parser(
-					act['name'],
-					help = action.short_help,
-				)
-			action.register_args(p)
+		if len(ACTIONS) > 0:
+			for act in ACTIONS:
+				action = act['instance']
+				p = action_parser.add_parser(
+						act['name'],
+						help = action.short_help,
+					)
+				action.register_args(p)
 
-	args = parser.parse_args()
+		args = parser.parse_args()
 
-	_set_logging(args)
+		_set_logging(args)
 
-	act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
-	return act['instance'].run(args)
+		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
+		return act['instance'].run(args)
+	except KeyboardInterrupt:
+		log.info('bye!')
