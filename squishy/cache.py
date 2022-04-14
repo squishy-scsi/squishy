@@ -3,6 +3,7 @@
 import logging as log
 from pathlib            import Path
 from lzma               import LZMACompressor
+from shutil             import rmtree
 
 from amaranth.build.run import LocalBuildProducts
 
@@ -51,7 +52,7 @@ class SquishyBitstreamCache:
 
 	def flush(self):
 		log.info('Flushing applet cache')
-		self._cache_root.rmdir()
+		rmtree(self._cache_root)
 		self._cache_root.mkdir()
 
 
