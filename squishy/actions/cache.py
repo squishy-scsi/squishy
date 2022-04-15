@@ -85,7 +85,10 @@ class Cache(SquishyAction):
 		}
 
 	def register_args(self, parser):
-		actions = parser.add_subparsers(dest = 'cache_action')
+		actions = parser.add_subparsers(
+			dest     = 'cache_action',
+			required = True
+		)
 
 		cache_list = actions.add_parser(
 			'list',
