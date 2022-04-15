@@ -17,6 +17,7 @@ class SquishyDeviceContainer:
 	def __init__(self, dev, serial, **kwargs):
 		self._dev = dev
 		self.serial = serial
+		self.rev = int(dev.getbcdDevice())
 
 	def __del__(self):
 		self._dev.close()
@@ -29,7 +30,6 @@ class SquishyDeviceContainer:
 			for dev in usb_ctx.getDeviceIterator():
 				vid = dev.getVendorID()
 				pid = dev.getProductID()
-				did = dev.getbcdDevice()
 
 				if vid == USB_VID and (pid == USB_PID_APPLICATION or pid == USB_PID_BOOTLOADER):
 					try:
@@ -55,7 +55,7 @@ class SquishyDeviceContainer:
 		return SquishyHardwareDevice(self._dev, self.serial)
 
 	def __repr__(self):
-		return f'<SquishyDeviceContainer SN=\'{self.serial}\'>'
+		return f'<SquishyDeviceContainer SN=\'{self.serial}\' REV=\'{self.revision}\'>'
 
 	def __str__(self):
 		return self.__repr__()
@@ -64,12 +64,11 @@ class SquishyHardwareDevice:
 	def __init__(self, dev, serial, **kwargs):
 		self._dev   = dev
 		self.serial = serial
+		self.rev    = int(dev.getbcdDevice())
 
-	def get_rev(self):
-		return '0'
 
 	def __repr__(self):
-		return f'<SquishyHardwareDevice SN=\'{self.serial}\' ADDR={self._dev.getDeviceAddress()}>'
+		return f'<SquishyHardwareDevice SN=\'{self.serial}\' REV=\'{self.rev}\' ADDR={self._dev.getDeviceAddress()}>'
 
 	def __str__(self):
-		return f'Squishy rev{self.get_rev()} SN: {self.serial}'
+		return f'rev{self.rev} SN: {self.serial}'

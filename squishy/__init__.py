@@ -134,7 +134,7 @@ def _get_device(args):
 			log.error(f'Multiple Squishy devices with the same serial number found.')
 			return None
 		else:
-			log.info(f'Found Squishy \'{devs[0].serial}\'')
+			log.info(f'Found Squishy rev{devs[0].rev} \'{devs[0].serial}\'')
 			return devs[0].to_device()
 	elif dev_count == 1:
 		if args.device is not None:
@@ -144,7 +144,7 @@ def _get_device(args):
 		else:
 			log.warning('No serial number specified.')
 			log.warning('Using only Squishy attached to system.')
-		log.info(f'Found Squishy \'{devices[0].serial}\'')
+		log.info(f'Found Squishy rev{devices[0].rev} \'{devices[0].serial}\'')
 		return devices[0].to_device()
 	else:
 		log.error('No Squishy devices attached to system.')
