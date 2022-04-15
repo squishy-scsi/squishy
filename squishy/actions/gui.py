@@ -61,14 +61,16 @@ try:
 
 
 	class GUI(SquishyAction):
-		pretty_name = 'Squishy Interactive GUI'
-		description = 'A more user friendly, but less polished way to use squishy'
-		short_help  = description
+		pretty_name  = 'Squishy Interactive GUI'
+		description  = 'A more user friendly, but less polished way to use squishy'
+		short_help   = description
+		# This is /technically/ a lie, but the GUI handles the device selection itself
+		requires_dev = False
 
 		def register_args(self, parser):
 			pass
 
-		def run(self, args):
+		def run(self, args, dev = None):
 			gui = SquishyGui()
 			banner = fr'''
 	------------------------------------------

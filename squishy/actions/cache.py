@@ -8,9 +8,10 @@ from ..utility import iec_size
 from .         import SquishyAction
 
 class Cache(SquishyAction):
-	pretty_name = 'Squishy Cache Utility'
-	short_help  = 'Manage the Squishy cache'
-	description = 'Manages the Squishy cache'
+	pretty_name  = 'Squishy Cache Utility'
+	short_help   = 'Manage the Squishy cache'
+	description  = 'Manages the Squishy cache'
+	requires_dev = False
 
 	def _list_cache(self, args):
 		applet_size = 0
@@ -102,5 +103,5 @@ class Cache(SquishyAction):
 			help = 'clear cache'
 		)
 
-	def run(self, args):
+	def run(self, args, dev = None):
 		return self._dispatch.get(args.cache_action)(args)

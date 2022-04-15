@@ -15,6 +15,8 @@ from rich.logging import RichHandler
 
 from .i18n import init_i18n
 
+from .device import SquishyDeviceContainer
+
 __all__ = (
 	'main',
 	'main_gui',
@@ -109,6 +111,39 @@ def main_gui():
 	except KeyboardInterrupt:
 		log.info('bye!')
 
+def _get_device(args):
+	devices = list(SquishyDeviceContainer.enumerate())
+	dev_count = len(devices)
+	if dev_count > 1:
+		if args.device is None:
+			log.error(f'No device serial number specified, unable to pick from the {dev_count} devices.')
+			return None
+
+		devs = list(filter(lambda d: d.serial == args.device, devices))
+
+		if len(devs) == 0:
+			log.error(f'No device with serial number \'{args.device}\'')
+			log.info('Connected devices are:')
+			for d in devices:
+				log.info(f'\t{d.serial}')
+			return None
+		else:
+			log.info(f'Found Squishy \'{devs[0].serial}\'')
+			return devs[0].to_device()
+	elif dev_count == 1:
+		if args.device is not None:
+			if args.device != devices[0].serial:
+				log.error(f'Connected Squishy has serial of \'{devices[0].serial}\', but device serial \'{args.device}\' was specified.')
+				return None
+		else:
+			log.warning('No serial number specified.')
+			log.warning('Using only Squishy attached to system.')
+		log.info(f'Found Squishy \'{devices[0].serial}\'')
+		return devices[0].to_device()
+	else:
+		log.error('No Squishy devices attached to system.')
+		return None
+
 def main():
 	from argparse  import ArgumentParser, ArgumentDefaultsHelpFormatter
 	from pathlib   import Path
@@ -129,6 +164,12 @@ def main():
 			formatter_class = ArgumentDefaultsHelpFormatter,
 			description     = 'Squishy SCSI Multitool',
 			prog            = 'squishy'
+		)
+
+		parser.add_argument(
+			'--device', '-d',
+			type = str,
+			help = 'The serial number of the squishy to use if more than one is attached'
 		)
 
 		_common_options(parser)
@@ -152,7 +193,15 @@ def main():
 		_set_logging(args)
 
 		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
-		return act['instance'].run(args)
+
+		if act['instance'].requires_dev:
+			dev = _get_device(args)
+			if dev is not None:
+				return act['instance'].run(args, dev)
+			else:
+				log.error('No device selected, unable to continue.')
+		else:
+			return act['instance'].run(args)
 	except KeyboardInterrupt:
 		log.info('bye!')
 

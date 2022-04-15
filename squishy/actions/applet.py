@@ -12,9 +12,10 @@ from .                   import SquishyAction
 
 
 class Applet(SquishyAction):
-	pretty_name = 'Squishy Applets'
-	short_help  = 'Squishy applet subsystem'
-	description = 'Build and run Squishy applets'
+	pretty_name  = 'Squishy Applets'
+	short_help   = 'Squishy applet subsystem'
+	description  = 'Build and run Squishy applets'
+	requires_dev = True
 
 	def _collect_all_applets(self):
 		from .. import applets
@@ -183,7 +184,7 @@ class Applet(SquishyAction):
 					)
 				applet.register_args(p)
 
-	def run(self, args):
+	def run(self, args, dev = None):
 		build_dir = Path(args.build_dir)
 		log.info(f'Targeting platform \'{args.hardware_platform}\'')
 

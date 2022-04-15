@@ -7,10 +7,11 @@ __all__ = (
 )
 
 class SquishyAction(metaclass = ABCMeta):
-	pretty_name = abstractproperty()
-	short_help  = abstractproperty()
-	help        = '<HELP MISSING>'
-	description = '<DESCRIPTION MISSING>'
+	pretty_name  = abstractproperty()
+	short_help   = abstractproperty()
+	help         = '<HELP MISSING>'
+	description  = '<DESCRIPTION MISSING>'
+	requires_dev = abstractproperty()
 
 	def __init__(self):
 		pass
@@ -20,5 +21,5 @@ class SquishyAction(metaclass = ABCMeta):
 		raise NotImplementedError('Applets must implement this method')
 
 	@abstractmethod
-	def run(self, args):
+	def run(self, args, dev = None):
 		raise NotImplementedError('Applets must implement this method')
