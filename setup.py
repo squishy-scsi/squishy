@@ -47,7 +47,7 @@ setup(
 	install_requires = [
 		'Jinja2',
 		'construct>=2.10.67',
-		'pyusb>=1.2.1',
+		'libusb1>=1.8.1',
 		'rich~=12.2.0',
 
 		'amaranth @ git+https://github.com/amaranth-lang/amaranth.git@main',
