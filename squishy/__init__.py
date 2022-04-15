@@ -117,6 +117,9 @@ def _get_device(args):
 	if dev_count > 1:
 		if args.device is None:
 			log.error(f'No device serial number specified, unable to pick from the {dev_count} devices.')
+			log.info('Connected devices are:')
+			for d in devices:
+				log.info(f'\t{d.serial}')
 			return None
 
 		devs = list(filter(lambda d: d.serial == args.device, devices))
@@ -126,6 +129,9 @@ def _get_device(args):
 			log.info('Connected devices are:')
 			for d in devices:
 				log.info(f'\t{d.serial}')
+			return None
+		elif len(devs) > 1:
+			log.error(f'Multiple Squishy devices with the same serial number found.')
 			return None
 		else:
 			log.info(f'Found Squishy \'{devs[0].serial}\'')
