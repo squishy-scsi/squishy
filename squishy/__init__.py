@@ -8,14 +8,13 @@ try:
 except ImportError:
 	__version__ = ':nya_confused:' # :nocov:
 
-import logging as log
+import logging    as log
 import sys
 
 from rich.logging import RichHandler
 
-from .i18n import init_i18n
-
-from .device import SquishyDeviceContainer
+from .i18n        import init_i18n
+from .device      import SquishyDeviceContainer
 
 __all__ = (
 	'main',
@@ -28,8 +27,8 @@ def _set_logging(args):
 		level = log.DEBUG
 
 	log.basicConfig(
-		format   = "%(message)s",
-		datefmt  = "[%X]",
+		format   = '%(message)s',
+		datefmt  = '[%X]',
 		level    = level,
 		handlers = [
 			RichHandler(rich_tracebacks = True)
