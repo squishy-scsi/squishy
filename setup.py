@@ -140,7 +140,7 @@ setup(
 	],
 
 	project_urls = {
-		'Documentation': 'https://lethalbit.github.io/squishy/',
+		'Documentation': 'https://docs.scsi.moe/',
 		'Source Code'  : 'https://github.com/lethalbit/squishy',
 		'Bug Tracker'  : 'https://github.com/lethalbit/squishy/issues',
 	}

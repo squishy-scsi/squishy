@@ -28,7 +28,7 @@ The installation instructions for squishy on various platforms can be found on t
 
 ![Sachi the spirit fox](https://raw.githubusercontent.com/lethalbit/squishy/main/etc/img/sachi/electrichearts_20211013A_sachi_trans_1024.png)
 
-More information about Sachi is available on her [mascot page](https://lethalbit.github.io/squishy/mascot.html) in the documentation.
+More information about Sachi is available on her [mascot page](https://docs.scsi.moe/mascot.html) in the documentation.
 
 Sachi was designed and illustrated by the amazing [Tyson Tan (tysontan.com)](https://tysontan.com). He provides mascot design service for free and open source software projects, free of charge, under free license.
 
