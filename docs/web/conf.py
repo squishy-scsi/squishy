@@ -51,6 +51,7 @@ napoleon_custom_sections = ["Platform overrides"]
 
 import sphinx_rtd_theme
 
+html_baseurl = 'https://docs.scsi.moe'
 html_theme = 'sphinx_rtd_theme'
 html_theme_options = {
 	'collapse_navigation' : False
