@@ -18,11 +18,11 @@ The squishy hardware is your gateway into the world of old SCSI devices via a mo
 
 ## Documentation
 
-The documentation for Squishy can be found at [https://lethalbit.github.io/squishy](https://lethalbit.github.io/squishy).
+The documentation for Squishy can be found at [https://docs.scsi.moe](https://docs.scsi.moe).
 
 ## Installation
 
-The installation instructions for squishy on various platforms can be found on the [https://lethalbit.github.io/squishy/install.html](https://lethalbit.github.io/squishy/install.html) page. 
+The installation instructions for squishy on various platforms can be found on the [https://docs.scsi.moe/install.html](https://docs.scsi.moe/install.html) page. 
 
 ## Mascot - Sachi
 
