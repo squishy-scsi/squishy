@@ -1,20 +1,11 @@
-# Squishy
+[<img src="https://raw.githubusercontent.com/lethalbit/squishy/main/etc/img/sachi/electrichearts_20220323A_sachi_trans.png" align="right" width="400"/>](https://docs.scsi.moe/mascot.html)
+# Squishy: The SCSI Multitool
 
-Squishy is a toolkit for working with old SCSI devices with modern systems in a flexible manner.
+Squishy is a platform for working with old SCSI devices with modern systems in a flexible manner. It was originally developed as a one-off solution for the [taperipper](https://lethalbit.net/projects/taperipper/) project, which was to boot a modern system off of a IBM 9348-002 9-track magnetic tape drive.
 
-It was originally developed as a one-off solution for the [taperipper](https://lethalbit.net/projects/taperipper/) project, which was to boot a modern system off of a IBM 9348-002 9-track magnetic tape drive. It has since evolved into being a generic toolkit and hardware platform for SCSI.
+It has since evolved into being a generic toolkit and hardware platform for all things SCSI.
 
-## Software
-
-Squishy includes an [Amaranth HDL](https://github.com/amaranth-lang/amaranth) gateware library to allow one to add SCSI functionality to any project.
-
-In addition to the gateware library, it also includes a set of utilities for interacting with SCSI devices, hosts, and existing bus'. It has a traffic analyzer, traffic generator, protocol dissector, and other utilities to allow for an out-of-the box experience.
-
-Along with this, it has a powerful applet infrastructure that leverages the hardware and existing gateware library to develop custom applets that allow you to interact with SCSI at any layer.
-
-## Hardware
-
-The squishy hardware is your gateway into the world of old SCSI devices via a modern system. It implements the bus interface used to interact with the SCSI bus and hosts the gateware responsible for the extensible platform on which applets can be built to run as close to the SCSI layer as you want without building hardware yourself.
+Squishy is comprised of 4 core components; A gateware library built on [Amaranth](https://github.com/amaranth-lang/amaranth); A python library with various utilities and structures for dealing with SCSI data; A applet system to allow for custom gateware/python code applets to run on the hardware; And finally, the hardware itself.
 
 ## Documentation
 

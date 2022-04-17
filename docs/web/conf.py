@@ -57,7 +57,8 @@ html_theme       = 'sphinx_rtd_theme'
 html_copy_source = False
 
 html_theme_options = {
-	'collapse_navigation' : False
+	'collapse_navigation' : False,
+	'style_external_links': True,
 }
 
 html_static_path = [
