@@ -9,9 +9,10 @@ try:
 except ImportError:
 	version = ':nya_confused:' # :nocov:
 
-project = 'Squishy'
-release = version.split('+')[0]
+project   = 'Squishy'
+release   = version.split('+')[0]
 copyright = f'{datetime.date.today().year}, Aki "lethalbit" Van Ness, et. al.'
+language  = 'en'
 
 extensions = [
 	'sphinx.ext.autodoc',
@@ -32,10 +33,10 @@ source_suffix = {
 	'.md': 'markdown',
 }
 
-autodoc_member_order = 'bysource'
-
+pygments_style         = 'monokai'
+autodoc_member_order   = 'bysource'
 graphviz_output_format = 'svg'
-todo_include_todos = True
+todo_include_todos     = True
 
 intersphinx_mapping = {
 	'python'   : ('https://docs.python.org/3', None),
@@ -45,14 +46,16 @@ intersphinx_mapping = {
 }
 
 napoleon_google_docstring = False
-napoleon_numpy_docstring = True
-napoleon_use_ivar = True
-napoleon_custom_sections = ["Platform overrides"]
+napoleon_numpy_docstring  = True
+napoleon_use_ivar         = True
+napoleon_custom_sections  = ["Platform overrides"]
 
 import sphinx_rtd_theme
 
-html_baseurl = 'https://docs.scsi.moe'
-html_theme = 'sphinx_rtd_theme'
+html_baseurl     = 'https://docs.scsi.moe'
+html_theme       = 'sphinx_rtd_theme'
+html_copy_source = False
+
 html_theme_options = {
 	'collapse_navigation' : False
 }
@@ -60,6 +63,7 @@ html_theme_options = {
 html_static_path = [
 	'_static'
 ]
+
 html_css_files = [
 	'css/styles.css'
 ]
