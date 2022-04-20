@@ -1,0 +1,62 @@
+name: "Squishy Tests"
+on:
+  push: {}
+  pull_request:
+    types: [opened, reopened, synchronize]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8', '3.9', '3.10', ]
+    steps:
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Initialize Envrionment
+        shell: bash
+        env:
+          WORKSPACE: ${{ github.workspace }}
+        run: |
+          echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
+          echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          lfs: true
+          submodules: true
+      - name: Setup
+        shell: bash
+        run: |
+          sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys FA8E1301F4D3932C
+          sudo add-apt-repository 'deb http://ppa.launchpad.net/sri-csl/formal-methods/ubuntu bionic main'
+          sudo apt-get update
+          sudo apt-get install yices2
+          sudo pip3 install --upgrade pip setuptools wheel
+          pip3 install --user yowasp-yosys pytest pytest-cov
+          pip3 install --user -r ./docs/web/requirements.txt
+      - name: Preserve Wasm cache
+        uses: actions/cache@v1
+        with:
+          path: |
+            ~/.cache/wasmtime
+            ~/.cache/yowasp
+          key: ${{ runner.os }}-wasm
+      - name: Run Tests
+        shell: bash
+        run: |
+          pytest --cov=./ --cov-report=xml
+      - name: Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage/reports/
+          env_vars: OS,PYTHON
+          fail_ci_if_error: true
+          files: ./coverage1.xml,./coverage2.xml
+          flags: unittests
+          name: codecov-umbrella
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
