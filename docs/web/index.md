@@ -41,3 +41,15 @@ It is comprised of a [gateware](./library/gateware/index.md) and [python](./libr
 For a more detailed introduction to Squishy and it's components, see the [Introduction](./introduction.md) section of the documentation. Then, when you're ready visit the [Getting Started](./getting_started.md) section to get up an running.
 
 Squishy is entirely open source, and under permissive licenses. The full source code, gateware, firmware, and hardware designs are available on [GitHub](https://github.com/lethalbit/squishy).
+
+## Comparison
+
+|                       | [Squishy](https://scsi.moe) | [BlueSCSI](https://scsi.blue/) | [SCSI2SD](https://www.codesrc.com/mediawiki/index.php/SCSI2SD) | [RaSCSI](https://github.com/akuker/RASCSI) |
+|-----------------------|---------|----------|---------|--------|
+| Has a cute mascot     | Yes     | No       | No      | No     |
+| Standalone            | No<sup>†</sup> | Yes | Yes | Yes |
+| Cost                  | ?       | ~50USD   | ~98USD  | ~45USD<sup>‡</sup> |
+
+**<sup>†</sup>:** Squishy requires USB power for operation, therefore it is considered to always be tethered.
+
+**<sup>‡</sup>:** This includes only the RaSCSI interface itself, and not the needed RaspberryPi SOM as well.
