@@ -22,6 +22,10 @@ jobs:
         run: |
           echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
           echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
+          echo "AMARANTH_USE_YOSYS=builtin" >> $GITHUB_ENV
+          echo "YOSYS=yowasp-yosys" >> $GITHUB_ENV
+          echo "SBY=yowasp-sby" >> $GITHUB_ENV
+          echo "SMTBMC=yowasp-yosys-smtbmc" >> $GITHUB_ENV
       - name: Checkout
         uses: actions/checkout@v2
         with:
@@ -34,9 +38,9 @@ jobs:
           sudo add-apt-repository 'deb http://ppa.launchpad.net/sri-csl/formal-methods/ubuntu bionic main'
           sudo apt-get update
           sudo apt-get install yices2
-          sudo pip3 install --upgrade pip setuptools wheel
-          pip3 install --user yowasp-yosys pytest pytest-cov
-          pip3 install --user -r ./docs/web/requirements.txt
+          sudo pip3 install --upgrade pip setuptools wheel testresources
+          pip3 install --user yowasp-yosys coverage codecov
+          pip3 install --user -e .[toolchain]
       - name: Preserve Wasm cache
         uses: actions/cache@v1
         with:
@@ -47,16 +51,5 @@ jobs:
       - name: Run Tests
         shell: bash
         run: |
-          pytest --cov=./ --cov-report=xml
-      - name: Codecov
-        uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ./coverage/reports/
-          env_vars: OS,PYTHON
-          fail_ci_if_error: true
-          files: ./coverage1.xml,./coverage2.xml
-          flags: unittests
-          name: codecov-umbrella
-          path_to_write_report: ./coverage/codecov_report.txt
-          verbose: true
+          python -m coverage run -m unittest discover -t . -s .
+          codecov
