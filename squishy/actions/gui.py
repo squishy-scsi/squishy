@@ -8,7 +8,7 @@ def _check_pyside():
 	try:
 		import PySide2
 		return True
-	except:
+	except ImportError:
 		return False
 
 try:
@@ -23,7 +23,6 @@ try:
 	class SquishyGui:
 		def __init__(self):
 			import json
-			from os     import path
 			from signal import signal, SIGINT, SIG_DFL
 
 			QCoreApplication.setAttribute(Qt.AA_ShareOpenGLContexts)
