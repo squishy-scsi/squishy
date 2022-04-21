@@ -50,8 +50,6 @@ class USBInterface(Elaboratable):
 		self._scsi_out_fifo = scsi_out
 
 	def init_descriptors(self, platform):
-		from usb_protocol.emitters import DeviceDescriptorCollection
-
 		desc = DeviceDescriptorCollection()
 
 		# Device Descriptor
@@ -197,4 +195,3 @@ class USBInterface(Elaboratable):
 				return self._elab_rev2(platform)
 			else:
 				raise ValueError(f'Unknown platform revision {platform.revision}')
-
