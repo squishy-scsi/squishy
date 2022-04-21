@@ -5,7 +5,7 @@ from importlib  import import_module
 from inspect    import getmembers, isclass
 
 __all__ = (
-	'collect_members'
+	'collect_members',
 	'predicate_applet',
 	'predicate_action',
 	'predicate_class',
