@@ -46,8 +46,8 @@ class SquishyDeviceContainer:
 						})
 
 						hndl.close()
-					except:
-						log.error(f'Unable to open suspected squishy device')
+					except usb1.USBError:
+						log.error('Unable to open suspected squishy device')
 
 		return map(lambda d: SquishyDeviceContainer(d['dev'], d['sn']), devices)
 
@@ -55,7 +55,7 @@ class SquishyDeviceContainer:
 		return SquishyHardwareDevice(self._dev, self.serial)
 
 	def __repr__(self):
-		return f'<SquishyDeviceContainer SN=\'{self.serial}\' REV=\'{self.revision}\'>'
+		return f'<SquishyDeviceContainer SN=\'{self.serial}\' REV=\'{self.rev}\'>'
 
 	def __str__(self):
 		return self.__repr__()
