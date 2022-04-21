@@ -107,4 +107,4 @@ class Cache(SquishyAction):
 		)
 
 	def run(self, args, dev = None):
-		return self._dispatch.get(args.cache_action)(args)
+		return self._dispatch.get(args.cache_action, lambda _: 1)(args)
