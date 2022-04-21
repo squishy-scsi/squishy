@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from math         import ceil, log2
+from math        import ceil, log2
 
-from amaranth       import *
+from amaranth    import *
 
 from ....utility import us_to_s, ns_to_s
 
@@ -23,7 +23,7 @@ class SCSI2(Elaboratable):
 		return m
 
 def Device(*args, **kwargs):
-	return SCSI1(*args, is_device = True, **kwargs)
+	return SCSI2(*args, is_device = True, **kwargs)
 
 def Initiator(*args, **kwargs):
-	return SCSI1(*args, is_device = False, **kwargs)
+	return SCSI2(*args, is_device = False, **kwargs)

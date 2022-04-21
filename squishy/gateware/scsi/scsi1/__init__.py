@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from math         import ceil
+from math        import ceil
 
-from amaranth       import *
+from amaranth    import *
 
 from ....utility import us_to_s, ns_to_s
 
-from ..common     import *
+from ..common    import *
 
 
 __all__ = (
