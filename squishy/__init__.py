@@ -14,7 +14,7 @@ import sys
 from rich.logging import RichHandler
 
 from .i18n        import init_i18n
-from .device      import SquishyDeviceContainer
+from .core.device import SquishyDeviceContainer
 
 __all__ = (
 	'main',

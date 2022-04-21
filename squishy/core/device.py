@@ -6,7 +6,7 @@ import usb1
 
 from usb_protocol.types import LanguageIDs
 
-from .config  import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
+from ..config  import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
 
 __all__ = (
 	'SquishyHardwareDevice',
