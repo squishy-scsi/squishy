@@ -47,6 +47,7 @@ setup(
 	install_requires = [
 		'Jinja2',
 		'construct>=2.10.67',
+		'arrow',
 		'libusb1>=1.8.1',
 		'rich~=12.2.0',
 
