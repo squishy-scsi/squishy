@@ -13,7 +13,6 @@ import sys
 
 from rich.logging import RichHandler
 
-from .i18n        import init_i18n
 from .core.device import SquishyDeviceContainer
 
 __all__ = (
@@ -63,7 +62,6 @@ def _main_common():
 	traceback.install()
 
 	_init_dirs()
-	init_i18n()
 
 	if not SQUISHY_SETTINGS_FILE.exists():
 		with SQUISHY_SETTINGS_FILE.open('w') as cfg:
