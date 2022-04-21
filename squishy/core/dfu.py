@@ -39,7 +39,7 @@ class DFUDevice:
 						hndl = d.open()
 
 						sn = hndl.getStringDescriptor(
-							dev.getSerialNumberDescriptor(),
+							d.getSerialNumberDescriptor(),
 							LanguageIDs.ENGLISH_US
 						)
 
