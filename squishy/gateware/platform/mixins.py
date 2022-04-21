@@ -18,7 +18,7 @@ class SquishyProgramMixin:
 		super().__init__(*args, **kwargs)
 
 	def toolchain_program(self, products, name, **kwargs):
-		log.info(f'Programming')
+		log.info('Programming')
 
 class SquishyCacheMixin:
 	def __init__(self, *args, **kwargs):
@@ -56,10 +56,10 @@ class SquishyCacheMixin:
 			progress.update(task, description = 'Building Bitstream')
 			if cache_obj is None or skip_cache:
 				if not skip_cache:
-					log.debug(f'Bitstream is not cached, building. This might take a [yellow][i]while[/][/]', extra = { 'markup': True })
+					log.debug('Bitstream is not cached, building. This might take a [yellow][i]while[/][/]', extra = { 'markup': True })
 
 				prod = plan.execute_local(build_dir)
-				log.debug(f'Bitstream built')
+				log.debug('Bitstream built')
 
 
 				if not skip_cache:
