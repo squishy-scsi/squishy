@@ -29,7 +29,7 @@ __all__ = (
 rewind = 'Rewind' / BitStruct(
 	'LUN'       / BitsInteger(3),
 	'Reserved'  / BitsInteger(4),
-	'Immediate' / Flag,
+	'Immediate' / Flag(),
 	'Reserved'  / Int24ul,
 )
 
@@ -43,7 +43,7 @@ read_block_limits = 'Read Block Limits' / BitStruct(
 read = 'Read (Sequential)' / BitStruct(
 	'LUN'      / BitsInteger(3),
 	'Reserved' / BitsInteger(4),
-	'Fixed'    / Flag,
+	'Fixed'    / Flag(),
 	'TXLen'    / Int24ul,
 )
 
@@ -51,7 +51,7 @@ read = 'Read (Sequential)' / BitStruct(
 write = 'Write (Sequential)' / BitStruct(
 	'LUN'      / BitsInteger(3),
 	'Reserved' / BitsInteger(4),
-	'Fixed'    / Flag,
+	'Fixed'    / Flag(),
 	'TXLen'    / Int24ul,
 )
 
@@ -66,7 +66,7 @@ track_select = 'Track Select' / BitStruct(
 read_reverse = 'Read Reversed' / BitStruct(
 	'LUN'      / BitsInteger(3),
 	'Reserved' / BitsInteger(4),
-	'Fixed'    / Flag,
+	'Fixed'    / Flag(),
 	'TXLen'    / Int24ul,
 )
 
@@ -89,8 +89,8 @@ space = 'Space' / BitStruct(
 verify = 'Verify (Sequential)' / BitStruct(
 	'LUN'       / BitsInteger(3),
 	'Reserved'  / BitsInteger(3),
-	'ByteCmp'   / Flag,
-	'Fixed'     / Flag,
+	'ByteCmp'   / Flag(),
+	'Fixed'     / Flag(),
 	'VerifyLen' / Int24ul,
 )
 
@@ -98,7 +98,7 @@ verify = 'Verify (Sequential)' / BitStruct(
 recover_buffered_data = 'Recover Buffered Date' / BitStruct(
 	'LUN'      / BitsInteger(3),
 	'Reserved' / BitsInteger(4),
-	'Fixed'    / Flag,
+	'Fixed'    / Flag(),
 	'TXLen'    / Int24ul,
 )
 
@@ -112,7 +112,7 @@ mode_select = 'Mode Select (Sequential)' / BitStruct(
 # Group: 0 | Peripheral Device: Sequential Access | Type: Optional
 reserve = 'Reserve Unit (Sequential)' / BitStruct(
 	'LUN'           / BitsInteger(3),
-	'ThirdParty'    / Flag,
+	'ThirdParty'    / Flag(),
 	'ThirdPartyDID' / BitsInteger(3),
 	'Reserved'      / BitsInteger(25),
 )
@@ -120,7 +120,7 @@ reserve = 'Reserve Unit (Sequential)' / BitStruct(
 # Group: 0 | Peripheral Device: Sequential Access | Type: Optional
 release = 'Release Unit (Sequential)' / BitStruct(
 	'LUN'           / BitsInteger(3),
-	'ThirdParty'    / Flag,
+	'ThirdParty'    / Flag(),
 	'ThirdPartyDID' / BitsInteger(3),
 	'Reserved'      / BitsInteger(25),
 )
@@ -129,7 +129,7 @@ release = 'Release Unit (Sequential)' / BitStruct(
 erase = 'Erase (Sequential)' / BitStruct(
 	'LUN'      / BitsInteger(3),
 	'Reserved' / BitsInteger(4),
-	'Long'     / Flag,
+	'Long'     / Flag(),
 	'Reserved' / Int24ul,
 )
 
@@ -144,15 +144,15 @@ mode_sense = 'Mode Sense (Sequential)' / BitStruct(
 load_unload = 'Load/Unload' / BitStruct(
 	'LUN'       / BitsInteger(3),
 	'Reserved'  / BitsInteger(4),
-	'Immediate' / Flag,
+	'Immediate' / Flag(),
 	'Reserved'  / BitsInteger(22),
-	'ReTension' / Flag,
-	'Load'      / Flag,
+	'ReTension' / Flag(),
+	'Load'      / Flag(),
 )
 
 # Group: 0 | Peripheral Device: Sequential Access | Type: Optional
 prevent_allow_media_removal = 'Prevent/Allow Media Removal (Sequential)' / BitStruct(
 	'LUN'      / BitsInteger(3),
 	'Reserved' / BitsInteger(28),
-	'Prevent'  / Flag,
+	'Prevent'  / Flag(),
 )
