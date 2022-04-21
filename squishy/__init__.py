@@ -80,7 +80,6 @@ def _common_options(parser):
 
 def main_gui():
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
-	from pathlib  import Path
 	try:
 		from .actions.gui import GUI
 	except ImportError:
@@ -130,7 +129,7 @@ def _get_device(args):
 				log.info(f'\t{d.serial}')
 			return None
 		elif len(devs) > 1:
-			log.error(f'Multiple Squishy devices with the same serial number found.')
+			log.error('Multiple Squishy devices with the same serial number found.')
 			return None
 		else:
 			log.info(f'Found Squishy rev{devs[0].rev} \'{devs[0].serial}\'')
