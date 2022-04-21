@@ -1,11 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging as log
-from pathlib   import Path
+from pathlib      import Path
 
-from ..cache   import SquishyBitstreamCache
-from ..config  import SQUISHY_CACHE, SQUISHY_APPLET_CACHE, SQUISHY_BUILD_DIR
-from ..utility import iec_size
-from .         import SquishyAction
+from ..core.cache import SquishyBitstreamCache
+from ..config     import SQUISHY_CACHE, SQUISHY_APPLET_CACHE, SQUISHY_BUILD_DIR
+from ..utility    import iec_size
+from .            import SquishyAction
 
 class Cache(SquishyAction):
 	pretty_name  = 'Squishy Cache Utility'

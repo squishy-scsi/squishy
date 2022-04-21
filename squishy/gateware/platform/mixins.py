@@ -6,7 +6,7 @@ from rich.progress import (
 	TextColumn
 )
 
-from ...cache import SquishyBitstreamCache
+from ...core.cache import SquishyBitstreamCache
 
 __all__ = (
 	'SquishyCacheMixin',

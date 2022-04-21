@@ -7,7 +7,7 @@ from shutil             import rmtree
 
 from amaranth.build.run import LocalBuildProducts
 
-from .config            import SQUISHY_APPLET_CACHE
+from ..config            import SQUISHY_APPLET_CACHE
 
 __all__ = (
 	'SquishyBitstreamCache',
