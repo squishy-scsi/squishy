@@ -8,8 +8,6 @@ __all__ = (
 	'iec_size',
 )
 
-
-
 NS = 1e-9
 US = 1e-6
 MS = 1e-3
@@ -27,7 +25,7 @@ def iec_size(size : int) -> str:
 	from math import floor, log, pow
 
 	suffixes = (
-		  'B', 'KiB', 'MiB',
+		'B'  , 'KiB', 'MiB',
 		'GiB', 'TiB', 'PiB',
 		'EiB', 'ZiB', 'YiB',
 	)
