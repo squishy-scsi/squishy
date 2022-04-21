@@ -34,7 +34,7 @@
      <item>
       <widget class="QLabel" name="label">
        <property name="text">
-        <string>## Squishy: The SCSI Mutli-tool</string>
+        <string>## Squishy: The SCSI Mutlitool</string>
        </property>
        <property name="textFormat">
         <enum>Qt::MarkdownText</enum>
