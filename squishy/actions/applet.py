@@ -4,7 +4,7 @@ from pathlib              import Path
 
 from ..applets           import SquishyApplet
 from ..config            import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
-from ..collect           import collect_members, predicate_applet
+from ..core.collect           import collect_members, predicate_applet
 
 from ..gateware          import Squishy
 from ..gateware.platform import AVAILABLE_PLATFORMS
@@ -256,7 +256,7 @@ class Applet(SquishyAction):
 		gateware = Squishy(
 			uart_config = uart_config,
 			usb_config  = usb_config,
-			scsi_config = scsi_config
+			scsi_config = scsi_config,
 		)
 
 

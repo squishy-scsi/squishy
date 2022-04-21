@@ -13,13 +13,13 @@ __all__ = (
 
 
 def predicate_applet(member):
-	from .applets import SquishyApplet
+	from ..applets import SquishyApplet
 	if isclass(member):
 		return issubclass(member, SquishyApplet) and member is not SquishyApplet
 	return False
 
 def predicate_action(member):
-	from .actions import SquishyAction
+	from ..actions import SquishyAction
 	if isclass(member):
 		return issubclass(member, SquishyAction) and member is not SquishyAction
 	return False

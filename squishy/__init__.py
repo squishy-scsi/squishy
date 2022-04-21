@@ -149,11 +149,11 @@ def _get_device(args):
 		return None
 
 def main():
-	from argparse  import ArgumentParser, ArgumentDefaultsHelpFormatter
-	from pathlib   import Path
+	from argparse      import ArgumentParser, ArgumentDefaultsHelpFormatter
+	from pathlib       import Path
 
-	from .collect  import collect_members, predicate_action
-	from .         import actions
+	from .core.collect import collect_members, predicate_action
+	from .             import actions
 
 	try:
 		_main_common()
