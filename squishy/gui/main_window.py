@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from random               import choice
+from pathlib              import Path
 
 from PySide2.QtCore       import *
 from PySide2.QtWidgets    import *
@@ -71,7 +72,7 @@ class MainWindow:
 		file = QFileDialog.getOpenFileName(
 				self.window,
 				'Open Capture',
-				path.expanduser('~'),
+				Path.home(),
 				'Packet Captures (*.pcapng, *.pcapng.gz)'
 			)
 
@@ -79,7 +80,7 @@ class MainWindow:
 		file = QFileDialog.getSaveFileName(
 				self.window,
 				'Save Capture',
-				path.expanduser('~'),
+				Path.home(),
 				'Packet Captures (*.pcapng, *.pcapng.gz)'
 			)
 

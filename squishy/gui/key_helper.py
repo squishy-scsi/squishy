@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 __all__ = (
-	'SquishyGuiKey'
+	'SquishyGuiKey',
 )
 
 from PySide2.QtCore import Qt

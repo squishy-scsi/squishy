@@ -1,5 +1,4 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from os import path
 
 from PySide2.QtCore    import *
 from PySide2.QtWidgets import *

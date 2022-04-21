@@ -7,7 +7,7 @@ from PySide2.QtWidgets import *
 from .hotkey_select    import HotkeySelect
 
 __all__ = (
-	'HotkeyEdit'
+	'HotkeyEdit',
 )
 
 
