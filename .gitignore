@@ -15,3 +15,5 @@ _build/
 \#auto_saved_files\#
 .eggs/
 *.egg-info/
+.coverage
+htmlcov/
