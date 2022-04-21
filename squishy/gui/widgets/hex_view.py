@@ -338,7 +338,7 @@ class HexViewWidget(QTableView):
 			return self.colorMap['zero']
 		elif byte == 0xFF:
 			return self.colorMap['ones']
-		elif byte <=0x20:
+		elif byte <= 0x20:
 			return self.colorMap['low']
 		elif byte >= 0x7F:
 			return self.colorMap['high']
