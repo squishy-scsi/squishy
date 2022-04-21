@@ -47,7 +47,7 @@ class SquishyBitstreamCache:
 
 		if do_init:
 			if not (self._cache_root / 'ca').exists():
-				log.debug(f'Initializing bitstream cache tree')
+				log.debug('Initializing bitstream cache tree')
 				self._init_cache_dir(self._cache_root, tree_depth)
 
 	def flush(self):
@@ -64,10 +64,10 @@ class SquishyBitstreamCache:
 		log.debug(f'Looking up bitstream \'{bitstream_name}\' in {cache_dir}')
 
 		if not bitstream.exists():
-			log.debug(f'Bitstream not found in cache')
+			log.debug('Bitstream not found in cache')
 			return None
 
-		log.debug(f'Bitstream found')
+		log.debug('Bitstream found')
 
 		return {
 			'name'    : bitstream_name,
