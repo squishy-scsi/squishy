@@ -126,11 +126,11 @@ def SCSIPhyResource(*args,
 		assert rmt is not None
 		assert dlyd is not None
 
-		io.append(Subsignal('id',      *TransceiverPairs(scsi_id, assert_width = 4))),
-		io.append(Subsignal('led',     *TransceiverPairs(led,     assert_width = 1))),
-		io.append(Subsignal('spindle', *TransceiverPairs(spindle, assert_width = 1))),
-		io.append(Subsignal('rmt',     *TransceiverPairs(rmt,     assert_width = 1))),
-		io.append(Subsignal('dlyd',    *TransceiverPairs(dlyd,    assert_width = 1))),
+		io.append(Subsignal('id',      *TransceiverPairs(*scsi_id, assert_width = 4))),
+		io.append(Subsignal('led',     *TransceiverPairs(*led,     assert_width = 1))),
+		io.append(Subsignal('spindle', *TransceiverPairs(*spindle, assert_width = 1))),
+		io.append(Subsignal('rmt',     *TransceiverPairs(*rmt,     assert_width = 1))),
+		io.append(Subsignal('dlyd',    *TransceiverPairs(*dlyd,    assert_width = 1))),
 
 	if attrs is not None:
 		io.append(attrs)
