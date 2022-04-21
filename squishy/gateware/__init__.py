@@ -63,7 +63,7 @@ class Squishy(Elaboratable):
 		# Module References
 		self.spi  = SPIInterface()
 		if self.uart_config['enabled']:
-			self.uart = UARTPhy(
+			self.uart = UARTInterface(
 				config    = self.uart_config,
 				wb_config = self._wb_cfg
 			)
