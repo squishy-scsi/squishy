@@ -17,3 +17,4 @@ _build/
 *.egg-info/
 .coverage
 htmlcov/
+.vscode/
