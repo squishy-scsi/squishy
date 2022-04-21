@@ -26,7 +26,7 @@ class SquishyCacheMixin:
 
 		self._cache = SquishyBitstreamCache()
 
-	def build(self, elab, name = 'top',
+	def build(self, elaboratable, name = 'top',
 				build_dir = 'build', do_build = False,
 				program_opts = None, do_program = False, **kwargs):
 
@@ -43,7 +43,7 @@ class SquishyCacheMixin:
 		) as progress:
 			task = progress.add_task('Elaborating Bitstream', start=False)
 
-			plan = super().build(elab, name,
+			plan = super().build(elaboratable, name,
 					build_dir, do_build = False,
 					program_opts = program_opts, do_program = False, **kwargs)
 
