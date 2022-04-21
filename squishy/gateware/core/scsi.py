@@ -2,7 +2,7 @@
 from math                      import ceil, log2
 
 
-from ...utility              import ns_to_s
+from ...misc.utility           import ns_to_s
 
 from amaranth                  import *
 from amaranth_soc.wishbone     import Interface

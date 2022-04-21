@@ -102,3 +102,6 @@ class DFUDevice:
 
 	def __del__(self):
 		self._dev.close()
+
+if __name__ == '__main__':
+	print(DFUDevice.enumerate(vid = 0x1209, pid = 0xCA70, boot_vid = 0x1209, boot_pid = 0xCA71))
