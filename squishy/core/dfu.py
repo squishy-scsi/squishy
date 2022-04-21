@@ -46,8 +46,8 @@ class DFUDevice:
 						hndl.close()
 
 						return sn == serial
-					except:
-						log.error(f'Unable to open device')
+					except usb1.USBError:
+						log.error('Unable to open device')
 						return False
 
 				devs = filter(match_sn, devs)
