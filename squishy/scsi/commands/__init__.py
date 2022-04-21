@@ -142,11 +142,11 @@ command = 'SCSI Command' / Struct(
 				HexDump(Bytes(8)),
 			),
 			# Opcodes 0b010XXXXX
-			group_code.Group2: 'Reserved'            / Pass(),
+			group_code.Group2: 'Reserved'            / Pass,
 			# Opcodes 0b011XXXXX
-			group_code.Group3: 'Reserved'            / Pass(),
+			group_code.Group3: 'Reserved'            / Pass,
 			# Opcodes 0b100XXXXX
-			group_code.Group4: 'Reserved'            / Pass(),
+			group_code.Group4: 'Reserved'            / Pass,
 			# Opcodes 0b101XXXXX
 			group_code.Group2: 'Twelve-byte Command' / Switch(
 				this.Opcode.Parsed.Command, {
@@ -155,17 +155,17 @@ command = 'SCSI Command' / Struct(
 				HexDump(Bytes(10)),
 			),
 			# Opcodes 0b110XXXXX
-			group_code.Group2: 'Vendor'              / Pass(),
+			group_code.Group2: 'Vendor'              / Pass,
 			# Opcodes 0b111XXXXX
-			group_code.Group2: 'Vendor'              / Pass(),
+			group_code.Group2: 'Vendor'              / Pass,
 		},
-		Pass()
+		Pass
 	),
 	'Control' / BitStruct(
 		'Vendor'   / BitsInteger(2),
 		'Reserved' / BitsInteger(4),
-		'Flag'     / Flag(),
-		'Link'     / Flag(),
+		'Flag'     / Flag,
+		'Link'     / Flag,
 	),
 )
 """ SCSI Command Structure """

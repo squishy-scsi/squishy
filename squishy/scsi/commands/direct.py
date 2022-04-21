@@ -37,8 +37,8 @@ rezero_unit = 'Re-Zero Unit' / BitStruct(
 
 format_unit = 'Format Unit' / BitStruct(
 	'LUN'           / BitsInteger(3),
-	'FormatData'    / Flag(),
-	'CompareList'   / Flag(),
+	'FormatData'    / Flag,
+	'CompareList'   / Flag,
 	'DefectListFmt' / BitsInteger(3),
 	'Vendor'        / Int8ul,
 	'Interleave'    / Int16ul,
@@ -81,9 +81,9 @@ mode_select = 'Mode Select' / BitStruct(
 
 reserve = 'Reserve' / BitStruct(
 	'LUN'           / BitsInteger(3),
-	'ThirdParty'    / Flag(),
+	'ThirdParty'    / Flag,
 	'ThirdPartyDID' / BitsInteger(3),
-	'Extent'        / Flag(),
+	'Extent'        / Flag,
 	'ReservationID' / Int8ul,
 	'ExtentListLen' / Int16ul,
 )
@@ -91,9 +91,9 @@ reserve = 'Reserve' / BitStruct(
 
 release = 'Release' / BitStruct(
 	'LUN'           / BitsInteger(3),
-	'ThirdParty'    / Flag(),
+	'ThirdParty'    / Flag,
 	'ThirdPartyDID' / BitsInteger(3),
-	'Extent'        / Flag(),
+	'Extent'        / Flag,
 	'ReservationID' / Int8ul,
 	'Reserved'      / Int16ul,
 )
@@ -109,35 +109,35 @@ mode_sense = 'Mode Sense' / BitStruct(
 start_stop_unit = 'Start/Stop Unit' / BitStruct(
 	'LUN'       / BitsInteger(3),
 	'Reserved'  / BitsInteger(4),
-	'Immediate' / Flag(),
+	'Immediate' / Flag,
 	'Reserved'  / BitsInteger(23),
-	'Start'     / Flag(),
+	'Start'     / Flag,
 )
 """ Start/Stop Unit - Group: 0 | Peripheral Device: Direct Access | Type: Optional """
 
 prevent_allow_media_removal = 'Prevent/Allow Media Removal' / BitStruct(
 	'LUN'      / BitsInteger(3),
 	'Reserved' / BitsInteger(28),
-	'Prevent'  / Flag(),
+	'Prevent'  / Flag,
 )
 """ Prevent/Allow Media Removal - Group: 0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional """
 
 read_capacity = 'Read Capacity' / BitStruct(
 	'LUN'          / BitsInteger(3),
 	'Reserved'     / BitsInteger(4),
-	'RelativeAddr' / Flag(),
+	'RelativeAddr' / Flag,
 	'LBA'          / Int32ul,
 	'Reserved'     / Int16ul,
 	'Vendor'       / BitsInteger(2),
 	'Reserved'     / BitsInteger(5),
-	'PMI'          / Flag(),
+	'PMI'          / Flag,
 )
 """ Read Capacity - Group: 1 | Peripheral Device: Direct Access, WORM, RO DA | Type: Extended """
 
 read = 'Read (Direct Access)' / BitStruct(
 	'LUN'          / BitsInteger(3),
 	'Reserved'     / BitsInteger(4),
-	'RelativeAddr' / Flag(),
+	'RelativeAddr' / Flag,
 	'LBA'          / Int32ul,
 	'Reserved'     / Int8ul,
 	'TXLen'        / Int16ul,
@@ -147,7 +147,7 @@ read = 'Read (Direct Access)' / BitStruct(
 write = 'Write (Direct Access)' / BitStruct(
 	'LUN'          / BitsInteger(3),
 	'Reserved'     / BitsInteger(4),
-	'RelativeAddr' / Flag(),
+	'RelativeAddr' / Flag,
 	'LBA'          / Int32ul,
 	'Reserved'     / Int8ul,
 	'TXLen'        / Int16ul,
@@ -165,8 +165,8 @@ seek = 'Seek (Direct Access)' / BitStruct(
 write_and_verify = 'Write and Verify' / BitStruct(
 	'LUN'          / BitsInteger(3),
 	'Reserved'     / BitsInteger(3),
-	'ByteCheck'    / Flag(),
-	'RelativeAddr' / Flag(),
+	'ByteCheck'    / Flag,
+	'RelativeAddr' / Flag,
 	'LBA'          / Int32ul,
 	'Reserved'     / Int8ul,
 	'TXLen'        / Int16ul,
@@ -176,8 +176,8 @@ write_and_verify = 'Write and Verify' / BitStruct(
 verify = 'Verify' / BitStruct(
 	'LUN'          / BitsInteger(3),
 	'Reserved'     / BitsInteger(3),
-	'ByteCheck'    / Flag(),
-	'RelativeAddr' / Flag(),
+	'ByteCheck'    / Flag,
+	'RelativeAddr' / Flag,
 	'LBA'          / Int32ul,
 	'Reserved'     / Int8ul,
 	'VerifLen'     / Int16ul,
@@ -186,10 +186,10 @@ verify = 'Verify' / BitStruct(
 
 search_data = 'Search Data' / BitStruct(
 	'LUN'          / BitsInteger(3),
-	'Invert'       / Flag(),
+	'Invert'       / Flag,
 	'Reserved'     / BitsInteger(2),
-	'SpannedData'  / Flag(),
-	'RelativeAddr' / Flag(),
+	'SpannedData'  / Flag,
+	'RelativeAddr' / Flag,
 	'LBA'          / Int32ul,
 	'Reserved'     / Int8ul,
 	'TXLen'        / Int16ul,
@@ -199,8 +199,8 @@ search_data = 'Search Data' / BitStruct(
 set_limits = 'Set Limits' / BitStruct(
 	'LUN'          / BitsInteger(3),
 	'Reserved'     / BitsInteger(3),
-	'ReadInhibit'  / Flag(),
-	'WriteInhibit' / Flag(),
+	'ReadInhibit'  / Flag,
+	'WriteInhibit' / Flag,
 	'LBA'          / Int32ul,
 	'Reserved'     / Int8ul,
 	'BlkCount'     / Int16ul,
