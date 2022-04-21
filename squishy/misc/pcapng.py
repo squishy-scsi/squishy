@@ -1,11 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from io import BytesIO, SEEK_END, SEEK_SET
-import gzip
 
 from construct import *
 
 # We don't have a PEN, and don't want to get one
-# so we're stealing SGI's
+# so we're stealing SGIs
 block_pen = 59
 
 # We only have the user link types specified, we don't need the other as we
@@ -16,7 +15,7 @@ block_pen = 59
 #  * user_01 - SCSI-2
 #  * user_02 - SCSI-3
 #
-# Details on if it is single ended or differnential, as well as if
+# Details on if it is single ended or differential, as well as if
 # it is 50, 68, or 80 pin is to be stored at metadata
 #
 # eventually we need to submit these as proper libpcap `LINKTYPE_`'s
@@ -42,14 +41,14 @@ link_type = 'Link Type' / Enum(Int16ul,
 )
 
 # Because of the limitations of some of the blocks
-# in the pcapng format, as well as the strange decisons
+# in the pcapng format, as well as the strange decisions
 # made with regards to custom blocks, we have a multi-function
 # custom block which is set to be copyied, for more details
 # see the `squishy_meta` block structure.
 block_type = 'Block Type' / Enum(Int32ul,
 	section_header  = 0x0A0D0D0A,
 	interface       = 0x00000001,
-    interface_stats = 0x00000005,
+	interface_stats = 0x00000005,
 	enhanced_packet = 0x00000006,
 
 	custom          = 0x00000BAD,
@@ -242,39 +241,39 @@ interface_statistics_block = 'Interface Statistics' / Struct(
 
 
 squishy_bus_type = 'Bus Type' / Enum(BitsInteger(3),
-	unkown = 0b000,
-	hvd    = 0b001,
-	lvd    = 0b010,
-	se     = 0b011,
-	res0   = 0b100,
-	res1   = 0b101,
-	res2   = 0b110,
-	res3   = 0b111,
+	unknown = 0b000,
+	hvd     = 0b001,
+	lvd     = 0b010,
+	se      = 0b011,
+	res0    = 0b100,
+	res1    = 0b101,
+	res2    = 0b110,
+	res3    = 0b111,
 )
 
 squishy_con_type = 'Connection Type' / Enum(BitsInteger(3),
-	unkown = 0b000,
-	fifty  = 0b001,
-	sixty  = 0b010,
-	eighty = 0b011,
-	res0   = 0b100,
-	res1   = 0b101,
-	res2   = 0b110,
-	res3   = 0b111,
+	unknown = 0b000,
+	fifty   = 0b001,
+	sixty   = 0b010,
+	eighty  = 0b011,
+	res0    = 0b100,
+	res1    = 0b101,
+	res2    = 0b110,
+	res3    = 0b111,
 )
 
 squishy_scsi_ver = 'SCSI Version' / Enum(BitsInteger(2),
-	unkown = 0b00,
-	scsi1  = 0b01,
-	scsi2  = 0b10,
-	scsi3  = 0b11,
+	unknown = 0b00,
+	scsi1   = 0b01,
+	scsi2   = 0b10,
+	scsi3   = 0b11,
 )
 
 squishy_mode = 'Squishy Mode' / Enum(Int8ul,
-	unkown    = 0x00,
-	tap       = 0x01,
-	device    = 0x02,
-	initiator = 0x03,
+	unknown    = 0x00,
+	tap        = 0x01,
+	device     = 0x02,
+	initiator  = 0x03,
 )
 
 # bus objects
@@ -298,7 +297,7 @@ squishy_meta = 'Squishy Meta' / Aligned(4, Struct(
 		'Minor' / BitsInteger(5), 			#  * Minor: 0..31
 	),
 	'BusMetadata'    / Struct(				# Bus Metadata
-		'BusInfo' / BitStruct(				#  * Attatched SCSI Bus Info
+		'BusInfo' / BitStruct(				#  * Attached SCSI Bus Info
 			'BusType' / squishy_bus_type,
 			'ConType' / squishy_con_type,
 			'SCSIVer' / squishy_scsi_ver,
@@ -323,7 +322,8 @@ pcapng_block = 'Block' / Struct(
 		RepeatUntil(
 			lambda x, _, __: x.Code == option_type.end,
 			option
-	)),
+		)
+	),
 	'Length2' / Hex(Int32ul),
 )
 
