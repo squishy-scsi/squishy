@@ -56,7 +56,7 @@ setup(
 		'amaranth-stdio @ git+https://github.com/amaranth-lang/amaranth-stdio.git@main',
 
 		'usb_protocol @ git+https://github.com/shrine-maiden-heavy-industries/python-usb-protocol@main',
-		'luna @ git+https://github.com/shrine-maiden-heavy-industries/luna.git@main#egg=luna-0.1.0.dev0',
+		'luna @ git+https://github.com/shrine-maiden-heavy-industries/luna.git@main',
 	],
 
 	packages = find_packages(),
