@@ -20,12 +20,13 @@ __all__ = (
 	'main_gui',
 )
 
-def _set_logging(args):
+def _set_logging(args = None):
 	level = log.INFO
-	if args.verbose:
+	if args is not None and args.verbose:
 		level = log.DEBUG
 
 	log.basicConfig(
+		force    = True,
 		format   = '%(message)s',
 		datefmt  = '[%X]',
 		level    = level,
@@ -62,6 +63,7 @@ def _main_common():
 	traceback.install()
 
 	_init_dirs()
+	_set_logging()
 
 	if not SQUISHY_SETTINGS_FILE.exists():
 		with SQUISHY_SETTINGS_FILE.open('w') as cfg:
