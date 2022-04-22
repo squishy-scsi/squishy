@@ -1,7 +1,13 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from unittest import TestCase
+from functools       import wraps
+from unittest        import TestCase
 
-from amaranth   import Signal
+from math            import ceil
+
+from amaranth        import Signal
+from pathlib         import Path
+from amaranth.sim    import Simulator
+from amaranth.hdl.ir import Fragment
 
 __all__ = (
 	'SquishyGatewareTestCase',
@@ -35,10 +41,6 @@ class SquishyGatewareTestCase(TestCase):
 			self.sim.run()
 
 	def setUp(self):
-		from pathlib         import Path
-		from amaranth.sim    import Simulator
-		from amaranth.hdl.ir import Fragment
-
 		self.dut     = Fragment.get(self._dut, platform = self.platform)
 		self.sim     = Simulator(self.dut)
 		if self.out_dir is None:
@@ -56,7 +58,7 @@ class SquishyGatewareTestCase(TestCase):
 		yield Signal()
 
 	def wait_for(self, time):
-		c = math.ceil(time / self.clk_period)
+		c = ceil(time / self.clk_period)
 		yield from self.step(c)
 
 	@staticmethod
@@ -73,22 +75,22 @@ class SquishyGatewareTestCase(TestCase):
 			yield
 
 	@staticmethod
-	def wait_until_high(strb, *, timeout = None):
+	def wait_until_high(strobe, *, timeout = None):
 		elapsed = 0
-		while not (yield strb):
+		while not (yield strobe):
 			yield
 			elapsed += 1
 			if timeout and elapsed > timeout:
-				raise RuntimeError(f'Timeout waiting for \'{strb.name}\' to go high')
+				raise RuntimeError(f'Timeout waiting for \'{strobe.name}\' to go high')
 
 	@staticmethod
-	def wait_until_low(strb, *, timeout = None):
+	def wait_until_low(strobe, *, timeout = None):
 		elapsed = 0
-		while (yield strb):
+		while (yield strobe):
 			yield
 			elapsed += 1
 			if timeout and elapsed > timeout:
-				raise RuntimeError(f'Timeout waiting for \'{strb.name}\' to go low')
+				raise RuntimeError(f'Timeout waiting for \'{strobe.name}\' to go low')
 
 def sim_test(func, *, domain = 'sync', freq = 1e8):
 	def _run(self):
