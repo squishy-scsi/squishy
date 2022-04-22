@@ -47,6 +47,11 @@ Squishy is entirely open source, and under permissive licenses. The full source 
 |                       | [Squishy](https://scsi.moe) | [BlueSCSI](https://scsi.blue/) | [SCSI2SD](https://www.codesrc.com/mediawiki/index.php/SCSI2SD) | [RaSCSI](https://github.com/akuker/RASCSI) |
 |-----------------------|---------|----------|---------|--------|
 | Has a cute mascot     | Yes     | No       | No      | No     |
+| Device Emulation      | Yes     | Yes      | Yes     | Yes    |
+| Non-Storage Emulation | Yes     | No       | No      | Yes    |
+| Initiator Emulation   | Yes     | No       | No      | Yes    |
+| Passive Bus Tapping   | Yes     | No       | No      | Yes    |
+| Fully Open Source     | Yes     | No       | No      | No     |
 | Standalone            | No<sup>†</sup> | Yes | Yes | Yes |
 | Cost                  | ?       | ~50USD   | ~98USD  | ~45USD<sup>‡</sup> |
 
