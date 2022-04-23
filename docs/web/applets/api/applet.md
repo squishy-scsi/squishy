@@ -1,8 +1,11 @@
-# Applet API
+# `squishy.applets.SquishyApplet`
 
 ```{toctree}
 :hidden:
+```
 
+```{todo}
+Flesh this out
 ```
 
 ```{eval-rst}
