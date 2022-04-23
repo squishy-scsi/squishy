@@ -6,7 +6,7 @@
 rev1
 rev2
 mixins
-resources/index.md
+resources
 ```
 
 ```{todo}
