@@ -13,21 +13,66 @@ __all__ = (
 
 
 def predicate_applet(member):
+	'''Applet predicate
+
+	This predicate filters on if the member is a sub class of :py:class:`SquishyApplet`
+	and not an instance of that class itself.
+
+	Returns
+	-------
+	bool
+		If the predicate matches.
+
+	'''
+
 	from ..applets import SquishyApplet
 	if isclass(member):
 		return issubclass(member, SquishyApplet) and member is not SquishyApplet
 	return False
 
 def predicate_action(member):
+	'''Action predicate
+
+	This predicate filters on if the member is a sub class of :py:class:`SquishyAction`
+	and not an instance of that class itself.
+
+	Returns
+	-------
+	bool
+		If the predicate matches.
+	'''
+
 	from ..actions import SquishyAction
 	if isclass(member):
 		return issubclass(member, SquishyAction) and member is not SquishyAction
 	return False
 
 def predicate_class(member):
+	'''Class predicate
+
+	This predicate filters on if the member is a class.
+
+	Returns
+	-------
+	bool
+		If the predicate matches.
+	'''
+
 	return isclass(member)
 
 def collect_members(pkg, pred, prefix = '', make_instance = True):
+	'''Collect members from package
+
+	This method collects list of members from a given package, and optionally creates
+	and instance of them.
+
+	Returns
+	-------
+	list[dict[str, tuple[str, type]]]
+		The list of members, their name and type, or optionally and instance of said type.
+
+	'''
+
 	pkg = str(pkg)
 
 	members = list()
