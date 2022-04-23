@@ -14,6 +14,8 @@ __all__ = (
 )
 
 class SquishyBitstreamCache:
+	'''Bitstream Cache system'''
+
 	# Initialize the cache directory
 	def _init_cache_dir(self, root, depth = 1):
 		if depth == 0:
@@ -51,12 +53,14 @@ class SquishyBitstreamCache:
 				self._init_cache_dir(self._cache_root, tree_depth)
 
 	def flush(self):
+		'''Flush the cache'''
 		log.info('Flushing applet cache')
 		rmtree(self._cache_root)
 		self._cache_root.mkdir()
 
 
 	def get(self, digest):
+		'''Attempt to retrieve a bistream based on it's elaboration digest'''
 		bitstream_name = f'{digest}.bin'
 		cache_dir = self._get_cache_dir(digest)
 		bitstream = cache_dir / bitstream_name
@@ -75,6 +79,8 @@ class SquishyBitstreamCache:
 		}
 
 	def store(self, digest, products, name):
+		'''Store the synth products in the cache'''
+
 		bitstream_name = f'{digest}.bin'
 		cache_dir = self._get_cache_dir(digest)
 		bitstream = cache_dir / bitstream_name
