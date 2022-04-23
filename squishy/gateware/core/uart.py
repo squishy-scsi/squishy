@@ -10,6 +10,9 @@ __all__ = (
 )
 
 class UARTInterface(Elaboratable):
+	'''Amaranth-stdio based UART Interface
+
+	'''
 	def __init__(self, *, config, wb_config):
 		self.config = config
 		self._wb_cfg = wb_config

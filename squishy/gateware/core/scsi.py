@@ -16,6 +16,14 @@ __all__ = (
 
 # This is the SCSI 1,2,3 HVD,LVD,SE 50,68,80 PHY Block
 class SCSIInterface(Elaboratable):
+	'''SCSI Interface
+
+
+	Danger
+	------
+	This interface is deprectated and will be replaced with the system under :py:mod:`squishy.gateware.scsi`.
+
+	'''
 	def __init__(self, *, config, wb_config):
 		self.config = config
 		self._scsi_id = Signal(8)

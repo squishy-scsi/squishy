@@ -18,6 +18,14 @@ __all__ = (
 )
 
 class USBInterface(Elaboratable):
+	'''Luna based USB ULPI Interface
+
+	Warning
+	-------
+	Currently this is a USB 2.0 only interface, and is not able to interact with
+	the hardware on Squishy rev2, this is to be fixed in the future.
+
+	'''
 	def __init__(self, *, config, wb_config):
 		self.config = config
 

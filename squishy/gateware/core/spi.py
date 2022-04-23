@@ -6,6 +6,9 @@ __all__ = (
 )
 
 class SPIInterface(Elaboratable):
+	'''Generic SPI interface
+
+	'''
 	def __init__(self):
 
 		self._status_led = None
