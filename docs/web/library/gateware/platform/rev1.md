@@ -11,7 +11,4 @@ Squishy rev1 as a generic FPGA development board, this is the platform you need 
 .. automodule:: squishy.gateware.platform.rev1
   :members:
 
-.. autoclass:: squishy.gateware.platform.rev1.SquishyRev1
-  :members:
-
 ```
