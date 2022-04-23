@@ -14,6 +14,19 @@ __all__ = (
 )
 
 class SquishyDeviceContainer:
+	'''Squishy Device Container
+
+	This class is a wrapper around the libusb1 USB device.
+
+	Attributes
+	----------
+	serial : str
+		The serial number of the device.
+
+	rev : int
+		The revision of the device.
+
+	'''
 	def __init__(self, dev, serial, **kwargs):
 		self._dev = dev
 		self.serial = serial
@@ -24,6 +37,17 @@ class SquishyDeviceContainer:
 
 	@classmethod
 	def enumerate(cls):
+		'''Enumerate attached devices
+
+		Returns
+		-------
+		Iterable[SquishyDeviceContainer]
+			The collection of :py:class:`SquishyDeviceContainer` objects that match the
+			enumeration critera.
+
+		'''
+
+
 		devices = list()
 
 		with usb1.USBContext() as usb_ctx:
@@ -52,6 +76,14 @@ class SquishyDeviceContainer:
 		return map(lambda d: SquishyDeviceContainer(d['dev'], d['sn']), devices)
 
 	def to_device(self):
+		'''Wrapper to device
+
+		Returns
+		-------
+		SquishyHardwareDevice
+			The hardware device that is represented by this USB device wrapper.
+
+		'''
 		return SquishyHardwareDevice(self._dev, self.serial)
 
 	def __repr__(self):
@@ -61,6 +93,29 @@ class SquishyDeviceContainer:
 		return self.__repr__()
 
 class SquishyHardwareDevice:
+	'''Squishy Hardware Device
+
+	This class represents and abstracted Squishy hardware device, exposing a common
+	and stable API for applets to interact with the hardware on.
+
+	Parameters
+	----------
+	dev : usb1.USBDevice
+		The USB device handle for the hardware platform.
+
+	serial : str
+		The serial number of the device.
+
+	Attributes
+	----------
+	serial : str
+		The serial number of the device.
+
+	rev : int
+		The revision of the hardware of the device.
+
+	'''
+
 	def __init__(self, dev, serial, **kwargs):
 		self._dev   = dev
 		self.serial = serial
