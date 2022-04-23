@@ -8,17 +8,17 @@ __all__ = (
 )
 
 class SquishyException(Exception):
-	""" Base class for Squishy related exceptions """
+	'''Base class for Squishy related exceptions'''
 	pass
 
 class SquishyAppletError(SquishyException):
-	""" Exceptions related to Squishy applets """
+	'''Exceptions related to Squishy applets'''
 	pass
 
 class SquishyDeviceError(SquishyException):
-	""" Exceptions related to Squishy hardware """
+	'''Exceptions related to Squishy hardware'''
 	pass
 
 class SquishyBuildError(SquishyException):
-	""" Exceptions related to Squishy builds """
+	'''Exceptions related to Squishy builds'''
 	pass
