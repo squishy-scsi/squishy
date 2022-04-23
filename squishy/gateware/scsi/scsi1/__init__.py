@@ -18,7 +18,7 @@ class SCSI1(Elaboratable):
 
 	This elaboratable represents an interface for interacting with SCSI-1 compliant bus'.
 
-	Paramaters
+	Parameters
 	----------
 	is_device : bool
 		If this SCSI-1 Elaboratable is a Device or Initiator.
