@@ -14,6 +14,29 @@ from ..core                              import ECP5ClockDomainGenerator
 from .mixins                             import SquishyCacheMixin, SquishyProgramMixin
 
 class SquishyRev2(SquishyCacheMixin, SquishyProgramMixin, LatticeECP5Platform):
+	'''Squishy hardware Revision 2
+
+	This is the Amaranth platform for the first revision of the Squishy hardwar.
+	It is based around the `Lattice ECP5-5G LFE5UM5G-45F <https://www.latticesemi.com/Products/FPGAandCPLD/ECP5>`_
+	in the BG381 formfactor.
+
+	The design files for this version of the hardware can be found
+	`in the git repo <https://github.com/lethalbit/squishy/tree/main/hardware/boards/squishy>`_ under
+	the `hardware/boards/squishy` tree.
+
+	Note
+	----
+	There are no official released of the Squishy rev2 hardware for purchase at the moment. You can
+	build your own, or keep an eye out for when the campaign goes live.
+
+	Warning
+	-------
+	This platform is for specialized hardware and **must not** be used with any other
+	hardware other than the hardware it was designed for. This include any popular
+	development or eval boards.
+
+	'''
+
 	device       = 'LFE5UM5G-45F'
 	speed        = '8'
 	package      = 'BG381'
