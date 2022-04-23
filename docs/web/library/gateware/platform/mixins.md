@@ -12,10 +12,4 @@ without any extra setup work for the platform itself.
 .. automodule:: squishy.gateware.platform.mixins
   :members:
 
-.. autoclass:: squishy.gateware.platform.mixins.SquishyCacheMixin
-  :members:
-
-.. autoclass:: squishy.gateware.platform.mixins.SquishyProgramMixin
-  :members:
-
 ```

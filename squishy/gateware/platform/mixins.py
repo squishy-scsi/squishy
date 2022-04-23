@@ -14,6 +14,13 @@ __all__ = (
 )
 
 class SquishyProgramMixin:
+	'''Squishy Platform programming mixin.
+
+	This mixin overrides the :ref:`amaranth.build.plat.Platform` `toolchain_program` method
+	to properly find and program Squishy boards.
+
+	'''
+
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
@@ -21,6 +28,15 @@ class SquishyProgramMixin:
 		log.info('Programming')
 
 class SquishyCacheMixin:
+	'''Squishy Platform Cache mixin.
+
+	This mixin overrides the :ref:`amaranth.build.plat.Platform` `build` method
+	to inject FPGA bitstream caching via the :ref:`squishy.core.cache.SquishyBitstreamCache`
+	which handles all bitstream and build caching based on the elaborated designs digest.
+
+	This shortens build times, and removes the need to re-build unchanged applets.
+
+	'''
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
