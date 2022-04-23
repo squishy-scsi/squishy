@@ -13,6 +13,11 @@ __all__ = (
 
 
 class SCSI2(Elaboratable):
+	'''SCSI 2 Elaboratable
+
+	This elaboratable represents an interface for interacting with SCSI-2 compliant bus'.
+	'''
+
 	def __init__(self, *, is_device, config):
 		self.config = config
 
@@ -22,8 +27,10 @@ class SCSI2(Elaboratable):
 
 		return m
 
-def Device(*args, **kwargs):
+def Device(*args, **kwargs) -> SCSI2:
+	'''sCreate a SCSI-2 Device Elaboratable'''
 	return SCSI2(*args, is_device = True, **kwargs)
 
-def Initiator(*args, **kwargs):
+def Initiator(*args, **kwargs) -> SCSI2:
+	'''Create a SCSI-2 Initiator Elaboratable'''
 	return SCSI2(*args, is_device = False, **kwargs)

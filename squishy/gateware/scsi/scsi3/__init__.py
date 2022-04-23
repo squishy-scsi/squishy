@@ -13,6 +13,11 @@ __all__ = (
 
 
 class SCSI3(Elaboratable):
+	'''SCSI 3 Elaboratable
+
+	This elaboratable represents an interface for interacting with SCSI-3 compliant bus'.
+	'''
+
 	def __init__(self, *, is_device, config):
 		self.config = config
 
@@ -22,8 +27,10 @@ class SCSI3(Elaboratable):
 
 		return m
 
-def Device(*args, **kwargs):
+def Device(*args, **kwargs) -> SCSI3:
+	'''Create a SCSI-3 Device Elaboratable'''
 	return SCSI3(*args, is_device = True, **kwargs)
 
-def Initiator(*args, **kwargs):
+def Initiator(*args, **kwargs) -> SCSI3:
+	'''Create a SCSI-3 Initiator Elaboratable'''
 	return SCSI3(*args, is_device = False, **kwargs)
