@@ -61,7 +61,7 @@ setup(
 	],
 
 	packages = find_packages(
-		where = 'squishy'
+		where = '.'
 	),
 	package_data = {
 		# GUI Resources
