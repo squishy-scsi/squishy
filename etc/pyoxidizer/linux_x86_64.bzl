@@ -8,6 +8,7 @@ def init_policy(dist):
     policy.include_distribution_resources = True
     policy.allow_in_memory_shared_library_loading = True
     policy.allow_files = True
+    policy.resources_location_fallback = 'filesystem-relative:lib'
     policy.extension_module_filter = 'all'
 
     return policy
@@ -23,7 +24,7 @@ def init_config(dist):
     return config
 
 def install_deps(executable):
-    for res in executable.pip_install(['.']):
+    for res in executable.pip_install(['.[gui,toolchain,firmware]']):
         executable.add_python_resource(res)
 
 def init_dist(dist):

@@ -8,6 +8,7 @@ def init_policy(dist):
     policy.include_distribution_resources = True
     policy.allow_in_memory_shared_library_loading = True
     policy.allow_files = True
+    policy.resources_location_fallback = 'filesystem-relative:lib'
     policy.extension_module_filter = 'all'
 
     return policy
