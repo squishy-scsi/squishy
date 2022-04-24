@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-PYTHON_VERSION = '3.10'
+PYTHON_VERSION = '3.9'
 
 def init_policy(dist):
     policy = dist.make_python_packaging_policy()
@@ -15,7 +15,8 @@ def init_policy(dist):
 
 def init_config(dist):
     config = dist.make_python_interpreter_config()
-    config.config_profile = 'python'
+    config.config_profile = 'isolated'
+    config.run_module = 'squishy'
 
     config.module_search_paths = [
         '$ORIGIN/lib',
@@ -24,7 +25,7 @@ def init_config(dist):
     return config
 
 def install_deps(executable):
-    for res in executable.pip_install(['.[gui,toolchain,firmware]']):
+    for res in executable.pip_install(['.']):
         executable.add_python_resource(res)
 
 def init_dist(dist):

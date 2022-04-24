@@ -15,7 +15,8 @@ def init_policy(dist):
 
 def init_config(dist):
     config = dist.make_python_interpreter_config()
-    config.config_profile = 'python'
+    config.config_profile = 'isolated'
+    config.run_module = 'squishy'
 
     config.module_search_paths = [
         '$ORIGIN/lib',
