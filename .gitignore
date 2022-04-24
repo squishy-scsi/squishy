@@ -20,3 +20,4 @@ htmlcov/
 .vscode/
 .pytest_cache/
 test-vcds/
+pyoxidizer.bzl
