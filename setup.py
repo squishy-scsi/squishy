@@ -103,7 +103,6 @@ setup(
 
 	extras_require = {
 		'toolchain': [
-			'amaranth-yosys',
 			'yowasp-yosys',
 			# For rev1
 			'yowasp-nextpnr-ice40-8k',
