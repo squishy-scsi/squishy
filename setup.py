@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 
 from setuptools import setup, find_packages
@@ -59,7 +60,9 @@ setup(
 		'luna @ git+https://github.com/shrine-maiden-heavy-industries/luna.git@main',
 	],
 
-	packages = find_packages(),
+	packages = find_packages(
+		where = 'squishy'
+	),
 	package_data = {
 		# GUI Resources
 		'squishy.gui.resources.fonts': [
