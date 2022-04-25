@@ -8,3 +8,19 @@ div.wy-nav-content {
     max-width: 1000px;
     margin: auto;
 }
+
+div.highlight {
+    border-radius: 5px;
+}
+
+div.admonition {
+    border-radius: 0px 0px 5px 5px;
+}
+
+p.admonition-title {
+    border-radius: 5px 5px 0px 0px;
+}
+
+code.literal {
+    border-radius: 5px;
+}
