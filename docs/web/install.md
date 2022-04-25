@@ -1,6 +1,8 @@
 # Installation
 
-**NOTE:** The following instructions are a work-in-progress and may not be entirely up to date.
+```{warning}
+The following instructions are a work-in-progress and may not be entirely up to date.
+```
 
 ## System Requirements
 
@@ -45,17 +47,23 @@ Squishy requires Python 3.8 or newer, It has been tested with [CPython](https://
 			$ cd nextpnr-ecp5-nightly
 			$ makepkg -sic
 
+		Another option is to install the tools via the `YoWASP <https://yowasp.org/>`_ WebAssembly based pip packages, like so:
+
+		.. code-block:: console
+
+			$ pip install yowasp-yosys yowasp-nextpnr-ice40-8k yowasp-nextpnr-ecp5-45k
+
 
 	.. platform-choice:: linux
 		:title: Other Linux
-		
+
 		.. todo::
 
 			Write this section
 
 	.. platform-choice:: macos
 		:title: macOS
-			
+
 		.. todo::
 
 			Write this section
@@ -63,8 +71,8 @@ Squishy requires Python 3.8 or newer, It has been tested with [CPython](https://
 
 	.. platform-choice:: windows
 		:title: Windows
-		
-		
+
+
 		.. todo::
 
 			Write this section
@@ -86,7 +94,7 @@ Squishy requires Python 3.8 or newer, It has been tested with [CPython](https://
 
 		.. code-block:: console
 
-			$ sudo pacman -S python-jinja python-construct python-pyusb python-tqdm  
+			$ sudo pacman -S python-jinja python-construct python-pyusb python-tqdm
 
 		Then install Amaranth HDL from source if not installed already:
 
@@ -107,21 +115,21 @@ Squishy requires Python 3.8 or newer, It has been tested with [CPython](https://
 
 	.. platform-choice:: linux
 		:title: Other Linux
-		
+
 		.. todo::
 
 			Write this section
 
 	.. platform-choice:: macos
 		:title: macOS
-			
+
 		.. todo::
 
 			Write this section
 
 	.. platform-choice:: windows
 		:title: Windows
-		
+
 		.. todo::
 
 			Write this section
@@ -143,21 +151,21 @@ Squishy requires Python 3.8 or newer, It has been tested with [CPython](https://
 
 	.. platform-choice:: linux
 		:title: Other Linux
-			
+
 		.. todo::
 
 			Write this section
 
 	.. platform-choice:: macos
 		:title: macOS
-		
+
 		.. todo::
 
 			Write this section
 
 	.. platform-choice:: windows
 		:title: Windows
-		
+
 		.. todo::
 
 			Write this section
@@ -183,21 +191,21 @@ There is also the ability in squishy to build machine code components, which nee
 
 	.. platform-choice:: linux
 		:title: Other Linux
-		
+
 		.. todo::
 
 			Write this section
 
 	.. platform-choice:: macos
 		:title: macOS
-		
+
 		.. todo::
 
 			Write this section
 
 	.. platform-choice:: windows
 		:title: Windows
-		
+
 		.. todo::
 
 			Write this section
@@ -211,7 +219,7 @@ There is also the ability in squishy to build machine code components, which nee
 .. platform-picker::
 	.. platform-choice:: linux
 		:title: Linux
-		
+
 		Install a non-editable snapshot by running the following:
 
 		.. code-block:: console
@@ -229,12 +237,12 @@ There is also the ability in squishy to build machine code components, which nee
 
 	.. platform-choice:: macos
 		:title: macOS
-		
+
 		TODO
 
 	.. platform-choice:: windows
 		:title: Windows
-		
+
 		TODO
 
 
