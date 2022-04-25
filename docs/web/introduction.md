@@ -1,10 +1,10 @@
-# Introduction 
+# Introduction
 
 ```{todo}
 Flesh this section out
 ```
 
-Squishy is a set of utilities, gateware, and hardware for interacting with and developing things related to SCSI. 
+Squishy is a set of utilities, gateware, and hardware for interacting with and developing things related to SCSI.
 
 Once you've read the sections below and are ready to get started, see the [Installation](./install.md) and the [Getting Started](./getting_started.md) sections.
 
@@ -17,7 +17,7 @@ Combined with the software, it provides and out-of-the box way of inspecting tra
 
 With the power of [Amaranth](https://github.com/amaranth-lang), you can also write your own [applets](./applets/index.md) to do things such as emulate devices, or hosts, or anything else you could imagine.
 
-For more information on the Squishy hardware, see the [Hardware](./hardware.md) section in the documentation.
+For more information on the Squishy hardware, see the [Hardware](./hardware/index.md) section in the documentation.
 
 ## Software
 
