@@ -16,16 +16,17 @@ language  = 'en'
 
 extensions = [
 	'sphinx.ext.autodoc',
-	'sphinx.ext.intersphinx',
 	'sphinx.ext.doctest',
-	'sphinx.ext.todo',
 	'sphinx.ext.githubpages',
 	'sphinx.ext.graphviz',
-	'sphinxcontrib.platformpicker',
+	'sphinx.ext.intersphinx',
 	'sphinx.ext.napoleon',
-	'sphinx_rtd_theme',
+	'sphinx.ext.todo',
+	'sphinxcontrib.mermaid',
+	'sphinxcontrib.platformpicker',
 	'myst_parser',
 	'sphinx_construct',
+	'sphinx_rtd_theme',
 ]
 
 source_suffix = {
@@ -50,7 +51,7 @@ napoleon_numpy_docstring  = True
 napoleon_use_ivar         = True
 napoleon_custom_sections  = ["Platform overrides"]
 
-import sphinx_rtd_theme
+
 
 html_baseurl     = 'https://docs.scsi.moe'
 html_theme       = 'sphinx_rtd_theme'
@@ -69,6 +70,12 @@ html_css_files = [
 	'css/styles.css'
 ]
 
+html_js_files = [
+	'js/mermaid.min.js'
+]
+
 html_style = 'css/styles.css'
 
 autosectionlabel_prefix_document = True
+# Disable CDN so we use the local copy
+mermaid_version = ''
