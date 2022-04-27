@@ -17,3 +17,8 @@ __all__ = (
 	'ICE40ClockDomainGenerator',
 	'ECP5ClockDomainGenerator',
 )
+
+
+# -------------- #
+
+from .spi import SPIInterfaceTests
