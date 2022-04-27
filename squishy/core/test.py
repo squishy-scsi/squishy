@@ -1,16 +1,42 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from functools       import wraps
-from unittest        import TestCase
+from functools        import wraps
+from pathlib          import Path
+from unittest         import TestCase
+from math             import ceil
 
-from math            import ceil
-
-from amaranth        import Signal
-from pathlib         import Path
-from amaranth.sim    import Simulator
+from amaranth         import Signal
+from amaranth.sim     import Simulator
+from amaranth.hdl.ir  import Fragment
+from amaranth.hdl.rec import Record, DIR_FANIN, DIR_FANOUT
 
 __all__ = (
 	'SquishyGatewareTestCase',
 )
+
+class _MockRecord(Record):
+	def _insert_field(self, item):
+		self.fields[item] = Record((
+			('o', 1, DIR_FANOUT),
+			('i', 1, DIR_FANIN )
+		), name = f'{item}')
+
+	def __init__(self, *args, **kwargs):
+		super().__init__((), *args, **kwargs)
+		self.fields = {}
+
+	def __getitem__(self, item):
+		if isinstance(item, str):
+			try:
+				return self.fields[item]
+			except KeyError:
+				self._insert_field(item)
+			return self.fields[item]
+		else:
+			return super().__getitem__(item)
+
+class _MockPlatform:
+	def request(self, name, number = 0):
+		return _MockRecord()
 
 
 class SquishyGatewareTestCase(TestCase):
@@ -40,7 +66,7 @@ class SquishyGatewareTestCase(TestCase):
 	out_dir   = None
 	dut       = None
 	dut_args  = {}
-	platform  = None
+	platform  = _MockPlatform()
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
