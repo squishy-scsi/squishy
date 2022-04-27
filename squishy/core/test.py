@@ -40,9 +40,11 @@ class SquishyGatewareTestCase(TestCase):
 	out_dir   = None
 	dut       = None
 	dut_args  = {}
+	platform  = None
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
+		self._frag = None
 
 	@property
 	def vcd_name(self) -> str:
@@ -76,7 +78,8 @@ class SquishyGatewareTestCase(TestCase):
 		'''Initialize the test case with the given DUT'''
 
 		self.dut     = self.init_dut()
-		self.sim     = Simulator(self.dut)
+		self._frag   = Fragment.get(self.dut, self.platform)
+		self.sim     = Simulator(self._frag)
 		if self.out_dir is None:
 			if (Path.cwd() / 'build').exists():
 				self.out_dir = Path.cwd() / 'build' / 'tests'
