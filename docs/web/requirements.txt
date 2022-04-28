@@ -2,5 +2,7 @@ sphinx
 sphinx-rtd-theme
 sphinxcontrib-platformpicker
 sphinxcontrib-mermaid
+git+https://github.com/wallento/wavedrompy
+sphinxcontrib-wavedrom
 myst-parser
 git+https://github.com/lethalbit/sphinx-construct

@@ -24,6 +24,7 @@ extensions = [
 	'sphinx.ext.todo',
 	'sphinxcontrib.mermaid',
 	'sphinxcontrib.platformpicker',
+	'sphinxcontrib.wavedrom',
 	'myst_parser',
 	'sphinx_construct',
 	'sphinx_rtd_theme',
@@ -71,7 +72,9 @@ html_css_files = [
 ]
 
 html_js_files = [
-	'js/mermaid.min.js'
+	'js/mermaid.min.js',
+	'js/wavedrom.min.js',
+	'js/wavedrom.skin.js',
 ]
 
 html_style = 'css/styles.css'
@@ -79,3 +82,6 @@ html_style = 'css/styles.css'
 autosectionlabel_prefix_document = True
 # Disable CDN so we use the local copy
 mermaid_version = ''
+
+offline_skin_js_path = '_static/js/wavedrom.skin.js'
+offline_wavedrom_js_path = '_static/js/wavedrom.min.js'

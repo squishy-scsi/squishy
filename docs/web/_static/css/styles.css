@@ -1,6 +1,6 @@
 /* nya */
 @import 'theme.css';       /* for the Read the Docs theme */
-
+@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400&display=swap');
 
 div.wy-nav-content {
 	padding: 1.618em 3.236em;
