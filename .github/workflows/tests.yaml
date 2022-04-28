@@ -22,6 +22,7 @@ jobs:
         run: |
           echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
           echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
+          echo "SQUISHY_TEST_INHIBIT_VCD=1" >> $GITHUB_ENV
           echo "AMARANTH_USE_YOSYS=builtin" >> $GITHUB_ENV
           echo "YOSYS=yowasp-yosys" >> $GITHUB_ENV
           echo "SBY=yowasp-sby" >> $GITHUB_ENV

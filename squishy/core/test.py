@@ -3,6 +3,7 @@ from functools        import wraps
 from pathlib          import Path
 from unittest         import TestCase
 from math             import ceil
+from os               import getenv
 
 from amaranth         import Signal
 from amaranth.sim     import Simulator
@@ -157,6 +158,9 @@ class SquishyGatewareTestCase(TestCase):
 	def run_sim(self, *, suffix : str = None) -> None:
 		'''Run the simulation
 
+		If the environment variable ``SQUISHY_TEST_INHIBIT_VCD``
+		is set, then no VCDs will be generated.
+
 		Keyword Args
 		------------
 		suffix : str
@@ -164,11 +168,15 @@ class SquishyGatewareTestCase(TestCase):
 
 		'''
 
-		out_name = f'{self.vcd_name}{f"-{suffix}" if suffix is not None else ""}'
-		out_file = self.out_dir / out_name
-		with self.sim.write_vcd(f'{out_file}.vcd'):
+		if getenv('SQUISHY_TEST_INHIBIT_VCD', default = False):
 			self.sim.reset()
 			self.sim.run()
+		else:
+			out_name = f'{self.vcd_name}{f"-{suffix}" if suffix is not None else ""}'
+			out_file = self.out_dir / out_name
+			with self.sim.write_vcd(f'{out_file}.vcd'):
+				self.sim.reset()
+				self.sim.run()
 
 	def setUp(self) -> None:
 		'''Initialize the test case with the given DUT'''
