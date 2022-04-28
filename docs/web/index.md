@@ -45,15 +45,22 @@ Squishy is entirely open source, and under permissive licenses. The full source 
 ## Comparison
 
 |                       | [Squishy](https://scsi.moe) | [BlueSCSI](https://scsi.blue/) | [SCSI2SD](https://www.codesrc.com/mediawiki/index.php/SCSI2SD) | [RaSCSI](https://github.com/akuker/RASCSI) |
-|-----------------------|---------|----------|---------|--------|
-| Has a cute mascot     | Yes     | No       | No      | No     |
-| Device Emulation      | Yes     | Yes      | Yes     | Yes    |
-| Non-Storage Emulation | Yes     | No       | No      | Yes<sup>1</sup> |
-| Initiator Emulation   | Yes     | No       | No      | Yes<sup>1</sup> |
-| Passive Bus Tapping   | Yes     | No       | No      | Yes    |
-| Fully Open Source     | Yes     | No<sup>2</sup>       | No      | No<sup>2</sup>     |
-| Standalone            | No<sup>3</sup> | Yes | Yes | Yes |
-| Cost                  | ?       | ~50USD   | ~98USD  | ~45USD<sup>4</sup> |
+|-----------------------|----------------|----------------|---------|--------------------|
+| Has a cute mascot     | Yes            | No             | No      | No                 |
+| Device Emulation      | Yes            | Yes            | Yes     | Yes                |
+| Non-Storage Emulation | Yes            | No             | No      | Yes<sup>1</sup>    |
+| Initiator Emulation   | Yes            | No             | No      | Yes<sup>1</sup>    |
+| Passive Bus Tapping   | Yes            | No             | No      | Yes                |
+| Fully Open Source     | Yes            | No<sup>2</sup> | No      | No<sup>2</sup>     |
+| SCSI-1 Support        | Yes            | No             | No      | No                 |
+| SCSI-2 Support        | Yes            | Yes?           | Yes     | Yes                |
+| SCSI-3 Support        | Yes            | No             | No      | No                 |
+| HVD Support           | Yes            | No             | No      | No                 |
+| LVD Support           | Yes            | No             | No      | No                 |
+| SE Support            | Yes            | Yes            | Yes     | Yes                |
+| Fastest Bus Speed     | Nyoomie        | ?              | FAST10  | ?                  |
+| Standalone            | No<sup>3</sup> | Yes            | Yes     | Yes                |
+| Cost                  | ?              | ~50USD         | ~98USD  | ~45USD<sup>4</sup> |
 
 **1:** RaSCSI allows you to write Linux userspace software via an API.
 
