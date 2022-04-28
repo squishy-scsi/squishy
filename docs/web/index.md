@@ -48,13 +48,17 @@ Squishy is entirely open source, and under permissive licenses. The full source 
 |-----------------------|---------|----------|---------|--------|
 | Has a cute mascot     | Yes     | No       | No      | No     |
 | Device Emulation      | Yes     | Yes      | Yes     | Yes    |
-| Non-Storage Emulation | Yes     | No       | No      | Yes    |
-| Initiator Emulation   | Yes     | No       | No      | Yes    |
+| Non-Storage Emulation | Yes     | No       | No      | Yes<sup>1</sup> |
+| Initiator Emulation   | Yes     | No       | No      | Yes<sup>1</sup> |
 | Passive Bus Tapping   | Yes     | No       | No      | Yes    |
-| Fully Open Source     | Yes     | No       | No      | No     |
-| Standalone            | No<sup>†</sup> | Yes | Yes | Yes |
-| Cost                  | ?       | ~50USD   | ~98USD  | ~45USD<sup>‡</sup> |
+| Fully Open Source     | Yes     | No<sup>2</sup>       | No      | No<sup>2</sup>     |
+| Standalone            | No<sup>3</sup> | Yes | Yes | Yes |
+| Cost                  | ?       | ~50USD   | ~98USD  | ~45USD<sup>4</sup> |
 
-**<sup>†</sup>:** Squishy requires USB power for operation, therefore it is considered to always be tethered.
+**1:** RaSCSI allows you to write Linux userspace software via an API.
 
-**<sup>‡</sup>:** This includes only the RaSCSI interface itself, and not the needed RaspberryPi SOM as well.
+**2:** The adapter board is Open Source, but the main compute element is not.
+
+**3:** Squishy requires USB power for operation, therefore it is considered to always be tethered.
+
+**4:** This includes only the RaSCSI interface itself, and not the needed RaspberryPi SOM as well.
