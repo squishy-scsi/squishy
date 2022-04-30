@@ -130,12 +130,23 @@ setup(
 	},
 
 	classifiers = [
-		'Development Status :: 3 - Alpha',
-		'License :: OSI Approved :: BSD License',
+		'Development Status :: 4 - Beta',
+
+		'Environment :: Console',
 
 		'Intended Audience :: Developers',
 		'Intended Audience :: Information Technology',
 		'Intended Audience :: System Administrators',
+
+		'License :: OSI Approved :: BSD License',
+
+		'Operating System :: MacOS :: MacOS X',
+		'Operating System :: Microsoft :: Windows',
+		'Operating System :: POSIX :: Linux',
+
+		'Programming Language :: Python :: 3.8',
+		'Programming Language :: Python :: 3.9',
+		'Programming Language :: Python :: 3.10',
 
 		'Topic :: Software Development',
 		'Topic :: System :: Hardware',
