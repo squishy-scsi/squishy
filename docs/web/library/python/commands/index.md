@@ -14,7 +14,7 @@ worm
 
 ```{eval-rst}
 
-.. automodule:: squishy.scsi.commands
+.. automodule:: squishy.scsi.command
   :members:
 
 ```
