@@ -2,7 +2,6 @@
 import logging as log
 from pathlib              import Path
 
-from ..applets           import SquishyApplet
 from ..config            import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
 from ..core.collect           import collect_members, predicate_applet
 
@@ -205,7 +204,7 @@ class Applet(SquishyAction):
 			return 1
 
 		if applet.preview:
-			log.warning(f'This applet is a preview, it may be buggy or not work at all')
+			log.warning('This applet is a preview, it may be buggy or not work at all')
 
 		device = AVAILABLE_PLATFORMS[args.hardware_platform]()
 

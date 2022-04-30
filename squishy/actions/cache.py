@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging as log
-from pathlib        import Path
 
 from ..core.cache   import SquishyBitstreamCache
 from ..config       import SQUISHY_CACHE, SQUISHY_APPLET_CACHE, SQUISHY_BUILD_DIR

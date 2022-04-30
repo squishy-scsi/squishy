@@ -21,4 +21,4 @@ __all__ = (
 
 # -------------- #
 
-from .spi import SPIInterfaceTests
+from .spi import SPIInterfaceTests # noqa: F401

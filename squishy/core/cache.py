@@ -60,7 +60,7 @@ class SquishyBitstreamCache:
 
 
 	def get(self, digest):
-		'''Attempt to retrieve a bistream based on it's elaboration digest'''
+		'''Attempt to retrieve a bitstream based on it's elaboration digest'''
 		bitstream_name = f'{digest}.bin'
 		cache_dir = self._get_cache_dir(digest)
 		bitstream = cache_dir / bitstream_name
