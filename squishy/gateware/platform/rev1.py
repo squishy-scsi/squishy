@@ -103,8 +103,8 @@ class SquishyRev1(SquishyCacheMixin, SquishyProgramMixin, LatticeICE40Platform):
 			ack = ('C11', 'B11'), atn = ('H11', 'H10'), bsy = ('E11', 'E10'),
 			cd  = ('B5',  'A4' ), io  = ('B3',  'A2' ), msg = ('A8',  'B9' ),
 			sel = ('B7',  'A6' ), req = ('B4',  'A3' ), rst = ('E9',  'D9' ),
-			d0  = ('J11 G11 F11 D11 A10 C8 C9 B8',
-				   'J10 G10 F10 D10 A11 C7 A9 A7'),     dp0 = ('B6',  'A5' ),
+			d0  = ('J11 G11 F11 D11 A10 C8 C9 B8', 'J10 G10 F10 D10 A11 C7 A9 A7'),
+			dp0 = ('B6',  'A5' ),
 
 			tp_en  = 'A1', tx_en  = 'K11', aa_en = 'G8',
 			bsy_en = 'G9', sel_en = 'F9',  mr_en = 'E8',
