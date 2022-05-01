@@ -1,5 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from construct import *
+
+from ..command import (
+	SCSICommand6, SCSICommand10,
+	SCSICommandField
+)
 
 __doc__ = """
 This module contains common commands, that other device classes
@@ -7,75 +11,107 @@ can support.
 """
 
 __all__ = (
-	'test_unit_ready',
-	'request_sense',
-	'inquiry',
-	'copy',
-	'receive_diagnostic_results',
-	'send_diagnostic',
-	'compare',
-	'copy_and_verify',
+	'TestUnitReady',
+	'RequestSense',
+	'Inquiry',
+	'Copy',
+	'ReceiveDiagnosticResults',
+	'SendDiagnostic',
+	'Compare',
+	'CopyAndVerify',
 )
 
-test_unit_ready = 'Test Unit Ready' / BitStruct(
-	'LUN'      / BitsInteger(3),
-	'Reserved' / BitsInteger(29),
+TestUnitReady = SCSICommand6(0x00,
+	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
+	'Reserved' / SCSICommandField(default = 0, length = 29),
 )
-""" Test Unit Ready - Group: 0 | Peripheral Device: All | Type: Optional """
+'''Test Unit Ready
 
-request_sense = 'Request Sense' / BitStruct(
-	'LUN'       / BitsInteger(3),
-	'Reserved'  / BitsInteger(21),
-	'AllocLen'  / Int8ul,
-)
-""" Request Sense - Group: 0 | Peripheral Device: All | Type: Mandatory """
+This command provides the means to check if the logical
+unit is ready.
 
-inquiry = 'Inquiry' / BitStruct(
-	'LUN'      / BitsInteger(3),
-	'Reserved' / BitsInteger(21),
-	'AllocLen' / Int8ul,
-)
-""" Inquiry - Group: 0 | Peripheral Device: All | Type: Extended """
+'''
 
-copy = 'Copy' / BitStruct(
-	'LUN'      / BitsInteger(3),
-	'Reserved' / BitsInteger(5),
-	'ParamLen' / Int24ul,
+RequestSense = SCSICommand6(0x03,
+	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
+	'Reserved' / SCSICommandField(default = 0, length = 21),
+	'AllocLen' / SCSICommandField('Receive buffer size allocation', length = 8)
 )
-""" Copy - Group: 0 | Peripheral Device: All | Type: Optional """
+'''Request Sense
 
-receive_diagnostic_results = 'Receive Diagnostic Results' / BitStruct(
-	'LUN'      / BitsInteger(3),
-	'Reserved' / BitsInteger(21),
-	'AllocLen' / Int16ul,
-)
-""" Receive Diagnostic Results - Group: 0 | Peripheral Device: All | Type: Optional """
+.. todo:: Document this, it's long ;~;
 
-send_diagnostic = 'Send Diagnostic' / BitStruct(
-	'LUN'      / BitsInteger(3),
-	'Reserved' / BitsInteger(2),
-	'SelfTest' / Flag,
-	'DevOL'    / Flag,
-	'UnitOL'   / Flag,
-	'Reserved' / Int8ul,
-	'ParamLen' / Int16ul,
-)
-""" Send Diagnostic - Group: 0 | Peripheral Device: All | Type: Optional """
+'''
 
-compare = 'Compare' / BitStruct(
-	'LUN'      / BitsInteger(3),
-	'Reserved' / BitsInteger(13),
-	'ParamLen' / Int24ul,
-	'Reserved' / Int24ul,
+Inquiry = SCSICommand6(0x12,
+	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
+	'Reserved' / SCSICommandField(default = 0, length = 21),
+	'AllocLen' / SCSICommandField('Receive buffer size allocation', length = 8)
 )
-""" Compare - Group: 1 | Peripheral Device: All | Type: Optional  """
+'''Inquiry
 
-copy_and_verify = 'Copy and Verify' / BitStruct(
-	'LUN'       / BitsInteger(3),
-	'Reserved'  / BitsInteger(3),
-	'ByteCheck' / Flag,
-	'Reserved'  / Flag,
-	'ParamLen'  / Int24ul,
-	'Reserved'  / Int24ul,
+
+'''
+
+Copy = SCSICommand6(0x18,
+	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
+	'Reserved' / SCSICommandField(default = 0, length = 5),
+	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 24)
 )
-""" Copy and Verify - Group: 1 | Peripheral Device: All | Type: Optional """
+'''Copy
+
+.. todo:: Document this
+
+'''
+
+ReceiveDiagnosticResults = SCSICommand6(0x1C,
+	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
+	'Reserved' / SCSICommandField(default = 0, length = 13),
+	'AllocLen' / SCSICommandField('Length of the receiving buffer', length = 16)
+)
+'''Receive Diagnostic Results
+
+.. todo:: Document this
+
+'''
+
+SendDiagnostic = SCSICommand6(0x1D,
+	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
+	'Reserved' / SCSICommandField(default = 0, length = 2),
+	'SelfTest' / SCSICommandField('', default = 0, length = 1),
+	'DevOfL'   / SCSICommandField('', default = 0, length = 1),
+	'UnitOfL'  / SCSICommandField('', default = 0, length = 1),
+	'Reserved' / SCSICommandField(default = 0, length = 8),
+	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 16)
+)
+'''Send Diagnostic
+
+.. todo:: Document this
+
+'''
+
+Compare = SCSICommand10(0x19,
+	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
+	'Reserved' / SCSICommandField(default = 0, length = 13),
+	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 24),
+	'Reserved' / SCSICommandField(default = 0, length = 24)
+)
+'''Compare
+
+.. todo:: Document this
+
+'''
+
+CopyAndVerify = SCSICommand10(0x1A,
+	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
+	'Reserved' / SCSICommandField(default = 0, length = 3),
+	'BytChk'   / SCSICommandField('', default = 0, length = 1),
+	'Reserved' / SCSICommandField('', default = 0, length = 1),
+	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 24),
+	'Reserved' / SCSICommandField(default = 0, length = 24)
+)
+'''Copy and Verify
+
+.. todo:: Document this
+
+'''
