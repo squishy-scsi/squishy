@@ -5,14 +5,13 @@ from itertools import takewhile
 from typing    import Any
 
 from construct import (
-	Struct, Subconstruct,
-	Const, Union, Default,
+	Struct, Subconstruct, Const, Default,
 	Int8ul, Int16ul, Int24ul, Int32ul, Int64ul,
 	Int8sl, Int16sl, Int24sl, Int32sl, Int64sl,
 	Int8ub, Int16ub, Int24ub, Int32ub, Int64ub,
 	Int8sb, Int16sb, Int24sb, Int32sb, Int64sb,
 	BytesInteger, Bytewise,
-	BitStruct, BitsInteger
+	BitStruct, BitsInteger, Bitwise
 )
 
 __all__ = (
@@ -346,7 +345,8 @@ class SCSICommandField(Subconstruct):
 		return the appropriate :py:class:`construct.Subconstruct` type that can store that field.
 
 		The mapping is simple, ``s`` denotes signed, ``u`` denotes unsigned, followed by the size
-		in bits, and then an ``l`` or ``b`` to signify the endian; or ``b`` followed by the size in bits if the size is not one of the common sizes.
+		in bits, and then an ``l`` or ``b`` to signify the endian; or ``b`` followed by the size in bits if the size is
+		not one of the common sizes.
 
 		If the ``length`` for this field is set then it overrides the prefix.
 
@@ -397,7 +397,7 @@ class SCSICommandField(Subconstruct):
 				BytesInteger(bc, signed = False, swapped = True)
 			)
 		else:
-			return Bytewise(BitsInteger(size))
+			return Bitwise(BitsInteger(size))
 
 
 	def __init__(self, description : str = '', default : Any = None, *, length : int = None):
@@ -513,6 +513,38 @@ class SCSICommand(Struct):
 	   ``flag`` or ``link`` are set.
 
 
+	Examples
+	--------
+
+	You can define a new :py:class:`SCSICommand` like any other construct structure.
+
+	.. code-block:: python
+
+		Command = SCSICommand(
+			# Final command opcode is calculated by ``opcode | group_code``
+			# And then prefixed prior to the given fields
+			0x01,             # Command Opcode
+			GroupCode.GROUP0, # Command Group
+			'Foo' / construct.Int8ul,
+			'Bar' / construct.BitStruct(
+				'Nya', construct.BitsInteger(3),
+				'UwU', construct.BitsInteger(5)
+			)
+			# The SCSI 'control' byte is then added after.
+		)
+
+	You can also use the special :py:class:`SCSICommandField` class to simply attach defaults, descriptions, and automatically
+	compute sizes.
+
+	.. code-block:: python
+
+		Command = SCSICommand(
+			0x01,
+			GroupCode.GROUP0,
+			'Foo' / SCSICommandField('This is a field', default = 0, length = 3),
+			'Bar' / SCSICommandField('This is also a field', length = 5)
+		)
+
 	Parameters
 	----------
 	opcode : int
@@ -570,6 +602,9 @@ class SCSICommand(Struct):
 			*subcons,
 			self.control_layout
 		), **subconskw)
+
+		if self.sizeof() != self.command_size:
+			raise RuntimeError(f'Structure is actually {self.sizeof()} bytes long but must be {self.command_size} bytes long.')
 
 	def parse(self, data, **ctxkw):
 
