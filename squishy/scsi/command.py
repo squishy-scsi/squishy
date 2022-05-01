@@ -539,34 +539,34 @@ class SCSICommand(Struct):
 
 	'''
 
-	opcode_layout = 'opcode' / Union(0,
-		'raw'    / Int8ul,
-		'parsed' / BitStruct(
-			'group'   / BitsInteger(3),
-			'command' / BitsInteger(5)
-		)
+	opcode_layout = 'opcode' / BitStruct(
+		'group'   / BitsInteger(3),
+		'command' / BitsInteger(5)
 	)
 
-	control_layout = 'control' / BitStruct(
-		'vendor'   / BitsInteger(2),
-		'reserved' / BitsInteger(4),
-		'flag'     / BitsInteger(1),
-		'link'     / BitsInteger(1)
+	control_layout = 'control' / Default(
+		BitStruct(
+			'vendor'   / BitsInteger(2),
+			'reserved' / BitsInteger(4),
+			'flag'     / BitsInteger(1),
+			'link'     / BitsInteger(1),
+		),
+		{'vendor': 0, 'reserved': 0, 'flag': 0, 'link': 0}
 	)
 
-	def __init__(self, group_code : GroupCode, opcode : int, size : int = None, *subcons, **subconskw):
+	def __init__(self, opcode : int, group_code : GroupCode, *subcons, size : int = None, **subconskw):
+		self.opcode = opcode
 		self.group_code = group_code
-
 		if group_code not in _KNOWN_SIZED_GROUPS:
 			if size is None:
-				raise ValueError(f'Group {group_code}\'size is not know, and size was not specified!')
+				raise ValueError(f'Group {group_code}\'s size is not known, and size was not specified!')
 
 			self.command_size = size
 		else:
 			self.command_size = _KNOWN_SIZED_GROUPS[group_code]
 
 		super().__init__(*(
-			Const(opcode, self.opcode_layout),
+			Const({'command': self.opcode, 'group': self.group_code}, self.opcode_layout),
 			*subcons,
 			self.control_layout
 		), **subconskw)
@@ -737,6 +737,16 @@ class CommandEmitter:
 		# b\'\\x00\\xab\'
 		data = e.emit()
 
+	It is also possible to use it within a context like the following:
+
+	.. code-block:: python
+
+		with CommandEmitter(Command) as cmd:
+			cmd.Bar = 0x15
+
+		# b\'\\x00\\x15\'
+		cmd.emit()
+
 	Parameters
 	----------
 	command : SCSICommand
@@ -747,6 +757,13 @@ class CommandEmitter:
 	def __init__(self, command : SCSICommand):
 		self.__dict__['format'] = command
 		self.__dict__['fields'] = {}
+
+	def __enter__(self):
+		return self
+
+	def __exit__(self, t, v, tb):
+		if not (t is None and v is None and tb is None):
+			return
 
 	def __setattr__(self, name : str, value : Any) -> None:
 		'''Set value of an attribute by name
@@ -772,7 +789,7 @@ class CommandEmitter:
 			super().__setattr__(name, value)
 			return
 
-		if not any(map(lambda f: f.name, self.format.subcons)):
+		if not any(filter(lambda f: f.name == name, self.format.subcons)):
 			raise AttributeError(f'command contains no field called \'{name}\'')
 
 		self.fields[name] = value
@@ -822,4 +839,4 @@ class CommandEmitter:
 		try:
 			return self.format.build(self.fields)
 		except KeyError as e:
-			raise KeyError(f'Missing required field \'{e}\'')
+			raise KeyError(f'Missing required field {e}')
