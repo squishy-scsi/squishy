@@ -3,7 +3,6 @@
 from enum      import IntEnum, Enum, auto, unique
 from itertools import takewhile
 from typing    import Any
-import logging as log
 
 from construct import (
 	Struct, Subconstruct,
