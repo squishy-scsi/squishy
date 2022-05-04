@@ -266,9 +266,9 @@ class Applet(SquishyAction):
 			build_dir = args.build_dir,
 			do_build = True,
 			do_program = True,
-			synth_opts = synth_opts,
+			synth_opts = ' '.join(synth_opts),
 			verbose = args.loud,
-			nextpnr_opts = pnr_opts,
+			nextpnr_opts = ' '.join(pnr_opts),
 			skip_cache = args.skip_cache,
 		)
 
