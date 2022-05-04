@@ -569,7 +569,7 @@ class SCSICommand(Struct):
 	size : int
 		The total size of the SCSI command.
 
-	'''
+	''' # noqa: E101
 
 	opcode_layout = 'opcode' / BitStruct(
 		'group'   / BitsInteger(3),
