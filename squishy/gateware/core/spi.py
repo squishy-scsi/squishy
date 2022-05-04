@@ -68,7 +68,7 @@ class SPIInterface(Elaboratable):
 
 		m.d.comb += [
 			self._spi.clk.o.eq(clk),
-			self._spi.cs_n.o.eq(self.cs),
+			self._spi.cs.o.eq(self.cs),
 		]
 
 		return m
