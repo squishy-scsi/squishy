@@ -7,7 +7,7 @@ __all__ = (
 )
 
 class SquishyApplet(metaclass = ABCMeta):
-	'''Squishy applet base class
+	'''Squishy applet base class.
 
 	This is the abstract base class that is used
 	to implement any possible applet for squishy.
@@ -203,10 +203,10 @@ class SquishyApplet(metaclass = ABCMeta):
 
 		Parameters
 		----------
-		device
-			TBD
+		device : squishy.core.device.SquishyHardwareDevice
+			The target squishy device.
 
-		args
+		args : argsparse.Namespace
 			Any command line arguments passed.
 
 		Returns
