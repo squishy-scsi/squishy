@@ -127,3 +127,63 @@ class SquishyHardwareDevice:
 
 	def __str__(self):
 		return f'rev{self.rev} SN: {self.serial}'
+
+
+def _get_device(args):
+	'''Get attached Squishy device.
+
+	Get the attached and selected squishy device if possible, or if only
+	one is attached to the system use that one.
+
+	Parameters
+	----------
+	args : argsparse.Namespace
+		Any command line arguments passed.
+
+	Returns
+	-------
+	None
+		If no device is selected
+
+	squishy.core.device.SquishyHardwareDevice
+		The selected hardware if available.
+
+	'''
+
+	devices = list(SquishyDeviceContainer.enumerate())
+	dev_count = len(devices)
+	if dev_count > 1:
+		if args.device is None:
+			log.error(f'No device serial number specified, unable to pick from the {dev_count} devices.')
+			log.info('Connected devices are:')
+			for d in devices:
+				log.info(f'\t{d.serial}')
+			return None
+
+		devs = list(filter(lambda d: d.serial == args.device, devices))
+
+		if len(devs) == 0:
+			log.error(f'No device with serial number \'{args.device}\'')
+			log.info('Connected devices are:')
+			for d in devices:
+				log.info(f'\t{d.serial}')
+			return None
+		elif len(devs) > 1:
+			log.error('Multiple Squishy devices with the same serial number found.')
+			return None
+		else:
+			log.info(f'Found Squishy rev{devs[0].rev} \'{devs[0].serial}\'')
+			return devs[0].to_device()
+	elif dev_count == 1:
+		if args.device is not None:
+			if args.device != devices[0].serial:
+				log.error(f'Connected Squishy has serial of \'{devices[0].serial}\', but device serial \'{args.device}\' was specified.')
+				return None
+		else:
+			log.warning('No serial number specified.')
+			log.warning('Using only Squishy attached to system.')
+		log.info(f'Found Squishy rev{devices[0].rev} \'{devices[0].serial}\'')
+		return devices[0].to_device()
+	else:
+		log.error('No Squishy devices attached to system.')
+		return None

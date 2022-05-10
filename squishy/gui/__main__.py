@@ -4,13 +4,13 @@ import sys
 from pathlib import Path
 
 try:
-	from squishy import main_gui
+	from squishy.main import gui_main
 except ImportError:
 	squishy_path = Path(sys.argv[0]).resolve()
 
 	if (squishy_path.parent.parent / 'squishy').is_dir():
 		sys.path.insert(0, str(squishy_path.parent.parent))
 
-	from squishy import main_gui
+	from squishy.main import gui_main
 
-sys.exit(main_gui())
+sys.exit(gui_main())
