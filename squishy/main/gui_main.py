@@ -6,6 +6,15 @@ from .common        import (
 	main_common, common_options, setup_logging
 )
 
+def _check_pyside2() -> bool:
+	'''Check if PySide2 is installed'''
+
+	try:
+		import PySide2 # noqa: F401
+		return True
+	except ImportError:
+		return False
+
 def main() -> int:
 	'''Squishy GUI Runner
 
@@ -17,11 +26,11 @@ def main() -> int:
 		0 if execution was successfull, otherwise any other integer on error
 
 	'''
-	try:
-		from ..actions.gui import GUI
-	except ImportError:
+	if not _check_pyside2():
 		log.error('To use the Squishy GUI please install PySide2')
 		return 1
+
+	from ..gui import SquishyGui
 
 	try:
 		main_common()
@@ -34,7 +43,7 @@ def main() -> int:
 
 		common_options(parser)
 
-		gui = GUI()
+		gui = SquishyGui()
 
 		gui.register_args(parser)
 
