@@ -9,7 +9,6 @@ except ImportError:
 	__version__ = ':nya_confused:' # :nocov:
 
 import logging    as log
-import sys
 
 from rich.logging import RichHandler
 
@@ -20,7 +19,19 @@ __all__ = (
 	'main_gui',
 )
 
-def _set_logging(args = None):
+def _set_logging(args = None) -> None:
+	'''Initialize logging subscriber
+
+	Set up the built-in rich based logging subscriber, and force it
+	to be the one at runtime in case there is already one set up.
+
+	Parameters
+	----------
+	args : argsparse.Namespace
+		Any command line arguments passed.
+
+	'''
+
 	level = log.INFO
 	if args is not None and args.verbose:
 		level = log.DEBUG
@@ -35,7 +46,18 @@ def _set_logging(args = None):
 		]
 	)
 
-def _init_dirs():
+def _init_dirs() -> None:
+	'''Initialize Squishy application directories.
+
+	Creates all of the appropriate directories that Squishy
+	expects, such as the config, and cache directories.
+
+	This uses the XDG_* environment variables if they exist,
+	otherwise they assume that all the needed dirs are in the
+	running users home directory.
+
+	'''
+
 	from .  import config
 
 	dirs = (
@@ -53,7 +75,17 @@ def _init_dirs():
 		if not d.exists():
 			d.mkdir(exist_ok = True)
 
-def _main_common():
+def _main_common() -> None:
+	'''Squishy common initialization.
+
+	This method initializes things like the application
+	directories if they don't exist, as well as installing
+	the rich based log handler.
+
+	It also creates the settings JSON file if it doesn't exist.
+
+	'''
+
 	import json
 
 	from rich    import traceback
@@ -69,7 +101,18 @@ def _main_common():
 		with SQUISHY_SETTINGS_FILE.open('w') as cfg:
 			json.dump(DEFAULT_SETTINGS, cfg)
 
-def _common_options(parser):
+def _common_options(parser) -> None:
+	'''Initialize common CLI options.
+
+	Registers common options between the CLI and GUI for invocation.
+
+	Parameters
+	----------
+	parser : argparse.ArgumentParser
+		The argument parser to register commands with.
+
+	'''
+
 	core_options = parser.add_argument_group('Core configuration options')
 
 	core_options.add_argument(
@@ -78,7 +121,17 @@ def _common_options(parser):
 		help   = 'Enable verbose output during synth and pnr'
 	)
 
-def main_gui():
+def main_gui() -> int:
+	'''Squishy GUI Runner
+
+	This is the main invocation point for the Squishy QT5 GUI.
+
+	Returns
+	-------
+	int
+		0 if execution was successfull, otherwise any other integer on error
+
+	'''
 	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 	try:
 		from .actions.gui import GUI
@@ -110,6 +163,26 @@ def main_gui():
 		log.info('bye!')
 
 def _get_device(args):
+	'''Get attached Squishy device.
+
+	Get the attached and selected squishy device if possible, or if only
+	one is attached to the system use that one.
+
+	Parameters
+	----------
+	args : argsparse.Namespace
+		Any command line arguments passed.
+
+	Returns
+	-------
+	None
+		If no device is selected
+
+	squishy.core.device.SquishyHardwareDevice
+		The selected hardware if available.
+
+	'''
+
 	devices = list(SquishyDeviceContainer.enumerate())
 	dev_count = len(devices)
 	if dev_count > 1:
@@ -148,7 +221,18 @@ def _get_device(args):
 		log.error('No Squishy devices attached to system.')
 		return None
 
-def main():
+def main() -> int:
+	'''Squishy CLI/REPL Runner
+
+	This is the main invocation point for the Squishy CLI and REPL.
+
+	Returns
+	-------
+	int
+		0 if execution was successfull, otherwise any other integer on error
+
+	'''
+
 	from argparse      import ArgumentParser, ArgumentDefaultsHelpFormatter
 	from pathlib       import Path
 
@@ -208,6 +292,3 @@ def main():
 			return act['instance'].run(args)
 	except KeyboardInterrupt:
 		log.info('bye!')
-
-if __name__ == '__main__':
-	sys.exit(main())
