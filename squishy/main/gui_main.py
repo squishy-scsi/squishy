@@ -30,7 +30,7 @@ def main() -> int:
 		log.error('To use the Squishy GUI please install PySide2')
 		return 1
 
-	from ..gui import SquishyGui
+	from ..gui.application import SquishyGui
 
 	try:
 		main_common()

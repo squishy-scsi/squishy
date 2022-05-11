@@ -3,7 +3,7 @@ from PySide2.QtCore    import *
 from PySide2.QtWidgets import *
 from PySide2.QtUiTools import QUiLoader
 
-from .resources        import *
+from ..resources       import *
 
 class DevicesWindow:
 	def __init__(self):

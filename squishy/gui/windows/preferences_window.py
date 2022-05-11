@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import json
 
-from PySide2.QtCore    import *
-from PySide2.QtWidgets import *
-from PySide2.QtUiTools import QUiLoader
+from PySide2.QtCore     import *
+from PySide2.QtWidgets  import *
+from PySide2.QtUiTools  import QUiLoader
 
-from ..config          import SQUISHY_SETTINGS_FILE, DEFAULT_SETTINGS
-from ..config          import BufferType, BufferBackend
+from ...config          import SQUISHY_SETTINGS_FILE, DEFAULT_SETTINGS
+from ...config          import BufferType, BufferBackend
 
-from .resources        import *
-from .widgets          import FontPicker, ColorPicker, HotkeyEdit
-from .widgets.hex_view import ByteFormat
+from ..resources        import *
+from ..widgets          import FontPicker, ColorPicker, HotkeyEdit
+from ..widgets.hex_view import ByteFormat
 
 class PreferencesWindow:
 	def _fill_appearance(self):

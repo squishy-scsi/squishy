@@ -3,17 +3,14 @@ from PySide2.QtCore    import *
 from PySide2.QtWidgets import *
 from PySide2.QtUiTools import QUiLoader
 
-from .resources        import *
-from .widgets          import BusTopologyWidget
+from ..resources       import *
 
-class BusTopologyWindow:
+class FiltersWindow:
 	def __init__(self):
 		self.loader = QUiLoader()
 		self._ui_file = QFile(
-			get_resource('bus_topology_window.ui', ResourceCategory.UI, ResourceType.PATH)
+			get_resource('filters_window.ui', ResourceCategory.UI, ResourceType.PATH)
 		)
-
-		self.loader.registerCustomWidget(BusTopologyWidget)
 
 		self.window = self.loader.load(self._ui_file)
 
