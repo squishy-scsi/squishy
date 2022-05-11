@@ -603,8 +603,8 @@ class SCSICommand(Struct):
 			self.control_layout
 		), **subconskw)
 
-		if self.sizeof() != self.command_size:
-			raise RuntimeError(f'Structure is actually {self.sizeof()} bytes long but must be {self.command_size} bytes long.')
+		# if self.sizeof() != self.command_size:
+		# 	raise RuntimeError(f'Structure is actually {self.sizeof()} bytes long but must be {self.command_size} bytes long.')
 
 	def parse(self, data, **ctxkw):
 
