@@ -26,6 +26,9 @@ def main() -> int:
 		0 if execution was successfull, otherwise any other integer on error
 
 	'''
+
+	main_common()
+
 	if not _check_pyside2():
 		log.error('To use the Squishy GUI please install PySide2')
 		return 1
@@ -33,7 +36,6 @@ def main() -> int:
 	from ..gui.application import SquishyGui
 
 	try:
-		main_common()
 
 		parser = ArgumentParser(
 			formatter_class = ArgumentDefaultsHelpFormatter,
