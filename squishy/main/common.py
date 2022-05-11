@@ -67,7 +67,7 @@ def init_dirs() -> None:
 
 	for d in dirs:
 		if not d.exists():
-			d.mkdir(exist_ok = True)
+			d.mkdir(parents = True, exist_ok = True)
 
 def main_common() -> None:
 	'''Squishy common initialization.
