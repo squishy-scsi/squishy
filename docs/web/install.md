@@ -111,7 +111,7 @@ You can then activate the virtual environment with:
 
 		.. code-block:: console
 
-			$ call squishy.venv/bin/activate.bat
+			$ call squishy.venv/Scripts/activate.bat
 ```
 
 ### Installing Yosys and nextpnr
