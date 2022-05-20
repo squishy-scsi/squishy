@@ -34,7 +34,7 @@ setup(
 	use_scm_version = vcs_ver(),
 	author          = 'Aki \'lethalbit\' Van Ness',
 	author_email    = 'nya@catgirl.link',
-	description     = 'SCSI Multi-tool',
+	description     = 'SCSI Multitool and Amaranth HDL Library',
 	license         = 'BSD-3-Clause',
 	python_requires = '~=3.8',
 	zip_safe        = False,
