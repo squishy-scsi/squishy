@@ -74,4 +74,7 @@ Squishy is entirely open source, and under permissive licenses. The full source 
 
 Squishy has a dedicated IRC channel, [#squishy on libera.chat](https://web.libera.chat/#squishy). Join to ask questions, discuss ongoing development, or just hang out.
 
-**NOTE:** Squishy does not have an official discord, nor any endorsed discord servers
+
+```{note}
+Squishy does not have an official discord, nor any endorsed discord servers
+```

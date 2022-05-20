@@ -1,5 +1,10 @@
 # GUI
 
+
+```{todo}
+Flesh this section out
+```
+
 The Squishy GUI is an optional GUI which is geared for use with the Analyzer applet, however it is possible to use it with other applets.
 
 ## Invocation

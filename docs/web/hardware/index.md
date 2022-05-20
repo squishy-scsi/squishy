@@ -11,6 +11,10 @@ rev1
 rev2
 ```
 
+```{todo}
+Flesh this section out
+```
+
 The squishy hardware is broken up into revisions and release levels. Each revision has breaking changes when it comes to hardware, and so they are their own platforms, however, release levels within each revision are hardware compatible with each other.
 
 Both the revision and the release level start at 0, and increment by one. If the release level is omitted, it is assumed to be 0.

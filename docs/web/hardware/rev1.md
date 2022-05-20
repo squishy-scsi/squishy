@@ -1,5 +1,9 @@
 # Revision 1
 
+```{todo}
+Flesh this section out
+```
+
 Hardware revision 1 was the first release of the Squishy hardware, it is only capable of speaking SCSI HVD. Revision 1 release 0 has some problems that can be fixed with two component replacements, which was not enough to constitute a whole new release.
 
 ## Capabilities

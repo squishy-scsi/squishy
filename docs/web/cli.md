@@ -1,5 +1,9 @@
 # CLI
 
+```{todo}
+Flesh this section out
+```
+
 The CLI is the main way to interact with squishy, most references to interacting with Squishy will assume you are using the CLI.
 
 ## Invocation

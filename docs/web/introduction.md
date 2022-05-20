@@ -16,6 +16,8 @@ everything in the Squishy system interacts.
 
 ![](_images/squishy-arch-overview.svg)
 
+
+
 ## Hardware
 
 The Squishy hardware is a bespoke physical interface into the world of SCSI. Out of the box, it provides a way to inspect and interact with the world of SCSI, be it HVD, LVD, or Single-Ended, all from a modern machine over USB.
