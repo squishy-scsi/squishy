@@ -69,3 +69,9 @@ Squishy is entirely open source, and under permissive licenses. The full source 
 **3:** Squishy requires USB power for operation, therefore it is considered to always be tethered.
 
 **4:** This includes only the RaSCSI interface itself, and not the needed RaspberryPi SOM as well.
+
+## Community
+
+Squishy has a dedicated IRC channel, [#squishy on libera.chat](https://web.libera.chat/#squishy). Join to ask questions, discuss ongoing development, or just hang out.
+
+**NOTE:** Squishy does not have an official discord, nor any endorsed discord servers
