@@ -9,6 +9,13 @@ Squishy is a set of utilities, gateware, and hardware for interacting with and d
 Once you've read the sections below and are ready to get started, see the [Installation](./install.md) and the [Getting Started](./getting_started.md) sections.
 
 
+## Overview
+
+Squishy has many moving parts, the following diagram illustrates a rough overview of how
+everything in the Squishy system interacts.
+
+![](_images/squishy-arch-overview.svg)
+
 ## Hardware
 
 The Squishy hardware is a bespoke physical interface into the world of SCSI. Out of the box, it provides a way to inspect and interact with the world of SCSI, be it HVD, LVD, or Single-Ended, all from a modern machine over USB.
