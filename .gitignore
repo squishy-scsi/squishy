@@ -21,3 +21,4 @@ htmlcov/
 kibus.log
 pyoxidizer.bzl
 test-vcds/
+*.bkp
