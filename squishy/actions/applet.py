@@ -262,14 +262,14 @@ class Applet(SquishyAction):
 
 		device.build(
 			gateware,
-			name = 'squishy_applet',
-			build_dir = args.build_dir,
-			do_build = True,
-			do_program = True,
-			synth_opts = ' '.join(synth_opts),
-			verbose = args.loud,
+			name         = 'squishy_applet',
+			build_dir    = args.build_dir,
+			do_build     = True,
+			do_program   = True,
+			synth_opts   = ' '.join(synth_opts),
+			verbose      = args.loud,
 			nextpnr_opts = ' '.join(pnr_opts),
-			skip_cache = args.skip_cache,
+			skip_cache   = args.skip_cache,
 		)
 
 
