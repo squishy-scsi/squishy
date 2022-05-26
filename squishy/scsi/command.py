@@ -392,12 +392,12 @@ class SCSICommandField(Subconstruct):
 		'''
 		if size % 8 == 0:
 			bc = size // 8
-			return cls.LENGTH_TYPES.get(
+			return Bytewise(cls.LENGTH_TYPES.get(
 				bc,
 				BytesInteger(bc, signed = False, swapped = True)
-			)
+			))
 		else:
-			return Bitwise(BitsInteger(size))
+			return BitsInteger(size)
 
 
 	def __init__(self, description : str = '', default : Any = None, *, length : int = None):
@@ -417,7 +417,6 @@ class SCSICommandField(Subconstruct):
 			The name of the :py:class:`construct.Subconstruct`
 
 		'''
-
 
 		if self.len is not None:
 			subcon_type = self._type_from_size(self.len)
@@ -598,13 +597,13 @@ class SCSICommand(Struct):
 			self.command_size = _KNOWN_SIZED_GROUPS[group_code]
 
 		super().__init__(*(
-			Const({'command': self.opcode, 'group': self.group_code}, self.opcode_layout),
+			'opcode' / Bytewise(Const({'command': self.opcode, 'group': self.group_code}, self.opcode_layout)),
 			*subcons,
-			self.control_layout
+			'control' / Bytewise(self.control_layout)
 		), **subconskw)
 
-		# if self.sizeof() != self.command_size:
-		# 	raise RuntimeError(f'Structure is actually {self.sizeof()} bytes long but must be {self.command_size} bytes long.')
+		# if (self.sizeof() // 8) != self.command_size:
+		# 	raise RuntimeError(f'Structure is actually {self.sizeof() // 8} bytes long but must be {self.command_size} bytes long.')
 
 	def parse(self, data, **ctxkw):
 
@@ -872,6 +871,6 @@ class CommandEmitter:
 		'''
 
 		try:
-			return self.format.build(self.fields)
+			return Bitwise(self.format).build(self.fields)
 		except KeyError as e:
 			raise KeyError(f'Missing required field {e}')
