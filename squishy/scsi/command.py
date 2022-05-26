@@ -568,6 +568,13 @@ class SCSICommand(Struct):
 	size : int
 		The total size of the SCSI command.
 
+	Note
+	----
+
+	The result of the ``sizeof()`` call returns the size of the SCSI command in bits. To get
+	the size in bytes either call the ``len()`` method or divide the result of the ``sizeof()``
+	call by ``8``.
+
 	''' # noqa: E101
 
 	opcode_layout = 'opcode' / BitStruct(
@@ -604,6 +611,11 @@ class SCSICommand(Struct):
 
 		# if (self.sizeof() // 8) != self.command_size:
 		# 	raise RuntimeError(f'Structure is actually {self.sizeof() // 8} bytes long but must be {self.command_size} bytes long.')
+
+	def len(self):
+		'''Return strcutrue length in bytes'''
+
+		return self.sizeof() // 8
 
 	def parse(self, data, **ctxkw):
 
@@ -646,6 +658,22 @@ class SCSICommand6(SCSICommand):
 	*subcons : list[construct.Subconstruct]
 		The collection of `construct <https://construct.readthedocs.io/en/latest/index.html>`_ :py:class:`construct.Subconstruct`
 		members representing the command.
+
+	Attributes
+	----------
+
+	group_code : GroupCode
+		The SCSI commands group code.
+
+	size : int
+		The total size of the SCSI command.
+
+	Note
+	----
+
+	The result of the ``sizeof()`` call returns the size of the SCSI command in bits. To get
+	the size in bytes either call the ``len()`` method or divide the result of the ``sizeof()``
+	call by ``8``.
 
 	'''
 
@@ -693,6 +721,22 @@ class SCSICommand10(SCSICommand):
 	*subcons : list[construct.Subconstruct]
 		The collection of `construct <https://construct.readthedocs.io/en/latest/index.html>`_ :py:class:`construct.Subconstruct`
 		members representing the command.
+
+	Attributes
+	----------
+
+	group_code : GroupCode
+		The SCSI commands group code.
+
+	size : int
+		The total size of the SCSI command.
+
+	Note
+	----
+
+	The result of the ``sizeof()`` call returns the size of the SCSI command in bits. To get
+	the size in bytes either call the ``len()`` method or divide the result of the ``sizeof()``
+	call by ``8``.
 
 	'''
 
@@ -744,6 +788,22 @@ class SCSICommand12(SCSICommand):
 	*subcons : list[construct.Subconstruct]
 		The collection of `construct <https://construct.readthedocs.io/en/latest/index.html>`_ :py:class:`construct.Subconstruct`
 		members representing the command.
+
+	Attributes
+	----------
+
+	group_code : GroupCode
+		The SCSI commands group code.
+
+	size : int
+		The total size of the SCSI command.
+
+	Note
+	----
+
+	The result of the ``sizeof()`` call returns the size of the SCSI command in bits. To get
+	the size in bytes either call the ``len()`` method or divide the result of the ``sizeof()``
+	call by ``8``.
 
 	'''
 	def __init__(self, opcode : int, *subcons, **subconmskw):
@@ -857,6 +917,11 @@ class CommandEmitter:
 		'''Emit bytes
 
 		Takes the assigned fields and generates a byte string from the specified format.
+
+		Warning
+		-------
+		This method wraps the internal :py:class:`construct.Subconstruct` in a :py:func:`construct.Bitwise`
+		to serialize the structure to bytes.
 
 		Returns
 		-------
