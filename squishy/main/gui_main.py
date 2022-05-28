@@ -15,6 +15,15 @@ def _check_pyside2() -> bool:
 	except ImportError:
 		return False
 
+def _check_pyside6() -> bool:
+	'''Check if PySide6 is installed'''
+
+	try:
+		import PySide6 # noqa: F401
+		return True
+	except ImportError:
+		return False
+
 def main() -> int:
 	'''Squishy GUI Runner
 
