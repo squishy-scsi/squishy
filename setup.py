@@ -38,6 +38,7 @@ setup(
 	license         = 'BSD-3-Clause',
 	python_requires = '~=3.8',
 	zip_safe        = False,
+	url             = 'https://github.com/lethalbit/squishy',
 
 	setup_requires  = [
 		'wheel',
