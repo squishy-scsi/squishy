@@ -100,7 +100,7 @@ class Cache(SquishyAction):
 			help   = 'List each item in the cache (WARNING, THIS CAN BE LARGE)'
 		)
 
-		cache_clear = actions.add_parser(
+		cache_clear = actions.add_parser( # noqa: F841
 			'clear',
 			help = 'clear cache'
 		)

@@ -57,11 +57,11 @@ class SquishyAction(metaclass = ABCMeta):
 		Raises
 		------
 		NotImplementedError
-			The abstract method must be implemented by the applet
+			The abstract method must be implemented by the action.
 
 		'''
 
-		raise NotImplementedError('Applets must implement this method')
+		raise NotImplementedError('Actions must implement this method')
 
 	@abstractmethod
 	def run(self, args, dev = None):
@@ -86,9 +86,9 @@ class SquishyAction(metaclass = ABCMeta):
 		Raises
 		------
 		NotImplementedError
-			The abstract method must be implemented by the applet
+			The abstract method must be implemented by the action.
 
 
 		'''
 
-		raise NotImplementedError('Applets must implement this method')
+		raise NotImplementedError('Acctions must implement this method')
