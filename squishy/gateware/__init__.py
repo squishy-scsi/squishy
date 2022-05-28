@@ -10,7 +10,7 @@ __all__ = (
 	'Squishy',
 )
 
-"""
+'''
 	Squishy Architecture
 
                ┌──────────┐
@@ -27,7 +27,7 @@ __all__ = (
 │                                │
 └────────────────────────────────┘
 
-"""
+''' # noqa: E101
 
 class Squishy(Elaboratable):
 	def __init__(self, *, uart_config, usb_config, scsi_config):
