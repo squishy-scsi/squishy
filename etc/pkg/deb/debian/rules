@@ -1,0 +1,7 @@
+#!/usr/bin/make -f
+
+export PYBUILD_NAME=python3-squishy
+export SQUISHY_TEST_INHIBIT_VCD=1
+
+%:
+	PREFIX=/usr dh $@ --with=python3 --buildsystem=pybuild
