@@ -1,2 +1,4 @@
 .SRCINFO
 PKGBUILD
+pkg/
+src/
