@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
+import logging        as log
 from functools        import wraps
 from pathlib          import Path
 from unittest         import TestCase
@@ -169,6 +170,8 @@ class SquishyGatewareTestCase(TestCase):
 		'''
 
 		if getenv('SQUISHY_TEST_INHIBIT_VCD', default = False):
+			log.warning('SQUISHY_TEST_INHIBIT_VCD is set! No VCDs will be generated for gateware tests!')
+
 			self.sim.reset()
 			self.sim.run()
 		else:
