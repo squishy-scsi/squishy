@@ -1,0 +1,64 @@
+%define skip_python2 1
+Name: python-squishy
+Version: @SQUISHY_VERSION@
+Release: 1%{?dist}
+URL: https://scsi.moe/
+Summary: SCSI Multitool and Amaranth HDL Library
+License: BSD-3-Clause
+BuildRequires: python-rpm-macros
+BuildArch: noarch
+
+Source0: https://github.com/lethalbit/squishy/releases/v%{version}/squishy-%{version}.tar.xz
+
+%define _debugsource_template %{nil}
+%define debug_package %{nil}
+
+%description
+SCSI Multitool and Amaranth HDL Library
+
+%package -n python%{python3_pkgversion}-squishy
+Summary: SCSI Multitool and Amaranth HDL Library
+BuildRequires: python%{python3_pkgversion}-setuptools
+BuildRequires: python%{python3_pkgversion}-rpm-macros
+Requires: python%{python3_pkgversion}
+Requires: python%{python3_pkgversion}-pip
+Requires: python%{python3_pkgversion}-construct
+Requires: python%{python3_pkgversion}-rich
+Requires: python%{python3_pkgversion}-usb1
+Requires: python%{python3_pkgversion}-jinja2
+Requires: python%{python3_pkgversion}-arrow
+Requires: python%{python3_pkgversion}-pyside2
+%{?python_provide:%python_provide python%{python3_pkgversion}-squishy}
+
+%description -n python%{python3_pkgversion}-squishy
+SCSI Multitool and Amaranth HDL library
+
+
+%prep
+%setup -q -n squishy-%{version}
+
+%build
+%py3_build_wheel
+
+
+%install
+whl=`(cd dist && ls Squishy-*.whl)`
+%py3_install_wheel $whl
+
+%check
+SQUISHY_TEST_INHIBIT_VCD
+
+%clean
+rm -rf dist
+
+%files -n python%{python3_pkgversion}-squishy
+%license LICENSE.docs LICENSE.fonts LICENSE.hardware LICENSE.icons LICENSE.software
+%{_bindir}/squishy
+%{_bindir}/squishy-gui
+%{python3_sitelib}/squishy
+%{python3_sitelib}/Squishy-*
+
+
+%changelog
+* Sat May 28 2022 Aki Van Ness <nya@catgirl.link> - @SQUISHY_VERSION@
+- Initial Packaging
