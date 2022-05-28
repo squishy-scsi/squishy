@@ -1,0 +1,44 @@
+# appimage-builder recipe see https://appimage-builder.readthedocs.io for details
+version: 1
+AppDir:
+  app_info:
+    id: moe.scsi.squishy
+    name: Squishy
+    icon: utilities-terminal
+    version: @SQUISHY_VERSION@
+    exec: usr/bin/python
+    exec_args: -m squishy $@
+
+  pacman:
+    include:
+      - breeze-icons
+      - python
+      - python-jinja
+      - python-construct
+      - python-arrow
+      - python-libusb1
+      - python-rich
+      - pyside2
+      - ninja
+      - meson
+    exclude: []
+
+  # test:
+  #   fedora-30:
+  #     image: appimagecrafters/tests-env:fedora-30
+  #     command: ./AppRun
+  #   debian-stable:
+  #     image: appimagecrafters/tests-env:debian-stable
+  #     command: ./AppRun
+  #   archlinux-latest:
+  #     image: appimagecrafters/tests-env:archlinux-latest
+  #     command: ./AppRun
+  #   centos-7:
+  #     image: appimagecrafters/tests-env:centos-7
+  #     command: ./AppRun
+  #   ubuntu-xenial:
+  #     image: appimagecrafters/tests-env:ubuntu-xenial
+  #     command: ./AppRun
+AppImage:
+  arch: x86_64
+  update-information: guess
