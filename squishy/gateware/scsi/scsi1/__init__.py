@@ -124,3 +124,19 @@ def Device(*args, **kwargs) -> SCSI1:
 def Initiator(*args, **kwargs) -> SCSI1:
 	'''Create a SCSI-1 Initiator Elaboratable'''
 	return SCSI1(*args, is_device = False, **kwargs)
+
+# -------------- #
+
+# from ....core.test import SquishyGatewareTestCase, sim_test
+#
+# class SCSI1Tests(SquishyGatewareTestCase):
+# 	dut = SCSI1
+# 	dut_args = {
+# 		'is_device': True,
+# 		'arbitrating': True,
+# 		'config': None
+# 	}
+#
+# 	@sim_test
+# 	def test_uwu(self):
+# 		yield from self.step(30)

@@ -114,7 +114,7 @@ targets all on the shared bus.
 	:align: center
 	:caption: Arbitrating SCSI Bus State Machine
 
-	digraph scsi_with_arbitrartion {
+	digraph scsi_with_arbitration{
 		fontname="Fira Code"
 		bgcolor="#FFFFFF00"
 		node [fontname="Fira Code"]
@@ -185,7 +185,7 @@ targets all on the shared bus.
 	:align: center
 	:caption: Non-Arbitrating SCSI Bus State Machine
 
-	digraph scsi_with_arbitrartion {
+	digraph scsi_with_arbitration {
 		fontname="Fira Code"
 		bgcolor="#FFFFFF00"
 		node [fontname="Fira Code"]
