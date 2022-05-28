@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging    as log
-from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+import logging as log
+from argparse  import ArgumentParser, ArgumentDefaultsHelpFormatter
 
-from .common        import (
+from .common   import (
 	main_common, common_options, setup_logging
 )
 
