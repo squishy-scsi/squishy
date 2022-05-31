@@ -18,6 +18,7 @@ The installation instructions for squishy on various platforms can be found on t
 ## Mascot - Sachi
 
 ![Sachi the spirit fox](https://raw.githubusercontent.com/lethalbit/squishy/main/etc/img/sachi/electrichearts_20211013A_sachi_trans_1024.png)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flethalbit%2Fsquishy.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Flethalbit%2Fsquishy?ref=badge_shield)
 
 More information about Sachi is available on her [mascot page](https://docs.scsi.moe/mascot.html) in the documentation.
 
@@ -46,3 +47,6 @@ The fonts used in the GUI are [Fira Code](https://github.com/tonsky/FiraCode), a
 The print/pdf documentation uses the font [Nunito](https://fonts.google.com/specimen/Nunito) which is under the [OFL 1.1](https://scripts.sil.org/cms/scripts/page.php?site_id=nrsi&id=OFL), and can be found in [LICENSE.fonts](https://github.com/lethalbit/squishy/tree/main/LICENSE.fonts)
 
 Sachi, the mascot is dual-licensed under the [BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.html) and the Creative Commons [CC-BY-SA](https://creativecommons.org/licenses/by-sa/2.0/)
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Flethalbit%2Fsquishy.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Flethalbit%2Fsquishy?ref=badge_large)
