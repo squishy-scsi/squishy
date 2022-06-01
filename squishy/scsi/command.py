@@ -481,7 +481,7 @@ class SCSICommand(Struct):
 	``command code`` which is the remaining seven bits.
 
 	Due to the split between ``group code`` and ``command code`` as well as the different classes that implement
-	commans, there is a large re-use of ``opcode``'s, this complicates things, as we need to know ahead of time what
+	commands, there is a large re-use of ``opcode``'s, this complicates things, as we need to know ahead of time what
 	the device is in order to succesfully dispatch and parse commands.
 
 	The ``control`` byte also has it's own 'sub structure'.
@@ -613,7 +613,7 @@ class SCSICommand(Struct):
 		# 	raise RuntimeError(f'Structure is actually {self.sizeof() // 8} bytes long but must be {self.command_size} bytes long.')
 
 	def len(self):
-		'''Return strcutrue length in bytes'''
+		'''Return structure length in bytes'''
 
 		return self.sizeof() // 8
 

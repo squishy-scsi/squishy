@@ -11,3 +11,15 @@ except ImportError:
 __all__ = (
 
 )
+
+'''\
++=====================================+
+|                                     |
+|           !!! WARNING !!!           |
+|                                     |
+|     THIS MACHINE KNOWS NOT THE      |
+| DIFFERENCE BETWEEN METAL AND FLESH, |
+|          NOR DOES IT CARE.          |
+|                                     |
++=====================================+
+'''
