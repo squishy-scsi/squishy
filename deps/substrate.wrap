@@ -1,4 +1,0 @@
-[wrap-git]
-url = git://github.com/bad-alloc-heavy-industries/substrate.git
-revision = head
-clone-recursive = false

@@ -1,4 +1,0 @@
-[wrap-git]
-url = git://github.com/lethalbit/uwu-efi.git
-revision = head
-clone-recursive = false
