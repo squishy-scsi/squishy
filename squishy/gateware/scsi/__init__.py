@@ -37,6 +37,7 @@ targets all on the shared bus.
 
 	graph scsi_bus_sist {
 		fontname="Fira Code"
+		bgcolor="#FFFFFF00"
 		node [fontname="Fira Code"]
 		edge [fontname="Fire Code"]
 		rankdir=LR;
@@ -57,6 +58,7 @@ targets all on the shared bus.
 
 	graph scsi_bus_simt {
 		fontname="Fira Code"
+		bgcolor="#FFFFFF00"
 		node [fontname="Fira Code"]
 		edge [fontname="Fire Code"]
 		rankdir=LR;
@@ -77,6 +79,7 @@ targets all on the shared bus.
 
 	graph scsi_bus_mimt {
 		fontname="Fira Code"
+		bgcolor="#FFFFFF00"
 		node [fontname="Fira Code"]
 		edge [fontname="Fire Code"]
 		rankdir=LR;
