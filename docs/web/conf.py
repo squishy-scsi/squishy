@@ -26,7 +26,6 @@ extensions = [
 	'sphinxcontrib.platformpicker',
 	'sphinxcontrib.wavedrom',
 	'myst_parser',
-	'sphinx_construct',
 	'sphinx_rtd_theme',
 ]
 
