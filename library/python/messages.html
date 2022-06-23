@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/styles.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/sphinx_construct.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/platformpicker.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/styles.css" type="text/css" />
     <link rel="canonical" href="https://docs.scsi.moe/library/python/messages.html" />
@@ -19,6 +18,7 @@
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
         <script src="../../_static/platformpicker.js"></script>
         <script src="../../_static/wavedrom.skin.js"></script>
@@ -42,7 +42,7 @@
             <a href="../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gdbf692d
+                0.1.dev1+gd370a2f
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -222,200 +222,498 @@
            <div itemprop="articleBody">
              
   <section id="squishy-scsi-messages">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.messages</span></code><a class="headerlink" href="#squishy-scsi-messages" title="Permalink to this headline"></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.messages</span></code><a class="headerlink" href="#squishy-scsi-messages" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-squishy.scsi.messages"></span><p>This module contains the needed constants and machinery
-for dealing with SCSI messages.</p>
-<dl class="py class">
+<span class="target" id="module-squishy.scsi.messages"></span><dl class="py class">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.messages.</span></span><span class="sig-name descname"><span class="pre">MessageCodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.messages.MessageCodes" title="Permalink to this definition"></a></dt>
-<dd><p>SCSI Message codes</p>
+<dd><p>SCSI Message Codes</p>
+<p>SCSI Messages are to facilitate physical path management between
+a target and initiator.</p>
+<p>The only mandatory command is <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.COMMAND_COMPLETE" title="squishy.scsi.messages.MessageCodes.COMMAND_COMPLETE"><code class="xref py py-const docutils literal notranslate"><span class="pre">COMMAND_COMPLETE</span></code></a> and as such
+any functional SCSI device only needs to support that message.</p>
+<p>There are two directions a message may be sent in, <code class="docutils literal notranslate"><span class="pre">in</span></code> and <code class="docutils literal notranslate"><span class="pre">out</span></code>. With
+messages that are <code class="docutils literal notranslate"><span class="pre">in</span></code> the flow is from the target to the initiator. With
+<code class="docutils literal notranslate"><span class="pre">out</span></code> messages the flow is from the initiator to the target.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.CMD_COMPLETE">
-<span class="sig-name descname"><span class="pre">CMD_COMPLETE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.CMD_COMPLETE" title="Permalink to this definition"></a></dt>
-<dd><p>Mandatory Dir: In</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.COMMAND_COMPLETE">
+<span class="sig-name descname"><span class="pre">COMMAND_COMPLETE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.COMMAND_COMPLETE" title="Permalink to this definition"></a></dt>
+<dd><p>Command Complete (Mandatory, In).</p>
+<p>This message is sent to the Initiator to indicate that the execution of a command
+or series of linked commands has been terminated and that a valid status has
+been sent to the initiator.</p>
+<p>After this message is sent the Initiator should go into the BUS FREE phase.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The command may have been successfully or unsuccessfully completed</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.EXTND_MESSAGE">
-<span class="sig-name descname"><span class="pre">EXTND_MESSAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.EXTND_MESSAGE" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir: In/Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.EXTENDED_MESSAGE">
+<span class="sig-name descname"><span class="pre">EXTENDED_MESSAGE</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.EXTENDED_MESSAGE" title="Permalink to this definition"></a></dt>
+<dd><p>Extended Message (Optional, In/Out).</p>
+<p>This message indicates that the following data is an extended message.
+See <a class="reference internal" href="#squishy.scsi.messages.ExtendedMessageCodes" title="squishy.scsi.messages.ExtendedMessageCodes"><code class="xref py py-class docutils literal notranslate"><span class="pre">ExtendedMessageCodes</span></code></a> for more details on extended messages.</p>
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.SAV_DATA_PTR">
-<span class="sig-name descname"><span class="pre">SAV_DATA_PTR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.SAV_DATA_PTR" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir: In</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.SAVE_DATA_PTR">
+<span class="sig-name descname"><span class="pre">SAVE_DATA_PTR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.SAVE_DATA_PTR" title="Permalink to this definition"></a></dt>
+<dd><p>Save Data Pointer (Optional, In).</p>
+<p>This message directs the Initiator to save a copy of the current active data
+pointer for the currently attached LUN.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.RESTORE_PTR">
 <span class="sig-name descname"><span class="pre">RESTORE_PTR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.RESTORE_PTR" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir: In</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Restore Pointers (Optional, In).</p>
+<p>This message directs the Initiator to restore the recently saved pointers
+to the active state.</p>
+<p>Pointers to the command, data, and status locations for the LUN shall be restored
+to the active pointers.</p>
+<p>Commands and status pointers shall be restored to the beginning of the current
+command and status areas.</p>
+<p>The data pointer shall be restored to the value at the beginning of the data
+area in the absence of a <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.SAVE_DATA_PTR" title="squishy.scsi.messages.MessageCodes.SAVE_DATA_PTR"><code class="xref py py-const docutils literal notranslate"><span class="pre">SAVE_DATA_PTR</span></code></a> message, or to the value of the pointer
+from the last <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.SAVE_DATA_PTR" title="squishy.scsi.messages.MessageCodes.SAVE_DATA_PTR"><code class="xref py py-const docutils literal notranslate"><span class="pre">SAVE_DATA_PTR</span></code></a> message that was issued to the LUN.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.DISCONNECT">
 <span class="sig-name descname"><span class="pre">DISCONNECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.DISCONNECT" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir: In/Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Disconnect (Optional, In/Out).</p>
+<p>When sent from a Target, this message informs the Initiator that the present
+physical path will invalidated, and that a later reconnection will be needed
+in order to finish the current operation.</p>
+<p>If BUS FREE is detected by the Initiator in any case other than a RESET condition
+and it did not receive a disconnect or command complete, it is considered a
+fatal error condition.</p>
+<p>If the target caused the error intentionally, it will clear the current command.</p>
+<p>This message shall not cause the initiator to save the data pointer.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If one or more <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.DISCONNECT" title="squishy.scsi.messages.MessageCodes.DISCONNECT"><code class="xref py py-const docutils literal notranslate"><span class="pre">DISCONNECT</span></code></a> messages are used to segment a long data transfer
+into two or more smaller transfers, then a <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.SAVE_DATA_PTR" title="squishy.scsi.messages.MessageCodes.SAVE_DATA_PTR"><code class="xref py py-const docutils literal notranslate"><span class="pre">SAVE_DATA_PTR</span></code></a> must be issued
+before each <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.DISCONNECT" title="squishy.scsi.messages.MessageCodes.DISCONNECT"><code class="xref py py-const docutils literal notranslate"><span class="pre">DISCONNECT</span></code></a> message.</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.INT_DETECT_ERR">
 <span class="sig-name descname"><span class="pre">INT_DETECT_ERR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.INT_DETECT_ERR" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir:    Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Initiator Detected Error (Optional, Out).</p>
+<p>This message is sent from the Initiator to indicate to the target that
+an error has occurred that not prevent the target from re-attempting
+the operation.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Integrity of the pointers are not assured. However a <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.RESTORE_PTR" title="squishy.scsi.messages.MessageCodes.RESTORE_PTR"><code class="xref py py-const docutils literal notranslate"><span class="pre">RESTORE_PTR</span></code></a>
+message or a disconnect followed by a reconnect, shall cause the pointers
+to be restored to their defined prior state.</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.ABORT">
 <span class="sig-name descname"><span class="pre">ABORT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.ABORT" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir:    Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Abort (Optional, Out).</p>
+<p>This message is sent from the Initiator to clear the current operation. If
+a LUN has been identified, then all pending data and status for the initiator
+issuing the message from the effected LUN shall be cleared. The target will then
+go into BUS FREE.</p>
+<p>Pending data and status for any other Initiators on the bus shall not be cleared.</p>
+<p>If a LUN has not been identified, then the target will go into the BUS FREE phase.</p>
+<p>No status or ending message shall be sent for the operation.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is not an error for this message to be sent to a LUN that
+is not currently performing an operation for the sending Initiator.</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.MESSAGE_REJECT">
 <span class="sig-name descname"><span class="pre">MESSAGE_REJECT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">7</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.MESSAGE_REJECT" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir: In/Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Message Reject (Optional, In/Out).</p>
+<p>This message is sent from either the Target or Initiator to indicate
+that the previous message was invalid or not implemented.</p>
+<p>When an Initiator sends this message, it asserts the ATN signal prior to
+releasing ACK for the REQ/ACK handshake of the message that is being rejected.</p>
+<p>In the case of a Target, it moves to the MESSAGE IN phase and sends this message
+prior to requesting any additional message bytes from the Initiator. This ensures
+that the Initiator can check to see if the message is rejected or not before sending
+the remaining bytes of the message.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This message must be implemented if any other optional messages
+are implemented.</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.NOP">
 <span class="sig-name descname"><span class="pre">NOP</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">8</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.NOP" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir:    Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>No-Operation (Optional, Out).</p>
+<p>This message is sent to a Target in response to a request of the
+Initiator when there is no other messages to be sent.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.MSG_PARITY_ERR">
 <span class="sig-name descname"><span class="pre">MSG_PARITY_ERR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">9</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.MSG_PARITY_ERR" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir:    Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Message Parity Error (Optional, Out).</p>
+<p>This message is sent from an Initiator to the Target where
+one or more bytes of the last message had a parity error.</p>
+<p>To send this message, the Initiator must indicate its intentions to do so.
+It does this by the same method as the <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.MESSAGE_REJECT" title="squishy.scsi.messages.MessageCodes.MESSAGE_REJECT"><code class="xref py py-const docutils literal notranslate"><span class="pre">MESSAGE_REJECT</span></code></a> message.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.LINK_CMD_COM">
 <span class="sig-name descname"><span class="pre">LINK_CMD_COM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">10</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.LINK_CMD_COM" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir: In</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Linked Command Complete (Optional, In).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This command is almost entirely identical to <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.LINK_CMD_COM_F" title="squishy.scsi.messages.MessageCodes.LINK_CMD_COM_F"><code class="xref py py-const docutils literal notranslate"><span class="pre">LINK_CMD_COM_F</span></code></a> with
+the only difference being that the flag bit of the command is not set.</p>
+</div>
+<p>This message is sent to an Initiator to indicate that the execution of a linked
+command has completed and the status for it has been sent. The Initiator will
+then set the pointers to the initial state for the next linked command.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.LINK_CMD_COM_F">
 <span class="sig-name descname"><span class="pre">LINK_CMD_COM_F</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">11</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.LINK_CMD_COM_F" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir: In</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Linked Command Completed With Flag (Optional, In).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This command is almost entirely identical to <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.LINK_CMD_COM" title="squishy.scsi.messages.MessageCodes.LINK_CMD_COM"><code class="xref py py-const docutils literal notranslate"><span class="pre">LINK_CMD_COM</span></code></a> with
+the only difference being that the flag bit of the command is set.</p>
+</div>
+<p>This message is sent to an Initiator to indicate that the execution of a linked
+command with the flag bit set has completed and the status for it has been sent. The Initiator will
+then set the pointers to the initial state for the next linked command.</p>
+<p>This message is typically used to cause an interrupt in the Initiator between two
+linked commands.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.BUS_DEV_RESET">
 <span class="sig-name descname"><span class="pre">BUS_DEV_RESET</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">12</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.BUS_DEV_RESET" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir:    Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Bus Device Reset (Optional, Out).</p>
+<p>This message is sent to a Target to tell it to clear all current commands on
+that SCSI device. It forces the SCSI device to an initial clean state with no
+pending operations for any Initiator on the bus.</p>
+<p>When the Target receives this message, it must go to the BUS FREE phase.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.RESERVED_START">
 <span class="sig-name descname"><span class="pre">RESERVED_START</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">13</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.RESERVED_START" title="Permalink to this definition"></a></dt>
-<dd><p>Reserved  Dir: ¯\_(ツ)_/¯</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Start of Reserved Range.</p>
+<p>The message codes between <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.RESERVED_START" title="squishy.scsi.messages.MessageCodes.RESERVED_START"><code class="xref py py-const docutils literal notranslate"><span class="pre">RESERVED_START</span></code></a> and :py:const`RESERVED_END`
+are all reserved for future possible standards.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.RESERVED_END">
 <span class="sig-name descname"><span class="pre">RESERVED_END</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">127</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.RESERVED_END" title="Permalink to this definition"></a></dt>
-<dd><p>Reserved  Dir: ¯\_(ツ)_/¯</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>End of Reserved Range.</p>
+<p>The message codes between <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.RESERVED_START" title="squishy.scsi.messages.MessageCodes.RESERVED_START"><code class="xref py py-const docutils literal notranslate"><span class="pre">RESERVED_START</span></code></a> and :py:const`RESERVED_END`
+are all reserved for future possible standards.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.IDENTIFY_START">
 <span class="sig-name descname"><span class="pre">IDENTIFY_START</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.IDENTIFY_START" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir: In/Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>Start of Identify Range (Optional, In/Out).</p>
+<p>The message codes between <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.IDENTIFY_START" title="squishy.scsi.messages.MessageCodes.IDENTIFY_START"><code class="xref py py-const docutils literal notranslate"><span class="pre">IDENTIFY_START</span></code></a> and :py:const`IDENTIFY_END`
+are sent by either the Target or the Initiator to establish a physical path between
+a Target and Initiator for a particular LUN.</p>
+<p>These messages have a special format that sets them apart from all other messages as
+illustrated below.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>7</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>5</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">I</span></code></p></td>
+<td colspan="3"><p class="centered">
+<strong>Reserved</strong></p></td>
+<td colspan="3"><p class="centered">
+<strong>LUN</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p>Bit <code class="docutils literal notranslate"><span class="pre">7</span></code> Is always set to a <code class="docutils literal notranslate"><span class="pre">1</span></code> to indicate that this is an IDENTIFY message.</p>
+<p>Bit <code class="docutils literal notranslate"><span class="pre">6</span></code> Is only set to one if the message is coming from an Initiator, this is to
+indicate that it supports disconnection and reconnection.</p>
+<p>Bits <code class="docutils literal notranslate"><span class="pre">5</span></code> thru <code class="docutils literal notranslate"><span class="pre">3</span></code> are reserved for future use.</p>
+<p>Bits <code class="docutils literal notranslate"><span class="pre">2</span></code> thru <code class="docutils literal notranslate"><span class="pre">0</span></code> are the LUN number.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Only one LUN can be identified for any one selection sequence. The bus must
+be released before a new IDENTIFY message with a new LUN can be issued.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When sent to an Initiator from a Target during a reconnection, there is an implied
+<a class="reference internal" href="#squishy.scsi.messages.MessageCodes.RESTORE_PTR" title="squishy.scsi.messages.MessageCodes.RESTORE_PTR"><code class="xref py py-const docutils literal notranslate"><span class="pre">RESTORE_PTR</span></code></a> message which should be completed by the Initiator before
+the completion of this message.</p>
+</div>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.messages.MessageCodes.IDENTIFY_END">
 <span class="sig-name descname"><span class="pre">IDENTIFY_END</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">255</span></em><a class="headerlink" href="#squishy.scsi.messages.MessageCodes.IDENTIFY_END" title="Permalink to this definition"></a></dt>
-<dd><p>Optional  Dir: In/Out</p>
-<dl class="field-list simple">
-<dt class="field-odd">Type</dt>
-<dd class="field-odd"><p>Type</p>
-</dd>
-</dl>
+<dd><p>End of Identify Range (Optional, In/Out).</p>
+<p>The message codes between <a class="reference internal" href="#squishy.scsi.messages.MessageCodes.IDENTIFY_START" title="squishy.scsi.messages.MessageCodes.IDENTIFY_START"><code class="xref py py-const docutils literal notranslate"><span class="pre">IDENTIFY_START</span></code></a> and :py:const`IDENTIFY_END`
+are sent by either the Target or the Initiator to establish a physical path between
+a Target and Initiator for a particular LUN.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="squishy.scsi.messages.ExtendedMessageCodes">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.messages.</span></span><span class="sig-name descname"><span class="pre">ExtendedMessageCodes</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.messages.ExtendedMessageCodes" title="Permalink to this definition"></a></dt>
+<dd><p>Message Codes for Extended SCSI Messages</p>
+<p>Extended SCSI Messages roughly follow this format:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Byte</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x01</span></code></p></td>
+<td><p>Extended Message ID</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">l</span></code></p></td>
+<td><p>Message Length</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">c</span></code></p></td>
+<td><p>Message Code</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p>Message Args Start</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">l+1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p>Message Args End</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The message length field is the number of bytes <strong>after</strong> and including that field.</p>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.messages.ExtendedMessageCodes.MODIFY_DATA_PTR">
+<span class="sig-name descname"><span class="pre">MODIFY_DATA_PTR</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#squishy.scsi.messages.ExtendedMessageCodes.MODIFY_DATA_PTR" title="Permalink to this definition"></a></dt>
+<dd><p>Modify Data Pointer (Optional).</p>
+<p>This extended message is sent to the initiator from the target. It
+asks the initiator to add the signed 4 byte integer argument to the
+current data pointer.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Byte</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x01</span></code></p></td>
+<td><p>Extended Message ID</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x05</span></code></p></td>
+<td><p>Message Length</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x00</span></code></p></td>
+<td><p>Message Code</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">o</span></code></p></td>
+<td><p>Offset (MSB)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">o</span></code></p></td>
+<td><p>Offset</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">o</span></code></p></td>
+<td><p>Offset</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">o</span></code></p></td>
+<td><p>Offset (LSB)</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.messages.ExtendedMessageCodes.SYNC_DATA_XFR_REQ">
+<span class="sig-name descname"><span class="pre">SYNC_DATA_XFR_REQ</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#squishy.scsi.messages.ExtendedMessageCodes.SYNC_DATA_XFR_REQ" title="Permalink to this definition"></a></dt>
+<dd><p>Synchronous Data Transfer Request (Optional).</p>
+<div class="admonition-todo admonition" id="id1">
+<p class="admonition-title">Todo</p>
+<p>Document better</p>
+</div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Byte</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x01</span></code></p></td>
+<td><p>Extended Message ID</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x03</span></code></p></td>
+<td><p>Message Length</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x01</span></code></p></td>
+<td><p>Message Code</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">t</span></code></p></td>
+<td><p>Transfer Period</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">x</span></code></p></td>
+<td><p>REQ/ACK Offset</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The transfer period is in 4ns increments.</p>
+</div>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.messages.ExtendedMessageCodes.EXTENDED_IDENT">
+<span class="sig-name descname"><span class="pre">EXTENDED_IDENT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#squishy.scsi.messages.ExtendedMessageCodes.EXTENDED_IDENT" title="Permalink to this definition"></a></dt>
+<dd><p>Extended Identify Command (Optional).</p>
+<p>This extended message may be sent by a target or initiator, and
+may be used in conjunction with the normal <code class="docutils literal notranslate"><span class="pre">IDENTIFY</span></code> message
+to allow for an extended range for LUN addressing.</p>
+<p>Using the Sub-LUN byte to add 256 sub units to the target
+LUN allows for targets to have up to 2048 addressable units.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 25%" />
+<col style="width: 53%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Byte</p></th>
+<th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x01</span></code></p></td>
+<td><p>Extended Message ID</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x02</span></code></p></td>
+<td><p>Message Length</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">0x02</span></code></p></td>
+<td><p>Message Code</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">n</span></code></p></td>
+<td><p>Sub-LUN Number</p></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.messages.ExtendedMessageCodes.RESERVED_START">
+<span class="sig-name descname"><span class="pre">RESERVED_START</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#squishy.scsi.messages.ExtendedMessageCodes.RESERVED_START" title="Permalink to this definition"></a></dt>
+<dd><p>Start of Reserved Range.</p>
+<p>The message codes between <a class="reference internal" href="#squishy.scsi.messages.ExtendedMessageCodes.RESERVED_START" title="squishy.scsi.messages.ExtendedMessageCodes.RESERVED_START"><code class="xref py py-const docutils literal notranslate"><span class="pre">RESERVED_START</span></code></a> and :py:const`RESERVED_END`
+are all reserved for future possible standards.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.messages.ExtendedMessageCodes.RESERVED_END">
+<span class="sig-name descname"><span class="pre">RESERVED_END</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">127</span></em><a class="headerlink" href="#squishy.scsi.messages.ExtendedMessageCodes.RESERVED_END" title="Permalink to this definition"></a></dt>
+<dd><p>End of Reserved Range.</p>
+<p>The message codes between <a class="reference internal" href="#squishy.scsi.messages.ExtendedMessageCodes.RESERVED_START" title="squishy.scsi.messages.ExtendedMessageCodes.RESERVED_START"><code class="xref py py-const docutils literal notranslate"><span class="pre">RESERVED_START</span></code></a> and :py:const`RESERVED_END`
+are all reserved for future possible standards.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.messages.ExtendedMessageCodes.VENDOR_START">
+<span class="sig-name descname"><span class="pre">VENDOR_START</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#squishy.scsi.messages.ExtendedMessageCodes.VENDOR_START" title="Permalink to this definition"></a></dt>
+<dd><p>Start of Vendor Reserved Range.</p>
+<p>The message codes between <a class="reference internal" href="#squishy.scsi.messages.ExtendedMessageCodes.VENDOR_START" title="squishy.scsi.messages.ExtendedMessageCodes.VENDOR_START"><code class="xref py py-const docutils literal notranslate"><span class="pre">VENDOR_START</span></code></a> and :py:const`VENDOR_END`
+are all for vendor-specific extended messages.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.messages.ExtendedMessageCodes.VENDOR_END">
+<span class="sig-name descname"><span class="pre">VENDOR_END</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">255</span></em><a class="headerlink" href="#squishy.scsi.messages.ExtendedMessageCodes.VENDOR_END" title="Permalink to this definition"></a></dt>
+<dd><p>End of Vendor Reserved Range.</p>
+<p>The message codes between <a class="reference internal" href="#squishy.scsi.messages.ExtendedMessageCodes.VENDOR_START" title="squishy.scsi.messages.ExtendedMessageCodes.VENDOR_START"><code class="xref py py-const docutils literal notranslate"><span class="pre">VENDOR_START</span></code></a> and :py:const`VENDOR_END`
+are all for vendor-specific extended messages.</p>
 </dd></dl>
 
 </dd></dl>

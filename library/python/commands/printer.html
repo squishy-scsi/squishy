@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sphinx_construct.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/platformpicker.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
     <link rel="canonical" href="https://docs.scsi.moe/library/python/commands/printer.html" />
@@ -19,6 +18,7 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/platformpicker.js"></script>
         <script src="../../../_static/wavedrom.skin.js"></script>
@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gdbf692d
+                0.1.dev1+gd370a2f
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -223,104 +223,52 @@
            <div itemprop="articleBody">
              
   <section id="squishy-scsi-commands-printer">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.printer</span></code><a class="headerlink" href="#squishy-scsi-commands-printer" title="Permalink to this headline"></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.printer</span></code><a class="headerlink" href="#squishy-scsi-commands-printer" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <span class="target" id="module-squishy.scsi.commands.printer"></span><p>This module defines the commands that are specific to printers</p>
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.printer.format_printer">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.</span></span><span class="sig-name descname"><span class="pre">format_printer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.format_printer" title="Permalink to this definition"></a></dt>
-<dd><p>Format - Group: 0 | Peripheral Device: Printer | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.printer.format_printer.Format</span> <span class="pre">(Printer).LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.</span></span><span class="sig-name descname"><span class="pre">format_printer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Format</span> <span class="pre">(Printer)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.format_printer" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Printer | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Format - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.printer.format_printer.Format</span> <span class="pre">(Printer).Reserved</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.printer.format_printer.Format</span> <span class="pre">(Printer).Type</span></span></dt>
-<dd><p>Unsigned 2 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.printer.format_printer.Format</span> <span class="pre">(Printer).TxLen</span></span></dt>
-<dd><p>Unsigned 3 byte integer.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.printer.print_cmd">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.</span></span><span class="sig-name descname"><span class="pre">print_cmd</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.print_cmd" title="Permalink to this definition"></a></dt>
-<dd><p>Print - Group: 0 | Peripheral Device: Printer | Type: Mandatory</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.printer.squishy.scsi.commands.printer.print_cmd.Print.LUN">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.print_cmd.Print.</span></span><span class="sig-name descname"><span class="pre">LUN</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitsInteger</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.squishy.scsi.commands.printer.print_cmd.Print.LUN" title="Permalink to this definition"></a></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.</span></span><span class="sig-name descname"><span class="pre">print_cmd</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Print</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.print_cmd" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Printer | Type: Mandatory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Print - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.printer.squishy.scsi.commands.printer.print_cmd.Print.Reserved">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.print_cmd.Print.</span></span><span class="sig-name descname"><span class="pre">Reserved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitsInteger</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.squishy.scsi.commands.printer.print_cmd.Print.Reserved" title="Permalink to this definition"></a></dt>
-<dd><p>Unsigned 5 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.printer.squishy.scsi.commands.printer.print_cmd.Print.TxLen">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.print_cmd.Print.</span></span><span class="sig-name descname"><span class="pre">TxLen</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BytesInteger</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.squishy.scsi.commands.printer.print_cmd.Print.TxLen" title="Permalink to this definition"></a></dt>
-<dd><p>Unsigned 3 byte integer.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.printer.slew_and_print">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.</span></span><span class="sig-name descname"><span class="pre">slew_and_print</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.slew_and_print" title="Permalink to this definition"></a></dt>
-<dd><p>Slew and Print - Group: 0 | Peripheral Device: Printer | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.printer.slew_and_print.Slew</span> <span class="pre">and</span> <span class="pre">Print.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.</span></span><span class="sig-name descname"><span class="pre">slew_and_print</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Slew</span> <span class="pre">and</span> <span class="pre">Print</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.slew_and_print" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Printer | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Slew and Print - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.printer.slew_and_print.Slew</span> <span class="pre">and</span> <span class="pre">Print.Reserved</span></span></dt>
-<dd><p>Unsigned 4 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.printer.slew_and_print.Slew</span> <span class="pre">and</span> <span class="pre">Print.Channel</span></span></dt>
-<dd><p>Unsigned 1 bit integer.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.printer.flush_buffer">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.</span></span><span class="sig-name descname"><span class="pre">flush_buffer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.flush_buffer" title="Permalink to this definition"></a></dt>
-<dd><p>Flush Buffer - Group: 0 | Peripheral Device: Printer | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.printer.flush_buffer.Flush</span> <span class="pre">Buffer.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.printer.flush_buffer.Flush</span> <span class="pre">Buffer.Reserved</span></span></dt>
-<dd><p>Unsigned 28 bit integer.</p>
-</dd></dl>
-
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.printer.</span></span><span class="sig-name descname"><span class="pre">flush_buffer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Flush</span> <span class="pre">Buffer</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.printer.flush_buffer" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Printer | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Flush Buffer - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

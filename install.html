@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/styles.css" type="text/css" />
       <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="_static/sphinx_construct.css" type="text/css" />
       <link rel="stylesheet" href="_static/platformpicker.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/styles.css" type="text/css" />
     <link rel="canonical" href="https://docs.scsi.moe/install.html" />
@@ -19,6 +18,7 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
         <script src="_static/platformpicker.js"></script>
         <script src="_static/wavedrom.skin.js"></script>
@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gdbf692d
+                0.1.dev1+gd370a2f
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -220,14 +220,14 @@
            <div itemprop="articleBody">
              
   <section id="installation">
-<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline"></a></h1>
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this heading"></a></h1>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The following instructions are a work-in-progress and may not be entirely up to date.</p>
 </div>
 <p>Squishy is a python application that can be installed via <a class="reference external" href="https://pypi.org/project/pip/"><code class="docutils literal notranslate"><span class="pre">pip</span></code></a>,  either from the <a class="reference external" href="https://github.com/lethalbit/Squishy">git repository</a> or via a <a class="reference external" href="https://pypi.org/project/wheel/">wheel</a> package.</p>
 <section id="system-requirements">
-<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this headline"></a></h2>
+<h2>System Requirements<a class="headerlink" href="#system-requirements" title="Permalink to this heading"></a></h2>
 <p>Squishy is officially supported on most Linux distributions, the primary one being <a class="reference external" href="https://archlinux.org/">Arch Linux</a> and variants there of (<a class="reference external" href="https://manjaro.org/">Manjaro</a>, etc.). However other Linux distributions are supported as well.</p>
 <p>Support for Microsoft Windows is preliminary, and due to lack of testing and development resources official support is currently not possible. But effort to make it as painless as possible to use on this platform is in-progress.</p>
 <p>Support for Apple macOS is also unofficial, however due to its similarity to Linux and Unix-like operating systems, using Squishy on macOS should be just as painless as it is on Linux. Official support for macOS and other BSD-Family operating systems is planned.</p>
@@ -235,10 +235,10 @@
 <p>Squishy has been tested with <a class="reference external" href="https://www.python.org/">CPython</a>, but might possibly run under <a class="reference external" href="https://www.pypy.org/">PyPy</a>.</p>
 </section>
 <section id="installing-prerequisites">
-<h2>Installing Prerequisites<a class="headerlink" href="#installing-prerequisites" title="Permalink to this headline"></a></h2>
+<h2>Installing Prerequisites<a class="headerlink" href="#installing-prerequisites" title="Permalink to this heading"></a></h2>
 <p>Prior to installing Squishy, you must install all of its prerequisites and requirements.</p>
 <section id="installing-python">
-<h3>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this headline"></a></h3>
+<h3>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this heading"></a></h3>
 <p>First off, install <code class="docutils literal notranslate"><span class="pre">python</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code> onto your system if the’re not there already.</p>
 <div class="platform-picker docutils container">
 <div class="platform-choice platform--arch platform-noaltname docutils container">
@@ -312,10 +312,10 @@
 </div>
 </section>
 <section id="installing-yosys-and-nextpnr">
-<h3>Installing Yosys and nextpnr<a class="headerlink" href="#installing-yosys-and-nextpnr" title="Permalink to this headline"></a></h3>
+<h3>Installing Yosys and nextpnr<a class="headerlink" href="#installing-yosys-and-nextpnr" title="Permalink to this heading"></a></h3>
 <p>Next, you need to install <a class="reference external" href="https://github.com/YosysHQ/yosys"><code class="docutils literal notranslate"><span class="pre">yosys</span></code></a> and <a class="reference external" href="https://github.com/YosysHQ/nextpnr"><code class="docutils literal notranslate"><span class="pre">nextpnr</span></code></a> onto your system if it is not there already.</p>
 <section id="yowasp-install">
-<h4>YoWASP Install<a class="headerlink" href="#yowasp-install" title="Permalink to this headline"></a></h4>
+<h4>YoWASP Install<a class="headerlink" href="#yowasp-install" title="Permalink to this heading"></a></h4>
 <p>The first option is to install the <a class="reference external" href="https://yowasp.org/">YoWASP</a> WebAssembly based toolchain which is mostly fully cross platform and lives in your python environment. This is the recommended way to install the toolchain on macOS and Windows.</p>
 <p>You can do this by running the following inside the Squishy virtual environment:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(squishy.venv)</span> <span class="gp">$ </span>pip install yowasp-yosys yowasp-nextpnr-ice40-8k yowasp-nextpnr-ecp5-45k
@@ -323,7 +323,7 @@
 </div>
 </section>
 <section id="native-install">
-<h4>Native Install<a class="headerlink" href="#native-install" title="Permalink to this headline"></a></h4>
+<h4>Native Install<a class="headerlink" href="#native-install" title="Permalink to this heading"></a></h4>
 <p>The next option is to do a native install of the toolchain.</p>
 <div class="platform-picker docutils container">
 <div class="platform-choice platform--arch platform-noaltname docutils container">
@@ -387,7 +387,7 @@
 </section>
 </section>
 <section id="installing-qt5">
-<h3>Installing QT5<a class="headerlink" href="#installing-qt5" title="Permalink to this headline"></a></h3>
+<h3>Installing QT5<a class="headerlink" href="#installing-qt5" title="Permalink to this heading"></a></h3>
 <p>If you do not plan to use the Squishy GUI, then you can skip this step and continue on.</p>
 <p>The Squishy GUI currently uses <a class="reference external" href="https://wiki.qt.io/Qt_for_Python">PySide2</a>, which is a set of python bindings for <a class="reference external" href="https://www.qt.io/">QT5</a> to allow for cross-platform GUIs.</p>
 <p>It can simply be installed for your system via <code class="docutils literal notranslate"><span class="pre">pip</span></code> from <a class="reference external" href="https://pypi.org/project/PySide2/">pypi</a> into the virtual environment like so:</p>
@@ -397,7 +397,7 @@
 </section>
 </section>
 <section id="installing-squishy">
-<h2>Installing Squishy<a class="headerlink" href="#installing-squishy" title="Permalink to this headline"></a></h2>
+<h2>Installing Squishy<a class="headerlink" href="#installing-squishy" title="Permalink to this heading"></a></h2>
 <p>Once all of the prerequisites are installed, you can finally install squishy into the virtual environment like so:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(squishy.venv)</span> <span class="gp">$ </span>pip install <span class="s1">&#39;git+https://github.com/lethalbit/squishy.git&#39;</span>
 </pre></div>

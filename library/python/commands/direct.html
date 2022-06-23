@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sphinx_construct.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/platformpicker.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
     <link rel="canonical" href="https://docs.scsi.moe/library/python/commands/direct.html" />
@@ -19,6 +18,7 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/platformpicker.js"></script>
         <script src="../../../_static/wavedrom.skin.js"></script>
@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gdbf692d
+                0.1.dev1+gd370a2f
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -223,826 +223,196 @@
            <div itemprop="articleBody">
              
   <section id="squishy-scsi-commands-direct">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.direct</span></code><a class="headerlink" href="#squishy-scsi-commands-direct" title="Permalink to this headline"></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.direct</span></code><a class="headerlink" href="#squishy-scsi-commands-direct" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <span class="target" id="module-squishy.scsi.commands.direct"></span><p>This module defines the commands that are specific to direct
 access devices.</p>
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.rezero_unit">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">rezero_unit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.rezero_unit" title="Permalink to this definition"></a></dt>
-<dd><p>Re-Zero Unit - Group: 0 | Peripheral Device: Direct Access | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.rezero_unit.Re-Zero</span> <span class="pre">Unit.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">rezero_unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Re-Zero</span> <span class="pre">Unit</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.rezero_unit" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Direct Access | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Re-Zero Unit - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.rezero_unit.Re-Zero</span> <span class="pre">Unit.Reserved</span></span></dt>
-<dd><p>Unsigned 29 bit integer.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.format_unit">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">format_unit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.format_unit" title="Permalink to this definition"></a></dt>
-<dd><p>Format Unit - Group: 0 | Peripheral Device: Direct Access | Type: Mandatory</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.format_unit.Format</span> <span class="pre">Unit.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">format_unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Format</span> <span class="pre">Unit</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.format_unit" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Direct Access | Type: Mandatory</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Format Unit - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.format_unit.Format</span> <span class="pre">Unit.FormatData</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.format_unit.Format</span> <span class="pre">Unit.CompareList</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.format_unit.Format</span> <span class="pre">Unit.DefectListFmt</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.format_unit.Format</span> <span class="pre">Unit.Vendor</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.format_unit.Format</span> <span class="pre">Unit.Interleave</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.reassign_blocks">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">reassign_blocks</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.reassign_blocks" title="Permalink to this definition"></a></dt>
-<dd><p>Reassign Blocks - Group: 0 | Peripheral Device: Direct Access, WORM | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.reassign_blocks.Reassign</span> <span class="pre">Blocks.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">reassign_blocks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Reassign</span> <span class="pre">Blocks</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.reassign_blocks" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Direct Access, WORM | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Reassign Blocks - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.reassign_blocks.Reassign</span> <span class="pre">Blocks.Reserved</span></span></dt>
-<dd><p>Unsigned 29 bit integer.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.read">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">read</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.read" title="Permalink to this definition"></a></dt>
-<dd><p>Direct Access Read - Group: 1 | Peripheral Device: Direct Access | Type: Extended</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read.Read</span> <span class="pre">(Direct</span> <span class="pre">Access).LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">read</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Read</span> <span class="pre">(Direct</span> <span class="pre">Access)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.read" title="Permalink to this definition"></a></dt>
+<dd><p>1 | Peripheral Device: Direct Access | Type: Extended</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Direct Access Read - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read.Read</span> <span class="pre">(Direct</span> <span class="pre">Access).Reserved</span></span></dt>
-<dd><p>Unsigned 4 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read.Read</span> <span class="pre">(Direct</span> <span class="pre">Access).RelativeAddr</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read.Read</span> <span class="pre">(Direct</span> <span class="pre">Access).LBA</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 4</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 4</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read.Read</span> <span class="pre">(Direct</span> <span class="pre">Access).Reserved</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read.Read</span> <span class="pre">(Direct</span> <span class="pre">Access).TXLen</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.write">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">write</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.write" title="Permalink to this definition"></a></dt>
-<dd><p>Direct Access Write - Group: 1 | Peripheral Device: Direct Access | Type: Extended</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write.Write</span> <span class="pre">(Direct</span> <span class="pre">Access).LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">write</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Write</span> <span class="pre">(Direct</span> <span class="pre">Access)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.write" title="Permalink to this definition"></a></dt>
+<dd><p>1 | Peripheral Device: Direct Access | Type: Extended</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Direct Access Write - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write.Write</span> <span class="pre">(Direct</span> <span class="pre">Access).Reserved</span></span></dt>
-<dd><p>Unsigned 4 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write.Write</span> <span class="pre">(Direct</span> <span class="pre">Access).RelativeAddr</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write.Write</span> <span class="pre">(Direct</span> <span class="pre">Access).LBA</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 4</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 4</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write.Write</span> <span class="pre">(Direct</span> <span class="pre">Access).Reserved</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write.Write</span> <span class="pre">(Direct</span> <span class="pre">Access).TXLen</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.seek">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">seek</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.seek" title="Permalink to this definition"></a></dt>
-<dd><p>Direct Access Seek - Group: 1 | Peripheral Device: Direct Access | Type: Extended</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.seek.Seek</span> <span class="pre">(Direct</span> <span class="pre">Access).LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">seek</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Seek</span> <span class="pre">(Direct</span> <span class="pre">Access)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.seek" title="Permalink to this definition"></a></dt>
+<dd><p>1 | Peripheral Device: Direct Access | Type: Extended</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Direct Access Seek - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.seek.Seek</span> <span class="pre">(Direct</span> <span class="pre">Access).Reserved</span></span></dt>
-<dd><p>Unsigned 5 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.seek.Seek</span> <span class="pre">(Direct</span> <span class="pre">Access).LBA</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 4</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 4</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.seek.Seek</span> <span class="pre">(Direct</span> <span class="pre">Access).Reserved</span></span></dt>
-<dd><p>Unsigned 3 byte integer.</p>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.mode_select">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">mode_select</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.mode_select" title="Permalink to this definition"></a></dt>
-<dd><p>Mode Select - Group: 0 | Peripheral Device: Direct Access | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.mode_select.Mode</span> <span class="pre">Select.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">mode_select</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Mode</span> <span class="pre">Select</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.mode_select" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Direct Access | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Mode Select - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.mode_select.Mode</span> <span class="pre">Select.Reserved</span></span></dt>
-<dd><p>Unsigned 21 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.mode_select.Mode</span> <span class="pre">Select.ParamLen</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.reserve">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">reserve</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.reserve" title="Permalink to this definition"></a></dt>
-<dd><p>Reserve - Group: 0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.LUN">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.reserve.Reserve.</span></span><span class="sig-name descname"><span class="pre">LUN</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitsInteger</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.LUN" title="Permalink to this definition"></a></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">reserve</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Reserve</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.reserve" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Reserve - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.ThirdParty">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.reserve.Reserve.</span></span><span class="sig-name descname"><span class="pre">ThirdParty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Flag</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.ThirdParty" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.ThirdPartyDID">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.reserve.Reserve.</span></span><span class="sig-name descname"><span class="pre">ThirdPartyDID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitsInteger</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.ThirdPartyDID" title="Permalink to this definition"></a></dt>
-<dd><p>Unsigned 3 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.Extent">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.reserve.Reserve.</span></span><span class="sig-name descname"><span class="pre">Extent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Flag</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.Extent" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.ReservationID">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.reserve.Reserve.</span></span><span class="sig-name descname"><span class="pre">ReservationID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">FormatField</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.ReservationID" title="Permalink to this definition"></a></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.ExtentListLen">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.reserve.Reserve.</span></span><span class="sig-name descname"><span class="pre">ExtentListLen</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">FormatField</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.reserve.Reserve.ExtentListLen" title="Permalink to this definition"></a></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.release">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">release</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.release" title="Permalink to this definition"></a></dt>
-<dd><p>Release - Group: 0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.LUN">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.release.Release.</span></span><span class="sig-name descname"><span class="pre">LUN</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitsInteger</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.LUN" title="Permalink to this definition"></a></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">release</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Release</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.release" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Release - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.ThirdParty">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.release.Release.</span></span><span class="sig-name descname"><span class="pre">ThirdParty</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Flag</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.ThirdParty" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.ThirdPartyDID">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.release.Release.</span></span><span class="sig-name descname"><span class="pre">ThirdPartyDID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitsInteger</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.ThirdPartyDID" title="Permalink to this definition"></a></dt>
-<dd><p>Unsigned 3 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.Extent">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.release.Release.</span></span><span class="sig-name descname"><span class="pre">Extent</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Flag</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.Extent" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.ReservationID">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.release.Release.</span></span><span class="sig-name descname"><span class="pre">ReservationID</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">FormatField</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.ReservationID" title="Permalink to this definition"></a></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.Reserved">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.release.Release.</span></span><span class="sig-name descname"><span class="pre">Reserved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">FormatField</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.release.Release.Reserved" title="Permalink to this definition"></a></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.mode_sense">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">mode_sense</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.mode_sense" title="Permalink to this definition"></a></dt>
-<dd><p>Mode Sense - Group: 0 | Peripheral Device: Direct Access | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.mode_sense.Mode</span> <span class="pre">Sense.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">mode_sense</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Mode</span> <span class="pre">Sense</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.mode_sense" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Direct Access | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Mode Sense - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.mode_sense.Mode</span> <span class="pre">Sense.Reserved</span></span></dt>
-<dd><p>Unsigned 21 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.mode_sense.Mode</span> <span class="pre">Sense.AllocLen</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.start_stop_unit">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">start_stop_unit</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.start_stop_unit" title="Permalink to this definition"></a></dt>
-<dd><p>Start/Stop Unit - Group: 0 | Peripheral Device: Direct Access | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.start_stop_unit.Start/Stop</span> <span class="pre">Unit.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">start_stop_unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Start/Stop</span> <span class="pre">Unit</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.start_stop_unit" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Direct Access | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Start/Stop Unit - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.start_stop_unit.Start/Stop</span> <span class="pre">Unit.Reserved</span></span></dt>
-<dd><p>Unsigned 4 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.start_stop_unit.Start/Stop</span> <span class="pre">Unit.Immediate</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.start_stop_unit.Start/Stop</span> <span class="pre">Unit.Reserved</span></span></dt>
-<dd><p>Unsigned 23 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.start_stop_unit.Start/Stop</span> <span class="pre">Unit.Start</span></span></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.prevent_allow_media_removal">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">prevent_allow_media_removal</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.prevent_allow_media_removal" title="Permalink to this definition"></a></dt>
-<dd><p>Prevent/Allow Media Removal - Group: 0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.prevent_allow_media_removal.Prevent/Allow</span> <span class="pre">Media</span> <span class="pre">Removal.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">prevent_allow_media_removal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Prevent/Allow</span> <span class="pre">Media</span> <span class="pre">Removal</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.prevent_allow_media_removal" title="Permalink to this definition"></a></dt>
+<dd><p>0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Prevent/Allow Media Removal - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.prevent_allow_media_removal.Prevent/Allow</span> <span class="pre">Media</span> <span class="pre">Removal.Reserved</span></span></dt>
-<dd><p>Unsigned 28 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.prevent_allow_media_removal.Prevent/Allow</span> <span class="pre">Media</span> <span class="pre">Removal.Prevent</span></span></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.read_capacity">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">read_capacity</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.read_capacity" title="Permalink to this definition"></a></dt>
-<dd><p>Read Capacity - Group: 1 | Peripheral Device: Direct Access, WORM, RO DA | Type: Extended</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read_capacity.Read</span> <span class="pre">Capacity.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">read_capacity</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Read</span> <span class="pre">Capacity</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.read_capacity" title="Permalink to this definition"></a></dt>
+<dd><p>1 | Peripheral Device: Direct Access, WORM, RO DA | Type: Extended</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Read Capacity - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read_capacity.Read</span> <span class="pre">Capacity.Reserved</span></span></dt>
-<dd><p>Unsigned 4 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read_capacity.Read</span> <span class="pre">Capacity.RelativeAddr</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read_capacity.Read</span> <span class="pre">Capacity.LBA</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 4</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 4</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read_capacity.Read</span> <span class="pre">Capacity.Reserved</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read_capacity.Read</span> <span class="pre">Capacity.Vendor</span></span></dt>
-<dd><p>Unsigned 2 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read_capacity.Read</span> <span class="pre">Capacity.Reserved</span></span></dt>
-<dd><p>Unsigned 5 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.read_capacity.Read</span> <span class="pre">Capacity.PMI</span></span></dt>
-<dd></dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.write_and_verify">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">write_and_verify</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.write_and_verify" title="Permalink to this definition"></a></dt>
-<dd><p>Write and Verify - Group: 1 | Peripheral Device: Direct Access | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write_and_verify.Write</span> <span class="pre">and</span> <span class="pre">Verify.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">write_and_verify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Write</span> <span class="pre">and</span> <span class="pre">Verify</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.write_and_verify" title="Permalink to this definition"></a></dt>
+<dd><p>1 | Peripheral Device: Direct Access | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Write and Verify - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write_and_verify.Write</span> <span class="pre">and</span> <span class="pre">Verify.Reserved</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write_and_verify.Write</span> <span class="pre">and</span> <span class="pre">Verify.ByteCheck</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write_and_verify.Write</span> <span class="pre">and</span> <span class="pre">Verify.RelativeAddr</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write_and_verify.Write</span> <span class="pre">and</span> <span class="pre">Verify.LBA</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 4</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 4</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write_and_verify.Write</span> <span class="pre">and</span> <span class="pre">Verify.Reserved</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.write_and_verify.Write</span> <span class="pre">and</span> <span class="pre">Verify.TXLen</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.verify">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">verify</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.verify" title="Permalink to this definition"></a></dt>
-<dd><p>Verify - Group: 1 | Peripheral Device: Direct Access | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.LUN">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.verify.Verify.</span></span><span class="sig-name descname"><span class="pre">LUN</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitsInteger</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.LUN" title="Permalink to this definition"></a></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">verify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Verify</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.verify" title="Permalink to this definition"></a></dt>
+<dd><p>1 | Peripheral Device: Direct Access | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Verify - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.Reserved">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.verify.Verify.</span></span><span class="sig-name descname"><span class="pre">Reserved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitsInteger</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.Reserved" title="Permalink to this definition"></a></dt>
-<dd><p>Unsigned 3 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.ByteCheck">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.verify.Verify.</span></span><span class="sig-name descname"><span class="pre">ByteCheck</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Flag</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.ByteCheck" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.RelativeAddr">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.verify.Verify.</span></span><span class="sig-name descname"><span class="pre">RelativeAddr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Flag</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.RelativeAddr" title="Permalink to this definition"></a></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.LBA">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.verify.Verify.</span></span><span class="sig-name descname"><span class="pre">LBA</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">FormatField</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.LBA" title="Permalink to this definition"></a></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 4</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 4</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="id0">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.verify.Verify.</span></span><span class="sig-name descname"><span class="pre">Reserved</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">FormatField</span></em><a class="headerlink" href="#id0" title="Permalink to this definition"></a></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py" id="squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.VerifLen">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.verify.Verify.</span></span><span class="sig-name descname"><span class="pre">VerifLen</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">FormatField</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.squishy.scsi.commands.direct.verify.Verify.VerifLen" title="Permalink to this definition"></a></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.search_data">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">search_data</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.search_data" title="Permalink to this definition"></a></dt>
-<dd><p>Search Data - Group: 1 | Peripheral Device: Direct Access | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.search_data.Search</span> <span class="pre">Data.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">search_data</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Search</span> <span class="pre">Data</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.search_data" title="Permalink to this definition"></a></dt>
+<dd><p>1 | Peripheral Device: Direct Access | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Search Data - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.search_data.Search</span> <span class="pre">Data.Invert</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.search_data.Search</span> <span class="pre">Data.Reserved</span></span></dt>
-<dd><p>Unsigned 2 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.search_data.Search</span> <span class="pre">Data.SpannedData</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.search_data.Search</span> <span class="pre">Data.RelativeAddr</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.search_data.Search</span> <span class="pre">Data.LBA</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 4</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 4</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.search_data.Search</span> <span class="pre">Data.Reserved</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.search_data.Search</span> <span class="pre">Data.TXLen</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-</dd></dl>
-
-<dl class="py attribute">
+<dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.set_limits">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">set_limits</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">BitStruct</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.set_limits" title="Permalink to this definition"></a></dt>
-<dd><p>Set Limits - Group: 1 | Peripheral Device: Direct Access | Type: Optional</p>
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.set_limits.Set</span> <span class="pre">Limits.LUN</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.set_limits.Set</span> <span class="pre">Limits.Reserved</span></span></dt>
-<dd><p>Unsigned 3 bit integer.</p>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.set_limits.Set</span> <span class="pre">Limits.ReadInhibit</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.set_limits.Set</span> <span class="pre">Limits.WriteInhibit</span></span></dt>
-<dd></dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.set_limits.Set</span> <span class="pre">Limits.LBA</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 4</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 4</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.set_limits.Set</span> <span class="pre">Limits.Reserved</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 1</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 1</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
-<dl class="py attribute">
-<dt class="sig sig-object py">
-<span class="sig-name descname"><span class="pre">squishy.scsi.commands.direct.set_limits.Set</span> <span class="pre">Limits.BlkCount</span></span></dt>
-<dd><p><strong>Endian:</strong> little</p>
-<p><strong>Size:</strong> 2</p>
-<p><strong>Underlying Types:</strong></p>
-<blockquote>
-<div><p>Type: int</p>
-<p>Size: 2</p>
-<p>Sign: unsigned</p>
-</div></blockquote>
-</dd></dl>
-
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">set_limits</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Set</span> <span class="pre">Limits</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.set_limits" title="Permalink to this definition"></a></dt>
+<dd><p>1 | Peripheral Device: Direct Access | Type: Optional</p>
+<dl class="field-list simple">
+<dt class="field-odd">Type</dt>
+<dd class="field-odd"><p>Set Limits - Group</p>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

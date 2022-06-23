@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sphinx_construct.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/platformpicker.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
     <link rel="canonical" href="https://docs.scsi.moe/library/gateware/scsi/common.html" />
@@ -19,6 +18,7 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/platformpicker.js"></script>
         <script src="../../../_static/wavedrom.skin.js"></script>
@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gdbf692d
+                0.1.dev1+gd370a2f
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -223,14 +223,142 @@
            <div itemprop="articleBody">
              
   <section id="squishy-gateware-scsi-common">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.scsi.common</span></code><a class="headerlink" href="#squishy-gateware-scsi-common" title="Permalink to this headline"></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.scsi.common</span></code><a class="headerlink" href="#squishy-gateware-scsi-common" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>Flesh this section out</p>
 </div>
-<span class="target" id="module-squishy.gateware.scsi.common"></span></section>
+<span class="target" id="module-squishy.gateware.scsi.common"></span><p>The following table lists the timing requirements for each SCSI version.</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+<col style="width: 22%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>SCSI1</p></th>
+<th class="head"><p>SCSI2</p></th>
+<th class="head"><p>SCSI3</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Arbitration</p></td>
+<td><p>2.2us</p></td>
+<td><p>2.4us</p></td>
+<td><p>2.4us</p></td>
+</tr>
+<tr class="row-odd"><td><p>Assertion</p></td>
+<td><p>90ns</p></td>
+<td><p>90ns</p></td>
+<td><p>Unspecified</p></td>
+</tr>
+<tr class="row-even"><td><p>Bus Clear</p></td>
+<td><p>800ns</p></td>
+<td><p>800ns</p></td>
+<td><p>800ns</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bus Free</p></td>
+<td><p>800ns</p></td>
+<td><p>800ns</p></td>
+<td><p>800ns</p></td>
+</tr>
+<tr class="row-even"><td><p>Bus Set</p></td>
+<td><p>1.8us</p></td>
+<td><p>1.8us</p></td>
+<td><p>1.6us</p></td>
+</tr>
+<tr class="row-odd"><td><p>Bus Settle</p></td>
+<td><p>400ns</p></td>
+<td><p>400ns</p></td>
+<td><p>400ns</p></td>
+</tr>
+<tr class="row-even"><td><p>Cable Skew</p></td>
+<td><p>10ns</p></td>
+<td><p>10ns</p></td>
+<td><p>4ns</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data Release</p></td>
+<td><p>400ns</p></td>
+<td><p>400ns</p></td>
+<td><p>400ns</p></td>
+</tr>
+<tr class="row-even"><td><p>Deskew</p></td>
+<td><p>45ns</p></td>
+<td><p>45ns</p></td>
+<td><p>45ns</p></td>
+</tr>
+<tr class="row-odd"><td><p>Hold Time</p></td>
+<td><p>45ns</p></td>
+<td><p>45ns</p></td>
+<td><p>Unspecified</p></td>
+</tr>
+<tr class="row-even"><td><p>Negation</p></td>
+<td><p>90ns</p></td>
+<td><p>90ns</p></td>
+<td><p>Unspecified</p></td>
+</tr>
+<tr class="row-odd"><td><p>Reset Hold</p></td>
+<td><p>25us</p></td>
+<td><p>25us</p></td>
+<td><p>25us</p></td>
+</tr>
+<tr class="row-even"><td><p>Selection Abort</p></td>
+<td><p>200us</p></td>
+<td><p>200us</p></td>
+<td><p>200us</p></td>
+</tr>
+<tr class="row-odd"><td><p>Selection Timeout</p></td>
+<td><p>250ms</p></td>
+<td><p>250ms</p></td>
+<td><p>250ms</p></td>
+</tr>
+<tr class="row-even"><td><p>Disconnect</p></td>
+<td><p>Unspecified</p></td>
+<td><p>200us</p></td>
+<td><p>Unspecified</p></td>
+</tr>
+<tr class="row-odd"><td><p>Power to Selection</p></td>
+<td><p>Unspecified</p></td>
+<td><p>10s</p></td>
+<td><p>10s</p></td>
+</tr>
+<tr class="row-even"><td><p>Reset to Selection</p></td>
+<td><p>Unspecified</p></td>
+<td><p>250ms</p></td>
+<td><p>250ms</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fast Assert</p></td>
+<td><p>Unspecified</p></td>
+<td><p>30ns</p></td>
+<td><p>Unspecified</p></td>
+</tr>
+<tr class="row-even"><td><p>Fast Cable Skew</p></td>
+<td><p>Unspecified</p></td>
+<td><p>5ns</p></td>
+<td><p>Unspecified</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fast Deskew</p></td>
+<td><p>Unspecified</p></td>
+<td><p>20ns</p></td>
+<td><p>Unspecified</p></td>
+</tr>
+<tr class="row-even"><td><p>Fast Hold</p></td>
+<td><p>Unspecified</p></td>
+<td><p>10ns</p></td>
+<td><p>Unspecified</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fast Negation</p></td>
+<td><p>Unspecified</p></td>
+<td><p>30ns</p></td>
+<td><p>Unspecified</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 
     <script type="text/javascript">
         function init() {

@@ -8,7 +8,6 @@
       <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../../_static/sphinx_construct.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/platformpicker.css" type="text/css" />
       <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
     <link rel="canonical" href="https://docs.scsi.moe/library/python/commands/index.html" />
@@ -19,6 +18,7 @@
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
         <script src="../../../_static/platformpicker.js"></script>
         <script src="../../../_static/wavedrom.skin.js"></script>
@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gdbf692d
+                0.1.dev1+gd370a2f
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -222,7 +222,7 @@
            <div itemprop="articleBody">
              
   <section id="squishy-scsi-commands">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands</span></code><a class="headerlink" href="#squishy-scsi-commands" title="Permalink to this headline"></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands</span></code><a class="headerlink" href="#squishy-scsi-commands" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <span class="target" id="module-squishy.scsi.command"></span><dl class="py class">
@@ -601,7 +601,7 @@ remaining five-bits in the command opcode for the command identifier itself.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.scsi.command.SCSICommand">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><span class="pre">squishy.scsi.command.GroupCode</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><span class="pre">GroupCode</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand" title="Permalink to this definition"></a></dt>
 <dd><p>SCSI Command Structure</p>
 <p>Creates a <code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Struct</span></code> for arbitrary SCSI Commands. This wraps the
 structure and gives it some useful common operations needed to consume and generate
@@ -688,7 +688,7 @@ describes the group the command is in as well as the command itself.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">group</span> <span class="pre">code</span></code> (<a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><code class="xref py py-class docutils literal notranslate"><span class="pre">GroupCode</span></code></a>) is the top three bits of the opcode, followed by the
 <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">code</span></code> which is the remaining seven bits.</p>
 <p>Due to the split between <code class="docutils literal notranslate"><span class="pre">group</span> <span class="pre">code</span></code> and <code class="docutils literal notranslate"><span class="pre">command</span> <span class="pre">code</span></code> as well as the different classes that implement
-commans, there is a large re-use of <code class="docutils literal notranslate"><span class="pre">opcode</span></code>’s, this complicates things, as we need to know ahead of time what
+commands, there is a large re-use of <code class="docutils literal notranslate"><span class="pre">opcode</span></code>’s, this complicates things, as we need to know ahead of time what
 the device is in order to succesfully dispatch and parse commands.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">control</span></code> byte also has it’s own ‘sub structure’.</p>
 <table class="docutils align-default">
@@ -791,7 +791,7 @@ call by <code class="docutils literal notranslate"><span class="pre">8</span></c
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.scsi.command.SCSICommand.len">
 <span class="sig-name descname"><span class="pre">len</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand.len" title="Permalink to this definition"></a></dt>
-<dd><p>Return strcutrue length in bytes</p>
+<dd><p>Return structure length in bytes</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1170,7 +1170,7 @@ calculated by the name if any is present.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.scsi.command.CommandEmitter">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">CommandEmitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#squishy.scsi.command.SCSICommand" title="squishy.scsi.command.SCSICommand"><span class="pre">squishy.scsi.command.SCSICommand</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.CommandEmitter" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">CommandEmitter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">command</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#squishy.scsi.command.SCSICommand" title="squishy.scsi.command.SCSICommand"><span class="pre">SCSICommand</span></a></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.CommandEmitter" title="Permalink to this definition"></a></dt>
 <dd><p>Creates an emitter based on the specified SCSI command.</p>
 <p>Given a SCSI command like the following:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Command</span> <span class="o">=</span> <span class="n">SCSICommand6</span><span class="p">(</span><span class="mh">0x00</span><span class="p">,</span>
