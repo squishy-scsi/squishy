@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+g0b7c2f6
+                0.1.dev1+g01964c3
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -238,7 +238,7 @@ traditional topology along with Single Initiator that people think of when they 
 common bus topology is Multiple Initiator, Multiple Target. This is where there are multiple initiators and multiple
 targets all on the shared bus.</p>
 <figure class="align-center" id="id1">
-<div class="graphviz"><object data="../../../_images/graphviz-f93b4a7756aba74d8a91ffa31a8e5bfec97ffee3.svg" type="image/svg+xml" class="graphviz">
+<div class="graphviz"><object data="../../../_images/graphviz-fa9536104e904eb7b66ab2f03bd457f94c48cd0e.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">graph scsi_bus_sist {
         fontname=&quot;Fira Code&quot;
         bgcolor=&quot;#FFFFFF00&quot;
@@ -249,7 +249,7 @@ targets all on the shared bus.</p>
         node [shape = Mrecord];
 
         H0 [label = &quot;{&lt;f0&gt;HOST|&lt;f1&gt;ADAPTER}&quot;];
-        T0 [label = &quot;{&lt;f0&gt;CONTROLLER|&lt;f1&gt;TARGET}&quot;];
+        T0 [label = &quot;{&lt;f0&gt;CONTROLLER|{&lt;f1&gt;TARGET|{LUN0|...}}}&quot;];
 
         H0:f1 -- T0:f0
 }</p></object></div>
@@ -258,7 +258,7 @@ targets all on the shared bus.</p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id2">
-<div class="graphviz"><object data="../../../_images/graphviz-b3fc780d4a65ce04266b2a89cc5c49e8ddc9a8fd.svg" type="image/svg+xml" class="graphviz">
+<div class="graphviz"><object data="../../../_images/graphviz-b3cd0a8653a559b54e75fccb8e32f902635943ca.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">graph scsi_bus_simt {
         fontname=&quot;Fira Code&quot;
         bgcolor=&quot;#FFFFFF00&quot;
@@ -269,8 +269,8 @@ targets all on the shared bus.</p>
         node [shape = Mrecord];
 
         H0 [label = &quot;{&lt;f0&gt;HOST|&lt;f1&gt;ADAPTER}&quot;];
-        T0 [label = &quot;{&lt;f0&gt;CONTROLLER|&lt;f1&gt;TARGET}&quot;];
-        T1 [label = &quot;{&lt;f0&gt;CONTROLLER|&lt;f1&gt;TARGET}&quot;];
+        T0 [label = &quot;{&lt;f0&gt;CONTROLLER|{&lt;f1&gt;TARGET|{LUN0|...}}}&quot;];
+        T1 [label = &quot;{&lt;f0&gt;CONTROLLER|{&lt;f1&gt;TARGET|{LUN0|...}}}&quot;];
 
         H0:f1 -- T0:f0
         H0:f1 -- T1:f0
@@ -280,7 +280,7 @@ targets all on the shared bus.</p>
 </figcaption>
 </figure>
 <figure class="align-center" id="id3">
-<div class="graphviz"><object data="../../../_images/graphviz-88616cc1f5b3219117fad0d0a81bfaba6052b9e2.svg" type="image/svg+xml" class="graphviz">
+<div class="graphviz"><object data="../../../_images/graphviz-0ce7f67581b150f2aac15da0b1596e0cf67ef2bc.svg" type="image/svg+xml" class="graphviz">
 <p class="warning">graph scsi_bus_mimt {
         fontname=&quot;Fira Code&quot;
         bgcolor=&quot;#FFFFFF00&quot;
@@ -294,10 +294,10 @@ targets all on the shared bus.</p>
         H1 [label = &quot;{&lt;f0&gt;HOST|&lt;f1&gt;ADAPTER}&quot;];
         H2 [label = &quot;{&lt;f0&gt;HOST|&lt;f1&gt;ADAPTER}&quot;];
 
-        T0 [label = &quot;{&lt;f0&gt;CONTROLLER|&lt;f1&gt;TARGET}&quot;];
-        T1 [label = &quot;{&lt;f0&gt;CONTROLLER|&lt;f1&gt;TARGET}&quot;];
-        T2 [label = &quot;{&lt;f0&gt;CONTROLLER|&lt;f1&gt;TARGET}&quot;];
-        T3 [label = &quot;{&lt;f0&gt;CONTROLLER|&lt;f1&gt;TARGET}&quot;];
+        T0 [label = &quot;{&lt;f0&gt;CONTROLLER|{&lt;f1&gt;TARGET|{LUN0|...}}}&quot;];
+        T1 [label = &quot;{&lt;f0&gt;CONTROLLER|{&lt;f1&gt;TARGET|{LUN0|...}}}&quot;];
+        T2 [label = &quot;{&lt;f0&gt;CONTROLLER|{&lt;f1&gt;TARGET|{LUN0|...}}}&quot;];
+        T3 [label = &quot;{&lt;f0&gt;CONTROLLER|{&lt;f1&gt;TARGET|{LUN0|...}}}&quot;];
 
         H0:f1 -- T0:f0
         H0:f1 -- T1:f0
