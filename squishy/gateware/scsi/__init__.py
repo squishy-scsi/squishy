@@ -45,7 +45,7 @@ targets all on the shared bus.
 		node [shape = Mrecord];
 
 		H0 [label = "{<f0>HOST|<f1>ADAPTER}"];
-		T0 [label = "{<f0>CONTROLLER|<f1>TARGET}"];
+		T0 [label = "{<f0>CONTROLLER|{<f1>TARGET|{LUN0|...}}}"];
 
 		H0:f1 -- T0:f0
 	}
@@ -66,8 +66,8 @@ targets all on the shared bus.
 		node [shape = Mrecord];
 
 		H0 [label = "{<f0>HOST|<f1>ADAPTER}"];
-		T0 [label = "{<f0>CONTROLLER|<f1>TARGET}"];
-		T1 [label = "{<f0>CONTROLLER|<f1>TARGET}"];
+		T0 [label = "{<f0>CONTROLLER|{<f1>TARGET|{LUN0|...}}}"];
+		T1 [label = "{<f0>CONTROLLER|{<f1>TARGET|{LUN0|...}}}"];
 
 		H0:f1 -- T0:f0
 		H0:f1 -- T1:f0
@@ -90,10 +90,10 @@ targets all on the shared bus.
 		H1 [label = "{<f0>HOST|<f1>ADAPTER}"];
 		H2 [label = "{<f0>HOST|<f1>ADAPTER}"];
 
-		T0 [label = "{<f0>CONTROLLER|<f1>TARGET}"];
-		T1 [label = "{<f0>CONTROLLER|<f1>TARGET}"];
-		T2 [label = "{<f0>CONTROLLER|<f1>TARGET}"];
-		T3 [label = "{<f0>CONTROLLER|<f1>TARGET}"];
+		T0 [label = "{<f0>CONTROLLER|{<f1>TARGET|{LUN0|...}}}"];
+		T1 [label = "{<f0>CONTROLLER|{<f1>TARGET|{LUN0|...}}}"];
+		T2 [label = "{<f0>CONTROLLER|{<f1>TARGET|{LUN0|...}}}"];
+		T3 [label = "{<f0>CONTROLLER|{<f1>TARGET|{LUN0|...}}}"];
 
 		H0:f1 -- T0:f0
 		H0:f1 -- T1:f0
