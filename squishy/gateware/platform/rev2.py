@@ -13,27 +13,35 @@ from ...config                           import SCSI_VID
 from ..core                              import ECP5ClockDomainGenerator
 from .mixins                             import SquishyCacheMixin, SquishyProgramMixin
 
+__doc__ = '''\
+
+This is the Amaranth platform definition for Squishy rev2 hardware, if you are using
+Squishy rev2 as a generic FPGA development board, this is the platform you need to invoke.
+
+Warning
+-------
+This platform is for specialized hardware and **must not** be used with any other
+hardware other than the hardware it was designed for. This include any popular
+development or eval boards.
+
+Note
+----
+There are no official released of the Squishy rev2 hardware for purchase at the moment. You can
+build your own, or keep an eye out for when the campaign goes live.
+
+'''
+
 class SquishyRev2(SquishyCacheMixin, SquishyProgramMixin, LatticeECP5Platform):
 	'''Squishy hardware Revision 2
 
-	This is the Amaranth platform for the first revision of the Squishy hardwar.
+	This is the Amaranth platform for the first revision of the Squishy hardware.
 	It is based around the `Lattice ECP5-5G LFE5UM5G-45F <https://www.latticesemi.com/Products/FPGAandCPLD/ECP5>`_
-	in the BG381 formfactor.
+	in the BG381 footprint.
 
 	The design files for this version of the hardware can be found
 	`in the git repo <https://github.com/lethalbit/squishy/tree/main/hardware/boards/squishy>`_ under
 	the `hardware/boards/squishy` tree.
 
-	Note
-	----
-	There are no official released of the Squishy rev2 hardware for purchase at the moment. You can
-	build your own, or keep an eye out for when the campaign goes live.
-
-	Warning
-	-------
-	This platform is for specialized hardware and **must not** be used with any other
-	hardware other than the hardware it was designed for. This include any popular
-	development or eval boards.
 
 	'''
 

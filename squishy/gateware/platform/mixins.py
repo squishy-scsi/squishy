@@ -13,6 +13,13 @@ __all__ = (
 	'SquishyProgramMixin',
 )
 
+__doc__ = '''\
+
+The following are mixins that are used to add additional features to Amaranth platforms
+without any extra setup work for the platform itself.
+
+'''
+
 class SquishyProgramMixin:
 	'''Squishy Platform programming mixin.
 

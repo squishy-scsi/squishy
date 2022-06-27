@@ -10,7 +10,14 @@ __all__ = (
 )
 
 class UARTInterface(Elaboratable):
-	'''Amaranth-stdio based UART Interface
+	'''Trivial UART debug interface.
+
+	Warning
+	-------
+	This interface is only provided for debugging, not sideband communication.
+
+	This elaboratable wraps the :py:class:`amaranth_stdio.serial.AsyncSerial` UART
+	elaboratable and attaches it to an internal wishbone bus.
 
 	'''
 	def __init__(self, *, config, wb_config):

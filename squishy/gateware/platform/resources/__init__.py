@@ -9,3 +9,7 @@ __all__ = (
 	'SCSISingleEndedResource',
 	'SCSIPhyResource',
 )
+
+__doc__ = '''\
+
+'''

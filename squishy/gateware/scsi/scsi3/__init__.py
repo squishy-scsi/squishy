@@ -10,6 +10,9 @@ __all__ = (
 	'Initiator',
 )
 
+__doc__ = '''\
+
+'''
 
 class SCSI3(Elaboratable):
 	'''SCSI 3 Elaboratable

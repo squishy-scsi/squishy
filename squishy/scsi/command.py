@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from enum      import IntEnum, Enum, auto, unique
+from enum      import IntEnum, unique
 from itertools import takewhile
 from typing    import Any
 
@@ -15,7 +15,6 @@ from construct import (
 )
 
 __all__ = (
-	'DeviceType',
 	'GroupCode',
 	'SCSICommand',
 	'SCSICommand6',
@@ -26,17 +25,9 @@ __all__ = (
 	'CommandEmitter',
 )
 
-@unique
-class DeviceType(Enum):
-	'''SCSI Device Type'''
+__doc__ = '''\
 
-	COMMON            = auto()
-	DIRECT_ACCESS     = auto()
-	SEQUENTIAL_ACCESS = auto()
-	PRINTER           = auto()
-	PROCESSOR         = auto()
-	WORM              = auto()
-	RO_DIRECT_ACCESS  = auto()
+'''
 
 @unique
 class GroupCode(IntEnum):
@@ -227,6 +218,12 @@ _KNOWN_SIZED_GROUPS = {
 	GroupCode.GROUP1: 10,
 	GroupCode.GROUP5: 12,
 }
+'''Known Sized Groups.
+
+This map defines the relation between a group code and the size in bytes of the commands in
+the group for the groups in which we know and have a fixed size.
+
+'''
 
 class SCSICommandField(Subconstruct):
 	'''SCSI Command Field

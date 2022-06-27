@@ -9,9 +9,7 @@ mixins
 resources
 ```
 
-```{todo}
-Flesh this section out
-```
+```{eval-rst}
+.. automodule:: squishy.gateware.platform
 
-The following modules define the Amaranth platforms, resources, and platform mixins
-that form the bases of the the applet framework for Squishy.
+```

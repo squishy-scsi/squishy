@@ -16,27 +16,35 @@ from .resources                          import SCSIPhyResource
 
 from .mixins                             import SquishyCacheMixin, SquishyProgramMixin
 
+__doc__ = '''\
+
+This is the Amaranth platform definition for Squishy rev1 hardware, if you are using
+Squishy rev1 as a generic FPGA development board, this is the platform you need to invoke.
+
+Warning
+-------
+This platform is for specialized hardware and **must not** be used with any other
+hardware other than the hardware it was designed for. This include any popular
+development or eval boards.
+
+Note
+----
+There are no official released of the Squishy rev1 hardware for purchase, you can build your
+own, however it is recommended to start with the :py:class:`squishy.gateware.platform.rev2.SquishyRev2` hardware.
+
+
+'''
+
 class SquishyRev1(SquishyCacheMixin, SquishyProgramMixin, LatticeICE40Platform):
 	'''Squishy hardware Revision 1
 
-	This is the Amaranth platform for the first revision of the Squishy hardwar.
+	This is the Amaranth platform for the first revision of the Squishy hardware.
 	It is based around the `Lattice iCE40-HX8K <https://www.latticesemi.com/iCE40>`_
-	in the BG121 formfactor.
+	in the BG121 footprint.
 
 	The design files for this version of the hardware can be found
 	`in the git repo <https://github.com/lethalbit/squishy/tree/main/hardware/rev1>`_ under
 	the `hardware/rev1` tree.
-
-	Note
-	----
-	There are no official released of the Squishy rev1 hardware for purchase, you can build your
-	own, however it is recommended to start with the :py:class:`squishy.gateware.platform.rev2.SquishyRev2` hardware.
-
-	Warning
-	-------
-	This platform is for specialized hardware and **must not** be used with any other
-	hardware other than the hardware it was designed for. This include any popular
-	development or eval boards.
 
 	'''
 

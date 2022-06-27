@@ -9,3 +9,12 @@ __all__ = (
 	'SCSI2Device',
 	'SCSI3Device',
 )
+
+__doc__ = '''\
+
+This submodule provides wrapper methods to instantiate SCSI Device elaboratables
+for :py:mod:`.scsi1`, :py:mod:`.scsi2`, and :py:mod:`.scsi3`. For more details
+on the differences between them and the inner workings, see the documentation for
+each particular SCSI version in its module.
+
+'''

@@ -9,6 +9,14 @@ __all__ = (
 	'AVAILABLE_PLATFORMS',
 )
 
+__doc__ = '''\
+
+.. todo:: Flesh this section out
+
+
+
+''' # noqa: E101
+
 AVAILABLE_PLATFORMS = {
 	'rev1': SquishyRev1,
 }

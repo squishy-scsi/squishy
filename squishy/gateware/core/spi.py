@@ -6,7 +6,24 @@ __all__ = (
 )
 
 class SPIInterface(Elaboratable):
-	'''Generic SPI interface
+	'''Generic SPI interface.
+
+	Attributes
+	----------
+	cs : Signal
+		SPI Chip Select.
+
+	xfr : Signal
+		Transfer strobe.
+
+	done : Signal
+		Transfer complete signal.
+
+	wdat : Signal(8)
+		Write data register.
+
+	rdat : Signal(8)
+		Read data register.
 
 	'''
 	def __init__(self):

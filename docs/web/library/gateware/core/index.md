@@ -10,3 +10,8 @@ spi
 uart
 usb
 ```
+
+```{eval-rst}
+.. automodule:: squishy.gateware.core
+
+```

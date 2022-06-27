@@ -10,6 +10,19 @@ __all__ = (
 	'Squishy',
 )
 
+__doc__ = '''\
+
+.. todo: Refine this section
+
+The Squishy gateware library is broken into three main parts. The first is the
+:py:mod:`squishy.gateware.core` module, this contains all of the core infra for
+Squishy. Next is the :py:mod:`squishy.gateware.platform` module, this contains
+the Amaranth platform definitions for various bits of Squishy hardware.
+Finally there is the :py:mod:`squishy.gateware.scsi` module, this is where all
+of the SCSI machinery is for use in Amaranth HDL projects.
+
+'''
+
 '''
 	Squishy Architecture
 

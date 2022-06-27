@@ -20,10 +20,17 @@ __all__ = (
 class USBInterface(Elaboratable):
 	'''Luna based USB ULPI Interface
 
+	Note
+	----
+	When elaborating designs with this module, you may see a warning about being
+	unable to find ``lambdasoc``. You can ignore it as it is not used in any
+	capacity.
+
 	Warning
 	-------
 	Currently this is a USB 2.0 only interface, and is not able to interact with
 	the hardware on Squishy rev2, this is to be fixed in the future.
+
 
 	'''
 	def __init__(self, *, config, wb_config):

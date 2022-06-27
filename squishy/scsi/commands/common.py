@@ -5,10 +5,10 @@ from ..command import (
 	SCSICommandField
 )
 
-__doc__ = """
+__doc__ = '''
 This module contains common commands, that other device classes
 can support.
-"""
+'''
 
 __all__ = (
 	'TestUnitReady',

@@ -12,7 +12,6 @@ scsi3
 ```
 
 ```{eval-rst}
-
 .. automodule:: squishy.gateware.scsi
 
 ```

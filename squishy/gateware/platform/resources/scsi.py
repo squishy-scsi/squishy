@@ -8,6 +8,9 @@ __all__ = (
 	'SCSIPhyResource',
 )
 
+__doc__ = '''\
+
+'''
 
 def TransceiverPairs(tx, rx, *, invert = False, conn = None, assert_width = None):
 	'''Returns a tuple of subsignals for RX and TX pairs

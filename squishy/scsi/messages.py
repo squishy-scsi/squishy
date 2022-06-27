@@ -6,6 +6,10 @@ __all__ = (
 	'ExtendedMessageCodes',
 )
 
+__doc__ = '''\
+
+'''
+
 @unique
 class MessageCodes(IntEnum):
 	'''SCSI Message Codes
