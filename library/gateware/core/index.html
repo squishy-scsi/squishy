@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gb75b433
+                0.1.dev1+gf2738ca
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -225,6 +225,23 @@
 <h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core</span></code><a class="headerlink" href="#squishy-gateware-core" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<span class="target" id="module-squishy.gateware.core"></span><p>This module contains the internal elaboratables that are used to construct the
+gateware wrapper for Squishy applets. They are not intended to be manual instantiated
+outside of the Squishy gateware wrapper, but they are available to do so if writing
+custom gateware for Squishy hardware outside of the applet ecosystem.</p>
+<p>As such, they are documented to allow for consumption, but do not hold any API stability
+promises as they are still considered to be internal to the applet system and not
+for general consumption.</p>
+<dl class="simple">
+<dt>It is roughly broken up into 5 submodules:</dt><dd><ul class="simple">
+<li><p><a class="reference internal" href="multiboot.html#module-squishy.gateware.core.multiboot" title="squishy.gateware.core.multiboot"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squishy.gateware.core.multiboot</span></code></a> - iCE40 warmboot support.</p></li>
+<li><p><a class="reference internal" href="pll.html#module-squishy.gateware.core.pll" title="squishy.gateware.core.pll"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squishy.gateware.core.pll</span></code></a> - PLL helpers for various FPGAs.</p></li>
+<li><p><a class="reference internal" href="spi.html#module-squishy.gateware.core.spi" title="squishy.gateware.core.spi"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squishy.gateware.core.spi</span></code></a> - Generic SPI interface.</p></li>
+<li><p><a class="reference internal" href="uart.html#module-squishy.gateware.core.uart" title="squishy.gateware.core.uart"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squishy.gateware.core.uart</span></code></a> - Debug UART.</p></li>
+<li><p><a class="reference internal" href="usb.html#module-squishy.gateware.core.usb" title="squishy.gateware.core.usb"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squishy.gateware.core.usb</span></code></a> - Main USB interface.</p></li>
+</ul>
+</dd>
+</dl>
 </section>
 
     <script type="text/javascript">

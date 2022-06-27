@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gb75b433
+                0.1.dev1+gf2738ca
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -229,7 +229,18 @@
 <span class="target" id="module-squishy.gateware.core.spi"></span><dl class="py class">
 <dt class="sig sig-object py" id="squishy.gateware.core.spi.SPIInterface">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.core.spi.</span></span><span class="sig-name descname"><span class="pre">SPIInterface</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_loc_at</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.gateware.core.spi.SPIInterface" title="Permalink to this definition"></a></dt>
-<dd><p>Generic SPI interface</p>
+<dd><p>Generic SPI interface.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Variables</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cs</strong> (<em>Signal</em>) – SPI Chip Select.</p></li>
+<li><p><strong>xfr</strong> (<em>Signal</em>) – Transfer strobe.</p></li>
+<li><p><strong>done</strong> (<em>Signal</em>) – Transfer complete signal.</p></li>
+<li><p><strong>wdat</strong> (<em>Signal</em><em>(</em><em>8</em><em>)</em>) – Write data register.</p></li>
+<li><p><strong>rdat</strong> (<em>Signal</em><em>(</em><em>8</em><em>)</em>) – Read data register.</p></li>
+</ul>
+</dd>
+</dl>
 </dd></dl>
 
 </section>

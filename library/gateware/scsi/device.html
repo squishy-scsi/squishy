@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gb75b433
+                0.1.dev1+gf2738ca
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -226,9 +226,11 @@
 <h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.scsi.device</span></code><a class="headerlink" href="#squishy-gateware-scsi-device" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<p>The following methods are wrappers to automatically generate a SCSI device elaboratable,
-rather than manually creating the instance yourself.</p>
-<span class="target" id="module-squishy.gateware.scsi.device"></span><dl class="py function">
+<span class="target" id="module-squishy.gateware.scsi.device"></span><p>This submodule provides wrapper methods to instantiate SCSI Device elaboratables
+for <a class="reference internal" href="scsi1.html#module-squishy.gateware.scsi.scsi1" title="squishy.gateware.scsi.scsi1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">scsi1</span></code></a>, <a class="reference internal" href="scsi2.html#module-squishy.gateware.scsi.scsi2" title="squishy.gateware.scsi.scsi2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">scsi2</span></code></a>, and <a class="reference internal" href="scsi3.html#module-squishy.gateware.scsi.scsi3" title="squishy.gateware.scsi.scsi3"><code class="xref py py-mod docutils literal notranslate"><span class="pre">scsi3</span></code></a>. For more details
+on the differences between them and the inner workings, see the documentation for
+each particular SCSI version in its module.</p>
+<dl class="py function">
 <dt class="sig sig-object py" id="squishy.gateware.scsi.device.SCSI1Device">
 <span class="sig-prename descclassname"><span class="pre">squishy.gateware.scsi.device.</span></span><span class="sig-name descname"><span class="pre">SCSI1Device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="scsi1.html#squishy.gateware.scsi.scsi1.SCSI1" title="squishy.gateware.scsi.scsi1.SCSI1"><span class="pre">SCSI1</span></a></span></span><a class="headerlink" href="#squishy.gateware.scsi.device.SCSI1Device" title="Permalink to this definition"></a></dt>
 <dd><p>Create a SCSI-1 Device Elaboratable</p>
