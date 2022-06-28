@@ -1,4 +1,4 @@
-[<img src="https://raw.githubusercontent.com/lethalbit/squishy/main/etc/img/sachi/electrichearts_20220323A_sachi_trans.png" align="right" width="400"/>](https://docs.scsi.moe/mascot.html)
+[<img src="https://raw.githubusercontent.com/lethalbit/squishy/main/contrib/img/sachi/electrichearts_20220323A_sachi_trans.png" align="right" width="400"/>](https://docs.scsi.moe/mascot.html)
 # Squishy: The SCSI Multitool
 
 Squishy is a platform for working with old SCSI devices with modern systems in a flexible manner. It was originally developed as a one-off solution for the [taperipper](https://lethalbit.net/projects/taperipper/) project, which was to boot a modern system off of a IBM 9348-002 9-track magnetic tape drive.
@@ -17,7 +17,7 @@ The installation instructions for squishy on various platforms can be found on t
 
 ## Mascot - Sachi
 
-![Sachi the spirit fox](https://raw.githubusercontent.com/lethalbit/squishy/main/etc/img/sachi/electrichearts_20211013A_sachi_trans_1024.png)
+![Sachi the spirit fox](https://raw.githubusercontent.com/lethalbit/squishy/main/contrib/img/sachi/electrichearts_20211013A_sachi_trans_1024.png)
 
 More information about Sachi is available on her [mascot page](https://docs.scsi.moe/mascot.html) in the documentation.
 

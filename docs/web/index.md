@@ -15,7 +15,7 @@ mascot
 # Squishy: The SCSI Multitool
 
 ```{eval-rst}
-.. figure:: ../../etc/img/sachi/electrichearts_20220323A_sachi_trans.png
+.. figure:: ../../contrib/img/sachi/electrichearts_20220323A_sachi_trans.png
 	:align: right
 	:figwidth: 350px
 ```
