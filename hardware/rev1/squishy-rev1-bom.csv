@@ -24,8 +24,8 @@ R1 R7 R14 R17 R29 R30 R32 R35 R37 R38 R40 R44 R46 R52 R53 R65 R67 R68 R70 R73 R7
 R13 R19 R20,3,4k7,Resistor_SMD:R_0603_1608Metric,,Vishay Dale,CRCW06034K70FKEA
 R16,1,6k8,Resistor_SMD:R_0603_1608Metric,,Vishay Dale,CRCW06036K80FKEA
 R2 R10,2,1M,Resistor_SMD:R_0603_1608Metric,,Vishay Dale,CRCW06031M00FKEA
-R3 R4 R5 R6 R8 R9 R11 R12 R15 R18 R21 R22 R23 R24 R25 R26 R27 R28,18,150,Resistor_SMD:R_0603_1608Metric,,TE Connectivity Passive Product ,CRGCQ0402F150R
-R31 R33 R34 R36 R39 R41 R42 R43 R45 R47 R48 R49 R50 R51 R54 R55 R56 R58 R59 R60 R61 R63 R64 R66 R69 R71 R74 R76 R78 R79 R80 R81 R82 R83 R84 R85,36,330,Resistor_SMD:R_0603_1608Metric,,TE Connectivity Passive Product ,CRGCQ0402F330R
+R3 R4 R5 R6 R8 R9 R11 R12 R15 R18 R21 R22 R23 R24 R25 R26 R27 R28,18,150,Resistor_SMD:R_0603_1608Metric,,TE Connectivity Passive Product,CRGCQ0402F150R
+R31 R33 R34 R36 R39 R41 R42 R43 R45 R47 R48 R49 R50 R51 R54 R55 R56 R58 R59 R60 R61 R63 R64 R66 R69 R71 R74 R76 R78 R79 R80 R81 R82 R83 R84 R85,36,330,Resistor_SMD:R_0603_1608Metric,,TE Connectivity Passive Product,CRGCQ0402F330R
 R57 R62,2,100,Resistor_SMD:R_0603_1608Metric,,TE Connectivity Passive Product,CRG0603F100R
 R72,1,8k06,Resistor_SMD:R_0603_1608Metric,,Vishay Dale,CRCW06038K06FKEAC
 R89,1,30k,Resistor_SMD:R_0603_1608Metric,https://www.yageo.com/upload/media/product/productsearch/datasheet/rchip/PYu-RC_Group_51_RoHS_L_11.pdf,YAGEO,RC0603FR-0730KL
@@ -35,10 +35,10 @@ U12,1,SP3400-02UTG,rhais_package-qfn:UDFN-6L,https://www.littelfuse.com/~/media/
 U14,1,USB3318,Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.6x2.6mm,https://ww1.microchip.com/downloads/en/DeviceDoc/3318.pdf,Microchip Technology,USB3318-CP-TR
 U19,1,ICE40HX8K-BG121,Package_BGA:BGA-121_9.0x9.0mm_Layout11x11_P0.8mm_Ball0.4mm_Pad0.35mm_NSMD,http://www.latticesemi.com/Products/FPGAandCPLD/iCE40,Lattice Semiconductors,ICE40HX8K-BG121
 U2 U8 U11 U16 U20 U23 U27 U30 U33,9,FXL4TD245BQX,DX-MON:DQFN16_1EP_2.5x3.5mm_P0.5mm,https://www.farnell.com/datasheets/2298347.pdf,ON Semi,FXL4TD245BQX‎
-U26,1,W25N01GVZEIG,lethalbit-memory:WSON-8-1EP-6.0x8.0mm,https://www.winbond.com/resource-files/w25n01gv%20revl%20050918%20unsecured.pdf,Winbond,W25N01GVZEIG TR
+U26,1,GD25Q64EWIGR,rhais_package-qfn:UDFN-8-1EP_6x5mm_P1.27mm_EP3.4x4mm,https://www.gigadevice.com/datasheet/GD25Q64E/,GigaDevices,GD25Q64EWIGR
 U3,1,TLV755533PDRVR,Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm,http://www.ti.com/lit/ds/symlink/tlv733p-q1.pdf,Texas Instruments,TLV75533PDRVR
 U35,1,APX811-40UG-7,Package_TO_SOT_SMD:SOT-143,https://www.diodes.com/assets/Datasheets/APX811_812.pdf,Diodes Incorporated,APX811-40UG-7
 U5,1,TLV73312PQDRVRQ1,Package_DFN_QFN:DFN-6-1EP_2x2mm_P0.65mm_EP1x1.6mm,http://www.ti.com/lit/ds/symlink/tlv755p.pdf,Texas Instruments,TLV73312PQDRVRQ1
 U7,1,LP5910-1.8DRVR,Package_SON:WSON-6-1EP_2x2mm_P0.65mm_EP1x1.6mm_ThermalVias,https://www.ti.com/lit/ds/symlink/lp5910.pdf?HQS=dis-dk-null-digikeymode-dsf-pf-null-wwe&ts=1622766436293,Texas Instruments,LP5910-1.8DRVR
-X1,1,16MHz,Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm,http://abracon.com/Oscillators/ASEMB.pdf,Abracon,ASEMB-16.000MHZ-LY-T
+X1,1,13MHz,rhais_osc:SMD3225,,,
 X2,1,48MHz,Oscillator:Oscillator_SMD_Abracon_ASE-4Pin_3.2x2.5mm,http://abracon.com/Oscillators/ASEMB.pdf,Abracon,ASEMB-48.000MHZ-LY-T
