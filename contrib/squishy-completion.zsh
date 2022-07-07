@@ -52,6 +52,7 @@ _squishy_applet() {
 		'--skip-cache[Skip bitstream cache lookup]'
 		'(-b --build-dir)'{-b,--build-dir}"[Output directory for build products]:dir:_directories"
 		'--loud[Enables output from PnR and synthesis]'
+		'--build-only[Only build the applet]'
 
 		'--use-router2[Use nextpnrs router2 rather than router1]'
 		'--tmp-ripup[Use timing driven ripup]'
