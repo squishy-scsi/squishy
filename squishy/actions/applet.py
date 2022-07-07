@@ -85,7 +85,7 @@ class Applet(SquishyAction):
 		pnr_options.add_argument(
 			'--use-router2',
 			action = 'store_true',
-			help   = 'Use nextpnr\'s \'router1\' router rather than \'router2\''
+			help   = 'Use nextpnr\'s \'router2\' router rather than \'router1\''
 		)
 
 		pnr_options.add_argument(
