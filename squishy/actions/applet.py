@@ -63,6 +63,12 @@ class Applet(SquishyAction):
 
 		# Build Options
 		build_options.add_argument(
+			'--build-only',
+			action = 'store_true',
+			help   = 'Only build the applet, and skip device programming'
+		)
+
+		build_options.add_argument(
 			'--skip-cache',
 			action = 'store_true',
 			help   = 'Skip the cache lookup and subsequent caching of resultant bitstream'
@@ -265,7 +271,7 @@ class Applet(SquishyAction):
 			name         = 'squishy_applet',
 			build_dir    = args.build_dir,
 			do_build     = True,
-			do_program   = True,
+			do_program   = not args.build_only,
 			synth_opts   = ' '.join(synth_opts),
 			verbose      = args.loud,
 			nextpnr_opts = ' '.join(pnr_opts),
