@@ -2,6 +2,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 from setuptools import setup, find_packages
+from pathlib    import Path
+
+REPO_ROOT   = Path(__file__).parent
+README_FILE = (REPO_ROOT / 'README.md')
 
 def vcs_ver():
 	def scheme(version):
@@ -31,22 +35,25 @@ def doc_ver():
 
 setup(
 	name = 'Squishy',
-	use_scm_version = vcs_ver(),
-	author          = 'Aki \'lethalbit\' Van Ness',
-	author_email    = 'nya@catgirl.link',
-	description     = 'SCSI Multitool and Amaranth HDL Library',
-	license         = 'BSD-3-Clause',
-	python_requires = '~=3.8',
-	zip_safe        = False,
-	url             = 'https://github.com/lethalbit/squishy',
+	use_scm_version  = vcs_ver(),
+	author           = 'Aki \'lethalbit\' Van Ness',
+	author_email     = 'nya@catgirl.link',
+	description      = 'SCSI Multitool and Amaranth HDL Library',
+	license          = 'BSD-3-Clause',
+	python_requires  = '~=3.8',
+	zip_safe         = True,
+	url              = 'https://github.com/lethalbit/squishy',
 
-	setup_requires  = [
+	long_description = README_FILE.read_text(),
+	long_description_content_type = 'text/markdown',
+
+	setup_requires   = [
 		'wheel',
 		'setuptools',
 		'setuptools_scm'
 	],
 
-	install_requires = [
+	install_requires  = [
 		'Jinja2',
 		'construct>=2.10.67',
 		'arrow',
@@ -61,10 +68,10 @@ setup(
 		'luna @ git+https://github.com/shrine-maiden-heavy-industries/luna.git@main',
 	],
 
-	packages = find_packages(
+	packages          = find_packages(
 		where = '.'
 	),
-	package_data = {
+	package_data      = {
 		# GUI Resources
 		'squishy.gui.resources.fonts': [
 			'FiraCode-Regular.ttf',
@@ -102,7 +109,7 @@ setup(
 		]
 	},
 
-	extras_require = {
+	extras_require    = {
 		'toolchain': [
 			'yowasp-yosys',
 			# For rev1
@@ -121,7 +128,7 @@ setup(
 		]
 	},
 
-	entry_points = {
+	entry_points       = {
 		'console_scripts': [
 			'squishy = squishy.main:cli_main',
 		],
@@ -130,7 +137,7 @@ setup(
 		]
 	},
 
-	classifiers = [
+	classifiers       = [
 		'Development Status :: 4 - Beta',
 
 		'Environment :: Console',
@@ -154,7 +161,7 @@ setup(
 
 	],
 
-	project_urls = {
+	project_urls      = {
 		'Documentation': 'https://docs.scsi.moe/',
 		'Source Code'  : 'https://github.com/lethalbit/squishy',
 		'Bug Tracker'  : 'https://github.com/lethalbit/squishy/issues',
