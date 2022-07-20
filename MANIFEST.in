@@ -1,0 +1,9 @@
+recursive-exclude .github *
+recursive-exclude .vscode *
+recursive-exclude contrib *
+recursive-exclude docs *
+recursive-exclude hardware *
+recursive-exclude examples *
+
+exclude *pyproject.toml
+exclude .coverage
