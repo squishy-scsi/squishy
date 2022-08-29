@@ -1,9 +1,15 @@
 recursive-exclude .github *
 recursive-exclude .vscode *
 recursive-exclude contrib *
+recursive-exclude dist *
 recursive-exclude docs *
-recursive-exclude hardware *
 recursive-exclude examples *
+recursive-exclude hardware *
 
-exclude *pyproject.toml
 exclude .coverage
+exclude .editorconfig
+exclude .flake8
+exclude .gitatributes
+exclude .gitignore
+exclude CODE_OF_CONDUCT.md
+exclude HACKING.md
