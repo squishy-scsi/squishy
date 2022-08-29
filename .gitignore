@@ -15,6 +15,7 @@ _build/
 *.tar*
 *.zip
 \#auto_saved_files\#
+fp-info-cache
 build/
 dist/
 htmlcov/
