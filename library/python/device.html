@@ -4,13 +4,13 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Library &mdash; Squishy 0.1.dev1 documentation</title>
+  <title>squishy.scsi.device &mdash; Squishy 0.1.dev1 documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/styles.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/platformpicker.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/styles.css" type="text/css" />
-    <link rel="canonical" href="https://docs.scsi.moe/library/python/index.html" />
+    <link rel="canonical" href="https://docs.scsi.moe/library/python/device.html" />
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -30,8 +30,8 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="squishy.scsi.commands" href="commands/index.html" />
-    <link rel="prev" title="squishy.gateware.scsi.scsi3" href="../gateware/scsi/scsi3.html" /> 
+    <link rel="next" title="squishy.scsi.messages" href="messages.html" />
+    <link rel="prev" title="squishy.scsi.commands.worm" href="commands/worm.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -151,7 +151,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Python Library</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">Python Library</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="commands/index.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="commands/common.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.common</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="commands/direct.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.direct</span></code></a></li>
@@ -162,7 +162,7 @@
 <li class="toctree-l4"><a class="reference internal" href="commands/worm.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.worm</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="device.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code></a><ul class="simple">
+<li class="toctree-l3 current"><a class="current reference internal" href="#"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code></a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="messages.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.messages</span></code></a><ul class="simple">
@@ -214,7 +214,8 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
           <li><a href="../index.html">Squishy as a Library</a> &raquo;</li>
-      <li>Python Library</li>
+          <li><a href="index.html">Python Library</a> &raquo;</li>
+      <li><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code></li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -223,16 +224,82 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="python-library">
-<h1>Python Library<a class="headerlink" href="#python-library" title="Permalink to this heading"></a></h1>
+  <section id="squishy-scsi-device">
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code><a class="headerlink" href="#squishy-scsi-device" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-squishy.scsi"></span><div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Refine this section</p>
-</div>
-<p>The Squishy Python library defines all the machinery needed to consume and emit
-SCSI messages, as well as helpers for dealing with SCSI devices and SCSI traffic.</p>
+<span class="target" id="module-squishy.scsi.device"></span><dl class="py class">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.device.</span></span><span class="sig-name descname"><span class="pre">PeripheralDeviceType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType" title="Permalink to this definition"></a></dt>
+<dd><p>The type of device a peripheral iss</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.DirectAccess">
+<span class="sig-name descname"><span class="pre">DirectAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.DirectAccess" title="Permalink to this definition"></a></dt>
+<dd><p>Direct-access devices <em>(e.g. Magnetic Disk)</em></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.SequentialAccess">
+<span class="sig-name descname"><span class="pre">SequentialAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.SequentialAccess" title="Permalink to this definition"></a></dt>
+<dd><p>Sequential-access devices <em>(e.g. Magnetic Tape)</em></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.Printer">
+<span class="sig-name descname"><span class="pre">Printer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.Printer" title="Permalink to this definition"></a></dt>
+<dd><p>Printer-like devices</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.Processor">
+<span class="sig-name descname"><span class="pre">Processor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.Processor" title="Permalink to this definition"></a></dt>
+<dd><p>Processors</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.WORM">
+<span class="sig-name descname"><span class="pre">WORM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.WORM" title="Permalink to this definition"></a></dt>
+<dd><p>Write-Once-Read-Many devices</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.ReadOnlyDirectAccess">
+<span class="sig-name descname"><span class="pre">ReadOnlyDirectAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.ReadOnlyDirectAccess" title="Permalink to this definition"></a></dt>
+<dd><p>Read-only Direct-access devices</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.ReservedStart">
+<span class="sig-name descname"><span class="pre">ReservedStart</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.ReservedStart" title="Permalink to this definition"></a></dt>
+<dd><p>Start of the Reserved section</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.ReservedEnd">
+<span class="sig-name descname"><span class="pre">ReservedEnd</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">126</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.ReservedEnd" title="Permalink to this definition"></a></dt>
+<dd><p>End of the Reserved section</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.LogicalUnitNotPresent">
+<span class="sig-name descname"><span class="pre">LogicalUnitNotPresent</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">127</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.LogicalUnitNotPresent" title="Permalink to this definition"></a></dt>
+<dd><p>Logical unit is not present</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.VendorUniqueStart">
+<span class="sig-name descname"><span class="pre">VendorUniqueStart</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.VendorUniqueStart" title="Permalink to this definition"></a></dt>
+<dd><p>Start of the Vendor Unique section</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.VendorUniqueEnd">
+<span class="sig-name descname"><span class="pre">VendorUniqueEnd</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">255</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.VendorUniqueEnd" title="Permalink to this definition"></a></dt>
+<dd><p>End of the Vendor Unique section</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
     <script type="text/javascript">
@@ -245,8 +312,8 @@ SCSI messages, as well as helpers for dealing with SCSI devices and SCSI traffic
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="../gateware/scsi/scsi3.html" class="btn btn-neutral float-left" title="squishy.gateware.scsi.scsi3" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="commands/index.html" class="btn btn-neutral float-right" title="squishy.scsi.commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="commands/worm.html" class="btn btn-neutral float-left" title="squishy.scsi.commands.worm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="messages.html" class="btn btn-neutral float-right" title="squishy.scsi.messages" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

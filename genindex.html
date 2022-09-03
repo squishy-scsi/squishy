@@ -39,7 +39,7 @@
             <a href="index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gbf0cd7e
+                0.1.dev1+g353de4a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -157,6 +157,9 @@
 <li class="toctree-l4"><a class="reference internal" href="library/python/commands/ro_direct.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.ro_direct</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/python/commands/sequential.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.sequential</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="library/python/commands/worm.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.worm</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="library/python/device.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code></a><ul class="simple">
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="library/python/messages.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.messages</span></code></a><ul class="simple">
@@ -297,6 +300,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.DirectAccess">DirectAccess (squishy.scsi.device.PeripheralDeviceType attribute)</a>
+</li>
       <li><a href="library/python/messages.html#squishy.scsi.messages.MessageCodes.DISCONNECT">DISCONNECT (squishy.scsi.messages.MessageCodes attribute)</a>
 </li>
   </ul></td>
@@ -399,11 +404,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/python/commands/index.html#squishy.scsi.command.SCSICommand.len">len() (squishy.scsi.command.SCSICommand method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/python/messages.html#squishy.scsi.messages.MessageCodes.LINK_CMD_COM">LINK_CMD_COM (squishy.scsi.messages.MessageCodes attribute)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/python/messages.html#squishy.scsi.messages.MessageCodes.LINK_CMD_COM_F">LINK_CMD_COM_F (squishy.scsi.messages.MessageCodes attribute)</a>
+</li>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.LogicalUnitNotPresent">LogicalUnitNotPresent (squishy.scsi.device.PeripheralDeviceType attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -487,6 +494,8 @@
 </li>
         <li><a href="library/python/commands/worm.html#module-squishy.scsi.commands.worm">squishy.scsi.commands.worm</a>
 </li>
+        <li><a href="library/python/device.html#module-squishy.scsi.device">squishy.scsi.device</a>
+</li>
         <li><a href="library/python/messages.html#module-squishy.scsi.messages">squishy.scsi.messages</a>
 </li>
       </ul></li>
@@ -510,11 +519,17 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/python/commands/index.html#squishy.scsi.command.SCSICommand.parse">parse() (squishy.scsi.command.SCSICommand method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType">PeripheralDeviceType (class in squishy.scsi.device)</a>
+</li>
       <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.prevent_allow_media_removal">prevent_allow_media_removal (in module squishy.scsi.commands.direct)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/python/commands/printer.html#squishy.scsi.commands.printer.print_cmd">print_cmd (in module squishy.scsi.commands.printer)</a>
+</li>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.Printer">Printer (squishy.scsi.device.PeripheralDeviceType attribute)</a>
+</li>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.Processor">Processor (squishy.scsi.device.PeripheralDeviceType attribute)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -526,6 +541,8 @@
 </li>
       <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.read_capacity">read_capacity (in module squishy.scsi.commands.direct)</a>
 </li>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.ReadOnlyDirectAccess">ReadOnlyDirectAccess (squishy.scsi.device.PeripheralDeviceType attribute)</a>
+</li>
       <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.reassign_blocks">reassign_blocks (in module squishy.scsi.commands.direct)</a>
 </li>
       <li><a href="library/python/commands/common.html#squishy.scsi.commands.common.ReceiveDiagnosticResults">ReceiveDiagnosticResults (in module squishy.scsi.commands.common)</a>
@@ -536,10 +553,10 @@
 </li>
       <li><a href="library/python/commands/common.html#squishy.scsi.commands.common.RequestSense">RequestSense (in module squishy.scsi.commands.common)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.reserve">reserve (in module squishy.scsi.commands.direct)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/python/messages.html#squishy.scsi.messages.ExtendedMessageCodes.RESERVED_END">RESERVED_END (squishy.scsi.messages.ExtendedMessageCodes attribute)</a>
 
       <ul>
@@ -552,6 +569,10 @@
         <li><a href="library/python/messages.html#squishy.scsi.messages.MessageCodes.RESERVED_START">(squishy.scsi.messages.MessageCodes attribute)</a>
 </li>
       </ul></li>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.ReservedEnd">ReservedEnd (squishy.scsi.device.PeripheralDeviceType attribute)</a>
+</li>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.ReservedStart">ReservedStart (squishy.scsi.device.PeripheralDeviceType attribute)</a>
+</li>
       <li><a href="library/python/messages.html#squishy.scsi.messages.MessageCodes.RESTORE_PTR">RESTORE_PTR (squishy.scsi.messages.MessageCodes attribute)</a>
 </li>
       <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.rezero_unit">rezero_unit (in module squishy.scsi.commands.direct)</a>
@@ -609,6 +630,8 @@
       <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.seek">seek (in module squishy.scsi.commands.direct)</a>
 </li>
       <li><a href="library/python/commands/common.html#squishy.scsi.commands.common.SendDiagnostic">SendDiagnostic (in module squishy.scsi.commands.common)</a>
+</li>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.SequentialAccess">SequentialAccess (squishy.scsi.device.PeripheralDeviceType attribute)</a>
 </li>
       <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.set_limits">set_limits (in module squishy.scsi.commands.direct)</a>
 </li>
@@ -838,6 +861,13 @@
 </li>
       </ul></li>
       <li>
+    squishy.scsi.device
+
+      <ul>
+        <li><a href="library/python/device.html#module-squishy.scsi.device">module</a>
+</li>
+      </ul></li>
+      <li>
     squishy.scsi.messages
 
       <ul>
@@ -890,9 +920,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="library/python/messages.html#squishy.scsi.messages.ExtendedMessageCodes.VENDOR_END">VENDOR_END (squishy.scsi.messages.ExtendedMessageCodes attribute)</a>
 </li>
+      <li><a href="library/python/messages.html#squishy.scsi.messages.ExtendedMessageCodes.VENDOR_START">VENDOR_START (squishy.scsi.messages.ExtendedMessageCodes attribute)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="library/python/messages.html#squishy.scsi.messages.ExtendedMessageCodes.VENDOR_START">VENDOR_START (squishy.scsi.messages.ExtendedMessageCodes attribute)</a>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.VendorUniqueEnd">VendorUniqueEnd (squishy.scsi.device.PeripheralDeviceType attribute)</a>
+</li>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.VendorUniqueStart">VendorUniqueStart (squishy.scsi.device.PeripheralDeviceType attribute)</a>
 </li>
       <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.verify">verify (in module squishy.scsi.commands.direct)</a>
 </li>
@@ -902,10 +936,12 @@
 <h2 id="W">W</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.write">write (in module squishy.scsi.commands.direct)</a>
+      <li><a href="library/python/device.html#squishy.scsi.device.PeripheralDeviceType.WORM">WORM (squishy.scsi.device.PeripheralDeviceType attribute)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.write">write (in module squishy.scsi.commands.direct)</a>
+</li>
       <li><a href="library/python/commands/direct.html#squishy.scsi.commands.direct.write_and_verify">write_and_verify (in module squishy.scsi.commands.direct)</a>
 </li>
   </ul></td>

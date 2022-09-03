@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gbf0cd7e
+                0.1.dev1+g353de4a
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -162,6 +162,9 @@
 <li class="toctree-l4"><a class="reference internal" href="worm.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.worm</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../device.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code></a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="../messages.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.messages</span></code></a><ul class="simple">
 </ul>
 </li>
@@ -234,39 +237,540 @@ can support.</p>
 <dd><p>Test Unit Ready</p>
 <p>This command provides the means to check if the logical
 unit is ready.</p>
+<p>It does not trigger an internal self test on the target.</p>
+<p>If the logical unit would accept an appropriate medium-access command
+without returning a <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CONDITION</span></code> status this command shall
+return a <code class="docutils literal notranslate"><span class="pre">GOOD</span></code> status.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.RequestSense">
 <span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">RequestSense</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.RequestSense" title="Permalink to this definition"></a></dt>
 <dd><p>Request Sense</p>
+<p>This command requests that the target transfers <span class="xref std std-ref">sense data</span> to the initiator.</p>
+<p>The sense data shall be valid for a <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CONDITION</span></code> status returned on the prior
+command. It will also be preserved by the target for the initiator until it is retrieved
+by the <code class="docutils literal notranslate"><span class="pre">REQUEST</span> <span class="pre">SENSE</span></code> command, or until the receipt of any other command for the same LUN
+from the initiator that issues the command resulting in the <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CONDITION</span></code> status.</p>
+<p>Sense data shall be cleared upon receipt of any subsequent command to the LUN from the initiator
+receiving the <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CONDITION</span></code> status. In the case of a single initiator the target must assume
+that the <code class="docutils literal notranslate"><span class="pre">REQUEST</span> <span class="pre">SENSES</span></code> command is from the same initiator.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AllocLen</span></code> field specifies the number of bytes that the initiator has allocated for the returned
+sense data. An allocation length of zero indicates that four bytes of sense data will be transferred. Any
+other value indicates the maximum number of bytes to be transferred. The target must terminate the <span class="xref std std-ref">DATA IN</span>
+phase when <code class="docutils literal notranslate"><span class="pre">AllocLen</span></code> bytes  have been sent to the initiator or when all sense data has been exhausted, whichever
+is less.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">REQUEST</span> <span class="pre">SENSE</span></code> command shall return the <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CONDITION</span></code> status only to report fatal errors for the command.
+for example:</p>
+<ol class="arabic simple">
+<li><p>The target receives a non-zero reserved bit in the command descriptor block.</p></li>
+<li><p>An unrecovered parity error occurs on the data bus.</p></li>
+<li><p>A target malfunction prevents the return of sense data.</p></li>
+</ol>
+<p>If any non-fatal error occurs during the execution of the <code class="docutils literal notranslate"><span class="pre">REQUEST</span> <span class="pre">SENSE</span></code> command
+then the target shall return the sense data with a <code class="docutils literal notranslate"><span class="pre">GOOD</span></code> status. On fatal errors sense
+data may be invalid.</p>
+<p>A target may implement the non-extended, the extended, or both sense data formats.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Targets that implement both sense data formats may select the non-extended
+sense data format in response to an allocation length of zero, other methods
+of selection are also feasible.</p>
+</div>
+<p>The format of the sense data is determined by the error class. Error classes
+<code class="docutils literal notranslate"><span class="pre">0</span></code> through <code class="docutils literal notranslate"><span class="pre">6</span></code> use the non-extended sense data, error class <code class="docutils literal notranslate"><span class="pre">7</span></code> uses the extended sense
+data.</p>
+<p>The non-extended sense data is depicted below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 26%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="9"><p class="centered">
+<strong>Non-extended Sense Data</strong></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Byte</p></th>
+<th class="head"><p>7</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>5</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>AddrValid</p></td>
+<td colspan="3"><p>Error Class</p></td>
+<td colspan="4"><p>Error Code</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td colspan="3"><p>Vendor Unique</p></td>
+<td colspan="5"><p>LBA (MSB)</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td colspan="8"><p>LBA</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td colspan="8"><p>LBA (LSB)</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">AddrValid</span></code> flag indicates that the LBA field contains valid information related
+to the error code.</p>
+<p>The error class specified the class of errors, classes <code class="docutils literal notranslate"><span class="pre">0</span></code> through <code class="docutils literal notranslate"><span class="pre">6</span></code> are all vender unique,
+the error code for the class is also vendor unique.</p>
+<p>For extended sense data, the error class is fixed to <code class="docutils literal notranslate"><span class="pre">7</span></code>, but extended sense data will only be
+returned if the error code is <code class="docutils literal notranslate"><span class="pre">0</span></code>. Error code <code class="docutils literal notranslate"><span class="pre">15</span></code> specifies a vendor unique data format for the
+extended sense data. Error codes <code class="docutils literal notranslate"><span class="pre">1</span></code> tough <code class="docutils literal notranslate"><span class="pre">14</span></code> are reserved.</p>
+<p>The extended sense data format is depicted below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 24%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="9"><p class="centered">
+<strong>Extended Sense Data</strong></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Byte</p></th>
+<th class="head"><p>7</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>5</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td><p>Valid</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td colspan="8"><p>Segment Number</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td><p>File Mark</p></td>
+<td><p>EOM</p></td>
+<td><p>ILI</p></td>
+<td><p>Res</p></td>
+<td colspan="4"><p>Sense Key</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td colspan="8"><p>Information Byte</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+<td colspan="8"><p>Information Byte</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">5</span></code></p></td>
+<td colspan="8"><p>Information Byte</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">6</span></code></p></td>
+<td colspan="8"><p>Information Byte (LSB)</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">7</span></code></p></td>
+<td colspan="8"><p>Additional Sense Length (<code class="docutils literal notranslate"><span class="pre">n</span></code>)</p></td>
+</tr>
+<tr class="row-odd"><td rowspan="3"><p><code class="docutils literal notranslate"><span class="pre">8</span></code></p>
+<blockquote>
+<div><p>to</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">n+7</span></code></p>
+</td>
+<td colspan="8" rowspan="3"><p>Additional Sense Bytes</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+</tbody>
+</table>
+<p>If <code class="docutils literal notranslate"><span class="pre">Valid</span></code> is not set, then the data in <code class="docutils literal notranslate"><span class="pre">Information</span> <span class="pre">Byte</span></code> is undefined, otherwise it
+is defined as follows:</p>
+<ol class="arabic simple">
+<li><p>The unsigned LBA associated with the sense key, for type 0, type 4 and type 5 devices.</p></li>
+<li><p>The difference of the requested length minus the actual length in bytes or blocks. As determined by the
+command, for type 1, type 2, and type 3 devices.</p></li>
+<li><p>The difference of the requested number of blocks minus the actual number of blocks copied or compared
+for the current segment descriptor of a <a class="reference internal" href="#squishy.scsi.commands.common.Copy" title="squishy.scsi.commands.common.Copy"><code class="xref py py-data docutils literal notranslate"><span class="pre">Copy</span></code></a>, <a class="reference internal" href="#squishy.scsi.commands.common.Compare" title="squishy.scsi.commands.common.Compare"><code class="xref py py-data docutils literal notranslate"><span class="pre">Compare</span></code></a>, or <a class="reference internal" href="#squishy.scsi.commands.common.CopyAndVerify" title="squishy.scsi.commands.common.CopyAndVerify"><code class="xref py py-data docutils literal notranslate"><span class="pre">CopyAndVerify</span></code></a>
+command.</p></li>
+</ol>
+<p>The <code class="docutils literal notranslate"><span class="pre">Segment</span> <span class="pre">Number</span></code> field contains the number of the current segment descriptor if the extended sens is
+in response to a <a class="reference internal" href="#squishy.scsi.commands.common.Copy" title="squishy.scsi.commands.common.Copy"><code class="xref py py-data docutils literal notranslate"><span class="pre">Copy</span></code></a>, <a class="reference internal" href="#squishy.scsi.commands.common.Compare" title="squishy.scsi.commands.common.Compare"><code class="xref py py-data docutils literal notranslate"><span class="pre">Compare</span></code></a>, or <a class="reference internal" href="#squishy.scsi.commands.common.CopyAndVerify" title="squishy.scsi.commands.common.CopyAndVerify"><code class="xref py py-data docutils literal notranslate"><span class="pre">CopyAndVerify</span></code></a> command. Up to <code class="docutils literal notranslate"><span class="pre">256</span></code> segments
+are supported.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Mark</span></code> flag indicates that the current command has read a file mark, and is only used on sequential-access
+devices.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">EOM</span></code> or End of Medium flag indicates that an end-of-medium condition (EOT, BOT, Out of paper, etc) exists on
+a sequential access or printer device. For sequential access devices, this flag indicates that the unit is at or past
+the early-warning EOT if the direction was forward or that the command could not be completed due to a BOT being
+encountered if the direction was reverse. Direct access devices must not use this flag, instead they must report
+attempts to access beyond EOM as an <code class="docutils literal notranslate"><span class="pre">ILLEGAL</span> <span class="pre">REQUEST</span></code> sense key.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ILI</span></code> or Incorrect Length Indicator flag indicates that the requested logical block length did not match the
+logical block length of the data on the medium.</p>
+<p>The value of the <code class="docutils literal notranslate"><span class="pre">Sense</span> <span class="pre">Key</span></code> field is described as follows:</p>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
-<p>Document this, it’s long ;~;</p>
+<p>Move this to an enum in command.py</p>
 </div>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Sense Key</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td rowspan="4"><p><code class="docutils literal notranslate"><span class="pre">0x0</span></code></p></td>
+<td rowspan="4"><p><strong>No Sense</strong>. Indicates that there is no specific
+sense key information to be reported for the
+designated logical unit. This would be the case
+for a successful command or a command that
+received a <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CONDITION</span></code> status due to one
+of the <code class="docutils literal notranslate"><span class="pre">File</span> <span class="pre">Mark</span></code>, <code class="docutils literal notranslate"><span class="pre">EOM</span></code>, or <code class="docutils literal notranslate"><span class="pre">ILI</span></code> flags
+being set.</p></td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="3"><p><code class="docutils literal notranslate"><span class="pre">0x1</span></code></p></td>
+<td rowspan="3"><p><strong>Recovered Error</strong>. Indicates that the last
+command completed successfully with some recovery
+action performed by the target. Details may be
+determined by examining the additional sense
+bytes and information bytes.</p></td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x2</span></code></p></td>
+<td rowspan="2"><p><strong>Not Ready</strong>. Indicates that the logical unit
+addressed cannot be accessed. Operator
+intervention may be required to correct this.</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x3</span></code></p></td>
+<td rowspan="2"><p><strong>Medium Error</strong>. Indicates that the command
+terminated with a non-recovered error condition
+that was likely caused by a flaw in the medium.</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x4</span></code></p></td>
+<td rowspan="2"><p><strong>Hardware Error</strong>. Indicates that the target
+detected a non-recoverable hardware failure while
+performing the command or during a self-test.</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="5"><p><code class="docutils literal notranslate"><span class="pre">0x5</span></code></p></td>
+<td rowspan="5"><p><strong>Illegal Request</strong>. Indicates that there was an
+illegal parameter in the command descriptor block
+or in the additional parameters supplied as data
+for some commands. If the target detects an
+invalid parameter in the command descriptor block
+then it must terminate the command without
+altering the medium. If the target detects an
+invalid parameter in the additional parameters
+supplied as data, then it may alter the medium</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x6</span></code></p></td>
+<td rowspan="2"><p><strong>Unit Attention</strong>. Indicates that the removable
+medium may have been changed or the target has
+been reset.</p></td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x7</span></code></p></td>
+<td rowspan="2"><p><strong>Data Protect</strong>. Indicates that a command that
+reads or writes the medium was attempted on a
+block that is protected, and the op was not done.</p></td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="3"><p><code class="docutils literal notranslate"><span class="pre">0x8</span></code></p></td>
+<td rowspan="3"><p><strong>Blank Check</strong>. Indicates that a WORM device or
+a sequential-access device encountered a blank
+block while reading, or a WORM device encountered
+a non-blank block while writing.</p></td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x9</span></code></p></td>
+<td rowspan="2"><p><strong>Vendor Unique</strong>. This sense key is available
+for reporting vendor unique conditions.</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td rowspan="3"><p><code class="docutils literal notranslate"><span class="pre">0xA</span></code></p></td>
+<td rowspan="3"><p><strong>Copy Aborted</strong>. Indicates a <a class="reference internal" href="#squishy.scsi.commands.common.Copy" title="squishy.scsi.commands.common.Copy"><code class="xref py py-data docutils literal notranslate"><span class="pre">Copy</span></code></a>,
+<a class="reference internal" href="#squishy.scsi.commands.common.Compare" title="squishy.scsi.commands.common.Compare"><code class="xref py py-data docutils literal notranslate"><span class="pre">Compare</span></code></a>, or <a class="reference internal" href="#squishy.scsi.commands.common.CopyAndVerify" title="squishy.scsi.commands.common.CopyAndVerify"><code class="xref py py-data docutils literal notranslate"><span class="pre">CopyAndVerify</span></code></a>
+command was aborted due to an error condition on
+the source device, destination device, or both.</p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0xB</span></code></p></td>
+<td rowspan="2"><p><strong>Aborted Command</strong>. Indicates that the target
+aborted the command. The initiator may be able to
+recover by trying the command again.</p></td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0xC</span></code></p></td>
+<td rowspan="2"><p><strong>Equal</strong>. Indicates tha a <code class="xref py py-data docutils literal notranslate"><span class="pre">SearchData</span></code>
+command has satisfied an equal comparison.</p></td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="4"><p><code class="docutils literal notranslate"><span class="pre">0xD</span></code></p></td>
+<td rowspan="4"><p><strong>Volume Overflow</strong>. Indicates that a buffered
+peripheral device has reached the end-of-medium
+and data remains in the buffer that has not been
+written to the medium. A
+<code class="xref py py-data docutils literal notranslate"><span class="pre">RecoverBufferedData</span></code> command(s) may be
+issued to read the unwritten data from the buffer</p></td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0xE</span></code></p></td>
+<td rowspan="2"><p><strong>Miscompare</strong>. Indicates that the source data
+did not match teh data read from the medium.</p></td>
+</tr>
+<tr class="row-odd"></tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0xF</span></code></p></td>
+<td><p class="centered">
+<strong><strong>Reserved</strong></strong></p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">Sense</span> <span class="pre">Length</span></code> specifies how many additional bytes of sense data are to follow. If the allocation length
+of the command descriptor block is too small to transfer all of the additional data, the <code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">Sense</span> <span class="pre">Length</span></code> is <strong>NOT</strong>
+adjusted to reflect the truncation.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">Sense</span> <span class="pre">Bytes</span></code> contains data that is command-specific, peripheral-device-specific, or both the further
+define the nature of the <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CONDITION</span></code> status. The <a class="reference internal" href="#squishy.scsi.commands.common.Copy" title="squishy.scsi.commands.common.Copy"><code class="xref py py-data docutils literal notranslate"><span class="pre">Copy</span></code></a>, <a class="reference internal" href="#squishy.scsi.commands.common.Compare" title="squishy.scsi.commands.common.Compare"><code class="xref py py-data docutils literal notranslate"><span class="pre">Compare</span></code></a>, <a class="reference internal" href="#squishy.scsi.commands.common.CopyAndVerify" title="squishy.scsi.commands.common.CopyAndVerify"><code class="xref py py-data docutils literal notranslate"><span class="pre">CopyAndVerify</span></code></a>,
+and <code class="xref py py-data docutils literal notranslate"><span class="pre">SearchData</span></code> commands define a standard purpose for some of the bytes. Unless described in said commands,
+all additional sense bytes are vendor unique.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.Inquiry">
 <span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">Inquiry</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.Inquiry" title="Permalink to this definition"></a></dt>
 <dd><p>Inquiry</p>
+<p>This command requests that information regarding parameters of the target and its attached peripheral devices
+be sent to the initiator.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">AllocLen</span></code> field specifies the number of bytes that the initiator has allocated for the returned <code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> data.
+An <code class="docutils literal notranslate"><span class="pre">AllocLen</span></code> of zero indicates that no <code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> data shall be transferred to the Initiator, and shall not be
+considered an error. Any other value indicates the maximum number of bytes that shall be transferred. The target must
+terminate the <code class="docutils literal notranslate"><span class="pre">DATA</span> <span class="pre">IN</span></code> phase when <code class="docutils literal notranslate"><span class="pre">AllocLen</span></code> bytes have been transferred or when all available <code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> data
+as been exhausted, which ever is less.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> command must return a <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CONDITION</span></code> status only when the target can not return the requested
+<code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> data.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is recommended that the <code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> data be returned even though the peripheral device may not
+be ready for other commands.</p>
+</div>
+<p>If an <code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> command is received from an initiator with a pending unit attention condition, the
+target shall perform the <code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> command and shall not clear the unit attention condition.</p>
+<p>The data returned from the <code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> command is described below:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 24%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="9"><p class="centered">
+<strong><code class="docutils literal notranslate"><span class="pre">INQUIRY</span></code> Data</strong></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Byte</p></th>
+<th class="head"><p>7</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>5</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td colspan="8"><p>Peripheral Device Type</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td><p>RMB</p></td>
+<td colspan="7"><p>Device-Type Qualifier</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td colspan="2"><p>ISO Ver</p></td>
+<td colspan="3"><p>ECMA Ver</p></td>
+<td colspan="3"><p>ANSI Ver</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td colspan="8"><p>Reserved</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">4</span></code></p></td>
+<td colspan="8"><p>Additional Length</p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">5</span></code>
+to
+<code class="docutils literal notranslate"><span class="pre">n+4</span></code></p></td>
+<td colspan="8" rowspan="2"><p>Vendor Unique</p></td>
+</tr>
+<tr class="row-odd"></tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">Peripheral</span> <span class="pre">Device</span> <span class="pre">Type</span></code> is one of the values in <a class="reference internal" href="../device.html#squishy.scsi.device.PeripheralDeviceType" title="squishy.scsi.device.PeripheralDeviceType"><code class="xref py py-class docutils literal notranslate"><span class="pre">squishy.scsi.device.PeripheralDeviceType</span></code></a></p>
+<p>The <code class="docutils literal notranslate"><span class="pre">RMB</span></code> flag indicates that the medium is removable or not.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Device-Type</span> <span class="pre">Qualifier</span></code> iss a seven-bit user specified value. This value may be set with
+any means on the target or peripheral device. SCSI devices that do not support this feature must
+set it to all zeros <em>(i.e. ``0b0000000``)</em>. This feature allows each user to assign a unique value
+to each specific type of peripheral device that is supported on the system being used. These
+values may then be used by the self-configuring software to determine what specific peripheral device
+is at each LUN.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">ISO</span> <span class="pre">Ver</span></code>, and <code class="docutils literal notranslate"><span class="pre">ECMA</span> <span class="pre">Ver</span></code> fields describe to which version of the respective
+specifications the device compiles to. A zero value in the <code class="docutils literal notranslate"><span class="pre">ISO</span> <span class="pre">Ver</span></code> and/or <code class="docutils literal notranslate"><span class="pre">ECMA</span> <span class="pre">Ver</span></code> fields
+indicates that the target does not claim compliance to ISO or ECMA Versions of SCSI.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is possible to claim compliance to more than one standard.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ANSI</span> <span class="pre">Ver</span></code> field indicates the implemented version of the ANSI SCSI standard with the following values:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 82%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">0x0</span></code></p></td>
+<td><p>Version is unspecified</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0x1</span></code></p></td>
+<td><p>Complies with <code class="docutils literal notranslate"><span class="pre">X3.313:1986</span></code></p></td>
+</tr>
+<tr class="row-even"><td rowspan="2"><p><code class="docutils literal notranslate"><span class="pre">0x2</span></code>
+to
+<code class="docutils literal notranslate"><span class="pre">0x7</span></code></p></td>
+<td rowspan="2"><p>Reserved</p></td>
+</tr>
+<tr class="row-odd"></tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">Additional</span> <span class="pre">Length</span></code> field specifies the length in bytes of the vendor unique
+parameters. If the <code class="docutils literal notranslate"><span class="pre">AllocLen</span></code> iss tool small to transfer all of the vendor unique
+data, the additional length is <strong>NOT</strong> adjusted to reflect the truncation.</p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.Copy">
 <span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">Copy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.Copy" title="Permalink to this definition"></a></dt>
 <dd><p>Copy</p>
-<div class="admonition-todo admonition" id="id2">
-<p class="admonition-title">Todo</p>
-<p>Document this</p>
+<p>This command provides a means to copy data from one logical unit to itself or another.
+The logical units may reside on the same SCSI device or different SCSI devices.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some SCSI devices that implement this command may not support copying to or from
+another SCSI device, or copies where both logical units reside on another SCSI device.</p>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">ParamLen</span></code> field specifies the length in bytes of the parameters that are to be sent
+during the <code class="docutils literal notranslate"><span class="pre">DATA</span> <span class="pre">OUT</span></code> phase of the command. A <code class="docutils literal notranslate"><span class="pre">ParamLen</span></code> of zero indicates that no data
+will be transferred, and must not be considered an error.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">COPY</span></code> parameter list is structured as follows:</p>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 24%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head" colspan="9"><p class="centered">
+<strong><code class="docutils literal notranslate"><span class="pre">COPY</span></code> Parameter List</strong></p></th>
+</tr>
+<tr class="row-even"><th class="head"><p>Byte</p></th>
+<th class="head"><p>7</p></th>
+<th class="head"><p>6</p></th>
+<th class="head"><p>5</p></th>
+<th class="head"><p>4</p></th>
+<th class="head"><p>3</p></th>
+<th class="head"><p>2</p></th>
+<th class="head"><p>1</p></th>
+<th class="head"><p>0</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p></td>
+<td colspan="4"><p>Function Code</p></td>
+<td colspan="4"><p>Priority</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p></td>
+<td colspan="8"><p>Vendor Unique</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">2</span></code></p></td>
+<td colspan="8"><p>Reserved</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">3</span></code></p></td>
+<td colspan="8"><p>Reserved</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">N</span></code></p></td>
+<td colspan="8"><p>Segment descriptors…</p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">Function</span> <span class="pre">Code</span></code> field defines the specific format for the segment descriptors, they are
+as follows:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Priority</span></code> field establishes the relative priority of the <code class="docutils literal notranslate"><span class="pre">COPY</span></code> command to other commands
+being executed by the same target. All other commands are assumed to have a priority of <code class="docutils literal notranslate"><span class="pre">1</span></code>, with
+<code class="docutils literal notranslate"><span class="pre">0</span></code> being the highest priority, the larger the value the lower the priority of the command.</p>
+<p>The segment descriptor formats are designated by the <code class="docutils literal notranslate"><span class="pre">Function</span> <span class="pre">Code</span></code></p>
 </dd></dl>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.ReceiveDiagnosticResults">
 <span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">ReceiveDiagnosticResults</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.ReceiveDiagnosticResults" title="Permalink to this definition"></a></dt>
 <dd><p>Receive Diagnostic Results</p>
-<div class="admonition-todo admonition" id="id3">
+<div class="admonition-todo admonition" id="id2">
 <p class="admonition-title">Todo</p>
 <p>Document this</p>
 </div>
@@ -276,7 +780,7 @@ unit is ready.</p>
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.SendDiagnostic">
 <span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">SendDiagnostic</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.SendDiagnostic" title="Permalink to this definition"></a></dt>
 <dd><p>Send Diagnostic</p>
-<div class="admonition-todo admonition" id="id4">
+<div class="admonition-todo admonition" id="id3">
 <p class="admonition-title">Todo</p>
 <p>Document this</p>
 </div>
@@ -286,7 +790,7 @@ unit is ready.</p>
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.Compare">
 <span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">Compare</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand10&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.Compare" title="Permalink to this definition"></a></dt>
 <dd><p>Compare</p>
-<div class="admonition-todo admonition" id="id5">
+<div class="admonition-todo admonition" id="id4">
 <p class="admonition-title">Todo</p>
 <p>Document this</p>
 </div>
@@ -296,7 +800,7 @@ unit is ready.</p>
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.CopyAndVerify">
 <span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">CopyAndVerify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand10&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.CopyAndVerify" title="Permalink to this definition"></a></dt>
 <dd><p>Copy and Verify</p>
-<div class="admonition-todo admonition" id="id6">
+<div class="admonition-todo admonition" id="id5">
 <p class="admonition-title">Todo</p>
 <p>Document this</p>
 </div>
