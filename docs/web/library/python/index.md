@@ -4,6 +4,7 @@
 :hidden:
 
 commands/index
+device
 messages
 ```
 
