@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging as log
-from pathlib  import Path
 
 import usb1
 
@@ -12,6 +11,42 @@ __all__ = (
 	'SquishyHardwareDevice',
 	'SquishyDeviceContainer',
 )
+
+class SquishyHardwareDevice:
+	'''Squishy Hardware Device
+
+	This class represents and abstracted Squishy hardware device, exposing a common
+	and stable API for applets to interact with the hardware on.
+
+	Parameters
+	----------
+	dev : usb1.USBDevice
+		The USB device handle for the hardware platform.
+
+	serial : str
+		The serial number of the device.
+
+	Attributes
+	----------
+	serial : str
+		The serial number of the device.
+
+	rev : int
+		The revision of the hardware of the device.
+
+	'''
+
+	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs):
+		self._dev   = dev
+		self.serial = serial
+		self.rev    = int(dev.getbcdDevice())
+
+
+	def __repr__(self):
+		return f'<SquishyHardwareDevice SN=\'{self.serial}\' REV=\'{self.rev}\' ADDR={self._dev.getDeviceAddress()}>'
+
+	def __str__(self):
+		return f'rev{self.rev} SN: {self.serial}'
 
 class SquishyDeviceContainer:
 	'''Squishy Device Container
@@ -27,7 +62,7 @@ class SquishyDeviceContainer:
 		The revision of the device.
 
 	'''
-	def __init__(self, dev, serial, **kwargs):
+	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs):
 		self._dev = dev
 		self.serial = serial
 		self.rev = int(dev.getbcdDevice())
@@ -70,12 +105,12 @@ class SquishyDeviceContainer:
 						})
 
 						hndl.close()
-					except usb1.USBError:
-						log.error('Unable to open suspected squishy device')
+					except usb1.USBError as e:
+						log.error(f'Unable to open suspected squishy device: {e}')
 
 		return map(lambda d: SquishyDeviceContainer(d['dev'], d['sn']), devices)
 
-	def to_device(self):
+	def to_device(self) -> SquishyHardwareDevice:
 		'''Wrapper to device
 
 		Returns
@@ -91,42 +126,6 @@ class SquishyDeviceContainer:
 
 	def __str__(self):
 		return self.__repr__()
-
-class SquishyHardwareDevice:
-	'''Squishy Hardware Device
-
-	This class represents and abstracted Squishy hardware device, exposing a common
-	and stable API for applets to interact with the hardware on.
-
-	Parameters
-	----------
-	dev : usb1.USBDevice
-		The USB device handle for the hardware platform.
-
-	serial : str
-		The serial number of the device.
-
-	Attributes
-	----------
-	serial : str
-		The serial number of the device.
-
-	rev : int
-		The revision of the hardware of the device.
-
-	'''
-
-	def __init__(self, dev, serial, **kwargs):
-		self._dev   = dev
-		self.serial = serial
-		self.rev    = int(dev.getbcdDevice())
-
-
-	def __repr__(self):
-		return f'<SquishyHardwareDevice SN=\'{self.serial}\' REV=\'{self.rev}\' ADDR={self._dev.getDeviceAddress()}>'
-
-	def __str__(self):
-		return f'rev{self.rev} SN: {self.serial}'
 
 
 def _get_device(args):
