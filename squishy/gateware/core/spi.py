@@ -26,8 +26,9 @@ class SPIInterface(Elaboratable):
 		Read data register.
 
 	'''
-	def __init__(self):
+	def __init__(self, *, resource_name):
 
+		self._spi_resource = resource_name
 		self._status_led = None
 		self._spi = None
 
@@ -38,7 +39,7 @@ class SPIInterface(Elaboratable):
 		self.rdat = Signal(8)
 
 	def elaborate(self, platform):
-		self._spi = platform.request('spi_flash_1x')
+		self._spi = platform.request(*self._spi_resource)
 
 		m = Module()
 
