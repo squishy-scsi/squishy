@@ -10,6 +10,8 @@ from ...config                           import USB_VID, USB_PID_APPLICATION, US
 from ...config                           import USB_MANUFACTURER, USB_PRODUCT, USB_SERIAL_NUMBER
 from ...config                           import SCSI_VID
 
+from ...core.flash                       import FlashGeometry
+
 from ..core                              import ECP5ClockDomainGenerator
 from .mixins                             import SquishyCacheMixin, SquishyProgramMixin
 
@@ -73,6 +75,18 @@ class SquishyRev2(SquishyCacheMixin, SquishyProgramMixin, LatticeECP5Platform):
 		'clki_div' : 1,
 		'clkop_div': 1,
 		'clkfb_div': 25,
+	}
+
+	flash = {
+		'geometry': FlashGeometry(
+			size       = 8388608, # 8MiB
+			page_size  = 256,
+			erase_size = 4096,    # 4KiB
+			addr_size  = 24
+		).init_slots(device = device),
+		'commands': {
+			'erase': 0x20,
+		}
 	}
 
 	resources  = [

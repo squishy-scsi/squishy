@@ -10,6 +10,8 @@ from ...config                           import USB_VID, USB_PID_APPLICATION, US
 from ...config                           import USB_MANUFACTURER, USB_PRODUCT, USB_SERIAL_NUMBER
 from ...config                           import SCSI_VID
 
+from ...core.flash                       import FlashGeometry
+
 from ..core                              import ICE40ClockDomainGenerator
 
 from .resources                          import SCSIPhyResource
@@ -73,6 +75,18 @@ class SquishyRev1(SquishyCacheMixin, SquishyProgramMixin, LatticeICE40Platform):
 		'divf'  : 49,
 		'divq'  : 3,
 		'frange': 1,
+	}
+
+	flash = {
+		'geometry': FlashGeometry(
+			size       = 8388608, # 8MiB
+			page_size  = 256,
+			erase_size = 4096,    # 4KiB
+			addr_size  = 24
+		).init_slots(device = device),
+		'commands': {
+			'erase': 0x20,
+		}
 	}
 
 	resources = [
