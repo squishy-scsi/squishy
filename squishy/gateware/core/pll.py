@@ -16,7 +16,7 @@ class ICE40ClockDomainGenerator(Elaboratable):
 	In Squishy rev1 the PLL for the `sync` domain is set for 100MHz.
 
 	'''
-	def elaborate(self, platform):
+	def elaborate(self, platform) -> Module:
 		m = Module()
 
 		m.domains.usb  = ClockDomain()
@@ -74,7 +74,7 @@ class ECP5ClockDomainGenerator(Elaboratable):
 	def __init__(self):
 		self.pll_locked = Signal()
 
-	def elaborate(self, platform):
+	def elaborate(self, platform) -> Module:
 		m = Module()
 
 		m.domain.usb   = ClockDomain()
