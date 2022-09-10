@@ -60,7 +60,7 @@ def predicate_class(member):
 
 	return isclass(member)
 
-def collect_members(pkg, pred, prefix = '', make_instance = True):
+def collect_members(pkg, pred, prefix: str = '', make_instance: bool = True):
 	'''Collect members from package
 
 	This method collects list of members from a given package, and optionally creates

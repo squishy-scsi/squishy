@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging as log
+import logging            as log
 from pathlib              import Path
+from typing               import Any
 
 from ..config            import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
-from ..core.collect           import collect_members, predicate_applet
+from ..core.collect      import collect_members, predicate_applet
 
 from ..gateware          import Squishy
 from ..gateware.platform import AVAILABLE_PLATFORMS
@@ -16,7 +17,7 @@ class Applet(SquishyAction):
 	description  = 'Build and run Squishy applets'
 	requires_dev = True
 
-	def _collect_all_applets(self):
+	def _collect_all_applets(self) -> list[dict[str, Any]]:
 		from .. import applets
 		return [
 			*collect_members(
@@ -35,7 +36,7 @@ class Applet(SquishyAction):
 		super().__init__()
 		self.applets = self._collect_all_applets()
 
-	def register_args(self, parser):
+	def register_args(self, parser) -> None:
 		# actions = parser.add_subparsers(dest = 'gateware_action')
 
 		# do_verify = actions.add_parser('verify', help = 'Run formal verification')
@@ -189,7 +190,7 @@ class Applet(SquishyAction):
 					)
 				applet.register_args(p)
 
-	def run(self, args, dev = None):
+	def run(self, args, dev = None) -> int:
 		build_dir = Path(args.build_dir)
 		log.info(f'Targeting platform \'{args.hardware_platform}\'')
 

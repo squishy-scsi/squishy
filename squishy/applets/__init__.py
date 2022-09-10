@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from abc import ABCMeta, abstractmethod, abstractproperty
+from abc    import ABCMeta, abstractmethod, abstractproperty
+from typing import Union
+
+import amaranth
 
 __all__ = (
 	'SquishyApplet',
@@ -66,7 +69,7 @@ class SquishyApplet(metaclass = ABCMeta):
 			raise ValueError(f'Applet `hardware_rev` must be a str or tuple of str not `{type(self.hardware_rev)!r}`')
 
 
-	def supported_platform(self, platform):
+	def supported_platform(self, platform) -> bool:
 		''' Check to see if the given platform is supported
 
 		Parameters
@@ -86,11 +89,11 @@ class SquishyApplet(metaclass = ABCMeta):
 		else:
 			return platform in self.hardware_rev
 
-	def show_help(self):
+	def show_help(self) -> None:
 		'''Shows applets built-in help'''
 		pass
 
-	def init_gui(self, main_window, args):
+	def init_gui(self, main_window, args) -> bool:
 		'''Initializes applet GUI component
 
 		Parameters
@@ -103,7 +106,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		'''
 		pass
 
-	def init_repl(self, repl_ctx, args):
+	def init_repl(self, repl_ctx, args) -> bool:
 		'''Initializes applet REPL component
 
 		Parameters
@@ -119,7 +122,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		pass
 
 	@abstractmethod
-	def init_applet(self, args):
+	def init_applet(self, args) -> bool:
 		'''Applet Initialization
 
 		Called to initialize the applet prior to
@@ -145,7 +148,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		raise NotImplementedError('Applets must implement this method')
 
 	@abstractmethod
-	def register_args(self, parser):
+	def register_args(self, parser) -> None:
 		'''Applet argument registration
 
 		Called to register any applet specific arguments.
@@ -165,7 +168,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		raise NotImplementedError('Applets must implement this method')
 
 	@abstractmethod
-	def build(self, interfaces, platform, args):
+	def build(self, interfaces, platform, args) -> Union[amaranth.Elaboratable, amaranth.Module]:
 		'''Applet build step
 
 		Called to build the gateware for the applet.
@@ -196,7 +199,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		raise NotImplementedError('Applets must implement this method')
 
 	@abstractmethod
-	def run(self, device, args):
+	def run(self, device, args) -> int:
 		'''Applet run step
 
 		Called to run any specialized machinery for the applet.

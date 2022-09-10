@@ -335,7 +335,7 @@ class SCSICommandField(Subconstruct):
 	}
 
 	@classmethod
-	def _type_from_prefix(cls, field_name : str):
+	def _type_from_prefix(cls, field_name: str):
 		'''Return appropriate :py:class:`construct.Subconstruct` for given name prefix.
 
 		This method looks at the first few characters of the field name and attempts to
@@ -371,7 +371,7 @@ class SCSICommandField(Subconstruct):
 		return subcon_type
 
 	@classmethod
-	def _type_from_size(cls, size : int):
+	def _type_from_size(cls, size: int):
 		'''Return appropriate :py:class:`construct.Subconstruct` for given size in bits.
 
 		If ``size`` is divisible by a whole number of bytes then an appropriately sized byte
@@ -397,12 +397,12 @@ class SCSICommandField(Subconstruct):
 			return BitsInteger(size)
 
 
-	def __init__(self, description : str = '', default : Any = None, *, length : int = None):
+	def __init__(self, description: str = '', default: Any = None, *, length: int = None) -> None:
 		self.description = description
 		self.default = default
 		self.len = length
 
-	def __rtruediv__(self, subcon_name : str):
+	def __rtruediv__(self, subcon_name: str):
 		'''Rename subcon
 
 		This method is overloaded to dynamically construct a :py:class:`construct.Subconstruct`
@@ -589,7 +589,7 @@ class SCSICommand(Struct):
 		{'vendor': 0, 'reserved': 0, 'flag': 0, 'link': 0}
 	)
 
-	def __init__(self, opcode : int, group_code : GroupCode, *subcons, size : int = None, **subconskw):
+	def __init__(self, opcode: int, group_code: GroupCode, *subcons, size: int = None, **subconskw) -> None:
 		self.opcode = opcode
 		self.group_code = group_code
 		if group_code not in _KNOWN_SIZED_GROUPS:
@@ -609,7 +609,7 @@ class SCSICommand(Struct):
 		# if (self.sizeof() // 8) != self.command_size:
 		# 	raise RuntimeError(f'Structure is actually {self.sizeof() // 8} bytes long but must be {self.command_size} bytes long.')
 
-	def len(self):
+	def len(self) -> int:
 		'''Return structure length in bytes'''
 
 		return self.sizeof() // 8
@@ -674,7 +674,7 @@ class SCSICommand6(SCSICommand):
 
 	'''
 
-	def __init__(self, opcode : int, *subcons, **subconmskw):
+	def __init__(self, opcode: int, *subcons, **subconmskw) -> None:
 		super().__init__(opcode, GroupCode.GROUP0, *subcons, **subconmskw)
 
 class SCSICommand10(SCSICommand):
@@ -737,7 +737,7 @@ class SCSICommand10(SCSICommand):
 
 	'''
 
-	def __init__(self, opcode : int, *subcons, **subconmskw):
+	def __init__(self, opcode: int, *subcons, **subconmskw) -> None:
 		super().__init__(opcode, GroupCode.GROUP1, *subcons, **subconmskw)
 
 class SCSICommand12(SCSICommand):
@@ -803,7 +803,7 @@ class SCSICommand12(SCSICommand):
 	call by ``8``.
 
 	'''
-	def __init__(self, opcode : int, *subcons, **subconmskw):
+	def __init__(self, opcode: int, *subcons, **subconmskw) -> None:
 		super().__init__(opcode, GroupCode.GROUP5, *subcons, **subconmskw)
 
 class CommandEmitter:
@@ -845,18 +845,18 @@ class CommandEmitter:
 
 	'''
 
-	def __init__(self, command : SCSICommand):
+	def __init__(self, command: SCSICommand) -> None:
 		self.__dict__['format'] = command
 		self.__dict__['fields'] = {}
 
-	def __enter__(self):
+	def __enter__(self) -> 'CommandEmitter':
 		return self
 
-	def __exit__(self, t, v, tb):
+	def __exit__(self, t, v, tb) -> None:
 		if not (t is None and v is None and tb is None):
 			return
 
-	def __setattr__(self, name : str, value : Any) -> None:
+	def __setattr__(self, name: str, value: Any) -> None:
 		'''Set value of an attribute by name
 
 		Parameters
@@ -885,7 +885,7 @@ class CommandEmitter:
 
 		self.fields[name] = value
 
-	def __getattr__(self, name : str) -> Any:
+	def __getattr__(self, name: str) -> Any:
 		'''Get value of an attribute by name
 
 		Parameters

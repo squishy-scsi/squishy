@@ -34,7 +34,7 @@ class _MockRecord(Record):
 
 	"""
 
-	def _insert_field(self, item):
+	def _insert_field(self, item: str):
 		"""Construct mocked Record
 
 		When the call to ``__getitem__`` runs into a field that
@@ -56,7 +56,7 @@ class _MockRecord(Record):
 			('i', 1, DIR_FANIN )
 		), name = f'{item}')
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__((), *args, **kwargs)
 		self.fields = {}
 
@@ -91,7 +91,7 @@ class _MockPlatform:
 
 	"""
 
-	def request(self, name, number = 0):
+	def request(self, name: str, number: int = 0) -> _MockRecord:
 		"""Request a resource from the platform
 
 		This call returns a :py:class:`_MockRecord` regardless
@@ -140,7 +140,7 @@ class SquishyGatewareTestCase(TestCase):
 	dut_args  = {}
 	platform  = _MockPlatform()
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 		self._frag = None
 
@@ -203,12 +203,12 @@ class SquishyGatewareTestCase(TestCase):
 
 		return self.dut(**self.dut_args)
 
-	def init_signals(self):
+	def init_signals(self) -> Signal:
 		''' Initialize any signals from the DUT instance to a known state'''
 
 		yield Signal()
 
-	def wait_for(self, time : float):
+	def wait_for(self, time: float):
 		''' Waits for the number time units.
 
 		Parameters
@@ -222,7 +222,7 @@ class SquishyGatewareTestCase(TestCase):
 		yield from self.step(c)
 
 	@staticmethod
-	def pulse(sig : Signal , *, neg : bool = False, post_step : bool = True):
+	def pulse(sig: Signal , *, neg: bool = False, post_step: bool = True):
 		'''Pulse a given signal.
 
 		Pulse a given signal to 1 then 0, or if `neg` is set to `True` pulse
@@ -253,7 +253,7 @@ class SquishyGatewareTestCase(TestCase):
 			yield
 
 	@staticmethod
-	def pulse_pos(sig : Signal, *, post_step : bool = True):
+	def pulse_pos(sig : Signal, *, post_step: bool = True):
 		'''Inserts a positive pulse on the given signal
 
 		Parameters
@@ -271,7 +271,7 @@ class SquishyGatewareTestCase(TestCase):
 		yield from SquishyGatewareTestCase.pulse(sig, neg = False, post_step = post_step)
 
 	@staticmethod
-	def pulse_neg(sig : Signal, *, post_step : bool = True):
+	def pulse_neg(sig: Signal, *, post_step: bool = True):
 		'''Inserts a negative pulse on the given signal
 
 		Parameters
@@ -289,7 +289,7 @@ class SquishyGatewareTestCase(TestCase):
 		yield from SquishyGatewareTestCase.pulse(sig, neg = True, post_step = post_step)
 
 	@staticmethod
-	def step(cycles : int):
+	def step(cycles: int):
 		'''Step simulator.
 
 		This advances the simulation by the given number of cycles.
@@ -305,7 +305,7 @@ class SquishyGatewareTestCase(TestCase):
 			yield
 
 	@staticmethod
-	def wait_until_high(strobe : Signal, *, timeout : int = None):
+	def wait_until_high(strobe: Signal, *, timeout: int = None):
 		'''Run simulation until signal goes high.
 
 		Runs the simulation while checking for the positive edge of the `strobe`
@@ -335,7 +335,7 @@ class SquishyGatewareTestCase(TestCase):
 				raise RuntimeError(f'Timeout waiting for \'{strobe.name}\' to go high')
 
 	@staticmethod
-	def wait_until_low(strobe : Signal, *, timeout : int = None):
+	def wait_until_low(strobe: Signal, *, timeout: int = None):
 		'''Run simulation until signal goes low.
 
 		Runs the simulation while checking for the negative edge of the `strobe`

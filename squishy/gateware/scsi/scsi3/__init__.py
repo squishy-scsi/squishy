@@ -26,10 +26,10 @@ class SCSI3(Elaboratable):
 
 	'''
 
-	def __init__(self, *, is_device, config):
+	def __init__(self, *, is_device: bool, config: dict) -> None:
 		self.config = config
 
-	def elaborate(self, platform):
+	def elaborate(self, platform) -> Module:
 		m = Module()
 
 

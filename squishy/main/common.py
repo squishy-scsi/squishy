@@ -2,6 +2,8 @@
 import logging    as log
 import json
 
+from argparse     import ArgumentParser, Namespace
+
 from rich         import traceback
 from rich.logging import RichHandler
 
@@ -15,7 +17,7 @@ __all__ = (
 )
 
 
-def setup_logging(args = None) -> None:
+def setup_logging(args: Namespace = None) -> None:
 	'''Initialize logging subscriber
 
 	Set up the built-in rich based logging subscriber, and force it
@@ -23,7 +25,7 @@ def setup_logging(args = None) -> None:
 
 	Parameters
 	----------
-	args : argsparse.Namespace
+	args : argparse.Namespace
 		Any command line arguments passed.
 
 	'''
@@ -89,7 +91,7 @@ def main_common() -> None:
 		with config.SQUISHY_SETTINGS_FILE.open('w') as cfg:
 			json.dump(config.DEFAULT_SETTINGS, cfg)
 
-def common_options(parser) -> None:
+def common_options(parser: ArgumentParser) -> None:
 	'''Initialize common CLI options.
 
 	Registers common options between the CLI and GUI for invocation.

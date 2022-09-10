@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-import logging as log
+import logging          as log
 from pathlib            import Path
 from lzma               import LZMACompressor
 from shutil             import rmtree
+from typing             import Union
 
 from amaranth.build.run import LocalBuildProducts
 
@@ -17,7 +18,7 @@ class SquishyBitstreamCache:
 	'''Bitstream Cache system'''
 
 	# Initialize the cache directory
-	def _init_cache_dir(self, root, depth = 1):
+	def _init_cache_dir(self, root: Path, depth: int = 1) -> None:
 		if depth == 0:
 			return
 
@@ -27,7 +28,7 @@ class SquishyBitstreamCache:
 				cache_stub.mkdir()
 				self._init_cache_dir(cache_stub, depth - 1)
 
-	def _decompose_digest(self, digest):
+	def _decompose_digest(self, digest: str) -> list[str]:
 		return [
 			digest[
 				(i*2):((i*2)+2)
@@ -35,14 +36,14 @@ class SquishyBitstreamCache:
 			for i in range(len(digest) // 2)
 		]
 
-	def _get_cache_dir(self, digest):
+	def _get_cache_dir(self, digest: str) -> Path:
 		return self._cache_root.joinpath(
 			*self._decompose_digest(digest)[
 				:self.tree_depth
 			]
 		)
 
-	def __init__(self, do_init = True, tree_depth = 1, cache_rtl = True):
+	def __init__(self, do_init: bool = True, tree_depth: int = 1, cache_rtl: bool = True) -> None:
 		self.tree_depth  = tree_depth
 		self.cache_rtl   = cache_rtl
 		self._cache_root = Path(SQUISHY_APPLET_CACHE)
@@ -52,14 +53,14 @@ class SquishyBitstreamCache:
 				log.debug('Initializing bitstream cache tree')
 				self._init_cache_dir(self._cache_root, tree_depth)
 
-	def flush(self):
+	def flush(self) -> None:
 		'''Flush the cache'''
 		log.info('Flushing applet cache')
 		rmtree(self._cache_root)
 		self._cache_root.mkdir()
 
 
-	def get(self, digest):
+	def get(self, digest: str) -> dict[str, Union[str, LocalBuildProducts]]:
 		'''Attempt to retrieve a bitstream based on it's elaboration digest'''
 		bitstream_name = f'{digest}.bin'
 		cache_dir = self._get_cache_dir(digest)
@@ -78,7 +79,7 @@ class SquishyBitstreamCache:
 			'products': LocalBuildProducts(str(cache_dir))
 		}
 
-	def store(self, digest, products, name):
+	def store(self, digest: str, products: LocalBuildProducts, name: str) -> None:
 		'''Store the synth products in the cache'''
 
 		bitstream_name = f'{digest}.bin'

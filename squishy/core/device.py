@@ -1,11 +1,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging as log
+import logging          as log
+from typing             import Iterable, Type, Union
 
 import usb1
 
 from usb_protocol.types import LanguageIDs
 
-from ..config  import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
+from ..config           import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
 
 __all__ = (
 	'SquishyHardwareDevice',
@@ -36,16 +37,16 @@ class SquishyHardwareDevice:
 
 	'''
 
-	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs):
+	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs) -> None:
 		self._dev   = dev
 		self.serial = serial
 		self.rev    = int(dev.getbcdDevice())
 
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		return f'<SquishyHardwareDevice SN=\'{self.serial}\' REV=\'{self.rev}\' ADDR={self._dev.getDeviceAddress()}>'
 
-	def __str__(self):
+	def __str__(self) -> str:
 		return f'rev{self.rev} SN: {self.serial}'
 
 class SquishyDeviceContainer:
@@ -62,7 +63,7 @@ class SquishyDeviceContainer:
 		The revision of the device.
 
 	'''
-	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs):
+	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs) -> None:
 		self._dev = dev
 		self.serial = serial
 		self.rev = int(dev.getbcdDevice())
@@ -71,7 +72,7 @@ class SquishyDeviceContainer:
 		self._dev.close()
 
 	@classmethod
-	def enumerate(cls):
+	def enumerate(cls: Type['SquishyDeviceContainer']) -> Iterable['SquishyDeviceContainer']:
 		'''Enumerate attached devices
 
 		Returns
@@ -121,14 +122,14 @@ class SquishyDeviceContainer:
 		'''
 		return SquishyHardwareDevice(self._dev, self.serial)
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		return f'<SquishyDeviceContainer SN=\'{self.serial}\' REV=\'{self.rev}\'>'
 
-	def __str__(self):
+	def __str__(self) -> str:
 		return self.__repr__()
 
 
-def _get_device(args):
+def _get_device(args) -> Union[None, SquishyHardwareDevice]:
 	'''Get attached Squishy device.
 
 	Get the attached and selected squishy device if possible, or if only

@@ -21,17 +21,17 @@ class SquishyGuiKey:
 		Qt.KeypadModifier:      _KEYMAP[Qt.Key_NumLock],
 	}
 
-	def __init__(self, event):
+	def __init__(self, event) -> None:
 		self._event = event
 
-	def __int__(self):
+	def __int__(self) -> int:
 		return self._event.key()
 
-	def __str__(self):
+	def __str__(self) -> str:
 		return SquishyGuiKey.to_str(self._event)
 
 	@staticmethod
-	def to_str(e):
+	def to_str(e) -> str:
 		seq = []
 		for m, t in SquishyGuiKey._MODMAP.items():
 			if e.nativeModifiers() & m:

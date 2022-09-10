@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging as log
+import logging      as log
 
 from ..core.cache   import SquishyBitstreamCache
 from ..config       import SQUISHY_CACHE, SQUISHY_APPLET_CACHE, SQUISHY_BUILD_DIR
@@ -12,7 +12,7 @@ class Cache(SquishyAction):
 	description  = 'Manages the Squishy cache'
 	requires_dev = False
 
-	def _list_cache(self, args):
+	def _list_cache(self, args) -> int:
 		applet_size = 0
 		build_size  = 0
 
@@ -60,7 +60,9 @@ class Cache(SquishyAction):
 
 			print(cache_tree)
 
-	def _clear_cache(self, args):
+		return 0
+
+	def _clear_cache(self, args) -> int:
 		from rich.prompt import Confirm
 		from shutil      import rmtree
 
@@ -83,7 +85,7 @@ class Cache(SquishyAction):
 			'clear': self._clear_cache,
 		}
 
-	def register_args(self, parser):
+	def register_args(self, parser) -> None:
 		actions = parser.add_subparsers(
 			dest     = 'cache_action',
 			required = True
@@ -105,5 +107,5 @@ class Cache(SquishyAction):
 			help = 'clear cache'
 		)
 
-	def run(self, args, dev = None):
+	def run(self, args, dev = None) -> int:
 		return self._dispatch.get(args.cache_action, lambda _: 1)(args)

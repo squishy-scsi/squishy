@@ -2,7 +2,14 @@
 # The contents of this module are specific to the
 # 'taperipper' project: https://lethalbit.net/projects/taperipper/
 
-from construct import *
+from construct import (
+	this,
+	Const,
+	Padded,
+	Array, AlignedStruct, Struct,
+	Int32ub,
+	Byte,
+)
 
 __all__ = ()
 

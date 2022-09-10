@@ -1,4 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
+from typing         import Tuple
+
 from amaranth.build import *
 
 __all__ = (
@@ -12,7 +14,7 @@ __doc__ = '''\
 
 '''
 
-def TransceiverPairs(tx, rx, *, invert = False, conn = None, assert_width = None):
+def TransceiverPairs(tx: str, rx: str, *, invert: bool = False, conn: str = None, assert_width: bool = None) -> Tuple[Subsignal]:
 	'''Returns a tuple of subsignals for RX and TX pairs
 
 	Parameters
@@ -43,7 +45,7 @@ def TransceiverPairs(tx, rx, *, invert = False, conn = None, assert_width = None
 		Subsignal('rx', Pins(rx, dir = 'i', invert = invert, conn = conn, assert_width = assert_width)),
 	)
 
-def SCSIConnectorResource(*args, diff,
+def SCSIConnectorResource(*args, diff: bool,
 						  ack, atn, bsy, cd, io, msg, sel, req, rst,
 						  diff_sense, d0, dp0, d1 = None, dp1  = None,
 						  scsi_id = None, led  = None, spindle = None,
@@ -299,10 +301,10 @@ def SCSIPhyResource(*args,
 	return Resource.family(*args, default_name = 'scsi_phy', ios = io)
 
 
-def SCSIDifferentialResource(*args, **kwargs):
+def SCSIDifferentialResource(*args, **kwargs) -> SCSIConnectorResource:
 	'''Constructs an explicitly differential :py:func:`SCSIConnectorResource`'''
 	return SCSIConnectorResource(*args, diff = True, **kwargs)
 
-def SCSISingleEndedResource(*args, **kwargs):
+def SCSISingleEndedResource(*args, **kwargs) -> SCSIConnectorResource:
 	'''Constructs an explicitly single-ended :py:func:`SCSIConnectorResource`'''
 	return SCSIConnectorResource(*args, diff = False, **kwargs)

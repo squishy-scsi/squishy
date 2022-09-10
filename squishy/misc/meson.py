@@ -4,7 +4,7 @@ import logging    as log
 from pathlib      import Path
 import subprocess
 
-def _run_meson_command(run_dir : Path, command : str, options = []) -> bool:
+def _run_meson_command(run_dir: Path, command: str, options: list = []) -> bool:
 
 	cmd = [
 		'meson',
@@ -31,7 +31,7 @@ def _run_meson_command(run_dir : Path, command : str, options = []) -> bool:
 	return True
 
 
-def configure(build_dir : Path, src_dir : Path, options = [])  -> bool:
+def configure(build_dir: Path, src_dir: Path, options: list = [])  -> bool:
 	log.info(f'Configuring Meson project in {src_dir}, build dir: {build_dir}')
 
 	if not build_dir.exists():
@@ -39,7 +39,7 @@ def configure(build_dir : Path, src_dir : Path, options = [])  -> bool:
 
 	return _run_meson_command(build_dir, '..', options )
 
-def build(build_dir : Path) -> bool:
+def build(build_dir: Path) -> bool:
 
 	if not build_dir.exists():
 		log.error(f'Unable to build project, build directory {build_dir} does not exist')

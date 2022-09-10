@@ -52,7 +52,7 @@ class FlashGeometry:
 				start_addr += self.slot_size
 		return partitions
 
-	def init_slots(self, device: str):
+	def init_slots(self, device: str) -> None:
 
 		self.slots = 4
 

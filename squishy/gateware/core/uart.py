@@ -42,7 +42,7 @@ class UARTInterface(Elaboratable):
 
 		self._uart = None
 
-	def elaborate(self, platform):
+	def elaborate(self, platform) -> Module:
 		self._status_led = platform.request('led', 0)
 
 		self._uart = AsyncSerial(

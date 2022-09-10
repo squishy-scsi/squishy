@@ -33,7 +33,7 @@ class USBInterface(Elaboratable):
 
 
 	'''
-	def __init__(self, *, config, wb_config):
+	def __init__(self, *, config, wb_config) -> None:
 		self.config = config
 
 		self._wb_cfg = wb_config
@@ -163,7 +163,7 @@ class USBInterface(Elaboratable):
 		]
 
 
-	def _elab_rev1(self, platform):
+	def _elab_rev1(self, platform) -> Module:
 		self._status_led = platform.request('led', 2)
 		self._ulpi_bus = platform.request('ulpi')
 
@@ -194,12 +194,12 @@ class USBInterface(Elaboratable):
 
 		return m
 
-	def _elab_rev2(self, platform):
+	def _elab_rev2(self, platform) -> Module:
 		m = Module()
 
 		return m
 
-	def elaborate(self, platform):
+	def elaborate(self, platform) -> Module:
 		if platform is None:
 			m = Module()
 			return m

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging as log
-from pathlib  import Path
+from typing    import Iterable, Type
 
 import usb1
 
@@ -17,7 +17,11 @@ DFU_CLASS = (int(InterfaceClassCodes.APPLICATION), int(ApplicationSubclassCodes.
 class DFUDevice:
 
 	@classmethod
-	def enumerate(cls, *, vid = None, pid = None, serial = None, boot_vid = None, boot_pid = None):
+	def enumerate(cls: Type['DFUDevice'], *,
+		vid: int = None, pid: int = None,
+		serial: str = None,
+		boot_vid: int = None, boot_pid: int = None) -> Iterable['DFUDevice']:
+
 		with usb1.USBContext() as usb_ctx:
 			devs = usb_ctx.getDeviceIterator()
 			# Apply the filters to select DFU devices
@@ -53,7 +57,7 @@ class DFUDevice:
 				devs = filter(match_sn, devs)
 
 			# Filter out devices that don't support DFU
-			def can_dfu(d):
+			def can_dfu(d) -> Iterable[usb1.USBDevice]:
 				return any(
 					filter(
 						lambda t: t == DFU_CLASS,
@@ -71,7 +75,7 @@ class DFUDevice:
 				)
 			)
 
-	def _update_serial(self):
+	def _update_serial(self) -> None:
 		hndl = self._dev.open()
 
 		self.serial = hndl.getStringDescriptor(
@@ -81,7 +85,12 @@ class DFUDevice:
 
 		hndl.close()
 
-	def __init__(self, dev, vid = None, pid = None, serial = None, boot_vid = None, boot_pid = None):
+	def __init__(self,
+		dev: usb1.USBDevice,
+		vid: int = None, pid: int = None,
+		serial: str = None,
+		boot_vid: int = None, boot_pid: int = None) -> None:
+
 		self._dev   = dev
 		self.vid    = vid if vid is not None else dev.getVendorID()
 		self.pid    = pid if pid is not None else dev.getProductID()
@@ -94,13 +103,13 @@ class DFUDevice:
 
 
 
-	def __repr__(self):
+	def __repr__(self) -> str:
 		return f'<DFUDevice VID={self.vid:04x} PID={self.pid:04x} SN=\'{self.serial}\'>'
 
-	def __str__(self):
+	def __str__(self) -> str:
 		return f'{self!r}'
 
-	def __del__(self):
+	def __del__(self) -> None:
 		self._dev.close()
 
 if __name__ == '__main__':

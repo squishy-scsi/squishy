@@ -1,7 +1,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from io import BytesIO, SEEK_END, SEEK_SET
 
-from construct import *
+from construct import (
+	this,
+	Hex, HexDump, If, Switch, Pass, Aligned, Const,
+	Struct, Enum, Union, Computed, Timestamp, BitStruct,
+	Int8ul, Int16ul, Int32ul, Int64sl, Int64ul,
+	PaddedString, BitsInteger, Bytes,
+	RepeatUntil, GreedyRange,
+)
 
 # We don't have a PEN, and don't want to get one
 # so we're stealing SGIs
@@ -344,7 +351,7 @@ class PcapngFile:
 
 		self._pcap_file = pcapng.parse_stream(self._data)
 
-	def __str__(self):
+	def __str__(self) -> str:
 		return str(self._pcap_file)
 
 if __name__ == '__main__':

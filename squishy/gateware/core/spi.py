@@ -1,4 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
+
+from typing   import Tuple
+
 from amaranth import *
 
 __all__ = (
@@ -26,7 +29,7 @@ class SPIInterface(Elaboratable):
 		Read data register.
 
 	'''
-	def __init__(self, *, resource_name):
+	def __init__(self, *, resource_name: Tuple[str, int]) -> None:
 
 		self._spi_resource = resource_name
 		self._status_led = None
@@ -38,7 +41,7 @@ class SPIInterface(Elaboratable):
 		self.wdat = Signal(8)
 		self.rdat = Signal(8)
 
-	def elaborate(self, platform):
+	def elaborate(self, platform) -> Module:
 		self._spi = platform.request(*self._spi_resource)
 
 		m = Module()

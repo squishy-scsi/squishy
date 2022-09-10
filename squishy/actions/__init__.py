@@ -42,7 +42,7 @@ class SquishyAction(metaclass = ABCMeta):
 		pass
 
 	@abstractmethod
-	def register_args(self, parser):
+	def register_args(self, parser) -> None:
 		'''Register action arguments.
 
 		When an action instance is initialized this method is
@@ -64,7 +64,7 @@ class SquishyAction(metaclass = ABCMeta):
 		raise NotImplementedError('Actions must implement this method')
 
 	@abstractmethod
-	def run(self, args, dev = None):
+	def run(self, args, dev = None) -> int:
 		'''Run the action.
 
 		Run the action instance, passing the parsed

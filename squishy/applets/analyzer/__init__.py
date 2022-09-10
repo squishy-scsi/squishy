@@ -1,6 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from .. import SquishyApplet
+from typing import Union
+
+import amaranth
+
+from ..     import SquishyApplet
 
 class Analyzer(SquishyApplet):
 	preview       = True
@@ -13,20 +17,20 @@ class Analyzer(SquishyApplet):
 	supports_gui  = True
 	supports_repl = True
 
-	def init_gui(self, main_window, args):
+	def init_gui(self, main_window, args) -> bool:
 		pass
 
-	def init_repl(self, repl_ctx, args):
+	def init_repl(self, repl_ctx, args) -> bool:
 		pass
 
-	def build(self, interfaces, platform, args):
+	def build(self, interfaces, platform, args) -> Union[amaranth.Elaboratable, amaranth.Module]:
 		pass
 
-	def register_args(self, parser):
+	def register_args(self, parser) -> None:
 		pass
 
-	def init_applet(self, args):
+	def init_applet(self, args) -> bool:
 		pass
 
-	def run(self, device, args):
+	def run(self, device, args) -> int:
 		pass

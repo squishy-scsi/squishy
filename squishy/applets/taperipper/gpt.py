@@ -1,5 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from construct import *
+from construct import (
+	Padded, Padding, Const,
+	Struct, Array,
+	Int16ul, Int32ul, Int32ub, Int64ul,
+	Bytes,
+
+)
 
 __all__ = ()
 

@@ -28,10 +28,10 @@ class SquishyProgramMixin:
 
 	'''
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 
-	def toolchain_program(self, products, name, **kwargs):
+	def toolchain_program(self, products, name: str, **kwargs):
 		log.info('Programming')
 
 class SquishyCacheMixin:
@@ -44,14 +44,14 @@ class SquishyCacheMixin:
 	This shortens build times, and removes the need to re-build unchanged applets.
 
 	'''
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 
 		self._cache = SquishyBitstreamCache()
 
-	def build(self, elaboratable, name = 'top',
-				build_dir = 'build', do_build = False,
-				program_opts = None, do_program = False, **kwargs):
+	def build(self, elaboratable, name: str = 'top',
+				build_dir: str = 'build', do_build: bool = False,
+				program_opts: str = None, do_program: bool = False, **kwargs):
 
 		skip_cache = kwargs.get('skip_cache', False)
 
