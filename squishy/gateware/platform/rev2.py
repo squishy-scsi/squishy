@@ -82,7 +82,7 @@ class SquishyRev2(SquishyCacheMixin, SquishyProgramMixin, LatticeECP5Platform):
 			size       = 8388608, # 8MiB
 			page_size  = 256,
 			erase_size = 4096,    # 4KiB
-			addr_size  = 24
+			addr_width = 24
 		).init_slots(device = device),
 		'commands': {
 			'erase': 0x20,
