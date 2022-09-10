@@ -25,11 +25,13 @@ class iCE40Warmboot(Elaboratable):
 		self.boot = Signal(1, reset = 0)
 		self.slot = Signal(2, reset = 0)
 
-	def elaborate(self, platform):
+	def elaborate(self, platform) -> Module:
 		if not isinstance(platform, LatticeICE40Platform):
 			raise ValueError(f'The iCE40Warmboot is only available on LatticeICE40Platforms, not {platform!r}!')
 
 		m = Module()
+
+		m.d.comb += self.slot.eq(0b01)
 
 		m.submodules.warmboot = Instance(
 			'SB_WARMBOOT',
