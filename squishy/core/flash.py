@@ -52,7 +52,7 @@ class FlashGeometry:
 				start_addr += self.slot_size
 		return partitions
 
-	def init_slots(self, device: str) -> None:
+	def init_slots(self, device: str) -> 'FlashGeometry':
 
 		self.slots = 4
 
@@ -62,3 +62,5 @@ class FlashGeometry:
 		}.get(device, None)
 
 		assert self.slot_size is not None, f'Unsupported platform device {device}'
+
+		return self
