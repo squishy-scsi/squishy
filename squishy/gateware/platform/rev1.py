@@ -20,6 +20,8 @@ from .mixins                             import (
 	SquishyCacheMixin, SquishyProgramMixin
 )
 
+from ..bootloader.rev1                   import Bootloader as iCE40Bootloader
+
 __doc__ = '''\
 
 This is the Amaranth platform definition for Squishy rev1 hardware, if you are using
@@ -90,6 +92,8 @@ class SquishyRev1(SquishyCacheMixin, SquishyProgramMixin, LatticeICE40Platform):
 			'erase': 0x20,
 		}
 	}
+
+	bootloader_module = iCE40Bootloader
 
 	resources = [
 		Resource('clk', 0,

@@ -89,6 +89,8 @@ class SquishyRev2(SquishyCacheMixin, SquishyProgramMixin, LatticeECP5Platform):
 		}
 	}
 
+	bootloader_module = None
+
 	resources  = [
 		Resource('clk', 0,
 			Pins('P1', dir = 'i'),
