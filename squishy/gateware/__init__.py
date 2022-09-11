@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from .core                 import SCSIInterface, SPIInterface
-from .core                 import UARTInterface, USBInterface
-
 from amaranth              import *
 from amaranth.lib.fifo     import AsyncFIFO
 from amaranth_soc.wishbone import Decoder, Arbiter
+
+from .core                 import SCSIInterface, SPIInterface
+from .core                 import UARTInterface, USBInterface
 
 __all__ = (
 	'Squishy',
@@ -74,7 +74,7 @@ class Squishy(Elaboratable):
 		)
 
 		# Module References
-		self.spi  = SPIInterface()
+		self.spi  = SPIInterface( resource_name = ('spi_flash_1x', 0))
 		if self.uart_config['enabled']:
 			self.uart = UARTInterface(
 				config    = self.uart_config,
