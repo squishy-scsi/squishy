@@ -16,7 +16,9 @@ from ..core                              import ICE40ClockDomainGenerator
 
 from .resources                          import SCSIPhyResource
 
-from .mixins                             import SquishyCacheMixin, SquishyProgramMixin
+from .mixins                             import (
+	SquishyCacheMixin, SquishyProgramMixin
+)
 
 __doc__ = '''\
 
