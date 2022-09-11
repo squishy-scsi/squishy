@@ -102,7 +102,10 @@ from amaranth.sim     import Settle
 from ...core.test     import SquishyGatewareTestCase, sim_test
 
 class SPIInterfaceTests(SquishyGatewareTestCase):
-	dut = SPIInterface
+	dut      = SPIInterface
+	dut_args = {
+		'resource_name': ('spi_flash_1x', 0)
+	}
 
 	def send_recv(self, d_out, d_in, ovlp = False):
 		self.assertEqual((yield self.dut._spi.clk.o), 1)
