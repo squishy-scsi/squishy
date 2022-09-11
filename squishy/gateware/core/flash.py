@@ -131,8 +131,8 @@ class SPIFlash(Elaboratable):
 						op.eq(SPIFlashOp.ERASE),
 						byteCount.eq(self.byteCount),
 					]
-					m.next = 'WRITE_EN'
-			with m.State('WRITE_EN'):
+					m.next = 'WRITE_ENABLE'
+			with m.State('WRITE_ENABLE'):
 				with m.Switch(enableStep):
 					with m.Case(0):
 						m.d.comb += [
@@ -225,10 +225,10 @@ class SPIFlash(Elaboratable):
 							]
 					with m.Case(3):
 						m.d.sync += eraseWaitStep.eq(0)
-						with m.If(~flash.r_data[0]):
+						with m.If(~flash.rdat[0]):
 							with m.If((self.writeAddr + byteCount) <= self.endAddr):
 								m.d.sync += op.eq(SPIFlashOp.WRITE)
-							m.next = 'WRITE_EN'
+							m.next = 'WRITE_ENABLE'
 			with m.State('CMD_WRITE'):
 				with m.Switch(writeCmdStep):
 					with m.Case(0):
@@ -329,7 +329,7 @@ class SPIFlash(Elaboratable):
 							]
 					with m.Case(3):
 						m.d.sync += writeWaitStep.eq(0)
-						with m.If(~flash.r_data[0]):
+						with m.If(~flash.rdat[0]):
 							with m.If(byteCount):
 								m.next = 'WRITE_ENABLE'
 							with m.Else():
