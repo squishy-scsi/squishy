@@ -14,17 +14,17 @@ from construct import (
 	Nibble, Int8ub, Int16ub, Int24ub, Int32ub
 )
 
-from .flash   import FlashGeometry
+from ...core.flash   import FlashGeometry
 
 __doc__ = '''\
 
 '''
 
 __all__ = (
-	'iCE40Bitstream',
+	'iCE40BitstreamSlots',
 )
 
-class iCE40Bitstream:
+class iCE40BitstreamSlots:
 
 	@unique
 	class Opcodes(IntEnum):
@@ -132,30 +132,30 @@ class iCE40Bitstream:
 		slots = []
 
 		for slot in range(flash_geometry.slots):
-			slots.append(iCE40Bitstream._build_slot(partitions[slot]))
+			slots.append(iCE40BitstreamSlots._build_slot(partitions[slot]))
 
 		return slots
 
 
 	@staticmethod
 	def _build_slot(partition : dict[str, int]) -> bytes:
-		return iCE40Bitstream._slot.build({
+		return iCE40BitstreamSlots._slot.build({
 			'bitstream': [
 				{
-					'instruction': iCE40Bitstream.Opcodes.BOOT_MODE,
-					'payload': { 'mode': iCE40Bitstream.BootModes.SIMPLE }
+					'instruction': iCE40BitstreamSlots.Opcodes.BOOT_MODE,
+					'payload': { 'mode': iCE40BitstreamSlots.BootModes.SIMPLE }
 				},
 				{
-					'instruction': iCE40Bitstream.Opcodes.BOOT_ADDR,
+					'instruction': iCE40BitstreamSlots.Opcodes.BOOT_ADDR,
 					'payload': { 'addr': partition['start_addr'] }
 				},
 				{
-					'instruction': iCE40Bitstream.Opcodes.BANK_OFFSET,
+					'instruction': iCE40BitstreamSlots.Opcodes.BANK_OFFSET,
 					'payload': { 'offset': 0, }
 				},
 				{
-					'instruction': iCE40Bitstream.Opcodes.SPECIAL,
-					'payload': { 'operation': iCE40Bitstream.SpecialOpcode.REBOOT }
+					'instruction': iCE40BitstreamSlots.Opcodes.SPECIAL,
+					'payload': { 'op': iCE40BitstreamSlots.SpecialOpcode.REBOOT }
 				}
 			]
 		})
