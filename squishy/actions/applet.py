@@ -109,14 +109,14 @@ class Applet(SquishyAction):
 
 		pnr_options.add_argument(
 			'--routed-svg',
-			type    = str,
+			type    = Path,
 			default = None,
 			help    = 'Write a render of the routing to an SVG'
 		)
 
 		pnr_options.add_argument(
 			'--routed-json',
-			type    = str,
+			type    = Path,
 			default = None,
 			help   = 'Write the PnR output json for viewing in nextpnr after PnR'
 		)
@@ -246,12 +246,14 @@ class Applet(SquishyAction):
 			pnr_opts.append('--detailed-timing-report')
 
 		if args.routed_svg is not None:
-			log.info(f'Writing PnR output svg to {args.routed_svg}')
-			pnr_opts.append(f'--routed-svg {args.routed_svg}')
+			svg_path = args.routed_svg.resolve()
+			log.info(f'Writing PnR output svg to {svg_path}')
+			pnr_opts.append(f'--routed-svg {svg_path}')
 
 		if args.routed_json is not None:
-			log.info(f'Writing PnR output json to {args.routed_json}')
-			pnr_opts.append(f'--write {args.routed_json}')
+			json_path = args.routed_json.resolve()
+			log.info(f'Writing PnR output json to {json_path}')
+			pnr_opts.append(f'--write {json_path}')
 
 		if args.pnr_seed is not None:
 			pnr_opts.append(f'--seed {args.pnr_seed}')
