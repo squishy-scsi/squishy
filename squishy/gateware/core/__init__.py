@@ -38,7 +38,3 @@ It is roughly broken up into 5 submodules:
  * :py:mod:`squishy.gateware.core.usb` - Main USB interface.
 
 ''' # noqa: E101
-
-# -------------- #
-
-from .spi import SPIInterfaceTests # noqa: F401
