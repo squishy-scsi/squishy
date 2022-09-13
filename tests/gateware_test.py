@@ -113,15 +113,13 @@ class SquishyGatewareTestCase(TestCase):
 	'''Gateware test case wrapper for pythons unittest library
 
 	This class wraps the :py:class:`TestCase` class from the `unittest` module
-	from the python standard lib. It has usefull methods for testing and simulating
+	from the python standard lib. It has useful methods for testing and simulating
 	Amaranth based gateware.
 
 	Attributes
 	----------
-	domain : str
-		The root clock domain.
-	freq : float
-		The frequency of the domain.
+	domain : List[Tuple[str, float]]
+		The collection of clock domains and frequencies
 	out_dir : str
 		The test output directory.
 	dut : Elaboratable
@@ -133,8 +131,7 @@ class SquishyGatewareTestCase(TestCase):
 
 	'''
 
-	domain    = 'sync'
-	freq      = 1e8
+	domains   = (('sync', 1e8),)
 	out_dir   = None
 	dut       = None
 	dut_args  = {}
@@ -150,11 +147,14 @@ class SquishyGatewareTestCase(TestCase):
 
 		return f'test-{self.__class__.__name__}'
 
-	@property
-	def clk_period(self) -> float:
+	def clk_period(self, domain: str = None) -> float:
 		'''The clock period of the domain'''
+		if domain is None:
+			return 1 / self.domains[0][1]
 
-		return 1 / self.freq
+		freq = next(d[1] for d in self.domains if d[0] == domain)
+
+		return 1 / freq
 
 	def run_sim(self, *, suffix : str = None) -> None:
 		'''Run the simulation
@@ -193,7 +193,8 @@ class SquishyGatewareTestCase(TestCase):
 			else:
 				self.out_dir = Path.cwd() / 'test-vcds'
 
-		self.sim.add_clock(self.clk_period, domain = self.domain)
+		for d, _ in self.domains:
+			self.sim.add_clock(self.clk_period(d), domain = d)
 
 		if not self.out_dir.exists():
 			self.out_dir.mkdir()
@@ -208,7 +209,7 @@ class SquishyGatewareTestCase(TestCase):
 
 		yield Signal()
 
-	def wait_for(self, time: float):
+	def wait_for(self, time: float, domain: str = None):
 		''' Waits for the number time units.
 
 		Parameters
@@ -218,7 +219,7 @@ class SquishyGatewareTestCase(TestCase):
 
 		'''
 
-		c = ceil(time / self.clk_period)
+		c = ceil(time / self.clk_period(domain))
 		yield from self.step(c)
 
 	@staticmethod
@@ -364,7 +365,7 @@ class SquishyGatewareTestCase(TestCase):
 			if timeout and elapsed_cycles > timeout:
 				raise RuntimeError(f'Timeout waiting for \'{strobe.name}\' to go low')
 
-def sim_test(func, *, domain = 'sync'):
+def sim_test(*, domain = None):
 	'''Simulation test case decorator
 
 	Parameters
@@ -378,14 +379,19 @@ def sim_test(func, *, domain = 'sync'):
 		The clock domain this case belongs to.
 
 	'''
+	def _test(func):
+		def _run(self):
+			@wraps(func)
+			def sim_case():
+				yield from self.init_signals()
+				yield from func(self)
 
-	def _run(self):
-		@wraps(func)
-		def sim_case():
-			yield from self.init_signals()
-			yield from func(self)
+			if domain is None:
+				test_domain = self.domains[0][0]
+			else:
+				test_domain = domain
 
-		self.domain = domain
-		self.sim.add_sync_process(sim_case, domain = domain)
-		self.run_sim(suffix = func.__name__)
-	return _run
+			self.sim.add_sync_process(sim_case, domain = test_domain)
+			self.run_sim(suffix = func.__name__)
+		return _run
+	return _test
