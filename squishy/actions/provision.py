@@ -200,9 +200,11 @@ class Provision(SquishyAction):
 		)
 
 		log.info('Building bootloader bitstream')
-		self._build_multiboot(args.build_dir, 'squishy-unified.bin', (name, prod), device.flash['geometry'])
+		path = self._build_multiboot(args.build_dir, 'squishy-unified.bin', (name, prod), device.flash['geometry'])
 
 		if not args.build_only:
 			log.info('Programming')
-
+		else:
+			log.info(f'Please flash the file at \'{path}\' on to the hardware to provision the device.')
+			log.info(f'Or use \'dfu-util\' to flash \'{name}\' into slot 0')
 		return 0
