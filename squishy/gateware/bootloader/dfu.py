@@ -94,7 +94,7 @@ class DFURequestHandler(USBRequestHandler):
 		m.submodules.flash = flash
 
 		m.submodules.transmitter = transmitter = StreamSerializer(
-			data_length = 8, domain = 'usb', stream_type = USBInStreamInterface, max_length_width = 3
+			data_length = 6, domain = 'usb', stream_type = USBInStreamInterface, max_length_width = 3
 		)
 
 		slot_rom = self._make_rom(_flash)
@@ -192,7 +192,7 @@ class DFURequestHandler(USBRequestHandler):
 					]
 				with m.If(self.interface.handshakes_in.ack):
 					m.d.usb += [
-						rxTrig.eq(1),
+						rxTrig.eq(0),
 					]
 					m.next = 'IDLE'
 
@@ -233,7 +233,7 @@ class DFURequestHandler(USBRequestHandler):
 						m.next = 'IDLE'
 				with m.If(interface.status_requested):
 					m.d.comb += [
-						interface.handshakes_out.eq(1),
+						interface.handshakes_out.ack.eq(1),
 					]
 					with m.If(cfg.state == DFUState.DlSync):
 						m.d.usb += [
@@ -252,6 +252,13 @@ class DFURequestHandler(USBRequestHandler):
 					m.d.comb += [
 						interface.handshakes_out.stall.eq(1),
 					]
+					m.next = 'IDLE'
+
+				with m.If(interface.status_requested):
+					m.d.comb += [
+						self.send_zlp(),
+					]
+				with m.If(interface.handshakes_in.ack):
 					m.next = 'IDLE'
 
 			with m.State('HANDLE_GET_STATE'):
@@ -392,7 +399,7 @@ class DFURequestHandler(USBRequestHandler):
 
 
 	def _make_rom(self, flash: dict[str, Union[dict[str, int], FlashGeometry]]) -> Memory:
-		total_size = flash['geometry'].slots
+		total_size = flash['geometry'].slots * 8
 
 		rom = bytearray(total_size)
 		rom_addr = 0
@@ -402,6 +409,6 @@ class DFURequestHandler(USBRequestHandler):
 			rom[rom_addr:rom_addr + 8] = addr_range
 			rom_addr += 8
 
-		rom_entries = (rom[i:i + 4] for i in range (0, total_size, 4))
+		rom_entries = (rom[i:i + 4] for i in range(0, total_size, 4))
 		initializer = [unpack('>I', rom_entry)[0] for rom_entry in rom_entries]
 		return Memory(width = 24, depth = flash['geometry'].slots * 2, init = initializer)
