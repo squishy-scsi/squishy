@@ -132,6 +132,9 @@ class GetDescriptorSetHandler(Elaboratable):
 			rom[pointer_addr:pointer_addr + self.element_size] = pointer_bytes
 			rom[next_free_addr:next_free_addr + desc_set_len]  = desc_set
 
+			aligned_size = self._align_to_element_size(desc_set_len)
+			next_free_addr += aligned_size * self.element_size
+
 		assert total_size == len(rom)
 
 		element_size = self.element_size
@@ -162,6 +165,10 @@ class GetDescriptorSetHandler(Elaboratable):
 			m.d.sync += [
 				length.eq(self._max_packet_len)
 			]
+
+		m.d.sync += [
+			vendor_code.eq(self.request - 1)
+		]
 
 		pos_in_stream = Signal(range(max_descriptor_size))
 		bytes_sent    = Signal.like(length)
