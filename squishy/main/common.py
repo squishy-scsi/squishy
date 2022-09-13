@@ -40,7 +40,7 @@ def setup_logging(args: Namespace = None) -> None:
 		datefmt  = '[%X]',
 		level    = level,
 		handlers = [
-			RichHandler(rich_tracebacks = True)
+			RichHandler(rich_tracebacks = True, show_path = False)
 		]
 	)
 
