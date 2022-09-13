@@ -71,14 +71,15 @@ class Bootloader(Elaboratable):
 			dev_desc.bDeviceProtocol    = 0
 			dev_desc.idVendor           = platform.usb_vid
 			dev_desc.idProduct          = platform.usb_pid_boot
-			dev_desc.bcdDevice          = 0.02
+			dev_desc.bcdDevice          = 0.03
 			dev_desc.iManufacturer      = platform.usb_mfr
 			dev_desc.iProduct           = platform.usb_prod[platform.usb_pid_boot]
+			dev_desc.iSerialNumber      = platform.usb_snum
 			dev_desc.bNumConfigurations = 1
 
 		with descriptors.ConfigurationDescriptor() as cfg_desc:
 			cfg_desc.bConfigurationValue = 1
-			cfg_desc.iConfiguration      = 'DFU Bootloader'
+			cfg_desc.iConfiguration      = 'Squishy Bootloader'
 			cfg_desc.bmAttributes        = 0x80
 			cfg_desc.bMaxPower           = 250
 
@@ -89,7 +90,7 @@ class Bootloader(Elaboratable):
 					int_desc.bInterfaceClass    = InterfaceClassCodes.APPLICATION
 					int_desc.bInterfaceSubclass = ApplicationSubclassCodes.DFU
 					int_desc.bInterfaceProtocol = DFUProtocolCodes.DFU
-					int_desc.iInterface         = f'DFU Slot {slot}'
+					int_desc.iInterface         = f'Slot {slot}'
 
 					with FunctionalDescriptor(int_desc) as func_desc:
 						func_desc.bmAttributes   = (
