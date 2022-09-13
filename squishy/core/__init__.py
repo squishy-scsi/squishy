@@ -1,7 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from .dfu import DFUDevice
+from .device import (
+	SquishyHardwareDevice, SquishyDeviceContainer
+)
+
 
 __all__ = (
-	'DFUDevice',
+	'SquishyHardwareDevice',
+	'SquishyDeviceContainer',
 )

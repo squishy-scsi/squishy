@@ -1,10 +1,18 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging          as log
-from typing             import Iterable, Type, Union
+import logging                      as log
+from typing                         import (
+	Iterable, Type, Union
+)
 
 import usb1
 
-from usb_protocol.types import LanguageIDs
+from usb_protocol.types             import (
+	LanguageIDs
+)
+from usb_protocol.types.descriptors import (
+	InterfaceClassCodes, ApplicationSubclassCodes
+)
+
 
 from ..config           import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
 
@@ -36,12 +44,37 @@ class SquishyHardwareDevice:
 		The revision of the hardware of the device.
 
 	'''
+	_DFU_CLASS = (int(InterfaceClassCodes.APPLICATION), int(ApplicationSubclassCodes.DFU))
+
 
 	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs) -> None:
 		self._dev   = dev
 		self.serial = serial
 		self.rev    = int(dev.getbcdDevice())
 
+
+	def _update_serial(self) -> None:
+		''' Update the serial number from the attached device '''
+		hndl = self._dev.open()
+
+		self.serial = hndl.getStringDescriptor(
+			self._dev.getSerialNumberDescriptor(),
+			LanguageIDs.ENGLISH_US
+		)
+
+		hndl.close()
+
+	def can_dfu(self) -> bool:
+		''' Check to see if the Device can DFU '''
+		return any(
+			filter(
+				lambda t: t == self._DFU_CLASS,
+				map(
+					lambda s: s.getClassTupple(),
+					self._dev.iterSettings()
+				)
+			)
+		)
 
 	def __repr__(self) -> str:
 		return f'<SquishyHardwareDevice SN=\'{self.serial}\' REV=\'{self.rev}\' ADDR={self._dev.getDeviceAddress()}>'
