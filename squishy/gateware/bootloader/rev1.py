@@ -73,7 +73,7 @@ class Bootloader(Elaboratable):
 			dev_desc.bDeviceProtocol    = 0
 			dev_desc.idVendor           = platform.usb_vid
 			dev_desc.idProduct          = platform.usb_pid_boot
-			dev_desc.bcdDevice          = 0.03
+			dev_desc.bcdDevice          = (0.00 + platform.revision)
 			dev_desc.iManufacturer      = platform.usb_mfr
 			dev_desc.iProduct           = platform.usb_prod[platform.usb_pid_boot]
 			dev_desc.iSerialNumber      = self._serial_number

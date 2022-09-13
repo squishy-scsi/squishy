@@ -48,10 +48,20 @@ class SquishyHardwareDevice:
 
 
 	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs) -> None:
-		self._dev   = dev
-		self.serial = serial
-		self.rev    = int(dev.getbcdDevice())
+		self._dev     = dev
+		self.serial   = serial
+		self.raw_ver  = dev.getbcdDevice()
+		self.dec_ver  = self._decode_version(self.raw_ver)
+		self.rev      = int(self.dec_ver)
+		self.gate_ver = int((self.dec_ver - self.rev) * 100)
 
+
+	def _decode_version(self, bcd: int) -> float:
+		i = bcd >> 8
+		i = ((i >> 4) * 10) + (i & 0xf)
+		d = bcd & 0xff
+		d = ((d >> 4) * 10) + (d & 0xf)
+		return i + (d / 100)
 
 	def _update_serial(self) -> None:
 		''' Update the serial number from the attached device '''
@@ -97,9 +107,20 @@ class SquishyDeviceContainer:
 
 	'''
 	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs) -> None:
-		self._dev = dev
-		self.serial = serial
-		self.rev = int(dev.getbcdDevice())
+		self._dev     = dev
+		self.serial   = serial
+		self.raw_ver  = dev.getbcdDevice()
+		self.dec_ver  = self._decode_version(self.raw_ver)
+		self.rev      = int(self.dec_ver)
+		self.gate_ver = int((self.dec_ver - self.rev) * 100)
+
+
+	def _decode_version(self, bcd: int) -> float:
+		i = bcd >> 8
+		i = ((i >> 4) * 10) + (i & 0xf)
+		d = bcd & 0xff
+		d = ((d >> 4) * 10) + (d & 0xf)
+		return i + (d / 100)
 
 	def __del__(self):
 		self._dev.close()
