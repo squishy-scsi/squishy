@@ -246,10 +246,12 @@ class Applet(SquishyAction):
 			pnr_opts.append('--detailed-timing-report')
 
 		if args.routed_svg is not None:
-			pnr_opts.append(f' --routed-svg {args.routed_svg}')
+			log.info(f'Writing PnR output svg to {args.routed_svg}')
+			pnr_opts.append(f'--routed-svg {args.routed_svg}')
 
-		if args.routed_svg is not None:
-			pnr_opts.append(f' --write {args.routed_json}')
+		if args.routed_json is not None:
+			log.info(f'Writing PnR output json to {args.routed_json}')
+			pnr_opts.append(f'--write {args.routed_json}')
 
 		if args.pnr_seed is not None:
 			pnr_opts.append(f'--seed {args.pnr_seed}')
