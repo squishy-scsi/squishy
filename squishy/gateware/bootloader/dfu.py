@@ -168,6 +168,8 @@ class DFURequestHandler(USBRequestHandler):
 						cfg.state.eq(DFUState.DlBusy),
 					]
 					m.next = 'HANDLE_DOWNLOAD_DATA'
+				with m.Else():
+					m.next = 'HANDLE_DOWNLOAD_COMPLETE'
 
 			with m.State('HANDLE_DOWNLOAD_DATA'):
 				m.d.comb += [
@@ -399,6 +401,26 @@ class DFURequestHandler(USBRequestHandler):
 
 
 	def _make_rom(self, flash: dict[str, Union[dict[str, int], FlashGeometry]]) -> Memory:
+		''' Generate ROM layout of the flash.
+
+		The layout is as follows:
+
+		+---------+--------------+
+		| Address |     Data     |
+		+=========+==============+
+		|    0    | Slot 0 Begin |
+		+---------+--------------+
+		|    1    | Slot 0 End   |
+		+---------+--------------+
+		|    2    | Slot 1 Begin |
+		+---------+--------------+
+		|    3    | Slot 1 End   |
+		+---------+--------------+
+		|     ... |              |
+		+---------+--------------+
+
+		'''
+
 		total_size = flash['geometry'].slots * 8
 
 		rom = bytearray(total_size)
