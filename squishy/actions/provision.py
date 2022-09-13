@@ -135,6 +135,20 @@ class Provision(SquishyAction):
 			help    = 'Write a render of the routing to an SVG'
 		)
 
+		pnr_options.add_argument(
+			'--routed-json',
+			type    = str,
+			default = None,
+			help   = 'Write the PnR output json for viewing in nextpnr after PnR'
+		)
+
+		pnr_options.add_argument(
+			'--pnr-seed',
+			type    = int,
+			default = None,
+			help    = 'Specify the PnR seed to use'
+		)
+
 		# Synth Options
 		synth_options.add_argument(
 			'--no-abc9',
@@ -177,6 +191,12 @@ class Provision(SquishyAction):
 
 		if args.routed_svg is not None:
 			pnr_opts.append(f' --routed-svg {args.routed_svg}')
+
+		if args.routed_svg is not None:
+			pnr_opts.append(f' --write {args.routed_json}')
+
+		if args.pnr_seed is not None:
+			pnr_opts.append(f'--seed {args.pnr_seed}')
 
 		# Synth Opts
 		if not args.no_abc9:
