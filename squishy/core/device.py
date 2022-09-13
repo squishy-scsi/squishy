@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging                      as log
 from typing                         import (
-	Iterable, Type, Union
+	List, Tuple, Type, Union
 )
 
 import usb1
@@ -55,8 +55,8 @@ class SquishyHardwareDevice:
 		self.rev      = int(self.dec_ver)
 		self.gate_ver = int((self.dec_ver - self.rev) * 100)
 
-
-	def _decode_version(self, bcd: int) -> float:
+	@staticmethod
+	def _decode_version(bcd: int) -> float:
 		i = bcd >> 8
 		i = ((i >> 4) * 10) + (i & 0xf)
 		d = bcd & 0xff
@@ -86,60 +86,93 @@ class SquishyHardwareDevice:
 			)
 		)
 
-	def __repr__(self) -> str:
-		return f'<SquishyHardwareDevice SN=\'{self.serial}\' REV=\'{self.rev}\' ADDR={self._dev.getDeviceAddress()}>'
+	@classmethod
+	def get_device(cls: Type['SquishyHardwareDevice'], serial: str = None) -> Union[None, 'SquishyHardwareDevice']:
+		'''Get attached Squishy device.
 
-	def __str__(self) -> str:
-		return f'rev{self.rev} SN: {self.serial}'
+		Get the attached and selected squishy device if possible, or if only
+		one is attached to the system use that one.
 
-class SquishyDeviceContainer:
-	'''Squishy Device Container
+		Parameters
+		----------
+		serial : str
+			The serial number if any.
 
-	This class is a wrapper around the libusb1 USB device.
+		Returns
+		-------
+		None
+			If no device is selected
 
-	Attributes
-	----------
-	serial : str
-		The serial number of the device.
+		squishy.core.device.SquishyHardwareDevice
+			The selected hardware if available.
 
-	rev : int
-		The revision of the device.
+		'''
+		def print_devtree():
+			from rich.tree import Tree
+			from rich      import print
 
-	'''
-	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs) -> None:
-		self._dev     = dev
-		self.serial   = serial
-		self.raw_ver  = dev.getbcdDevice()
-		self.dec_ver  = self._decode_version(self.raw_ver)
-		self.rev      = int(self.dec_ver)
-		self.gate_ver = int((self.dec_ver - self.rev) * 100)
+			dev_tree = Tree(
+				'[green]Attached Devices[/]',
+				guide_style = 'blue'
+			)
+			for idx, tup in enumerate(devices):
+				node = dev_tree.add(f'[magenta]{idx}[/]')
+				node.add(f'SN:  [bright_green]{tup[0]}[/]')
+				node.add(f'Rev: [bright_cyan]{int(tup[1])}[/]')
+			print(dev_tree)
 
+		devices   = SquishyHardwareDevice.enumerate()
+		dev_count = len(devices)
 
-	def _decode_version(self, bcd: int) -> float:
-		i = bcd >> 8
-		i = ((i >> 4) * 10) + (i & 0xf)
-		d = bcd & 0xff
-		d = ((d >> 4) * 10) + (d & 0xf)
-		return i + (d / 100)
+		if dev_count > 1:
+			if serial is None:
+				log.error(f'No serial number specified, unable to pick from {dev_count} attached devices.')
+				print_devtree()
+				return None
 
-	def __del__(self):
-		self._dev.close()
+			found = list(filter(lambda sn, _, __: sn == serial, devices))
+
+			if len(found) > 1:
+				log.error(f'Multiple devices matching serial number \'{serial}\'')
+				return None
+			elif len(found) == 0:
+				log.error(f'No devices matching serial number \'{serial}\'')
+				print_devtree()
+			else:
+				dev = SquishyHardwareDevice(found[2], found[0])
+				log.info(f'Found Squishy rev{dev.rev} matching serial \'{dev.serial}\'')
+				return dev
+		elif dev_count == 1:
+			found = devices[0]
+			if serial is not None:
+				if serial != found[0]:
+					log.error(f'Connected Squishy has serial number \'{found[0]}\' but \'{serial}\' was specified')
+					return None
+			else:
+				log.warn('No serial specified')
+				log.info('Using only Squishy attached to system')
+
+			dev = SquishyHardwareDevice(found[2], found[0])
+			log.info(f'Found Squishy rev{dev.rev} matching serial \'{dev.serial}\'')
+			return dev
+		else:
+			log.error('No Squishy devices found attached to system')
+			return None
+
 
 	@classmethod
-	def enumerate(cls: Type['SquishyDeviceContainer']) -> Iterable['SquishyDeviceContainer']:
+	def enumerate(cls: Type['SquishyHardwareDevice']) -> List[Tuple[str, float, usb1.USBDevice]]:
 		'''Enumerate attached devices
 
 		Returns
 		-------
-		Iterable[SquishyDeviceContainer]
+		List[Tuple[str, float, usb1.USBDevice]]
 			The collection of :py:class:`SquishyDeviceContainer` objects that match the
 			enumeration critera.
 
 		'''
 
-
 		devices = list()
-
 		with usb1.USBContext() as usb_ctx:
 			for dev in usb_ctx.getDeviceIterator():
 				vid = dev.getVendorID()
@@ -153,91 +186,19 @@ class SquishyDeviceContainer:
 							dev.getSerialNumberDescriptor(),
 							LanguageIDs.ENGLISH_US
 						)
+						ver = cls._decode_version(dev.getbcdDevice())
 
-						devices.append({
-							'dev': dev,
-							'sn': sn
-						})
+						devices.append((sn, ver, dev))
 
 						hndl.close()
 					except usb1.USBError as e:
 						log.error(f'Unable to open suspected squishy device: {e}')
 
-		return map(lambda d: SquishyDeviceContainer(d['dev'], d['sn']), devices)
+		return devices
 
-	def to_device(self) -> SquishyHardwareDevice:
-		'''Wrapper to device
-
-		Returns
-		-------
-		SquishyHardwareDevice
-			The hardware device that is represented by this USB device wrapper.
-
-		'''
-		return SquishyHardwareDevice(self._dev, self.serial)
 
 	def __repr__(self) -> str:
-		return f'<SquishyDeviceContainer SN=\'{self.serial}\' REV=\'{self.rev}\'>'
+		return f'<SquishyHardwareDevice SN=\'{self.serial}\' REV=\'{self.rev}\' ADDR={self._dev.getDeviceAddress()}>'
 
 	def __str__(self) -> str:
-		return self.__repr__()
-
-
-def _get_device(args) -> Union[None, SquishyHardwareDevice]:
-	'''Get attached Squishy device.
-
-	Get the attached and selected squishy device if possible, or if only
-	one is attached to the system use that one.
-
-	Parameters
-	----------
-	args : argsparse.Namespace
-		Any command line arguments passed.
-
-	Returns
-	-------
-	None
-		If no device is selected
-
-	squishy.core.device.SquishyHardwareDevice
-		The selected hardware if available.
-
-	'''
-
-	devices = list(SquishyDeviceContainer.enumerate())
-	dev_count = len(devices)
-	if dev_count > 1:
-		if args.device is None:
-			log.error(f'No device serial number specified, unable to pick from the {dev_count} devices.')
-			log.info('Connected devices are:')
-			for d in devices:
-				log.info(f'\t{d.serial}')
-			return None
-
-		devs = list(filter(lambda d: d.serial == args.device, devices))
-
-		if len(devs) == 0:
-			log.error(f'No device with serial number \'{args.device}\'')
-			log.info('Connected devices are:')
-			for d in devices:
-				log.info(f'\t{d.serial}')
-			return None
-		elif len(devs) > 1:
-			log.error('Multiple Squishy devices with the same serial number found.')
-			return None
-		else:
-			log.info(f'Found Squishy rev{devs[0].rev} \'{devs[0].serial}\'')
-			return devs[0].to_device()
-	elif dev_count == 1:
-		if args.device is not None:
-			if args.device != devices[0].serial:
-				log.error(f'Connected Squishy has serial of \'{devices[0].serial}\', but device serial \'{args.device}\' was specified.')
-				return None
-		else:
-			log.warning('No serial number specified.')
-			log.warning('Using only Squishy attached to system.')
-		log.info(f'Found Squishy rev{devices[0].rev} \'{devices[0].serial}\'')
-		return devices[0].to_device()
-	else:
-		log.error('No Squishy devices attached to system.')
-		return None
+		return f'rev{self.rev} SN: {self.serial}'

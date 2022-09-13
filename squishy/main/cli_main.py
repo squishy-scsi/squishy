@@ -8,7 +8,7 @@ from .common        import (
 	main_common, common_options, setup_logging
 )
 from ..core.collect import collect_members, predicate_action
-from ..core.device  import _get_device
+from ..core.device  import SquishyHardwareDevice
 
 def main() -> int:
 	'''Squishy CLI/REPL Runner
@@ -66,7 +66,7 @@ def main() -> int:
 		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
 
 		if act['instance'].requires_dev:
-			dev = _get_device(args)
+			dev = SquishyHardwareDevice.get_device(serial = args.device)
 			if dev is not None:
 				return act['instance'].run(args, dev)
 			else:

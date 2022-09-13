@@ -1,11 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 from .device import (
-	SquishyHardwareDevice, SquishyDeviceContainer
+	SquishyHardwareDevice
 )
 
 
 __all__ = (
 	'SquishyHardwareDevice',
-	'SquishyDeviceContainer',
 )
