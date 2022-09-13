@@ -2,6 +2,7 @@
 import logging           as log
 from pathlib             import Path
 from typing              import Tuple
+from datetime            import datetime
 
 from amaranth.build.run  import LocalBuildProducts
 
@@ -68,11 +69,17 @@ class Provision(SquishyAction):
 	def __init__(self):
 		super().__init__()
 
+	def _gen_serial(self) -> str:
+		return datetime.utcnow().strftime(
+			'%Y%m%dT%H%M%SZ'
+		)
+
 	def register_args(self, parser) -> None:
 
 		build_options  = parser.add_argument_group('Build Options')
 		pnr_options    = parser.add_argument_group('Gateware Place and Route Options')
 		synth_options  = parser.add_argument_group('Gateware Synth Options')
+		provision_opts = parser.add_argument_group('Provisioning Options')
 
 		parser.add_argument(
 			'--platform', '-p',
@@ -156,6 +163,14 @@ class Provision(SquishyAction):
 			help   = 'Disable use of Yosys\' ABC9'
 		)
 
+		# Provisioning Options
+		provision_opts.add_argument(
+			'--serial-number', '-S',
+			type    = str,
+			default = None,
+			help    = 'Specify the device serial number rather than automatically generating it'
+		)
+
 	def run(self, args, dev = None) -> int:
 		build_dir = Path(args.build_dir)
 		log.info(f'Targeting platform \'{args.hardware_platform}\'')
@@ -206,9 +221,14 @@ class Provision(SquishyAction):
 		if not args.no_abc9:
 			synth_opts.append('-abc9')
 
+		# Provisioning Options
+		if  args.serial_number is not None:
+			serial_number = args.serial_number
+		else:
+			serial_number = self._gen_serial()
 
-
-		bootloader = device.bootloader_module()
+		log.info(f'Assigning device serial number \'{serial_number}\'')
+		bootloader = device.bootloader_module(serial_number = serial_number)
 
 		log.info('Building bootloader gateware')
 		name, prod = device.build(
@@ -230,5 +250,5 @@ class Provision(SquishyAction):
 			log.info('Programming')
 		else:
 			log.info(f'Please flash the file at \'{path}\' on to the hardware to provision the device.')
-			log.info(f'Or use \'dfu-util\' to flash \'{name}\' into slot 0')
+			log.info(f'Or use \'dfu-util\' to flash \'{name}\' into slot 0 to update the bootloader')
 		return 0

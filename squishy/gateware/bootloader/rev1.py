@@ -54,6 +54,8 @@ __all__ = (
 
 class Bootloader(Elaboratable):
 	''' '''
+	def __init__(self, *, serial_number: str) -> None:
+		self._serial_number = serial_number
 
 	def elaborate(self, platform) -> Module:
 		m = Module()
@@ -74,7 +76,7 @@ class Bootloader(Elaboratable):
 			dev_desc.bcdDevice          = 0.03
 			dev_desc.iManufacturer      = platform.usb_mfr
 			dev_desc.iProduct           = platform.usb_prod[platform.usb_pid_boot]
-			dev_desc.iSerialNumber      = platform.usb_snum
+			dev_desc.iSerialNumber      = self._serial_number
 			dev_desc.bNumConfigurations = 1
 
 		with descriptors.ConfigurationDescriptor() as cfg_desc:
