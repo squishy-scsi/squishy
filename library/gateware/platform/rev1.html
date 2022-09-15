@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+g32db84c
+                0.1.dev1+g709dd66
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -229,6 +229,37 @@
 <h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform.rev1</span></code><a class="headerlink" href="#squishy-gateware-platform-rev1" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<span class="target" id="module-squishy.gateware.platform.rev1"></span><p>This is the Amaranth platform definition for Squishy rev1 hardware, if you are using
+Squishy rev1 as a generic FPGA development board, this is the platform you need to invoke.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This platform is for specialized hardware and <strong>must not</strong> be used with any other
+hardware other than the hardware it was designed for. This include any popular
+development or eval boards.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are no official released of the Squishy rev1 hardware for purchase, you can build your
+own, however it is recommended to start with the <a class="reference internal" href="rev2.html#squishy.gateware.platform.rev2.SquishyRev2" title="squishy.gateware.platform.rev2.SquishyRev2"><code class="xref py py-class docutils literal notranslate"><span class="pre">squishy.gateware.platform.rev2.SquishyRev2</span></code></a> hardware.</p>
+</div>
+<dl class="py class">
+<dt class="sig sig-object py" id="squishy.gateware.platform.rev1.SquishyRev1">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.platform.rev1.</span></span><span class="sig-name descname"><span class="pre">SquishyRev1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.gateware.platform.rev1.SquishyRev1" title="Permalink to this definition"></a></dt>
+<dd><p>Squishy hardware Revision 1</p>
+<p>This is the Amaranth platform for the first revision of the Squishy hardware.
+It is based around the <a class="reference external" href="https://www.latticesemi.com/iCE40">Lattice iCE40-HX8K</a>
+in the BG121 footprint.</p>
+<p>The design files for this version of the hardware can be found
+<a class="reference external" href="https://github.com/lethalbit/squishy/tree/main/hardware/rev1">in the git repo</a> under
+the <cite>hardware/rev1</cite> tree.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="squishy.gateware.platform.rev1.SquishyRev1.clock_domain_generator">
+<span class="sig-name descname"><span class="pre">clock_domain_generator</span></span><a class="headerlink" href="#squishy.gateware.platform.rev1.SquishyRev1.clock_domain_generator" title="Permalink to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="../core/pll.html#squishy.gateware.core.pll.ICE40ClockDomainGenerator" title="squishy.gateware.core.pll.ICE40ClockDomainGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">ICE40ClockDomainGenerator</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
     <script type="text/javascript">
