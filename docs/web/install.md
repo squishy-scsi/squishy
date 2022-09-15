@@ -82,6 +82,10 @@ At this point, you may want to create a virtual environment for installing Squis
 	$ python -m venv squishy.venv
 ```
 
+```{note}
+If your python install doesn't have the `venv` module by default, then you will need to also install the python `virtualenv` package
+```
+
 You can then activate the virtual environment with:
 ```{eval-rst}
 .. platform-picker::
