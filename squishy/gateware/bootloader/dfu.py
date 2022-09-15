@@ -3,7 +3,9 @@ import logging                          as log
 
 from enum                               import IntEnum, unique
 from struct                             import pack, unpack
-from typing                             import Tuple, Union
+from typing                             import (
+	Tuple, Union, Dict
+)
 
 from amaranth                           import (
 	Module, Signal, DomainRenamer, Cat, Memory, Const
@@ -400,7 +402,7 @@ class DFURequestHandler(USBRequestHandler):
 		)
 
 
-	def _make_rom(self, flash: dict[str, Union[dict[str, int], FlashGeometry]]) -> Memory:
+	def _make_rom(self, flash: Dict[str, Union[Dict[str, int], FlashGeometry]]) -> Memory:
 		''' Generate ROM layout of the flash.
 
 		The layout is as follows:
