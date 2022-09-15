@@ -42,7 +42,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+g5d39dc1
+                0.1.dev1+g32db84c
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -229,6 +229,26 @@
 <h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform.mixins</span></code><a class="headerlink" href="#squishy-gateware-platform-mixins" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
+<span class="target" id="module-squishy.gateware.platform.mixins"></span><p>The following are mixins that are used to add additional features to Amaranth platforms
+without any extra setup work for the platform itself.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="squishy.gateware.platform.mixins.SquishyCacheMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.platform.mixins.</span></span><span class="sig-name descname"><span class="pre">SquishyCacheMixin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.gateware.platform.mixins.SquishyCacheMixin" title="Permalink to this definition"></a></dt>
+<dd><p>Squishy Platform Cache mixin.</p>
+<p>This mixin overrides the <code class="xref py py-class docutils literal notranslate"><span class="pre">amaranth.build.plat.Platform</span></code>. <cite>build</cite> method
+to inject FPGA bitstream caching via the <code class="xref py py-class docutils literal notranslate"><span class="pre">squishy.core.cache.SquishyBitstreamCache</span></code>.
+which handles all bitstream and build caching based on the elaborated designs digest.</p>
+<p>This shortens build times, and removes the need to re-build unchanged applets.</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="squishy.gateware.platform.mixins.SquishyProgramMixin">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.platform.mixins.</span></span><span class="sig-name descname"><span class="pre">SquishyProgramMixin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.gateware.platform.mixins.SquishyProgramMixin" title="Permalink to this definition"></a></dt>
+<dd><p>Squishy Platform programming mixin.</p>
+<p>This mixin overrides the <code class="xref py py-class docutils literal notranslate"><span class="pre">amaranth.build.plat.Platform</span></code> <cite>toolchain_program</cite> method
+to properly find and program Squishy boards.</p>
+</dd></dl>
+
 </section>
 
     <script type="text/javascript">
