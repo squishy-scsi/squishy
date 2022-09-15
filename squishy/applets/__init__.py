@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from abc    import ABCMeta, abstractmethod, abstractproperty
-from typing import Union
+from abc    import ABCMeta, abstractmethod
+from typing import Tuple, Union
 
 import amaranth
 
@@ -48,15 +48,43 @@ class SquishyApplet(metaclass = ABCMeta):
 		Indicates if the applet has a REPL mode.
 
 	'''
+	@property
+	@abstractmethod
+	def preview(self) -> bool:
+		raise NotImplementedError('Applets must implement this property')
 
-	preview       = abstractproperty()
-	pretty_name   = abstractproperty()
-	short_help    = abstractproperty()
-	help          = '<HELP MISSING>'
-	description   = '<DESCRIPTION MISSING>'
-	hardware_rev  = abstractproperty()
-	supports_gui  = abstractproperty()
-	supports_repl = abstractproperty()
+	@property
+	@abstractmethod
+	def pretty_name(self) -> str:
+		raise NotImplementedError('Applets must implement this property')
+
+	@property
+	@abstractmethod
+	def short_help(self) -> str:
+		raise NotImplementedError('Applets must implement this property')
+
+	@property
+	def help(self) -> str:
+		return '<HELP MISSING>'
+
+	@property
+	def description(self) -> str:
+		return '<DESCRIPTION MISSING>'
+
+	@property
+	@abstractmethod
+	def hardware_rev(self) -> Union[str, Tuple[str]]:
+		raise NotImplementedError('Applets must implement this property')
+
+	@property
+	@abstractmethod
+	def supports_gui(self) -> bool:
+		raise NotImplementedError('Applets must implement this property')
+
+	@property
+	@abstractmethod
+	def supports_repl(self) -> bool:
+		raise NotImplementedError('Applets must implement this property')
 
 	def __init__(self):
 		if not (

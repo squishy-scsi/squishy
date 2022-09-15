@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from abc           import ABCMeta, abstractmethod, abstractproperty
+from abc           import ABCMeta, abstractmethod
 from argparse      import ArgumentParser, Namespace
 
 from ..core.device import SquishyHardwareDevice
@@ -34,12 +34,33 @@ class SquishyAction(metaclass = ABCMeta):
 		If this action requires a Squishy to be attached to the machine.
 
 	'''
+	@property
+	@abstractmethod
+	def pretty_name(self) -> str:
+		''' The pretty name of the action  '''
+		raise NotImplementedError('Actions must implement this property')
 
-	pretty_name  = abstractproperty()
-	short_help   = abstractproperty()
-	help         = '<HELP MISSING>'
-	description  = '<DESCRIPTION MISSING>'
-	requires_dev = abstractproperty()
+	@property
+	@abstractmethod
+	def short_help(self) -> str:
+		''' A short help description for the action '''
+		raise NotImplementedError('Actions must implement this property')
+
+	@property
+	def help(self) -> str:
+		''' A longer help message for the action '''
+		return '<HELP MISSING>'
+
+	@property
+	def description(self) -> str:
+		''' A description for the action  '''
+		return '<DESCRIPTION MISSING>'
+
+	@property
+	@abstractmethod
+	def requires_dev(self) -> bool:
+		''' Does this action require a squishy device to be attached '''
+		raise NotImplementedError('Actions must implement this property')
 
 	def __init__(self):
 		pass
