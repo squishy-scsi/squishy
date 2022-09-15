@@ -3,10 +3,12 @@ import logging           as log
 from pathlib             import Path
 from typing              import Tuple
 from datetime            import datetime
+from argparse            import ArgumentParser, Namespace
 
 from amaranth.build.run  import LocalBuildProducts
 
 from ..config            import SQUISHY_BUILD_DIR
+from ..core.device       import SquishyHardwareDevice
 from ..core.flash        import FlashGeometry
 
 
@@ -74,7 +76,7 @@ class Provision(SquishyAction):
 			'%Y%m%dT%H%M%SZ'
 		)
 
-	def register_args(self, parser) -> None:
+	def register_args(self, parser: ArgumentParser) -> None:
 
 		build_options  = parser.add_argument_group('Build Options')
 		pnr_options    = parser.add_argument_group('Gateware Place and Route Options')
@@ -171,7 +173,7 @@ class Provision(SquishyAction):
 			help    = 'Specify the device serial number rather than automatically generating it'
 		)
 
-	def run(self, args, dev = None) -> int:
+	def run(self, args: Namespace, dev: SquishyHardwareDevice = None) -> int:
 		build_dir = Path(args.build_dir)
 		log.info(f'Targeting platform \'{args.hardware_platform}\'')
 
@@ -222,7 +224,7 @@ class Provision(SquishyAction):
 			synth_opts.append('-abc9')
 
 		# Provisioning Options
-		if  args.serial_number is not None:
+		if args.serial_number is not None:
 			serial_number = args.serial_number
 		else:
 			serial_number = self._gen_serial()

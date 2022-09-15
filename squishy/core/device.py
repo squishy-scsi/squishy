@@ -18,7 +18,6 @@ from ..config           import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
 
 __all__ = (
 	'SquishyHardwareDevice',
-	'SquishyDeviceContainer',
 )
 
 class SquishyHardwareDevice:
@@ -107,7 +106,7 @@ class SquishyHardwareDevice:
 			The selected hardware if available.
 
 		'''
-		def print_devtree():
+		def print_devtree() -> None:
 			from rich.tree import Tree
 			from rich      import print
 

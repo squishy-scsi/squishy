@@ -3,6 +3,9 @@
 from pkgutil    import walk_packages
 from importlib  import import_module
 from inspect    import getmembers, isclass
+from typing     import (
+	List, Dict, Union, Any
+)
 
 __all__ = (
 	'collect_members',
@@ -12,7 +15,7 @@ __all__ = (
 )
 
 
-def predicate_applet(member):
+def predicate_applet(member) -> bool:
 	'''Applet predicate
 
 	This predicate filters on if the member is a sub class of :py:class:`SquishyApplet`
@@ -30,7 +33,7 @@ def predicate_applet(member):
 		return issubclass(member, SquishyApplet) and member is not SquishyApplet
 	return False
 
-def predicate_action(member):
+def predicate_action(member) -> bool:
 	'''Action predicate
 
 	This predicate filters on if the member is a sub class of :py:class:`SquishyAction`
@@ -47,7 +50,7 @@ def predicate_action(member):
 		return issubclass(member, SquishyAction) and member is not SquishyAction
 	return False
 
-def predicate_class(member):
+def predicate_class(member) -> bool:
 	'''Class predicate
 
 	This predicate filters on if the member is a class.
@@ -60,7 +63,7 @@ def predicate_class(member):
 
 	return isclass(member)
 
-def collect_members(pkg, pred, prefix: str = '', make_instance: bool = True):
+def collect_members(pkg, pred, prefix: str = '', make_instance: bool = True) -> List[Dict[str, Union[str, Any]]]:
 	'''Collect members from package
 
 	This method collects list of members from a given package, and optionally creates

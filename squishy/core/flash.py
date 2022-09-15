@@ -1,5 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
+from typing import (
+	Dict
+)
+
 __doc__ = '''\
 
 '''
@@ -32,7 +36,7 @@ class FlashGeometry:
 		self._slots = slots
 
 	@property
-	def partitions(self) -> dict[int, dict[str, int]]:
+	def partitions(self) -> Dict[int, Dict[str, int]]:
 
 		partitions = dict()
 

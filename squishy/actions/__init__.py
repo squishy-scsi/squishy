@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from abc import ABCMeta, abstractmethod, abstractproperty
+from abc           import ABCMeta, abstractmethod, abstractproperty
+from argparse      import ArgumentParser, Namespace
+
+from ..core.device import SquishyHardwareDevice
 
 __all__ = (
 	'SquishyAction',
@@ -42,7 +45,7 @@ class SquishyAction(metaclass = ABCMeta):
 		pass
 
 	@abstractmethod
-	def register_args(self, parser) -> None:
+	def register_args(self, parser: ArgumentParser) -> None:
 		'''Register action arguments.
 
 		When an action instance is initialized this method is
@@ -64,7 +67,7 @@ class SquishyAction(metaclass = ABCMeta):
 		raise NotImplementedError('Actions must implement this method')
 
 	@abstractmethod
-	def run(self, args, dev = None) -> int:
+	def run(self, args: Namespace, dev: SquishyHardwareDevice = None) -> int:
 		'''Run the action.
 
 		Run the action instance, passing the parsed
@@ -91,4 +94,4 @@ class SquishyAction(metaclass = ABCMeta):
 
 		'''
 
-		raise NotImplementedError('Acctions must implement this method')
+		raise NotImplementedError('Actions must implement this method')
