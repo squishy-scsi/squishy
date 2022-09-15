@@ -3,6 +3,7 @@
 ```{toctree}
 :hidden:
 applets/index
+provisioning
 
 ```
 ## Hardware Usage

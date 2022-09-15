@@ -40,3 +40,7 @@ As of 2022-04-24, Squishy hardware is not available for sale, however, once engi
 Every released version of the Squishy hardware is archived and has full schematics, gerbers, Bill of Materials, and KiCad project files available.
 
 The smallest parts are 0402 and all revisions contain at least one large BGA part. Assembly via a Pick-and-Place machine has not been tested, but should be possible as DFM was a large part of the process.
+
+### Provisioning the Hardware
+
+If you buy a pre-built Squishy, it will already be provisioned, but in case something goes catastrophically wrong with an update, or you build your own hardware, see the section on [provisioning](../tutorials/provisioning.md) to learn how to provision new hardware or re-provision existing hardware.
