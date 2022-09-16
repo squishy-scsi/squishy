@@ -10,6 +10,7 @@ DOCS_DIR  = (Path.cwd() / 'docs' / 'web')
 
 @nox.session(reuse_venv = True)
 def test(session: nox.Session) -> None:
+	session.install('.')
 	session.run(
 		'python', '-m', 'unittest', 'discover',
 		'-s', 'tests'
