@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import json
-import logging            as log
 from pathlib              import Path
 from signal               import signal, SIGINT, SIG_DFL
 

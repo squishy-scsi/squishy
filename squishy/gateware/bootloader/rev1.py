@@ -36,8 +36,8 @@ from ..core.multiboot     import iCE40Warmboot
 
 __doc__ = '''\
 
-POR -> Slot1 (Squishy Applet)
-	   Slot0 (DFU Bootloader)
+POR ->  Slot1 (Squishy Applet)
+		Slot0 (DFU Bootloader)
 
 Applet DFU Stub (reboot into Slot 0, w/ warmboot)
 DFU Bootloader (DFU Alt-mods are slots)

@@ -36,7 +36,11 @@ class Provision(SquishyAction):
 
 		return bytes(slot_data)
 
-	def _build_multiboot(self, build_dir: str, name: str, boot_products:  Tuple[str, LocalBuildProducts], flash_geometry: FlashGeometry) -> Path:
+	def _build_multiboot(self,
+		build_dir: str, name: str, boot_products:  Tuple[str, LocalBuildProducts],
+		flash_geometry: FlashGeometry
+	) -> Path:
+
 		build_path = Path(build_dir) / name
 
 		log.debug(f'Building multiboot bitstream in \'{build_path}\'')

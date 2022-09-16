@@ -288,7 +288,7 @@ class WindowsRequestHandler(USBRequestHandler):
 	* If either the :py:class:`GetDescriptorSetHandler` or the status phase
 	  concludes, we return to ``IDLE``.
 
-	''' # noqa: E101
+	''' # noqa: E101, E501
 
 	def __init__(self, descriptors: PlatformDescriptorCollection, max_packet_size: int = 64):
 		self.descriptors      = descriptors

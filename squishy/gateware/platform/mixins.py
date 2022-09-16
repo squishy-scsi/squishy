@@ -1,8 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging          as log
-from pathlib            import Path
-
-
 
 from rich.progress      import (
 	Progress, SpinnerColumn, BarColumn,

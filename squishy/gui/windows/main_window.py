@@ -60,7 +60,11 @@ class MainWindow:
 		# text = ''
 		# QMetaObject.invokeMethod(self.window.repl_output, 'toMarkdown', Qt.DirectConnection, QGenericReturnArgument(aName = b'text'))
 		# text += data
-		# QMetaObject.invokeMethod(self.window.repl_output, 'setMarkdown', Qt.DirectConnection, QGenericReturnArgument(), QGenericArgument(aName = b'text'))
+		# QMetaObject.invokeMethod(
+		# 	self.window.repl_output, 'setMarkdown',
+		# 	Qt.DirectConnection, QGenericReturnArgument(),
+		# 	QGenericArgument(aName = b'text')
+		# )
 		# nya = self.window.repl_output.toMarkdown()
 		# self.window.repl_output.setMarkdown(nya + data)
 		pass

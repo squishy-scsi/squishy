@@ -1,9 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from math             import ceil, log2
-
 from amaranth         import *
-
-from ....misc.utility import us_to_s, ns_to_s
 
 __all__ = (
 	'Device',

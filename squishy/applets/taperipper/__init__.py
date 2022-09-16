@@ -48,7 +48,9 @@ from ..     import SquishyApplet
 # 	log.info(f'initramfs is {initramfs_size} bytes long')
 
 # 	if tape_img_size > args.tape_size:
-# 		log.error(f'The total size of the tape image ({tape_img_size} bytes) exceeds that of the total size available on the tape ({args.tape_size} bytes)')
+# 		log.error(f'The total size of the tape image ({tape_img_size} bytes) exceeds'
+# 					'that of the total size available on the tape ({args.tape_size} bytes)'
+# 		)
 
 # 	log.info(f'Total tape image length will be {tape_img_size} bytes')
 # 	log.info(f'Output file {tape_img_file}')

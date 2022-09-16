@@ -166,7 +166,7 @@ class HexViewWidget(QTableView):
 			else max(rect.left(), rect.right()), max(rect.top(), rect.bottom())))
 
 		if (not self.selectionModel) or (not tl.isValid()) or (not br.isValid()) or \
-				(not is_index_enabled(tl)) or (not is_index_enabled(br)):
+				(not is_index_enabled(tl)) or (not is_index_enabled(br)): # noqa: E127
 			return
 
 
@@ -185,7 +185,7 @@ class HexViewWidget(QTableView):
 		# itemFromIndex() will lazily create an item at that index if there isn't one,
 		# and we explicitly want to check if there is an item or not.
 		if self.model().item(tl.row(), tl.column()) is None or \
-				self.model().item(br.row(), br.column()) is None:
+				self.model().item(br.row(), br.column()) is None: # noqa: E127
 			return
 
 

@@ -42,4 +42,3 @@ class ColorPicker(QWidget):
 		if dialog.exec_():
 			self.color = dialog.selectedColor()
 			self.frm_display.setStyleSheet(f'background-color: {self.color.name()};')
-

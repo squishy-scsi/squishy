@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from math                      import ceil, log2
-
+from math                      import ceil
 
 from ...misc.utility           import ns_to_s
 

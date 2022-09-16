@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing         import Tuple
+from typing         import Literal, Union, Tuple, Optional
 
 from amaranth.build import *
 
@@ -13,6 +13,11 @@ __all__ = (
 __doc__ = '''\
 
 '''
+
+# Type Aliases
+PinDiff = Tuple[str, str]
+PinDef  = Union[str, PinDiff]
+PinDir  = Literal['i', 'o', 'io']
 
 def TransceiverPairs(tx: str, rx: str, *, invert: bool = False, conn: str = None, assert_width: bool = None) -> Tuple[Subsignal]:
 	'''Returns a tuple of subsignals for RX and TX pairs
@@ -46,11 +51,11 @@ def TransceiverPairs(tx: str, rx: str, *, invert: bool = False, conn: str = None
 	)
 
 def SCSIConnectorResource(*args, diff: bool,
-						  ack, atn, bsy, cd, io, msg, sel, req, rst,
-						  diff_sense, d0, dp0, d1 = None, dp1  = None,
-						  scsi_id = None, led  = None, spindle = None,
-						  rmt     = None, dlyd = None, dir     = 'io',
-						  attrs   = None) -> Resource:
+	ack: PinDef, atn: PinDef, bsy: PinDef, cd: PinDef, io: PinDef, msg: PinDef,
+	sel: PinDef, req: PinDef, rst: PinDef, diff_sense: str, d0: PinDef, dp0: PinDef,
+	d1: Optional[PinDef] = None, dp1: Optional[PinDef]  = None, scsi_id: Optional[str] = None,
+	led: Optional[str]  = None, spindle: Optional[str] = None, rmt: Optional[str] = None,
+	dlyd: Optional[str] = None, dir: PinDir = 'io', attrs: Optional[Attrs]   = None) -> Resource:
 	'''Represents a raw SCSI connector
 
 	Parameters
@@ -75,9 +80,7 @@ def SCSIConnectorResource(*args, diff: bool,
 
 	msg : str, tuple[str, str]
 		The pin or pins for the SCSI MSG signal.
-
-	sel : str, tuple[str, str]
-		The pin or pins for the SCSI SEL signal.
+PinDiff
 
 	req : str, tuple[str, str]
 		The pin or pins for the SCSI REQ signal.
@@ -186,12 +189,13 @@ def SCSIConnectorResource(*args, diff: bool,
 
 
 def SCSIPhyResource(*args,
-					 ack, atn, bsy, cd, io, msg, sel, req, rst, d0, dp0,
-					 tp_en, tx_en, aa_en, bsy_en, sel_en, mr_en,
-					 diff_sense,
-					 d1   = None, dp1     = None, scsi_id = None,
-					 led  = None, spindle = None, rmt     = None,
-					 dlyd = None, attrs   = None) -> Resource:
+	ack: PinDiff, atn: PinDiff, bsy: PinDiff, cd: PinDiff, io: PinDiff, msg: PinDiff,
+	sel: PinDiff, req: PinDiff, rst: PinDiff, d0: PinDiff, dp0: PinDiff,
+	tp_en: str, tx_en: str, aa_en: str, bsy_en: str, sel_en: str, mr_en: str,
+	diff_sense: str, d1: Optional[PinDiff] = None, dp1: Optional[PinDiff] = None,
+	scsi_id: Optional[PinDiff] = None, led: Optional[PinDiff] = None,
+	spindle: Optional[PinDiff] = None, rmt: Optional[PinDiff] = None,
+	dlyd: Optional[PinDiff] = None, attrs: Optional[Attrs] = None) -> Resource:
 	'''Represents a Squishy SCSI PHY Resource
 
 	Parameters
@@ -229,19 +233,19 @@ def SCSIPhyResource(*args,
 	dp0 : tuple[str, str]
 		The pins for the SCSI data byte one parity tx and rx signals.
 
-	tp_en : tuple[str, str]
+	tp_en : str
 		The enable pin for the TP portion of the PHY.
 
-	tx_en : tuple[str, str]
+	tx_en : str
 		The enable pin for the TX portion of the PHY.
 
-	aa_en : tuple[str, str]
+	aa_en : str
 		The enable pin for the AA portion of the PHY.
 
-	bsy_en : tuple[str, str]
+	bsy_en : str
 		The enable pin for the BSY portion of the PHY.
 
-	sel_en : tuple[str, str]
+	sel_en : str
 		The enable pin for the SEL portion of the PHY.
 
 	mr_en : str

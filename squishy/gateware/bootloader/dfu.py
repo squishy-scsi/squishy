@@ -1,6 +1,4 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging                          as log
-
 from enum                               import IntEnum, unique
 from struct                             import pack, unpack
 from typing                             import (

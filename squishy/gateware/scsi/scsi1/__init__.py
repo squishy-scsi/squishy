@@ -1,12 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from math             import ceil
-
 from amaranth         import *
 
-from ....misc.utility import us_to_s, ns_to_s
-
 from ..common         import *
-
 
 __all__ = (
 	'Device',
