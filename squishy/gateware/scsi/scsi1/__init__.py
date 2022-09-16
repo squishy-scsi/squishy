@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth         import *
+from amaranth         import Elaboratable, Module
 
 from ..common         import *
 

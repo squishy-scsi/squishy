@@ -1,7 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing         import Literal, Union, Tuple, Optional
+from typing         import (
+	Literal, Union, Tuple, Optional
+)
 
-from amaranth.build import *
+from amaranth.build import (
+	Attrs, Pins, PinsN, Subsignal, DiffPairs, Resource
+)
 
 __all__ = (
 	'SCSIConnectorResource',
@@ -19,7 +23,11 @@ PinDiff = Tuple[str, str]
 PinDef  = Union[str, PinDiff]
 PinDir  = Literal['i', 'o', 'io']
 
-def TransceiverPairs(tx: str, rx: str, *, invert: bool = False, conn: str = None, assert_width: bool = None) -> Tuple[Subsignal]:
+def TransceiverPairs(
+	tx: str, rx: str, *,
+	invert: bool = False, conn: str = None,
+	assert_width: Optional[int] = None
+) -> Tuple[Subsignal]:
 	'''Returns a tuple of subsignals for RX and TX pairs
 
 	Parameters

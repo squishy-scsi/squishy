@@ -97,7 +97,7 @@ class SquishyApplet(metaclass = ABCMeta):
 			raise ValueError(f'Applet `hardware_rev` must be a str or tuple of str not `{type(self.hardware_rev)!r}`')
 
 
-	def supported_platform(self, platform) -> bool:
+	def supported_platform(self, platform: str) -> bool:
 		''' Check to see if the given platform is supported
 
 		Parameters
