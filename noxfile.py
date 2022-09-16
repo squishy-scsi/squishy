@@ -28,6 +28,7 @@ def lint_mypy(session: nox.Session) -> None:
 	out_dir = (BUILD_DIR / 'mypy')
 	session.install('mypy')
 	session.install('lxml')
+	session.run('mypy', '--non-interactive', '--install-types')
 	session.run('mypy', '-p', 'squishy', '--html-report', str(out_dir.resolve()))
 
 @nox.session
