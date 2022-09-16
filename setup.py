@@ -110,13 +110,14 @@ setup(
 	},
 
 	extras_require    = {
-		'toolchain': [
-			'yowasp-yosys',
-			# For rev1
-			'yowasp-nextpnr-ice40-8k',
-			# For rev2
-			'yowasp-nextpnr-ecp5-45k'
-		],
+		# yowasp-nextpnr is broken atm
+		# 'toolchain': [
+		# 	'yowasp-yosys',
+		# 	# For rev1
+		# 	'yowasp-nextpnr-ice40-8k',
+		# 	# For rev2
+		# 	'yowasp-nextpnr-ecp5-45k'
+		# ],
 
 		'firmware': [
 			'meson',

@@ -124,6 +124,10 @@ Next, you need to install [`yosys`](https://github.com/YosysHQ/yosys) and [`next
 
 #### YoWASP Install
 
+```{warning}
+There is an issue with the YoWASP toolchain failing timings for the design synthesis, It is not advisable to use it until this issue has been resolved, please use the Native Install instructions.
+```
+
 The first option is to install the [YoWASP](https://yowasp.org/) WebAssembly based toolchain which is mostly fully cross platform and lives in your python environment. This is the recommended way to install the toolchain on macOS and Windows.
 
 You can do this by running the following inside the Squishy virtual environment:
