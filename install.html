@@ -42,7 +42,7 @@
             <a href="index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+g0304038
+                0.1.dev1+gbb3539b
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -327,6 +327,10 @@
 <p>Next, you need to install <a class="reference external" href="https://github.com/YosysHQ/yosys"><code class="docutils literal notranslate"><span class="pre">yosys</span></code></a> and <a class="reference external" href="https://github.com/YosysHQ/nextpnr"><code class="docutils literal notranslate"><span class="pre">nextpnr</span></code></a> onto your system if it is not there already.</p>
 <section id="yowasp-install">
 <h4>YoWASP Install<a class="headerlink" href="#yowasp-install" title="Permalink to this heading"></a></h4>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>There is an issue with the YoWASP toolchain failing timings for the design synthesis, It is not advisable to use it until this issue has been resolved, please use the Native Install instructions.</p>
+</div>
 <p>The first option is to install the <a class="reference external" href="https://yowasp.org/">YoWASP</a> WebAssembly based toolchain which is mostly fully cross platform and lives in your python environment. This is the recommended way to install the toolchain on macOS and Windows.</p>
 <p>You can do this by running the following inside the Squishy virtual environment:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(squishy.venv)</span> <span class="gp">$ </span>pip install yowasp-yosys yowasp-nextpnr-ice40-8k yowasp-nextpnr-ecp5-45k
