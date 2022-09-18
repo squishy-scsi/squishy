@@ -1,24 +1,50 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging                      as log
-from typing                         import (
-	List, Tuple, Type, Union
+import logging                          as log
+from re import S
+
+from typing                             import (
+	Iterable, List, Tuple, Type, Union, Optional,
+	Dict, Any
 )
 
-import usb1
+from time                               import (
+	sleep
+)
 
-from usb_protocol.types             import (
+from usb1                               import (
+	USBContext, USBDevice, USBError,
+	USBDeviceHandle, USBConfiguration,
+	USBInterface, USBInterfaceSetting
+)
+
+from usb_protocol.types                 import (
 	LanguageIDs
 )
-from usb_protocol.types.descriptors import (
-	InterfaceClassCodes, ApplicationSubclassCodes
+
+from usb_protocol.types.descriptors.dfu import (
+	FunctionalDescriptor
 )
 
+from rich.progress                      import (
+	Progress
+)
 
-from ..config           import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
+from .dfu_types                         import (
+	DFU_CLASS, DFURequests, DFUState, DFUStatus
+)
+
+from ..config                           import (
+	USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
+)
 
 __all__ = (
 	'SquishyHardwareDevice',
 )
+
+# Due to how libusb1 works and how we're using it
+# This needs to be global so it can live for the
+# life of the runtime
+_USB_CTX: Optional[USBContext] = None
 
 class SquishyHardwareDevice:
 	'''Squishy Hardware Device
@@ -43,16 +69,224 @@ class SquishyHardwareDevice:
 		The revision of the hardware of the device.
 
 	'''
-	_DFU_CLASS = (int(InterfaceClassCodes.APPLICATION), int(ApplicationSubclassCodes.DFU))
+
+	def _get_dfu_interface(self, cfg: Optional[USBConfiguration]) -> Optional[int]:
+		''' Get the interface ID that matches the ``_DFU_CLASS`` '''
+		if self._dfu_iface is None and cfg is not None:
+			for cfg in self._dev.iterConfigurations():
+				for iface in cfg:
+					for ifset in iface:
+						if ifset.getClassTuple() == DFU_CLASS:
+							self._dfu_iface = ifset.getNumber()
+							return self._dfu_iface
+
+		return self._dfu_iface
+
+	def _get_dfu_status(self) -> Tuple[DFUStatus, DFUState]:
+		''' Get DFU Status '''
+		cfg = self._usb_hndl.getConfiguration()
+		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		if interface_id is None:
+			raise RuntimeError('Unable to get interface ID for DFU Device')
+
+		self._usb_hndl.claimInterface(interface_id)
+
+		data: Optional[bytearray] = self._usb_hndl.controlRead(
+			0b00100001,
+			DFURequests.GetStatus,
+			0,
+			interface_id,
+			6,
+			self._timeout
+		)
+		if data is None:
+			raise RuntimeError(f'Unable to send control request DFU_GETSTATUS to interface {interface_id}')
+
+		self._usb_hndl.releaseInterface(interface_id)
 
 
-	def __init__(self, dev: usb1.USBDevice, serial: str, **kwargs) -> None:
-		self._dev     = dev
+		return (DFUStatus(data[0]), DFUState(data[4]))
+
+	def _get_dfu_state(self) -> DFUState:
+		''' Get the DFU State '''
+		cfg = self._usb_hndl.getConfiguration()
+		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		if interface_id is None:
+			raise RuntimeError('Unable to get interface ID for DFU Device')
+
+		self._usb_hndl.claimInterface(interface_id)
+
+		data: Optional[bytearray] = self._usb_hndl.controlRead(
+			0b00100001,
+			DFURequests.GetState,
+			0,
+			interface_id,
+			1,
+			self._timeout
+		)
+		if data is None:
+			raise RuntimeError(f'Unable to send control request DFU_GETSTATE to interface {interface_id}')
+
+
+		self._usb_hndl.releaseInterface(interface_id)
+
+
+		return DFUState(data[0])
+
+	def _send_dfu_detach(self) -> bool:
+		''' Invoke a DFU Detach '''
+		cfg = self._usb_hndl.getConfiguration()
+		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		if interface_id is None:
+			raise RuntimeError('Unable to get interface ID for DFU Device')
+
+		self._usb_hndl.claimInterface(interface_id)
+
+		try:
+			sent: int = self._usb_hndl.controlWrite(
+				0b00100001,
+				DFURequests.Detach,
+				0,
+				interface_id,
+				bytearray(),
+				self._timeout
+			)
+		except USBError:
+			sent = 0
+
+		self._usb_hndl.releaseInterface(interface_id)
+
+
+		return sent == 0
+
+	def _get_dfu_altmodes(self) -> Dict[int, Any]:
+		''' Get the DFU alt-modes '''
+		log.debug('Getting DFU alt-modes')
+
+		cfg = self._usb_hndl.getConfiguration()
+		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		if interface_id is None:
+			raise RuntimeError('Unable to get interface ID for DFU Device')
+
+		alt_modes: Dict[int, str] = dict()
+
+		for cfg in self._dev.iterConfigurations():
+			for iface in cfg:
+				for ifset in iface:
+					if ifset.getNumber() == interface_id:
+						alt_modes[
+							ifset.getAlternateSetting()
+						] = self._usb_hndl.getStringDescriptor(
+							ifset.getDescriptor(),
+							LanguageIDs.ENGLISH_US
+						)
+
+		log.debug(f'Found {len(alt_modes.keys())} alt-modes')
+
+		return alt_modes
+
+	def _get_dfu_tx_size(self) -> Optional[int]:
+		''' Get the DFU transaction size '''
+		cfg = self._usb_hndl.getConfiguration()
+		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		if interface_id is None:
+			raise RuntimeError('Unable to get interface ID for DFU Device')
+
+		for cfg in self._dev.iterConfigurations():
+			for iface in cfg:
+				for ifset in iface:
+					if ifset.getNumber() == interface_id:
+						ext = ifset.getExtra()
+						assert len(ext) == 1, '*sadface*'
+						func_desc = FunctionalDescriptor.parse(ext[0])
+						return func_desc.wTransferSize
+
+		return None
+
+	def _enter_dfu_mode(self) -> bool:
+		''' Enter the DFU bootloader '''
+		if self._get_dfu_state() == DFUState.AppIdle:
+			log.debug('Device is in Application mode, attempting to detach')
+			self._send_dfu_detach()
+			self._usb_hndl.close()
+			self._dev.close()
+			self._dfu_iface = None
+
+			devices = list()
+
+			log.info(f'Waiting for device \'{self.serial}\' to come back')
+			sleep(self._timeout / 1000)
+			while len(devices) == 0:
+				devices = list(filter(
+					lambda sn, _, __: sn == self.serial,
+					SquishyHardwareDevice.enumerate()
+				))
+
+			log.debug('Device came back, re-caching device handle')
+			self._dev: USBDevice = devices[0][2]
+			self._usb_hndl       = self._dev.open()
+
+		state = self._get_dfu_state()
+
+		log.debug('Checking DFU state')
+		if state != DFUState.DFUIdle:
+			log.error(f'Device was in improper DFU state: {state}')
+			return False
+		log.debug('Device is in DFUIdle, ready for operations')
+		return True
+
+	def _send_dfu_download(self, data: bytearray, chunk_num: int) -> bool:
+		''' Send a DFU Download transaction '''
+
+		cfg = self._usb_hndl.getConfiguration()
+		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		if interface_id is None:
+			raise RuntimeError('Unable to get interface ID for DFU Device')
+
+		self._usb_hndl.claimInterface(interface_id)
+
+		sent: int = self._usb_hndl.controlWrite(
+			0b00100001,
+			DFURequests.Download,
+			chunk_num,
+			interface_id,
+			data,
+			self._timeout
+		)
+
+		self._usb_hndl.releaseInterface(interface_id)
+
+		return sent == len(data)
+
+	def can_dfu(self) -> bool:
+		''' Check to see if the Device can DFU '''
+		log.debug('Checking to see if device is DFU capable')
+		return any(
+			filter(
+				lambda t: t == DFU_CLASS,
+				map(
+					lambda s: s.getClassTupple(),
+					self._dev.iterSettings()
+				)
+			)
+		)
+
+	def __init__(self, dev: USBDevice, serial: str, timeout: int = 2500, **kwargs) -> None:
+		self._dev      = dev
+		self._usb_hndl = self._dev.open()
+		if not self.can_dfu():
+			raise RuntimeError(f'The device {dev.getVendorID():04x}:{dev.getProductID():04x} @ {dev.getBusNumber()} is not DFU capable.')
+		self._timeout: int             = timeout
+		self._dfu_iface: Optional[int] = None
 		self.serial   = serial
 		self.raw_ver  = dev.getbcdDevice()
 		self.dec_ver  = self._decode_version(self.raw_ver)
 		self.rev      = int(self.dec_ver)
 		self.gate_ver = int((self.dec_ver - self.rev) * 100)
+
+	def __del__(self):
+		self._usb_hndl.close()
+		self._dev.close()
 
 	@staticmethod
 	def _decode_version(bcd: int) -> float:
@@ -72,18 +306,6 @@ class SquishyHardwareDevice:
 		)
 
 		hndl.close()
-
-	def can_dfu(self) -> bool:
-		''' Check to see if the Device can DFU '''
-		return any(
-			filter(
-				lambda t: t == self._DFU_CLASS,
-				map(
-					lambda s: s.getClassTupple(),
-					self._dev.iterSettings()
-				)
-			)
-		)
 
 	@classmethod
 	def get_device(cls: Type['SquishyHardwareDevice'], serial: str = None) -> Union[None, 'SquishyHardwareDevice']:
@@ -160,7 +382,7 @@ class SquishyHardwareDevice:
 
 
 	@classmethod
-	def enumerate(cls: Type['SquishyHardwareDevice']) -> List[Tuple[str, float, usb1.USBDevice]]:
+	def enumerate(cls: Type['SquishyHardwareDevice']) -> List[Tuple[str, float, USBDevice]]:
 		'''Enumerate attached devices
 
 		Returns
@@ -170,31 +392,104 @@ class SquishyHardwareDevice:
 			enumeration critera.
 
 		'''
+		global _USB_CTX
 
 		devices = list()
-		with usb1.USBContext() as usb_ctx:
-			for dev in usb_ctx.getDeviceIterator():
-				vid = dev.getVendorID()
-				pid = dev.getProductID()
 
-				if vid == USB_VID and (pid == USB_PID_APPLICATION or pid == USB_PID_BOOTLOADER):
-					try:
-						hndl = dev.open()
+		if _USB_CTX is None:
+			_USB_CTX = USBContext()
 
-						sn = hndl.getStringDescriptor(
-							dev.getSerialNumberDescriptor(),
-							LanguageIDs.ENGLISH_US
-						)
-						ver = cls._decode_version(dev.getbcdDevice())
+		for dev in _USB_CTX.getDeviceIterator():
+			vid = dev.getVendorID()
+			pid = dev.getProductID()
 
-						devices.append((sn, ver, dev))
+			if vid == USB_VID and (pid == USB_PID_APPLICATION or pid == USB_PID_BOOTLOADER):
+				try:
+					hndl = dev.open()
 
-						hndl.close()
-					except usb1.USBError as e:
-						log.error(f'Unable to open suspected squishy device: {e}')
+					sn = hndl.getStringDescriptor(
+						dev.getSerialNumberDescriptor(),
+						LanguageIDs.ENGLISH_US
+					)
+					ver = cls._decode_version(dev.getbcdDevice())
 
+					devices.append((sn, ver, dev))
+					hndl.close()
+				except USBError as e:
+					log.error(f'Unable to open suspected squishy device: {e}')
 		return devices
 
+	def get_altmodes(self):
+		return self._get_dfu_altmodes()
+
+	def reset(self) -> bool:
+		''' Reset the device '''
+		return self._send_dfu_detach()
+
+	def upload(self, data: bytearray, slot: int, progress: Optional[Progress] = None) -> bool:
+		''' Push Firmware/Gateware to device '''
+		if not self._enter_dfu_mode():
+			return False
+
+		log.info(f'Starting DFU upload of {len(data)} bytes to slot {slot}')
+
+		cfg = self._usb_hndl.getConfiguration()
+		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		if interface_id is None:
+			raise RuntimeError('Unable to get interface ID for DFU Device')
+
+		self._usb_hndl.claimInterface(interface_id)
+
+		log.debug(f'Setting interface {interface_id} alt to {slot}')
+		self._usb_hndl.setInterfaceAltSetting(interface_id, slot)
+		self._usb_hndl.releaseInterface(interface_id)
+
+
+		def chunker(size: int, data: Iterable):
+			from itertools import zip_longest
+			return zip_longest(*[iter(data)]*size)
+
+		tx_size = self._get_dfu_tx_size()
+		if tx_size is None:
+			raise RuntimeError('Unable to get DFU transaction size for device')
+
+
+		prog_task = progress.add_task('Programming', start = True, total = len(data))
+
+		log.debug(f'DFU Transfer size is {tx_size}')
+
+		for chunk_num, chunk in enumerate(chunker(tx_size, data)):
+			chunk_data = bytearray(b for b in chunk if b is not None)
+			log.debug(f'Sending block {chunk_num}')
+			if not self._send_dfu_download(chunk_data, chunk_num):
+				log.error(f'DFU Transaction failed, did not sent all data for chunk {chunk_num}')
+				return False
+			progress.update(prog_task, advance = len(chunk_data))
+			while self._get_dfu_state() != DFUState.DlSync:
+				sleep(0.05)
+
+			status, state = self._get_dfu_status()
+			log.debug(f'DFU Status: {status}')
+			if state != DFUState.DlSync:
+				log.error(f'DFU State is {state} not DlIdle, aborting')
+				return False
+
+		chunk_num += 1
+
+		log.debug(f'Wrote {chunk_num} chunks to device')
+		assert self._send_dfu_download(bytearray(), chunk_num), 'Uoh nowo'
+		status, state = self._get_dfu_status()
+
+		if state != DFUState.DFUIdle:
+			log.error('Device did not go idle after upload')
+			return False
+		progress.update(prog_task, completed = True)
+		return True
+
+
+	def download(self, slot: int) -> Optional[bytearray]:
+		''' Pull Firmware/Gateware from device (if supported) '''
+		pass
 
 	def __repr__(self) -> str:
 		return f'<SquishyHardwareDevice SN=\'{self.serial}\' REV=\'{self.rev}\' ADDR={self._dev.getDeviceAddress()}>'
