@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging                          as log
-from re import S
 
 from typing                             import (
 	Iterable, List, Tuple, Type, Union, Optional,
@@ -13,8 +12,7 @@ from time                               import (
 
 from usb1                               import (
 	USBContext, USBDevice, USBError,
-	USBDeviceHandle, USBConfiguration,
-	USBInterface, USBInterfaceSetting
+	USBConfiguration
 )
 
 from usb_protocol.types                 import (
