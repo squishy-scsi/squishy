@@ -17,7 +17,7 @@ from ..core                              import ICE40ClockDomainGenerator
 from .resources                          import SCSIPhyResource
 
 from .mixins                             import (
-	SquishyCacheMixin, SquishyProgramMixin
+	SquishyCacheMixin
 )
 
 from ..bootloader.rev1                   import Bootloader as iCE40Bootloader
@@ -41,7 +41,7 @@ own, however it is recommended to start with the :py:class:`squishy.gateware.pla
 
 '''
 
-class SquishyRev1(SquishyCacheMixin, SquishyProgramMixin, LatticeICE40Platform):
+class SquishyRev1(SquishyCacheMixin, LatticeICE40Platform):
 	'''Squishy hardware Revision 1
 
 	This is the Amaranth platform for the first revision of the Squishy hardware.

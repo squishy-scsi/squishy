@@ -6,6 +6,11 @@ from typing               import (
 	List, Dict, Union
 )
 
+from rich.progress       import (
+	Progress, SpinnerColumn, BarColumn,
+	TextColumn
+)
+
 from ..config            import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
 from ..core.collect      import collect_members, predicate_applet
 from ..core.device       import SquishyHardwareDevice
@@ -293,19 +298,25 @@ class Applet(SquishyAction):
 			scsi_config = scsi_config,
 		)
 
+		with Progress(
+			SpinnerColumn(),
+			TextColumn('[progress.description]{task.description}'),
+			BarColumn(bar_width = None),
+			transient = True
+		) as progress:
 
-
-		device.build(
-			gateware,
-			name         = 'squishy_applet',
-			build_dir    = args.build_dir,
-			do_build     = True,
-			do_program   = not args.build_only,
-			synth_opts   = ' '.join(synth_opts),
-			verbose      = args.loud,
-			nextpnr_opts = ' '.join(pnr_opts),
-			skip_cache   = args.skip_cache,
-		)
+			device.build(
+				gateware,
+				name         = 'squishy_applet',
+				build_dir    = args.build_dir,
+				do_build     = True,
+				do_program   = not args.build_only,
+				synth_opts   = ' '.join(synth_opts),
+				verbose      = args.loud,
+				nextpnr_opts = ' '.join(pnr_opts),
+				skip_cache   = args.skip_cache,
+				progress     = progress,
+			)
 
 
 		return applet.run(device, args)

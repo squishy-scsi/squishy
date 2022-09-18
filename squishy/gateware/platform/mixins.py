@@ -2,15 +2,13 @@
 import logging          as log
 
 from rich.progress      import (
-	Progress, SpinnerColumn, BarColumn,
-	TextColumn
+	Progress
 )
 
 from ...core.cache      import SquishyBitstreamCache
 
 __all__ = (
 	'SquishyCacheMixin',
-	'SquishyProgramMixin',
 )
 
 __doc__ = '''\
@@ -19,20 +17,6 @@ The following are mixins that are used to add additional features to Amaranth pl
 without any extra setup work for the platform itself.
 
 '''
-
-class SquishyProgramMixin:
-	'''Squishy Platform programming mixin.
-
-	This mixin overrides the :py:class:`amaranth.build.plat.Platform` `toolchain_program` method
-	to properly find and program Squishy boards.
-
-	'''
-
-	def __init__(self, *args, **kwargs) -> None:
-		super().__init__(*args, **kwargs)
-
-	def toolchain_program(self, products, name: str, **kwargs):
-		log.info('Programming')
 
 class SquishyCacheMixin:
 	'''Squishy Platform Cache mixin.
@@ -94,21 +78,12 @@ class SquishyCacheMixin:
 
 
 	def build(self, elaboratable, name: str = 'top',
-				build_dir: str = 'build', do_build: bool = False,
-				program_opts: str = None, do_program: bool = False, **kwargs):
+		build_dir: str = 'build', do_build: bool = False,
+		program_opts: str = None, do_program: bool = False,
+		progress: Progress = None, **kwargs
+	):
 
-		with Progress(
-			SpinnerColumn(),
-			TextColumn('[progress.description]{task.description}'),
-			BarColumn(bar_width = None),
-			transient = True
-		) as progress:
+		name, prod = self._build_elaboratable(elaboratable, progress, name, build_dir, do_build, program_opts, **kwargs)
 
-			name, prod = self._build_elaboratable(elaboratable, progress, name, build_dir, do_build, program_opts, **kwargs)
-
-			if not do_build or not do_program:
-				return (name, prod)
-
-			programing_task = progress.add_task('Programming Device', start = False)
-			super().toolchain_program(prod, name, **(program_opts or {}))
-			progress.update(programing_task, completed = True)
+		if not do_build or not do_program:
+			return (name, prod)

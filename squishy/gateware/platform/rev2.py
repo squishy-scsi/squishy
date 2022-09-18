@@ -13,7 +13,7 @@ from ...config                           import SCSI_VID
 from ...core.flash                       import FlashGeometry
 
 from ..core                              import ECP5ClockDomainGenerator
-from .mixins                             import SquishyCacheMixin, SquishyProgramMixin
+from .mixins                             import SquishyCacheMixin
 
 __doc__ = '''\
 
@@ -33,7 +33,7 @@ build your own, or keep an eye out for when the campaign goes live.
 
 '''
 
-class SquishyRev2(SquishyCacheMixin, SquishyProgramMixin, LatticeECP5Platform):
+class SquishyRev2(SquishyCacheMixin, LatticeECP5Platform):
 	'''Squishy hardware Revision 2
 
 	This is the Amaranth platform for the first revision of the Squishy hardware.

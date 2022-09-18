@@ -7,6 +7,11 @@ from argparse            import ArgumentParser, Namespace
 
 from amaranth.build.run  import LocalBuildProducts
 
+from rich.progress       import (
+	Progress, SpinnerColumn, BarColumn,
+	TextColumn
+)
+
 from ..config            import SQUISHY_BUILD_DIR
 from ..core.device       import SquishyHardwareDevice
 from ..core.flash        import FlashGeometry
@@ -236,18 +241,26 @@ class Provision(SquishyAction):
 		log.info(f'Assigning device serial number \'{serial_number}\'')
 		bootloader = device.bootloader_module(serial_number = serial_number)
 
-		log.info('Building bootloader gateware')
-		name, prod = device.build(
-			bootloader,
-			name         = 'squishy_bootloader',
-			build_dir    = args.build_dir,
-			do_build     = True,
-			do_program   = False,
-			synth_opts   = ' '.join(synth_opts),
-			verbose      = args.loud,
-			nextpnr_opts = ' '.join(pnr_opts),
-			skip_cache   = args.skip_cache,
-		)
+		with Progress(
+			SpinnerColumn(),
+			TextColumn('[progress.description]{task.description}'),
+			BarColumn(bar_width = None),
+			transient = True
+		) as progress:
+
+			log.info('Building bootloader gateware')
+			name, prod = device.build(
+				bootloader,
+				name         = 'squishy_bootloader',
+				build_dir    = args.build_dir,
+				do_build     = True,
+				do_program   = False,
+				synth_opts   = ' '.join(synth_opts),
+				verbose      = args.loud,
+				nextpnr_opts = ' '.join(pnr_opts),
+				skip_cache   = args.skip_cache,
+				progress     = progress,
+			)
 
 		log.info('Building bootloader bitstream')
 		path = self._build_multiboot(args.build_dir, 'squishy-unified.bin', (name, prod), device.flash['geometry'])
