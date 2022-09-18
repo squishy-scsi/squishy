@@ -1,7 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import shutil
-from pathlib import Path
+from pathlib        import Path
+from setuptools_scm import (
+	get_version, ScmVersion
+)
 
 import nox
 
@@ -21,6 +24,20 @@ nox.options.sessions = (
 	'flake8',
 	'mypy'
 )
+
+def squishy_version() -> str:
+	def scheme(version: ScmVersion) -> str:
+		if version.tag and not version.distance:
+			return version.format_with("")
+		else:
+			return version.format_choice("+{node}", "+{node}.dirty")
+
+	return get_version(
+		root           = str(ROOT_DIR),
+		version_scheme = 'guess-next-dev',
+		local_scheme   = scheme,
+		relative_to    = __file__
+	)
 
 @nox.session(reuse_venv = True)
 def test(session: nox.Session) -> None:
