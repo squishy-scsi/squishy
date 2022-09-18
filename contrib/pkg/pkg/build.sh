@@ -1,15 +1,11 @@
 #!/bin/bash
-VERSION=$(git describe --tag --always)
+VERSION=${2}
 PKG_NAME="python3-squishy-${VERSION}"
-
-pushd ../../../
-python3 setup.py sdist
-popd
 
 mkdir ${PKG_NAME}
 
 pushd ${PKG_NAME}
-tar xzf ../../../../dist/*.tar.gz --strip-components=1
+tar xzf ${1}/*.tar.gz --strip-components=1
 popd
 
 tar cfJ ${PKG_NAME}.orig.tar.xz ${PKG_NAME}
