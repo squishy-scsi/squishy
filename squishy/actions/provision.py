@@ -25,7 +25,7 @@ class Provision(SquishyAction):
 	pretty_name  = 'Squishy Provision'
 	short_help   = 'Squishy first-time provisioning'
 	description  = 'Build squishy bootloader flash image'
-	requires_dev = False
+	requires_dev = True
 
 	def _build_slots(self, flash_geometry: FlashGeometry) -> bytes:
 		'''  '''
@@ -170,8 +170,9 @@ class Provision(SquishyAction):
 		# Synth Options
 		synth_options.add_argument(
 			'--no-abc9',
-			action = 'store_true',
-			help   = 'Disable use of Yosys\' ABC9'
+			action  = 'store_true',
+			default = False,
+			help    = 'Disable use of Yosys\' ABC9'
 		)
 
 		# Provisioning Options
@@ -180,6 +181,13 @@ class Provision(SquishyAction):
 			type    = str,
 			default = None,
 			help    = 'Specify the device serial number rather than automatically generating it'
+		)
+
+		provision_opts.add_argument(
+			'--whole-device', '-W',
+			action = 'store_true',
+			default = False,
+			help   = 'Program the whole device, not just the bootloader'
 		)
 
 	def run(self, args: Namespace, dev: SquishyHardwareDevice = None) -> int:
@@ -262,12 +270,24 @@ class Provision(SquishyAction):
 				progress     = progress,
 			)
 
-		log.info('Building bootloader bitstream')
-		path = self._build_multiboot(args.build_dir, 'squishy-unified.bin', (name, prod), device.flash['geometry'])
+			if args.whole_device:
+				log.info('Building whole-device bitstream')
+				path = self._build_multiboot(args.build_dir, 'squishy-unified.bin', (name, prod), device.flash['geometry'])
+				if args.build_only:
+					log.info(f'Please flash the file at \'{path}\' on to the hardware to provision the device.')
+			else:
+				if args.build_only:
+					log.info(f'Or use \'dfu-util\' to flash \'{name}\' into slot 0 to update the bootloader')
+				else:
+					file_name = name
+					if not file_name.endswith('.bin'):
+						file_name += '.bin'
 
-		if not args.build_only:
-			log.info('Programming')
-		else:
-			log.info(f'Please flash the file at \'{path}\' on to the hardware to provision the device.')
-			log.info(f'Or use \'dfu-util\' to flash \'{name}\' into slot 0 to update the bootloader')
-		return 0
+					log.info(f'Programming bootloader with {file_name}')
+					if dev.upload(prod.get(file_name), 0, progress):
+						log.info('Resetting Device')
+						dev.reset()
+					else:
+						log.error('Device upload failed!')
+						return 1
+			return 0
