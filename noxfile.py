@@ -85,3 +85,14 @@ def upload_dist(session: nox.Session) -> None:
 		'upload', f'{DIST_DIR}/*'
 	)
 
+
+
+@nox.session
+def pkg_pacman(session: nox.Session) -> None:
+	build_dists(session)
+	pkg_dir = (PKGS_DIR / 'pkg')
+
+
+	with session.chdir(pkg_dir):
+		session.run('bash', 'build.sh', str(DIST_DIR), squishy_version(), external = True)
+
