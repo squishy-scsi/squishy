@@ -1,0 +1,3 @@
+requests
+nox
+setuptools_scm
