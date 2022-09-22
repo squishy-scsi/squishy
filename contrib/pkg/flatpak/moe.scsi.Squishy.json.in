@@ -1,0 +1,29 @@
+{
+	"$schema": "https://raw.githubusercontent.com/flatpak/flatpak-builder/main/data/flatpak-manifest.schema.json",
+	"id": "moe.scsi.Squishy",
+	"runtime": "org.kde.Platform",
+	"runtime-version": "5.15",
+	"sdk": "org.kde.Sdk",
+
+	"command": "python",
+
+	"modules": [
+		"./modules/python.json",
+		"./modules/libusb.json",
+		{
+			"name": "python-jinja2",
+			"buildsystem": "simple",
+			"build-commands": [
+				""
+			],
+			"sources": [
+				{
+					"type": "file",
+					"url": "",
+					"sha256": ""
+				}
+			]
+
+		}
+	]
+}

@@ -1,9 +1,0 @@
-app-id: moe.scsi.Squishy
-runtime: org.kde.Platform
-runtime-version: '6.3'
-sdk: org.kde.Sdk
-modules:
-  name: squisy
-  buildsystem: simple
-  build-commands:
-    - pip install --prefix=/app .
