@@ -42,7 +42,7 @@
             <a href="../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+g478fc3d
+                0.1.dev1+g066b65d
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -313,7 +313,7 @@ applets by name.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet.init_applet">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init_applet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_applet" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init_applet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AppletElaboratable</span></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_applet" title="Permalink to this definition"></a></dt>
 <dd><p>Applet Initialization</p>
 <p>Called to initialize the applet prior to
 the applet being built and ran</p>
@@ -322,10 +322,10 @@ the applet being built and ran</p>
 <dd class="field-odd"><p><strong>args</strong> (<em>argsparse.Namespace</em>) – Any command line arguments passed.</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>True if the was initialized, otherwise False.</p>
+<dd class="field-even"><p>The applet logic/elaboratable</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)">bool</a></p>
+<dd class="field-odd"><p>AppletElaboratable</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.10)"><strong>NotImplementedError</strong></a> – The abstract method must be implemented by the applet</p>
@@ -341,31 +341,6 @@ the applet being built and ran</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><p><strong>parser</strong> (<a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser" title="(in Python v3.10)"><em>argparse.ArgumentParser</em></a>) – The root argparse parser.</p>
-</dd>
-<dt class="field-even">Raises</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.10)"><strong>NotImplementedError</strong></a> – The abstract method must be implemented by the applet</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="squishy.applets.SquishyApplet.build">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">build</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">interfaces</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">platform</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Union" title="(in Python v3.10)"><span class="pre">Union</span></a><span class="p"><span class="pre">[</span></span><span class="pre">Elaboratable</span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="pre">Module</span><span class="p"><span class="pre">]</span></span></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.build" title="Permalink to this definition"></a></dt>
-<dd><p>Applet build step</p>
-<p>Called to build the gateware for the applet.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>interfaces</strong> (<em>squishy.gateware.Meta</em>) – The gateware meta object for interfacing with the rest of the gateware.</p></li>
-<li><p><strong>platform</strong> (<em>amaranth.build.plat.TemplatedPlatform</em>) – The hardware platform being used for synthesis.</p></li>
-<li><p><strong>args</strong> (<em>argsparse.Namespace</em>) – Any command line arguments passed.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p>Either a complete elaboratable or a Module.</p>
-</dd>
-<dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p>Union[amaranth.Elaboratable, amaranth.Module]</p>
 </dd>
 <dt class="field-even">Raises</dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.10)"><strong>NotImplementedError</strong></a> – The abstract method must be implemented by the applet</p>
