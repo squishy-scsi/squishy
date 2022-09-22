@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from abc    import ABCMeta, abstractmethod
-from typing import Tuple, Union
+from abc        import ABCMeta, abstractmethod
+from typing     import Tuple, Union
 
-import amaranth
+
+from ..gateware import AppletElaboratable
 
 __all__ = (
 	'SquishyApplet',
@@ -150,7 +151,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		pass
 
 	@abstractmethod
-	def init_applet(self, args) -> bool:
+	def init_applet(self, args) -> AppletElaboratable:
 		'''Applet Initialization
 
 		Called to initialize the applet prior to
@@ -163,8 +164,8 @@ class SquishyApplet(metaclass = ABCMeta):
 
 		Returns
 		-------
-		bool
-			True if the was initialized, otherwise False.
+		AppletElaboratable
+			The applet logic/elaboratable
 
 		Raises
 		------
@@ -185,37 +186,6 @@ class SquishyApplet(metaclass = ABCMeta):
 		----------
 		parser : argparse.ArgumentParser
 			The root argparse parser.
-
-		Raises
-		------
-		NotImplementedError
-			The abstract method must be implemented by the applet
-
-		'''
-
-		raise NotImplementedError('Applets must implement this method')
-
-	@abstractmethod
-	def build(self, interfaces, platform, args) -> Union[amaranth.Elaboratable, amaranth.Module]:
-		'''Applet build step
-
-		Called to build the gateware for the applet.
-
-		Parameters
-		----------
-		interfaces : squishy.gateware.Meta
-			The gateware meta object for interfacing with the rest of the gateware.
-
-		platform : amaranth.build.plat.TemplatedPlatform
-			The hardware platform being used for synthesis.
-
-		args : argsparse.Namespace
-			Any command line arguments passed.
-
-		Returns
-		-------
-		Union[amaranth.Elaboratable, amaranth.Module]
-			Either a complete elaboratable or a Module.
 
 		Raises
 		------

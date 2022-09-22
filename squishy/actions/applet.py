@@ -11,6 +11,8 @@ from rich.progress       import (
 	TextColumn
 )
 
+from squishy.applets import SquishyApplet
+
 from ..config            import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
 from ..core.collect      import collect_members, predicate_applet
 from ..core.device       import SquishyHardwareDevice
@@ -165,7 +167,6 @@ class Applet(SquishyAction):
 			default = 0x01,
 			help    = 'The SCSI Device ID to use'
 		)
-
 		# UART Options
 		uart_options.add_argument(
 			'--enable-uart', '-U',
@@ -225,8 +226,8 @@ class Applet(SquishyAction):
 
 		apl = list(filter(lambda a: a['name'] == args.applet, self.applets))[0]
 
-		name   = apl['name']
-		applet = apl['instance']
+		name: str             = apl['name']
+		applet: SquishyApplet = apl['instance']
 
 		if not applet.supported_platform(args.hardware_platform):
 			log.error(f'Applet {name} does not support platform {args.hardware_platform}')
@@ -236,7 +237,7 @@ class Applet(SquishyAction):
 		if applet.preview:
 			log.warning('This applet is a preview, it may be buggy or not work at all')
 
-		device = AVAILABLE_PLATFORMS[args.hardware_platform]()
+		platform = AVAILABLE_PLATFORMS[args.hardware_platform]()
 
 		pnr_opts = []
 		synth_opts = []
@@ -271,7 +272,7 @@ class Applet(SquishyAction):
 		if not args.no_abc9:
 			synth_opts.append('-abc9')
 
-		applet.init_applet(args)
+		applet_elaboratable = applet.init_applet(args)
 
 		uart_config = {
 			'enabled'  : args.enable_uart,
@@ -281,6 +282,11 @@ class Applet(SquishyAction):
 		}
 
 		usb_config = {
+			'vid': platform.usb_vid,
+			'pid': platform.usb_pid_app,
+			'manufacturer': platform.usb_mfr,
+			'serial_number': dev.serial,
+			'product': platform.usb_prod[platform.usb_pid_app],
 			'webusb': {
 				'enabled': args.enable_webusb,
 				'url'    : args.webusb_url,
@@ -288,14 +294,18 @@ class Applet(SquishyAction):
 		}
 
 		scsi_config = {
+			'version': applet_elaboratable.scsi_version,
+			'vid': platform.scsi_vid,
 			'did': args.scsi_did,
 		}
 
 
 		gateware = Squishy(
+			revision    = dev.rev,
 			uart_config = uart_config,
 			usb_config  = usb_config,
 			scsi_config = scsi_config,
+			applet      = applet_elaboratable
 		)
 
 		with Progress(
@@ -305,7 +315,7 @@ class Applet(SquishyAction):
 			transient = True
 		) as progress:
 
-			device.build(
+			platform.build(
 				gateware,
 				name         = 'squishy_applet',
 				build_dir    = args.build_dir,
@@ -319,4 +329,4 @@ class Applet(SquishyAction):
 			)
 
 
-		return applet.run(device, args)
+		return applet.run(dev, args)

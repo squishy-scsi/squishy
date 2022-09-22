@@ -1,10 +1,16 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from typing import Union
+from amaranth    import Module
 
-import amaranth
+from ..          import SquishyApplet
+from ...gateware import AppletElaboratable
 
-from ..     import SquishyApplet
+class AnalyzerElaboratable(AppletElaboratable):
+
+	def elaborate(self, platform) -> Module:
+		m = Module()
+
+		return m
 
 class Analyzer(SquishyApplet):
 	preview       = True
@@ -23,14 +29,11 @@ class Analyzer(SquishyApplet):
 	def init_repl(self, repl_ctx, args) -> bool:
 		pass
 
-	def build(self, interfaces, platform, args) -> Union[amaranth.Elaboratable, amaranth.Module]:
-		pass
-
 	def register_args(self, parser) -> None:
 		pass
 
-	def init_applet(self, args) -> bool:
-		pass
+	def init_applet(self, args) -> AppletElaboratable:
+		return AnalyzerElaboratable()
 
 	def run(self, device, args) -> int:
 		pass

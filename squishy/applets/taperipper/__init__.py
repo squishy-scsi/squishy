@@ -1,10 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from typing import Union
-
-import amaranth
-
-from ..     import SquishyApplet
+from ..          import SquishyApplet
+from ...gateware import AppletElaboratable
 
 # def build_bootimage(args):
 # 	log.info('Running taperipper boot image generation')
@@ -181,10 +178,8 @@ class Taperipper(SquishyApplet):
 			help = 'The size of the native block on the tape'
 		)
 
-	def build(self, interfaces, platform, args) -> Union[amaranth.Elaboratable, amaranth.Module]:
-		pass
 
-	def init_applet(self, args) -> bool:
+	def init_applet(self, args) -> AppletElaboratable:
 		pass
 
 	def run(self, device, args) -> int:

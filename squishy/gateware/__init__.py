@@ -1,12 +1,31 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth              import *
-from amaranth.lib.fifo     import AsyncFIFO
-from amaranth_soc.wishbone import Decoder, Arbiter
 
-from .core                 import SCSIInterface, SPIInterface
-from .core                 import UARTInterface, USBInterface
+from abc                                import (
+	ABCMeta, abstractmethod
+)
+from typing                             import (
+	Optional, List, Any, Type
+)
+
+from amaranth                           import (
+	Elaboratable, Module
+)
+from luna.gateware.usb.usb2.request     import (
+	USBRequestHandler
+)
+
+from .usb import (
+	Rev1USB, Rev2USB
+)
+
+from .scsi import (
+	SCSI1Device, SCSI1Initiator,
+	SCSI2Device, SCSI2Initiator,
+	SCSI3Device, SCSI3Initiator
+)
 
 __all__ = (
+	'AppletElaboratable',
 	'Squishy',
 )
 
@@ -42,116 +61,69 @@ of the SCSI machinery is for use in Amaranth HDL projects.
 
 ''' # noqa: E101
 
+class AppletElaboratable(Elaboratable, metaclass = ABCMeta):
+	def __init__(self, ) -> None:
+		super().__init__()
+
+	@property
+	def scsi_request_handlers(self) -> Optional[List[Any]]:
+		return None
+
+	@property
+	def usb_request_handlers(self) -> Optional[List[USBRequestHandler]]:
+		return None
+
+	@property
+	def scsi_version(self) -> int:
+		return 1
+
+	@classmethod
+	def usb_init_descriptors(cls: Type['AppletElaboratable'], dev_desc) -> None:
+		'''  '''
+		return 0
+
+
+	@abstractmethod
+	def elaborate(self, platform) -> Module:
+		''' '''
+		raise NotImplementedError('Applet Elaboratables must implement this method')
+
+
+
 class Squishy(Elaboratable):
-	def __init__(self, *, uart_config, usb_config, scsi_config):
+	def _rev1_init(self):
+		self.usb = Rev1USB(
+			config              = self.usb_config,
+			applet_desc_builder = self.applet.usb_init_descriptors
+		)
+
+	def _rev2_init(self):
+		pass
+
+	def __init__(self, *, revision: int,
+		uart_config, usb_config, scsi_config,
+		applet: AppletElaboratable
+	):
+		# Applet
+		self.applet = applet
+
 		# PHY Options
 		self.uart_config = uart_config
 		self.usb_config  = usb_config
 		self.scsi_config = scsi_config
 
-		# Wishbone bus stuff
-		self._wb_cfg = {
-			'addr': 8,	# Address width
-			'data': 8,	# Data Width
-			'gran': 8,	# Bus Granularity
-			'feat': {	# Bus Features
-				'cti', 'bte'
-			}
-		}
+		{
+			1: self._rev1_init,
+			2: self._rev2_init
+		}.get(revision)()
 
-		self._wb_arbiter = Arbiter(
-			addr_width  = self._wb_cfg['addr'],
-			data_width  = self._wb_cfg['data'],
-			granularity = self._wb_cfg['gran'],
-			features    = self._wb_cfg['feat']
-		)
-
-		self._wb_decoder = Decoder(
-			addr_width  = self._wb_cfg['addr'],
-			data_width  = self._wb_cfg['data'],
-			granularity = self._wb_cfg['gran'],
-			features    = self._wb_cfg['feat']
-		)
-
-		# Module References
-		self.spi  = SPIInterface( resource_name = ('spi_flash_1x', 0))
-		if self.uart_config['enabled']:
-			self.uart = UARTInterface(
-				config    = self.uart_config,
-				wb_config = self._wb_cfg
-			)
-			self._wb_arbiter.add(self.uart.ctl_bus)
-
-		else:
-			self.uart = None
-		self.scsi = SCSIInterface(
-			config    = self.scsi_config,
-			wb_config = self._wb_cfg
-		)
-		self._wb_decoder.add(self.scsi.bus, addr = 0)
-		self._wb_arbiter.add(self.scsi.ctl_bus)
-
-		self.usb  = USBInterface(
-			config    = self.usb_config,
-			wb_config = self._wb_cfg
-		)
-		self._wb_decoder.add(self.usb.bus, addr = 16)
-		self._wb_arbiter.add(self.usb.ctl_bus)
-
-		self._fifo_cfg = {
-			'width': 8,
-			'depth': 1024,
-		}
-
-		self._scsi_in_fifo = AsyncFIFO(
-			width = self._fifo_cfg['width'],
-			depth = self._fifo_cfg['depth'],
-			r_domain = 'sync',
-			w_domain = 'usb'
-		)
-
-		self._usb_in_fifo = AsyncFIFO(
-			width = self._fifo_cfg['width'],
-			depth = self._fifo_cfg['depth'],
-			r_domain = 'usb',
-			w_domain = 'sync'
-		)
-
-		self._status_led = None
 
 	def elaborate(self, platform):
-		self._status_led = platform.request('led', 4)
 		m = Module()
 
 		m.submodules.pll = platform.clock_domain_generator()
+		m.submodules.usb = self.usb
 
-		# Wishbone stuff
-		m.submodules.arbiter = self._wb_arbiter
-		m.submodules.decoder = self._wb_decoder
-
-		if self.uart is not None:
-			m.submodules.uart = self.uart
-
-		# USB <-> SCSI FIFOs
-		m.submodules += self._usb_in_fifo, self._scsi_in_fifo
-
-		self.usb.connect_fifo(
-			usb_in   = self._usb_in_fifo,
-			scsi_out = self._scsi_in_fifo
-		)
-
-		self.scsi.connect_fifo(
-			scsi_in = self._scsi_in_fifo,
-			usb_out = self._usb_in_fifo
-		)
-
-
-		m.submodules.scsi = self.scsi
-		m.submodules.usb  = self.usb
-		m.submodules.spi  = self.spi
-
-		m.d.comb += [
-			self._wb_arbiter.bus.connect(self._wb_decoder.bus)
-		]
+		m.submodules.applet = self.applet
 
 		return m
