@@ -7,7 +7,7 @@ from amaranth_boards.resources.user      import LEDResources
 from amaranth_boards.resources.interface import UARTResource
 
 from ...config                           import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
-from ...config                           import USB_MANUFACTURER, USB_PRODUCT, USB_SERIAL_NUMBER
+from ...config                           import USB_MANUFACTURER, USB_PRODUCT
 from ...config                           import SCSI_VID
 
 from ...core.flash                       import FlashGeometry
@@ -65,7 +65,6 @@ class SquishyRev1(SquishyCacheMixin, LatticeICE40Platform):
 
 	usb_mfr      = USB_MANUFACTURER
 	usb_prod     = USB_PRODUCT
-	usb_snum     = USB_SERIAL_NUMBER
 
 	scsi_vid     = SCSI_VID
 

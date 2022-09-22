@@ -200,7 +200,5 @@ USB_PRODUCT         = {
 	USB_PID_BOOTLOADER : 'Squishy Bootloader',
 	USB_PID_APPLICATION: 'Squishy',
 }
-# This is the temporary serial number
-USB_SERIAL_NUMBER   = 'ニャ〜'
 
 SCSI_VID            = 'Shrine-0'
