@@ -1,55 +1,55 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing                                      import (
+from typing                                         import (
 	Dict, Any, Iterable, Optional, Callable,
 	Union
 )
 
-from amaranth                                    import (
+from amaranth                                       import (
 	Elaboratable, Module, Signal,
 	ResetSignal
 )
-from amaranth.hdl.ast                            import (
+from amaranth.hdl.ast                               import (
 	Operator
 )
 
-from luna.usb2                                   import (
+from luna.usb2                                      import (
 	USBDevice
 )
 
 
-from luna.gateware.usb.usb2.request              import (
+from luna.gateware.usb.usb2.request                 import (
 	StallOnlyRequestHandler, USBRequestHandler,
 	SetupPacket
 )
 
-from usb_protocol.types                          import (
+from usb_protocol.types                             import (
 	LanguageIDs, USBRequestType
 )
 
-from usb_protocol.types.descriptors.dfu          import (
+from usb_protocol.types.descriptors.dfu             import (
 	DFUWillDetach, DFUManifestationTollerant,
 	DFUCanUpload, DFUCanDownload
 )
-from usb_protocol.contextmgrs.descriptors.dfu    import (
+from usb_protocol.contextmgrs.descriptors.dfu       import (
 	FunctionalDescriptor
 )
 
-from usb_protocol.emitters.descriptors.standard  import (
+from usb_protocol.emitters.descriptors.standard     import (
 	DeviceDescriptorCollection, DeviceClassCodes, InterfaceClassCodes,
 	ApplicationSubclassCodes, DFUProtocolCodes
 )
 
-from usb_protocol.emitters.descriptors.microsoft import (
+from usb_protocol.emitters.descriptors.microsoft    import (
 	PlatformDescriptorCollection
 )
 from usb_protocol.contextmgrs.descriptors.microsoft import (
 	PlatformDescriptor
 )
 
-from .dfu                                        import (
+from .dfu                                           import (
 	DFURequestHandler
 )
-from ..quirks.usb.windows                        import (
+from ..quirks.usb.windows                           import (
 	WindowsRequestHandler
 )
 
