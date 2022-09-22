@@ -20,7 +20,7 @@ mascot
 	:figwidth: 350px
 ```
 
-This is the documentation for Squishy and it's supporting components, as well as a collection of guides and tutorials for the Squishy ecosystem.
+This is the documentation for [Squishy](https://github.com/lethalbit/squishy) and it's supporting components, as well as a collection of guides and tutorials for the Squishy ecosystem.
 
 
 ## What Squishy Isn't
@@ -73,6 +73,8 @@ Squishy is entirely open source, and under permissive licenses. The full source 
 ## Community
 
 Squishy has a dedicated IRC channel, [#squishy on libera.chat](https://web.libera.chat/#squishy). Join to ask questions, discuss ongoing development, or just hang out.
+
+There are also [GitHub Discussions](https://github.com/lethalbit/squishy/discussions) enabled on the repository if you have any questions or comments.
 
 
 ```{note}
