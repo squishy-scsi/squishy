@@ -2,7 +2,9 @@
 
 from typing   import Tuple
 
-from amaranth import *
+from amaranth import (
+	Elaboratable, Signal, Module, Cat
+)
 
 __all__ = (
 	'SPIInterface',

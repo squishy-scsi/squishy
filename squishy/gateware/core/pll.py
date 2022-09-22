@@ -1,5 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth import *
+from amaranth import (
+	Elaboratable, Module, Instance, ClockDomain,
+	Signal, Const, ClockSignal
+)
 
 __all__ = (
 	'ICE40ClockDomainGenerator',
