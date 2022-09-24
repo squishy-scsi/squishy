@@ -458,7 +458,6 @@ class SquishyHardwareDevice:
 
 		for chunk_num, chunk in enumerate(chunker(tx_size, data)):
 			chunk_data = bytearray(b for b in chunk if b is not None)
-			log.debug(f'Sending block {chunk_num}')
 			if not self._send_dfu_download(chunk_data, chunk_num):
 				log.error(f'DFU Transaction failed, did not sent all data for chunk {chunk_num}')
 				return False
@@ -467,7 +466,6 @@ class SquishyHardwareDevice:
 				sleep(0.05)
 
 			status, state = self._get_dfu_status()
-			log.debug(f'DFU Status: {status}')
 			if state != DFUState.DlSync:
 				log.error(f'DFU State is {state} not DlIdle, aborting')
 				return False
