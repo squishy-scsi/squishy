@@ -315,12 +315,12 @@ class Applet(SquishyAction):
 			transient = True
 		) as progress:
 
-			platform.build(
+			name, prod = platform.build(
 				gateware,
 				name         = 'squishy_applet',
 				build_dir    = args.build_dir,
 				do_build     = True,
-				do_program   = not args.build_only,
+				do_program   = False,
 				synth_opts   = ' '.join(synth_opts),
 				verbose      = args.loud,
 				nextpnr_opts = ' '.join(pnr_opts),
@@ -329,4 +329,20 @@ class Applet(SquishyAction):
 			)
 
 
-		return applet.run(dev, args)
+			if args.build_only:
+				log.info(f'Use \'dfu-util\' to flash \'{name}\' into slot 1 to update the applet')
+			else:
+				file_name = name
+				if not file_name.endswith('.bin'):
+					file_name += '.bin'
+
+				log.info(f'Programming applet with {file_name}')
+				if dev.upload(prod.get(file_name), 1, progress):
+					log.info('Resetting Device')
+					dev.reset()
+				else:
+					log.error('Device upload failed!')
+					return 1
+				log.info('Running applet...')
+				return applet.run(dev, args)
+			return 0
