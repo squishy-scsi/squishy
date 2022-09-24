@@ -139,8 +139,8 @@ class Bootloader(Elaboratable):
 			dev.low_speed_only.eq(0),
 			dev.full_speed_only.eq(0),
 			ResetSignal('usb').eq(0),
-			warmboot.boot.eq(dfu_handler.triggerReboot)
-
+			warmboot.boot.eq(dfu_handler.triggerReboot),
+			warmboot.slot.eq(0b01)
 		]
 
 
