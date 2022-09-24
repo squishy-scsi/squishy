@@ -49,9 +49,9 @@ class DFUStatus(IntEnum):
 class DFURequestHandler(USBRequestHandler):
 	'''  '''
 
-	def __init__(self, interface: int):
+	def __init__(self, interface_num: int):
 		super().__init__()
-		self._interface = interface
+		self._interface_num = interface_num
 
 	def elaborate(self, platform) -> Module:
 		m = Module()
@@ -159,5 +159,5 @@ class DFURequestHandler(USBRequestHandler):
 		return (
 			(setup.type      == USBRequestType.CLASS) &
 			(setup.recipient == USBRequestRecipient.INTERFACE) &
-			(setup.index     == self._interface)
+			(setup.index     == self._interface_num)
 		)
