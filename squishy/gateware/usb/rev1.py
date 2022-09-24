@@ -5,8 +5,8 @@ from typing                                         import (
 )
 
 from amaranth                                       import (
-	Elaboratable, Module, Signal,
-	ResetSignal
+	Elaboratable, Module,
+	ResetSignal, Cat
 )
 from amaranth.hdl.ast                               import (
 	Operator
@@ -176,9 +176,12 @@ class Rev1USB(Elaboratable):
 
 		def stall_condition(setup: SetupPacket) -> Operator:
 			return ~(
-				(setup.type == USBRequestType.STANDARD) # |
-				# any(handler.handlerCondition(setup) for handler in self.request_handlers)
+				(setup.type == USBRequestType.STANDARD) |
+				Cat(
+					handler.handlerCondition(setup) for handler in self.request_handlers
+				).any()
 			)
+
 
 		for hndlr in self.request_handlers:
 			ep0.add_request_handler(hndlr)
