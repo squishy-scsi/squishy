@@ -277,7 +277,7 @@ class Provision(SquishyAction):
 					log.info(f'Please flash the file at \'{path}\' on to the hardware to provision the device.')
 			else:
 				if args.build_only:
-					log.info(f'Or use \'dfu-util\' to flash \'{name}\' into slot 0 to update the bootloader')
+					log.info(f'Use \'dfu-util\' to flash \'{name}\' into slot 0 to update the bootloader')
 				else:
 					file_name = name
 					if not file_name.endswith('.bin'):
