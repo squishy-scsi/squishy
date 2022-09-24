@@ -152,9 +152,14 @@ class DFURequestHandler(USBRequestHandler):
 						]
 
 			with m.State('HANDLE_DETACH'):
-				m.d.comb += [
-					self.triggerReboot.eq(1),
-				]
+				with m.If(interface.data_requested):
+					m.d.comb += [
+						self.send_zlp(),
+					]
+				with m.If(interface.status_requested):
+					m.d.comb += [
+						self.triggerReboot.eq(1),
+					]
 
 			with m.State('HANDLE_DOWNLOAD'):
 				with m.If(setup.is_in_request | (setup.length > _flash['geometry'].erase_size)):
