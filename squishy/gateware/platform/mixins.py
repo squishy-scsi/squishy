@@ -73,7 +73,6 @@ class SquishyCacheMixin:
 			log.info(f'Using cached bitstream \'{name}\'')
 
 		progress.remove_task(task)
-
 		return (name, prod)
 
 
@@ -83,7 +82,4 @@ class SquishyCacheMixin:
 		progress: Progress = None, **kwargs
 	):
 
-		name, prod = self._build_elaboratable(elaboratable, progress, name, build_dir, do_build, program_opts, **kwargs)
-
-		if not do_build or not do_program:
-			return (name, prod)
+		return self._build_elaboratable(elaboratable, progress, name, build_dir, do_build, program_opts, **kwargs)
