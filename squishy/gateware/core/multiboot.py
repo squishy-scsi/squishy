@@ -31,8 +31,6 @@ class iCE40Warmboot(Elaboratable):
 
 		m = Module()
 
-		m.d.comb += self.slot.eq(0b01)
-
 		m.submodules.warmboot = Instance(
 			'SB_WARMBOOT',
 			i_BOOT = self.boot,
