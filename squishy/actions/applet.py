@@ -135,7 +135,7 @@ class Applet(SquishyAction):
 		pnr_options.add_argument(
 			'--pnr-seed',
 			type    = int,
-			default = None,
+			default = 0,
 			help    = 'Specify the PnR seed to use'
 		)
 
