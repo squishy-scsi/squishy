@@ -20,6 +20,7 @@
         <script src="../../../_static/underscore.js"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/sphinx_highlight.js"></script>
         <script src="../../../_static/platformpicker.js"></script>
         <script src="../../../_static/wavedrom.skin.js"></script>
         <script src="../../../_static/wavedrom.min.js"></script>
@@ -42,7 +43,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gbde8949
+                0.1.dev1+g028755e
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -111,10 +112,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../applets/api/repl.html">Squishy Applet: REPL API</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../applets/api/applet.html"><code class="docutils literal notranslate"><span class="pre">squishy.applets.SquishyApplet</span></code></a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="../../../applets/api/applet.html"><code class="docutils literal notranslate"><span class="pre">squishy.applets.SquishyApplet</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../applets/api/applet.html#squishy.applets.SquishyApplet"><code class="docutils literal notranslate"><span class="pre">SquishyApplet</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../../applets/api/device.html"><code class="docutils literal notranslate"><span class="pre">squishy.core.device.SquishyHardwareDevice</span></code></a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="../../../applets/api/device.html"><code class="docutils literal notranslate"><span class="pre">squishy.core.device.SquishyHardwareDevice</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../applets/api/device.html#squishy.core.device.SquishyHardwareDevice"><code class="docutils literal notranslate"><span class="pre">SquishyHardwareDevice</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../../../applets/api/index.html#applet-search-locations">Applet Search Locations</a></li>
@@ -125,7 +128,6 @@
 <li class="toctree-l1 current"><a class="reference internal" href="../../index.html">Squishy as a Library</a><ul class="current">
 <li class="toctree-l2 current"><a class="reference internal" href="../index.html">Gateware Library</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="../core/index.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../core/multiboot.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core.multiboot</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../core/pll.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core.pll</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../core/scsi.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core.scsi</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../core/spi.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core.spi</span></code></a></li>
@@ -161,12 +163,22 @@
 <li class="toctree-l4"><a class="reference internal" href="../../python/commands/ro_direct.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.ro_direct</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../python/commands/sequential.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.sequential</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../python/commands/worm.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.worm</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/commands/index.html#squishy.scsi.command.GroupCode"><code class="docutils literal notranslate"><span class="pre">GroupCode</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/commands/index.html#squishy.scsi.command.SCSICommand"><code class="docutils literal notranslate"><span class="pre">SCSICommand</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/commands/index.html#squishy.scsi.command.SCSICommand6"><code class="docutils literal notranslate"><span class="pre">SCSICommand6</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/commands/index.html#squishy.scsi.command.SCSICommand10"><code class="docutils literal notranslate"><span class="pre">SCSICommand10</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/commands/index.html#squishy.scsi.command.SCSICommand12"><code class="docutils literal notranslate"><span class="pre">SCSICommand12</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/commands/index.html#squishy.scsi.command.SCSICommandField"><code class="docutils literal notranslate"><span class="pre">SCSICommandField</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/commands/index.html#squishy.scsi.command.CommandEmitter"><code class="docutils literal notranslate"><span class="pre">CommandEmitter</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../python/device.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code></a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="../../python/device.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python/device.html#squishy.scsi.device.PeripheralDeviceType"><code class="docutils literal notranslate"><span class="pre">PeripheralDeviceType</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="../../python/messages.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.messages</span></code></a><ul class="simple">
+<li class="toctree-l3"><a class="reference internal" href="../../python/messages.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.messages</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../python/messages.html#squishy.scsi.messages.MessageCodes"><code class="docutils literal notranslate"><span class="pre">MessageCodes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../python/messages.html#squishy.scsi.messages.ExtendedMessageCodes"><code class="docutils literal notranslate"><span class="pre">ExtendedMessageCodes</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -233,11 +245,11 @@
 <h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.scsi.initiator</span></code><a class="headerlink" href="#squishy-gateware-scsi-initiator" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-squishy.gateware.scsi.initiator"></span><p>This submodule provides wrapper methods to instantiate SCSI Initiator elaboratables
+<p>This submodule provides wrapper methods to instantiate SCSI Initiator elaboratables
 for <a class="reference internal" href="scsi1.html#module-squishy.gateware.scsi.scsi1" title="squishy.gateware.scsi.scsi1"><code class="xref py py-mod docutils literal notranslate"><span class="pre">scsi1</span></code></a>, <a class="reference internal" href="scsi2.html#module-squishy.gateware.scsi.scsi2" title="squishy.gateware.scsi.scsi2"><code class="xref py py-mod docutils literal notranslate"><span class="pre">scsi2</span></code></a>, and <a class="reference internal" href="scsi3.html#module-squishy.gateware.scsi.scsi3" title="squishy.gateware.scsi.scsi3"><code class="xref py py-mod docutils literal notranslate"><span class="pre">scsi3</span></code></a>. For more details
 on the differences between them and the inner workings, see the documentation for
 each particular SCSI version in its module.</p>
-<dl class="py function">
+<span class="target" id="module-squishy.gateware.scsi.initiator"></span><dl class="py function">
 <dt class="sig sig-object py" id="squishy.gateware.scsi.initiator.SCSI1Initiator">
 <span class="sig-prename descclassname"><span class="pre">squishy.gateware.scsi.initiator.</span></span><span class="sig-name descname"><span class="pre">SCSI1Initiator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="scsi1.html#squishy.gateware.scsi.scsi1.SCSI1" title="squishy.gateware.scsi.scsi1.SCSI1"><span class="pre">SCSI1</span></a></span></span><a class="headerlink" href="#squishy.gateware.scsi.initiator.SCSI1Initiator" title="Permalink to this definition"></a></dt>
 <dd><p>Create a SCSI-1 Initiator Elaboratable</p>
