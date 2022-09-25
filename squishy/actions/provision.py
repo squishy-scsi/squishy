@@ -1,4 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
+from ast import arg
 import logging           as log
 from pathlib             import Path
 from typing              import Tuple
@@ -191,6 +192,12 @@ class Provision(SquishyAction):
 		)
 
 	def run(self, args: Namespace, dev: SquishyHardwareDevice = None) -> int:
+		if not args.build_only:
+			dev = SquishyHardwareDevice.get_device(serial = args.device)
+			if dev is None:
+				log.error('No device selected, unable to continue.')
+				return 1
+
 		build_dir = Path(args.build_dir)
 		log.info(f'Targeting platform \'{args.hardware_platform}\'')
 
