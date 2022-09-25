@@ -169,7 +169,7 @@ class Rev1USB(Elaboratable):
 			descriptors
 		)
 
-		dfu_handler = DFURequestHandler(interface_num = 0)
+		dfu_handler = DFURequestHandler(configuration_num = 1, interface_num = 0)
 		win_handler = WindowsRequestHandler(platform_desc)
 
 		self.add_request_handlers((dfu_handler, win_handler))

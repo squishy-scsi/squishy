@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 from amaranth                       import (
-	Elaboratable, Module, ClockDomain, ResetSignal
+	Elaboratable, Module, ClockDomain,
+	ResetSignal, Instance, Signal
 )
 from amaranth.hdl.ast               import (
 	Operator
@@ -31,7 +32,6 @@ from usb_protocol.contextmgrs.descriptors.microsoft import *
 
 from .dfu                 import DFURequestHandler
 from ..quirks.usb.windows import WindowsRequestHandler
-from ..core.multiboot     import iCE40Warmboot
 
 
 __doc__ = '''\
@@ -60,10 +60,18 @@ class Bootloader(Elaboratable):
 	def elaborate(self, platform) -> Module:
 		m = Module()
 
+		trigger_reboot = Signal()
+		slot_select    = Signal(2)
+
 		m.domains.usb = ClockDomain()
 		ulpi = platform.request('ulpi', 0)
 		m.submodules.dev = dev = USBDevice(bus = ulpi, handle_clocking = True)
-		m.submodules.warmboot = warmboot = iCE40Warmboot()
+		m.submodules += Instance(
+			'SB_WARMBOOT',
+			i_BOOT  = trigger_reboot,
+			i_S0    = slot_select[0],
+			i_S1    = slot_select[1],
+		)
 
 		descriptors = DeviceDescriptorCollection()
 		with descriptors.DeviceDescriptor() as dev_desc:
@@ -120,7 +128,7 @@ class Bootloader(Elaboratable):
 
 		descriptors.add_language_descriptor((LanguageIDs.ENGLISH_US, ))
 		ep0 = dev.add_standard_control_endpoint(descriptors)
-		dfu_handler = DFURequestHandler(interface = 0, resource_name = ('spi_flash_1x', 0))
+		dfu_handler = DFURequestHandler(configuration = 1, interface = 0, resource_name = ('spi_flash_1x', 0))
 		win_handler = WindowsRequestHandler(platform_desc)
 
 		def stall_condition(setup: SetupPacket) -> Operator:
@@ -139,8 +147,8 @@ class Bootloader(Elaboratable):
 			dev.low_speed_only.eq(0),
 			dev.full_speed_only.eq(0),
 			ResetSignal('usb').eq(0),
-			warmboot.boot.eq(dfu_handler.triggerReboot),
-			warmboot.slot.eq(0b01)
+			trigger_reboot.eq(dfu_handler.triggerReboot),
+			slot_select.eq(0b01)
 		]
 
 

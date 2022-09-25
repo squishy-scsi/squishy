@@ -56,9 +56,10 @@ class DFUConfig:
 
 
 class DFURequestHandler(USBRequestHandler):
-	def __init__(self, *, interface: int, resource_name: Tuple[str, int]):
+	def __init__(self, *, configuration: int, interface: int, resource_name: Tuple[str, int]):
 		super().__init__()
 
+		self._configuration = configuration
 		self._interface = interface
 		self._flash     = resource_name
 
@@ -152,12 +153,12 @@ class DFURequestHandler(USBRequestHandler):
 						]
 
 			with m.State('HANDLE_DETACH'):
-				with m.If(interface.data_requested):
+				with m.If(interface.status_requested):
 					m.d.comb += [
 						self.send_zlp(),
 					]
-				with m.If(interface.status_requested):
-					m.d.comb += [
+				with m.Elif(interface.handshakes_in.ack):
+					m.d.usb += [
 						self.triggerReboot.eq(1),
 					]
 
@@ -219,9 +220,6 @@ class DFURequestHandler(USBRequestHandler):
 				m.d.comb += [
 					transmitter.stream.connect(interface.tx),
 					transmitter.max_length.eq(6),
-				]
-
-				m.d.comb += [
 					transmitter.data[0].eq(cfg.status),
 					Cat(transmitter.data[1:4]).eq(0),
 					transmitter.data[4].eq(Cat(cfg.state, 0)),
@@ -299,10 +297,7 @@ class DFURequestHandler(USBRequestHandler):
 				m.d.comb += [
 					transmitter.stream.connect(interface.tx),
 					transmitter.max_length.eq(1),
-				]
-
-				m.d.comb += [
-					transmitter.data[0].eq(slot)
+					transmitter.data[0].eq(slot),
 				]
 
 				with m.If(self.interface.data_requested):
@@ -399,6 +394,7 @@ class DFURequestHandler(USBRequestHandler):
 
 	def handlerCondition(self, setup: SetupPacket) -> Operator:
 		return (
+			(self.interface.active_config == self._configuration) &
 			((setup.type == USBRequestType.CLASS) | (setup.type == USBRequestType.STANDARD)) &
 			(setup.recipient == USBRequestRecipient.INTERFACE)                               &
 			(setup.index == self._interface)
