@@ -88,6 +88,14 @@ def upload_dist(session: nox.Session) -> None:
 
 
 @nox.session
+def pkg_flatpak(session: nox.Session) -> None:
+	pkg_dir = (PKGS_DIR / 'flatpak')
+
+	with session.chdir(pkg_dir):
+		session.run('bash', 'build.sh', str(BUILD_DIR / 'flatpak'), squishy_version(), external = True)
+
+
+@nox.session
 def pkg_pacman(session: nox.Session) -> None:
 	build_dists(session)
 	pkg_dir = (PKGS_DIR / 'pkg')
