@@ -87,7 +87,7 @@ class SquishyHardwareDevice:
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
-		self._usb_hndl.claimInterface(interface_id)
+		self._ensure_iface_claimed(interface_id)
 
 		data: Optional[bytearray] = self._usb_hndl.controlRead(
 			0b00100001,
@@ -100,9 +100,6 @@ class SquishyHardwareDevice:
 		if data is None:
 			raise RuntimeError(f'Unable to send control request DFU_GETSTATUS to interface {interface_id}')
 
-		self._usb_hndl.releaseInterface(interface_id)
-
-
 		return (DFUStatus(data[0]), DFUState(data[4]))
 
 	def _get_dfu_state(self) -> DFUState:
@@ -112,7 +109,7 @@ class SquishyHardwareDevice:
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
-		self._usb_hndl.claimInterface(interface_id)
+		self._ensure_iface_claimed(interface_id)
 
 		data: Optional[bytearray] = self._usb_hndl.controlRead(
 			0b00100001,
@@ -125,10 +122,6 @@ class SquishyHardwareDevice:
 		if data is None:
 			raise RuntimeError(f'Unable to send control request DFU_GETSTATE to interface {interface_id}')
 
-
-		self._usb_hndl.releaseInterface(interface_id)
-
-
 		return DFUState(data[0])
 
 	def _send_dfu_detach(self) -> bool:
@@ -138,7 +131,7 @@ class SquishyHardwareDevice:
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
-		self._usb_hndl.claimInterface(interface_id)
+		self._ensure_iface_claimed(interface_id)
 
 		try:
 			sent: int = self._usb_hndl.controlWrite(
@@ -152,7 +145,7 @@ class SquishyHardwareDevice:
 		except USBError:
 			sent = 0
 
-		self._usb_hndl.releaseInterface(interface_id)
+		self._ensure_iface_released(interface_id)
 
 
 		return sent == 0
@@ -241,7 +234,7 @@ class SquishyHardwareDevice:
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
-		self._usb_hndl.claimInterface(interface_id)
+		self._ensure_iface_claimed(interface_id)
 
 		sent: int = self._usb_hndl.controlWrite(
 			0b00100001,
@@ -252,9 +245,19 @@ class SquishyHardwareDevice:
 			self._timeout
 		)
 
-		self._usb_hndl.releaseInterface(interface_id)
 
 		return sent == len(data)
+
+	def _ensure_iface_claimed(self, id: int):
+		if id not in self._claimed_interfaces:
+			self._usb_hndl.claimInterface(id)
+			self._claimed_interfaces.append(id)
+
+	def _ensure_iface_released(self, id: int):
+		if id in self._claimed_interfaces:
+			self._usb_hndl.releaseInterface(id)
+			self._claimed_interfaces.remove(id)
+
 
 	def can_dfu(self) -> bool:
 		''' Check to see if the Device can DFU '''
@@ -281,6 +284,7 @@ class SquishyHardwareDevice:
 		self.dec_ver  = self._decode_version(self.raw_ver)
 		self.rev      = int(self.dec_ver)
 		self.gate_ver = int((self.dec_ver - self.rev) * 100)
+		self._claimed_interfaces = list()
 
 	def __del__(self):
 		self._usb_hndl.close()
@@ -436,11 +440,11 @@ class SquishyHardwareDevice:
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
-		self._usb_hndl.claimInterface(interface_id)
+		self._ensure_iface_claimed(interface_id)
 
 		log.debug(f'Setting interface {interface_id} alt to {slot}')
 		self._usb_hndl.setInterfaceAltSetting(interface_id, slot)
-		self._usb_hndl.releaseInterface(interface_id)
+
 
 
 		def chunker(size: int, data: Iterable):
@@ -474,7 +478,7 @@ class SquishyHardwareDevice:
 
 		log.debug(f'Wrote {chunk_num} chunks to device')
 		assert self._send_dfu_download(bytearray(), chunk_num), 'Uoh nowo'
-		status, state = self._get_dfu_status()
+		_, state = self._get_dfu_status()
 
 		if state != DFUState.DFUIdle:
 			log.error('Device did not go idle after upload')
