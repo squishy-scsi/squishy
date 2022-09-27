@@ -88,7 +88,6 @@ def SCSIConnectorResource(*args, diff: bool,
 
 	msg : str, tuple[str, str]
 		The pin or pins for the SCSI MSG signal.
-PinDiff
 
 	req : str, tuple[str, str]
 		The pin or pins for the SCSI REQ signal.

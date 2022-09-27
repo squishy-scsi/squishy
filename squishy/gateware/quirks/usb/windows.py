@@ -102,7 +102,44 @@ class GetDescriptorSetHandler(Elaboratable):
 		return (n + (cls.element_size - 1)) // cls.element_size
 
 	def generate_rom(self) -> Tuple[Memory, int, int]:
-		''' Generate ROM for descriptor sets. '''
+		''' Generate ROM for descriptor sets.
+
+		Notes
+		-----
+		All data is aligned to 4-byte boundaries.
+
+		This ROM is laid out as follows:
+
+		* Index offsets and descriptor set lengths
+			Each index of a descriptor set has an entry consistent of the length
+			of the descriptor set (2 bytes) and the address of the first data
+			byte (2 bytes).
+			+---------+--------------------------------------+
+			| Address |                 Data                 |
+			+=========+======================================+
+			|    0000 | Length of the first descriptor set   |
+			+---------+--------------------------------------+
+			|    0002 | Address of the first descriptor set  |
+			+---------+--------------------------------------+
+			|     ... |                                      |
+			+---------+--------------------------------------+
+		* Data
+			Descriptor data for each descriptor set. Padded by 0 to the next 4-byte address.
+			+---------+--------------------------------------+
+			| Address |                 Data                 |
+			+=========+======================================+
+			|     ... | Descriptor data                      |
+			+---------+--------------------------------------+
+		Returns
+		-------
+		:py:class:`Tuple <tuple>` [ :py:class:`amaranth.hdl.mem.Memory`, :py:class:`int`, :py:class:`int` ]
+			A List containing:
+				* A Memory object defining the descriptor data and access information as defined above.
+				  The memory object uses 32-bit entries which the descriptor gateware accesses accordingly.
+				* The length of the largest held descriptor.
+				* The highest Vendor code number used by the descriptors for retrieval.
+
+		'''
 
 		descriptors = self._descriptors.descriptors
 

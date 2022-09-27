@@ -6,6 +6,9 @@
 core/index
 platform/index
 scsi/index
+usb/index
+quirks/index
+bootloader/index
 
 ```
 
