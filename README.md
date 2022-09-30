@@ -15,6 +15,10 @@ The documentation for Squishy can be found at [https://docs.scsi.moe](https://do
 
 The installation instructions for squishy on various platforms can be found on the [https://docs.scsi.moe/install.html](https://docs.scsi.moe/install.html) page.
 
+## Hardware
+
+Details about the squishy hardware can be found on the [https://docs.scsi.moe/hardware/index.html](https://docs.scsi.moe/hardware/index.html) page.
+
 ## Mascot - Sachi
 
 ![Sachi the spirit fox](https://raw.githubusercontent.com/lethalbit/squishy/main/contrib/img/sachi/electrichearts_20211013A_sachi_trans_1024.png)
