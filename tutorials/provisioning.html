@@ -43,7 +43,7 @@
             <a href="../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+gb5ed606
+                0.1.dev1+g85ad65f
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -201,7 +201,9 @@
 <li class="toctree-l2"><a class="reference internal" href="applets/index.html">Custom Applets</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Provisioning a New Device</a><ul class="simple">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Provisioning a New Device</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#generating-the-initial-image">Generating the Initial Image</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flashing-the-image">Flashing the Image</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="index.html#hardware-usage">Hardware Usage</a></li>
@@ -255,10 +257,21 @@
 <h1>Provisioning a New Device<a class="headerlink" href="#provisioning-a-new-device" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Write this</p>
+<p>When you first build a squishy, or if the flash on your existing squishy gets corrupted, you will need to provision the device again. This is done by flashing a special image into the flash that contains the bootloader and stub bitstreams to ensure DFU works properly.</p>
+<section id="generating-the-initial-image">
+<h2>Generating the Initial Image<a class="headerlink" href="#generating-the-initial-image" title="Permalink to this heading"></a></h2>
+<p>To generate the initial image, we run squishy with the <code class="docutils literal notranslate"><span class="pre">provision</span></code> command like so:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(squishy.venv)</span> <span class="gp">$ </span>squishy provision --build-only --whole-device
+</pre></div>
 </div>
+<p>The <code class="docutils literal notranslate"><span class="pre">--build-only</span></code> argument tells the <code class="docutils literal notranslate"><span class="pre">provision</span></code> command to build the but not program the image to a device, this means you can build it without a Squishy attached or for a blank Squishy.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--whole-device</span></code> argument tells <code class="docutils literal notranslate"><span class="pre">provision</span></code> to build the bootloader and bake the special device image that is to be flashed onto Squishy.</p>
+<p>The resulting file <code class="docutils literal notranslate"><span class="pre">squishy-unified.bin</span></code> can then be flashed onto the SPI flash of the Squishy unit.</p>
+</section>
+<section id="flashing-the-image">
+<h2>Flashing the Image<a class="headerlink" href="#flashing-the-image" title="Permalink to this heading"></a></h2>
+<p>To write the image to the Squishy device, you can hook up to the SPI header on the board using any capable tool and flash the whole <code class="docutils literal notranslate"><span class="pre">squishy-unified.bin</span></code> image. Once the device is then reset and able to read the new image, it will start in the bootloader waiting for an applet to be flashed to the device via the <code class="docutils literal notranslate"><span class="pre">squishy</span></code> utility or <code class="docutils literal notranslate"><span class="pre">dfu-util</span></code>.</p>
+</section>
 </section>
 
     <script type="text/javascript">
