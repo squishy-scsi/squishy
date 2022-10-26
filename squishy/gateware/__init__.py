@@ -1,18 +1,17 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from abc                                import (
-	ABCMeta, abstractmethod
-)
-from typing                             import (
-	Optional, List, Any, Type
+from typing import (
+	Optional, Dict, Any,
 )
 
-from amaranth                           import (
+import logging as log
+
+from amaranth import (
 	Elaboratable, Module
 )
-from luna.gateware.usb.usb2.request     import (
-	USBRequestHandler
-)
+
+from .applet import AppletElaboratable
+
 
 from .usb import (
 	Rev1USB, Rev2USB
@@ -61,49 +60,29 @@ of the SCSI machinery is for use in Amaranth HDL projects.
 
 ''' # noqa: E101
 
-class AppletElaboratable(Elaboratable, metaclass = ABCMeta):
-	def __init__(self, ) -> None:
-		super().__init__()
-
-	@property
-	def scsi_request_handlers(self) -> Optional[List[Any]]:
-		return None
-
-	@property
-	def usb_request_handlers(self) -> Optional[List[USBRequestHandler]]:
-		return None
-
-	@property
-	def scsi_version(self) -> int:
-		return 1
-
-	@classmethod
-	def usb_init_descriptors(cls: Type['AppletElaboratable'], dev_desc) -> None:
-		'''  '''
-		return 0
-
-
-	@abstractmethod
-	def elaborate(self, platform) -> Module:
-		''' '''
-		raise NotImplementedError('Applet Elaboratables must implement this method')
-
-
-
 class Squishy(Elaboratable):
-	def _rev1_init(self):
+	def _rev1_init(self) -> None:
+		# USB
 		self.usb = Rev1USB(
 			config              = self.usb_config,
 			applet_desc_builder = self.applet.usb_init_descriptors
 		)
+		# SCSI
+		self.scsi = ({
+			1: SCSI1Device,
+			2: SCSI2Device,
+			3: SCSI3Device,
+		}.get(self.applet.scsi_version))(config = self.scsi_config)
 
-	def _rev2_init(self):
-		pass
+	def _rev2_init(self) -> None:
+		log.warning('Rev2 Gateware is unimplemented')
 
 	def __init__(self, *, revision: int,
-		uart_config, usb_config, scsi_config,
+		uart_config: Dict[str, Any],
+		usb_config: Dict[str, Any],
+		scsi_config: Dict[str, Any],
 		applet: AppletElaboratable
-	):
+	) -> None:
 		# Applet
 		self.applet = applet
 
@@ -115,15 +94,16 @@ class Squishy(Elaboratable):
 		{
 			1: self._rev1_init,
 			2: self._rev2_init
-		}.get(revision)()
+		}.get(revision, lambda s: None)()
 
 
-	def elaborate(self, platform):
+	def elaborate(self, platform: Optional[Any]) -> Module:
 		m = Module()
 
-		m.submodules.pll = platform.clock_domain_generator()
-		m.submodules.usb = self.usb
-
+		# Setup Submodules
+		m.submodules.pll    = platform.clock_domain_generator()
+		m.submodules.usb    = self.usb
+		m.submodules.scsi   = self.scsi
 		m.submodules.applet = self.applet
 
 		return m
