@@ -231,6 +231,12 @@ It can simply be installed for your system via `pip` from [pypi](https://pypi.or
 
 ## Installing Squishy
 
+```{eval-rst}
+.. note::
+
+	Due to some of squishy's dependencies, we can not publish a PyPi package at the moment.
+```
+
 Once all of the prerequisites are installed, you can finally install squishy into the virtual environment like so:
 
 ```{eval-rst}
