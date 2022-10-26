@@ -40,7 +40,7 @@ setup(
 	author_email     = 'nya@catgirl.link',
 	description      = 'SCSI Multitool and Amaranth HDL Library',
 	license          = 'BSD-3-Clause',
-	python_requires  = '~=3.8',
+	python_requires  = '~=3.9',
 	zip_safe         = True,
 	url              = 'https://github.com/lethalbit/squishy',
 
@@ -153,9 +153,10 @@ setup(
 		'Operating System :: Microsoft :: Windows',
 		'Operating System :: POSIX :: Linux',
 
-		'Programming Language :: Python :: 3.8',
 		'Programming Language :: Python :: 3.9',
 		'Programming Language :: Python :: 3.10',
+		'Programming Language :: Python :: 3.11',
+
 
 		'Topic :: Software Development',
 		'Topic :: System :: Hardware',
