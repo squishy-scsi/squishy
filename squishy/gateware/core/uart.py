@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth              import *
-from amaranth.lib.fifo     import AsyncFIFO
-from amaranth_stdio.serial import AsyncSerial
-from amaranth_soc.wishbone import Interface
+from torii                  import *
+from torii.lib.fifo         import AsyncFIFO
+from torii.lib.stdio.serial import AsyncSerial
+from torii.lib.soc.wishbone import Interface
 
 
 __all__ = (
@@ -16,7 +16,7 @@ class UARTInterface(Elaboratable):
 	-------
 	This interface is only provided for debugging, not sideband communication.
 
-	This elaboratable wraps the :py:class:`amaranth_stdio.serial.AsyncSerial` UART
+	This elaboratable wraps the :py:class:`torii_stdio.serial.AsyncSerial` UART
 	elaboratable and attaches it to an internal wishbone bus.
 
 	'''

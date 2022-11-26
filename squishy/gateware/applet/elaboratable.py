@@ -5,10 +5,10 @@ from abc                            import (
 from typing                         import (
 	Optional, List, Any, Type
 )
-from amaranth                       import (
+from torii                          import (
 	Elaboratable, Module
 )
-from luna.gateware.usb.usb2.request import (
+from sol.gateware.usb.usb2.request import (
 	USBRequestHandler
 )
 

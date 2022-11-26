@@ -1,14 +1,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth                  import *
-from amaranth_soc.wishbone     import Interface
-from amaranth_soc.csr.bus      import Element, Multiplexer
-from amaranth_soc.csr.wishbone import WishboneCSRBridge
+from torii                                       import *
+from torii.lib.soc.wishbone                      import Interface
+from torii.lib.soc.csr.bus                       import Element, Multiplexer
+from torii.lib.soc.csr.wishbone                  import WishboneCSRBridge
 
-from luna.usb2                 import *
+from sol.usb2                                   import *
 
-from usb_protocol.types        import USBTransferType, USBUsageType
+from usb_construct.types                         import USBTransferType, USBUsageType
 
-from usb_protocol.emitters.descriptors.standard import (
+from usb_construct.emitters.descriptors.standard import (
 	DeviceDescriptorCollection, DeviceClassCodes, InterfaceClassCodes,
 	MassStorageSubclassCodes, MassStorageProtocolCodes,
 )
@@ -132,8 +132,8 @@ class USBInterface(Elaboratable):
 					e1_in.wMaxPacketSize   = 0x0400
 
 		if self.config['webusb']['enabled']:
-			from usb_protocol.emitters.descriptors.standard import BinaryObjectStoreDescriptorEmitter
-			from usb_protocol.emitters.descriptors.webusb   import PlatformDescriptorEmitter
+			from usb_construct.emitters.descriptors.standard import BinaryObjectStoreDescriptorEmitter
+			from usb_construct.emitters.descriptors.webusb   import PlatformDescriptorEmitter
 
 			bos = BinaryObjectStoreDescriptorEmitter()
 			webusb_plat = PlatformDescriptorEmitter(desc)

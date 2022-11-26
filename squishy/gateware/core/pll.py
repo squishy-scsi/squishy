@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth import (
+from torii import (
 	Elaboratable, Module, Instance, ClockDomain,
 	Signal, Const, ClockSignal
 )

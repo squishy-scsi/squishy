@@ -1,15 +1,15 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-import logging as log
-from typing    import (
+import logging      as log
+from typing         import (
 	List
 )
 
-from enum      import (
+from enum           import (
 	IntEnum, IntFlag, unique
 )
 
-from construct import (
+from construct      import (
 	this,
 	Switch, StopIf, Rebuild, Padded, GreedyRange,
 	Struct, BitStruct, Enum, FlagsEnum,
@@ -17,7 +17,7 @@ from construct import (
 	Nibble, Int8ub, Int16ub, Int24ub, Int32ub
 )
 
-from ...core.flash   import FlashGeometry
+from ...core.flash  import FlashGeometry
 
 __doc__ = '''\
 

@@ -13,7 +13,7 @@ __all__ = (
 
 __doc__ = '''\
 
-The following are mixins that are used to add additional features to Amaranth platforms
+The following are mixins that are used to add additional features to torii platforms
 without any extra setup work for the platform itself.
 
 '''
@@ -21,7 +21,7 @@ without any extra setup work for the platform itself.
 class SquishyCacheMixin:
 	'''Squishy Platform Cache mixin.
 
-	This mixin overrides the :py:class:`amaranth.build.plat.Platform`. `build` method
+	This mixin overrides the :py:class:`torii.build.plat.Platform`. `build` method
 	to inject FPGA bitstream caching via the :py:class:`squishy.core.cache.SquishyBitstreamCache`.
 	which handles all bitstream and build caching based on the elaborated designs digest.
 

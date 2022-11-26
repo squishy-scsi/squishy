@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth                            import *
-from amaranth.build                      import *
-from amaranth.vendor.lattice_ice40       import LatticeICE40Platform
-from amaranth_boards.resources.memory    import SPIFlashResources
-from amaranth_boards.resources.user      import LEDResources
-from amaranth_boards.resources.interface import UARTResource
+from torii                               import *
+from torii.build                         import *
+from torii.platform.vendor.lattice_ice40 import LatticeICE40Platform
+from torii.platform.resources.memory     import SPIFlashResources
+from torii.platform.resources.user       import LEDResources
+from torii.platform.resources.interface  import UARTResource
 
 from ...config                           import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
 from ...config                           import USB_MANUFACTURER, USB_PRODUCT
@@ -24,7 +24,7 @@ from ..bootloader.rev1                   import Bootloader as iCE40Bootloader
 
 __doc__ = '''\
 
-This is the Amaranth platform definition for Squishy rev1 hardware, if you are using
+This is the torii platform definition for Squishy rev1 hardware, if you are using
 Squishy rev1 as a generic FPGA development board, this is the platform you need to invoke.
 
 Warning
@@ -44,7 +44,7 @@ own, however it is recommended to start with the :py:class:`squishy.gateware.pla
 class SquishyRev1(SquishyCacheMixin, LatticeICE40Platform):
 	'''Squishy hardware Revision 1
 
-	This is the Amaranth platform for the first revision of the Squishy hardware.
+	This is the torii platform for the first revision of the Squishy hardware.
 	It is based around the `Lattice iCE40-HX8K <https://www.latticesemi.com/iCE40>`_
 	in the BG121 footprint.
 

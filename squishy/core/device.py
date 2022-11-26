@@ -1,37 +1,37 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging                          as log
+import logging                           as log
 
-from typing                             import (
+from typing                              import (
 	Iterable, List, Tuple, Type, Union, Optional,
 	Dict, Any
 )
 
-from time                               import (
+from time                                import (
 	sleep
 )
 
-from usb1                               import (
+from usb1                                import (
 	USBContext, USBDevice, USBError,
 	USBConfiguration
 )
 
-from usb_protocol.types                 import (
+from usb_construct.types                 import (
 	LanguageIDs
 )
 
-from usb_protocol.types.descriptors.dfu import (
+from usb_construct.types.descriptors.dfu import (
 	FunctionalDescriptor
 )
 
-from rich.progress                      import (
+from rich.progress                       import (
 	Progress
 )
 
-from .dfu_types                         import (
+from .dfu_types                          import (
 	DFU_CLASS, DFURequests, DFUState, DFUStatus
 )
 
-from ..config                           import (
+from ..config                            import (
 	USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
 )
 

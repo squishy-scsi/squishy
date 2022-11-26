@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from typing                    import (
+from typing import (
 	Dict, Any
 )
 
-from amaranth                  import (
+from torii  import (
 	Elaboratable, Module
 )
 

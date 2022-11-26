@@ -1,15 +1,15 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from enum              import (
+from enum           import (
 	IntEnum, auto, unique
 )
-from amaranth          import (
+from torii          import (
 	Elaboratable, Module, Signal
 )
-from amaranth.lib.fifo import AsyncFIFO
+from torii.lib.fifo import AsyncFIFO
 
-from ...core.flash     import FlashGeometry
+from ...core.flash  import FlashGeometry
 
-from .spi              import SPIInterface
+from .spi           import SPIInterface
 
 __doc__ = '''\
 

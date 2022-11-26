@@ -1,34 +1,34 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from amaranth                       import (
+from torii                          import (
 	Elaboratable, Module, ClockDomain,
 	ResetSignal, Instance, Signal
 )
-from amaranth.hdl.ast               import (
+from torii.hdl.ast                  import (
 	Operator
 )
 
-from luna.usb2                      import (
+from sol.usb2                      import (
 	USBDevice
 )
-from luna.gateware.usb.request      import (
+from sol.gateware.usb.request      import (
 	SetupPacket
 )
-from luna.gateware.usb.usb2.request import (
+from sol.gateware.usb.usb2.request import (
 	StallOnlyRequestHandler
 )
 
-from usb_protocol.types             import (
+from usb_construct.types                         import (
 	USBRequestType
 )
-from usb_protocol.emitters.descriptors.standard import (
+from usb_construct.emitters.descriptors.standard import (
 	DeviceDescriptorCollection, LanguageIDs, DeviceClassCodes,
 	InterfaceClassCodes, ApplicationSubclassCodes, DFUProtocolCodes
 )
-from usb_protocol.types.descriptors.dfu             import *
-from usb_protocol.contextmgrs.descriptors.dfu       import *
-from usb_protocol.types.descriptors.microsoft       import *
-from usb_protocol.contextmgrs.descriptors.microsoft import *
+from usb_construct.types.descriptors.dfu             import *
+from usb_construct.contextmgrs.descriptors.dfu       import *
+from usb_construct.types.descriptors.microsoft       import *
+from usb_construct.contextmgrs.descriptors.microsoft import *
 
 from .dfu                 import DFURequestHandler
 from ..quirks.usb.windows import WindowsRequestHandler

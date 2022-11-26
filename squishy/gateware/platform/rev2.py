@@ -1,23 +1,23 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth                            import *
-from amaranth.build                      import *
-from amaranth.vendor.lattice_ecp5        import LatticeECP5Platform
-from amaranth_boards.resources.memory    import SPIFlashResources
-from amaranth_boards.resources.user      import LEDResources
-from amaranth_boards.resources.interface import UARTResource
+from torii                              import *
+from torii.build                        import *
+from torii.platform.vendor.lattice_ecp5 import LatticeECP5Platform
+from torii.platform.resources.memory    import SPIFlashResources
+from torii.platform.resources.user      import LEDResources
+from torii.platform.resources.interface import UARTResource
 
-from ...config                           import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
-from ...config                           import USB_MANUFACTURER, USB_PRODUCT
-from ...config                           import SCSI_VID
+from ...config                          import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
+from ...config                          import USB_MANUFACTURER, USB_PRODUCT
+from ...config                          import SCSI_VID
 
-from ...core.flash                       import FlashGeometry
+from ...core.flash                      import FlashGeometry
 
-from ..core                              import ECP5ClockDomainGenerator
-from .mixins                             import SquishyCacheMixin
+from ..core                             import ECP5ClockDomainGenerator
+from .mixins                            import SquishyCacheMixin
 
 __doc__ = '''\
 
-This is the Amaranth platform definition for Squishy rev2 hardware, if you are using
+This is the torii platform definition for Squishy rev2 hardware, if you are using
 Squishy rev2 as a generic FPGA development board, this is the platform you need to invoke.
 
 Warning
@@ -36,7 +36,7 @@ build your own, or keep an eye out for when the campaign goes live.
 class SquishyRev2(SquishyCacheMixin, LatticeECP5Platform):
 	'''Squishy hardware Revision 2
 
-	This is the Amaranth platform for the first revision of the Squishy hardware.
+	This is the torii platform for the first revision of the Squishy hardware.
 	It is based around the `Lattice ECP5-5G LFE5UM5G-45F <https://www.latticesemi.com/Products/FPGAandCPLD/ECP5>`_
 	in the BG381 footprint.
 

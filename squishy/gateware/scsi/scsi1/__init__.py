@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth         import Elaboratable, Module
+from torii    import Elaboratable, Module
 
-from ..common         import *
+from ..common import *
 
 __all__ = (
 	'Device',

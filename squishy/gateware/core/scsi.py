@@ -1,12 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from math                      import ceil
+from math                       import ceil
 
-from ...misc.utility           import ns_to_s
-
-from amaranth                  import *
-from amaranth_soc.wishbone     import Interface
-from amaranth_soc.csr.bus      import Element, Multiplexer
-from amaranth_soc.csr.wishbone import WishboneCSRBridge
+from torii                      import *
+from torii.util.units           import ns_to_sec
+from torii.lib.soc.wishbone     import Interface
+from torii.lib.soc.csr.bus      import Element, Multiplexer
+from torii.lib.soc.csr.wishbone import WishboneCSRBridge
 
 
 __all__ = (
@@ -95,11 +94,11 @@ class SCSIInterface(Elaboratable):
 		# 	max sel abort time     - 200us
 		# 	min sel timeout delay  - 250ms (recommended)
 
-		bus_settle_cnt = int(ceil(ns_to_s(400) * platform.pll_config['freq']) + 2)
+		bus_settle_cnt = int(ceil(ns_to_sec(400) * platform.pll_config['freq']) + 2)
 		bus_settle_tmr = Signal(range(bus_settle_cnt))
 		bus_settled    = Signal()
 
-		hold_time_cnt = int(ceil(ns_to_s(45) * platform.pll_config['freq']) + 2)
+		hold_time_cnt = int(ceil(ns_to_sec(45) * platform.pll_config['freq']) + 2)
 		hold_time_tmr = Signal(range(hold_time_cnt))
 
 		m = Module()

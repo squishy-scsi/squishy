@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from typing   import Tuple
+from typing import Tuple
 
-from amaranth import (
+from torii  import (
 	Elaboratable, Signal, Module, Cat
 )
 

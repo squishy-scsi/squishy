@@ -1,35 +1,35 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from typing                                      import (
+from typing                                       import (
 	Tuple, Type
 )
 
-from struct                                      import (
+from struct                                       import (
 	pack, unpack
 )
 
-from amaranth                                    import (
+from torii                                        import (
 	Module, Signal, Elaboratable, Memory, DomainRenamer
 )
-from amaranth.hdl.ast                            import (
+from torii.hdl.ast                                import (
 	Operator
 )
 
-from usb_protocol.types                          import (
+from usb_construct.types                          import (
 	USBRequestType, USBRequestRecipient
 )
-from usb_protocol.types.descriptors.microsoft    import (
+from usb_construct.types.descriptors.microsoft    import (
 	MicrosoftRequests
 )
-from usb_protocol.emitters.descriptors.microsoft import (
+from usb_construct.emitters.descriptors.microsoft import (
 	PlatformDescriptorCollection
 )
 
-from luna.gateware.usb.stream                    import (
+from sol.gateware.usb.stream                     import (
 	USBInStreamInterface
 )
 
-from luna.gateware.usb.usb2.request              import (
+from sol.gateware.usb.usb2.request               import (
 	USBRequestHandler, SetupPacket
 )
 
@@ -132,7 +132,7 @@ class GetDescriptorSetHandler(Elaboratable):
 			+---------+--------------------------------------+
 		Returns
 		-------
-		:py:class:`Tuple <tuple>` [ :py:class:`amaranth.hdl.mem.Memory`, :py:class:`int`, :py:class:`int` ]
+		:py:class:`Tuple <tuple>` [ :py:class:`torii.hdl.mem.Memory`, :py:class:`int`, :py:class:`int` ]
 			A List containing:
 				* A Memory object defining the descriptor data and access information as defined above.
 				  The memory object uses 32-bit entries which the descriptor gateware accesses accordingly.
@@ -305,7 +305,7 @@ class WindowsRequestHandler(USBRequestHandler):
 	`Microsoft OS 2.0 Descriptors Specification <https://docs.microsoft.com/en-us/windows-hardware/drivers/usbcon/microsoft-os-2-0-descriptors-specification>`_.
 
 	The main thing this handler has to deal with are the vendor requests to the device as the
-	:py:class:`usb_protocol.emitters.descriptors.microsoft.PlatformDescriptorCollection` and
+	:py:class:`usb_construct.emitters.descriptors.microsoft.PlatformDescriptorCollection` and
 	descriptor system deals with the the rest of the spec.
 
 	To this end, when triggered, the handler works as follows:

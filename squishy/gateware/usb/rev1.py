@@ -4,52 +4,52 @@ from typing                                         import (
 	Union
 )
 
-from amaranth                                       import (
+from torii                                       import (
 	Elaboratable, Module,
 	ResetSignal, Cat
 )
-from amaranth.hdl.ast                               import (
+from torii.hdl.ast                               import (
 	Operator
 )
 
-from luna.usb2                                      import (
+from sol.usb2                                      import (
 	USBDevice
 )
 
 
-from luna.gateware.usb.usb2.request                 import (
+from sol.gateware.usb.usb2.request                 import (
 	StallOnlyRequestHandler, USBRequestHandler,
 	SetupPacket
 )
 
-from usb_protocol.types                             import (
+from usb_construct.types                            import (
 	LanguageIDs, USBRequestType
 )
 
-from usb_protocol.types.descriptors.dfu             import (
+from usb_construct.types.descriptors.dfu             import (
 	DFUWillDetach, DFUManifestationTollerant,
 	DFUCanUpload, DFUCanDownload
 )
-from usb_protocol.contextmgrs.descriptors.dfu       import (
+from usb_construct.contextmgrs.descriptors.dfu       import (
 	FunctionalDescriptor
 )
 
-from usb_protocol.emitters.descriptors.standard     import (
+from usb_construct.emitters.descriptors.standard     import (
 	DeviceDescriptorCollection, DeviceClassCodes, InterfaceClassCodes,
 	ApplicationSubclassCodes, DFUProtocolCodes
 )
 
-from usb_protocol.emitters.descriptors.microsoft    import (
+from usb_construct.emitters.descriptors.microsoft    import (
 	PlatformDescriptorCollection
 )
-from usb_protocol.contextmgrs.descriptors.microsoft import (
+from usb_construct.contextmgrs.descriptors.microsoft import (
 	PlatformDescriptor
 )
 
-from .dfu                                           import (
+from .dfu                                            import (
 	DFURequestHandler
 )
-from ..quirks.usb.windows                           import (
+from ..quirks.usb.windows                            import (
 	WindowsRequestHandler
 )
 

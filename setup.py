@@ -58,14 +58,10 @@ setup(
 		'construct>=2.10.67',
 		'arrow',
 		'libusb1>=1.8.1',
-		'rich~=12.2.0',
-
-		'amaranth @ git+https://github.com/amaranth-lang/amaranth.git@main',
-		'amaranth-boards @ git+https://github.com/amaranth-lang/amaranth-boards.git@main',
-		'amaranth-stdio @ git+https://github.com/amaranth-lang/amaranth-stdio.git@main',
-
-		'usb_protocol @ git+https://github.com/shrine-maiden-heavy-industries/python-usb-protocol@main',
-		'luna @ git+https://github.com/shrine-maiden-heavy-industries/luna.git@main',
+		'rich~=12.6.0',
+		'torii',
+		'usb-construct',
+		'sol-usb',
 	],
 
 	packages          = find_packages(

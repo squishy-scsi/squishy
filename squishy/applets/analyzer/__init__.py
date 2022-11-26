@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from amaranth    import Module
+from torii       import Module
 
 from ..          import SquishyApplet
 from ...gateware import AppletElaboratable

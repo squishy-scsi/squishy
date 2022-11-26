@@ -3,7 +3,7 @@ from typing         import (
 	Literal, Union, Tuple, Optional
 )
 
-from amaranth.build import (
+from torii.build import (
 	Attrs, Pins, PinsN, Subsignal, DiffPairs, Resource
 )
 
@@ -132,7 +132,7 @@ def SCSIConnectorResource(*args, diff: bool,
 
 	Returns
 	-------
-	:py:class:`amaranth.build.dsl.Resource`
+	:py:class:`torii.build.dsl.Resource`
 		The SCSI Connector Resource
 
 	'''
@@ -263,7 +263,7 @@ def SCSIPhyResource(*args,
 
 	Returns
 	-------
-	:py:class:`amaranth.build.dsl.Resource`
+	:py:class:`torii.build.dsl.Resource`
 		The SCSI Connector Resource
 
 	'''

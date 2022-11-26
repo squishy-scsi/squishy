@@ -6,7 +6,7 @@ from typing              import Tuple
 from datetime            import datetime
 from argparse            import ArgumentParser, Namespace
 
-from amaranth.build.run  import LocalBuildProducts
+from torii.build.run     import LocalBuildProducts
 
 from rich.progress       import (
 	Progress, SpinnerColumn, BarColumn,

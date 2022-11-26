@@ -1,34 +1,34 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from enum                               import IntEnum, unique
-from struct                             import pack, unpack
-from typing                             import (
+from enum                                import IntEnum, unique
+from struct                              import pack, unpack
+from typing                              import (
 	Tuple, Union, Dict
 )
 
-from amaranth                           import (
+from torii                               import (
 	Module, Signal, DomainRenamer, Cat, Memory, Const
 )
-from amaranth.hdl.ast                   import Operator
-from amaranth.lib.fifo                  import AsyncFIFO
+from torii.hdl.ast                       import Operator
+from torii.lib.fifo                      import AsyncFIFO
 
-from usb_protocol.types                 import (
+from usb_construct.types                 import (
 	USBRequestType, USBRequestRecipient, USBStandardRequests
 )
-from usb_protocol.types.descriptors.dfu import DFURequests
+from usb_construct.types.descriptors.dfu import DFURequests
 
-from luna.gateware.usb.usb2.request     import (
+from sol.gateware.usb.usb2.request      import (
 	USBRequestHandler, SetupPacket
 )
-from luna.gateware.usb.stream           import (
+from sol.gateware.usb.stream            import (
 	USBInStreamInterface, USBOutStreamInterface
 )
-from luna.gateware.stream.generator     import (
+from sol.gateware.stream.generator      import (
 	StreamSerializer
 )
 
-from ...core.flash                      import FlashGeometry
+from ...core.flash                       import FlashGeometry
 
-from ..core.flash                       import SPIFlash
+from ..core.flash                        import SPIFlash
 
 __all__ = (
 	'DFURequestHandler',

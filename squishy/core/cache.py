@@ -1,16 +1,16 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-import logging          as log
-from pathlib            import Path
-from lzma               import LZMACompressor
-from shutil             import rmtree
-from typing             import (
+import logging       as log
+from pathlib         import Path
+from lzma            import LZMACompressor
+from shutil          import rmtree
+from typing          import (
 	Union, Dict, List
 )
 
-from amaranth.build.run import LocalBuildProducts
+from torii.build.run import LocalBuildProducts
 
-from ..config           import SQUISHY_APPLET_CACHE
+from ..config        import SQUISHY_APPLET_CACHE
 
 __all__ = (
 	'SquishyBitstreamCache',

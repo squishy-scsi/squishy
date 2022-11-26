@@ -9,7 +9,7 @@ from enum      import (
 	IntEnum, unique
 )
 
-from usb_protocol.types.descriptors import (
+from usb_construct.types.descriptors import (
 	InterfaceClassCodes, ApplicationSubclassCodes
 )
 

@@ -1,31 +1,31 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from enum                               import (
+from enum                                import (
 	IntEnum, unique
 )
 
-from amaranth                           import (
+from torii                            import (
 	Module, Signal, Cat, Instance
 )
-from amaranth.hdl.ast                   import (
+from torii.hdl.ast                    import (
 	Operator
 )
 
-from usb_protocol.types                 import (
+from usb_construct.types                 import (
 	USBRequestType, USBRequestRecipient,
 	USBStandardRequests
 )
-from usb_protocol.types.descriptors.dfu import (
+from usb_construct.types.descriptors.dfu import (
 	DFURequests
 )
 
-from luna.gateware.usb.usb2.request     import (
+from sol.gateware.usb.usb2.request      import (
 	USBRequestHandler, SetupPacket
 )
-from luna.gateware.usb.stream           import (
+from sol.gateware.usb.stream            import (
 	USBInStreamInterface
 )
-from luna.gateware.stream.generator     import (
+from sol.gateware.stream.generator      import (
 	StreamSerializer
 )
 
