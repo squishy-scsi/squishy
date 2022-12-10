@@ -41,8 +41,8 @@ todo_include_todos     = True
 
 intersphinx_mapping = {
 	'python'   : ('https://docs.python.org/3', None),
-	'luna'     : ('https://luna.readthedocs.io/en/latest', None),
-	'amaranth' : ('https://amaranth-lang.org/docs/amaranth/latest', None),
+	'sol'      : ('https://shrine-maiden-heavy-industries.github.io/sol/', None),
+	'torii'    : ('https://shrine-maiden-heavy-industries.github.io/torii-hdl/', None),
 	'construct': ('https://construct.readthedocs.io/en/latest', None),
 }
 

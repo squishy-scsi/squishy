@@ -4,7 +4,7 @@ from torii.lib.soc.wishbone                      import Interface
 from torii.lib.soc.csr.bus                       import Element, Multiplexer
 from torii.lib.soc.csr.wishbone                  import WishboneCSRBridge
 
-from sol.usb2                                   import *
+from sol_usb.usb2                                import *
 
 from usb_construct.types                         import USBTransferType, USBUsageType
 
@@ -18,7 +18,7 @@ __all__ = (
 )
 
 class USBInterface(Elaboratable):
-	'''Luna based USB ULPI Interface
+	'''SOL based USB ULPI Interface
 
 	Note
 	----

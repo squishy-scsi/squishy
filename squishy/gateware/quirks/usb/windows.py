@@ -25,11 +25,11 @@ from usb_construct.emitters.descriptors.microsoft import (
 	PlatformDescriptorCollection
 )
 
-from sol.gateware.usb.stream                     import (
+from sol_usb.gateware.usb.stream                  import (
 	USBInStreamInterface
 )
 
-from sol.gateware.usb.usb2.request               import (
+from sol_usb.gateware.usb.usb2.request            import (
 	USBRequestHandler, SetupPacket
 )
 

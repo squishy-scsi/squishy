@@ -1,17 +1,17 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from amaranth.sim                       import (
+from torii.sim                           import (
 	Settle
 )
-from usb_protocol.types                 import (
+from usb_construct.types                 import (
 	USBRequestType
 )
-from usb_protocol.types.descriptors.dfu import (
+from usb_construct.types.descriptors.dfu import (
 	DFURequests
 )
-from gateware_test                      import (
+from gateware_test                       import (
 	SquishyUSBGatewareTestCase, sim_test
 )
-from squishy.gateware.usb.dfu           import (
+from squishy.gateware.usb.dfu            import (
 	DFURequestHandler,
 	DFUState
 )

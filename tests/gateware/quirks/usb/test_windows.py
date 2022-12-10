@@ -1,23 +1,23 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing                                      import (
+from typing                                       import (
 	Union, Tuple
 )
-from amaranth.sim                                import (
+from torii.sim                                    import (
 	Settle
 )
-from usb_protocol.types                          import (
+from usb_construct.types                          import (
 	USBRequestType, USBRequestRecipient
 )
-from usb_protocol.types.descriptors.microsoft    import (
+from usb_construct.types.descriptors.microsoft    import (
 	MicrosoftRequests
 )
-from usb_protocol.emitters.descriptors.microsoft import (
+from usb_construct.emitters.descriptors.microsoft import (
 	SetHeaderDescriptorEmitter, PlatformDescriptorCollection
 )
-from squishy.gateware.quirks.usb.windows         import (
+from squishy.gateware.quirks.usb.windows          import (
 	WindowsRequestHandler, GetDescriptorSetHandler
 )
-from gateware_test                               import (
+from gateware_test                                import (
 	SquishyUSBGatewareTestCase, sim_test
 )
 

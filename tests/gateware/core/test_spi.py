@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from amaranth.sim              import Settle
+from torii.sim                 import Settle
 
 from squishy.gateware.core.spi import SPIInterface
 

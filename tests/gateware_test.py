@@ -1,22 +1,22 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing                             import (
+from typing             import (
 	Tuple, Union
 )
 
-import logging        as log
-from functools        import wraps
-from pathlib          import Path
-from unittest         import TestCase
-from math             import ceil
-from os               import getenv
+import logging           as log
+from functools           import wraps
+from pathlib             import Path
+from unittest            import TestCase
+from math                import ceil
+from os                  import getenv
 
-from amaranth         import Signal
-from amaranth.sim     import Simulator, Settle
-from amaranth.hdl.ir  import Fragment
-from amaranth.hdl.rec import Record, DIR_FANIN, DIR_FANOUT
+from torii               import Signal
+from torii.sim           import Simulator, Settle
+from torii.hdl.ir        import Fragment
+from torii.hdl.rec       import Record, DIR_FANIN, DIR_FANOUT
 
 
-from usb_protocol.types                 import (
+from usb_construct.types import (
 	USBRequestType, USBRequestRecipient,
 	USBStandardRequests,
 )
@@ -28,7 +28,7 @@ __all__ = (
 )
 
 class _MockRecord(Record):
-	"""Mock Amaranth Record
+	"""Mock Torii Record
 
 	This class is a modified version of :py:class:`Record`
 	that dynamically allocates a record for every field
@@ -46,7 +46,7 @@ class _MockRecord(Record):
 
 	"""
 
-	def _insert_field(self, item: str):
+	def _insert_field(self, item: str) -> None:
 		"""Construct mocked Record
 
 		When the call to ``__getitem__`` runs into a field that
@@ -95,7 +95,7 @@ class _MockRecord(Record):
 			return super().__getitem__(item)
 
 class _MockPlatform:
-	"""Mock Amaranth Platform
+	"""Mock Torii Platform
 
 	This is a mock platform that returns a :py:class:`_MockRecord`
 	whenever any call to ``request`` is made, regardless of the
@@ -126,7 +126,7 @@ class SquishyGatewareTestCase(TestCase):
 
 	This class wraps the :py:class:`TestCase` class from the `unittest` module
 	from the python standard lib. It has useful methods for testing and simulating
-	Amaranth based gateware.
+	Torii based gateware.
 
 	Attributes
 	----------

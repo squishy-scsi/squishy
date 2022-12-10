@@ -1,23 +1,23 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing                                         import (
+from typing                                        import (
 	Dict, Any, Iterable, Optional, Callable,
 	Union
 )
 
-from torii                                       import (
+from torii                                         import (
 	Elaboratable, Module,
 	ResetSignal, Cat
 )
-from torii.hdl.ast                               import (
+from torii.hdl.ast                                 import (
 	Operator
 )
 
-from sol.usb2                                      import (
+from sol_usb.usb2                                  import (
 	USBDevice
 )
 
 
-from sol.gateware.usb.usb2.request                 import (
+from sol_usb.gateware.usb.usb2.request              import (
 	StallOnlyRequestHandler, USBRequestHandler,
 	SetupPacket
 )

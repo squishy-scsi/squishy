@@ -1,30 +1,30 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing                             import (
+from typing                              import (
 	Tuple, Union
 )
-from amaranth                           import (
+from torii                               import (
 	Record
 )
-from amaranth.hdl.rec                   import (
+from torii.hdl.rec                       import (
 	DIR_FANIN, DIR_FANOUT
 )
-from amaranth.sim                       import (
+from torii.sim                           import (
 	Settle
 )
-from usb_protocol.types                 import (
+from usb_construct.types                 import (
 	USBRequestType,
 )
-from usb_protocol.types.descriptors.dfu import (
+from usb_construct.types.descriptors.dfu import (
 	DFURequests
 )
-from gateware_test                      import (
+from gateware_test                       import (
 	SquishyUSBGatewareTestCase, sim_test
 )
-from squishy.core.flash                 import (
+from squishy.core.flash                  import (
 	FlashGeometry
 )
 
-from squishy.gateware.bootloader.dfu    import (
+from squishy.gateware.bootloader.dfu     import (
 	DFURequestHandler, DFUState
 )
 

@@ -1,14 +1,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from abc                            import (
+from abc                               import (
 	ABCMeta, abstractmethod
 )
-from typing                         import (
+from typing                            import (
 	Optional, List, Any, Type
 )
-from torii                          import (
+from torii                             import (
 	Elaboratable, Module
 )
-from sol.gateware.usb.usb2.request import (
+from sol_usb.gateware.usb.usb2.request import (
 	USBRequestHandler
 )
 

@@ -39,7 +39,7 @@ def squishy_version() -> str:
 		relative_to    = __file__
 	)
 
-@nox.session(reuse_venv = True)
+@nox.session
 def test(session: nox.Session) -> None:
 	session.install('.')
 	session.run(

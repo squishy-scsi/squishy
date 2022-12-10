@@ -1,27 +1,27 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii                          import (
+from torii                                           import (
 	Elaboratable, Module, ClockDomain,
 	ResetSignal, Instance, Signal
 )
-from torii.hdl.ast                  import (
+from torii.hdl.ast                                   import (
 	Operator
 )
 
-from sol.usb2                      import (
+from sol_usb.usb2                                    import (
 	USBDevice
 )
-from sol.gateware.usb.request      import (
+from sol_usb.gateware.usb.request                    import (
 	SetupPacket
 )
-from sol.gateware.usb.usb2.request import (
+from sol_usb.gateware.usb.usb2.request               import (
 	StallOnlyRequestHandler
 )
 
-from usb_construct.types                         import (
+from usb_construct.types                             import (
 	USBRequestType
 )
-from usb_construct.emitters.descriptors.standard import (
+from usb_construct.emitters.descriptors.standard     import (
 	DeviceDescriptorCollection, LanguageIDs, DeviceClassCodes,
 	InterfaceClassCodes, ApplicationSubclassCodes, DFUProtocolCodes
 )

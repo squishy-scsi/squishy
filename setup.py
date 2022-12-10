@@ -38,7 +38,7 @@ setup(
 	use_scm_version  = vcs_ver(),
 	author           = 'Aki \'lethalbit\' Van Ness',
 	author_email     = 'nya@catgirl.link',
-	description      = 'SCSI Multitool and Amaranth HDL Library',
+	description      = 'SCSI Multitool and Torii HDL Library',
 	license          = 'BSD-3-Clause',
 	python_requires  = '~=3.9',
 	zip_safe         = True,
@@ -59,9 +59,9 @@ setup(
 		'arrow',
 		'libusb1>=1.8.1',
 		'rich~=12.6.0',
-		'torii',
-		'usb-construct',
-		'sol-usb',
+		'torii<1.0',
+		'usb-construct<1.0',
+		'sol-usb<1.0',
 	],
 
 	packages          = find_packages(

@@ -19,13 +19,13 @@ from usb_construct.types.descriptors.dfu import (
 	DFURequests
 )
 
-from sol.gateware.usb.usb2.request      import (
+from sol_usb.gateware.usb.usb2.request   import (
 	USBRequestHandler, SetupPacket
 )
-from sol.gateware.usb.stream            import (
+from sol_usb.gateware.usb.stream         import (
 	USBInStreamInterface
 )
-from sol.gateware.stream.generator      import (
+from sol_usb.gateware.stream.generator   import (
 	StreamSerializer
 )
 

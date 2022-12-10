@@ -2,19 +2,19 @@
 from typing                      import (
 	Optional, Tuple
 )
-from amaranth                    import (
+from torii                       import (
 	Elaboratable, Module
 )
-from amaranth.sim                import (
+from torii.sim                   import (
 	Settle
 )
-from amaranth.lib.fifo           import (
+from torii.lib.fifo              import (
 	AsyncFIFO
 )
-from amaranth                    import (
+from torii                       import (
 	Record
 )
-from amaranth.hdl.rec            import (
+from torii.hdl.rec               import (
 	DIR_FANIN, DIR_FANOUT
 )
 
