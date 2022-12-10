@@ -106,7 +106,7 @@ def common_options(parser: ArgumentParser) -> None:
 	core_options = parser.add_argument_group('Core configuration options')
 
 	core_options.add_argument(
-		'--verbose',
+		'--verbose', '-v',
 		action = 'store_true',
 		help   = 'Enable verbose output during synth and pnr'
 	)
