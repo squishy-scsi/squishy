@@ -30,9 +30,8 @@ class SCSI1(Elaboratable):
 
 	'''
 
-	def __init__(self, *, is_device: bool, arbitrating: bool, config: dict) -> None:
+	def __init__(self, *, is_device: bool, config: dict) -> None:
 		self.is_device   = is_device
-		self.arbitrating = arbitrating
 		self.config      = config
 
 	def elaborate(self, platform) -> Module:
