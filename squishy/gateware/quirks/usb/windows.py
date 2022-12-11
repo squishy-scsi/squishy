@@ -139,7 +139,7 @@ class GetDescriptorSetHandler(Elaboratable):
 				* The length of the largest held descriptor.
 				* The highest Vendor code number used by the descriptors for retrieval.
 
-		'''
+		''' # noqa: E101
 
 		descriptors = self._descriptors.descriptors
 
