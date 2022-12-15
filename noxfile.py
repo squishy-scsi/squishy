@@ -58,10 +58,15 @@ def docs(session: nox.Session) -> None:
 @nox.session
 def mypy(session: nox.Session) -> None:
 	out_dir = (BUILD_DIR / 'mypy')
+	out_dir.mkdir(parents = True, exist_ok = True)
+
 	session.install('mypy')
 	session.install('lxml')
-	session.run('mypy', '--non-interactive', '--install-types')
-	session.run('mypy', '-p', 'squishy', '--html-report', str(out_dir.resolve()))
+	session.install('.')
+	session.run(
+		'mypy', '--non-interactive', '--install-types', '--pretty',
+		'-p', 'squishy', '--html-report', str(out_dir.resolve())
+	)
 
 @nox.session
 def flake8(session: nox.Session) -> None:
@@ -86,6 +91,14 @@ def upload_dist(session: nox.Session) -> None:
 	)
 
 
+@nox.session
+def pkg_appimage(session: nox.Session) -> None:
+	session.install('appimage-builder')
+
+	pkg_dir = (PKGS_DIR / 'appimage')
+
+	with session.chdir(pkg_dir):
+		pass
 
 @nox.session
 def pkg_flatpak(session: nox.Session) -> None:
@@ -94,6 +107,29 @@ def pkg_flatpak(session: nox.Session) -> None:
 	with session.chdir(pkg_dir):
 		session.run('bash', 'build.sh', str(BUILD_DIR / 'flatpak'), squishy_version(), external = True)
 
+@nox.session
+def pkg_deb(session: nox.Session) -> None:
+	build_dists(session)
+	pkg_dir = (PKGS_DIR / 'deb')
+
+	with session.chdir(pkg_dir):
+		pass
+
+@nox.session
+def pkg_dmg(session: nox.Session) -> None:
+	build_dists(session)
+	pkg_dir = (PKGS_DIR / 'dmg')
+
+	with session.chdir(pkg_dir):
+		pass
+
+@nox.session
+def pkg_rpm(session: nox.Session) -> None:
+	build_dists(session)
+	pkg_dir = (PKGS_DIR / 'rpm')
+
+	with session.chdir(pkg_dir):
+		pass
 
 @nox.session
 def pkg_pacman(session: nox.Session) -> None:
@@ -104,3 +140,6 @@ def pkg_pacman(session: nox.Session) -> None:
 	with session.chdir(pkg_dir):
 		session.run('bash', 'build.sh', str(DIST_DIR), squishy_version(), external = True)
 
+@nox.session
+def pkg_windows(session: nox.Session) -> None:
+	pass
