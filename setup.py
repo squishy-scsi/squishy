@@ -65,7 +65,10 @@ setup(
 	],
 
 	packages          = find_packages(
-		where = '.'
+		where   = '.',
+		exclude = (
+			'tests', 'tests.*', 'examples', 'examples.*'
+		)
 	),
 	package_data      = {
 		# GUI Resources
