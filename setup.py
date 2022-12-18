@@ -122,6 +122,10 @@ setup(
 
 		'gui': [
 			'PySide2~=5.15.2',
+		],
+		'dev': [
+			'nox',
+			'setuptools_scm'
 		]
 	},
 
