@@ -43,7 +43,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+g85ad65f
+                0.1.dev1+gbaa6fe1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -242,10 +242,10 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Squishy as a Library</a> &raquo;</li>
-          <li><a href="../index.html">Python Library</a> &raquo;</li>
-      <li><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands</span></code></li>
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Squishy as a Library</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Python Library</a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands</span></code></li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -260,7 +260,7 @@
 </div>
 <span class="target" id="module-squishy.scsi.commands"></span><span class="target" id="module-squishy.scsi.command"></span><dl class="py class">
 <dt class="sig sig-object py" id="squishy.scsi.command.GroupCode">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">GroupCode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.GroupCode" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">GroupCode</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.GroupCode" title="Permalink to this definition"></a></dt>
 <dd><p>SCSI Command Group Code</p>
 <p>Each SCSI command belongs to a group that defines its characteristics. It
 also defines which commands are optional (<code class="docutils literal notranslate"><span class="pre">o</span></code>), mandatory (<code class="docutils literal notranslate"><span class="pre">m</span></code>),
@@ -628,7 +628,7 @@ remaining five-bits in the command opcode for the command identifier itself.</p>
 
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.scsi.command.SCSICommand">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><span class="pre">GroupCode</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">group_code</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><span class="pre">GroupCode</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">size</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand" title="Permalink to this definition"></a></dt>
 <dd><p>SCSI Command Structure</p>
 <p>Creates a <code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Struct</span></code> for arbitrary SCSI Commands. This wraps the
 structure and gives it some useful common operations needed to consume and generate
@@ -795,17 +795,17 @@ compute sizes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>opcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The operation code (opcode) for the given command.</p></li>
+<li><p><strong>opcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The operation code (opcode) for the given command.</p></li>
 <li><p><strong>group_code</strong> (<a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><em>GroupCode</em></a>) – The specific SCSI group code for this command.</p></li>
-<li><p><strong>size</strong> (<em>None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The size of the command, if not provided, this is inferred from the <code class="docutils literal notranslate"><span class="pre">group_code</span></code> if possible.</p></li>
-<li><p><strong>*subcons</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>[</em><a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><em>construct.Subconstruct</em></a><em>]</em>) – The collection of <a class="reference external" href="https://construct.readthedocs.io/en/latest/index.html">construct</a> <a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Subconstruct</span></code></a>
+<li><p><strong>size</strong> (<em>None</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The size of the command, if not provided, this is inferred from the <code class="docutils literal notranslate"><span class="pre">group_code</span></code> if possible.</p></li>
+<li><p><strong>*subcons</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><em>construct.Subconstruct</em></a><em>]</em>) – The collection of <a class="reference external" href="https://construct.readthedocs.io/en/latest/index.html">construct</a> <a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Subconstruct</span></code></a>
 members representing the command.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Variables</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>group_code</strong> (<a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><em>GroupCode</em></a>) – The SCSI commands group code.</p></li>
-<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The total size of the SCSI command.</p></li>
+<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The total size of the SCSI command.</p></li>
 </ul>
 </dd>
 </dl>
@@ -817,7 +817,7 @@ call by <code class="docutils literal notranslate"><span class="pre">8</span></c
 </div>
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.scsi.command.SCSICommand.len">
-<span class="sig-name descname"><span class="pre">len</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#squishy.scsi.command.SCSICommand.len" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">len</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#squishy.scsi.command.SCSICommand.len" title="Permalink to this definition"></a></dt>
 <dd><p>Return structure length in bytes</p>
 </dd></dl>
 
@@ -844,7 +844,7 @@ call by <code class="docutils literal notranslate"><span class="pre">8</span></c
 
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.scsi.command.SCSICommand6">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconmskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand6" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand6</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconmskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand6" title="Permalink to this definition"></a></dt>
 <dd><p>Six-byte SCSI Command</p>
 <p>This is a specialization of the <a class="reference internal" href="#squishy.scsi.command.SCSICommand" title="squishy.scsi.command.SCSICommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCSICommand</span></code></a> class that deals with
 six-byte SCSI commands. It automatically sets the group code to Group 0.</p>
@@ -898,8 +898,8 @@ four <code class="docutils literal notranslate"><span class="pre">data</span></c
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>opcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The operation code (opcode) for the given command.</p></li>
-<li><p><strong>*subcons</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>[</em><a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><em>construct.Subconstruct</em></a><em>]</em>) – <p>The collection of <a class="reference external" href="https://construct.readthedocs.io/en/latest/index.html">construct</a> <a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Subconstruct</span></code></a>
+<li><p><strong>opcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The operation code (opcode) for the given command.</p></li>
+<li><p><strong>*subcons</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><em>construct.Subconstruct</em></a><em>]</em>) – <p>The collection of <a class="reference external" href="https://construct.readthedocs.io/en/latest/index.html">construct</a> <a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Subconstruct</span></code></a>
 members representing the command.</p>
 </p></li>
 </ul>
@@ -907,7 +907,7 @@ members representing the command.</p>
 <dt class="field-even">Variables</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>group_code</strong> (<a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><em>GroupCode</em></a>) – The SCSI commands group code.</p></li>
-<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The total size of the SCSI command.</p></li>
+<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The total size of the SCSI command.</p></li>
 </ul>
 </dd>
 </dl>
@@ -921,7 +921,7 @@ call by <code class="docutils literal notranslate"><span class="pre">8</span></c
 
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.scsi.command.SCSICommand10">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconmskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand10" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand10</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconmskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand10" title="Permalink to this definition"></a></dt>
 <dd><p>Ten-byte SCSI Command</p>
 <p>This is a specialization of the <a class="reference internal" href="#squishy.scsi.command.SCSICommand" title="squishy.scsi.command.SCSICommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCSICommand</span></code></a> class that deals with
 ten-byte SCSI commands. It automatically sets the group code to Group 1.</p>
@@ -983,8 +983,8 @@ eight <code class="docutils literal notranslate"><span class="pre">data</span></
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>opcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The operation code (opcode) for the given command.</p></li>
-<li><p><strong>*subcons</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>[</em><a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><em>construct.Subconstruct</em></a><em>]</em>) – <p>The collection of <a class="reference external" href="https://construct.readthedocs.io/en/latest/index.html">construct</a> <a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Subconstruct</span></code></a>
+<li><p><strong>opcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The operation code (opcode) for the given command.</p></li>
+<li><p><strong>*subcons</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><em>construct.Subconstruct</em></a><em>]</em>) – <p>The collection of <a class="reference external" href="https://construct.readthedocs.io/en/latest/index.html">construct</a> <a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Subconstruct</span></code></a>
 members representing the command.</p>
 </p></li>
 </ul>
@@ -992,7 +992,7 @@ members representing the command.</p>
 <dt class="field-even">Variables</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>group_code</strong> (<a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><em>GroupCode</em></a>) – The SCSI commands group code.</p></li>
-<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The total size of the SCSI command.</p></li>
+<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The total size of the SCSI command.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1006,7 +1006,7 @@ call by <code class="docutils literal notranslate"><span class="pre">8</span></c
 
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.scsi.command.SCSICommand12">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand12</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconmskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand12" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommand12</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">opcode</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">subcons</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">subconmskw</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommand12" title="Permalink to this definition"></a></dt>
 <dd><p>Twelve-byte SCSI Command</p>
 <p>This is a specialization of the <a class="reference internal" href="#squishy.scsi.command.SCSICommand" title="squishy.scsi.command.SCSICommand"><code class="xref py py-class docutils literal notranslate"><span class="pre">SCSICommand</span></code></a> class that deals with
 twelve-byte SCSI commands. It automatically sets the group code to Group 5.</p>
@@ -1072,8 +1072,8 @@ ten <code class="docutils literal notranslate"><span class="pre">data</span></co
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>opcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The operation code (opcode) for the given command.</p></li>
-<li><p><strong>*subcons</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.10)"><em>list</em></a><em>[</em><a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><em>construct.Subconstruct</em></a><em>]</em>) – <p>The collection of <a class="reference external" href="https://construct.readthedocs.io/en/latest/index.html">construct</a> <a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Subconstruct</span></code></a>
+<li><p><strong>opcode</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The operation code (opcode) for the given command.</p></li>
+<li><p><strong>*subcons</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><em>construct.Subconstruct</em></a><em>]</em>) – <p>The collection of <a class="reference external" href="https://construct.readthedocs.io/en/latest/index.html">construct</a> <a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Subconstruct</span></code></a>
 members representing the command.</p>
 </p></li>
 </ul>
@@ -1081,7 +1081,7 @@ members representing the command.</p>
 <dt class="field-even">Variables</dt>
 <dd class="field-even"><ul class="simple">
 <li><p><strong>group_code</strong> (<a class="reference internal" href="#squishy.scsi.command.GroupCode" title="squishy.scsi.command.GroupCode"><em>GroupCode</em></a>) – The SCSI commands group code.</p></li>
-<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The total size of the SCSI command.</p></li>
+<li><p><strong>size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The total size of the SCSI command.</p></li>
 </ul>
 </dd>
 </dl>
@@ -1095,7 +1095,7 @@ call by <code class="docutils literal notranslate"><span class="pre">8</span></c
 
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.scsi.command.SCSICommandField">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommandField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.10)"><span class="pre">Any</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.10)"><span class="pre">Optional</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommandField" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.command.</span></span><span class="sig-name descname"><span class="pre">SCSICommandField</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">description</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">''</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><span class="pre">Any</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">length</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.command.SCSICommandField" title="Permalink to this definition"></a></dt>
 <dd><p>SCSI Command Field</p>
 <p>This is a wrapper <a class="reference external" href="https://construct.readthedocs.io/en/latest/api/abstract.html#construct.Subconstruct" title="(in Construct v2.10)"><code class="xref py py-class docutils literal notranslate"><span class="pre">construct.Subconstruct</span></code></a> to allow for some metadata and automatic
 type deduction to be preformed based on the field name.</p>
@@ -1185,12 +1185,12 @@ calculated by the name if any is present.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – The description of this field.</p></li>
+<li><p><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The description of this field.</p></li>
 <li><p><strong>default</strong> (<em>Any</em>) – The default value for this field if any.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Keyword Arguments</dt>
-<dd class="field-even"><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – The length of the field in bits.</p>
+<dd class="field-even"><p><strong>length</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – The length of the field in bits.</p>
 </dd>
 </dl>
 </dd></dl>
@@ -1229,7 +1229,7 @@ calculated by the name if any is present.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.scsi.command.CommandEmitter.emit">
-<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.10)"><span class="pre">bytes</span></a></span></span><a class="headerlink" href="#squishy.scsi.command.CommandEmitter.emit" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">emit</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.11)"><span class="pre">bytes</span></a></span></span><a class="headerlink" href="#squishy.scsi.command.CommandEmitter.emit" title="Permalink to this definition"></a></dt>
 <dd><p>Emit bytes</p>
 <p>Takes the assigned fields and generates a byte string from the specified format.</p>
 <div class="admonition warning">
@@ -1242,10 +1242,10 @@ to serialize the structure to bytes.</p>
 <dd class="field-odd"><p>The byte string of the serialized command.</p>
 </dd>
 <dt class="field-even">Return type</dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.10)">bytes</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.11)">bytes</a></p>
 </dd>
 <dt class="field-odd">Raises</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.10)"><strong>KeyError</strong></a> – If missing a required field for the command.</p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.11)"><strong>KeyError</strong></a> – If missing a required field for the command.</p>
 </dd>
 </dl>
 </dd></dl>

@@ -43,7 +43,7 @@
             <a href="../../../index.html" class="icon icon-home"> Squishy
           </a>
               <div class="version">
-                0.1.dev1+g85ad65f
+                0.1.dev1+gbaa6fe1
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -242,11 +242,11 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-          <li><a href="../../index.html">Squishy as a Library</a> &raquo;</li>
-          <li><a href="../index.html">Gateware Library</a> &raquo;</li>
-          <li><a href="index.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform</span></code></a> &raquo;</li>
-      <li><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform.mixins</span></code></li>
+      <li><a href="../../../index.html" class="icon icon-home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Squishy as a Library</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Gateware Library</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform.mixins</span></code></li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -259,13 +259,13 @@
 <h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform.mixins</span></code><a class="headerlink" href="#squishy-gateware-platform-mixins" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-squishy.gateware.platform.mixins"></span><p>The following are mixins that are used to add additional features to Amaranth platforms
+<span class="target" id="module-squishy.gateware.platform.mixins"></span><p>The following are mixins that are used to add additional features to torii platforms
 without any extra setup work for the platform itself.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.gateware.platform.mixins.SquishyCacheMixin">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.platform.mixins.</span></span><span class="sig-name descname"><span class="pre">SquishyCacheMixin</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.gateware.platform.mixins.SquishyCacheMixin" title="Permalink to this definition"></a></dt>
 <dd><p>Squishy Platform Cache mixin.</p>
-<p>This mixin overrides the <code class="xref py py-class docutils literal notranslate"><span class="pre">amaranth.build.plat.Platform</span></code>. <cite>build</cite> method
+<p>This mixin overrides the <code class="xref py py-class docutils literal notranslate"><span class="pre">torii.build.plat.Platform</span></code>. <cite>build</cite> method
 to inject FPGA bitstream caching via the <code class="xref py py-class docutils literal notranslate"><span class="pre">squishy.core.cache.SquishyBitstreamCache</span></code>.
 which handles all bitstream and build caching based on the elaborated designs digest.</p>
 <p>This shortens build times, and removes the need to re-build unchanged applets.</p>
