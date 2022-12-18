@@ -1,33 +1,15 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing                      import (
-	Optional, Tuple
-)
-from torii                       import (
-	Elaboratable, Module
-)
-from torii.sim                   import (
-	Settle
-)
-from torii.lib.fifo              import (
-	AsyncFIFO
-)
-from torii                       import (
-	Record
-)
-from torii.hdl.rec               import (
-	DIR_FANIN, DIR_FANOUT
-)
 
-from squishy.core.flash          import (
-	FlashGeometry
-)
-from squishy.gateware.core.flash import (
-	SPIFlash
-)
+from typing                      import Optional, Tuple
 
-from gateware_test               import (
-	SquishyGatewareTestCase, sim_test
-)
+from torii                       import Elaboratable, Module, Record
+from torii.hdl.rec               import DIR_FANIN, DIR_FANOUT
+from torii.lib.fifo              import AsyncFIFO
+from torii.sim                   import Settle
+from torii.test                  import ToriiTestCase, sim_test
+
+from squishy.core.flash          import FlashGeometry
+from squishy.gateware.core.flash import SPIFlash
 
 _DFU_DATA = (
 	0xff, 0x00, 0x00, 0xff, 0x7e, 0xaa, 0x99, 0x7e, 0x51, 0x00, 0x01, 0x05, 0x92, 0x00, 0x20, 0x62,
@@ -118,7 +100,7 @@ class DUTWrapper(Elaboratable):
 		return m
 
 
-class SPIFlashTests(SquishyGatewareTestCase):
+class SPIFlashTests(ToriiTestCase):
 	dut: DUTWrapper = DUTWrapper
 	dut_args = {
 		'resource': ('spi_flash_x1', 0)

@@ -1,32 +1,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing                              import (
-	Tuple, Union
-)
-from torii                               import (
-	Record
-)
-from torii.hdl.rec                       import (
-	DIR_FANIN, DIR_FANOUT
-)
-from torii.sim                           import (
-	Settle
-)
-from usb_construct.types                 import (
-	USBRequestType,
-)
-from usb_construct.types.descriptors.dfu import (
-	DFURequests
-)
-from gateware_test                       import (
-	SquishyUSBGatewareTestCase, sim_test
-)
-from squishy.core.flash                  import (
-	FlashGeometry
-)
 
-from squishy.gateware.bootloader.dfu     import (
-	DFURequestHandler, DFUState
-)
+from gateware_test                       import SquishyUSBGatewareTestCase, sim_test
+from torii                               import Record
+from torii.hdl.rec                       import DIR_FANIN, DIR_FANOUT
+from torii.sim                           import Settle
+from usb_construct.types                 import USBRequestType
+from usb_construct.types.descriptors.dfu import DFURequests
+
+from squishy.core.flash                  import FlashGeometry
+from squishy.gateware.bootloader.dfu     import DFURequestHandler, DFUState
 
 _DFU_DATA = (
 	0xff, 0x00, 0x00, 0xff, 0x7e, 0xaa, 0x99, 0x7e, 0x51, 0x00, 0x01, 0x05, 0x92, 0x00, 0x20, 0x62,

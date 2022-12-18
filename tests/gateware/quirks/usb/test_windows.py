@@ -1,24 +1,15 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from typing                                       import (
-	Union, Tuple
-)
-from torii.sim                                    import (
-	Settle
-)
-from usb_construct.types                          import (
-	USBRequestType, USBRequestRecipient
-)
-from usb_construct.types.descriptors.microsoft    import (
-	MicrosoftRequests
-)
+
+from gateware_test                                import SquishyUSBGatewareTestCase, sim_test
+from torii.sim                                    import Settle
 from usb_construct.emitters.descriptors.microsoft import (
-	SetHeaderDescriptorEmitter, PlatformDescriptorCollection
+	PlatformDescriptorCollection, SetHeaderDescriptorEmitter
 )
+from usb_construct.types                          import USBRequestRecipient, USBRequestType
+from usb_construct.types.descriptors.microsoft    import MicrosoftRequests
+
 from squishy.gateware.quirks.usb.windows          import (
-	WindowsRequestHandler, GetDescriptorSetHandler
-)
-from gateware_test                                import (
-	SquishyUSBGatewareTestCase, sim_test
+	GetDescriptorSetHandler, WindowsRequestHandler
 )
 
 

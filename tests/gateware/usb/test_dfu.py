@@ -1,20 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from torii.sim                           import (
-	Settle
-)
-from usb_construct.types                 import (
-	USBRequestType
-)
-from usb_construct.types.descriptors.dfu import (
-	DFURequests
-)
-from gateware_test                       import (
-	SquishyUSBGatewareTestCase, sim_test
-)
-from squishy.gateware.usb.dfu            import (
-	DFURequestHandler,
-	DFUState
-)
+
+from gateware_test                       import SquishyUSBGatewareTestCase, sim_test
+from torii.sim                           import Settle
+from usb_construct.types                 import USBRequestType
+from usb_construct.types.descriptors.dfu import DFURequests
+
+from squishy.gateware.usb.dfu            import DFURequestHandler, DFUState
 
 
 class DFURequestHandlerStubTests(SquishyUSBGatewareTestCase):

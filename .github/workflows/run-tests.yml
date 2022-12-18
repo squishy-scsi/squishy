@@ -22,16 +22,17 @@ jobs:
         run: |
           echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
           echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
-          echo "SQUISHY_TEST_INHIBIT_VCD=1" >> $GITHUB_ENV
-          echo "AMARANTH_USE_YOSYS=builtin" >> $GITHUB_ENV
-          echo "YOSYS=yowasp-yosys" >> $GITHUB_ENV
-          echo "SBY=yowasp-sby" >> $GITHUB_ENV
-          echo "SMTBMC=yowasp-yosys-smtbmc" >> $GITHUB_ENV
+          echo "TORII_TEST_INHIBIT_VCD=1" >> $GITHUB_ENV
+
       - name: Checkout
         uses: actions/checkout@v2
         with:
           lfs: true
           submodules: true
+
+      - name: Setup OSS CAD Suite
+        uses: YosysHQ/setup-oss-cad-suite@v1
+
       - name: Setup
         shell: bash
         run: |
@@ -39,18 +40,9 @@ jobs:
           sudo add-apt-repository 'deb http://ppa.launchpad.net/sri-csl/formal-methods/ubuntu bionic main'
           sudo apt-get update
           sudo apt-get install yices2
-          sudo pip3 install --upgrade pip setuptools wheel testresources
-          pip3 install --user yowasp-yosys coverage codecov
-          pip3 install --user -e .[toolchain,gui]
-      - name: Preserve Wasm cache
-        uses: actions/cache@v1
-        with:
-          path: |
-            ~/.cache/wasmtime
-            ~/.cache/yowasp
-          key: ${{ runner.os }}-wasm
+          python -m pip install --user --upgrade pip setuptools wheel setuptools_scm nox
+
       - name: Run Tests
         shell: bash
         run: |
-          python -m coverage run -m unittest discover -s tests
-          codecov
+          nox -s test

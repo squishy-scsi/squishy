@@ -1,12 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 from torii.sim                 import Settle
-
+from torii.test                import ToriiTestCase, sim_test
 from squishy.gateware.core.spi import SPIInterface
 
-from gateware_test             import SquishyGatewareTestCase, sim_test
-
-class SPIInterfaceTests(SquishyGatewareTestCase):
+class SPIInterfaceTests(ToriiTestCase):
 	dut: SPIInterface = SPIInterface
 	dut_args = {
 		'resource_name': ('spi_flash_1x', 0)
