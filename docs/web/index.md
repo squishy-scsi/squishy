@@ -11,6 +11,8 @@ tutorials/index
 cli
 gui
 mascot
+
+Source Code <https://github.com/lethalbit/squishy>
 ```
 # Squishy: The SCSI Multitool
 
