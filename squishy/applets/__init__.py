@@ -80,12 +80,12 @@ class SquishyApplet(metaclass = ABCMeta):
 	@property
 	@abstractmethod
 	def supports_gui(self) -> bool:
-		raise NotImplementedError('Applets must implement this property')
+		return False
 
 	@property
 	@abstractmethod
 	def supports_repl(self) -> bool:
-		raise NotImplementedError('Applets must implement this property')
+		return False
 
 	def __init__(self):
 		if not (
