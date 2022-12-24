@@ -2,14 +2,11 @@
 import os, sys, datetime
 sys.path.insert(0, os.path.abspath('.'))
 
-try:
-	import squishy
-	version = squishy.__version__
+from squishy import __version__ as squishy_version
 
-except ImportError:
-	version = ':nya_confused:' # :nocov:
 
 project   = 'Squishy'
+version   = squishy_version
 release   = version.split('+')[0]
 copyright = f'{datetime.date.today().year}, Aki "lethalbit" Van Ness, et. al.'
 language  = 'en'
@@ -41,17 +38,19 @@ todo_include_todos     = True
 
 intersphinx_mapping = {
 	'python'   : ('https://docs.python.org/3', None),
-	'sol'      : ('https://shrine-maiden-heavy-industries.github.io/sol/', None),
-	'torii'    : ('https://shrine-maiden-heavy-industries.github.io/torii-hdl/', None),
+	'sol'      : ('https://sol.shmdn.link/', None),
+	'torii'    : ('https://torii.shmdn.link/', None),
 	'construct': ('https://construct.readthedocs.io/en/latest', None),
 }
 
 napoleon_google_docstring = False
 napoleon_numpy_docstring  = True
 napoleon_use_ivar         = True
-napoleon_custom_sections  = ["Platform overrides"]
+napoleon_custom_sections  = [
+	'Platform overrides'
+]
 
-
+myst_heading_anchors = 3
 
 html_baseurl     = 'https://docs.scsi.moe'
 html_theme       = 'sphinx_rtd_theme'
