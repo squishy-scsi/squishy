@@ -10,28 +10,28 @@ README_FILE = (REPO_ROOT / 'README.md')
 def vcs_ver():
 	def scheme(version):
 		if version.tag and not version.distance:
-			return version.format_with("")
+			return version.format_with('')
 		else:
-			return version.format_choice("+{node}", "+{node}.dirty")
+			return version.format_choice('+{node}', '+{node}.dirty')
 	return {
-		"relative_to": __file__,
-		"version_scheme": "guess-next-dev",
-		"local_scheme": scheme
+		'relative_to': __file__,
+		'version_scheme': 'guess-next-dev',
+		'local_scheme': scheme
 	}
 
 def doc_ver():
 	try:
 		from setuptools_scm.git import parse as parse_git
 	except ImportError:
-		return ""
+		return ''
 
-	git = parse_git(".")
+	git = parse_git('.')
 	if not git:
-		return ""
+		return ''
 	elif git.exact:
-		return git.format_with("{tag}")
+		return git.format_with('{tag}')
 	else:
-		return "latest"
+		return 'latest'
 
 setup(
 	name = 'Squishy',
