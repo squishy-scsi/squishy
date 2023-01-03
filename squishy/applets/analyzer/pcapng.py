@@ -249,14 +249,22 @@ interface_description_block = 'Interface Description' / Struct(
 	'SnapLen'  / Hex(Int32ul),
 )
 
-enhanced_packet_block = 'Enhanced Packet' / Struct(
+def packet_data_len(this):
+	if hasattr(this, 'CapturedLen'):
+		return this.CapturedLen
+	# Handle sizeof() calculation phase
+	elif hasattr(this._.Data, 'CapturedLen'):
+		return this._.Data.CapturedLen
+	# Handle build phase
+	return len(this._.Data['PacketData'])
+
+enhanced_packet_block = 'Enhanced Packet' / Aligned(4, Struct(
 	'InterfaceID' / Hex(Int32ul),
-	'TimestampRaw' / Struct('High' / Hex(Int32ul), 'Low' / Hex(Int32ul)),
-	# 'Timestamp'   / Timestamp(Computed((this.TimestampRaw.High << 32) + this.TimestampRaw.Low), 0.000001, 1970),
-	'CapturedLen' / Hex(Int32ul),
-	'ActualLen'   / Hex(Int32ul),
-	'PacketData'  / HexDump(Aligned(4, Bytes(this.CapturedLen))),
-)
+	'TimestampRaw' / timestamp,
+	'CapturedLen' / Rebuild(Int32ul, len_(this.PacketData)),
+	'ActualLen'   / Int32ul,
+	'PacketData'  / HexDump(Bytes(lambda this: packet_data_len(this))),
+))
 
 interface_statistics_block = 'Interface Statistics' / Struct(
 	'InterfaceID' / Hex(Int32ul),
