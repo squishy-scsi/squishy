@@ -1,20 +1,41 @@
+
+
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
   <title>squishy.applets.SquishyApplet &mdash; Squishy 0.1.dev1 documentation</title>
-      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/styles.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/platformpicker.css" type="text/css" />
-      <link rel="stylesheet" href="../../_static/css/styles.css" type="text/css" />
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/styles.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/styles.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/graphviz.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/platformpicker.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/styles.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
     <link rel="canonical" href="https://docs.scsi.moe/applets/api/applet.html" />
+
+  
   <!--[if lt IE 9]>
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
@@ -28,23 +49,43 @@
         <script src="../../_static/js/mermaid.min.js"></script>
         <script src="../../_static/js/wavedrom.min.js"></script>
         <script src="../../_static/js/wavedrom.skin.js"></script>
-    <script src="../../_static/js/theme.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="squishy.core.device.SquishyHardwareDevice" href="device.html" />
     <link rel="prev" title="Squishy Applet: REPL API" href="repl.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+   
   <div class="wy-grid-for-nav">
+    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
+          
+
+          
             <a href="../../index.html" class="icon icon-home"> Squishy
+          
+
+          
           </a>
+
+          
+            
+            
               <div class="version">
-                0.1.dev1+gbe423ee
+                0.1.dev1+gc1f7847
               </div>
+            
+          
+
+          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -52,7 +93,18 @@
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../introduction.html">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../introduction.html#overview">Overview</a></li>
@@ -230,33 +282,75 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/lethalbit/squishy">Source Code</a></li>
 </ul>
 
+            
+          
         </div>
+        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../index.html">Squishy</a>
+        
       </nav>
 
+
       <div class="wy-nav-content">
+        
         <div class="rst-content style-external-links">
-          <div role="navigation" aria-label="Page navigation">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
   <ul class="wy-breadcrumbs">
-      <li><a href="../../index.html" class="icon icon-home"></a></li>
-          <li class="breadcrumb-item"><a href="../index.html">Squishy Applets</a></li>
-          <li class="breadcrumb-item"><a href="index.html">Applet API</a></li>
-      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">squishy.applets.SquishyApplet</span></code></li>
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Squishy Applets</a> &raquo;</li>
+        
+          <li><a href="index.html">Applet API</a> &raquo;</li>
+        
+      <li><code class="docutils literal notranslate"><span class="pre">squishy.applets.SquishyApplet</span></code></li>
+    
+    
       <li class="wy-breadcrumbs-aside">
+        
+          
+        
       </li>
+    
   </ul>
+
+  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-             
+            
   <section id="squishy-applets-squishyapplet">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.applets.SquishyApplet</span></code><a class="headerlink" href="#squishy-applets-squishyapplet" title="Permalink to this heading"></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.applets.SquishyApplet</span></code><a class="headerlink" href="#squishy-applets-squishyapplet" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <div class="admonition-todo admonition" id="id1">
@@ -265,7 +359,7 @@
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.applets.</span></span><span class="sig-name descname"><span class="pre">SquishyApplet</span></span><a class="headerlink" href="#squishy.applets.SquishyApplet" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.applets.</span></span><span class="sig-name descname"><span class="pre">SquishyApplet</span></span><a class="headerlink" href="#squishy.applets.SquishyApplet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Squishy applet base class.</p>
 <p>This is the abstract base class that is used
 to implement any possible applet for squishy.</p>
@@ -274,7 +368,7 @@ and gateware that will run the the hardware platform.</p>
 <p>Users can then invoke the build and execution of implemented
 applets by name.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Variables</dt>
+<dt class="field-odd">Variables<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>preview</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If the applet is a preview/pre-release applet.</p></li>
 <li><p><strong>pretty_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – A pretty string name of the applet.</p></li>
@@ -289,16 +383,16 @@ applets by name.</p>
 </dl>
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet.supported_platform">
-<span class="sig-name descname"><span class="pre">supported_platform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">platform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.supported_platform" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">supported_platform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">platform</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><span class="pre">str</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.supported_platform" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check to see if the given platform is supported</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>platform</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – The platform to check</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>True if the applet supports the platform, otherwise False.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)">bool</a></p>
 </dd>
 </dl>
@@ -306,16 +400,16 @@ applets by name.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet.show_help">
-<span class="sig-name descname"><span class="pre">show_help</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.show_help" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">show_help</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.show_help" title="Permalink to this definition">¶</a></dt>
 <dd><p>Shows applets built-in help</p>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet.init_gui">
-<span class="sig-name descname"><span class="pre">init_gui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_gui" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">init_gui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_gui" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes applet GUI component</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>main_window</strong> (<em>squishy.gui.MainWindow</em>) – The main GUI window.</p></li>
 <li><p><strong>args</strong> (<em>argsparse.Namespace</em>) – Any command line arguments passed.</p></li>
@@ -326,10 +420,10 @@ applets by name.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet.init_repl">
-<span class="sig-name descname"><span class="pre">init_repl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repl_ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_repl" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">init_repl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repl_ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_repl" title="Permalink to this definition">¶</a></dt>
 <dd><p>Initializes applet REPL component</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>repl_ctx</strong> (<em>None</em>) – The REPL context</p></li>
 <li><p><strong>args</strong> (<em>argsparse.Namespace</em>) – Any command line arguments passed.</p></li>
@@ -340,21 +434,21 @@ applets by name.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet.init_applet">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init_applet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AppletElaboratable</span></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_applet" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">init_applet</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">AppletElaboratable</span></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_applet" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applet Initialization</p>
 <p>Called to initialize the applet prior to
 the applet being built and ran</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>args</strong> (<em>argsparse.Namespace</em>) – Any command line arguments passed.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>The applet logic/elaboratable</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>AppletElaboratable</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – The abstract method must be implemented by the applet</p>
 </dd>
 </dl>
@@ -362,14 +456,14 @@ the applet being built and ran</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet.register_args">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.register_args" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">register_args</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">parser</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.register_args" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applet argument registration</p>
 <p>Called to register any applet specific arguments.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>parser</strong> (<a class="reference external" href="https://docs.python.org/3/library/argparse.html#argparse.ArgumentParser" title="(in Python v3.11)"><em>argparse.ArgumentParser</em></a>) – The root argparse parser.</p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – The abstract method must be implemented by the applet</p>
 </dd>
 </dl>
@@ -377,23 +471,23 @@ the applet being built and ran</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet.run">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.run" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">device</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Applet run step</p>
 <p>Called to run any specialized machinery for the applet.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>device</strong> (<a class="reference internal" href="device.html#squishy.core.device.SquishyHardwareDevice" title="squishy.core.device.SquishyHardwareDevice"><em>squishy.core.device.SquishyHardwareDevice</em></a>) – The target squishy device.</p></li>
 <li><p><strong>args</strong> (<em>argsparse.Namespace</em>) – Any command line arguments passed.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>0 if run was successful, otherwise an error code.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
 </dd>
-<dt class="field-even">Raises</dt>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
 <dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#NotImplementedError" title="(in Python v3.11)"><strong>NotImplementedError</strong></a> – The abstract method must be implemented by the applet</p>
 </dd>
 </dl>
@@ -411,33 +505,50 @@ the applet being built and ran</p>
     </script>
 
            </div>
+           
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="repl.html" class="btn btn-neutral float-left" title="Squishy Applet: REPL API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
         <a href="device.html" class="btn btn-neutral float-right" title="squishy.core.device.SquishyHardwareDevice" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="repl.html" class="btn btn-neutral float-left" title="Squishy Applet: REPL API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2022, Aki &#34;lethalbit&#34; Van Ness, et. al..</p>
-  </div>
+    <p>
+        &#169; Copyright 2023, Aki &#34;lethalbit&#34; Van Ness, et. al..
 
-  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    provided by <a href="https://readthedocs.org">Read the Docs</a>.
-   
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
         </div>
       </div>
+
     </section>
+
   </div>
-  <script>
+  
+
+  <script type="text/javascript">
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script> 
+  </script>
+
+  
+  
+    
+   
 
 </body>
 </html>
