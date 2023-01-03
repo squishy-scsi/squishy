@@ -268,9 +268,8 @@ enhanced_packet_block = 'Enhanced Packet' / Aligned(4, Struct(
 
 interface_statistics_block = 'Interface Statistics' / Struct(
 	'InterfaceID' / Hex(Int32ul),
-	'TimestampRaw' / Struct('High' / Hex(Int32ul), 'Low' / Hex(Int32ul)),
+	'Timestamp' / timestamp,
 )
-
 
 squishy_bus_type = 'Bus Type' / Enum(BitsInteger(3),
 	unknown = 0b000,
