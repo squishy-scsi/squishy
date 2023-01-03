@@ -234,16 +234,13 @@ option = 'Option' / Struct(
 	)
 )
 
-
-
-
 section_header_block = 'Section Header' / Struct(
-	'BOM'     / Hex(Const(b'\x4D\x3C\x2B\x1A')),
+	'BOM'     / Hex(Const(0x1A2B3C4D, Int32ul)),
 	'Version' / Struct(
-		'Major' / Hex(Int16ul),
-		'Minor' / Hex(Int16ul),
+		'Major' / Const(1, Int16ul),
+		'Minor' / Const(0, Int16ul),
 	),
-	'Section Len' / Hex(Int64sl),
+	'Section Len' / Default(Int64sl, -1),
 )
 
 interface_block = 'Interface Header' / Struct(
