@@ -243,9 +243,9 @@ section_header_block = 'Section Header' / Struct(
 	'Section Len' / Default(Int64sl, -1),
 )
 
-interface_block = 'Interface Header' / Struct(
+interface_description_block = 'Interface Description' / Struct(
 	'LinkType' / Hex(link_type),
-	'Reserved' / Hex(Int16ul),
+	'Reserved' / Hex(Const(0, Int16ul)),
 	'SnapLen'  / Hex(Int32ul),
 )
 
@@ -335,7 +335,7 @@ pcapng_block = 'Block' / Struct(
 	'Data'    / Switch(
 		this.Type, {
 			block_type.section_header: section_header_block,
-			block_type.interface: interface_block,
+			block_type.interface: interface_description_block,
 			block_type.enhanced_packet: enhanced_packet_block,
 			block_type.interface_stats: interface_statistics_block,
 		},
