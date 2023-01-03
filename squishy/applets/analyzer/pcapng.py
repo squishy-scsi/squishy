@@ -9,8 +9,7 @@ from construct import (
 	Pass, Rebuild, RepeatUntil, Struct, Switch, len_, this
 )
 
-# We don't have a PEN, and don't want to get one
-# so we're stealing SGIs
+# We don't have a PEN, and don't want to get one so we're stealing SGIs
 block_pen = 59
 
 # We only have the user link types specified, we don't need the other as we
@@ -412,8 +411,8 @@ if __name__ == '__main__':
 			print(fs)
 
 	import sys
-	from os import path
-	from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+	from argparse import ArgumentDefaultsHelpFormatter, ArgumentParser
+	from os       import path
 
 	parser = ArgumentParser(
 		formatter_class = ArgumentDefaultsHelpFormatter,
