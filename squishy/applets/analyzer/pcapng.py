@@ -1,13 +1,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from io import BytesIO, SEEK_END, SEEK_SET
+from io        import SEEK_END, SEEK_SET, BytesIO
 
+from arrow     import Arrow
 from construct import (
-	this,
-	Hex, HexDump, If, Switch, Pass, Aligned, Const,
-	Struct, Enum, Union, Computed, Timestamp, BitStruct,
-	Int8ul, Int16ul, Int32ul, Int64sl, Int64ul,
-	PaddedString, BitsInteger, Bytes,
-	RepeatUntil, GreedyRange,
+	Aligned, BitsInteger, BitStruct, Bytes, Check, Computed,
+	Const, CString, Default, Enum, GreedyRange, Hex, HexDump,
+	If, Int8ul, Int16ul, Int32ul, Int64sl, Int64ul, PaddedString,
+	Pass, Rebuild, RepeatUntil, Struct, Switch, len_, this
 )
 
 # We don't have a PEN, and don't want to get one
@@ -72,19 +71,28 @@ option_type = 'Option Type' / Enum(Int16ul,
 	custom3 = 0x4BAD,
 )
 
-timestamp = 'Timestamp' / Union(
-	'Timestamp',
-	'TimestampRaw' / Struct(
+epoch = Arrow(1970, 1, 1)
+
+def timestamp_from_raw(this):
+	timestamp = (this.Raw.High << 32) + this.Raw.Low
+	return epoch.shift(seconds = timestamp * 1e-6)
+
+def timestamp_to_raw(this):
+	from datetime import timedelta
+	timestamp = this.Value
+	# For now, assume that if the object is not an Arrow datetime, it's a standard library one
+	if not isinstance(timestamp, Arrow):
+		timestamp = Arrow.fromdatetime(timestamp)
+	value: timedelta = timestamp - epoch
+	value = int(value.total_seconds() * 1e6)
+	return {'Low': value & 0xffffffff, 'High': value >> 32}
+
+timestamp = 'Timestamp' / Struct(
+	'Raw' / Rebuild(Struct(
 		'High' / Hex(Int32ul),
 		'Low'  / Hex(Int32ul),
-	),
-	'Timestamp' / Timestamp(
-		Computed(
-			(this.TimestampRaw.High << 32) + this.TimestampRaw.Low
-		),
-		0.000001,
-		1970
-	),
+	), timestamp_from_raw),
+	'Value' / Computed(timestamp_to_raw),
 )
 
 option = 'Option' / Struct(
