@@ -95,130 +95,142 @@ timestamp = 'Timestamp' / Struct(
 	'Value' / Computed(timestamp_to_raw),
 )
 
+# This uses PaddedString because the strings encoded are not guaranteed to be NUL terminated
+# which means, if one were to use CString, it would reading past the intended EOS and into the
+# next control block structure. CString has no way to length limit the read.
+option_value = Aligned(4, Switch(
+	this.Code, {
+		option_type.end: Pass,
+		option_type.comment: PaddedString(this.Length, 'utf8'),
+
+		0x0002: Switch(this._.Type, {
+				block_type.section_header: PaddedString(this.Length, 'utf8'), # shb_hardware
+				block_type.interface: PaddedString(this.Length, 'utf8'),      # if_name
+				block_type.enhanced_packet: BitStruct(                        # epb_flags
+					'direction'   / BitsInteger(2),
+					'recept_type' / BitsInteger(3),
+					'fcs_len'     / BitsInteger(4),
+					'reserved'    / BitsInteger(7),
+					'll_errors'   / BitsInteger(16),
+				),
+				block_type.interface_stats: timestamp,						  # isb_starttime
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x0003: Switch(this._.Type, {
+				block_type.section_header: PaddedString(this.Length, 'utf8'), # shb_os
+				block_type.interface: PaddedString(this.Length, 'utf8'),      # if_description
+				block_type.enhanced_packet: Bytes(this.Length),               # epb_hash
+				block_type.interface_stats: timestamp,                        # isb_endtime
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x0004: Switch(this._.Type, {
+				block_type.section_header: PaddedString(this.Length, 'utf8'), # shb_userappl
+				block_type.interface: Struct(                                 # if_IPv4addr
+					'address' / Hex(Bytes(4)),
+					'mask'    / Hex(Bytes(4)),
+				),
+				block_type.enhanced_packet: Int64ul,                          # epb_dropcount
+				block_type.interface_stats: Hex(Int64ul),                     # isb_ifrecv
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x0005: Switch(this._.Type, {
+				block_type.interface: Hex(Bytes(17)),                         # if_IPv6addr
+				block_type.enhanced_packet: Hex(Int64ul),                     # epb_packetid
+				block_type.interface_stats: Hex(Int64ul),                     # isb_ifdrop
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x0006: Switch(this._.Type, {
+				block_type.interface: Hex(Bytes(6)),                          # if_MACaddr
+				block_type.enhanced_packet: Hex(Int64ul),                     # epb_queue
+				block_type.interface_stats: Hex(Int64ul),                     # isb_filteraccept
+
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x0007: Switch(this._.Type, {
+				block_type.interface: Hex(Bytes(8)),                          # if_EUIaddr
+				block_type.enhanced_packet: Bytes(this.Length),               # epb_verdict
+				block_type.interface_stats: Hex(Int64ul),                     # isb_osdrop
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x0008: Switch(this._.Type, {
+				block_type.interface: Hex(Int64ul),                           # if_speed
+				block_type.interface_stats: Hex(Int64ul),                     # isb_usrdeliv
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x0009: Switch(this._.Type, {
+				block_type.interface: Hex(Bytes(1)), # if_tsresol
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x000A: Switch(this._.Type, {
+				block_type.interface: Hex(Int32ul), # if_tzone
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x000B: Switch(this._.Type, {
+				block_type.interface: Hex(Bytes(this.Length)), # if_filter
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x000C: Switch(this._.Type, {
+				block_type.interface: PaddedString(this.Length, 'utf8'), # if_os
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x000D: Switch(this._.Type, {
+				block_type.interface: Hex(Bytes(1)), # if_fcslen
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x000E: Switch(this._.Type, {
+				block_type.interface: Hex(Int64ul), # if_tsoffset
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x000F: Switch(this._.Type, {
+				block_type.interface: PaddedString(this.Length, 'utf8'), # if_hardware
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x0010: Switch(this._.Type, {
+				block_type.interface: Hex(Int64ul), # if_txspeed
+			},
+			HexDump(Bytes(this.Length))
+		),
+		0x0011: Switch(this._.Type, {
+				block_type.interface: Hex(Int64ul), # if_rxspeed
+			},
+			HexDump(Bytes(this.Length))
+		),
+
+		option_type.custom0: PaddedString(this.Length, 'utf8'),
+		option_type.custom1: HexDump(Bytes(this.Length)),
+		option_type.custom2: PaddedString(this.Length, 'utf8'),
+		option_type.custom3: HexDump(Bytes(this.Length)),
+	},
+	HexDump(Bytes(this.Length)),
+))
+
+def option_len(this) -> int:
+	if isinstance(this.Value, str):
+		value = CString('utf8').build(this.Value, **this)[:-1]
+	else:
+		value = option_value.build(this.Value, **this)
+	return len(value)
+
 option = 'Option' / Struct(
 	'Code'   / Hex(option_type),
-	'Length' / Hex(Int16ul),
+	'Length' / Rebuild(Int16ul, option_len),
 	'Value'  / If(
-		this.Length > 0, Aligned(4, Switch(
-			this.Code, {
-				option_type.end: Pass,
-				option_type.comment: PaddedString(this.Length, 'utf8'),
-
-				0x0002: Switch(this._.Type, {
-						block_type.section_header: PaddedString(this.Length, 'utf8'), # shb_hardware
-						block_type.interface: PaddedString(this.Length, 'utf8'),      # if_name
-						block_type.enhanced_packet: BitStruct(                        # epb_flags
-							'direction'   / BitsInteger(2),
-							'recept_type' / BitsInteger(3),
-							'fcs_len'     / BitsInteger(4),
-							'reserved'    / BitsInteger(7),
-							'll_errors'   / BitsInteger(16),
-						),
-						block_type.interface_stats: timestamp,						  # isb_starttime
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x0003: Switch(this._.Type, {
-						block_type.section_header: PaddedString(this.Length, 'utf8'), # shb_hardware
-						block_type.interface: PaddedString(this.Length, 'utf8'),      # if_description
-						block_type.enhanced_packet: Bytes(this.Length),               # epb_hash
-						block_type.interface_stats: timestamp,                        # isb_endtime
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x0004: Switch(this._.Type, {
-						block_type.section_header: PaddedString(this.Length, 'utf8'), # shb_userappl
-						block_type.interface: Struct(                                 # if_IPv4addr
-							'address' / Hex(Bytes(4)),
-							'mask'    / Hex(Bytes(4)),
-						),
-						block_type.enhanced_packet: Int64ul,                          # epb_dropcount
-						block_type.interface_stats: Hex(Int64ul),                     # isb_ifrecv
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x0005: Switch(this._.Type, {
-						block_type.interface: Hex(Bytes(17)),                         # if_IPv6addr
-						block_type.enhanced_packet: Hex(Int64ul),                     # epb_packetid
-						block_type.interface_stats: Hex(Int64ul),                     # isb_ifdrop
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x0006: Switch(this._.Type, {
-						block_type.interface: Hex(Bytes(6)),                          # if_MACaddr
-						block_type.enhanced_packet: Hex(Int64ul),                     # epb_queue
-						block_type.interface_stats: Hex(Int64ul),                     # isb_filteraccept
-
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x0007: Switch(this._.Type, {
-						block_type.interface: Hex(Bytes(8)),                          # if_EUIaddr
-						block_type.enhanced_packet: Bytes(this.Length),               # epb_verdict
-						block_type.interface_stats: Hex(Int64ul),                     # isb_osdrop
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x0008: Switch(this._.Type, {
-						block_type.interface: Hex(Int64ul),                           # if_speed
-						block_type.interface_stats: Hex(Int64ul),                     # isb_usrdeliv
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x0009: Switch(this._.Type, {
-						block_type.interface: Hex(Bytes(1)), # if_tsresol
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x000A: Switch(this._.Type, {
-						block_type.interface: Hex(Int32ul), # if_tzone
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x000B: Switch(this._.Type, {
-						block_type.interface: Hex(Bytes(this.Length)), # if_filter
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x000C: Switch(this._.Type, {
-						block_type.interface: PaddedString(this.Length, 'utf8'), # if_os
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x000D: Switch(this._.Type, {
-						block_type.interface: Hex(Bytes(1)), # if_fcslen
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x000E: Switch(this._.Type, {
-						block_type.interface: Hex(Int64ul), # if_tsoffset
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x000F: Switch(this._.Type, {
-						block_type.interface: PaddedString(this.Length, 'utf8'), # if_hardware
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x0010: Switch(this._.Type, {
-						block_type.interface: Hex(Int64ul), # if_txspeed
-					},
-					HexDump(Bytes(this.Length))
-				),
-				0x0011: Switch(this._.Type, {
-						block_type.interface: Hex(Int64ul), # if_rxspeed
-					},
-					HexDump(Bytes(this.Length))
-				),
-
-
-				option_type.custom0: PaddedString(this.Length, 'utf8'),
-				option_type.custom1: HexDump(Bytes(this.Length)),
-				option_type.custom2: PaddedString(this.Length, 'utf8'),
-				option_type.custom3: HexDump(Bytes(this.Length)),
-			},
-			HexDump(Bytes(this.Length)),
-		))
+		this.Length > 0,
+		option_value
 	)
 )
 
