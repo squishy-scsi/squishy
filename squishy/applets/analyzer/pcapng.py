@@ -43,6 +43,14 @@ link_type = 'Link Type' / Enum(Int16ul,
 	user_13 = 0x00A0,
 	user_14 = 0x00A1,
 	user_15 = 0x00A2,
+
+	usb_free_bsd = 0x00BA,
+	usb_linux = 0x00BD,
+	usb_linux_mem_mapped = 0x00DC,
+	usb_pcap = 0x00F9,
+	usb_darwin = 0x010A,
+	usb_open_vizsla = 0x0116,
+	usb_2_0 = 0x0120,
 )
 
 # Because of the limitations of some of the blocks
