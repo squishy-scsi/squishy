@@ -336,9 +336,38 @@ squishy_meta = 'Squishy Meta' / Aligned(4, Struct(
 	)
 ))
 
+options_block = RepeatUntil(
+	lambda obj, _, __: obj['Code'] == option_type.end,
+	option
+)
+
+def block_len(this) -> int:
+	if not this._building:
+		options_len = len(options_block.block(this.Options, **this))
+	else:
+		# Special case to handle the building phase *grumbles*
+		if this.Options is None:
+			options_len = 0
+		else:
+			options_len = len(options_block.build(this.Options, **this))
+
+	return (
+		this._subcons.Type.sizeof(**this) +
+		this._subcons.Data.sizeof(**this) +
+		options_len +
+		Int32ul.sizeof() * 2
+	)
+
+def options_len(this) -> int:
+	return this.Length1 - (
+		this._subcons.Type.sizeof(**this) +
+		this._subcons.Data.sizeof(**this) +
+		Int32ul.sizeof() * 2
+	)
+
 pcapng_block = 'Block' / Struct(
 	'Type'    / Hex(block_type),
-	'Length1' / Hex(Int32ul),
+	'Length1' / Rebuild(Int32ul, block_len),
 	'Data'    / Switch(
 		this.Type, {
 			block_type.section_header: section_header_block,
@@ -349,13 +378,11 @@ pcapng_block = 'Block' / Struct(
 	),
 	'Size' / Computed(lambda this: this._subcons.Data.sizeof(**this)),
 	'Options' / If(
-		(this.Length1 - 12) > 0,
-		RepeatUntil(
-			lambda x, _, __: x.Code == option_type.end,
-			option
-		)
+		lambda this: options_len(this) > 0,
+		options_block
 	),
-	'Length2' / Hex(Int32ul),
+	'Length2' / Rebuild(Int32ul, this.Length1),
+	Check(this.Length1 == this.Length2),
 )
 
 pcapng = 'Pcapng' / GreedyRange(pcapng_block)
