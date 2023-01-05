@@ -88,7 +88,10 @@ The format of the sense data is determined by the error class. Error classes
 ``0`` through ``6`` use the non-extended sense data, error class ``7`` uses the extended sense
 data.
 
+
 The non-extended sense data is depicted below:
+
+.. sense data:
 
 +---------+-----------+----+----+---+---+---+---+---+
 | .. centered:: Non-extended Sense Data             |
@@ -405,6 +408,224 @@ being executed by the same target. All other commands are assumed to have a prio
 ``0`` being the highest priority, the larger the value the lower the priority of the command.
 
 The segment descriptor formats are designated by the ``Function Code``
+
++----------+----------+-------+-------+--------------------+------------------------------+
+| Device Type         | Function Code | Segment Descriptor | Direction                    |
++----------+----------+               +                    +                              +
+| Source   | Dest     |               |                    |                              |
++==========+==========+===============+====================+==============================+
+| ``0x00`` | ``0x01`` | ``0x00``      | :ref:`segment 1`   | **Direct to Sequential**     |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x00`` | ``0x02`` | ``0x00``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x00`` | ``0x03`` | ``0x00``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x04`` | ``0x01`` | ``0x00``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x04`` | ``0x02`` | ``0x00``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x04`` | ``0x03`` | ``0x00``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x05`` | ``0x01`` | ``0x00``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x05`` | ``0x02`` | ``0x00``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x05`` | ``0x03`` | ``0x00``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+------------------------------+
+| ``0x01`` | ``0x00`` | ``0x01``      | :ref:`segment 1`   | **Sequential to Direct**     |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x01`` | ``0x04`` | ``0x01``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x03`` | ``0x00`` | ``0x01``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x03`` | ``0x04`` | ``0x01``      | :ref:`segment 1`   |                              |
++----------+----------+-------+-------+--------------------+------------------------------+
+| ``0x00`` | ``0x00`` | ``0x02``      | :ref:`segment 2`   | **Direct to Direct**         |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x00`` | ``0x04`` | ``0x02``      | :ref:`segment 2`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x04`` | ``0x00`` | ``0x02``      | :ref:`segment 2`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x04`` | ``0x04`` | ``0x02``      | :ref:`segment 2`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x05`` | ``0x00`` | ``0x02``      | :ref:`segment 2`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x05`` | ``0x04`` | ``0x02``      | :ref:`segment 2`   |                              |
++----------+----------+-------+-------+--------------------+------------------------------+
+| ``0x01`` | ``0x01`` | ``0x03``      | :ref:`segment 3`   | **Sequential to Sequential** |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x01`` | ``0x02`` | ``0x03``      | :ref:`segment 3`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x01`` | ``0x03`` | ``0x03``      | :ref:`segment 3`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x03`` | ``0x01`` | ``0x03``      | :ref:`segment 3`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x03`` | ``0x02`` | ``0x03``      | :ref:`segment 3`   |                              |
++----------+----------+-------+-------+--------------------+                              +
+| ``0x03`` | ``0x03`` | ``0x03``      | :ref:`segment 3`   |                              |
++----------+----------+-------+-------+--------------------+------------------------------+
+
+The ``Device Type`` is defined by the values in the :py:class:`squishy.scsi.device.PeripheralDeviceType` enum.
+
+The ``COPY`` function codes are as follows:
+
++---------------+--------------------------+
+| Code          | Description              |
++===============+==========================+
+| ``0x00``      | Direct to Sequential     |
++---------------+--------------------------+
+| ``0x01``      | Sequential to Direct     |
++---------------+--------------------------+
+| ``0x02``      | Direct to Direct         |
++---------------+--------------------------+
+| ``0x03``      | Sequential to Sequential |
++---------------+--------------------------+
+| ``0x04-0x0F`` | Reserved                 |
++---------------+--------------------------+
+| ``0x10-0x1F`` | Vendor Unique            |
++---------------+--------------------------+
+
+.. note::
+
+	There are two general categories of unusual condition that may occur during the execution
+	of a ``COPY`` command. THe first one is any unusual condition that are detected by the SCSI
+	target that receives the command and is managing its execution. Examples of such conditions
+	are parity errors, invalid parameters, invalid segment descriptors, and situations where the
+	target is unable to continue operating. In the case of such a condition the target will:
+
+	-	Terminate the ``COPY`` command with ``CHECK CONDITION`` as its status.
+	-	Return sense data in the extended format. Where the valid bit is set to 1, and the segment
+		descriptor that is currently being processed at the time the condition is detected. The sense
+		key must contain the difference between the number of blocks from the segment descriptor vs the
+		number of blocks that were successfully copied.
+
+
+.. _segment 1:
+
+The segment descriptor format for copies between direct and sequential
+access devices are specified below. The descriptor may be repeated up to
+256 times within the parameter list as long as it falls within the parameter
+list length specified in the command descriptor block.
+
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| Segment Descriptor for functions ``0x00`` and ``0x01``     |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| Byte    | 7         | 6  | 5  |  4  | 3  |  2  |  1  |  0  |
++=========+===========+====+====+=====+====+=====+=====+=====+
+| ``0``   | Source Address      | Reserved | Source LUN      |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``1``   | Destination Address | Reserved | Destination LUN |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``2``   |   Sequential-Access Device Block-Length (MSB)    |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``3``   |   Sequential-Access Device Block-Length (LSB)    |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``4``   |   Direct-Access Device Number of Blocks (MSB)    |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``5``   |   Direct-Access Device Number of Blocks          |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``6``   |   Direct-Access Device Number of Blocks          |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``7``   |   Direct-Access Device Number of Blocks (LSB)    |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``8``   |         Direct-Access Device LBA (MSB)           |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``9``   |         Direct-Access Device LBA                 |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``10``  |         Direct-Access Device LBA                 |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``11``  |         Direct-Access Device LBA (LSB)           |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+
+The ``Source Address`` and ``Destination Address`` fields specify the SCSI Device number,
+and the ``Source LUN`` and ``Destination LUN`` specify the logical units for the ``COPY``
+command.
+
+.. warning::
+
+	Some SCSI devices don't support "third-party" ``COPY`` commands, in which the device which
+	is initiating the ``COPY`` command is neither the source nor destination of the copy.
+
+	Some SCSI devices also only support ``COPY`` within itself and not to an external SCSI device.
+
+	If an unsupported ``COPY`` is requested then the operation is terminated with a ``CHECK CONDITION``
+	status and the sense key is set to ``ILLEGAL REQUEST``.
+
+The ``Sequential-Access Device Block-Length`` field specifies the block length to be used on the sequential-access
+logical unit during this segment of the ``COPY`` command.
+
+.. _segment 2:
+
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| Segment Descriptor for functions ``0x02``                  |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| Byte    | 7         | 6  | 5  |  4  | 3  |  2  |  1  |  0  |
++=========+===========+====+====+=====+====+=====+=====+=====+
+| ``0``   | Source Address      | Reserved | Source LUN      |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``1``   | Destination Address | Reserved | Destination LUN |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``2``   | .. centered:: Reserved                           |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``3``   | .. centered:: Reserved                           |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``4``   | .. centered:: Source Number of Blocks (MSB)      |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``5``   | .. centered:: Source Number of Blocks            |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``6``   | .. centered:: Source Number of Blocks            |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``7``   | .. centered:: Source Number of Blocks (LSB)      |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``8``   | .. centered:: Source LBA (MSB)                   |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``9``   | .. centered:: Source LBA                         |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``10``  | .. centered:: Source LBA                         |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``11``  | .. centered:: Source LBA (LSB)                   |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``12``  | .. centered:: Destination  LBA (MSB)             |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``13``  | .. centered:: Destination  LBA                   |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``14``  | .. centered:: Destination  LBA                   |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``15``  | .. centered:: Destination  LBA (LSB)             |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+
+
+.. _segment 3:
+
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| Segment Descriptor for functions ``0x03``                  |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| Byte    | 7         | 6  | 5  |  4  | 3  |  2  |  1  |  0  |
++=========+===========+====+====+=====+====+=====+=====+=====+
+| ``0``   | Source Address      | Reserved | Source LUN      |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``1``   | Destination Address | Reserved | Destination LUN |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``2``   | .. centered:: Reserved                           |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``3``   | .. centered:: Reserved                           |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``4``   | .. centered:: Source Block Length (MSB)          |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``5``   | .. centered:: Source Block Length (LSB)          |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``6``   | .. centered:: Destination Block Length (MSB)     |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``7``   | .. centered:: Destination Block Length (LSB)     |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``8``   | .. centered:: Source Number Of Blocks (MSB)      |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``9``   | .. centered:: Source Number Of Blocks            |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``10``  | .. centered:: Source Number Of Blocks            |
++---------+-----------+----+----+-----+----+-----+-----+-----+
+| ``11``  | .. centered:: Source Number Of Blocks (LSB)      |
++---------+-----------+----+----+-----+----+-----+-----+-----+
 
 '''
 
