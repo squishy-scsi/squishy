@@ -38,7 +38,7 @@ This directory is the root of the Squishy python package. Each directory is a su
  * [actions](./squishy/actions/) - Actions.
  * [applets](./squishy/applets/) - Packaged Applets.
  * [core](./squishy/core) - Support infrastructure for the rest of the package.
- * [gateware](./squishy/gateware/) - [Amaranth](https://github.com/amaranth-lang/amaranth) gateware files for use in Applets or other projects.
+ * [gateware](./squishy/gateware/) - [Torii](https://github.com/shrine-maiden-heavy-industries/torii-hdl) gateware files for use in Applets or other projects.
  * [gui](./squishy/gui/) - PySide/Qt based GUI.
  * [i18n](./squishy/i18n/) - Localization/internalization files.
  * [main](./squishy/main/) - Support code for running the package.

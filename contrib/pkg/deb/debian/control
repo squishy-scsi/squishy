@@ -31,4 +31,4 @@ Depends: ${shlibs:Depends},
   python3-pyside2.qtuitools,
   python3-pyside2.qtopengl,
 
-Description: SCSI Multitool and Amaranth HDL Library
+Description: SCSI Multitool and Torii HDL Library

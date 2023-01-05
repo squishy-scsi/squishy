@@ -5,7 +5,7 @@ Squishy is a platform for working with old SCSI devices with modern systems in a
 
 It has since evolved into being a generic toolkit and hardware platform for all things SCSI.
 
-Squishy is comprised of 4 core components; A gateware library built on [Amaranth](https://github.com/amaranth-lang/amaranth); A python library with various utilities and structures for dealing with SCSI data; A applet system to allow for custom gateware/python code applets to run on the hardware; And finally, the hardware itself.
+Squishy is comprised of 4 core components; A gateware library built on [Torii](https://github.com/shrine-maiden-heavy-industries/torii-hdl); A python library with various utilities and structures for dealing with SCSI data; A applet system to allow for custom gateware/python code applets to run on the hardware; And finally, the hardware itself.
 
 ## Documentation
 

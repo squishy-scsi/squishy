@@ -3,7 +3,7 @@ Name: python-squishy
 Version: @SQUISHY_VERSION@
 Release: 1%{?dist}
 URL: https://scsi.moe/
-Summary: SCSI Multitool and Amaranth HDL Library
+Summary: SCSI Multitool and Torii HDL Library
 License: BSD-3-Clause
 BuildRequires: python-rpm-macros
 BuildArch: noarch
@@ -14,10 +14,10 @@ Source0: https://github.com/lethalbit/squishy/releases/v%{version}/squishy-%{ver
 %define debug_package %{nil}
 
 %description
-SCSI Multitool and Amaranth HDL Library
+SCSI Multitool and Torii HDL Library
 
 %package -n python%{python3_pkgversion}-squishy
-Summary: SCSI Multitool and Amaranth HDL Library
+Summary: SCSI Multitool and Torii HDL Library
 BuildRequires: python%{python3_pkgversion}-setuptools
 BuildRequires: python%{python3_pkgversion}-rpm-macros
 Requires: python%{python3_pkgversion}
@@ -31,7 +31,7 @@ Requires: python%{python3_pkgversion}-pyside2
 %{?python_provide:%python_provide python%{python3_pkgversion}-squishy}
 
 %description -n python%{python3_pkgversion}-squishy
-SCSI Multitool and Amaranth HDL library
+SCSI Multitool and Torii HDL library
 
 
 %prep

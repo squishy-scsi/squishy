@@ -13,7 +13,7 @@ Flesh this section out
 ```
 
 
-Squishy allows for the development of modular pieces of combined code and [Amaranth HDL](https://github.com/amaranth-lang) gateware called an applet. It gives Squishy it's functionality and allows for the extension of said functionality and/or entirely new custom functionality.
+Squishy allows for the development of modular pieces of combined code and [Torii HDL](https://github.com/shrine-maiden-heavy-industries/torii-hdl) gateware called an applet. It gives Squishy it's functionality and allows for the extension of said functionality and/or entirely new custom functionality.
 
 
 There are currently two built-in applets, the [analyzer](./analyzer.md), and [taperipper](./taperipper.md) applets. With more built-in applets are planned for the future.

@@ -2,7 +2,7 @@
 pkgname=python-squishy
 pkgver=@SQUISHY_PKG_VERSION@
 pkgrel=1
-pkgdesc='SCSI Multitool and Amaranth HDL Library'
+pkgdesc='SCSI Multitool and Torii HDL Library'
 arch=('any')
 url='https://github.com/lethalbit/Squishy'
 license=('BSD-3-Clause')

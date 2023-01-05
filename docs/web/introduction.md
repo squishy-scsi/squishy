@@ -24,7 +24,7 @@ The Squishy hardware is a bespoke physical interface into the world of SCSI. Out
 
 Combined with the software, it provides and out-of-the box way of inspecting traffic on a SCSI bus, as well as capturing the traffic for analysis or even replay!
 
-With the power of [Amaranth](https://github.com/amaranth-lang), you can also write your own [applets](./applets/index.md) to do things such as emulate devices, or hosts, or anything else you could imagine.
+With the power of [Torii](https://github.com/shrine-maiden-heavy-industries/torii-hdl), you can also write your own [applets](./applets/index.md) to do things such as emulate devices, or hosts, or anything else you could imagine.
 
 For more information on the Squishy hardware, see the [Hardware](./hardware/index.md) section in the documentation.
 
@@ -38,7 +38,7 @@ For more information on the software, see the [CLI](./cli.md) and [GUI](./gui.md
 
 The Squishy gateware works in combination with the hardware to allow for the rapid and flexible development of devices that can be used to interact with various SCSI devices.
 
-The [gateware library](./library/gateware/index.md) allows for applets to be built on the Squishy platform, and for other devices that wish to leverage SCSI in some aspect of their design to do so with the Amaranth HDL.
+The [gateware library](./library/gateware/index.md) allows for applets to be built on the Squishy platform, and for other devices that wish to leverage SCSI in some aspect of their design to do so with [Torii HDL](https://github.com/shrine-maiden-heavy-industries/torii-hdl).
 
 
 For more information, see the gateware library documentation.
