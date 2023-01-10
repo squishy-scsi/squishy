@@ -2,7 +2,7 @@
 
 The following are the planned design requirements for rev2 of the hardware, as well as some wishlist items
 
-## Requirements 
+## Requirements
 
 - [ ] Allow for both HVD and LVD
 - [ ] Single Ended support
@@ -19,11 +19,20 @@ The following are the planned design requirements for rev2 of the hardware, as w
 - [x] USB-C Connector
 - [ ] Support for bus arbitration and multi-host bus'
 
+## TODO List:
+
+ - [ ] Removed half of the sys LEDS
+ - [ ] Route the ULPI PHY
+ - [ ] Route the SuperSpeed lines
+ - [ ] Route the SPI Flash
+ - [ ] Route the Supervisor connection to the FPGA
+ - [ ]
+
 
 # Squishy - rev3
 
 The following are the planned design requirements for rev3 of the hardware, as well as some wishlist items
 
-## Requirements 
+## Requirements
 
 ## Wishlist Items
