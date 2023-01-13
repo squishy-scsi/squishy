@@ -24,6 +24,11 @@ jobs:
         language: [ 'python' ]
 
     steps:
+     - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.11
+
     - name: Checkout repository
       uses: actions/checkout@v3
 

@@ -12,7 +12,7 @@ jobs:
         python-version: ['3.9', '3.10', '3.11', ]
     steps:
       - name: Setup Python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
       - name: Initialize Environment
@@ -25,7 +25,7 @@ jobs:
           echo "TORII_TEST_INHIBIT_VCD=1" >> $GITHUB_ENV
 
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           lfs: true
           submodules: true
