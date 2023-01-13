@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 try:
-	from importlib import metadata as importlib_metadata
-	__version__ = importlib_metadata.version(__package__)
+	from importlib import metadata
+	__version__ = metadata.version(__package__)
 except ImportError:
-	__version__ = ':nya_confused:' # :nocov:
+	__version__ = 'unknown' # :nocov:
 
 __all__ = (
 
