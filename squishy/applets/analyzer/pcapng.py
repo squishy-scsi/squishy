@@ -98,8 +98,8 @@ timestamp = 'Timestamp' / Struct(
 	'Raw' / Rebuild(Struct(
 		'High' / Hex(Int32ul),
 		'Low'  / Hex(Int32ul),
-	), timestamp_from_raw),
-	'Value' / Computed(timestamp_to_raw),
+	), timestamp_to_raw),
+	'Value' / Computed(timestamp_from_raw),
 )
 
 # This uses PaddedString because the strings encoded are not guaranteed to be NUL terminated
