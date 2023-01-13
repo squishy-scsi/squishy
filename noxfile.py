@@ -28,9 +28,9 @@ nox.options.sessions = (
 def squishy_version() -> str:
 	def scheme(version: ScmVersion) -> str:
 		if version.tag and not version.distance:
-			return version.format_with("")
+			return version.format_with('')
 		else:
-			return version.format_choice("+{node}", "+{node}.dirty")
+			return version.format_choice('+{node}', '+{node}.dirty')
 
 	return get_version(
 		root           = str(ROOT_DIR),
