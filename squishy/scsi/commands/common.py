@@ -25,7 +25,8 @@ TestUnitReady = SCSICommand6(0x00,
 	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
 	'Reserved' / SCSICommandField(default = 0, length = 29),
 )
-'''Test Unit Ready
+'''
+Test Unit Ready
 
 This command provides the means to check if the logical
 unit is ready.
@@ -43,7 +44,8 @@ RequestSense = SCSICommand6(0x03,
 	'Reserved' / SCSICommandField(default = 0, length = 21),
 	'AllocLen' / SCSICommandField('Receive buffer size allocation', length = 8)
 )
-'''Request Sense
+'''
+Request Sense
 
 This command requests that the target transfers :ref:`sense data` to the initiator.
 
@@ -282,7 +284,8 @@ Inquiry = SCSICommand6(0x12,
 	'Reserved' / SCSICommandField(default = 0, length = 21),
 	'AllocLen' / SCSICommandField('Receive buffer size allocation', length = 8)
 )
-'''Inquiry
+'''
+Inquiry
 
 This command requests that information regarding parameters of the target and its attached peripheral devices
 be sent to the initiator.
@@ -368,7 +371,8 @@ Copy = SCSICommand6(0x18,
 	'Reserved' / SCSICommandField(default = 0, length = 5),
 	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 24)
 )
-'''Copy
+'''
+Copy
 
 This command provides a means to copy data from one logical unit to itself or another.
 The logical units may reside on the same SCSI device or different SCSI devices.
@@ -634,7 +638,8 @@ ReceiveDiagnosticResults = SCSICommand6(0x1C,
 	'Reserved' / SCSICommandField(default = 0, length = 13),
 	'AllocLen' / SCSICommandField('Length of the receiving buffer', length = 16)
 )
-'''Receive Diagnostic Results
+'''
+Receive Diagnostic Results
 
 .. todo:: Document this
 
@@ -649,7 +654,8 @@ SendDiagnostic = SCSICommand6(0x1D,
 	'Reserved' / SCSICommandField(default = 0, length = 8),
 	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 16)
 )
-'''Send Diagnostic
+'''
+Send Diagnostic
 
 .. todo:: Document this
 
@@ -661,7 +667,8 @@ Compare = SCSICommand10(0x19,
 	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 24),
 	'Reserved' / SCSICommandField(default = 0, length = 24)
 )
-'''Compare
+'''
+Compare
 
 .. todo:: Document this
 
@@ -675,7 +682,8 @@ CopyAndVerify = SCSICommand10(0x1A,
 	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 24),
 	'Reserved' / SCSICommandField(default = 0, length = 24)
 )
-'''Copy and Verify
+'''
+Copy and Verify
 
 .. todo:: Document this
 

@@ -53,7 +53,7 @@ __all__ = (
 
 
 class Bootloader(Elaboratable):
-	''' '''
+	'''  '''
 	def __init__(self, *, serial_number: str) -> None:
 		self._serial_number = serial_number
 

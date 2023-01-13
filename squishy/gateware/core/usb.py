@@ -18,13 +18,9 @@ __all__ = (
 )
 
 class USBInterface(Elaboratable):
-	'''SOL based USB ULPI Interface
+	'''
+	SOL based USB ULPI Interface
 
-	Note
-	----
-	When elaborating designs with this module, you may see a warning about being
-	unable to find ``lambdasoc``. You can ignore it as it is not used in any
-	capacity.
 
 	Warning
 	-------

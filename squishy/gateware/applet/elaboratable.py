@@ -22,7 +22,7 @@ __doc__ = '''\
 '''
 
 class AppletElaboratable(Elaboratable, metaclass = ABCMeta):
-	''''''
+	'''  '''
 
 	def __init__(self) -> None:
 		super().__init__()
@@ -50,5 +50,5 @@ class AppletElaboratable(Elaboratable, metaclass = ABCMeta):
 
 	@abstractmethod
 	def elaborate(self, platform) -> Module:
-		''' '''
+		'''  '''
 		raise NotImplementedError('Applet Elaboratables must implement this method')

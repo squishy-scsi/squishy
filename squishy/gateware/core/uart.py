@@ -10,13 +10,14 @@ __all__ = (
 )
 
 class UARTInterface(Elaboratable):
-	'''Trivial UART debug interface.
+	'''
+	Trivial UART debug interface.
 
 	Warning
 	-------
 	This interface is only provided for debugging, not sideband communication.
 
-	This elaboratable wraps the :py:class:`torii_stdio.serial.AsyncSerial` UART
+	This elaboratable wraps the :py:class:`torii.lib.stdio.serial.AsyncSerial` UART
 	elaboratable and attaches it to an internal wishbone bus.
 
 	'''

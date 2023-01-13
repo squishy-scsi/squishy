@@ -12,7 +12,8 @@ __doc__ = '''\
 
 @unique
 class MessageCodes(IntEnum):
-	'''SCSI Message Codes
+	'''
+	SCSI Message Codes
 
 	SCSI Messages are to facilitate physical path management between
 	a target and initiator.
@@ -27,7 +28,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	COMMAND_COMPLETE   = 0x00
-	'''Command Complete (Mandatory, In).
+	'''
+	Command Complete (Mandatory, In).
 
 	This message is sent to the Initiator to indicate that the execution of a command
 	or series of linked commands has been terminated and that a valid status has
@@ -40,7 +42,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	EXTENDED_MESSAGE  = 0x01
-	''' Extended Message (Optional, In/Out).
+	'''
+	Extended Message (Optional, In/Out).
 
 	This message indicates that the following data is an extended message.
 	See :py:class:`ExtendedMessageCodes` for more details on extended messages.
@@ -48,7 +51,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	SAVE_DATA_PTR   = 0x02
-	''' Save Data Pointer (Optional, In).
+	'''
+	Save Data Pointer (Optional, In).
 
 	This message directs the Initiator to save a copy of the current active data
 	pointer for the currently attached LUN.
@@ -56,7 +60,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	RESTORE_PTR    = 0x03
-	'''Restore Pointers (Optional, In).
+	'''
+	Restore Pointers (Optional, In).
 
 	This message directs the Initiator to restore the recently saved pointers
 	to the active state.
@@ -74,7 +79,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	DISCONNECT     = 0x04
-	'''Disconnect (Optional, In/Out).
+	'''
+	Disconnect (Optional, In/Out).
 
 	When sent from a Target, this message informs the Initiator that the present
 	physical path will invalidated, and that a later reconnection will be needed
@@ -97,7 +103,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	INT_DETECT_ERR = 0x05
-	'''Initiator Detected Error (Optional, Out).
+	'''
+	Initiator Detected Error (Optional, Out).
 
 	This message is sent from the Initiator to indicate to the target that
 	an error has occurred that not prevent the target from re-attempting
@@ -112,7 +119,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	ABORT          = 0x06
-	'''Abort (Optional, Out).
+	'''
+	Abort (Optional, Out).
 
 	This message is sent from the Initiator to clear the current operation. If
 	a LUN has been identified, then all pending data and status for the initiator
@@ -133,7 +141,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	MESSAGE_REJECT = 0x07
-	'''Message Reject (Optional, In/Out).
+	'''
+	Message Reject (Optional, In/Out).
 
 	This message is sent from either the Target or Initiator to indicate
 	that the previous message was invalid or not implemented.
@@ -154,7 +163,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	NOP            = 0x08
-	'''No-Operation (Optional, Out).
+	'''
+	No-Operation (Optional, Out).
 
 	This message is sent to a Target in response to a request of the
 	Initiator when there is no other messages to be sent.
@@ -162,7 +172,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	MSG_PARITY_ERR = 0x09
-	'''Message Parity Error (Optional, Out).
+	'''
+	Message Parity Error (Optional, Out).
 
 	This message is sent from an Initiator to the Target where
 	one or more bytes of the last message had a parity error.
@@ -173,7 +184,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	LINK_CMD_COM   = 0x0A
-	'''Linked Command Complete (Optional, In).
+	'''
+	Linked Command Complete (Optional, In).
 
 	.. note::
 
@@ -187,7 +199,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	LINK_CMD_COM_F = 0x0B
-	'''Linked Command Completed With Flag (Optional, In).
+	'''
+	Linked Command Completed With Flag (Optional, In).
 
 	.. note::
 
@@ -204,7 +217,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	BUS_DEV_RESET  = 0x0C
-	'''Bus Device Reset (Optional, Out).
+	'''
+	Bus Device Reset (Optional, Out).
 
 	This message is sent to a Target to tell it to clear all current commands on
 	that SCSI device. It forces the SCSI device to an initial clean state with no
@@ -215,7 +229,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	RESERVED_START = 0x0D
-	'''Start of Reserved Range.
+	'''
+	Start of Reserved Range.
 
 	The message codes between :py:const:`RESERVED_START` and :py:const`RESERVED_END`
 	are all reserved for future possible standards.
@@ -223,7 +238,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	RESERVED_END   = 0x7F
-	'''End of Reserved Range.
+	'''
+	End of Reserved Range.
 
 	The message codes between :py:const:`RESERVED_START` and :py:const`RESERVED_END`
 	are all reserved for future possible standards.
@@ -231,7 +247,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	IDENTIFY_START = 0x80
-	'''Start of Identify Range (Optional, In/Out).
+	'''
+	Start of Identify Range (Optional, In/Out).
 
 	The message codes between :py:const:`IDENTIFY_START` and :py:const`IDENTIFY_END`
 	are sent by either the Target or the Initiator to establish a physical path between
@@ -269,7 +286,8 @@ class MessageCodes(IntEnum):
 	'''
 
 	IDENTIFY_END   = 0xFF
-	'''End of Identify Range (Optional, In/Out).
+	'''
+	End of Identify Range (Optional, In/Out).
 
 	The message codes between :py:const:`IDENTIFY_START` and :py:const`IDENTIFY_END`
 	are sent by either the Target or the Initiator to establish a physical path between
@@ -279,7 +297,8 @@ class MessageCodes(IntEnum):
 
 @unique
 class ExtendedMessageCodes(IntEnum):
-	'''Message Codes for Extended SCSI Messages
+	'''
+	Message Codes for Extended SCSI Messages
 
 
 	Extended SCSI Messages roughly follow this format:
@@ -303,7 +322,8 @@ class ExtendedMessageCodes(IntEnum):
 	'''
 
 	MODIFY_DATA_PTR = 0x00,
-	'''Modify Data Pointer (Optional).
+	'''
+	Modify Data Pointer (Optional).
 
 	This extended message is sent to the initiator from the target. It
 	asks the initiator to add the signed 4 byte integer argument to the
@@ -330,7 +350,8 @@ class ExtendedMessageCodes(IntEnum):
 	'''
 
 	SYNC_DATA_XFR_REQ = 0x01,
-	'''Synchronous Data Transfer Request (Optional).
+	'''
+	Synchronous Data Transfer Request (Optional).
 
 	.. todo:: Document better
 
@@ -354,7 +375,8 @@ class ExtendedMessageCodes(IntEnum):
 	'''
 
 	EXTENDED_IDENT = 0x02,
-	'''Extended Identify Command (Optional).
+	'''
+	Extended Identify Command (Optional).
 
 	This extended message may be sent by a target or initiator, and
 	may be used in conjunction with the normal ``IDENTIFY`` message
@@ -379,7 +401,8 @@ class ExtendedMessageCodes(IntEnum):
 	'''
 
 	RESERVED_START = 0x03
-	'''Start of Reserved Range.
+	'''
+	Start of Reserved Range.
 
 	The message codes between :py:const:`RESERVED_START` and :py:const`RESERVED_END`
 	are all reserved for future possible standards.
@@ -387,7 +410,8 @@ class ExtendedMessageCodes(IntEnum):
 	'''
 
 	RESERVED_END   = 0x7F
-	'''End of Reserved Range.
+	'''
+	End of Reserved Range.
 
 	The message codes between :py:const:`RESERVED_START` and :py:const`RESERVED_END`
 	are all reserved for future possible standards.
@@ -395,7 +419,8 @@ class ExtendedMessageCodes(IntEnum):
 	'''
 
 	VENDOR_START = 0x80
-	'''Start of Vendor Reserved Range.
+	'''
+	Start of Vendor Reserved Range.
 
 	The message codes between :py:const:`VENDOR_START` and :py:const`VENDOR_END`
 	are all for vendor-specific extended messages.
@@ -403,7 +428,8 @@ class ExtendedMessageCodes(IntEnum):
 	'''
 
 	VENDOR_END   = 0xFF
-	'''End of Vendor Reserved Range.
+	'''
+	End of Vendor Reserved Range.
 
 	The message codes between :py:const:`VENDOR_START` and :py:const`VENDOR_END`
 	are all for vendor-specific extended messages.

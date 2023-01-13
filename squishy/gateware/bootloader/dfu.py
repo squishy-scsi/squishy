@@ -402,7 +402,8 @@ class DFURequestHandler(USBRequestHandler):
 
 
 	def _make_rom(self, flash: Dict[str, Union[Dict[str, int], FlashGeometry]]) -> Memory:
-		''' Generate ROM layout of the flash.
+		'''
+		Generate ROM layout of the flash.
 
 		The layout is as follows:
 

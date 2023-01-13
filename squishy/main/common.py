@@ -18,7 +18,8 @@ __all__ = (
 
 
 def setup_logging(args: Namespace = None) -> None:
-	'''Initialize logging subscriber
+	'''
+	Initialize logging subscriber
 
 	Set up the built-in rich based logging subscriber, and force it
 	to be the one at runtime in case there is already one set up.
@@ -45,7 +46,8 @@ def setup_logging(args: Namespace = None) -> None:
 	)
 
 def init_dirs() -> None:
-	'''Initialize Squishy application directories.
+	'''
+	Initialize Squishy application directories.
 
 	Creates all of the appropriate directories that Squishy
 	expects, such as the config, and cache directories.
@@ -72,7 +74,8 @@ def init_dirs() -> None:
 			d.mkdir(parents = True, exist_ok = True)
 
 def main_common() -> None:
-	'''Squishy common initialization.
+	'''
+	Squishy common initialization.
 
 	This method initializes things like the application
 	directories if they don't exist, as well as installing
@@ -92,7 +95,8 @@ def main_common() -> None:
 			json.dump(config.DEFAULT_SETTINGS, cfg)
 
 def common_options(parser: ArgumentParser) -> None:
-	'''Initialize common CLI options.
+	'''
+	Initialize common CLI options.
 
 	Registers common options between the CLI and GUI for invocation.
 

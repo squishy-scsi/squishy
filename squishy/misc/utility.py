@@ -13,7 +13,8 @@ US = 1e-6
 MS = 1e-3
 
 def ns_to_s(val: float) -> float:
-	'''Convert a value in nanoseconds to Seconds.
+	'''
+	Convert a value in nanoseconds to Seconds.
 
 	Parameters
 	----------
@@ -30,7 +31,8 @@ def ns_to_s(val: float) -> float:
 	return val * NS
 
 def us_to_s(val: float) -> float:
-	'''Convert a value in microseconds to Seconds.
+	'''
+	Convert a value in microseconds to Seconds.
 
 	Parameters
 	----------
@@ -47,7 +49,8 @@ def us_to_s(val: float) -> float:
 	return val * US
 
 def ms_to_s(val: float) -> float:
-	'''Convert a value in milliseconds to Seconds.
+	'''
+	Convert a value in milliseconds to Seconds.
 
 	Parameters
 	----------
@@ -64,7 +67,8 @@ def ms_to_s(val: float) -> float:
 	return val * MS
 
 def iec_size(size: int) -> str:
-	'''Coverts byte count into a IEC string.
+	'''
+	Coverts byte count into a IEC string.
 
 	Parameters
 	----------

@@ -19,7 +19,8 @@ without any extra setup work for the platform itself.
 '''
 
 class SquishyCacheMixin:
-	'''Squishy Platform Cache mixin.
+	'''
+	Squishy Platform Cache mixin.
 
 	This mixin overrides the :py:class:`torii.build.plat.Platform`. `build` method
 	to inject FPGA bitstream caching via the :py:class:`squishy.core.cache.SquishyBitstreamCache`.

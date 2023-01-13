@@ -7,7 +7,7 @@ from .common   import (
 )
 
 def _check_pyside2() -> bool:
-	'''Check if PySide2 is installed'''
+	''' Check if PySide2 is installed '''
 
 	try:
 		import PySide2 # noqa: F401
@@ -16,7 +16,7 @@ def _check_pyside2() -> bool:
 		return False
 
 def _check_pyside6() -> bool:
-	'''Check if PySide6 is installed'''
+	''' Check if PySide6 is installed '''
 
 	try:
 		import PySide6 # noqa: F401
@@ -25,7 +25,8 @@ def _check_pyside6() -> bool:
 		return False
 
 def main() -> int:
-	'''Squishy GUI Runner
+	'''
+	Squishy GUI Runner
 
 	This is the main invocation point for the Squishy QT5 GUI.
 

@@ -38,7 +38,7 @@ class SPIFlashOp(IntEnum):
 
 @unique
 class SPIFlashCmd(IntEnum):
-	'''SPI Flash Command Opcodes '''
+	''' SPI Flash Command Opcodes '''
 	PAGE_PROGRAM   = 0x02
 	READ_STATUS    = 0x05
 	WRITE_ENABLE   = 0x06

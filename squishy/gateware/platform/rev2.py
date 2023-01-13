@@ -34,7 +34,8 @@ build your own, or keep an eye out for when the campaign goes live.
 '''
 
 class SquishyRev2(SquishyCacheMixin, LatticeECP5Platform):
-	'''Squishy hardware Revision 2
+	'''
+	Squishy hardware Revision 2
 
 	This is the torii platform for the first revision of the Squishy hardware.
 	It is based around the `Lattice ECP5-5G LFE5UM5G-45F <https://www.latticesemi.com/Products/FPGAandCPLD/ECP5>`_

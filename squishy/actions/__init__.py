@@ -10,7 +10,8 @@ __all__ = (
 )
 
 class SquishyAction(metaclass = ABCMeta):
-	'''Squishy action base class
+	'''
+	Squishy action base class
 
 	This is the abstract base class that is used
 	to implement any possible action for the squishy
@@ -67,7 +68,8 @@ class SquishyAction(metaclass = ABCMeta):
 
 	@abstractmethod
 	def register_args(self, parser: ArgumentParser) -> None:
-		'''Register action arguments.
+		'''
+		Register action arguments.
 
 		When an action instance is initialized this method is
 		called so when :py:func:`run` is called any needed
@@ -89,7 +91,8 @@ class SquishyAction(metaclass = ABCMeta):
 
 	@abstractmethod
 	def run(self, args: Namespace, dev: SquishyHardwareDevice = None) -> int:
-		'''Run the action.
+		'''
+		Run the action.
 
 		Run the action instance, passing the parsed
 		arguments and the selected device if any.
@@ -111,7 +114,6 @@ class SquishyAction(metaclass = ABCMeta):
 		------
 		NotImplementedError
 			The abstract method must be implemented by the action.
-
 
 		'''
 

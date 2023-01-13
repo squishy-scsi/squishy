@@ -42,7 +42,8 @@ own, however it is recommended to start with the :py:class:`squishy.gateware.pla
 '''
 
 class SquishyRev1(SquishyCacheMixin, LatticeICE40Platform):
-	'''Squishy hardware Revision 1
+	'''
+	Squishy hardware Revision 1
 
 	This is the torii platform for the first revision of the Squishy hardware.
 	It is based around the `Lattice iCE40-HX8K <https://www.latticesemi.com/iCE40>`_

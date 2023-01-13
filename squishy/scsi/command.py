@@ -31,7 +31,8 @@ __doc__ = '''\
 
 @unique
 class GroupCode(IntEnum):
-	'''SCSI Command Group Code
+	'''
+	SCSI Command Group Code
 
 	Each SCSI command belongs to a group that defines its characteristics. It
 	also defines which commands are optional (``o``), mandatory (``m``),
@@ -69,7 +70,8 @@ class GroupCode(IntEnum):
 	'''
 
 	GROUP0 = 0b000,
-	'''Six-byte Commands
+	'''
+	Six-byte Commands
 
 	+----------------------+-------+-----------------+
 	|  opcode              | Type  | Command         |
@@ -116,7 +118,8 @@ class GroupCode(IntEnum):
 	'''
 
 	GROUP1 = 0b001,
-	'''Ten-byte Commands
+	'''
+	Ten-byte Commands
 
 	+----------------------+-------+-----------------+
 	|  opcode              | Type  | Command         |
@@ -149,7 +152,8 @@ class GroupCode(IntEnum):
 
 	'''
 	GROUP2 = 0b010,
-	'''Reserved Group
+	'''
+	Reserved Group
 
 	+----------------------+-------+-----------------+
 	|  opcode              | Type  | Command         |
@@ -159,7 +163,8 @@ class GroupCode(IntEnum):
 
 	'''
 	GROUP3 = 0b011,
-	'''Reserved Group
+	'''
+	Reserved Group
 
 	+----------------------+-------+-----------------+
 	|  opcode              | Type  | Command         |
@@ -169,7 +174,8 @@ class GroupCode(IntEnum):
 
 	'''
 	GROUP4 = 0b100,
-	'''Reserved Group
+	'''
+	Reserved Group
 
 	+----------------------+-------+-----------------+
 	|  opcode              | Type  | Command         |
@@ -180,7 +186,8 @@ class GroupCode(IntEnum):
 	'''
 
 	GROUP5 = 0b101,
-	'''Twelve-byte Commands
+	'''
+	Twelve-byte Commands
 
 	+----------------------+-------+-----------------+
 	|  opcode              | Type  | Command         |
@@ -192,7 +199,8 @@ class GroupCode(IntEnum):
 
 	'''
 	GROUP6 = 0b110,
-	'''Vendor Specific Commands
+	'''
+	Vendor Specific Commands
 
 	+----------------------+-------+-----------------+
 	|  opcode              | Type  | Command         |
@@ -202,7 +210,8 @@ class GroupCode(IntEnum):
 
 	'''
 	GROUP7 = 0b111,
-	'''Vendor Specific Commands
+	'''
+	Vendor Specific Commands
 
 	+----------------------+-------+-----------------+
 	|  opcode              | Type  | Command         |
@@ -218,7 +227,8 @@ _KNOWN_SIZED_GROUPS = {
 	GroupCode.GROUP1: 10,
 	GroupCode.GROUP5: 12,
 }
-'''Known Sized Groups.
+'''
+Known Sized Groups.
 
 This map defines the relation between a group code and the size in bytes of the commands in
 the group for the groups in which we know and have a fixed size.
@@ -226,7 +236,8 @@ the group for the groups in which we know and have a fixed size.
 '''
 
 class SCSICommandField(Subconstruct):
-	'''SCSI Command Field
+	'''
+	SCSI Command Field
 
 	This is a wrapper :py:class:`construct.Subconstruct` to allow for some metadata and automatic
 	type deduction to be preformed based on the field name.
@@ -336,7 +347,8 @@ class SCSICommandField(Subconstruct):
 
 	@classmethod
 	def _type_from_prefix(cls, field_name: str):
-		'''Return appropriate :py:class:`construct.Subconstruct` for given name prefix.
+		'''
+		Return appropriate :py:class:`construct.Subconstruct` for given name prefix.
 
 		This method looks at the first few characters of the field name and attempts to
 		return the appropriate :py:class:`construct.Subconstruct` type that can store that field.
@@ -372,7 +384,8 @@ class SCSICommandField(Subconstruct):
 
 	@classmethod
 	def _type_from_size(cls, size: int):
-		'''Return appropriate :py:class:`construct.Subconstruct` for given size in bits.
+		'''
+		Return appropriate :py:class:`construct.Subconstruct` for given size in bits.
 
 		If ``size`` is divisible by a whole number of bytes then an appropriately sized byte
 		type is returned, otherwise a :py:class:`construct.BytesInteger` of the requested size
@@ -403,7 +416,8 @@ class SCSICommandField(Subconstruct):
 		self.len = length
 
 	def __rtruediv__(self, subcon_name: str):
-		'''Rename subcon
+		'''
+		Rename subcon
 
 		This method is overloaded to dynamically construct a :py:class:`construct.Subconstruct`
 		for a SCSI command field based on either a name prefix or the specified length.
@@ -429,12 +443,13 @@ class SCSICommandField(Subconstruct):
 		return (subcon_name / subcon_type) * self.description
 
 LUN = SCSICommandField('Logical Unit Number', default = 0, length = 3)
-'''A :py:class:`SCSICommandField` convenience type for LUNs'''
+''' A :py:class:`SCSICommandField` convenience type for LUNs '''
 
 
 
 class SCSICommand(Struct):
-	'''SCSI Command Structure
+	'''
+	SCSI Command Structure
 
 	Creates a :py:class:`construct.Struct` for arbitrary SCSI Commands. This wraps the
 	structure and gives it some useful common operations needed to consume and generate
@@ -610,7 +625,7 @@ class SCSICommand(Struct):
 		# 	raise RuntimeError(f'Structure is actually {self.sizeof() // 8} bytes long but must be {self.command_size} bytes long.')
 
 	def len(self) -> int:
-		'''Return structure length in bytes'''
+		''' Return structure length in bytes '''
 
 		return self.sizeof() // 8
 
@@ -623,7 +638,8 @@ class SCSICommand(Struct):
 		return res
 
 class SCSICommand6(SCSICommand):
-	'''Six-byte SCSI Command
+	'''
+	Six-byte SCSI Command
 
 	This is a specialization of the :py:class:`SCSICommand` class that deals with
 	six-byte SCSI commands. It automatically sets the group code to Group 0.
@@ -678,7 +694,8 @@ class SCSICommand6(SCSICommand):
 		super().__init__(opcode, GroupCode.GROUP0, *subcons, **subconmskw)
 
 class SCSICommand10(SCSICommand):
-	'''Ten-byte SCSI Command
+	'''
+	Ten-byte SCSI Command
 
 	This is a specialization of the :py:class:`SCSICommand` class that deals with
 	ten-byte SCSI commands. It automatically sets the group code to Group 1.
@@ -741,7 +758,8 @@ class SCSICommand10(SCSICommand):
 		super().__init__(opcode, GroupCode.GROUP1, *subcons, **subconmskw)
 
 class SCSICommand12(SCSICommand):
-	'''Twelve-byte SCSI Command
+	'''
+	Twelve-byte SCSI Command
 
 	This is a specialization of the :py:class:`SCSICommand` class that deals with
 	twelve-byte SCSI commands. It automatically sets the group code to Group 5.
@@ -807,7 +825,8 @@ class SCSICommand12(SCSICommand):
 		super().__init__(opcode, GroupCode.GROUP5, *subcons, **subconmskw)
 
 class CommandEmitter:
-	'''Creates an emitter based on the specified SCSI command.
+	'''
+	Creates an emitter based on the specified SCSI command.
 
 	Given a SCSI command like the following:
 
@@ -857,7 +876,8 @@ class CommandEmitter:
 			return
 
 	def __setattr__(self, name: str, value: Any) -> None:
-		'''Set value of an attribute by name
+		'''
+		Set value of an attribute by name
 
 		Parameters
 		----------
@@ -871,6 +891,7 @@ class CommandEmitter:
 		------
 		AttributeError
 			If the attribute being set is not in the command or reserved.
+
 		'''
 
 		if name == 'Reserved':
@@ -886,7 +907,8 @@ class CommandEmitter:
 		self.fields[name] = value
 
 	def __getattr__(self, name: str) -> Any:
-		'''Get value of an attribute by name
+		'''
+		Get value of an attribute by name
 
 		Parameters
 		----------
@@ -911,7 +933,8 @@ class CommandEmitter:
 			raise AttributeError(f'Unknown property \'{name}\'')
 
 	def emit(self) -> bytes:
-		'''Emit bytes
+		'''
+		Emit bytes
 
 		Takes the assigned fields and generates a byte string from the specified format.
 

@@ -10,7 +10,8 @@ __all__ = (
 )
 
 class ICE40ClockDomainGenerator(Elaboratable):
-	'''PLL Wrapper for iCE40 based Squishy platforms.
+	'''
+	PLL Wrapper for iCE40 based Squishy platforms.
 
 	This elaboratable declares two clock domains, `usb` and `sync`. The `usb` domain is
 	a 60MHz clock coming from a ULPI phy, and the `sync` domain is a PLL'd up value from
@@ -58,7 +59,8 @@ class ICE40ClockDomainGenerator(Elaboratable):
 		return m
 
 class ECP5ClockDomainGenerator(Elaboratable):
-	'''PLL Wrapper for iCE40 based Squishy platforms.
+	'''
+	PLL Wrapper for ECP5 based Squishy platforms.
 
 	This elaboratable declares two clock domains, `usb` and `sync`. The `usb` domain is
 	a 60MHz clock coming from a ULPI phy, and the `sync` domain is a PLL'd up value from

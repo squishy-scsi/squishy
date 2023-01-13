@@ -11,14 +11,15 @@ __doc__ = '''\
 '''
 
 class SCSI2(Elaboratable):
-	'''SCSI 2 Elaboratable
+	'''
+	SCSI 2 Elaboratable
 
-	This elaboratable represents an interface for interacting with SCSI-2 compliant bus'.
+	This elaboratable represents an interface for interacting with SCSI-2 compliant buses.
 
 	Parameters
 	----------
 	is_device : bool
-		If this SCSI-1 Elaboratable is a Device or Initiator.
+		If this SCSI-2 Elaboratable is a Device or Initiator.
 
 	'''
 
@@ -32,9 +33,9 @@ class SCSI2(Elaboratable):
 		return m
 
 def Device(*args, **kwargs) -> SCSI2:
-	'''sCreate a SCSI-2 Device Elaboratable'''
+	''' Create a SCSI-2 Device Elaboratable '''
 	return SCSI2(*args, is_device = True, **kwargs)
 
 def Initiator(*args, **kwargs) -> SCSI2:
-	'''Create a SCSI-2 Initiator Elaboratable'''
+	''' Create a SCSI-2 Initiator Elaboratable '''
 	return SCSI2(*args, is_device = False, **kwargs)

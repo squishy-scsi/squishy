@@ -16,7 +16,8 @@ __all__ = (
 
 
 def predicate_applet(member) -> bool:
-	'''Applet predicate
+	'''
+	Applet predicate
 
 	This predicate filters on if the member is a sub class of :py:class:`SquishyApplet`
 	and not an instance of that class itself.
@@ -34,7 +35,8 @@ def predicate_applet(member) -> bool:
 	return False
 
 def predicate_action(member) -> bool:
-	'''Action predicate
+	'''
+	Action predicate
 
 	This predicate filters on if the member is a sub class of :py:class:`SquishyAction`
 	and not an instance of that class itself.
@@ -43,6 +45,7 @@ def predicate_action(member) -> bool:
 	-------
 	bool
 		If the predicate matches.
+
 	'''
 
 	from ..actions import SquishyAction
@@ -51,7 +54,8 @@ def predicate_action(member) -> bool:
 	return False
 
 def predicate_class(member) -> bool:
-	'''Class predicate
+	'''
+	Class predicate
 
 	This predicate filters on if the member is a class.
 
@@ -59,12 +63,14 @@ def predicate_class(member) -> bool:
 	-------
 	bool
 		If the predicate matches.
+
 	'''
 
 	return isclass(member)
 
 def collect_members(pkg, pred, prefix: str = '', make_instance: bool = True) -> List[Dict[str, Union[str, Any]]]:
-	'''Collect members from package
+	'''
+	Collect members from package
 
 	This method collects list of members from a given package, and optionally creates
 	and instance of them.

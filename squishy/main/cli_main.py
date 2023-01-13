@@ -11,14 +11,15 @@ from ..core.collect import collect_members, predicate_action
 from ..core.device  import SquishyHardwareDevice
 
 def main() -> int:
-	'''Squishy CLI/REPL Runner
+	'''
+	Squishy CLI/REPL Runner
 
 	This is the main invocation point for the Squishy CLI and REPL.
 
 	Returns
 	-------
 	int
-		0 if execution was successfull, otherwise any other integer on error
+		0 if execution was successful, otherwise any other integer on error
 
 	'''
 

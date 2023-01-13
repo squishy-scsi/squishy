@@ -42,7 +42,8 @@ __all__ = (
 )
 
 class GetDescriptorSetHandler(Elaboratable):
-	''' Windows ``GET_DESCRIPTOR_SET`` handler.
+	'''
+	Windows ``GET_DESCRIPTOR_SET`` handler.
 
 	Attributes
 	----------
@@ -102,7 +103,8 @@ class GetDescriptorSetHandler(Elaboratable):
 		return (n + (cls.element_size - 1)) // cls.element_size
 
 	def generate_rom(self) -> Tuple[Memory, int, int]:
-		''' Generate ROM for descriptor sets.
+		'''
+		Generate ROM for descriptor sets.
 
 		Notes
 		-----
@@ -296,7 +298,8 @@ class GetDescriptorSetHandler(Elaboratable):
 		return m
 
 class WindowsRequestHandler(USBRequestHandler):
-	''' The Windows-specific handler for Windows requests.
+	'''
+	The Windows-specific handler for Windows requests.
 
 	Notes
 	-----
@@ -403,7 +406,8 @@ class WindowsRequestHandler(USBRequestHandler):
 		return m
 
 	def handlerCondition(self, setup: SetupPacket) -> Operator:
-		''' Defines the setup packet conditions under which the request handler will operate.
+		'''
+		Defines the setup packet conditions under which the request handler will operate.
 
 		This is used to gate the handler's operation and forms part of the condition under which
 		the stall-only handler will be triggered.

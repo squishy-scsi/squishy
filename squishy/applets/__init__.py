@@ -11,7 +11,8 @@ __all__ = (
 )
 
 class SquishyApplet(metaclass = ABCMeta):
-	'''Squishy applet base class.
+	'''
+	Squishy applet base class.
 
 	This is the abstract base class that is used
 	to implement any possible applet for squishy.
@@ -99,7 +100,8 @@ class SquishyApplet(metaclass = ABCMeta):
 
 
 	def supported_platform(self, platform: str) -> bool:
-		''' Check to see if the given platform is supported
+		'''
+		Check to see if the given platform is supported
 
 		Parameters
 		----------
@@ -119,11 +121,12 @@ class SquishyApplet(metaclass = ABCMeta):
 			return platform in self.hardware_rev
 
 	def show_help(self) -> None:
-		'''Shows applets built-in help'''
+		''' Shows applets built-in help '''
 		pass
 
 	def init_gui(self, main_window, args) -> bool:
-		'''Initializes applet GUI component
+		'''
+		Initializes applet GUI component
 
 		Parameters
 		----------
@@ -132,11 +135,13 @@ class SquishyApplet(metaclass = ABCMeta):
 
 		args : argsparse.Namespace
 			Any command line arguments passed.
+
 		'''
 		pass
 
 	def init_repl(self, repl_ctx, args) -> bool:
-		'''Initializes applet REPL component
+		'''
+		Initializes applet REPL component
 
 		Parameters
 		----------
@@ -152,7 +157,8 @@ class SquishyApplet(metaclass = ABCMeta):
 
 	@abstractmethod
 	def init_applet(self, args) -> AppletElaboratable:
-		'''Applet Initialization
+		'''
+		Applet Initialization
 
 		Called to initialize the applet prior to
 		the applet being built and ran
@@ -178,7 +184,8 @@ class SquishyApplet(metaclass = ABCMeta):
 
 	@abstractmethod
 	def register_args(self, parser) -> None:
-		'''Applet argument registration
+		'''
+		Applet argument registration
 
 		Called to register any applet specific arguments.
 
@@ -198,7 +205,8 @@ class SquishyApplet(metaclass = ABCMeta):
 
 	@abstractmethod
 	def run(self, device, args) -> int:
-		'''Applet run step
+		'''
+		Applet run step
 
 		Called to run any specialized machinery for the applet.
 

@@ -45,7 +45,8 @@ __all__ = (
 _USB_CTX: Optional[USBContext] = None
 
 class SquishyHardwareDevice:
-	'''Squishy Hardware Device
+	'''
+	Squishy Hardware Device
 
 	This class represents and abstracted Squishy hardware device, exposing a common
 	and stable API for applets to interact with the hardware on.
@@ -311,7 +312,8 @@ class SquishyHardwareDevice:
 
 	@classmethod
 	def get_device(cls: Type['SquishyHardwareDevice'], serial: str = None) -> Union[None, 'SquishyHardwareDevice']:
-		'''Get attached Squishy device.
+		'''
+		Get attached Squishy device.
 
 		Get the attached and selected squishy device if possible, or if only
 		one is attached to the system use that one.
@@ -385,7 +387,8 @@ class SquishyHardwareDevice:
 
 	@classmethod
 	def enumerate(cls: Type['SquishyHardwareDevice']) -> List[Tuple[str, float, USBDevice]]:
-		'''Enumerate attached devices
+		'''
+		Enumerate attached devices
 
 		Returns
 		-------

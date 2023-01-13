@@ -63,13 +63,8 @@ __all__ = (
 
 
 class Rev1USB(Elaboratable):
-	'''Luna based USB ULPI Interface
-
-	Note
-	----
-	When elaborating designs with this module, you may see a warning about being
-	unable to find ``lambdasoc``. You can ignore it as it is not used in any
-	capacity.
+	'''
+	SOL based USB ULPI Interface
 
 	Warning
 	-------

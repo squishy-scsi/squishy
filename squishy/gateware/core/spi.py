@@ -11,7 +11,8 @@ __all__ = (
 )
 
 class SPIInterface(Elaboratable):
-	'''Generic SPI interface.
+	'''
+	Generic SPI interface.
 
 	Attributes
 	----------

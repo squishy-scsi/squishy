@@ -28,7 +28,8 @@ def TransceiverPairs(
 	invert: bool = False, conn: str = None,
 	assert_width: Optional[int] = None
 ) -> Tuple[Subsignal]:
-	'''Returns a tuple of subsignals for RX and TX pairs
+	'''
+	Returns a tuple of subsignals for RX and TX pairs
 
 	Parameters
 	----------
@@ -64,7 +65,8 @@ def SCSIConnectorResource(*args, diff: bool,
 	d1: Optional[PinDef] = None, dp1: Optional[PinDef]  = None, scsi_id: Optional[str] = None,
 	led: Optional[str]  = None, spindle: Optional[str] = None, rmt: Optional[str] = None,
 	dlyd: Optional[str] = None, dir: PinDir = 'io', attrs: Optional[Attrs]   = None) -> Resource:
-	'''Represents a raw SCSI connector
+	'''
+	Represents a raw SCSI connector
 
 	Parameters
 	----------
@@ -203,7 +205,8 @@ def SCSIPhyResource(*args,
 	scsi_id: Optional[PinDiff] = None, led: Optional[PinDiff] = None,
 	spindle: Optional[PinDiff] = None, rmt: Optional[PinDiff] = None,
 	dlyd: Optional[PinDiff] = None, attrs: Optional[Attrs] = None) -> Resource:
-	'''Represents a Squishy SCSI PHY Resource
+	'''
+	Represents a Squishy SCSI PHY Resource
 
 	Parameters
 	----------
@@ -313,9 +316,9 @@ def SCSIPhyResource(*args,
 
 
 def SCSIDifferentialResource(*args, **kwargs) -> SCSIConnectorResource:
-	'''Constructs an explicitly differential :py:func:`SCSIConnectorResource`'''
+	''' Constructs an explicitly differential :py:func:`SCSIConnectorResource` '''
 	return SCSIConnectorResource(*args, diff = True, **kwargs)
 
 def SCSISingleEndedResource(*args, **kwargs) -> SCSIConnectorResource:
-	'''Constructs an explicitly single-ended :py:func:`SCSIConnectorResource`'''
+	''' Constructs an explicitly single-ended :py:func:`SCSIConnectorResource` '''
 	return SCSIConnectorResource(*args, diff = False, **kwargs)
