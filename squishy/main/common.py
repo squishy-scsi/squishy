@@ -1,7 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging    as log
-import json
-
 from argparse     import ArgumentParser, Namespace
 
 from rich         import traceback
@@ -89,10 +87,6 @@ def main_common() -> None:
 
 	init_dirs()
 	setup_logging()
-
-	if not config.SQUISHY_SETTINGS_FILE.exists():
-		with config.SQUISHY_SETTINGS_FILE.open('w') as cfg:
-			json.dump(config.DEFAULT_SETTINGS, cfg)
 
 def common_options(parser: ArgumentParser) -> None:
 	'''

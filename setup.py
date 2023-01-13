@@ -72,11 +72,11 @@ setup(
 	),
 	package_data      = {
 		# GUI Resources
-		'squishy.gui.resources.fonts': [
+		'squishy_gui.resources.fonts': [
 			'FiraCode-Regular.ttf',
 			'NotoSans-Regular.ttf',
 		],
-		'squishy.gui.resources.icons': [
+		'squishy_gui.resources.icons': [
 			'computer.svg',
 			'cpu.svg',
 			'drive-harddisk.svg',
@@ -86,14 +86,14 @@ setup(
 			'media-tape.svg',
 			'printer.svg',
 		],
-		'squishy.gui.resources.images': [
+		'squishy_gui.resources.images': [
 			'about.png',
 			'splash.png',
 		],
-		'squishy.gui.resources.themes': [
+		'squishy_gui.resources.themes': [
 
 		],
-		'squishy.gui.resources.ui': [
+		'squishy_gui.resources.ui': [
 			'about_window.ui',
 			'bus_topology_window.ui',
 			'devices_window.ui',
@@ -103,7 +103,7 @@ setup(
 			'triggers_window.ui',
 		],
 		# localization bits
-		'squishy.i18n.locales.en.LC_MESSAGES': [
+		'squishy_gui.i18n.locales.en.LC_MESSAGES': [
 
 		]
 	},
@@ -134,10 +134,10 @@ setup(
 
 	entry_points       = {
 		'console_scripts': [
-			'squishy = squishy.main:cli_main',
+			'squishy = squishy.main:main',
 		],
 		'gui_scripts': [
-			'squishy-gui = squishy.main:gui_main [gui]',
+			'squishy-gui = squishy_gui.main:main [gui]',
 		]
 	},
 
