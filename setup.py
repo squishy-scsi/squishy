@@ -134,10 +134,7 @@ setup(
 
 	entry_points       = {
 		'console_scripts': [
-			'squishy = squishy.main:main',
-		],
-		'gui_scripts': [
-			'squishy-gui = squishy_gui.main:main [gui]',
+			'squishy = squishy.cli:main',
 		]
 	},
 
