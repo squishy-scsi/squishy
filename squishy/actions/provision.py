@@ -26,7 +26,7 @@ class Provision(SquishyAction):
 	pretty_name  = 'Squishy Provision'
 	short_help   = 'Squishy first-time provisioning'
 	description  = 'Build squishy bootloader flash image'
-	requires_dev = True
+	requires_dev = False
 
 	def _build_slots(self, flash_geometry: FlashGeometry) -> bytes:
 		'''  '''
@@ -192,7 +192,7 @@ class Provision(SquishyAction):
 		)
 
 	def run(self, args: Namespace, dev: SquishyHardwareDevice = None) -> int:
-		if not args.build_only:
+		if not args.build_only and not args.whole_device:
 			dev = SquishyHardwareDevice.get_device(serial = args.device)
 			if dev is None:
 				log.error('No device selected, unable to continue.')

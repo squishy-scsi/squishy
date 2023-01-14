@@ -66,16 +66,14 @@ def main() -> int:
 
 		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
 
-		if act['name'] == 'provision':
-			return act['instance'].run(args)
-		else:
-			if act['instance'].requires_dev:
-				dev = SquishyHardwareDevice.get_device(serial = args.device)
-				if dev is not None:
-					return act['instance'].run(args, dev)
-				else:
-					log.error('No device selected, unable to continue.')
+		if act['instance'].requires_dev:
+			dev = SquishyHardwareDevice.get_device(serial = args.device)
+			if dev is not None:
+				return act['instance'].run(args, dev)
 			else:
-				return act['instance'].run(args)
+				log.error('No device selected, unable to continue.')
+		else:
+			return act['instance'].run(args)
+
 	except KeyboardInterrupt:
 		log.info('bye!')
