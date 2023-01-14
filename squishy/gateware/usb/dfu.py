@@ -204,7 +204,7 @@ class DFURequestHandler(USBRequestHandler):
 
 		return m
 
-	def handlerCondition(self, setup: SetupPacket) -> Operator:
+	def handler_condition(self, setup: SetupPacket) -> Operator:
 		return (
 			(self.interface.active_config == self._configuration) &
 			((setup.type      == USBRequestType.CLASS) | (setup.type == USBRequestType.STANDARD)) &

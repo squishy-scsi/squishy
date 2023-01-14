@@ -134,8 +134,8 @@ class Bootloader(Elaboratable):
 		def stall_condition(setup: SetupPacket) -> Operator:
 			return ~(
 				(setup.type == USBRequestType.STANDARD) |
-				dfu_handler.handlerCondition(setup)     |
-				win_handler.handlerCondition(setup)
+				dfu_handler.handler_condition(setup)     |
+				win_handler.handler_condition(setup)
 			)
 
 		ep0.add_request_handler(dfu_handler)

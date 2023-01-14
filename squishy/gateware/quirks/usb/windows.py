@@ -349,7 +349,7 @@ class WindowsRequestHandler(USBRequestHandler):
 			desc_set_handler.length.eq(setup.length),
 		]
 
-		with m.If(self.handlerCondition(setup)):
+		with m.If(self.handler_condition(setup)):
 			with m.FSM(domain = 'usb'):
 				with m.State('IDLE'):
 					with m.If(setup.received):
@@ -405,7 +405,7 @@ class WindowsRequestHandler(USBRequestHandler):
 
 		return m
 
-	def handlerCondition(self, setup: SetupPacket) -> Operator:
+	def handler_condition(self, setup: SetupPacket) -> Operator:
 		'''
 		Defines the setup packet conditions under which the request handler will operate.
 

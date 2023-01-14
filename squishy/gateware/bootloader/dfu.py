@@ -119,7 +119,7 @@ class DFURequestHandler(USBRequestHandler):
 					m.next = 'READ_SLOT_DATA'
 
 			with m.State('IDLE'):
-				with m.If(setup.received & self.handlerCondition(setup)):
+				with m.If(setup.received & self.handler_condition(setup)):
 					with m.If(setup.type == USBRequestType.CLASS):
 						with m.Switch(setup.request):
 							with m.Case(DFURequests.DETACH):
@@ -392,7 +392,7 @@ class DFURequestHandler(USBRequestHandler):
 
 		return m
 
-	def handlerCondition(self, setup: SetupPacket) -> Operator:
+	def handler_condition(self, setup: SetupPacket) -> Operator:
 		return (
 			(self.interface.active_config == self._configuration) &
 			((setup.type == USBRequestType.CLASS) | (setup.type == USBRequestType.STANDARD)) &
