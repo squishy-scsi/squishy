@@ -72,7 +72,7 @@ class DFURequestHandler(USBRequestHandler):
 
 		with m.FSM(domain = 'usb', name = 'dfu'):
 			with m.State('IDLE'):
-				with m.If(setup.received & self.handlerCondition(setup)):
+				with m.If(setup.received & self.handler_condition(setup)):
 					with m.If(setup.type == USBRequestType.CLASS):
 						with m.Switch(setup.request):
 							with m.Case(DFURequests.DETACH):
