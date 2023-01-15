@@ -15,7 +15,6 @@ CNTRB_DIR = (ROOT_DIR  / 'contrib')
 DOCS_DIR  = (ROOT_DIR  / 'docs')
 
 DIST_DIR     = (BUILD_DIR / 'dist')
-PKGS_DIR     = (CNTRB_DIR / 'pkg')
 DOCS_WEB_DIR = (DOCS_DIR / 'web')
 
 # Default sessions to run
@@ -89,57 +88,3 @@ def upload_dist(session: nox.Session) -> None:
 	session.run('python', '-m', 'twine',
 		'upload', f'{DIST_DIR}/*'
 	)
-
-
-@nox.session
-def pkg_appimage(session: nox.Session) -> None:
-	session.install('appimage-builder')
-
-	pkg_dir = (PKGS_DIR / 'appimage')
-
-	with session.chdir(pkg_dir):
-		pass
-
-@nox.session
-def pkg_flatpak(session: nox.Session) -> None:
-	pkg_dir = (PKGS_DIR / 'flatpak')
-
-	with session.chdir(pkg_dir):
-		session.run('bash', 'build.sh', str(BUILD_DIR / 'flatpak'), squishy_version(), external = True)
-
-@nox.session
-def pkg_deb(session: nox.Session) -> None:
-	build_dists(session)
-	pkg_dir = (PKGS_DIR / 'deb')
-
-	with session.chdir(pkg_dir):
-		pass
-
-@nox.session
-def pkg_dmg(session: nox.Session) -> None:
-	build_dists(session)
-	pkg_dir = (PKGS_DIR / 'dmg')
-
-	with session.chdir(pkg_dir):
-		pass
-
-@nox.session
-def pkg_rpm(session: nox.Session) -> None:
-	build_dists(session)
-	pkg_dir = (PKGS_DIR / 'rpm')
-
-	with session.chdir(pkg_dir):
-		pass
-
-@nox.session
-def pkg_pacman(session: nox.Session) -> None:
-	build_dists(session)
-	pkg_dir = (PKGS_DIR / 'pkg')
-
-
-	with session.chdir(pkg_dir):
-		session.run('bash', 'build.sh', str(DIST_DIR), squishy_version(), external = True)
-
-@nox.session
-def pkg_windows(session: nox.Session) -> None:
-	pass

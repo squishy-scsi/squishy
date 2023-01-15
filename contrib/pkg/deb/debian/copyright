@@ -1,8 +1,0 @@
-Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: Squishy
-Upstream-Contact: Aki Van Ness <nya@catgirl.link>
-Source: https://github.com/lethalbit/squishy
-
-Files: *
-Copyright: 2022 Aki Van Ness
-License: BSD-3-Clause
