@@ -87,3 +87,12 @@ def upload_dist(session: nox.Session) -> None:
 	session.run('python', '-m', 'twine',
 		'upload', f'{DIST_DIR}/*'
 	)
+
+@nox.session
+def bandit(session: nox.Session) -> None:
+	session.install('bandit')
+	out_file = (BUILD_DIR / 'bandit.txt')
+	session.run(
+		'bandit', '-f', 'txt', '-o', str(out_file),
+		'-r', 'squishy'
+	)
