@@ -71,41 +71,7 @@ setup(
 		)
 	),
 	package_data      = {
-		# GUI Resources
-		'squishy_gui.resources.fonts': [
-			'FiraCode-Regular.ttf',
-			'NotoSans-Regular.ttf',
-		],
-		'squishy_gui.resources.icons': [
-			'computer.svg',
-			'cpu.svg',
-			'drive-harddisk.svg',
-			'drive-multidisk.svg',
-			'drive-partition.svg',
-			'media-optical.svg',
-			'media-tape.svg',
-			'printer.svg',
-		],
-		'squishy_gui.resources.images': [
-			'about.png',
-			'splash.png',
-		],
-		'squishy_gui.resources.themes': [
 
-		],
-		'squishy_gui.resources.ui': [
-			'about_window.ui',
-			'bus_topology_window.ui',
-			'devices_window.ui',
-			'filters_window.ui',
-			'main_window.ui',
-			'preferences_window.ui',
-			'triggers_window.ui',
-		],
-		# localization bits
-		'squishy_gui.i18n.locales.en.LC_MESSAGES': [
-
-		]
 	},
 
 	extras_require    = {
