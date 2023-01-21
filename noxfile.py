@@ -14,8 +14,7 @@ BUILD_DIR = (ROOT_DIR  / 'build')
 CNTRB_DIR = (ROOT_DIR  / 'contrib')
 DOCS_DIR  = (ROOT_DIR  / 'docs')
 
-DIST_DIR     = (BUILD_DIR / 'dist')
-DOCS_WEB_DIR = (DOCS_DIR / 'web')
+DIST_DIR  = (BUILD_DIR / 'dist')
 
 # Default sessions to run
 nox.options.sessions = (
@@ -50,9 +49,9 @@ def test(session: nox.Session) -> None:
 def docs(session: nox.Session) -> None:
 	out_dir = (BUILD_DIR / 'docs')
 	shutil.rmtree(out_dir, ignore_errors = True)
-	session.install('-r', str(DOCS_WEB_DIR / 'requirements.txt'))
+	session.install('-r', str(DOCS_DIR / 'requirements.txt'))
 	session.install('.')
-	session.run('sphinx-build', '-b', 'html', str(DOCS_WEB_DIR), str(out_dir))
+	session.run('sphinx-build', '-b', 'html', str(DOCS_DIR), str(out_dir))
 
 @nox.session
 def mypy(session: nox.Session) -> None:
