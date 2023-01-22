@@ -3,7 +3,6 @@
 from .scsi import SCSIInterface
 from .spi  import SPIInterface
 from .uart import UARTInterface
-from .usb  import USBInterface
 
 from .pll  import ICE40ClockDomainGenerator
 from .pll  import ECP5ClockDomainGenerator
@@ -12,7 +11,6 @@ __all__ = (
 	'SCSIInterface',
 	'SPIInterface',
 	'UARTInterface',
-	'USBInterface',
 
 	'ICE40ClockDomainGenerator',
 	'ECP5ClockDomainGenerator',
@@ -35,6 +33,5 @@ It is roughly broken up into 5 submodules:
  * :py:mod:`squishy.gateware.core.pll` - PLL helpers for various FPGAs.
  * :py:mod:`squishy.gateware.core.spi` - Generic SPI interface.
  * :py:mod:`squishy.gateware.core.uart` - Debug UART.
- * :py:mod:`squishy.gateware.core.usb` - Main USB interface.
 
 ''' # noqa: E101
