@@ -11,6 +11,9 @@ from torii                             import (
 from sol_usb.gateware.usb.usb2.request import (
 	USBRequestHandler
 )
+from usb_construct.emitters.descriptors.standard import (
+	DeviceDescriptorCollection
+)
 
 
 __all__ = (
@@ -43,7 +46,7 @@ class AppletElaboratable(Elaboratable, metaclass = ABCMeta):
 		return 1
 
 	@classmethod
-	def usb_init_descriptors(cls: Type['AppletElaboratable'], dev_desc) -> int:
+	def usb_init_descriptors(cls: Type['AppletElaboratable'], dev_desc: DeviceDescriptorCollection) -> int:
 		''' Initialize USB descriptors'''
 		return 0
 

@@ -1,9 +1,17 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from .device    import *
-from .initiator import *
+from .scsi1     import SCSI1
+from .scsi2     import SCSI2
+from .scsi3     import SCSI3
+
+from .device    import SCSI1Device, SCSI2Device, SCSI3Device
+from .initiator import SCSI1Initiator, SCSI2Initiator, SCSI3Initiator
 
 __all__ = (
+	'SCSI1',
+	'SCSI2',
+	'SCSI3',
+
 	'SCSI1Device',
 	'SCSI1Initiator',
 

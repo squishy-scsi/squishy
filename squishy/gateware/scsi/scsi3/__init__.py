@@ -2,6 +2,8 @@
 from torii import Elaboratable, Module
 
 __all__ = (
+	'SCSI3',
+
 	'Device',
 	'Initiator',
 )
@@ -18,12 +20,12 @@ class SCSI3(Elaboratable):
 
 	Parameters
 	----------
-	is_device : bool
-		If this SCSI-3 Elaboratable is a Device or Initiator.
+	config : dict
+		The configuration for this Elaboratable, including SCSI VID and DID.
 
 	'''
 
-	def __init__(self, *, is_device: bool, config: dict) -> None:
+	def __init__(self, *, config: dict) -> None:
 		self.config = config
 
 	def elaborate(self, platform) -> Module:
@@ -32,10 +34,10 @@ class SCSI3(Elaboratable):
 
 		return m
 
-def Device(*args, **kwargs) -> SCSI3:
+def Device(*, config: dict) -> SCSI3:
 	''' Create a SCSI-3 Device Elaboratable '''
-	return SCSI3(*args, is_device = True, **kwargs)
+	return SCSI3({'is_device': True, **config})
 
-def Initiator(*args, **kwargs) -> SCSI3:
+def Initiator(*, config: dict) -> SCSI3:
 	''' Create a SCSI-3 Initiator Elaboratable '''
-	return SCSI3(*args, is_device = False, **kwargs)
+	return SCSI3({'is_device': False, **config})

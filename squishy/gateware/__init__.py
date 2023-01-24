@@ -18,9 +18,7 @@ from .usb import (
 )
 
 from .scsi import (
-	SCSI1Device, SCSI1Initiator,
-	SCSI2Device, SCSI2Initiator,
-	SCSI3Device, SCSI3Initiator
+	SCSI1, SCSI2, SCSI3
 )
 
 __all__ = (
@@ -63,16 +61,17 @@ of the SCSI machinery is for use in torii HDL projects.
 class Squishy(Elaboratable):
 	def _rev1_init(self) -> None:
 		# USB
+		# Re-work so the USB device is passed into the applet
+		# to collect endpoints
 		self.usb = Rev1USB(
 			config              = self.usb_config,
 			applet_desc_builder = self.applet.usb_init_descriptors
 		)
 		# SCSI
-		self.scsi = ({
-			1: SCSI1Device,
-			2: SCSI2Device,
-			3: SCSI3Device,
-		}.get(self.applet.scsi_version))(config = self.scsi_config)
+		if self.applet.scsi_version < 1:
+			raise ValueError('Squishy rev1 can only talk to SCSI-1 buses')
+
+		self.scsi = SCSI1(config = self.scsi_config)
 
 	def _rev2_init(self) -> None:
 		log.warning('Rev2 Gateware is unimplemented')

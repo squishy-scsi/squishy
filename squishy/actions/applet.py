@@ -169,10 +169,17 @@ class Applet(SquishyAction):
 		)
 
 		scsi_options.add_argument(
-			'--arbitrating',
+			'--scsi-arbitrating',
 			default = False,
 			action  = 'store_true',
 			help    = 'Enable SCSI Bus arbitration'
+		)
+
+		scsi_options.add_argument(
+			'--scsi-device',
+			default = False,
+			action  = 'store_true',
+			help    = 'Set the SCSI bus to be a device rather than an initiator',
 		)
 
 		# UART Options
@@ -305,7 +312,8 @@ class Applet(SquishyAction):
 			'version'    : applet_elaboratable.scsi_version,
 			'vid'        : platform.scsi_vid,
 			'did'        : args.scsi_did,
-			'arbitrating': args.arbitrating,
+			'arbitrating': args.scsi_arbitrating,
+			'is_device'  : args.scsi_device,
 		}
 
 

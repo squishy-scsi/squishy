@@ -1,9 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from torii    import Elaboratable, Module
 
-from ..common import *
-
 __all__ = (
+	'SCSI1',
+
 	'Device',
 	'Initiator',
 )
@@ -20,19 +20,12 @@ class SCSI1(Elaboratable):
 
 	Parameters
 	----------
-	is_device : bool
-		If this SCSI-1 Elaboratable is a Device or Initiator.
-
-	arbitrating : bool
-		If this SCSI-1 Elaboratable has arbitration support.
-
 	config : dict
 		The configuration for this Elaboratable, including SCSI VID and DID.
 
 	'''
 
-	def __init__(self, *, is_device: bool, config: dict) -> None:
-		self.is_device   = is_device
+	def __init__(self, *, config: dict) -> None:
 		self.config      = config
 
 	def elaborate(self, platform) -> Module:
@@ -116,13 +109,13 @@ class SCSI1(Elaboratable):
 
 		return m
 
-def Device(*args, **kwargs) -> SCSI1:
+def Device(*, config: dict) -> SCSI1:
 	''' Create a SCSI-1 Device Elaboratable '''
-	return SCSI1(*args, is_device = True, **kwargs)
+	return SCSI1({'is_device': True, **config})
 
-def Initiator(*args, **kwargs) -> SCSI1:
+def Initiator(*, config: dict) -> SCSI1:
 	''' Create a SCSI-1 Initiator Elaboratable '''
-	return SCSI1(*args, is_device = False, **kwargs)
+	return SCSI1({'is_device': False, **config})
 
 # -------------- #
 
