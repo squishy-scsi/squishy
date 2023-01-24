@@ -80,7 +80,7 @@
             
             
               <div class="version">
-                0.1.dev1+g69583d8
+                0.1.dev1+gab04af3
               </div>
             
           
@@ -184,7 +184,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../core/scsi.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core.scsi</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../core/spi.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core.spi</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="../core/uart.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core.uart</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="../core/usb.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.core.usb</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../platform/index.html"><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform</span></code></a><ul>
@@ -355,26 +354,38 @@
 <h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.scsi.scsi2</span></code><a class="headerlink" href="#squishy-gateware-scsi-scsi2" title="Permalink to this heading">¶</a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-squishy.gateware.scsi.scsi2"></span><dl class="py function">
-<dt class="sig sig-object py" id="squishy.gateware.scsi.scsi2.Device">
-<span class="sig-prename descclassname"><span class="pre">squishy.gateware.scsi.scsi2.</span></span><span class="sig-name descname"><span class="pre">Device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#squishy.gateware.scsi.scsi2.SCSI2" title="squishy.gateware.scsi.scsi2.SCSI2"><span class="pre">SCSI2</span></a></span></span><a class="headerlink" href="#squishy.gateware.scsi.scsi2.Device" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a SCSI-2 Device Elaboratable</p>
-</dd></dl>
-
-<dl class="py function">
-<dt class="sig sig-object py" id="squishy.gateware.scsi.scsi2.Initiator">
-<span class="sig-prename descclassname"><span class="pre">squishy.gateware.scsi.scsi2.</span></span><span class="sig-name descname"><span class="pre">Initiator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#squishy.gateware.scsi.scsi2.SCSI2" title="squishy.gateware.scsi.scsi2.SCSI2"><span class="pre">SCSI2</span></a></span></span><a class="headerlink" href="#squishy.gateware.scsi.scsi2.Initiator" title="Permalink to this definition">¶</a></dt>
-<dd><p>Create a SCSI-2 Initiator Elaboratable</p>
-</dd></dl>
-
-<dl class="py class">
+<span class="target" id="module-squishy.gateware.scsi.scsi2"></span><dl class="py class">
 <dt class="sig sig-object py" id="squishy.gateware.scsi.scsi2.SCSI2">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.scsi.scsi2.</span></span><span class="sig-name descname"><span class="pre">SCSI2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_loc_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.gateware.scsi.scsi2.SCSI2" title="Permalink to this definition">¶</a></dt>
 <dd><p>SCSI 2 Elaboratable</p>
 <p>This elaboratable represents an interface for interacting with SCSI-2 compliant buses.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>is_device</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If this SCSI-2 Elaboratable is a Device or Initiator.</p>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – The configuration for this Elaboratable, including SCSI VID and DID.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="squishy.gateware.scsi.scsi2.Device">
+<span class="sig-prename descclassname"><span class="pre">squishy.gateware.scsi.scsi2.</span></span><span class="sig-name descname"><span class="pre">Device</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#id0" title="squishy.gateware.scsi.scsi2.SCSI2"><span class="pre">SCSI2</span></a></span></span><a class="headerlink" href="#squishy.gateware.scsi.scsi2.Device" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a SCSI-2 Device Elaboratable</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="squishy.gateware.scsi.scsi2.Initiator">
+<span class="sig-prename descclassname"><span class="pre">squishy.gateware.scsi.scsi2.</span></span><span class="sig-name descname"><span class="pre">Initiator</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">config</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><span class="pre">dict</span></a></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#id0" title="squishy.gateware.scsi.scsi2.SCSI2"><span class="pre">SCSI2</span></a></span></span><a class="headerlink" href="#squishy.gateware.scsi.scsi2.Initiator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a SCSI-2 Initiator Elaboratable</p>
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="id0">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.scsi.scsi2.</span></span><span class="sig-name descname"><span class="pre">SCSI2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">src_loc_at</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><span class="pre">int</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#id0" title="Permalink to this definition">¶</a></dt>
+<dd><p>SCSI 2 Elaboratable</p>
+<p>This elaboratable represents an interface for interacting with SCSI-2 compliant buses.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>config</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.11)"><em>dict</em></a>) – The configuration for this Elaboratable, including SCSI VID and DID.</p>
 </dd>
 </dl>
 </dd></dl>
