@@ -1,6 +1,6 @@
 # Mascot - Sachi
 
-```{image} ../../contrib/img/sachi/electrichearts_20211013A_sachi_trans.png
+```{image} ../contrib/img/sachi/electrichearts_20211013A_sachi_trans.png
 ```
 
 ## About
@@ -11,16 +11,16 @@ She was known for helping the locals with her wisdom in the past. Nowadays her s
 
 ## Images
 
-```{image} ../../contrib/img/sachi/electrichearts_20220323A_sachi_text_crop.png
+```{image} ../contrib/img/sachi/electrichearts_20220323A_sachi_text_crop.png
 ```
 
-```{image} ../../contrib/img/sachi/electrichearts_20211013A_sachi.png
+```{image} ../contrib/img/sachi/electrichearts_20211013A_sachi.png
 ```
 
-```{image} ../../contrib/img/sachi/electrichearts_20220323A_sachi.png
+```{image} ../contrib/img/sachi/electrichearts_20220323A_sachi.png
 ```
 
-```{image} ../../contrib/img/sachi/electrichearts_20220325A_sachi_yellow.png
+```{image} ../contrib/img/sachi/electrichearts_20220325A_sachi_yellow.png
 ```
 
 Full-resolution images with and without transparent backgrounds can be downloaded from the [GitHub Repository](https://github.com/lethalbit/squishy/tree/main/) in the [`etc/img/sachi`](https://github.com/lethalbit/squishy/tree/main/contrib/img/sachi) directory.

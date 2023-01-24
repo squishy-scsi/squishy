@@ -1,5 +1,5 @@
 ```{eval-rst}
-.. figure:: ../../contrib/img/sachi/doric-sachi.png
+.. figure:: ../contrib/img/sachi/doric-sachi.png
 	:align: right
 	:figwidth: 450px
 ```

@@ -7,7 +7,6 @@ pll
 scsi
 spi
 uart
-usb
 ```
 
 ```{eval-rst}
