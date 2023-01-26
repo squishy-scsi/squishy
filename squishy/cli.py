@@ -8,7 +8,6 @@ from rich.logging import RichHandler
 
 from .             import actions, config
 from .core.collect import collect_members, predicate_action
-from .core.device  import SquishyHardwareDevice
 
 __all__ = (
 	'main',
@@ -135,15 +134,7 @@ def main() -> int:
 		setup_logging(args)
 
 		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
-
-		if act['instance'].requires_dev:
-			dev = SquishyHardwareDevice.get_device(serial = args.device)
-			if dev is not None:
-				return act['instance'].run(args, dev)
-			else:
-				log.error('No device selected, unable to continue.')
-		else:
-			return act['instance'].run(args)
+		return act['instance'].run(args)
 
 	except KeyboardInterrupt:
 		log.info('bye!')

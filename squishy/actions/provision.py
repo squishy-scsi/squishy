@@ -2,8 +2,7 @@
 
 import logging           as log
 from pathlib             import Path
-from typing              import Tuple
-from datetime            import datetime
+from typing              import Tuple, Optional
 from argparse            import ArgumentParser, Namespace
 
 from torii.build.run     import LocalBuildProducts
@@ -81,10 +80,6 @@ class Provision(SquishyAction):
 	def __init__(self):
 		super().__init__()
 
-	def _gen_serial(self) -> str:
-		return datetime.utcnow().strftime(
-			'%Y%m%dT%H%M%SZ'
-		)
 
 	def register_args(self, parser: ArgumentParser) -> None:
 
@@ -191,8 +186,8 @@ class Provision(SquishyAction):
 			help   = 'Program the whole device, not just the bootloader'
 		)
 
-	def run(self, args: Namespace, dev: SquishyHardwareDevice = None) -> int:
-		if not args.build_only and not args.whole_device:
+	def run(self, args: Namespace, dev: Optional[SquishyHardwareDevice] = None) -> int:
+		if not args.build_only and not args.whole_device and dev is None:
 			dev = SquishyHardwareDevice.get_device(serial = args.device)
 			if dev is None:
 				log.error('No device selected, unable to continue.')
@@ -251,7 +246,7 @@ class Provision(SquishyAction):
 		if args.serial_number is not None:
 			serial_number = args.serial_number
 		else:
-			serial_number = self._gen_serial()
+			serial_number = SquishyHardwareDevice.make_serial()
 
 		log.info(f'Assigning device serial number \'{serial_number}\'')
 		bootloader = device.bootloader_module(serial_number = serial_number)

@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging      as log
 from argparse       import ArgumentParser, Namespace
+from typing         import Optional
 
 from ..core.cache   import SquishyBitstreamCache
 from ..core.device  import SquishyHardwareDevice
@@ -109,5 +110,5 @@ class Cache(SquishyAction):
 			help = 'clear cache'
 		)
 
-	def run(self, args: Namespace, dev: SquishyHardwareDevice = None) -> int:
+	def run(self, args: Namespace, dev: Optional[SquishyHardwareDevice] = None) -> int:
 		return self._dispatch.get(args.cache_action, lambda _: 1)(args)

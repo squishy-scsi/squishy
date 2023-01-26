@@ -3,7 +3,7 @@ import logging            as log
 from pathlib              import Path
 from argparse             import ArgumentParser, Namespace
 from typing               import (
-	List, Dict, Union
+	List, Dict, Union, Optional
 )
 
 from rich.progress       import (
@@ -229,7 +229,13 @@ class Applet(SquishyAction):
 					)
 				applet.register_args(p)
 
-	def run(self, args: Namespace, dev: SquishyHardwareDevice = None) -> int:
+	def run(self, args: Namespace, dev: Optional[SquishyHardwareDevice] = None) -> int:
+		if not args.build_only and dev is None:
+			dev = SquishyHardwareDevice.get_device(serial = args.device)
+
+			if dev is None:
+				log.error('No device selected, unable to continue.')
+				return 1
 		build_dir = Path(args.build_dir)
 		log.info(f'Targeting platform \'{args.hardware_platform}\'')
 
@@ -300,7 +306,7 @@ class Applet(SquishyAction):
 			'vid': platform.usb_vid,
 			'pid': platform.usb_pid_app,
 			'manufacturer': platform.usb_mfr,
-			'serial_number': dev.serial,
+			'serial_number': SquishyHardwareDevice.make_serial() if dev is None else dev.serial,
 			'product': platform.usb_prod[platform.usb_pid_app],
 			'webusb': {
 				'enabled': args.enable_webusb,

@@ -9,6 +9,9 @@ from typing                              import (
 from time                                import (
 	sleep
 )
+from datetime                            import (
+	datetime
+)
 
 from usb1                                import (
 	USBContext, USBDevice, USBError,
@@ -309,6 +312,24 @@ class SquishyHardwareDevice:
 		)
 
 		hndl.close()
+
+	@staticmethod
+	def make_serial() -> str:
+		'''
+		Make a new serial number string.
+
+		The default serial number is the current time and date
+		in UTC in an ISO 8601-like format.
+
+		Returns
+		-------
+		str
+			The new serial number
+
+		'''
+		return datetime.utcnow().strftime(
+			'%Y%m%dT%H%M%SZ'
+		)
 
 	@classmethod
 	def get_device(cls: Type['SquishyHardwareDevice'], serial: str = None) -> Union[None, 'SquishyHardwareDevice']:
