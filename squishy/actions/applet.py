@@ -70,7 +70,7 @@ class Applet(SquishyAction):
 			type    = str,
 			default = list(AVAILABLE_PLATFORMS.keys())[-1],
 			choices = list(AVAILABLE_PLATFORMS.keys()),
-			help    = 'The target hardware platform',
+			help    = 'The target hardware platform if using --build-only',
 		)
 
 		# Build Options
@@ -84,6 +84,12 @@ class Applet(SquishyAction):
 			'--skip-cache',
 			action = 'store_true',
 			help   = 'Skip the cache lookup and subsequent caching of resultant bitstream'
+		)
+
+		build_options.add_argument(
+			'--skip-programming',
+			action = 'store_true',
+			help   = 'Don\'t program the device once the applet is built'
 		)
 
 		build_options.add_argument(
@@ -236,8 +242,18 @@ class Applet(SquishyAction):
 			if dev is None:
 				log.error('No device selected, unable to continue.')
 				return 1
+
+			hardware_platform = f'rev{dev.rev}'
+			if hardware_platform not in AVAILABLE_PLATFORMS.keys():
+				log.error(f'Unknown hardware revision \'{hardware_platform}\'')
+				log.error(f'Expected one of {", ".join(AVAILABLE_PLATFORMS.keys())}')
+				return 1
+
+		else:
+			hardware_platform = args.hardware_platform
+
 		build_dir = Path(args.build_dir)
-		log.info(f'Targeting platform \'{args.hardware_platform}\'')
+		log.info(f'Targeting platform \'{hardware_platform}\'')
 
 		if not build_dir.exists():
 			log.debug(f'Making build directory {args.build_dir}')
@@ -250,15 +266,15 @@ class Applet(SquishyAction):
 		name: str             = apl['name']
 		applet: SquishyApplet = apl['instance']
 
-		if not applet.supported_platform(args.hardware_platform):
-			log.error(f'Applet {name} does not support platform {args.hardware_platform}')
+		if not applet.supported_platform(hardware_platform):
+			log.error(f'Applet {name} does not support platform {hardware_platform}')
 			log.error(f'Supported platform(s) {applet.hardware_rev}')
 			return 1
 
 		if applet.preview:
 			log.warning('This applet is a preview, it may be buggy or not work at all')
 
-		platform = AVAILABLE_PLATFORMS[args.hardware_platform]()
+		platform = AVAILABLE_PLATFORMS[hardware_platform]()
 
 		pnr_opts = []
 		synth_opts = []
@@ -324,7 +340,7 @@ class Applet(SquishyAction):
 
 
 		gateware = Squishy(
-			revision    = dev.rev,
+			revision    = platform.revision,
 			uart_config = uart_config,
 			usb_config  = usb_config,
 			scsi_config = scsi_config,
@@ -352,7 +368,7 @@ class Applet(SquishyAction):
 			)
 
 
-			if args.build_only:
+			if args.build_only or args.skip_programming:
 				log.info(f'Use \'dfu-util\' to flash \'{name}\' into slot 1 to update the applet')
 			else:
 				file_name = name
