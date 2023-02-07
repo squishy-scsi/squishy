@@ -11,7 +11,7 @@ tutorials/index
 cli
 gui
 mascot
-
+faq
 Source Code <https://github.com/lethalbit/squishy>
 ```
 # Squishy: The SCSI Multitool
@@ -80,5 +80,4 @@ There are also [GitHub Discussions](https://github.com/lethalbit/squishy/discuss
 
 
 ```{note}
-Squishy does not have an official discord, nor any endorsed discord servers
-```
+Squishy does not have an official discord, nor any endorsed discord servers, for an explanation as to why, see the [F.A.Q.](./faq.md)

@@ -31,7 +31,7 @@ Sachi was designed and illustrated by the amazing [Tyson Tan (tysontan.com)](htt
 
 Squishy has a dedicated IRC channel, [#squishy on libera.chat](https://web.libera.chat/#squishy). Join to ask questions, discuss ongoing development, or just hang out.
 
-**NOTE:** Squishy does not have an official discord, nor any endorsed discord servers
+**NOTE:** Squishy does not have an official discord, nor any endorsed discord servers, for an explanation as to why, see the [F.A.Q.](https://docs.scsi.moe/faq.html)
 
 ## Licenses
 
