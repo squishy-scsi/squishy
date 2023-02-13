@@ -1,41 +1,20 @@
-
-
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
   <title>squishy.scsi.commands.direct &mdash; Squishy 0.1.dev1 documentation</title>
-  
-
-  
-  <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/platformpicker.css" type="text/css" />
-  <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
-
-  
-  
-
-  
-  
-
-  
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/graphviz.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/platformpicker.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/styles.css" type="text/css" />
     <link rel="canonical" href="https://docs.scsi.moe/library/python/commands/direct.html" />
-
-  
   <!--[if lt IE 9]>
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
         <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
         <script src="../../../_static/jquery.js"></script>
         <script src="../../../_static/underscore.js"></script>
@@ -45,66 +24,39 @@
         <script src="../../../_static/platformpicker.js"></script>
         <script src="../../../_static/wavedrom.skin.js"></script>
         <script src="../../../_static/wavedrom.min.js"></script>
-        <script>mermaid.initialize({startOnLoad:true});</script>
         <script src="../../../_static/js/mermaid.min.js"></script>
         <script src="../../../_static/js/wavedrom.min.js"></script>
         <script src="../../../_static/js/wavedrom.skin.js"></script>
-    
-    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
-
-    
+        <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
     <link rel="next" title="squishy.scsi.commands.printer" href="printer.html" />
     <link rel="prev" title="squishy.scsi.commands.common" href="common.html" /> 
 </head>
 
-<body class="wy-body-for-nav">
-
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-          
 
           
-            <a href="../../../index.html" class="icon icon-home"> Squishy
           
-
-          
+          <a href="../../../index.html" class="icon icon-home">
+            Squishy
           </a>
-
-          
-            
-            
               <div class="version">
-                0.1.dev1+g8092ec8
+                0.1.dev1+g834122a
               </div>
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-        
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-          
-            
-            
-              
-            
-            
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Introduction</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../introduction.html#overview">Overview</a></li>
@@ -285,84 +237,41 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/lethalbit/squishy">Source Code</a></li>
 </ul>
 
-            
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../../../index.html">Squishy</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content style-external-links">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
-      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
-        
-          <li><a href="../../index.html">Squishy as a Library</a> &raquo;</li>
-        
-          <li><a href="../index.html">Python Library</a> &raquo;</li>
-        
-          <li><a href="index.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands</span></code></a> &raquo;</li>
-        
-      <li><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.direct</span></code></li>
-    
-    
+      <li><a href="../../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../../index.html">Squishy as a Library</a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Python Library</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands</span></code></a></li>
+      <li class="breadcrumb-item active"><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.direct</span></code></li>
       <li class="wy-breadcrumbs-aside">
-        
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <section id="squishy-scsi-commands-direct">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.direct</span></code><a class="headerlink" href="#squishy-scsi-commands-direct" title="Permalink to this heading">¶</a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.direct</span></code><a class="headerlink" href="#squishy-scsi-commands-direct" title="Permalink to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <span class="target" id="module-squishy.scsi.commands.direct"></span><p>This module defines the commands that are specific to direct
 access devices.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.rezero_unit">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">rezero_unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Re-Zero</span> <span class="pre">Unit</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.rezero_unit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">rezero_unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Re-Zero</span> <span class="pre">Unit</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.rezero_unit" title="Permalink to this definition"></a></dt>
 <dd><p>0 | Peripheral Device: Direct Access | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -373,7 +282,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.format_unit">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">format_unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Format</span> <span class="pre">Unit</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.format_unit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">format_unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Format</span> <span class="pre">Unit</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.format_unit" title="Permalink to this definition"></a></dt>
 <dd><p>0 | Peripheral Device: Direct Access | Type: Mandatory</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -384,7 +293,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.reassign_blocks">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">reassign_blocks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Reassign</span> <span class="pre">Blocks</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.reassign_blocks" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">reassign_blocks</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Reassign</span> <span class="pre">Blocks</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.reassign_blocks" title="Permalink to this definition"></a></dt>
 <dd><p>0 | Peripheral Device: Direct Access, WORM | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -395,7 +304,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.read">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">read</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Read</span> <span class="pre">(Direct</span> <span class="pre">Access)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.read" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">read</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Read</span> <span class="pre">(Direct</span> <span class="pre">Access)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.read" title="Permalink to this definition"></a></dt>
 <dd><p>1 | Peripheral Device: Direct Access | Type: Extended</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -406,7 +315,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.write">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">write</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Write</span> <span class="pre">(Direct</span> <span class="pre">Access)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.write" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">write</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Write</span> <span class="pre">(Direct</span> <span class="pre">Access)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.write" title="Permalink to this definition"></a></dt>
 <dd><p>1 | Peripheral Device: Direct Access | Type: Extended</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -417,7 +326,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.seek">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">seek</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Seek</span> <span class="pre">(Direct</span> <span class="pre">Access)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.seek" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">seek</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Seek</span> <span class="pre">(Direct</span> <span class="pre">Access)</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.seek" title="Permalink to this definition"></a></dt>
 <dd><p>1 | Peripheral Device: Direct Access | Type: Extended</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -428,7 +337,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.mode_select">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">mode_select</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Mode</span> <span class="pre">Select</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.mode_select" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">mode_select</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Mode</span> <span class="pre">Select</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.mode_select" title="Permalink to this definition"></a></dt>
 <dd><p>0 | Peripheral Device: Direct Access | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -439,7 +348,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.reserve">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">reserve</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Reserve</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.reserve" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">reserve</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Reserve</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.reserve" title="Permalink to this definition"></a></dt>
 <dd><p>0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -450,7 +359,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.release">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">release</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Release</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.release" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">release</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Release</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.release" title="Permalink to this definition"></a></dt>
 <dd><p>0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -461,7 +370,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.mode_sense">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">mode_sense</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Mode</span> <span class="pre">Sense</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.mode_sense" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">mode_sense</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Mode</span> <span class="pre">Sense</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.mode_sense" title="Permalink to this definition"></a></dt>
 <dd><p>0 | Peripheral Device: Direct Access | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -472,7 +381,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.start_stop_unit">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">start_stop_unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Start/Stop</span> <span class="pre">Unit</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.start_stop_unit" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">start_stop_unit</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Start/Stop</span> <span class="pre">Unit</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.start_stop_unit" title="Permalink to this definition"></a></dt>
 <dd><p>0 | Peripheral Device: Direct Access | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -483,7 +392,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.prevent_allow_media_removal">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">prevent_allow_media_removal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Prevent/Allow</span> <span class="pre">Media</span> <span class="pre">Removal</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.prevent_allow_media_removal" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">prevent_allow_media_removal</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Prevent/Allow</span> <span class="pre">Media</span> <span class="pre">Removal</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.prevent_allow_media_removal" title="Permalink to this definition"></a></dt>
 <dd><p>0 | Peripheral Device: Direct Access, WORM, RO DA | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -494,7 +403,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.read_capacity">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">read_capacity</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Read</span> <span class="pre">Capacity</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.read_capacity" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">read_capacity</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Read</span> <span class="pre">Capacity</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.read_capacity" title="Permalink to this definition"></a></dt>
 <dd><p>1 | Peripheral Device: Direct Access, WORM, RO DA | Type: Extended</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -505,7 +414,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.write_and_verify">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">write_and_verify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Write</span> <span class="pre">and</span> <span class="pre">Verify</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.write_and_verify" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">write_and_verify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Write</span> <span class="pre">and</span> <span class="pre">Verify</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.write_and_verify" title="Permalink to this definition"></a></dt>
 <dd><p>1 | Peripheral Device: Direct Access | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -516,7 +425,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.verify">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">verify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Verify</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.verify" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">verify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Verify</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.verify" title="Permalink to this definition"></a></dt>
 <dd><p>1 | Peripheral Device: Direct Access | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -527,7 +436,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.search_data">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">search_data</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Search</span> <span class="pre">Data</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.search_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">search_data</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Search</span> <span class="pre">Data</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.search_data" title="Permalink to this definition"></a></dt>
 <dd><p>1 | Peripheral Device: Direct Access | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -538,7 +447,7 @@ access devices.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.direct.set_limits">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">set_limits</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Set</span> <span class="pre">Limits</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.set_limits" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.direct.</span></span><span class="sig-name descname"><span class="pre">set_limits</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;Renamed</span> <span class="pre">Set</span> <span class="pre">Limits</span> <span class="pre">&lt;Transformed</span> <span class="pre">&lt;Struct&gt;&gt;&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.direct.set_limits" title="Permalink to this definition"></a></dt>
 <dd><p>1 | Peripheral Device: Direct Access | Type: Optional</p>
 <dl class="field-list simple">
 <dt class="field-odd">Type<span class="colon">:</span></dt>
@@ -557,50 +466,33 @@ access devices.</p>
     </script>
 
            </div>
-           
           </div>
-          <footer>
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="printer.html" class="btn btn-neutral float-right" title="squishy.scsi.commands.printer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="common.html" class="btn btn-neutral float-left" title="squishy.scsi.commands.common" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="printer.html" class="btn btn-neutral float-right" title="squishy.scsi.commands.printer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
 
   <div role="contentinfo">
-    <p>
-        &#169; Copyright 2023, Aki &#34;lethalbit&#34; Van Ness, et. al..
-
-    </p>
+    <p>&#169; Copyright 2023, Aki &#34;lethalbit&#34; Van Ness, et. al..</p>
   </div>
-    
-    
-    
-    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
-    
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
-    
-    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
 </footer>
         </div>
       </div>
-
     </section>
-
   </div>
-  
-
-  <script type="text/javascript">
+  <script>
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-
-  
-  
-    
-   
+  </script> 
 
 </body>
 </html>
