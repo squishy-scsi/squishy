@@ -31,15 +31,13 @@ jobs:
           submodules: true
 
       - name: Setup OSS CAD Suite
-        uses: YosysHQ/setup-oss-cad-suite@v1
+        uses: YosysHQ/setup-oss-cad-suite@v2
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Setup
         shell: bash
         run: |
-          sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys FA8E1301F4D3932C
-          sudo add-apt-repository 'deb http://ppa.launchpad.net/sri-csl/formal-methods/ubuntu bionic main'
-          sudo apt-get update
-          sudo apt-get install yices2
           python -m pip install --user --upgrade pip setuptools wheel setuptools_scm nox
 
       - name: Run Tests
