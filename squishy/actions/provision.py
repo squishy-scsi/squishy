@@ -105,9 +105,9 @@ class Provision(SquishyAction):
 		)
 
 		build_options.add_argument(
-			'--skip-cache',
+			'--emit-debug-verilog',
 			action = 'store_true',
-			help   = 'Skip the cache lookup and subsequent caching of resultant bitstream'
+			help   = 'Generate debug verilog for the bootloader'
 		)
 
 		build_options.add_argument(
@@ -261,15 +261,16 @@ class Provision(SquishyAction):
 			log.info('Building bootloader gateware')
 			name, prod = device.build(
 				bootloader,
-				name         = 'squishy_bootloader',
-				build_dir    = args.build_dir,
-				do_build     = True,
-				do_program   = False,
-				synth_opts   = ' '.join(synth_opts),
-				verbose      = args.loud,
-				nextpnr_opts = ' '.join(pnr_opts),
-				skip_cache   = args.skip_cache,
-				progress     = progress,
+				name          = 'squishy_bootloader',
+				build_dir     = args.build_dir,
+				do_build      = True,
+				do_program    = False,
+				synth_opts    = ' '.join(synth_opts),
+				verbose       = args.loud,
+				nextpnr_opts  = ' '.join(pnr_opts),
+				skip_cache    = True,
+				progress      = progress,
+				debug_verilog = args.emit_debug_verilog
 			)
 
 			if args.whole_device:

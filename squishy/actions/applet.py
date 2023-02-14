@@ -356,15 +356,16 @@ class Applet(SquishyAction):
 
 			name, prod = platform.build(
 				gateware,
-				name         = 'squishy_applet',
-				build_dir    = args.build_dir,
-				do_build     = True,
-				do_program   = False,
-				synth_opts   = ' '.join(synth_opts),
-				verbose      = args.loud,
-				nextpnr_opts = ' '.join(pnr_opts),
-				skip_cache   = args.skip_cache,
-				progress     = progress,
+				name          = 'squishy_applet',
+				build_dir     = args.build_dir,
+				do_build      = True,
+				do_program    = False,
+				synth_opts    = ' '.join(synth_opts),
+				verbose       = args.loud,
+				nextpnr_opts  = ' '.join(pnr_opts),
+				skip_cache    = args.skip_cache,
+				progress      = progress,
+				debug_verilog = True,
 			)
 
 
