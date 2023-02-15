@@ -47,7 +47,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+g09de276
+                0.1.dev1+g9227584
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -70,7 +70,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#installing-prerequisites">Installing Prerequisites</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#installing-python">Installing Python</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installing-yosys-and-nextpnr">Installing Yosys and nextpnr</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#yowasp-install">YoWASP Install</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#native-install">Native Install</a></li>
 </ul>
 </li>
@@ -359,18 +358,6 @@
 <section id="installing-yosys-and-nextpnr">
 <h3>Installing Yosys and nextpnr<a class="headerlink" href="#installing-yosys-and-nextpnr" title="Permalink to this heading"></a></h3>
 <p>Next, you need to install <a class="reference external" href="https://github.com/YosysHQ/yosys"><code class="docutils literal notranslate"><span class="pre">yosys</span></code></a> and <a class="reference external" href="https://github.com/YosysHQ/nextpnr"><code class="docutils literal notranslate"><span class="pre">nextpnr</span></code></a> onto your system if it is not there already.</p>
-<section id="yowasp-install">
-<h4>YoWASP Install<a class="headerlink" href="#yowasp-install" title="Permalink to this heading"></a></h4>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>There is an issue with the YoWASP toolchain failing timings for the design synthesis, It is not advisable to use it until this issue has been resolved, please use the Native Install instructions.</p>
-</div>
-<p>The first option is to install the <a class="reference external" href="https://yowasp.org/">YoWASP</a> WebAssembly based toolchain which is mostly fully cross platform and lives in your python environment. This is the recommended way to install the toolchain on macOS and Windows.</p>
-<p>You can do this by running the following inside the Squishy virtual environment:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(squishy.venv)</span> <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>yowasp-yosys<span class="w"> </span>yowasp-nextpnr-ice40-8k<span class="w"> </span>yowasp-nextpnr-ecp5-45k
-</pre></div>
-</div>
-</section>
 <section id="native-install">
 <h4>Native Install<a class="headerlink" href="#native-install" title="Permalink to this heading"></a></h4>
 <p>The next option is to do a native install of the toolchain.</p>
