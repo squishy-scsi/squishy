@@ -122,22 +122,6 @@ You can then activate the virtual environment with:
 
 Next, you need to install [`yosys`](https://github.com/YosysHQ/yosys) and [`nextpnr`](https://github.com/YosysHQ/nextpnr) onto your system if it is not there already.
 
-#### YoWASP Install
-
-```{warning}
-There is an issue with the YoWASP toolchain failing timings for the design synthesis, It is not advisable to use it until this issue has been resolved, please use the Native Install instructions.
-```
-
-The first option is to install the [YoWASP](https://yowasp.org/) WebAssembly based toolchain which is mostly fully cross platform and lives in your python environment. This is the recommended way to install the toolchain on macOS and Windows.
-
-You can do this by running the following inside the Squishy virtual environment:
-
-```{eval-rst}
-.. code-block:: console
-
-	(squishy.venv) $ pip install yowasp-yosys yowasp-nextpnr-ice40-8k yowasp-nextpnr-ecp5-45k
-```
-
 #### Native Install
 
 The next option is to do a native install of the toolchain.
