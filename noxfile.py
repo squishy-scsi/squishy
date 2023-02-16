@@ -63,14 +63,22 @@ def typecheck(session: nox.Session) -> None:
 	session.install('.')
 	session.run(
 		'mypy', '--non-interactive', '--install-types', '--pretty',
+		'--cache-dir', str((out_dir / '.mypy-cache').resolve()),
+		'--config-file', str((CNTRB_DIR / '.mypy.ini').resolve()),
 		'-p', 'squishy', '--html-report', str(out_dir.resolve())
 	)
 
 @nox.session
 def lint(session: nox.Session) -> None:
 	session.install('flake8')
-	session.run('flake8', './squishy')
-	session.run('flake8', './tests')
+	session.run(
+		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()),
+		'./squishy'
+	)
+	session.run(
+		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()),
+		'./tests'
+	)
 
 @nox.session
 def build_dists(session: nox.Session) -> None:
