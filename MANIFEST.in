@@ -1,7 +1,9 @@
+recursive-exclude .eggs *
 recursive-exclude .github *
+recursive-exclude .nox *
 recursive-exclude .vscode *
+recursive-exclude build *
 recursive-exclude contrib *
-recursive-exclude dist *
 recursive-exclude docs *
 recursive-exclude examples *
 recursive-exclude hardware *
@@ -9,8 +11,9 @@ recursive-exclude tests *
 
 exclude .coverage
 exclude .editorconfig
-exclude .flake8
 exclude .gitatributes
 exclude .gitignore
 exclude CODE_OF_CONDUCT.md
 exclude HACKING.md
+exclude CONTRIBUTING.md
+exclude noxfile.py
