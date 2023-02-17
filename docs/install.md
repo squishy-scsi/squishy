@@ -226,7 +226,7 @@ Once all of the prerequisites are installed, you can finally install squishy int
 ```{eval-rst}
 .. code-block:: console
 
-	(squishy.venv) $ pip install 'git+https://github.com/lethalbit/squishy.git'
+	(squishy.venv) $ pip install 'squishy @ git+https://github.com/lethalbit/squishy.git'
 ```
 
 After that, check to make sure you have the `squishy` command:
