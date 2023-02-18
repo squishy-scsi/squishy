@@ -27,7 +27,7 @@ Prior to installing Squishy, you must install all of its prerequisites and requi
 
 ### Installing Python
 
-First off, install `python` and `pip` onto your system if the're not there already.
+First off, install `python` and `pip` onto your system if the're not there already. It is also recommended to upgrade `pip` if not already to ensure all the steps work as expected.
 
 ```{eval-rst}
 .. platform-picker::
@@ -198,19 +198,6 @@ The next option is to do a native install of the toolchain.
 
 			$ call %cd%\oss-cad-suite\environment.bat
 
-```
-### Installing QT5
-
-If you do not plan to use the Squishy GUI, then you can skip this step and continue on.
-
-The Squishy GUI currently uses [PySide2](https://wiki.qt.io/Qt_for_Python), which is a set of python bindings for [QT5](https://www.qt.io/) to allow for cross-platform GUIs.
-
-It can simply be installed for your system via `pip` from [pypi](https://pypi.org/project/PySide2/) into the virtual environment like so:
-
-```{eval-rst}
-.. code-block:: console
-
-	(squishy.venv) $ pip install PySide2
 ```
 
 ## Installing Squishy
