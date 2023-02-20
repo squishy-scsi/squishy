@@ -47,7 +47,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+gbcb5cc6
+                0.1.dev1+g6e6b9bb
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -73,7 +73,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#native-install">Native Install</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#installing-qt5">Installing QT5</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-squishy">Installing Squishy</a></li>
@@ -279,7 +278,7 @@
 <p>Prior to installing Squishy, you must install all of its prerequisites and requirements.</p>
 <section id="installing-python">
 <h3>Installing Python<a class="headerlink" href="#installing-python" title="Permalink to this heading"></a></h3>
-<p>First off, install <code class="docutils literal notranslate"><span class="pre">python</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code> onto your system if the’re not there already.</p>
+<p>First off, install <code class="docutils literal notranslate"><span class="pre">python</span></code> and <code class="docutils literal notranslate"><span class="pre">pip</span></code> onto your system if the’re not there already. It is also recommended to upgrade <code class="docutils literal notranslate"><span class="pre">pip</span></code> if not already to ensure all the steps work as expected.</p>
 <div class="platform-picker docutils container">
 <div class="platform-choice platform--arch platform-noaltname docutils container">
 <p class="platform-title">Arch Linux</p>
@@ -421,15 +420,6 @@
 </div>
 </div>
 </section>
-</section>
-<section id="installing-qt5">
-<h3>Installing QT5<a class="headerlink" href="#installing-qt5" title="Permalink to this heading"></a></h3>
-<p>If you do not plan to use the Squishy GUI, then you can skip this step and continue on.</p>
-<p>The Squishy GUI currently uses <a class="reference external" href="https://wiki.qt.io/Qt_for_Python">PySide2</a>, which is a set of python bindings for <a class="reference external" href="https://www.qt.io/">QT5</a> to allow for cross-platform GUIs.</p>
-<p>It can simply be installed for your system via <code class="docutils literal notranslate"><span class="pre">pip</span></code> from <a class="reference external" href="https://pypi.org/project/PySide2/">pypi</a> into the virtual environment like so:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(squishy.venv)</span> <span class="gp">$ </span>pip<span class="w"> </span>install<span class="w"> </span>PySide2
-</pre></div>
-</div>
 </section>
 </section>
 <section id="installing-squishy">
