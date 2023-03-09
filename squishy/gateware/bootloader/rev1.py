@@ -104,7 +104,7 @@ class Bootloader(Elaboratable):
 
 					with FunctionalDescriptor(int_desc) as func_desc:
 						func_desc.bmAttributes   = (
-							DFUWillDetach.YES | DFUManifestationTollerant.NO | DFUCanUpload.NO | DFUCanDownload.YES
+							DFUWillDetach.YES | DFUManifestationTolerant.NO | DFUCanUpload.NO | DFUCanDownload.YES
 						)
 						func_desc.wDetachTimeOut = 1000
 						func_desc.wTransferSize  = platform.flash['geometry'].erase_size

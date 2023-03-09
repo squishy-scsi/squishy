@@ -27,7 +27,7 @@ from usb_construct.types                            import (
 )
 
 from usb_construct.types.descriptors.dfu             import (
-	DFUWillDetach, DFUManifestationTollerant,
+	DFUWillDetach, DFUManifestationTolerant,
 	DFUCanUpload, DFUCanDownload
 )
 from usb_construct.contextmgrs.descriptors.dfu       import (
@@ -118,7 +118,7 @@ class Rev1USB(Elaboratable):
 
 				with FunctionalDescriptor(iface_desc) as func_desc:
 					func_desc.bmAttributes = (
-						DFUWillDetach.YES | DFUManifestationTollerant.NO |
+						DFUWillDetach.YES | DFUManifestationTolerant.NO |
 						DFUCanUpload.NO   | DFUCanDownload.YES
 					)
 					func_desc.wDetachTimeOut = 1000
