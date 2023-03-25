@@ -1,7 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 from torii.sim                 import Settle
-from torii.test                import ToriiTestCase, sim_test
+from torii.test                import ToriiTestCase
+from torii.test.mock		   import MockPlatform
+
 from squishy.gateware.core.spi import SPIInterface
 
 class SPIInterfaceTests(ToriiTestCase):
@@ -9,6 +11,8 @@ class SPIInterfaceTests(ToriiTestCase):
 	dut_args = {
 		'resource_name': ('spi_flash_1x', 0)
 	}
+	platform = MockPlatform()
+
 
 	def send_recv(self, d_out, d_in, ovlp = False):
 		self.assertEqual((yield self.dut._spi.clk.o), 1)
@@ -39,7 +43,8 @@ class SPIInterfaceTests(ToriiTestCase):
 			self.assertEqual((yield self.dut.rdat), d_in)
 		yield Settle()
 
-	@sim_test()
+	@ToriiTestCase.simulation
+	@ToriiTestCase.sync_domain(domain = 'sync')
 	def test_spi(self):
 		yield
 		self.assertEqual((yield self.dut._spi.clk.o), 1)

@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from gateware_test                                import SquishyUSBGatewareTestCase, sim_test
+from gateware_test                                import SquishyUSBGatewareTestCase
 from torii.sim                                    import Settle
+from torii.test                                   import ToriiTestCase
 from usb_construct.emitters.descriptors.microsoft import (
 	PlatformDescriptorCollection, SetHeaderDescriptorEmitter
 )
@@ -40,7 +41,8 @@ class GetDescriptorSetHandlerTests(SquishyUSBGatewareTestCase):
 	}
 
 
-	@sim_test()
+	@ToriiTestCase.simulation
+	@ToriiTestCase.sync_domain(domain = 'usb')
 	def test_get_desc_set(self):
 		# Set known state
 		yield self.dut.tx.ready.eq(1)
@@ -144,7 +146,8 @@ class WindowsRequestHandlerTests(SquishyUSBGatewareTestCase):
 			length = length, recipient = USBRequestRecipient.DEVICE
 		)
 
-	@sim_test()
+	@ToriiTestCase.simulation
+	@ToriiTestCase.sync_domain(domain = 'usb')
 	def test_windows_request(self):
 		yield
 		yield from self.send_get_desc(vendor_code = 1, length = 46)

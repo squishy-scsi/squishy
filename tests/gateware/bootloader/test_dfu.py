@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from gateware_test                       import SquishyUSBGatewareTestCase, sim_test
+from gateware_test                       import SquishyUSBGatewareTestCase
 from torii                               import Record
 from torii.hdl.rec                       import DIR_FANIN, DIR_FANOUT
 from torii.sim                           import Settle
+from torii.test                          import ToriiTestCase
 from usb_construct.types                 import USBRequestType
 from usb_construct.types.descriptors.dfu import DFURequests
 
@@ -88,7 +89,8 @@ class DFURequestHandlerTests(SquishyUSBGatewareTestCase):
 			req = DFURequests.GET_STATE, value = 0, index = 0, length = 1)
 
 
-	@sim_test(domain = 'usb')
+	@ToriiTestCase.simulation
+	@ToriiTestCase.sync_domain(domain = 'usb')
 	def test_dfu_handler(self):
 		yield self.dut.interface.active_config.eq(1)
 		yield Settle()

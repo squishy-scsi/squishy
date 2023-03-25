@@ -3,17 +3,18 @@
 from typing              import Tuple, Union
 
 from torii.sim           import Settle
-from torii.test          import ToriiTestCase, sim_test
+from torii.test          import ToriiTestCase
+from torii.test.mock     import MockPlatform
 from usb_construct.types import USBRequestRecipient, USBRequestType, USBStandardRequests
 
 __all__ = (
 	'SquishyUSBGatewareTestCase',
 	'SquishySCSIGatewareTestCase',
-	'sim_test',
 )
 
 class SquishyUSBGatewareTestCase(ToriiTestCase):
 	domains = (('usb', 60e6), )
+	platform = MockPlatform()
 
 	def setupReceived(self):
 		yield self.dut.interface.setup.received.eq(1)
@@ -171,3 +172,4 @@ class SquishyUSBGatewareTestCase(ToriiTestCase):
 
 class SquishySCSIGatewareTestCase(ToriiTestCase):
 	domains = (('scsi', 100e6), )
+	platform = MockPlatform()
