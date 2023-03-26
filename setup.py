@@ -58,7 +58,7 @@ setup(
 		'construct>=2.10.67',
 		'arrow',
 		'libusb1>=1.8.1',
-		'rich~=13.0.0',
+		'rich>=12.6.0',
 		'torii<1.0',
 		'usb-construct<1.0',
 		'sol-usb<1.0',
