@@ -29617,7 +29617,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 0c045d50-454b-4b6e-a9f4-3426488bd8a2))
   (gr_line locked (start 43.7 175.65) (end 43.5 175.45)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 10116fcb-f102-41d0-ba61-54940be12e59))
-  (gr_line locked (start -0.699999 0.45) (end -0.7 -0.099999)
+  (gr_line locked (start 100.75 100.45) (end 100.749999 99.900001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 12a79e53-cfb6-42de-902a-682f84d54535))
   (gr_line locked (start 33.7 175.65) (end 33.5 175.45)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 13049423-c114-4d21-a40e-00747943b1ff))
@@ -29633,7 +29633,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 198e2c98-b3f5-4af5-88ab-c59788977776))
   (gr_line locked (start 41 175.45) (end 40.800001 175.65)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 1cfb1175-94a6-4420-8287-f765a03018ac))
-  (gr_line locked (start -0.1 -0.299999) (end -0.1 0.1)
+  (gr_line locked (start 101.349999 99.700001) (end 101.349999 100.1)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 1d5c59fa-fdd4-437d-bd48-7e4790b7ff24))
   (gr_line locked (start 31 175.45) (end 31.000001 177.8)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 22ef28c8-6534-4102-8881-62008627dd98))
@@ -29669,7 +29669,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 2f5d6799-7b3e-4ea7-965b-945725fe53e6))
   (gr_line locked (start 43.5 170.55) (end 43.699999 170.35)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 32f12837-c924-47d7-8d37-0bac7c11ddde))
-  (gr_line locked (start -0.699999 0.45) (end -0.7 -0.099999)
+  (gr_line locked (start 100.75 100.45) (end 100.749999 99.900001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 339b167b-ef57-4464-80f2-3b935b2513e1))
   (gr_line locked (start 41.199999 170.35) (end 40.8 170.35)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 340f26d8-ee4c-4bda-b2d2-536eb5f6ec2c))
@@ -29699,7 +29699,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 518f6839-3519-4322-9cc9-5d5bd4f36995))
   (gr_line locked (start 42.050001 177.2) (end 42.45 177.2)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 531c1dd2-ae3b-411b-9863-814eecc3f22d))
-  (gr_line locked (start 0.1 -0.1) (end -0.1 -0.299999)
+  (gr_line locked (start 101.549999 99.9) (end 101.349999 99.700001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 53bc62f1-a142-4c01-8186-a81917a3c0f4))
   (gr_line locked (start 92.5 103.8) (end 92.7 103.6)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 57bb06df-608c-451b-899a-27d4cf2abef2))
@@ -29721,7 +29721,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 5ee94584-44c3-4e09-8a0b-69f0f4d91ad2))
   (gr_line locked (start 92.7 103.6) (end 92.5 103.400001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 5efe02fe-af69-466b-865b-139182216e30))
-  (gr_line locked (start -0.1 -0.299999) (end -0.1 0.1)
+  (gr_line locked (start 101.349999 99.700001) (end 101.349999 100.1)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 5f7fe3f7-f050-4a9a-a44c-9893844cfd99))
   (gr_line locked (start 94.4 190.5) (end 94.4 190.100001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 60244da3-5e71-409e-8a61-30c3d6717408))
@@ -29731,7 +29731,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 621fa36d-0969-435d-a7f9-07818affeea9))
   (gr_line locked (start 38.5 175.45) (end 38.5 177.85)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 63ebfa50-17f9-4e93-8df4-dd3382486fde))
-  (gr_line locked (start 0.1 -0.1) (end -0.7 -0.099999)
+  (gr_line locked (start 101.549999 99.9) (end 100.749999 99.900001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 669159d2-91ce-4bd9-a2bd-fa4ae6e9575c))
   (gr_line locked (start 96.650001 171.8) (end 96.65 171.250001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 670bee04-8017-4a0a-9ba0-c0047345e168))
@@ -29739,7 +29739,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 6a10c588-051a-485f-8573-4b91d2e033f7))
   (gr_line locked (start 36 170.55) (end 35.999999 169.75)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 6a1fcd1a-a573-447f-9974-0518b3010a26))
-  (gr_line locked (start -0.1 0.1) (end 0.1 -0.1)
+  (gr_line locked (start 101.349999 100.1) (end 101.549999 99.9)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 6b46b79c-9512-4bb7-9c69-8d9881923878))
   (gr_line locked (start 42.25 177) (end 42.050001 177.2)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 6c738e7e-9fcc-42e4-b430-6b1c8311024e))
@@ -29763,7 +29763,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 7fd52020-92d6-42ad-a83f-57a80996a76e))
   (gr_line locked (start 37.25 177) (end 37.250001 177.8)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 7fec32f7-4e07-4832-9024-4f9fa14f8485))
-  (gr_line locked (start 0.1 -0.1) (end -0.7 -0.099999)
+  (gr_line locked (start 101.549999 99.9) (end 100.749999 99.900001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 84a3b60c-2983-4a7d-899a-62093873fcf2))
   (gr_line locked (start 33.300001 175.65) (end 33.7 175.65)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp 8627fe8c-861d-4337-bcab-72f24694e9de))
@@ -29817,11 +29817,11 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp b951ffdc-ca9f-46c3-aba2-5b22d1f3fc55))
   (gr_line locked (start 35.800001 175.65) (end 36.2 175.65)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp b9a91557-c322-4ef4-a424-43a39ff11152))
-  (gr_line locked (start -0.1 0.1) (end 0.1 -0.1)
+  (gr_line locked (start 101.349999 100.1) (end 101.549999 99.9)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp ba9fb21e-221f-4e3b-8173-ca4b6d529f25))
   (gr_line locked (start 37.45 177.2) (end 37.25 177)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp bd3865a4-3522-4320-8fea-36ed97c8a43d))
-  (gr_line locked (start 0.1 -0.1) (end -0.1 -0.299999)
+  (gr_line locked (start 101.549999 99.9) (end 101.349999 99.700001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp c09a6eee-e89e-4611-9505-c3c9683294e4))
   (gr_line locked (start 33.5 170.55) (end 33.499999 169.75)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp c523b399-0c9c-4601-858c-65d1ad10eb81))
@@ -29831,11 +29831,11 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp cbee25bd-d48b-488d-aed2-724c952fb901))
   (gr_line locked (start 94.2 190.300001) (end 95 190.3)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp cd428ac6-827b-484c-934a-4447e63d6350))
-  (gr_line locked (start 0.1 -0.1) (end -0.1 -0.299999)
+  (gr_line locked (start 101.549999 99.9) (end 101.349999 99.700001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp cdc5c307-ecef-4c72-ba20-b45ec313689a))
   (gr_line locked (start 29.95 177.2) (end 29.75 177)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp cf7a9e7a-1b90-411a-89cf-31f63f3167f2))
-  (gr_line locked (start -0.699999 0.45) (end -0.7 -0.099999)
+  (gr_line locked (start 100.75 100.45) (end 100.749999 99.900001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp d0ae4b07-53ce-42d9-9e8d-c22052f3a150))
   (gr_line locked (start 38.3 170.35) (end 38.5 170.55)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp d15041f5-551f-4110-970b-1972227248c7))
@@ -29851,7 +29851,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp d5100a62-3160-4079-856f-ae3f8deb82d5))
   (gr_line locked (start 32.25 177) (end 32.050001 177.2)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp d54b3fc4-6f68-4213-8536-9aed25bbea29))
-  (gr_line locked (start 0.1 -0.1) (end -0.7 -0.099999)
+  (gr_line locked (start 101.549999 99.9) (end 100.749999 99.900001)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp d5bd6cf5-ee1a-486d-af86-eef0cb6e9dca))
   (gr_line locked (start 29.550001 177.2) (end 29.95 177.2)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp d5df6c5c-2c29-4943-b40e-4d970173772a))
@@ -29879,7 +29879,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp e089db50-0f56-43c6-8040-9eeabe40bfc1))
   (gr_line locked (start 44.75 172.1) (end 44.949999 171.9)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp e2070b8f-8412-4843-b140-fcb3b74e5aa0))
-  (gr_line locked (start -0.1 0.1) (end 0.1 -0.1)
+  (gr_line locked (start 101.349999 100.1) (end 101.549999 99.9)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp e2c6ca41-b6c7-4f99-b769-c2eece52f63c))
   (gr_line locked (start 34.55 171.9) (end 34.75 172.1)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp e4044854-7c54-4e30-b3f1-586fa98cee66))
@@ -29897,7 +29897,7 @@
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp edb38cc9-aa23-42f9-a133-07091d15640c))
   (gr_line locked (start 32.25 177) (end 32.250001 177.8)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp eed06c8a-8219-4139-afc9-1766aebd09c0))
-  (gr_line locked (start -0.1 -0.299999) (end -0.1 0.1)
+  (gr_line locked (start 101.349999 99.700001) (end 101.349999 100.1)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp ef3598e5-a906-4929-ac1c-e535e6d6ea2b))
   (gr_line locked (start 77.800001 180.4) (end 78.000001 180.6)
     (stroke (width 0.2032) (type solid)) (layer "B.SilkS") (tstamp ef6a8119-bee6-4a97-9bf7-c926f3681911))
@@ -85094,21 +85094,6 @@
       f38cc410-b9e1-4d1a-ae2a-708b590ff25a
       fa4f46ea-d7e7-44b6-b176-6d9e891d0f9c
       fdfa1856-1cae-4fae-aed3-2818e62f7bdf
-    )
-  )
-  (group "+1v8 TP" locked (id c5126f12-972a-4a5f-81eb-3bea69528b90)
-    (members
-      3998a1f0-8fad-4e54-b40c-ad72fea46b99
-      563c6346-47c3-4495-9a96-2e2c9420994f
-      5f7fe3f7-f050-4a9a-a44c-9893844cfd99
-      73bb4393-d835-44a2-a7b9-dd3b09fc60cc
-      b35eefba-b1dc-4fa6-9880-51c52dd3cafa
-      ba9fb21e-221f-4e3b-8173-ca4b6d529f25
-      cdc5c307-ecef-4c72-ba20-b45ec313689a
-      d0ae4b07-53ce-42d9-9e8d-c22052f3a150
-      d5bd6cf5-ee1a-486d-af86-eef0cb6e9dca
-      e089db50-0f56-43c6-8040-9eeabe40bfc1
-      f37b3259-e7b0-4b4c-ad93-df86659b619a
     )
   )
   (group "GND TP2" locked (id e78baef0-62c5-42ca-bee6-05407b578085)
