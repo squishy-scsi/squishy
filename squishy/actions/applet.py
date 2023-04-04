@@ -370,7 +370,8 @@ class Applet(SquishyAction):
 
 
 			if args.build_only or args.skip_programming:
-				log.info(f'Use \'dfu-util\' to flash \'{name}\' into slot 1 to update the applet')
+				log.info(f'Use \'dfu-util\' to flash \'{args.build_dir / name}.bin\' into slot 1 to update the applet')
+				log.info(f'e.g. \'dfu-util -d 1209:ca70,:ca71 -a 1 -R -D {args.build_dir / name}.bin\'')
 			else:
 				file_name = name
 				if not file_name.endswith('.bin'):
