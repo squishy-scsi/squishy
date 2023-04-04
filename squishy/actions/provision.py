@@ -265,9 +265,9 @@ class Provision(SquishyAction):
 				build_dir     = args.build_dir,
 				do_build      = True,
 				do_program    = False,
-				synth_opts    = ' '.join(synth_opts),
+				synth_opts    = synth_opts,
 				verbose       = args.loud,
-				nextpnr_opts  = ' '.join(pnr_opts),
+				nextpnr_opts  = pnr_opts,
 				skip_cache    = True,
 				progress      = progress,
 				debug_verilog = args.emit_debug_verilog
