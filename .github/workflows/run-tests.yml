@@ -43,4 +43,10 @@ jobs:
       - name: Run Tests
         shell: bash
         run: |
-          nox -s test
+          nox -s test -- --coverage
+
+      - name: Codecov Upload
+        uses: codecov/codecov-action@v3
+        with:
+          verbose: true
+          files: ./build/tests/coverage.xml

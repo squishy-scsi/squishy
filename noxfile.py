@@ -38,13 +38,34 @@ def squishy_version() -> str:
 		relative_to    = __file__
 	)
 
-@nox.session
+@nox.session(reuse_venv = True)
 def test(session: Session) -> None:
+	out_dir = (BUILD_DIR / 'tests')
+	out_dir.mkdir(parents = True, exist_ok = True)
+	coverage = '--coverage' in session.posargs
+
+	unitest_args = ('-m', 'unittest', 'discover', '-s', str(ROOT_DIR))
+
 	session.install('.')
+	if coverage:
+		session.log('Coverage support enabled')
+		session.install('coverage')
+		coverage_args = (
+			'-m', 'coverage', 'run',
+			f'--rcfile={CNTRB_DIR / "coveragerc"}'
+		)
+	else:
+		coverage_args = ()
+
+	session.chdir(str(out_dir))
 	session.run(
-		'python', '-m', 'unittest', 'discover',
-		'-s', 'tests'
+		'python', *coverage_args, *unitest_args
 	)
+	if coverage:
+		session.run(
+			'python', '-m', 'coverage', 'xml',
+			f'--rcfile={CNTRB_DIR / "coveragerc"}'
+		)
 
 @nox.session
 def docs(session: Session) -> None:
