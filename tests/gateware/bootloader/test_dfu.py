@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from gateware_test                       import SquishyUSBGatewareTestCase
+from ...gateware_test                    import SquishyUSBGatewareTestCase
 from torii                               import Record
 from torii.hdl.rec                       import DIR_FANIN, DIR_FANOUT
 from torii.sim                           import Settle

@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from gateware_test                       import SquishyUSBGatewareTestCase
+from ...gateware_test                    import SquishyUSBGatewareTestCase
 from torii.sim                           import Settle
 from torii.test                          import ToriiTestCase
 from usb_construct.types                 import USBRequestType
