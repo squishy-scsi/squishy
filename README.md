@@ -19,6 +19,8 @@ The installation instructions for squishy on various platforms can be found on t
 
 Details about the squishy hardware can be found on the [https://docs.scsi.moe/hardware/index.html](https://docs.scsi.moe/hardware/index.html) page.
 
+You can view a live rendering of the WIP hardware in your web browser  [here](https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Flethalbit%2Fsquishy%2Ftree%2Fmain%2Fhardware%2Fboards%2Fsquishy), thanks to [KiCanvas](https://kicanvas.org).
+
 ## Mascot - Sachi
 
 ![Sachi the spirit fox](https://raw.githubusercontent.com/lethalbit/squishy/main/contrib/img/sachi/electrichearts_20211013A_sachi_trans_1024.png)
