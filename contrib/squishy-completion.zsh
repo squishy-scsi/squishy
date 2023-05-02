@@ -7,6 +7,7 @@ _squishy_command() {
 	local -a commands=(
 		'applet[Squishy applet subsystem]'
 		'cache[Squishy applet cache managment]'
+		'provision[Squishy hardware provisioning]'
 	)
 	_values 'squishy commands' : $commands
 }
@@ -58,6 +59,9 @@ _squishy_applet() {
 		'--tmp-ripup[Use timing driven ripup]'
 		'--detailed-timing-report[Output a detailed timing report]'
 		'--routed-svg[Save an svg of the routed output]:svg:_files -g "*.svg"'
+		'--routed-json[Save routed json netlist]:json:_files -g "*.json"'
+		'--pnr-seed[Specify PNR seed]:seed:_numbers -l 0 "PNR_SEED"'
+
 
 		'--no-abc9[Disable ABC9 durring synthesis]'
 
@@ -69,7 +73,8 @@ _squishy_applet() {
 		'(-D --data-bits)'{-D,--data-bits}'=[Data bits to use for the debug UART]:data:_numbers -d 8'
 		'(-c --parity)'{-c,--parity}'=[Parity mode to use for the debug UART]:parity:(none mark spaceeven odd)'
 
-		'--scsi-id=[The SCSI ID to use]:scsi_id:_numbers -l 0 -m 7 "SCSI ID"'
+		'--scsi-did=[The SCSI ID to use]:scsi_id:_numbers -l 0 -m 7 "SCSI ID"'
+		'--scsi-arbitrating[Enable SCSI bus arbitration]'
 
 		'(-): :->applet'
 		'(-)*:: :->applet_args'
@@ -94,6 +99,38 @@ _squishy_applet() {
 			;;
 	esac
 	return $ret
+}
+
+_squishy_provision() {
+	local arguments
+	local platforms=`python -m squishy provision -h | tail -n +4 | grep -m1 -e '\-\-platform\s{' | sed 's/,\s-p\s.*$//' | sed 's/--platform\s{\([^}]*\)}/\1/'`
+
+	arguments=(
+		'(-h --help)'{-h,--help}'[Show help message and exit]'
+		'(-p --platforms)'{-p=,--platforms=}"[Target hardware platform]:platform:(${(s/,/)platforms})"
+
+		'--skip-cache[Skip bitstream cache lookup]'
+		'(-b --build-dir)'{-b,--build-dir}"[Output directory for build products]:dir:_directories"
+		'--loud[Enables output from PnR and synthesis]'
+		'--build-only[Only build the applet]'
+
+		'--use-router2[Use nextpnrs router2 rather than router1]'
+		'--tmp-ripup[Use timing driven ripup]'
+		'--detailed-timing-report[Output a detailed timing report]'
+		'--routed-svg[Save an svg of the routed output]:svg:_files -g "*.svg"'
+		'--routed-json[Save routed json netlist]:json:_files -g "*.json"'
+		'--pnr-seed[Specify PNR seed]:seed:_numbers -l 0 "PNR_SEED"'
+
+		'--no-abc9[Disable ABC9 durring synthesis]'
+
+		'(-S --serial-number)'{-S,--serial-number}'[Specify Serial Number to use]'
+		'(-W --whole-device)'{-W,--whole-device}'=[Generate a whole device provisioning image for factory progrssming]'
+	)
+
+	_arguments -s : $arguments && return
+
+
+	return 0
 }
 
 _squishy_cache_command() {
@@ -163,7 +200,7 @@ _squishy() {
 	arguments=(
 		'(-h --help)'{-h,--help}'[show version and help then exit]'
 		'(-d --device)'{-d,--device}'=[specify device serial number]'
-		'--verbose[verbose logging]'
+		'(-v --verbose)'{-v,--verbose}'[verbose logging]'
 		'(-): :->command'
 		'(-)*:: :->arguments'
 	)
@@ -183,6 +220,8 @@ _squishy() {
 				(cache)
 					_squishy_cache && ret=0
 					;;
+				(provision)
+					_squishy_provision && ret=0
 			esac
 			;;
 	esac
