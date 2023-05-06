@@ -1,13 +1,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging      as log
-from argparse       import ArgumentParser, Namespace
-from typing         import Optional
+import logging        as log
+from argparse         import ArgumentParser, Namespace
+from typing           import Optional
 
-from ..core.cache   import SquishyBitstreamCache
-from ..core.device  import SquishyHardwareDevice
-from ..config       import SQUISHY_CACHE, SQUISHY_APPLET_CACHE, SQUISHY_BUILD_DIR
-from ..misc.utility import iec_size
-from .              import SquishyAction
+from torii.util.units import iec_size
+
+from ..core.cache     import SquishyBitstreamCache
+from ..core.device    import SquishyHardwareDevice
+from ..config         import SQUISHY_CACHE, SQUISHY_APPLET_CACHE, SQUISHY_BUILD_DIR
+from .                import SquishyAction
 
 class Cache(SquishyAction):
 	pretty_name  = 'Squishy Cache Utility'
