@@ -75,11 +75,6 @@ setup(
 	},
 
 	extras_require    = {
-		'firmware': [
-			'meson',
-			'ninja',
-		],
-
 		'dev': [
 			'nox',
 			'setuptools_scm'
