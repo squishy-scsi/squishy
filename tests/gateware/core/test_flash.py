@@ -113,14 +113,17 @@ class SPIFlashTests(ToriiTestCase):
 		copi: Optional[Tuple[int]] = None, cipo: Optional[Tuple[int]] = None,
 		partial: bool = False, continuation: bool = False
 	):
-		# yield Settle()
 		if cipo is not None and copi is not None:
 			self.assertEqual(len(cipo), len(copi))
 
 		bytes = max(0 if copi is None else len(copi), 0 if cipo is None else len(cipo))
 		self.assertEqual((yield self.dut._spi_bus.clk.o), 1)
-		self.assertEqual((yield self.dut._spi_bus.cs.o), (1 if continuation else 0))
-		yield Settle()
+		if continuation:
+			yield Settle()
+			self.assertEqual((yield self.dut._spi_bus.cs.o), 1)
+		else:
+			self.assertEqual((yield self.dut._spi_bus.cs.o), 0)
+			yield Settle()
 		yield
 		self.assertEqual((yield self.dut._spi_bus.clk.o), 1)
 		self.assertEqual((yield self.dut._spi_bus.cs.o), 1)
@@ -128,30 +131,31 @@ class SPIFlashTests(ToriiTestCase):
 		yield
 		for byte in range(bytes):
 			for bit in range(8):
-				yield Settle()
 				self.assertEqual((yield self.dut._spi_bus.clk.o), 0)
 				if copi is not None and copi[byte] is not None:
 					self.assertEqual((yield self.dut._spi_bus.copi.o), ((copi[byte] << bit) & 0x80) >> 7)
 				self.assertEqual((yield self.dut._spi_bus.cs.o), 1)
+				yield Settle()
 				if cipo is not None and cipo[byte] is not None:
 					yield self.dut._spi_bus.cipo.i.eq(((cipo[byte] << bit) & 0x80) >> 7)
 				yield
-				yield Settle()
 				self.assertEqual((yield self.dut._spi_bus.clk.o), 1)
 				self.assertEqual((yield self.dut._spi_bus.cs.o), 1)
-				yield
 				yield Settle()
-			if cipo is not None and cipo[byte] is not None:
-				yield self.dut._spi_bus.cipo.i.eq(0)
+				yield
 			if byte < bytes - 1:
 				self.assertEqual((yield self.dut._spi_bus.clk.o), 1)
 				self.assertEqual((yield self.dut._spi_bus.cs.o), 1)
+			self.assertEqual((yield self.dut.done), 0)
+			yield Settle()
+			if cipo is not None and cipo[byte] is not None:
+				yield self.dut._spi_bus.cipo.i.eq(0)
+			if byte < bytes - 1:
 				yield
-		yield Settle()
-		self.assertEqual((yield self.dut.done), 0)
 		if not partial:
 			self.assertEqual((yield self.dut._spi_bus.clk.o), 1)
 			self.assertEqual((yield self.dut._spi_bus.cs.o), 0)
+			yield Settle()
 			yield
 
 	@ToriiTestCase.simulation
@@ -172,34 +176,28 @@ class SPIFlashTests(ToriiTestCase):
 			self.dut._spi_bus = self.dut._flash._spi._spi
 			yield self.dut._flash.startAddr.eq(0)
 			yield self.dut._flash.endAddr.eq(4096)
-			# yield Settle()
-			# yield
-			# yield Settle()
-			# yield
 			yield from self.spi_trans(copi = (0xAB,))
 			yield Settle()
 			yield
 			yield Settle()
 			yield
-			yield Settle()
 			yield self.dut.resetAddrs.eq(1)
-			yield
 			yield Settle()
+			yield
 			yield self.dut.resetAddrs.eq(0)
-			yield
 			yield Settle()
+			yield
 			yield self.dut.start.eq(1)
 			yield self.dut.byteCount.eq(len(_DFU_DATA))
+			yield Settle()
 			yield
+			yield self.dut.start.eq(0)
 			yield Settle()
 			self.assertEqual((yield self.dut.readAddr), 0)
 			self.assertEqual((yield self.dut.eraseAddr), 0)
 			self.assertEqual((yield self.dut.writeAddr), 0)
 			self.assertEqual((yield self.dut._spi_bus.cs.o), 0)
-			yield self.dut.start.eq(1)
-			yield self.dut.byteCount.eq(len(_DFU_DATA))
 			yield
-			yield Settle()
 			yield from self.spi_trans(copi = (0x06,))
 			yield from self.spi_trans(copi = (0x20, 0x00, 0x00, 0x00))
 			yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x03))
@@ -207,7 +205,6 @@ class SPIFlashTests(ToriiTestCase):
 			yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x03))
 			yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
 			yield from self.spi_trans(copi = (0x06,))
-			yield Settle()
 			self.assertEqual((yield self.dut._fifo.r_rdy), 0)
 			yield from self.spi_trans(copi = (0x02, 0x00, 0x00, 0x00), partial = True)
 			yield
@@ -223,13 +220,13 @@ class SPIFlashTests(ToriiTestCase):
 			self.assertEqual((yield self.dut._spi_bus.cs.o), 1)
 			self.assertEqual((yield self.dut._spi_bus.clk.o), 1)
 			self.dut.fill_fifo = True
-			for _ in range(5):
-				yield
+			for _ in range(6):
 				yield Settle()
+				yield
 				self.assertEqual((yield self.dut._spi_bus.cs.o), 1)
 				self.assertEqual((yield self.dut._spi_bus.clk.o), 1)
+			# :<
 			yield from self.spi_trans(copi = _DFU_DATA[0:64], continuation = True)
-			yield Settle()
 			self.assertEqual((yield self.dut.writeAddr), 64)
 			yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x03))
 			yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
@@ -237,34 +234,30 @@ class SPIFlashTests(ToriiTestCase):
 			yield from self.spi_trans(copi = (0x06,))
 			yield from self.spi_trans(copi = (0x02, 0x00, 0x00, 0x40), partial = True)
 			yield from self.spi_trans(copi = _DFU_DATA[64:128], continuation = True)
-			yield Settle()
 			self.assertEqual((yield self.dut.writeAddr), 128)
 			yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
 
 			yield from self.spi_trans(copi = (0x06,))
 			yield from self.spi_trans(copi = (0x02, 0x00, 0x00, 0x80), partial = True)
 			yield from self.spi_trans(copi = _DFU_DATA[128:192], continuation = True)
-			yield Settle()
 			self.assertEqual((yield self.dut.writeAddr), 192)
 			yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
 
 			yield from self.spi_trans(copi = (0x06,))
 			yield from self.spi_trans(copi = (0x02, 0x00, 0x00, 0xC0), partial = True)
 			yield from self.spi_trans(copi = _DFU_DATA[192:256], continuation = True)
-			yield Settle()
 			self.assertEqual((yield self.dut.writeAddr), 256)
 			yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
 
-			yield Settle()
 			self.assertEqual((yield self.dut.done), 1)
 			yield self.dut.finish.eq(1)
 			yield
-			yield Settle()
 			self.assertEqual((yield self.dut.done), 1)
 			yield self.dut.finish.eq(0)
-			yield
 			yield Settle()
+			yield
 			self.assertEqual((yield self.dut.done), 0)
+			yield Settle()
 			yield
 			yield Settle()
 			yield
