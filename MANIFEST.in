@@ -6,7 +6,6 @@ recursive-exclude build *
 recursive-exclude contrib *
 recursive-exclude docs *
 recursive-exclude examples *
-recursive-exclude hardware *
 recursive-exclude tests *
 
 exclude .coverage
