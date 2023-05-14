@@ -7,7 +7,8 @@ jobs:
   document:
     runs-on: ubuntu-latest
     permissions:
-      pages: write
+      contents: read|write
+      pages: read|write
     steps:
       - name: Setup Python
         uses: actions/setup-python@v4
