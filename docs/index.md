@@ -12,7 +12,12 @@ cli
 gui
 mascot
 faq
+
+changelog
+
 Source Code <https://github.com/squishy-scsi/squishy>
+Hardware <https://github.com/squishy-scsi/hardware>
+
 ```
 # Squishy: The SCSI Multitool
 
