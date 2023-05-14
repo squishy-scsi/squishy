@@ -17,14 +17,9 @@ Unreleased template stuff
 ### Security
 -->
 
-## [Unreleased] - 20XX-XX-XX
-### Added
-### Changed
-### Deprecated
-### Removed
-### Fixed
+## [Unreleased]
 
 
 
 
-[unreleased]: https://github.com/lethalbit/squishy/compare/543f4d29...main
+[unreleased]: https://github.com/squishy-scsi/squishy/compare/543f4d29...main

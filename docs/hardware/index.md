@@ -48,4 +48,4 @@ If you buy a pre-built Squishy, it will already be provisioned, but in case some
 
 ### Work-In-Progress Hardware
 
-The hardware is always a work in progress, you can view a live rendering of the WIP hardware in your web browser [here](https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Flethalbit%2Fsquishy%2Ftree%2Fmain%2Fhardware%2Fboards%2Fsquishy), thanks to [KiCanvas](https://kicanvas.org).
+The hardware is always a work in progress, you can view a live rendering of the WIP hardware in your web browser [here](https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Fsquishy-scsi%2Fhardware%2Ftree%2Fmain%2Fboards%2Fsquishy), thanks to [KiCanvas](https://kicanvas.org).

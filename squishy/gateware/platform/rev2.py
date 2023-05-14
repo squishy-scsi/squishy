@@ -42,8 +42,8 @@ class SquishyRev2(SquishyCacheMixin, LatticeECP5Platform):
 	in the BG381 footprint.
 
 	The design files for this version of the hardware can be found
-	`in the git repo <https://github.com/lethalbit/squishy/tree/main/hardware/boards/squishy>`_ under
-	the `hardware/boards/squishy` tree.
+	`in the git repo <https://github.com/squishy-scsi/hardware/tree/main/boards/squishy>`_ under
+	the `boards/squishy` tree.
 
 
 	'''

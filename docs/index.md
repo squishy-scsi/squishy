@@ -12,7 +12,7 @@ cli
 gui
 mascot
 faq
-Source Code <https://github.com/lethalbit/squishy>
+Source Code <https://github.com/squishy-scsi/squishy>
 ```
 # Squishy: The SCSI Multitool
 
@@ -22,7 +22,7 @@ Source Code <https://github.com/lethalbit/squishy>
 	:figwidth: 350px
 ```
 
-This is the documentation for [Squishy](https://github.com/lethalbit/squishy) and it's supporting components, as well as a collection of guides and tutorials for the Squishy ecosystem.
+This is the documentation for [Squishy](https://github.com/squishy-scsi/squishy) and it's supporting components, as well as a collection of guides and tutorials for the Squishy ecosystem.
 
 
 ## What Squishy Isn't
@@ -42,7 +42,7 @@ It is comprised of a [gateware](./library/gateware/index.md) and [python](./libr
 
 For a more detailed introduction to Squishy and it's components, see the [Introduction](./introduction.md) section of the documentation. Then, when you're ready visit the [Getting Started](./getting_started.md) section to get up an running.
 
-Squishy is entirely open source, and under permissive licenses. The full source code, gateware, firmware, and hardware designs are available on [GitHub](https://github.com/lethalbit/squishy).
+Squishy is entirely open source, and under permissive licenses. The full source code, gateware, firmware, and hardware designs are available on [GitHub](https://github.com/squishy-scsi/squishy).
 
 ## Comparison
 
@@ -76,7 +76,7 @@ Squishy is entirely open source, and under permissive licenses. The full source 
 
 Squishy has a dedicated IRC channel, [#squishy on libera.chat](https://web.libera.chat/#squishy). Join to ask questions, discuss ongoing development, or just hang out.
 
-There are also [GitHub Discussions](https://github.com/lethalbit/squishy/discussions) enabled on the repository if you have any questions or comments.
+There are also [GitHub Discussions](https://github.com/squishy-scsi/squishy/discussions) enabled on the repository if you have any questions or comments.
 
 
 ```{note}

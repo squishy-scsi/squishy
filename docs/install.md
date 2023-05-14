@@ -4,7 +4,7 @@
 The following instructions are a work-in-progress and may not be entirely up to date.
 ```
 
-Squishy is a python application that can be installed via [`pip`](https://pypi.org/project/pip/),  either from the [git repository](https://github.com/lethalbit/Squishy) or via a [wheel](https://pypi.org/project/wheel/) package.
+Squishy is a python application that can be installed via [`pip`](https://pypi.org/project/pip/),  either from the [git repository](https://github.com/squishy-scsi/squishy) or via a [wheel](https://pypi.org/project/wheel/) package.
 
 
 ## System Requirements
@@ -213,7 +213,7 @@ Once all of the prerequisites are installed, you can finally install squishy int
 ```{eval-rst}
 .. code-block:: console
 
-	(squishy.venv) $ pip install 'squishy @ git+https://github.com/lethalbit/squishy.git'
+	(squishy.venv) $ pip install 'squishy @ git+https://github.com/squishy-scsi/squishy.git'
 ```
 
 After that, check to make sure you have the `squishy` command:

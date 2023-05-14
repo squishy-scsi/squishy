@@ -42,7 +42,7 @@ setup(
 	license          = 'BSD-3-Clause',
 	python_requires  = '~=3.9',
 	zip_safe         = True,
-	url              = 'https://github.com/lethalbit/squishy',
+	url              = 'https://github.com/squishy-scsi/squishy',
 
 	long_description = README_FILE.read_text(),
 	long_description_content_type = 'text/markdown',
@@ -113,7 +113,7 @@ setup(
 
 	project_urls      = {
 		'Documentation': 'https://docs.scsi.moe/',
-		'Source Code'  : 'https://github.com/lethalbit/squishy',
-		'Bug Tracker'  : 'https://github.com/lethalbit/squishy/issues',
+		'Source Code'  : 'https://github.com/squishy-scsi/squishy',
+		'Bug Tracker'  : 'https://github.com/squishy-scsi/squishy/issues',
 	}
 )

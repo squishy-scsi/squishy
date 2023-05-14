@@ -50,8 +50,8 @@ class SquishyRev1(SquishyCacheMixin, LatticeICE40Platform):
 	in the BG121 footprint.
 
 	The design files for this version of the hardware can be found
-	`in the git repo <https://github.com/lethalbit/squishy/tree/main/hardware/rev1>`_ under
-	the `hardware/rev1` tree.
+	`in the git repo <https://github.com/squishy-scsi/hardware/tree/main/rev1>`_ under
+	the `rev1` tree.
 
 	'''
 
