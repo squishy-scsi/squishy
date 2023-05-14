@@ -1,5 +1,11 @@
 
 contact_links:
+  - name: Hardware Issues
+    url: https://github.com/squishy-scsi/hardware/issues
+    about: Have an issue with the hardware? Submit it here!
+  - name: Discussion
+    url: https://github.com/squishy-scsi/squishy/discussions
+    about: Have a question? Ask in our discussion fourm, or on IRC below!
   - name: IRC Channel
     url: https://web.libera.chat/#squishy
     about: "#squishy on irc.libera.chat"
