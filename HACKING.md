@@ -16,20 +16,10 @@ Within the root of this repository there are six sub directories:
  * [contrib](./contrib/) - Non-executable data files, like fonts, images, and config files, as well as packaging scripts.
  * [docs](./docs/) - Sphinx documentation
  * [examples](./examples/) - Examples for using Squishy
- * [hardware](./hardware/) - The hardware files used to design and manufacture Squishy boards
  * [squishy](./squishy/) - The actual source for the Squishy package itself
 
 
-Each directory has it's own layout in an attempt to be as logical as possible. However the hardware and squishy directories might need some possible further explantation.
-
-### The [hardware](./hardware/) Directory
-
-This directory contains two main directories used for active work:
-
- * [boards](./hardware/boards/) - The [KiCad](https://www.kicad.org/) board files for the active version of the hardware
- * [checklists](./hardware/checklists/) - Checklists to complete prior to board fabrication
-
-In addition to these two main directories, there are also other directories that have the revision of the hardware as the name. These contain the finalized gerbers, KiCad source files, and any other needed files to facilitate manufacturing and production of that version of the hardware.
+Each directory has it's own layout in an attempt to be as logical as possible. However the hardware and squishy directories might need some possible further explanation.
 
 ### The [squishy](./squishy/) Directory
 

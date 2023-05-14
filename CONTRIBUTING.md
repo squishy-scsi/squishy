@@ -9,7 +9,6 @@
 
 Contributions to Squishy are released under the following licenses depending on the component:
 
- * [CERN-OHL-S](./LICENSE.hardware) - Hardware
  * [BSD-3-Clause](./LICENSE.software) - Software
  * [CC-BY-SA](./LICENSE.docs) - Documentation
 
