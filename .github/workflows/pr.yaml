@@ -47,3 +47,7 @@ jobs:
         shell: bash
         run: |
           nox -s test
+
+      - name: Codecov
+        if: success() && github.repository == 'squishy-scsi/squishy'
+        uses: codecov/codecov-action@v3
