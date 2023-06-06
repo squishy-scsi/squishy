@@ -93,9 +93,9 @@ class SquishyRev2(SquishyCacheMixin, LatticeECP5Platform):
 
 	resources  = [
 		Resource('clk', 0,
-			Pins('P1', dir = 'i'),
-			Clock(16e6),
-			Attrs(IO_TYPE = 'LVCMOS33')
+			DiffPairs('P3', 'P4', dir = 'i'),
+			Clock(100e6),
+			Attrs(IO_TYPE = 'LVDS')
 		),
 
 		Resource('tio', 0,
