@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # SPDX-License-Identifier: BSD-3-Clause
 import sys
 from pathlib import Path
