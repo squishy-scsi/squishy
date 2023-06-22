@@ -2,17 +2,14 @@
 import logging            as log
 from pathlib              import Path
 from argparse             import ArgumentParser, Namespace
-from typing               import (
-	List, Dict, Union, Optional
-)
+from typing               import Union, Optional
 
-from rich.progress       import (
+from rich.progress        import (
 	Progress, SpinnerColumn, BarColumn,
 	TextColumn
 )
 
-from squishy.applets import SquishyApplet
-
+from ..applets           import SquishyApplet
 from ..config            import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
 from ..core.collect      import collect_members, predicate_applet
 from ..core.device       import SquishyHardwareDevice
@@ -28,7 +25,7 @@ class Applet(SquishyAction):
 	description  = 'Build and run Squishy applets'
 	requires_dev = True
 
-	def _collect_all_applets(self) -> List[Dict[str, Union[str, SquishyAction]]]:
+	def _collect_all_applets(self) -> list[dict[str, Union[str, SquishyAction]]]:
 		from .. import applets
 		return [
 			*collect_members(

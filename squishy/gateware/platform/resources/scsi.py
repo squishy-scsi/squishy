@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from typing         import (
-	Literal, Union, Tuple, Optional
+	Literal, Union, Optional
 )
 
 from torii.build import (
@@ -19,7 +19,7 @@ __doc__ = '''\
 '''
 
 # Type Aliases
-PinDiff = Tuple[str, str]
+PinDiff = tuple[str, str]
 PinDef  = Union[str, PinDiff]
 PinDir  = Literal['i', 'o', 'io']
 
@@ -27,7 +27,7 @@ def TransceiverPairs(
 	tx: str, rx: str, *,
 	invert: bool = False, conn: str = None,
 	assert_width: Optional[int] = None
-) -> Tuple[Subsignal]:
+) -> tuple[Subsignal]:
 	'''
 	Returns a tuple of subsignals for RX and TX pairs
 

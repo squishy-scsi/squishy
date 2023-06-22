@@ -1,19 +1,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from abc                               import (
-	ABCMeta, abstractmethod
-)
-from typing                            import (
-	Optional, List, Any, Type
-)
-from torii                             import (
-	Elaboratable, Module
-)
-from sol_usb.gateware.usb.usb2.request import (
-	USBRequestHandler
-)
-from usb_construct.emitters.descriptors.standard import (
-	DeviceDescriptorCollection
-)
+from abc                                         import ABCMeta, abstractmethod
+from typing                                      import Optional,  Any, Type
+
+from torii                                       import Elaboratable, Module
+
+from sol_usb.gateware.usb.usb2.request           import USBRequestHandler
+
+from usb_construct.emitters.descriptors.standard import DeviceDescriptorCollection
 
 
 __all__ = (
@@ -31,12 +24,12 @@ class AppletElaboratable(Elaboratable, metaclass = ABCMeta):
 		super().__init__()
 
 	@property
-	def scsi_request_handlers(self) -> Optional[List[Any]]:
+	def scsi_request_handlers(self) -> Optional[list[Any]]:
 		''' Returns a list of SCSI request handlers '''
 		return None
 
 	@property
-	def usb_request_handlers(self) -> Optional[List[USBRequestHandler]]:
+	def usb_request_handlers(self) -> Optional[list[USBRequestHandler]]:
 		''' Returns a list of USB request handlers '''
 		return None
 

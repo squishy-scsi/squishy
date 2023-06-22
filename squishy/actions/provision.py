@@ -2,7 +2,7 @@
 
 import logging           as log
 from pathlib             import Path
-from typing              import Tuple, Optional
+from typing              import Optional
 from argparse            import ArgumentParser, Namespace
 
 from torii.build.run     import LocalBuildProducts
@@ -15,7 +15,6 @@ from rich.progress       import (
 from ..config            import SQUISHY_BUILD_DIR
 from ..core.device       import SquishyHardwareDevice
 from ..core.flash        import FlashGeometry
-
 
 from ..gateware.platform import AVAILABLE_PLATFORMS
 from .                   import SquishyAction
@@ -42,7 +41,7 @@ class Provision(SquishyAction):
 		return bytes(slot_data)
 
 	def _build_multiboot(self,
-		build_dir: str, name: str, boot_products:  Tuple[str, LocalBuildProducts],
+		build_dir: str, name: str, boot_products:  tuple[str, LocalBuildProducts],
 		flash_geometry: FlashGeometry
 	) -> Path:
 

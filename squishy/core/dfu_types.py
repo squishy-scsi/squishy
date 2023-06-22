@@ -1,11 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-
-from typing    import (
-	Tuple
-)
-
-from enum      import (
+from enum                            import (
 	IntEnum, unique
 )
 
@@ -106,7 +101,6 @@ class DFURequests(IntEnum):
 		return int(self)
 
 
-DFU_CLASS: Tuple[int, int] = (
-	int(InterfaceClassCodes.APPLICATION),
-	int(ApplicationSubclassCodes.DFU)
+DFU_CLASS: tuple[int, int] = (
+	int(InterfaceClassCodes.APPLICATION), int(ApplicationSubclassCodes.DFU)
 )

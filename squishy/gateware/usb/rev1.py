@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from typing                                        import (
-	Dict, Any, Iterable, Optional, Callable,
-	Union, List
+	Any, Iterable, Optional, Callable, Union
 )
 
 from torii                                         import (
@@ -75,15 +74,15 @@ class Rev1USB(Elaboratable):
 	'''
 
 	def __init__(self, *,
-		config: Dict[str, Any],
+		config: dict[str, Any],
 		applet_desc_builder: Callable[..., None]
 	) -> None:
-		self.config = config
+		self.config              = config
 		self.applet_desc_builder = applet_desc_builder
-		self.request_handlers: List[USBRequestHandler] = list()
-		self.endpoints        = list()
+		self.request_handlers: list[USBRequestHandler] = list()
+		self.endpoints           = list()
 
-		self.dev: Optional[USBDevice]          = None
+		self.dev: Optional[USBDevice] = None
 
 
 	def init_descriptors(self) -> DeviceDescriptorCollection:

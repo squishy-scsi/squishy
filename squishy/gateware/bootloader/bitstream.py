@@ -1,13 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import logging      as log
-from typing         import (
-	List
-)
+from enum           import IntEnum, IntFlag, unique
 
-from enum           import (
-	IntEnum, IntFlag, unique
-)
 
 from construct      import (
 	this,
@@ -129,7 +124,7 @@ class iCE40BitstreamSlots:
 		return data
 
 	@staticmethod
-	def _build_slots(flash_geometry: FlashGeometry) -> List[bytes]:
+	def _build_slots(flash_geometry: FlashGeometry) -> list[bytes]:
 
 		partitions = flash_geometry.partitions
 		slots = []

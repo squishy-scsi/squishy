@@ -1,10 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from enum           import (
-	IntEnum, auto, unique
-)
-from torii          import (
-	Elaboratable, Module, Signal
-)
+from enum           import IntEnum, auto, unique
+
+from torii          import Elaboratable, Module, Signal
+
 from torii.lib.fifo import AsyncFIFO
 
 from ...core.flash  import FlashGeometry

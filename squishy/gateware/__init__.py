@@ -1,25 +1,13 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from typing import (
-	Optional, Dict, Any,
-)
-
+from typing    import Optional, Any
 import logging as log
 
-from torii import (
-	Elaboratable, Module
-)
+from torii     import Elaboratable, Module
 
-from .applet import AppletElaboratable
-
-
-from .usb import (
-	Rev1USB, Rev2USB
-)
-
-from .scsi import (
-	SCSI1, SCSI2, SCSI3
-)
+from .applet   import AppletElaboratable
+from .usb      import Rev1USB, Rev2USB
+from .scsi     import SCSI1, SCSI2, SCSI3
 
 __all__ = (
 	'AppletElaboratable',
@@ -77,9 +65,9 @@ class Squishy(Elaboratable):
 		log.warning('Rev2 Gateware is unimplemented')
 
 	def __init__(self, *, revision: int,
-		uart_config: Dict[str, Any],
-		usb_config: Dict[str, Any],
-		scsi_config: Dict[str, Any],
+		uart_config: dict[str, Any],
+		usb_config: dict[str, Any],
+		scsi_config: dict[str, Any],
 		applet: AppletElaboratable
 	) -> None:
 		# Applet

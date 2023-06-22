@@ -1,9 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from enum                                   import IntEnum, unique
 from struct                                 import pack, unpack
-from typing                                 import (
-	Tuple, Union, Dict
-)
+from typing                                 import Union
 
 from torii                                  import (
 	Module, Signal, DomainRenamer, Cat, Memory, Const
@@ -56,7 +54,7 @@ class DFUConfig:
 
 
 class DFURequestHandler(USBRequestHandler):
-	def __init__(self, *, configuration: int, interface: int, resource_name: Tuple[str, int]):
+	def __init__(self, *, configuration: int, interface: int, resource_name: tuple[str, int]):
 		super().__init__()
 
 		self._configuration = configuration
@@ -401,7 +399,7 @@ class DFURequestHandler(USBRequestHandler):
 		)
 
 
-	def _make_rom(self, flash: Dict[str, Union[Dict[str, int], FlashGeometry]]) -> Memory:
+	def _make_rom(self, flash: dict[str, Union[dict[str, int], FlashGeometry]]) -> Memory:
 		'''
 		Generate ROM layout of the flash.
 

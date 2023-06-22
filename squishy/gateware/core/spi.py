@@ -1,7 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from typing import Tuple
-
 from torii  import (
 	Elaboratable, Signal, Module, Cat
 )
@@ -32,7 +30,7 @@ class SPIInterface(Elaboratable):
 		Read data register.
 
 	'''
-	def __init__(self, *, resource_name: Tuple[str, int]) -> None:
+	def __init__(self, *, resource_name: tuple[str, int]) -> None:
 
 		self._spi_resource = resource_name
 		self._status_led = None

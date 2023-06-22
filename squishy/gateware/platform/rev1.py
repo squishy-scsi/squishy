@@ -16,9 +16,7 @@ from ..core                              import ICE40ClockDomainGenerator
 
 from .resources                          import SCSIPhyResource
 
-from .mixins                             import (
-	SquishyCacheMixin
-)
+from .mixins                             import SquishyCacheMixin
 
 from ..bootloader.rev1                   import Bootloader as iCE40Bootloader
 

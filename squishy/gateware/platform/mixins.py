@@ -1,9 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging          as log
 
-from rich.progress      import (
-	Progress
-)
+from rich.progress      import Progress
 
 from ...core.cache      import SquishyBitstreamCache
 

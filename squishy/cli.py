@@ -3,8 +3,8 @@ import logging     as log
 from argparse      import ArgumentParser, ArgumentDefaultsHelpFormatter, Namespace
 from pathlib       import Path
 
-from rich         import traceback
-from rich.logging import RichHandler
+from rich          import traceback
+from rich.logging  import RichHandler
 
 from .             import actions, config
 from .core.collect import collect_members, predicate_action

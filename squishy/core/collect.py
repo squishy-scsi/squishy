@@ -3,9 +3,7 @@
 from pkgutil    import walk_packages
 from importlib  import import_module
 from inspect    import getmembers, isclass
-from typing     import (
-	List, Dict, Union, Any
-)
+from typing     import Union, Any
 
 __all__ = (
 	'collect_members',
@@ -68,7 +66,7 @@ def predicate_class(member) -> bool:
 
 	return isclass(member)
 
-def collect_members(pkg, pred, prefix: str = '', make_instance: bool = True) -> List[Dict[str, Union[str, Any]]]:
+def collect_members(pkg, pred, prefix: str = '', make_instance: bool = True) -> list[dict[str, Union[str, Any]]]:
 	'''
 	Collect members from package
 

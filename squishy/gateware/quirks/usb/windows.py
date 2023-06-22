@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 from typing                                       import (
-	Tuple, Type
+	Type
 )
 
 from struct                                       import (
@@ -102,7 +102,7 @@ class GetDescriptorSetHandler(Elaboratable):
 		''' Returns a given number rounded up to the next aligned element size. '''
 		return (n + (cls.element_size - 1)) // cls.element_size
 
-	def generate_rom(self) -> Tuple[Memory, int, int]:
+	def generate_rom(self) -> tuple[Memory, int, int]:
 		'''
 		Generate ROM for descriptor sets.
 

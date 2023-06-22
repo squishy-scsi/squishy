@@ -2,8 +2,7 @@
 import logging                           as log
 
 from typing                              import (
-	Iterable, List, Tuple, Type, Union, Optional,
-	Dict, Any
+	Iterable, Type, Union, Optional
 )
 
 from time                                import (
@@ -84,7 +83,7 @@ class SquishyHardwareDevice:
 
 		return self._dfu_iface
 
-	def _get_dfu_status(self) -> Tuple[DFUStatus, DFUState]:
+	def _get_dfu_status(self) -> tuple[DFUStatus, DFUState]:
 		''' Get DFU Status '''
 		cfg = self._usb_hndl.getConfiguration()
 		interface_id: Optional[int] = self._get_dfu_interface(cfg)
@@ -154,7 +153,7 @@ class SquishyHardwareDevice:
 
 		return sent == 0
 
-	def _get_dfu_altmodes(self) -> Dict[int, Any]:
+	def _get_dfu_altmodes(self) -> dict[int, str]:
 		''' Get the DFU alt-modes '''
 		log.debug('Getting DFU alt-modes')
 
@@ -163,7 +162,7 @@ class SquishyHardwareDevice:
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
-		alt_modes: Dict[int, str] = dict()
+		alt_modes: dict[int, str] = dict()
 
 		for cfg in self._dev.iterConfigurations():
 			for iface in cfg:
@@ -252,12 +251,12 @@ class SquishyHardwareDevice:
 
 		return sent == len(data)
 
-	def _ensure_iface_claimed(self, id: int):
+	def _ensure_iface_claimed(self, id: int) -> None:
 		if id not in self._claimed_interfaces:
 			self._usb_hndl.claimInterface(id)
 			self._claimed_interfaces.append(id)
 
-	def _ensure_iface_released(self, id: int):
+	def _ensure_iface_released(self, id: int) -> None:
 		if id in self._claimed_interfaces:
 			self._usb_hndl.releaseInterface(id)
 			self._claimed_interfaces.remove(id)
@@ -290,7 +289,7 @@ class SquishyHardwareDevice:
 		self.gate_ver = int((self.dec_ver - self.rev) * 100)
 		self._claimed_interfaces = list()
 
-	def __del__(self):
+	def __del__(self) -> None:
 		self._usb_hndl.close()
 		self._dev.close()
 
@@ -407,7 +406,7 @@ class SquishyHardwareDevice:
 
 
 	@classmethod
-	def enumerate(cls: Type['SquishyHardwareDevice']) -> List[Tuple[str, float, USBDevice]]:
+	def enumerate(cls: Type['SquishyHardwareDevice']) -> list[tuple[str, float, USBDevice]]:
 		'''
 		Enumerate attached devices
 

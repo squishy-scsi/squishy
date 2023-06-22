@@ -1,8 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 from abc        import ABCMeta, abstractmethod
-from typing     import Tuple, Union
-
+from typing     import Union
 
 from ..gateware import AppletElaboratable
 
@@ -69,7 +68,7 @@ class SquishyApplet(metaclass = ABCMeta):
 
 	@property
 	@abstractmethod
-	def hardware_rev(self) -> Union[str, Tuple[str]]:
+	def hardware_rev(self) -> Union[str, tuple[str, ...]]:
 		raise NotImplementedError('Applets must implement this property')
 
 	def __init__(self):
