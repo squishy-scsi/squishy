@@ -4,9 +4,7 @@ from enum import (
 	auto, unique, IntEnum
 )
 
-from typing import (
-	Tuple, Union, Dict
-)
+from typing import Union
 
 __all__ = (
 	'SCSIInterface',
@@ -75,55 +73,62 @@ class SCSIClockMode(IntEnum):
 	DDR = auto()
 	''' Double Data Rate clock '''
 
-SCSI_BUSSES : Dict[SCSIInterface, Dict[str, Union[Tuple[SCSIElectrical], int, Tuple[int, SCSIClockMode]]]] = {
+SCSIBusSpeed      = tuple[float, SCSIClockMode]
+''' The tuple of speed in MHz and clock mode (SDR vs DDR) '''
+SCSIBusElectrical = tuple[SCSIElectrical, ...]
+''' The rough electrical characteristics of the SCSI Bus '''
+SCSIBusDefinition = dict[str, Union[SCSIBusElectrical, int, SCSIBusSpeed]]
+''' A definition of the type of bus the given SCSI version supports '''
+
+SCSI_BUSSES: dict[SCSIInterface, SCSIBusDefinition] = {
 	SCSIInterface.SCSI1: {
 		'electrical': (SCSIElectrical.SE, SCSIElectrical.HVD),
 		'width': 8,
-		'speed': (5, SCSIClockMode.SDR)
+		'speed': (5e6, SCSIClockMode.SDR)
 	},
 	SCSIInterface.FastSCSI: {
 		'electrical': (SCSIElectrical.SE, SCSIElectrical.HVD),
 		'width': 8,
-		'speed': (10, SCSIClockMode.SDR)
+		'speed': (10e6, SCSIClockMode.SDR)
 	},
 	SCSIInterface.FastWideSCSI: {
 		'electrical': (SCSIElectrical.SE, SCSIElectrical.HVD),
 		'width': 16,
-		'speed': (10, SCSIClockMode.SDR)
+		'speed': (10e6, SCSIClockMode.SDR)
 	},
 	SCSIInterface.UltraSCSI: {
 		'electrical': (SCSIElectrical.SE, SCSIElectrical.HVD),
 		'width': 8,
-		'speed': (20, SCSIClockMode.SDR)
+		'speed': (20e6, SCSIClockMode.SDR)
 	},
 	SCSIInterface.UltraWideSCSI: {
 		'electrical': (SCSIElectrical.SE, SCSIElectrical.HVD),
 		'width': 16,
-		'speed': (20, SCSIClockMode.SDR)
+		'speed': (20e6, SCSIClockMode.SDR)
 	},
 	SCSIInterface.Ultra2SCSI: {
 		'electrical': (SCSIElectrical.HVD, SCSIElectrical.LVD),
 		'width': 8,
-		'speed': (40, SCSIClockMode.SDR)
+		'speed': (40e6, SCSIClockMode.SDR)
 	},
 	SCSIInterface.Ultra2WideSCSI: {
 		'electrical': (SCSIElectrical.HVD, SCSIElectrical.LVD),
 		'width': 16,
-		'speed': (40, SCSIClockMode.SDR)
+		'speed': (40e6, SCSIClockMode.SDR)
 	},
 	SCSIInterface.Ultra3SCSI: {
 		'electrical': (SCSIElectrical.LVD, ),
 		'width': 16,
-		'speed': (40, SCSIClockMode.DDR)
+		'speed': (40e6, SCSIClockMode.DDR)
 	},
 	SCSIInterface.Ultra320SCSI: {
 		'electrical': (SCSIElectrical.LVD, ),
 		'width': 16,
-		'speed': (80, SCSIClockMode.DDR)
+		'speed': (80e6, SCSIClockMode.DDR)
 	},
 	SCSIInterface.Ultra640SCSI: {
 		'electrical': (SCSIElectrical.LVD, ),
 		'width': 16,
-		'speed': (160, SCSIClockMode.DDR)
+		'speed': (160e6, SCSIClockMode.DDR)
 	}
 }
