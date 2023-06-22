@@ -45,7 +45,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+g512bf8f
+                0.1.dev1+g1063005
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -291,8 +291,6 @@ applets by name.</p>
 <li><p><strong>help</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – A longer more detailed help string.</p></li>
 <li><p><strong>description</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – A brief description about the applet.</p></li>
 <li><p><strong>hardware_rev</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.11)"><em>tuple</em></a>) – A single string, or a tuple of strings for supported hardware revisions</p></li>
-<li><p><strong>supports_gui</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – Indicates if the applet has a GUI mode.</p></li>
-<li><p><strong>supports_repl</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – Indicates if the applet has a REPL mode.</p></li>
 </ul>
 </dd>
 </dl>
@@ -317,34 +315,6 @@ applets by name.</p>
 <dt class="sig sig-object py" id="squishy.applets.SquishyApplet.show_help">
 <span class="sig-name descname"><span class="pre">show_help</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.11)"><span class="pre">None</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.show_help" title="Permalink to this definition"></a></dt>
 <dd><p>Shows applets built-in help</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="squishy.applets.SquishyApplet.init_gui">
-<span class="sig-name descname"><span class="pre">init_gui</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">main_window</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_gui" title="Permalink to this definition"></a></dt>
-<dd><p>Initializes applet GUI component</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>main_window</strong> (<em>squishy.gui.MainWindow</em>) – The main GUI window.</p></li>
-<li><p><strong>args</strong> (<em>argsparse.Namespace</em>) – Any command line arguments passed.</p></li>
-</ul>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="squishy.applets.SquishyApplet.init_repl">
-<span class="sig-name descname"><span class="pre">init_repl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">repl_ctx</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><span class="pre">bool</span></a></span></span><a class="headerlink" href="#squishy.applets.SquishyApplet.init_repl" title="Permalink to this definition"></a></dt>
-<dd><p>Initializes applet REPL component</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>repl_ctx</strong> (<em>None</em>) – The REPL context</p></li>
-<li><p><strong>args</strong> (<em>argsparse.Namespace</em>) – Any command line arguments passed.</p></li>
-</ul>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
