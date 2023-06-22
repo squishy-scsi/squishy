@@ -43,12 +43,6 @@ class SquishyApplet(metaclass = ABCMeta):
 	hardware_rev : str, tuple
 		A single string, or a tuple of strings for supported hardware revisions
 
-	supports_gui : bool
-		Indicates if the applet has a GUI mode.
-
-	supports_repl : bool
-		Indicates if the applet has a REPL mode.
-
 	'''
 	@property
 	@abstractmethod
@@ -77,16 +71,6 @@ class SquishyApplet(metaclass = ABCMeta):
 	@abstractmethod
 	def hardware_rev(self) -> Union[str, Tuple[str]]:
 		raise NotImplementedError('Applets must implement this property')
-
-	@property
-	@abstractmethod
-	def supports_gui(self) -> bool:
-		return False
-
-	@property
-	@abstractmethod
-	def supports_repl(self) -> bool:
-		return False
 
 	def __init__(self):
 		if not (
@@ -122,37 +106,6 @@ class SquishyApplet(metaclass = ABCMeta):
 
 	def show_help(self) -> None:
 		''' Shows applets built-in help '''
-		pass
-
-	def init_gui(self, main_window, args) -> bool:
-		'''
-		Initializes applet GUI component
-
-		Parameters
-		----------
-		main_window : squishy.gui.MainWindow
-			The main GUI window.
-
-		args : argsparse.Namespace
-			Any command line arguments passed.
-
-		'''
-		pass
-
-	def init_repl(self, repl_ctx, args) -> bool:
-		'''
-		Initializes applet REPL component
-
-		Parameters
-		----------
-		repl_ctx : None
-			The REPL context
-
-		args : argsparse.Namespace
-			Any command line arguments passed.
-
-		'''
-
 		pass
 
 	@abstractmethod

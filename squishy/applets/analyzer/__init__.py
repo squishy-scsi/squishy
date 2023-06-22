@@ -20,14 +20,6 @@ class Analyzer(SquishyApplet):
 	hardware_rev  = (
 		'rev1', 'rev2'
 	)
-	supports_gui  = True
-	supports_repl = True
-
-	def init_gui(self, main_window, args) -> bool:
-		pass
-
-	def init_repl(self, repl_ctx, args) -> bool:
-		pass
 
 	def register_args(self, parser) -> None:
 		pass

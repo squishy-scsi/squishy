@@ -92,8 +92,7 @@ class Taperipper(SquishyApplet):
 	hardware_rev  = (
 		'rev1', 'rev2'
 	)
-	supports_gui  = False
-	supports_repl = False
+
 
 	def register_args(self, parser) -> None:
 		actions = parser.add_subparsers(dest = 'taperipper_actions')
