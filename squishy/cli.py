@@ -1,13 +1,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging     as log
-from argparse      import ArgumentParser, ArgumentDefaultsHelpFormatter, Namespace
-from pathlib       import Path
+import logging          as log
+from argparse           import ArgumentParser, ArgumentDefaultsHelpFormatter, Namespace
 
-from rich          import traceback
-from rich.logging  import RichHandler
+from rich               import traceback
+from rich.logging       import RichHandler
 
-from .             import actions, config
-from .core.collect import collect_members, predicate_action
+from .                  import config
+from .actions.applet    import Applet as ActionApplet
+from .actions.cache     import Cache  as ActionCache
+from .actions.provision import Provision as ActionProvision
 
 __all__ = (
 	'main',
@@ -89,10 +90,10 @@ def main() -> int:
 		init_dirs()
 		setup_logging()
 
-		ACTIONS = collect_members(
-			Path(actions.__path__[0]),
-			predicate_action,
-			f'{actions.__name__}.'
+		ACTIONS = (
+			{ 'name': 'applet',    'instance': ActionApplet()    },
+			{ 'name': 'cache',     'instance': ActionCache()     },
+			{ 'name': 'provision', 'instance': ActionProvision() }
 		)
 
 		parser = ArgumentParser(
