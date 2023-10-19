@@ -28,5 +28,5 @@ The following errata have been identified for Squishy rev1:
 
 ### Rev1 Release 1
 
- 1. The SCSI PHY level shifters need to have the trace going to pin 9 cut and then pin 9 bridged to pin 8.
-   * This is U2, U8, U11, U16, U20, U23, U27, U30, and U33.
+1. The SCSI PHY level shifters need to have the trace going to pin 9 cut and then pin 9 bridged to pin 8.
+    * The part designators are U2, U8, U11, U16, U20, U23, U27, U30, and U33.
