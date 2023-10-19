@@ -271,7 +271,7 @@ class GetDescriptorSetHandler(Elaboratable):
 				m.d.comb += [
 					self.tx.valid.eq(1),
 					read_port.addr.eq(desc_data_base_addr + word_in_stream),
-					self.tx.payload.eq(read_port.data.word_select(3 - byte_in_stream, 8)),
+					self.tx.payload.eq(read_port.data.word_select((3 - byte_in_stream).as_unsigned(), 8)),
 					self.tx.first.eq(on_first_packet),
 					self.tx.last.eq(on_last_packet),
 				]
@@ -430,7 +430,7 @@ class WindowsRequestHandler(USBRequestHandler):
 		* for either index value ``0x07`` or ``0x08``, respectively meaning:
 
 			* ``GET_DESCRIPTOR_SET``, and
-			* `SET_ALTERNATE_ENUM``
+			* ``SET_ALTERNATE_ENUM``
 
 		The latter has not been given support as we don't currently allow swapping out the device
 		descriptors in this manner.
