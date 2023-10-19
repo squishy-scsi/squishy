@@ -15,17 +15,17 @@
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="_static/jquery.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=4b1cca27"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="_static/platformpicker.js"></script>
         <script src="_static/wavedrom.skin.js"></script>
         <script src="_static/wavedrom.min.js"></script>
-        <script src="_static/js/mermaid.min.js"></script>
-        <script src="_static/js/wavedrom.min.js"></script>
-        <script src="_static/js/wavedrom.skin.js"></script>
+        <script src="_static/js/mermaid.min.js?v=be593db9"></script>
+        <script src="_static/js/wavedrom.min.js?v=db79c4d1"></script>
+        <script src="_static/js/wavedrom.skin.js?v=986d6b75"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -44,7 +44,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+gf097878
+                0.1.dev1+gc0d32aa
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -84,6 +84,11 @@
 <li class="toctree-l1"><a class="reference internal" href="hardware/index.html">Hardware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="hardware/rev1.html">Revision 1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="hardware/rev1.html#capabilities">Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="hardware/rev1.html#errata">Errata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="hardware/rev1.html#rev1-release-0">Rev1 Release 0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="hardware/rev1.html#rev1-release-1">Rev1 Release 1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="hardware/rev2.html">Revision 2</a><ul>
@@ -264,26 +269,26 @@
   <div class="toctree-wrapper compound">
 </div>
 <section id="squishy-the-scsi-multitool">
-<h1>Squishy: The SCSI Multitool<a class="headerlink" href="#squishy-the-scsi-multitool" title="Permalink to this heading"></a></h1>
+<h1>Squishy: The SCSI Multitool<a class="headerlink" href="#squishy-the-scsi-multitool" title="Link to this heading"></a></h1>
 <figure class="align-right" style="width: 350px">
 <img alt="_images/electrichearts_20220323A_sachi_trans.png" src="_images/electrichearts_20220323A_sachi_trans.png" />
 </figure>
 <p>This is the documentation for <a class="reference external" href="https://github.com/squishy-scsi/squishy">Squishy</a> and it’s supporting components, as well as a collection of guides and tutorials for the Squishy ecosystem.</p>
 <section id="what-squishy-isn-t">
-<h2>What Squishy Isn’t<a class="headerlink" href="#what-squishy-isn-t" title="Permalink to this heading"></a></h2>
+<h2>What Squishy Isn’t<a class="headerlink" href="#what-squishy-isn-t" title="Link to this heading"></a></h2>
 <p>It’s important to detail what Squishy isn’t, as it differs a lot from other devices intended to interact with older SCSI systems.</p>
 <p>Squishy is not <em>only</em> a disk emulator like the <a class="reference external" href="https://scsi.blue/">BlueSCSI</a> or the <a class="reference external" href="https://www.codesrc.com/mediawiki/index.php?title=SCSI2SD">SCSI2SD</a>. It is also not <em>only</em> a SCSI to USB Mass storage adapter.</p>
 <p>Squishy is not a <em>specialized</em> device targeting only a single aspect of the SCSI ecosystem, nor targeting only a single platform.</p>
 </section>
 <section id="what-squishy-is">
-<h2>What Squishy Is<a class="headerlink" href="#what-squishy-is" title="Permalink to this heading"></a></h2>
+<h2>What Squishy Is<a class="headerlink" href="#what-squishy-is" title="Link to this heading"></a></h2>
 <p>Squishy is a platform, it allows you to accomplish almost any goal you wish to that involves a SCSI bus. It can do things as mundane as emulating a SCSI hard drive, but also you can use it to <a class="reference internal" href="applets/analyzer.html"><span class="std std-doc">sniff, analyze, and reply SCSI bus traffic</span></a>, or even <a class="reference internal" href="applets/taperipper.html"><span class="std std-doc">boot a modern system from 9-track tape</span></a>.</p>
 <p>It is comprised of a <a class="reference internal" href="library/gateware/index.html"><span class="std std-doc">gateware</span></a> and <a class="reference internal" href="library/python/index.html"><span class="std std-doc">python</span></a> library as well as a <a class="reference internal" href="hardware/index.html"><span class="std std-doc">hardware</span></a> platform that acts as a bridge between the software and SCSI bus. Squishy allows for powerful and flexible control over all things SCSI, and using its <a class="reference internal" href="applets/index.html"><span class="std std-doc">powerful applet system</span></a> it gives that power to you.</p>
 <p>For a more detailed introduction to Squishy and it’s components, see the <a class="reference internal" href="introduction.html"><span class="std std-doc">Introduction</span></a> section of the documentation. Then, when you’re ready visit the <a class="reference internal" href="getting_started.html"><span class="std std-doc">Getting Started</span></a> section to get up an running.</p>
 <p>Squishy is entirely open source, and under permissive licenses. The full source code, gateware, firmware, and hardware designs are available on <a class="reference external" href="https://github.com/squishy-scsi/squishy">GitHub</a>.</p>
 </section>
 <section id="comparison">
-<h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this heading"></a></h2>
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading"></a></h2>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p></p></th>
@@ -392,7 +397,7 @@
 <p><strong>4:</strong> This includes only the PiSCSI interface itself, and not the needed RaspberryPi SOM as well.</p>
 </section>
 <section id="community">
-<h2>Community<a class="headerlink" href="#community" title="Permalink to this heading"></a></h2>
+<h2>Community<a class="headerlink" href="#community" title="Link to this heading"></a></h2>
 <p>Squishy has a dedicated IRC channel, <a class="reference external" href="https://web.libera.chat/#squishy">#squishy on libera.chat</a>. Join to ask questions, discuss ongoing development, or just hang out.</p>
 <p>There are also <a class="reference external" href="https://github.com/squishy-scsi/squishy/discussions">GitHub Discussions</a> enabled on the repository if you have any questions or comments.</p>
 <div class="admonition note">

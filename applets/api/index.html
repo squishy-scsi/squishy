@@ -15,17 +15,17 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=4b1cca27"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/platformpicker.js"></script>
         <script src="../../_static/wavedrom.skin.js"></script>
         <script src="../../_static/wavedrom.min.js"></script>
-        <script src="../../_static/js/mermaid.min.js"></script>
-        <script src="../../_static/js/wavedrom.min.js"></script>
-        <script src="../../_static/js/wavedrom.skin.js"></script>
+        <script src="../../_static/js/mermaid.min.js?v=be593db9"></script>
+        <script src="../../_static/js/wavedrom.min.js?v=db79c4d1"></script>
+        <script src="../../_static/js/wavedrom.skin.js?v=986d6b75"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -45,7 +45,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+gf097878
+                0.1.dev1+gc0d32aa
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -85,6 +85,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../hardware/index.html">Hardware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../hardware/rev1.html">Revision 1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../hardware/rev1.html#capabilities">Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware/rev1.html#errata">Errata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hardware/rev1.html#rev1-release-0">Rev1 Release 0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hardware/rev1.html#rev1-release-1">Rev1 Release 1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../hardware/rev2.html">Revision 2</a><ul>
@@ -264,7 +269,7 @@
            <div itemprop="articleBody">
              
   <section id="applet-api">
-<h1>Applet API<a class="headerlink" href="#applet-api" title="Permalink to this heading"></a></h1>
+<h1>Applet API<a class="headerlink" href="#applet-api" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <div class="admonition-todo admonition" id="id1">
@@ -276,7 +281,7 @@ to register various components with the Squishy framework, such as the <a class=
 <a class="reference internal" href="cli.html"><span class="std std-doc">CLI</span></a>, or the <a class="reference internal" href="repl.html"><span class="std std-doc">REPL</span></a>. Out of the three subsystems, only the CLI is mandatory, the GUI and REPL are optional.</p>
 <p>For details on how to write Squishy applets, see the <a class="reference internal" href="../../tutorials/applets/index.html"><span class="std std-doc">Applets Tutorial</span></a> for a walk-through.</p>
 <section id="applet-search-locations">
-<h2>Applet Search Locations<a class="headerlink" href="#applet-search-locations" title="Permalink to this heading"></a></h2>
+<h2>Applet Search Locations<a class="headerlink" href="#applet-search-locations" title="Link to this heading"></a></h2>
 <p>Squishy searches for applets to load in two locations. The first being the built-in applets in the <code class="docutils literal notranslate"><span class="pre">squishy.applets</span></code> module, this is where all of the default applets that ship with Squishy are located.</p>
 <p>The second location Squishy searches for applets in is partially platform dependent. Regardless of platform, the location is <code class="docutils literal notranslate"><span class="pre">.local/share/squishy/applets</span></code> within the current users home directory. Where this directory is depends on the system and it’s configuration, but below are some common paths:</p>
 <div class="platform-picker docutils container">

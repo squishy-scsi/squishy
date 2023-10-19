@@ -15,17 +15,17 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=4b1cca27"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/platformpicker.js"></script>
         <script src="../_static/wavedrom.skin.js"></script>
         <script src="../_static/wavedrom.min.js"></script>
-        <script src="../_static/js/mermaid.min.js"></script>
-        <script src="../_static/js/wavedrom.min.js"></script>
-        <script src="../_static/js/wavedrom.skin.js"></script>
+        <script src="../_static/js/mermaid.min.js?v=be593db9"></script>
+        <script src="../_static/js/wavedrom.min.js?v=db79c4d1"></script>
+        <script src="../_static/js/wavedrom.skin.js?v=986d6b75"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -45,7 +45,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+gf097878
+                0.1.dev1+gc0d32aa
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -85,6 +85,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../hardware/index.html">Hardware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../hardware/rev1.html">Revision 1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../hardware/rev1.html#capabilities">Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../hardware/rev1.html#errata">Errata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../hardware/rev1.html#rev1-release-0">Rev1 Release 0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../hardware/rev1.html#rev1-release-1">Rev1 Release 1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../hardware/rev2.html">Revision 2</a><ul>
@@ -264,12 +269,12 @@
            <div itemprop="articleBody">
              
   <section id="provisioning-a-new-device">
-<h1>Provisioning a New Device<a class="headerlink" href="#provisioning-a-new-device" title="Permalink to this heading"></a></h1>
+<h1>Provisioning a New Device<a class="headerlink" href="#provisioning-a-new-device" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <p>When you first build a squishy, or if the flash on your existing squishy gets corrupted, you will need to provision the device again. This is done by flashing a special image into the flash that contains the bootloader and stub bitstreams to ensure DFU works properly.</p>
 <section id="generating-the-initial-image">
-<h2>Generating the Initial Image<a class="headerlink" href="#generating-the-initial-image" title="Permalink to this heading"></a></h2>
+<h2>Generating the Initial Image<a class="headerlink" href="#generating-the-initial-image" title="Link to this heading"></a></h2>
 <p>To generate the initial image, we run squishy with the <code class="docutils literal notranslate"><span class="pre">provision</span></code> command like so:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp gp-VirtualEnv">(squishy.venv)</span> <span class="gp">$ </span>squishy<span class="w"> </span>provision<span class="w"> </span>--build-only<span class="w"> </span>--whole-device
 </pre></div>
@@ -279,7 +284,7 @@
 <p>The resulting file <code class="docutils literal notranslate"><span class="pre">squishy-unified.bin</span></code> can then be flashed onto the SPI flash of the Squishy unit.</p>
 </section>
 <section id="flashing-the-image">
-<h2>Flashing the Image<a class="headerlink" href="#flashing-the-image" title="Permalink to this heading"></a></h2>
+<h2>Flashing the Image<a class="headerlink" href="#flashing-the-image" title="Link to this heading"></a></h2>
 <p>To write the image to the Squishy device, you can hook up to the SPI header on the board using any capable tool and flash the whole <code class="docutils literal notranslate"><span class="pre">squishy-unified.bin</span></code> image. Once the device is then reset and able to read the new image, it will start in the bootloader waiting for an applet to be flashed to the device via the <code class="docutils literal notranslate"><span class="pre">squishy</span></code> utility or <code class="docutils literal notranslate"><span class="pre">dfu-util</span></code>.</p>
 </section>
 </section>

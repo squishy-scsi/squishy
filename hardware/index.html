@@ -15,17 +15,17 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=4b1cca27"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/platformpicker.js"></script>
         <script src="../_static/wavedrom.skin.js"></script>
         <script src="../_static/wavedrom.min.js"></script>
-        <script src="../_static/js/mermaid.min.js"></script>
-        <script src="../_static/js/wavedrom.min.js"></script>
-        <script src="../_static/js/wavedrom.skin.js"></script>
+        <script src="../_static/js/mermaid.min.js?v=be593db9"></script>
+        <script src="../_static/js/wavedrom.min.js?v=db79c4d1"></script>
+        <script src="../_static/js/wavedrom.skin.js?v=986d6b75"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -45,7 +45,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+gf097878
+                0.1.dev1+gc0d32aa
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -85,6 +85,11 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Hardware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="rev1.html">Revision 1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rev1.html#capabilities">Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rev1.html#errata">Errata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="rev1.html#rev1-release-0">Rev1 Release 0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="rev1.html#rev1-release-1">Rev1 Release 1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rev2.html">Revision 2</a><ul>
@@ -267,7 +272,7 @@
 <p>Squishy hardware is specially designed and <strong>is not</strong> able to be substituted for other hardware at the moment. This include any popular development or eval boards.</p>
 </div>
 <section id="hardware">
-<h1>Hardware<a class="headerlink" href="#hardware" title="Permalink to this heading"></a></h1>
+<h1>Hardware<a class="headerlink" href="#hardware" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
 <div class="admonition-todo admonition" id="id1">
@@ -279,26 +284,26 @@
 <p>The format follows the <code class="docutils literal notranslate"><span class="pre">rev&lt;#&gt;[.#]</span></code> format, where <code class="docutils literal notranslate"><span class="pre">rev&lt;#&gt;</span></code> is the hardware revision and <code class="docutils literal notranslate"><span class="pre">[.#]</span></code> is the release level. so the following string, <code class="docutils literal notranslate"><span class="pre">rev8.3</span></code> is hardware revision 8, release 3.</p>
 <p>Currently there are two hardware releases <a class="reference internal" href="rev1.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">rev1</span></code></span></a> and <a class="reference internal" href="rev2.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">rev2</span></code></span></a>, see each page for details on each respective hardware revision.</p>
 <section id="getting-squishy-hardware">
-<h2>Getting Squishy Hardware<a class="headerlink" href="#getting-squishy-hardware" title="Permalink to this heading"></a></h2>
+<h2>Getting Squishy Hardware<a class="headerlink" href="#getting-squishy-hardware" title="Link to this heading"></a></h2>
 <p>There are two main ways to get squishy hardware, buying it, or building it.</p>
 <section id="buying-hardware">
-<h3>Buying Hardware<a class="headerlink" href="#buying-hardware" title="Permalink to this heading"></a></h3>
+<h3>Buying Hardware<a class="headerlink" href="#buying-hardware" title="Link to this heading"></a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>As of 2022-04-24, Squishy hardware is not available for sale, however, once engineering and validation of Revision 2 is completed, rev2 units are expected to be available to purchase.</p>
 </div>
 </section>
 <section id="building-hardware">
-<h3>Building Hardware<a class="headerlink" href="#building-hardware" title="Permalink to this heading"></a></h3>
+<h3>Building Hardware<a class="headerlink" href="#building-hardware" title="Link to this heading"></a></h3>
 <p>Every released version of the Squishy hardware is archived and has full schematics, gerbers, Bill of Materials, and KiCad project files available.</p>
 <p>The smallest parts are 0402 and all revisions contain at least one large BGA part. Assembly via a Pick-and-Place machine has not been tested, but should be possible as DFM was a large part of the process.</p>
 </section>
 <section id="provisioning-the-hardware">
-<h3>Provisioning the Hardware<a class="headerlink" href="#provisioning-the-hardware" title="Permalink to this heading"></a></h3>
+<h3>Provisioning the Hardware<a class="headerlink" href="#provisioning-the-hardware" title="Link to this heading"></a></h3>
 <p>If you buy a pre-built Squishy, it will already be provisioned, but in case something goes catastrophically wrong with an update, or you build your own hardware, see the section on <a class="reference internal" href="../tutorials/provisioning.html"><span class="std std-doc">provisioning</span></a> to learn how to provision new hardware or re-provision existing hardware.</p>
 </section>
 <section id="work-in-progress-hardware">
-<h3>Work-In-Progress Hardware<a class="headerlink" href="#work-in-progress-hardware" title="Permalink to this heading"></a></h3>
+<h3>Work-In-Progress Hardware<a class="headerlink" href="#work-in-progress-hardware" title="Link to this heading"></a></h3>
 <p>The hardware is always a work in progress, you can view a live rendering of the WIP hardware in your web browser <a class="reference external" href="https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Fsquishy-scsi%2Fhardware%2Ftree%2Fmain%2Fboards%2Fsquishy">here</a>, thanks to <a class="reference external" href="https://kicanvas.org">KiCanvas</a>.</p>
 </section>
 </section>

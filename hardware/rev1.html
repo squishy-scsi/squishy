@@ -15,17 +15,17 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=4b1cca27"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../_static/platformpicker.js"></script>
         <script src="../_static/wavedrom.skin.js"></script>
         <script src="../_static/wavedrom.min.js"></script>
-        <script src="../_static/js/mermaid.min.js"></script>
-        <script src="../_static/js/wavedrom.min.js"></script>
-        <script src="../_static/js/wavedrom.skin.js"></script>
+        <script src="../_static/js/mermaid.min.js?v=be593db9"></script>
+        <script src="../_static/js/wavedrom.min.js?v=db79c4d1"></script>
+        <script src="../_static/js/wavedrom.skin.js?v=986d6b75"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -45,7 +45,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+gf097878
+                0.1.dev1+gc0d32aa
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -85,6 +85,11 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Hardware</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Revision 1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#capabilities">Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#errata">Errata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rev1-release-0">Rev1 Release 0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rev1-release-1">Rev1 Release 1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="rev2.html">Revision 2</a><ul>
@@ -264,16 +269,41 @@
            <div itemprop="articleBody">
              
   <section id="revision-1">
-<h1>Revision 1<a class="headerlink" href="#revision-1" title="Permalink to this heading"></a></h1>
+<h1>Revision 1<a class="headerlink" href="#revision-1" title="Link to this heading"></a></h1>
 <div class="admonition-todo admonition" id="id1">
 <p class="admonition-title">Todo</p>
 <p>Flesh this section out</p>
 </div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This hardware revision has <a class="reference internal" href="#errata">errata</a>!</p>
+</div>
 <p>Hardware revision 1 was the first release of the Squishy hardware, it is only capable of speaking SCSI HVD. Revision 1 release 0 has some problems that can be fixed with two component replacements, which was not enough to constitute a whole new release.</p>
 <p><img alt="Squishy rev1 Render" src="../_images/rev1_render.png" /></p>
 <section id="capabilities">
-<h2>Capabilities<a class="headerlink" href="#capabilities" title="Permalink to this heading"></a></h2>
+<h2>Capabilities<a class="headerlink" href="#capabilities" title="Link to this heading"></a></h2>
 <p>Revision 1 is still in the validation phase, as such is capabilities have not been fully cataloged.</p>
+</section>
+<section id="errata">
+<h2>Errata<a class="headerlink" href="#errata" title="Link to this heading"></a></h2>
+<p>The following errata have been identified for Squishy rev1:</p>
+<section id="rev1-release-0">
+<h3>Rev1 Release 0<a class="headerlink" href="#rev1-release-0" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>X1 - The ULPI Osc, needs to be changed from 16MHz to 13MHz</p></li>
+<li><p>U26 - The FPGA flash, need to be replaces with a GD25Q64EWIGR</p></li>
+<li><p>Plus everything listed in the Release 1 Errata.</p></li>
+</ol>
+</section>
+<section id="rev1-release-1">
+<h3>Rev1 Release 1<a class="headerlink" href="#rev1-release-1" title="Link to this heading"></a></h3>
+<ol class="arabic simple">
+<li><p>The SCSI PHY level shifters need to have the trace going to pin 9 cut and then pin 9 bridged to pin 8.</p></li>
+</ol>
+<ul class="simple">
+<li><p>This is U2, U8, U11, U16, U20, U23, U27, U30, and U33.</p></li>
+</ul>
+</section>
 </section>
 </section>
 

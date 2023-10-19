@@ -15,17 +15,17 @@
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=4b1cca27"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../_static/platformpicker.js"></script>
         <script src="../../_static/wavedrom.skin.js"></script>
         <script src="../../_static/wavedrom.min.js"></script>
-        <script src="../../_static/js/mermaid.min.js"></script>
-        <script src="../../_static/js/wavedrom.min.js"></script>
-        <script src="../../_static/js/wavedrom.skin.js"></script>
+        <script src="../../_static/js/mermaid.min.js?v=be593db9"></script>
+        <script src="../../_static/js/wavedrom.min.js?v=db79c4d1"></script>
+        <script src="../../_static/js/wavedrom.skin.js?v=986d6b75"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -45,7 +45,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+gf097878
+                0.1.dev1+gc0d32aa
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -85,6 +85,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../hardware/index.html">Hardware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../hardware/rev1.html">Revision 1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../hardware/rev1.html#capabilities">Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../hardware/rev1.html#errata">Errata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../hardware/rev1.html#rev1-release-0">Rev1 Release 0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../hardware/rev1.html#rev1-release-1">Rev1 Release 1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../hardware/rev2.html">Revision 2</a><ul>
@@ -265,76 +270,76 @@
            <div itemprop="articleBody">
              
   <section id="squishy-scsi-device">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code><a class="headerlink" href="#squishy-scsi-device" title="Permalink to this heading"></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.device</span></code><a class="headerlink" href="#squishy-scsi-device" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-squishy.scsi.device"></span><dl class="py class">
+<dl class="py class" id="module-squishy.scsi.device">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.device.</span></span><span class="sig-name descname"><span class="pre">PeripheralDeviceType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.scsi.device.</span></span><span class="sig-name descname"><span class="pre">PeripheralDeviceType</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">module</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qualname</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">type</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">boundary</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType" title="Link to this definition"></a></dt>
 <dd><p>The type of device a peripheral iss</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.DirectAccess">
-<span class="sig-name descname"><span class="pre">DirectAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.DirectAccess" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">DirectAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">0</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.DirectAccess" title="Link to this definition"></a></dt>
 <dd><p>Direct-access devices <em>(e.g. Magnetic Disk)</em></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.SequentialAccess">
-<span class="sig-name descname"><span class="pre">SequentialAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.SequentialAccess" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">SequentialAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">1</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.SequentialAccess" title="Link to this definition"></a></dt>
 <dd><p>Sequential-access devices <em>(e.g. Magnetic Tape)</em></p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.Printer">
-<span class="sig-name descname"><span class="pre">Printer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.Printer" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">Printer</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">2</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.Printer" title="Link to this definition"></a></dt>
 <dd><p>Printer-like devices</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.Processor">
-<span class="sig-name descname"><span class="pre">Processor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.Processor" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">Processor</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">3</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.Processor" title="Link to this definition"></a></dt>
 <dd><p>Processors</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.WORM">
-<span class="sig-name descname"><span class="pre">WORM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.WORM" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">WORM</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">4</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.WORM" title="Link to this definition"></a></dt>
 <dd><p>Write-Once-Read-Many devices</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.ReadOnlyDirectAccess">
-<span class="sig-name descname"><span class="pre">ReadOnlyDirectAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.ReadOnlyDirectAccess" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ReadOnlyDirectAccess</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">5</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.ReadOnlyDirectAccess" title="Link to this definition"></a></dt>
 <dd><p>Read-only Direct-access devices</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.ReservedStart">
-<span class="sig-name descname"><span class="pre">ReservedStart</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.ReservedStart" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ReservedStart</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">6</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.ReservedStart" title="Link to this definition"></a></dt>
 <dd><p>Start of the Reserved section</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.ReservedEnd">
-<span class="sig-name descname"><span class="pre">ReservedEnd</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">126</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.ReservedEnd" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">ReservedEnd</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">126</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.ReservedEnd" title="Link to this definition"></a></dt>
 <dd><p>End of the Reserved section</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.LogicalUnitNotPresent">
-<span class="sig-name descname"><span class="pre">LogicalUnitNotPresent</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">127</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.LogicalUnitNotPresent" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">LogicalUnitNotPresent</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">127</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.LogicalUnitNotPresent" title="Link to this definition"></a></dt>
 <dd><p>Logical unit is not present</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.VendorUniqueStart">
-<span class="sig-name descname"><span class="pre">VendorUniqueStart</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.VendorUniqueStart" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">VendorUniqueStart</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">128</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.VendorUniqueStart" title="Link to this definition"></a></dt>
 <dd><p>Start of the Vendor Unique section</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.scsi.device.PeripheralDeviceType.VendorUniqueEnd">
-<span class="sig-name descname"><span class="pre">VendorUniqueEnd</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">255</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.VendorUniqueEnd" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">VendorUniqueEnd</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">255</span></em><a class="headerlink" href="#squishy.scsi.device.PeripheralDeviceType.VendorUniqueEnd" title="Link to this definition"></a></dt>
 <dd><p>End of the Vendor Unique section</p>
 </dd></dl>
 

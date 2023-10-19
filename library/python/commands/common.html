@@ -15,17 +15,17 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=4b1cca27"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../../_static/platformpicker.js"></script>
         <script src="../../../_static/wavedrom.skin.js"></script>
         <script src="../../../_static/wavedrom.min.js"></script>
-        <script src="../../../_static/js/mermaid.min.js"></script>
-        <script src="../../../_static/js/wavedrom.min.js"></script>
-        <script src="../../../_static/js/wavedrom.skin.js"></script>
+        <script src="../../../_static/js/mermaid.min.js?v=be593db9"></script>
+        <script src="../../../_static/js/wavedrom.min.js?v=db79c4d1"></script>
+        <script src="../../../_static/js/wavedrom.skin.js?v=986d6b75"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -45,7 +45,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+gf097878
+                0.1.dev1+gc0d32aa
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -85,6 +85,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../hardware/index.html">Hardware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../hardware/rev1.html">Revision 1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../hardware/rev1.html#capabilities">Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../hardware/rev1.html#errata">Errata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../hardware/rev1.html#rev1-release-0">Rev1 Release 0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../hardware/rev1.html#rev1-release-1">Rev1 Release 1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../hardware/rev2.html">Revision 2</a><ul>
@@ -266,14 +271,14 @@
            <div itemprop="articleBody">
              
   <section id="squishy-scsi-commands-common">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.common</span></code><a class="headerlink" href="#squishy-scsi-commands-common" title="Permalink to this heading"></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.scsi.commands.common</span></code><a class="headerlink" href="#squishy-scsi-commands-common" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-squishy.scsi.commands.common"></span><p>This module contains common commands, that other device classes
+<p id="module-squishy.scsi.commands.common">This module contains common commands, that other device classes
 can support.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.TestUnitReady">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">TestUnitReady</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6</span> <span class="pre">+nonbuild&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.TestUnitReady" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">TestUnitReady</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6</span> <span class="pre">+nonbuild&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.TestUnitReady" title="Link to this definition"></a></dt>
 <dd><p>Test Unit Ready</p>
 <p>This command provides the means to check if the logical
 unit is ready.</p>
@@ -285,7 +290,7 @@ return a <code class="docutils literal notranslate"><span class="pre">GOOD</span
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.RequestSense">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">RequestSense</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.RequestSense" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">RequestSense</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.RequestSense" title="Link to this definition"></a></dt>
 <dd><p>Request Sense</p>
 <p>This command requests that the target transfers <span class="xref std std-ref">sense data</span> to the initiator.</p>
 <p>The sense data shall be valid for a <code class="docutils literal notranslate"><span class="pre">CHECK</span> <span class="pre">CONDITION</span></code> status returned on the prior
@@ -592,7 +597,7 @@ all additional sense bytes are vendor unique.</p>
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.Inquiry">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">Inquiry</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.Inquiry" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">Inquiry</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.Inquiry" title="Link to this definition"></a></dt>
 <dd><p>Inquiry</p>
 <p>This command requests that information regarding parameters of the target and its attached peripheral devices
 be sent to the initiator.</p>
@@ -698,7 +703,7 @@ data, the additional length is <strong>NOT</strong> adjusted to reflect the trun
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.Copy">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">Copy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.Copy" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">Copy</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.Copy" title="Link to this definition"></a></dt>
 <dd><p>Copy</p>
 <p>This command provides a means to copy data from one logical unit to itself or another.
 The logical units may reside on the same SCSI device or different SCSI devices.</p>
@@ -1170,7 +1175,7 @@ logical unit during this segment of the <code class="docutils literal notranslat
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.ReceiveDiagnosticResults">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">ReceiveDiagnosticResults</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.ReceiveDiagnosticResults" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">ReceiveDiagnosticResults</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.ReceiveDiagnosticResults" title="Link to this definition"></a></dt>
 <dd><p>Receive Diagnostic Results</p>
 <div class="admonition-todo admonition" id="id2">
 <p class="admonition-title">Todo</p>
@@ -1180,7 +1185,7 @@ logical unit during this segment of the <code class="docutils literal notranslat
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.SendDiagnostic">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">SendDiagnostic</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.SendDiagnostic" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">SendDiagnostic</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand6&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.SendDiagnostic" title="Link to this definition"></a></dt>
 <dd><p>Send Diagnostic</p>
 <div class="admonition-todo admonition" id="id3">
 <p class="admonition-title">Todo</p>
@@ -1190,7 +1195,7 @@ logical unit during this segment of the <code class="docutils literal notranslat
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.Compare">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">Compare</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand10&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.Compare" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">Compare</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand10&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.Compare" title="Link to this definition"></a></dt>
 <dd><p>Compare</p>
 <div class="admonition-todo admonition" id="id4">
 <p class="admonition-title">Todo</p>
@@ -1200,7 +1205,7 @@ logical unit during this segment of the <code class="docutils literal notranslat
 
 <dl class="py data">
 <dt class="sig sig-object py" id="squishy.scsi.commands.common.CopyAndVerify">
-<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">CopyAndVerify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand10&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.CopyAndVerify" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">squishy.scsi.commands.common.</span></span><span class="sig-name descname"><span class="pre">CopyAndVerify</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;SCSICommand10&gt;</span></em><a class="headerlink" href="#squishy.scsi.commands.common.CopyAndVerify" title="Link to this definition"></a></dt>
 <dd><p>Copy and Verify</p>
 <div class="admonition-todo admonition" id="id5">
 <p class="admonition-title">Todo</p>

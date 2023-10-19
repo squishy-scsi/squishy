@@ -15,17 +15,17 @@
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/doctools.js"></script>
-        <script src="../../../_static/sphinx_highlight.js"></script>
+        <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../../_static/documentation_options.js?v=4b1cca27"></script>
+        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
         <script src="../../../_static/platformpicker.js"></script>
         <script src="../../../_static/wavedrom.skin.js"></script>
         <script src="../../../_static/wavedrom.min.js"></script>
-        <script src="../../../_static/js/mermaid.min.js"></script>
-        <script src="../../../_static/js/wavedrom.min.js"></script>
-        <script src="../../../_static/js/wavedrom.skin.js"></script>
+        <script src="../../../_static/js/mermaid.min.js?v=be593db9"></script>
+        <script src="../../../_static/js/wavedrom.min.js?v=db79c4d1"></script>
+        <script src="../../../_static/js/wavedrom.skin.js?v=986d6b75"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" />
@@ -45,7 +45,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+gf097878
+                0.1.dev1+gc0d32aa
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
@@ -85,6 +85,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../../../hardware/index.html">Hardware</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../../hardware/rev1.html">Revision 1</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../hardware/rev1.html#capabilities">Capabilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../hardware/rev1.html#errata">Errata</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../../hardware/rev1.html#rev1-release-0">Rev1 Release 0</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../hardware/rev1.html#rev1-release-1">Rev1 Release 1</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../hardware/rev2.html">Revision 2</a><ul>
@@ -266,10 +271,10 @@
            <div itemprop="articleBody">
              
   <section id="squishy-gateware-platform-rev1">
-<h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform.rev1</span></code><a class="headerlink" href="#squishy-gateware-platform-rev1" title="Permalink to this heading"></a></h1>
+<h1><code class="docutils literal notranslate"><span class="pre">squishy.gateware.platform.rev1</span></code><a class="headerlink" href="#squishy-gateware-platform-rev1" title="Link to this heading"></a></h1>
 <div class="toctree-wrapper compound">
 </div>
-<span class="target" id="module-squishy.gateware.platform.rev1"></span><p>This is the torii platform definition for Squishy rev1 hardware, if you are using
+<p id="module-squishy.gateware.platform.rev1">This is the torii platform definition for Squishy rev1 hardware, if you are using
 Squishy rev1 as a generic FPGA development board, this is the platform you need to invoke.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -284,7 +289,7 @@ own, however it is recommended to start with the <a class="reference internal" h
 </div>
 <dl class="py class">
 <dt class="sig sig-object py" id="squishy.gateware.platform.rev1.SquishyRev1">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.platform.rev1.</span></span><span class="sig-name descname"><span class="pre">SquishyRev1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.gateware.platform.rev1.SquishyRev1" title="Permalink to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.platform.rev1.</span></span><span class="sig-name descname"><span class="pre">SquishyRev1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.gateware.platform.rev1.SquishyRev1" title="Link to this definition"></a></dt>
 <dd><p>Squishy hardware Revision 1</p>
 <p>This is the torii platform for the first revision of the Squishy hardware.
 It is based around the <a class="reference external" href="https://www.latticesemi.com/iCE40">Lattice iCE40-HX8K</a>
@@ -294,7 +299,7 @@ in the BG121 footprint.</p>
 the <cite>rev1</cite> tree.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="squishy.gateware.platform.rev1.SquishyRev1.clock_domain_generator">
-<span class="sig-name descname"><span class="pre">clock_domain_generator</span></span><a class="headerlink" href="#squishy.gateware.platform.rev1.SquishyRev1.clock_domain_generator" title="Permalink to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">clock_domain_generator</span></span><a class="headerlink" href="#squishy.gateware.platform.rev1.SquishyRev1.clock_domain_generator" title="Link to this definition"></a></dt>
 <dd><p>alias of <a class="reference internal" href="../core/pll.html#squishy.gateware.core.pll.ICE40ClockDomainGenerator" title="squishy.gateware.core.pll.ICE40ClockDomainGenerator"><code class="xref py py-class docutils literal notranslate"><span class="pre">ICE40ClockDomainGenerator</span></code></a></p>
 </dd></dl>
 
