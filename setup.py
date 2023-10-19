@@ -58,10 +58,10 @@ setup(
 		'construct>=2.10.67',
 		'arrow',
 		'libusb1>=1.8.1',
-		'rich>=12.6.0',
-		'torii<1.0',
+		'rich',
+		'torii>=0.5.0,<1.0',
 		'usb-construct<1.0',
-		'sol-usb<1.0',
+		'sol-usb>=0.3.0,<1.0',
 	],
 
 	packages          = find_packages(
