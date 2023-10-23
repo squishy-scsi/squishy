@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from torii                              import *
 from torii.build                        import *
-from torii.platform.vendor.lattice_ecp5 import LatticeECP5Platform
+from torii.platform.vendor.lattice.ecp5 import ECP5Platform
 from torii.platform.resources.memory    import SPIFlashResources
 from torii.platform.resources.user      import LEDResources
 from torii.platform.resources.interface import UARTResource
@@ -33,7 +33,7 @@ build your own, or keep an eye out for when the campaign goes live.
 
 '''
 
-class SquishyRev2(SquishyCacheMixin, LatticeECP5Platform):
+class SquishyRev2(SquishyCacheMixin, ECP5Platform):
 	'''
 	Squishy hardware Revision 2
 

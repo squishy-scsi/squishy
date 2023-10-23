@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from torii                               import *
 from torii.build                         import *
-from torii.platform.vendor.lattice_ice40 import LatticeICE40Platform
+from torii.platform.vendor.lattice.ice40 import ICE40Platform
 from torii.platform.resources.memory     import SPIFlashResources
 from torii.platform.resources.user       import LEDResources
 from torii.platform.resources.interface  import UARTResource
@@ -39,7 +39,7 @@ own, however it is recommended to start with the :py:class:`squishy.gateware.pla
 
 '''
 
-class SquishyRev1(SquishyCacheMixin, LatticeICE40Platform):
+class SquishyRev1(SquishyCacheMixin, ICE40Platform):
 	'''
 	Squishy hardware Revision 1
 
