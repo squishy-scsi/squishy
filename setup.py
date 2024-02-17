@@ -40,7 +40,7 @@ setup(
 	author_email     = 'nya@catgirl.link',
 	description      = 'SCSI Multitool and Torii HDL Library',
 	license          = 'BSD-3-Clause',
-	python_requires  = '~=3.9',
+	python_requires  = '~=3.10',
 	zip_safe         = True,
 	url              = 'https://github.com/squishy-scsi/squishy',
 
