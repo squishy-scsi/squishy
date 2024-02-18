@@ -3,8 +3,8 @@
 from sys import version_info
 
 # Bounce out if python is  too old
-if version_info < (3, 9):
-	raise RuntimeError('Python version 3.9 or newer is required to use Squishy')
+if version_info < (3, 10):
+	raise RuntimeError('Python version 3.10 or newer is required to use Squishy')
 
 try:
 	from importlib import metadata
