@@ -32,7 +32,7 @@ For more information on the Squishy hardware, see the [Hardware](./hardware/inde
 
 The Squishy software is a set of utilities that allows for interacting with the Squishy hardware, and a [Python library](./library/python/index.md) that allows for developers of Squishy applets and other applications to parse SCSI traffic and interact with SCSI devices.
 
-For more information on the software, see the [CLI](./cli.md) and [GUI](./gui.md) sections as well as the Python library documentation.
+For more information on the software, see the [CLI](./cli.md) section as well as the Python library documentation.
 
 ## Gateware
 
