@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GUI &mdash; Squishy 0.1.dev1 documentation</title>
+  <title>Extra Utilities &mdash; Squishy 0.1.dev1 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b20cc3f5" />
       <link rel="stylesheet" type="text/css" href="_static/css/styles.css?v=919c7a60" />
       <link rel="stylesheet" type="text/css" href="_static/graphviz.css?v=eafc0fe6" />
@@ -12,7 +12,7 @@
       <link rel="stylesheet" type="text/css" href="_static/css/styles.css?v=919c7a60" />
 
   
-    <link rel="canonical" href="https://docs.scsi.moe/gui.html" />
+    <link rel="canonical" href="https://docs.scsi.moe/extra.html" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -47,7 +47,7 @@
             Squishy
           </a>
               <div class="version">
-                0.1.dev1+g418ae16
+                0.1.dev1+g692efc5
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -224,8 +224,12 @@
 <li class="toctree-l2"><a class="reference internal" href="cli.html#invocation">Invocation</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">GUI</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#invocation">Invocation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Extra Utilities</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#scsidump">scsidump</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#installing">Installing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using">Using</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="mascot.html">Mascot - Sachi</a><ul>
@@ -260,7 +264,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">GUI</li>
+      <li class="breadcrumb-item active">Extra Utilities</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul>
@@ -269,16 +273,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="gui">
-<h1>GUI<a class="headerlink" href="#gui" title="Link to this heading"></a></h1>
-<div class="admonition-todo admonition" id="id1">
-<p class="admonition-title">Todo</p>
-<p>Flesh this section out</p>
-</div>
-<p>The Squishy GUI is an optional GUI which is geared for use with the Analyzer applet, however it is possible to use it with other applets.</p>
-<section id="invocation">
-<h2>Invocation<a class="headerlink" href="#invocation" title="Link to this heading"></a></h2>
-<p>The GUI is invoked with either the <code class="docutils literal notranslate"><span class="pre">squishy-gui</span></code> command or the <code class="docutils literal notranslate"><span class="pre">gui</span></code> action via the Squishy CLI:<code class="docutils literal notranslate"><span class="pre">squishy</span> <span class="pre">gui</span></code></p>
+  <section id="extra-utilities">
+<h1>Extra Utilities<a class="headerlink" href="#extra-utilities" title="Link to this heading"></a></h1>
+<p>Squishy has some extra utilities that are possibly useful.</p>
+<section id="scsidump">
+<h2>scsidump<a class="headerlink" href="#scsidump" title="Link to this heading"></a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">scsidump</span></code> is a <a class="reference external" href="https://www.wireshark.org/">Wireshark</a> <a class="reference external" href="https://www.wireshark.org/docs/man-pages/extcap.html">extcap</a> interface to allow for direct packet-level capture of a SCSI bus with Squishy attached to it.</p>
+<p>This is much like the <a class="reference internal" href="applets/analyzer.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">analyzer</span></code></span></a> applet, and, in fact, uses it behind the scenes, but only supports high-level packet-based captures of the SCSI bus, and not raw trace data from the bus.</p>
+<section id="installing">
+<h3>Installing<a class="headerlink" href="#installing" title="Link to this heading"></a></h3>
+<p>To install <code class="docutils literal notranslate"><span class="pre">scsidump</span></code>, simply copy or symlink the <a class="reference external" href="https://github.com/squishy-scsi/squishy/blob/main/contrib/scsidump"><code class="docutils literal notranslate"><span class="pre">scsidump</span></code></a> python file into <code class="docutils literal notranslate"><span class="pre">~/.local/lib/wireshark/extcap</span></code>, you might need to create the directory if it doesn’t exist already.</p>
+<p>Ensure that the <code class="docutils literal notranslate"><span class="pre">squishy</span></code> python package is in your python path as well, if you followed the
+<a class="reference internal" href="install.html"><span class="std std-doc">installation instructions</span></a> it should already be there.</p>
+</section>
+<section id="using">
+<h3>Using<a class="headerlink" href="#using" title="Link to this heading"></a></h3>
+<p>If installed and working properly, you will now see a new entry in the Wireshark capture list called ‘Squishy SCSI Bus capture’.</p>
+<p>Click the small gear icon next to the entry in the list to setup the capture configuration, it has most of the same options as the <a class="reference internal" href="applets/analyzer.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">analyzer</span></code></span></a> applet does.</p>
+<p>When done, save the configuration and then double click the capture interface to start capturing with the attached Squishy.</p>
+</section>
 </section>
 </section>
 
