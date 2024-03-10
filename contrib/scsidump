@@ -1,0 +1,213 @@
+#!/usr/bin/python
+# SPDX-License-Identifier: BSD-3-Clause
+# scsidump: Wireshark extcap interface for Squishy based SCSI capture
+# see: https://www.wireshark.org/docs/wsdg_html_chunked/ChCaptureExtcap.html
+#
+# To enable in Wireshark, drop/symlink this file to `~/.local/lib/wireshark/extcap`
+
+import sys
+
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter, Namespace
+from pathlib  import Path
+
+
+from squishy import __version__
+
+def _setup_extcap_parser(parser: ArgumentParser):
+	parser.add_argument(
+		'--extcap-interfaces',
+		action = 'store_true',
+		help = 'List extcap interfaces'
+	)
+
+	parser.add_argument(
+		'--extcap-version',
+		type = str,
+	)
+
+	parser.add_argument(
+		'--extcap-dlts',
+		action = 'store_true',
+		help = 'List DLTs',
+	)
+
+	parser.add_argument(
+		'--extcap-interface',
+		type = str,
+		help = 'Specify extcap interface'
+	)
+
+	parser.add_argument(
+		'--extcap-config',
+		action = 'store_true',
+		help = 'list additional configuration for interface'
+	),
+
+	parser.add_argument(
+		'--capture',
+		action = 'store_true',
+		help = 'Run the capture'
+	)
+
+	parser.add_argument(
+		'--extcap-capture-filter',
+		type = str,
+		help = 'Set the capture filter'
+	)
+
+	parser.add_argument(
+		'--fifo',
+		type = Path,
+		help = 'Capture dump file/fifo'
+	)
+
+
+APPLET_OPTIONS = {
+	'platform': {
+		'type': str,
+		'required': True,
+		'default': 'rev2',
+		'help': 'Squishy Hardware Platform',
+		'extcap_type': 'selector',
+		'extcap_name': 'Hardware Platform',
+		'values': ('rev1', 'rev2'),
+		'group': 'Hardware Options',
+	},
+	'scsi-did': {
+		'type': int,
+		'required': True,
+		'default': 7,
+		'range': (0, 7),
+		'help': 'SCSI ID',
+		'extcap_type': 'integer',
+		'extcap_name': 'SCSI ID',
+		'group': 'SCSI Options'
+	},
+	'scsi-arbitrating': {
+		'type': bool,
+		'help': 'Enable SCSI Bus arbitration',
+		'extcap_type': 'boolean',
+		'extcap_name': 'Bus Arbitration',
+		'group': 'SCSI Options'
+	},
+
+	'skip-cache': {
+		'type': bool,
+		'help': 'Skip cache lookup for built gateware',
+		'extcap_type': 'boolean',
+		'extcap_name': 'Skip Cache',
+		'group': 'Gateware Options'
+	},
+	'use-router2': {
+		'type': bool,
+		'help': 'Use nextpnr\'s router2',
+		'extcap_type': 'boolean',
+		'extcap_name': 'Use router2',
+		'group': 'Gateware Options'
+	},
+	'tmg-ripup': {
+		'type': bool,
+		'help': 'Use the timing-driven ripup router',
+		'extcap_type': 'boolean',
+		'extcap_name': 'Use the timing-driven ripup router',
+		'group': 'Gateware Options'
+	},
+	'pnr-seed': {
+		'type': int,
+		'help': 'nextpnr seed',
+		'defualt': 0,
+		'extcap_type': 'integer',
+		'extcap_name': 'PNR seed',
+		'group': 'Gateware Options'
+	},
+	'no-abc9': {
+		'type': bool,
+		'help': 'Disable ABC9',
+		'extcap_type': 'boolean',
+		'extcap_name': 'Disable ABC9',
+		'group': 'Gateware Options'
+	}
+}
+
+
+def _setup_parser(parser: ArgumentParser):
+	extcap = parser.add_argument_group('extcap interface')
+	_setup_extcap_parser(extcap)
+
+	applet = parser.add_argument_group('Squishy applet')
+
+	for opt_name, opt_val in APPLET_OPTIONS.items():
+		applet.add_argument(
+			f'--{opt_name}',
+			type = opt_val['type'],
+			help = opt_val['help'],
+		)
+
+
+def extcap_list_interfaces():
+	print(f'extcap {{version={__version__}}}{{help=https://docs.scsi.moe/extcap.html}}')
+	print('interface {value=scsidump}{display=Squishy SCSI Bus capture}')
+
+def extcap_list_dlts():
+	print('dlt {number=147}{name=squishy}{display=SCSI}')
+
+def extcap_list_config():
+	for idx, (opt_name, opt_val) in enumerate(APPLET_OPTIONS.items()):
+		extcap_arg_entry = f'arg {{number={idx}}}{{call=--{opt_name}}}{{tooltip={opt_val["help"]}}}{{display={opt_val["extcap_name"]}}}'
+		extcap_arg_entry += f'{{type={opt_val["extcap_type"]}}}'
+		if 'required' in opt_val:
+			extcap_arg_entry += f'{{required={opt_val["required"]}}}'
+
+		if 'group' in opt_val:
+			extcap_arg_entry += f'{{group={opt_val["group"]}}}'
+
+		if opt_val["extcap_type"] == 'integer':
+			if 'default' in opt_val:
+				extcap_arg_entry += f'{{default={opt_val["default"]}}}'
+			if 'range' in opt_val:
+				low, high = opt_val['range']
+				extcap_arg_entry += f'{{range={low},{high}}}'
+
+
+		print(extcap_arg_entry)
+		if opt_val["extcap_type"] == 'selector':
+			for val in opt_val['values']:
+				extcap_arg_value = f'value {{arg={idx}}}{{value={val}}}{{display={val}}}'
+				if val == opt_val['default']:
+					extcap_arg_value += '{default=true}'
+				print(extcap_arg_value)
+
+	# print('arg {number=0}{call=--meow}{display=Meow}{type=boolean}{tooltip=Meow Meow Meow}')
+
+def main() -> int:
+	parser = ArgumentParser(
+		formatter_class = ArgumentDefaultsHelpFormatter,
+		description     = 'Squishy SCSI extcap interface for Wireshark',
+		prog            = 'scsidump'
+	)
+
+	_setup_parser(parser)
+
+	args = parser.parse_args()
+
+	if args.extcap_interfaces:
+		extcap_list_interfaces()
+		return 0
+
+	if not args.extcap_interface:
+		return 1
+	elif args.extcap_interface != 'scsidump':
+		return 1
+	else:
+		if args.extcap_dlts:
+			extcap_list_dlts()
+		if args.extcap_config:
+			extcap_list_config()
+
+
+
+	return 0
+
+
+if __name__ == '__main__':
+	sys.exit(main())
