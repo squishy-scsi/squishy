@@ -1,6 +1,7 @@
 sphinx
 furo
 sphinx-inline-tabs
+sphinxext-opengraph
 sphinxcontrib-mermaid
 git+https://github.com/wallento/wavedrompy
 sphinxcontrib-wavedrom
