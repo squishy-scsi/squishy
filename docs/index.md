@@ -9,6 +9,7 @@ applets/index
 library/index
 tutorials/index
 cli
+extra
 mascot
 faq
 
