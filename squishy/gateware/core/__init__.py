@@ -28,8 +28,7 @@ As such, they are documented to allow for consumption, but do not hold any API s
 promises as they are still considered to be internal to the applet system and not
 for general consumption.
 
-It is roughly broken up into 5 submodules:
- * :py:mod:`squishy.gateware.core.multiboot` - iCE40 warmboot support.
+It is roughly broken up into 3 submodules:
  * :py:mod:`squishy.gateware.core.pll` - PLL helpers for various FPGAs.
  * :py:mod:`squishy.gateware.core.spi` - Generic SPI interface.
  * :py:mod:`squishy.gateware.core.uart` - Debug UART.
