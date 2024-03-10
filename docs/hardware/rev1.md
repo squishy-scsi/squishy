@@ -4,7 +4,7 @@
 Flesh this section out
 ```
 ```{warning}
-This hardware revision has [errata](#errata)!
+This hardware revision should be considered non-functional and is kept in the documentation for historical purposes only.
 ```
 
 

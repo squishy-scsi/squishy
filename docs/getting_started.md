@@ -6,7 +6,7 @@
 
 # Getting Started
 
-To get started with Squishy, first follow the [installation](install.md) instructions before you continue.
+To get started with Squishy, first follow the [installation] instructions before you continue.
 
 
 ## Connecting the Hardware
@@ -20,3 +20,6 @@ Write this section
 ```{todo}
 Write this section
 ```
+
+
+[installation]: ./install.md

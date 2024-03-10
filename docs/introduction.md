@@ -6,7 +6,7 @@ Flesh this section out
 
 Squishy is a set of utilities, gateware, and hardware for interacting with and developing things related to SCSI.
 
-Once you've read the sections below and are ready to get started, see the [Installation](./install.md) and the [Getting Started](./getting_started.md) sections.
+Once you've read the sections below and are ready to get started, see the [Installation] and the [Getting Started] sections.
 
 
 ## Overview
@@ -24,21 +24,32 @@ The Squishy hardware is a bespoke physical interface into the world of SCSI. Out
 
 Combined with the software, it provides and out-of-the box way of inspecting traffic on a SCSI bus, as well as capturing the traffic for analysis or even replay!
 
-With the power of [Torii](https://github.com/shrine-maiden-heavy-industries/torii-hdl), you can also write your own [applets](./applets/index.md) to do things such as emulate devices, or hosts, or anything else you could imagine.
+With the power of [Torii], you can also write your own [applets] to do things such as emulate devices, or hosts, or anything else you could imagine.
 
-For more information on the Squishy hardware, see the [Hardware](./hardware/index.md) section in the documentation.
+For more information on the Squishy hardware, see the [Hardware] section in the documentation.
 
 ## Software
 
-The Squishy software is a set of utilities that allows for interacting with the Squishy hardware, and a [Python library](./library/python/index.md) that allows for developers of Squishy applets and other applications to parse SCSI traffic and interact with SCSI devices.
+The Squishy software is a set of utilities that allows for interacting with the Squishy hardware, and a [Python library] that allows for developers of Squishy applets and other applications to parse SCSI traffic and interact with SCSI devices.
 
-For more information on the software, see the [CLI](./cli.md) section as well as the Python library documentation.
+For more information on the software, see the [CLI] section as well as the Python library documentation.
 
 ## Gateware
 
 The Squishy gateware works in combination with the hardware to allow for the rapid and flexible development of devices that can be used to interact with various SCSI devices.
 
-The [gateware library](./library/gateware/index.md) allows for applets to be built on the Squishy platform, and for other devices that wish to leverage SCSI in some aspect of their design to do so with [Torii HDL](https://github.com/shrine-maiden-heavy-industries/torii-hdl).
+The [gateware library] allows for applets to be built on the Squishy platform, and for other devices that wish to leverage SCSI in some aspect of their design to do so with [Torii].
 
 
-For more information, see the gateware library documentation.
+For more information, see the [gateware library] documentation.
+
+
+
+[Installation]: ./install.md
+[Getting Started]: ./getting_started.md
+[Torii]: https://github.com/shrine-maiden-heavy-industries/torii-hdl
+[applets]: ./applets/index.md
+[Hardware]: ./hardware/index.md
+[Python library]: ./library/python/index.md
+[CLI]: ./cli.md
+[gateware library]: ./library/gateware/index.md

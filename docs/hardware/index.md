@@ -21,7 +21,7 @@ Both the revision and the release level start at 0, and increment by one. If the
 
 The format follows the `rev<#>[.#]` format, where `rev<#>` is the hardware revision and `[.#]` is the release level. so the following string, `rev8.3` is hardware revision 8, release 3.
 
-Currently there are two hardware releases [`rev1`](./rev1.md) and [`rev2`](./rev2.md), see each page for details on each respective hardware revision.
+Currently there are two hardware releases [`rev1`] and [`rev2`], see each page for details on each respective hardware revision.
 
 
 
@@ -32,7 +32,7 @@ There are two main ways to get squishy hardware, buying it, or building it.
 ### Buying Hardware
 
 ```{note}
-As of 2022-04-24, Squishy hardware is not available for sale, however, once engineering and validation of Revision 2 is completed, rev2 units are expected to be available to purchase.
+As of 2024-03-10, Squishy hardware is not available for sale, however, once engineering and validation of Revision 2 is completed, rev2 units are expected to be available to purchase.
 ```
 
 ### Building Hardware
@@ -43,9 +43,16 @@ The smallest parts are 0402 and all revisions contain at least one large BGA par
 
 ### Provisioning the Hardware
 
-If you buy a pre-built Squishy, it will already be provisioned, but in case something goes catastrophically wrong with an update, or you build your own hardware, see the section on [provisioning](../tutorials/provisioning.md) to learn how to provision new hardware or re-provision existing hardware.
+If you buy a pre-built Squishy, it will already be provisioned, but in case something goes catastrophically wrong with an update, or you build your own hardware, see the section on [provisioning] to learn how to provision new hardware or re-provision existing hardware.
 
 
 ### Work-In-Progress Hardware
 
-The hardware is always a work in progress, you can view a live rendering of the WIP hardware in your web browser [here](https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Fsquishy-scsi%2Fhardware%2Ftree%2Fmain%2Fboards%2Fsquishy), thanks to [KiCanvas](https://kicanvas.org).
+The hardware is always a work in progress, you can view a live rendering of the WIP hardware in your web browser [here](https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Fsquishy-scsi%2Fhardware%2Ftree%2Fmain%2Fboards%2Fsquishy), thanks to [KiCanvas].
+
+
+[provisioning]: ../tutorials/provisioning.md
+[`rev1`]: ./rev1.md
+[`rev2`]: ./rev2.md
+[here]: https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Fsquishy-scsi%2Fhardware%2Ftree%2Fmain%2Fboards%2Fsquishy
+[KiCanvas]: https://kicanvas.org

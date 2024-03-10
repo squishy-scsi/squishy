@@ -24,14 +24,22 @@ She was known for helping the locals with her wisdom in the past. Nowadays her s
 ```{image} ../contrib/img/sachi/electrichearts_20220325A_sachi_yellow_english.png
 ```
 
-Full-resolution images with and without transparent backgrounds can be downloaded from the [GitHub Repository](https://github.com/squishy-scsi/squishy/tree/main/) in the [`etc/img/sachi`](https://github.com/squishy-scsi/squishy/tree/main/contrib/img/sachi) directory.
+Full-resolution images with and without transparent backgrounds can be downloaded from the [GitHub Repository] in the [`etc/img/sachi`] directory.
 
 ## License
 
-Sachi was designed and illustrated by the amazing [Tyson Tan (tysontan.com)](https://tysontan.com). He provides mascot design service for free and open source software projects, free of charge, under free license.
+Sachi was designed and illustrated by the amazing [Tyson Tan (tysontan.com)]. He provides mascot design service for free and open source software projects, free of charge, under free license.
 
-She is dual-licensed under the [BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.html) and the Creative Commons [CC-BY-SA](https://creativecommons.org/licenses/by-sa/2.0/)
+She is dual-licensed under the [BSD-3-Clause] and the Creative Commons [CC-BY-SA]
 
-The full text of the [BSD-3-Clause](https://spdx.org/licenses/BSD-3-Clause.html) can be found in the [LICENSE.software](https://github.com/squishy-scsi/squishy/tree/main/LICENSE.software) file in the root of the repository
+The full text of the [BSD-3-Clause] can be found in the [LICENSE.software] file in the root of the repository
 
-The full text of the Creative Commons [CC-BY-SA](https://creativecommons.org/licenses/by-sa/2.0/) can be found in the [LICENSE.docs](https://github.com/squishy-scsi/squishy/tree/main/LICENSE.docs) file in the root of the repository
+The full text of the Creative Commons [CC-BY-SA] can be found in the [LICENSE.docs] file in the root of the repository
+
+[GitHub Repository]: https://github.com/squishy-scsi/squishy/tree/main/
+[`etc/img/sachi`]: https://github.com/squishy-scsi/squishy/tree/main/contrib/img/sachi
+[Tyson Tan (tysontan.com)]: https://tysontan.com
+[BSD-3-Clause]: https://spdx.org/licenses/BSD-3-Clause.html
+[LICENSE.software]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.software
+[CC-BY-SA]: https://creativecommons.org/licenses/by-sa/2.0/
+[LICENSE.docs]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.docs

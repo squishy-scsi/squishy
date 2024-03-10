@@ -4,21 +4,21 @@
 The following instructions are a work-in-progress and may not be entirely up to date.
 ```
 
-Squishy is a python application that can be installed via [`pip`](https://pypi.org/project/pip/),  either from the [git repository](https://github.com/squishy-scsi/squishy) or via a [wheel](https://pypi.org/project/wheel/) package.
+Squishy is a python application that can be installed via [`pip`],  either from the [git repository] or via a [wheel] package.
 
 
 ## System Requirements
 
-Squishy is officially supported on most Linux distributions, the primary one being [Arch Linux](https://archlinux.org/) and variants there of ([Manjaro](https://manjaro.org/), etc.). However other Linux distributions are supported as well.
+Squishy is officially supported on most Linux distributions, the primary one being [Arch Linux] and variants there of. However other Linux distributions are supported as well.
 
 Support for Microsoft Windows is preliminary, and due to lack of testing and development resources official support is currently not possible. But effort to make it as painless as possible to use on this platform is in-progress.
 
 Support for Apple macOS is also unofficial, however due to its similarity to Linux and Unix-like operating systems, using Squishy on macOS should be just as painless as it is on Linux. Official support for macOS and other BSD-Family operating systems is planned.
 
 
-Regardless of the operating system, there are some core dependencies that Squishy requires. This includes Python >= 3.10, [Yosys](https://github.com/YosysHQ/yosys) >= 0.38, and [nextpnr](https://github.com/YosysHQ/nextpnr) >= 0.7.
+Regardless of the operating system, there are some core dependencies that Squishy requires. This includes Python >= 3.10, [Yosys] >= 0.38, and [nextpnr] >= 0.7.
 
-Squishy has been tested with [CPython](https://www.python.org/), but might possibly run under [PyPy](https://www.pypy.org/).
+Squishy has been tested with [CPython], but might possibly run under [PyPy].
 
 
 ## Installing Prerequisites
@@ -114,7 +114,7 @@ You can then activate the virtual environment with:
 
 ### Installing Yosys and nextpnr
 
-Next, you need to install [`yosys`](https://github.com/YosysHQ/yosys) and [`nextpnr`](https://github.com/YosysHQ/nextpnr) onto your system if it is not there already.
+Next, you need to install [`yosys`] and [`nextpnr`] onto your system if it is not there already.
 
 #### Native Install
 
@@ -213,4 +213,16 @@ After that, check to make sure you have the `squishy` command:
 	(squishy.venv) $ squishy --help
 ```
 
-Now you can view the [Getting Started](./getting_started.md) page and start to use Squishy.
+Now you can view the [Getting Started] page and start to use Squishy.
+
+[`pip`]: https://pypi.org/project/pip/
+[git repository]: https://github.com/squishy-scsi/squishy
+[wheel]: https://pypi.org/project/wheel/
+[Arch Linux]: https://archlinux.org/
+[Yosys]: https://github.com/YosysHQ/yosys
+[nextpnr]: https://github.com/YosysHQ/nextpnr
+[CPython]: https://www.python.org/
+[PyPy]: https://www.pypy.org/
+[`yosys`]: https://github.com/YosysHQ/yosys
+[`nextpnr`]: https://github.com/YosysHQ/nextpnr
+[Getting Started]: ./getting_started.md
