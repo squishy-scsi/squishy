@@ -16,7 +16,7 @@ Support for Microsoft Windows is preliminary, and due to lack of testing and dev
 Support for Apple macOS is also unofficial, however due to its similarity to Linux and Unix-like operating systems, using Squishy on macOS should be just as painless as it is on Linux. Official support for macOS and other BSD-Family operating systems is planned.
 
 
-Regardless of the operating system, there are some core dependencies that Squishy requires. This includes Python >= 3.8, [Yosys](https://github.com/YosysHQ/yosys) >= 0.10, and [nextpnr](https://github.com/YosysHQ/nextpnr) >= 0.4.
+Regardless of the operating system, there are some core dependencies that Squishy requires. This includes Python >= 3.10, [Yosys](https://github.com/YosysHQ/yosys) >= 0.38, and [nextpnr](https://github.com/YosysHQ/nextpnr) >= 0.7.
 
 Squishy has been tested with [CPython](https://www.python.org/), but might possibly run under [PyPy](https://www.pypy.org/).
 
