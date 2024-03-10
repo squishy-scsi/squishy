@@ -1,6 +1,6 @@
 sphinx
-sphinx-rtd-theme
-sphinxcontrib-platformpicker
+furo
+sphinx-inline-tabs
 sphinxcontrib-mermaid
 git+https://github.com/wallento/wavedrompy
 sphinxcontrib-wavedrom

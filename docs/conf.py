@@ -20,10 +20,10 @@ extensions = [
 	'sphinx.ext.napoleon',
 	'sphinx.ext.todo',
 	'sphinxcontrib.mermaid',
-	'sphinxcontrib.platformpicker',
 	'sphinxcontrib.wavedrom',
 	'myst_parser',
-	'sphinx_rtd_theme',
+	'sphinx_inline_tabs',
+	'sphinxext.opengraph',
 ]
 
 source_suffix = {
@@ -53,12 +53,11 @@ napoleon_custom_sections  = [
 myst_heading_anchors = 3
 
 html_baseurl     = 'https://docs.scsi.moe'
-html_theme       = 'sphinx_rtd_theme'
+html_theme       = 'furo'
 html_copy_source = False
 
 html_theme_options = {
-	'collapse_navigation' : False,
-	'style_external_links': True,
+	'top_of_page_button': None,
 }
 
 html_static_path = [
@@ -74,8 +73,6 @@ html_js_files = [
 	'js/wavedrom.min.js',
 	'js/wavedrom.skin.js',
 ]
-
-html_style = 'css/styles.css'
 
 autosectionlabel_prefix_document = True
 # Disable CDN so we use the local copy

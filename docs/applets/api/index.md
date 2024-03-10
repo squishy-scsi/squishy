@@ -27,27 +27,24 @@ Squishy searches for applets to load in two locations. The first being the built
 The second location Squishy searches for applets in is partially platform dependent. Regardless of platform, the location is `.local/share/squishy/applets` within the current users home directory. Where this directory is depends on the system and it's configuration, but below are some common paths:
 
 ```{eval-rst}
-.. platform-picker::
-	.. platform-choice:: linux
-		:title: Linux
 
-		.. code-block:: console
+.. tab:: Linux
 
-			$HOME/.local/share/squishy/applets
+	.. code-block:: console
 
-	.. platform-choice:: macos
-		:title: macOS
+		$HOME/.local/share/squishy/applets
 
-		.. code-block:: console
+.. tab:: macOS
 
-			$HOME/.local/share/squishy/applets
+	.. code-block:: console
 
-	.. platform-choice:: windows
-		:title: Windows
+		$HOME/.local/share/squishy/applets
 
-		.. code-block:: console
+.. tab:: Windows
 
-			%USERPROFILE%/.local/share/squishy/applets
+	.. code-block:: console
+
+		%USERPROFILE%/.local/share/squishy/applets
 
 
 ```

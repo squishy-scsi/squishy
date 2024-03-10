@@ -1,25 +1,9 @@
-/* nya */
-@import 'theme.css';
-/* for the Read the Docs theme */
-@import url('https://fonts.googleapis.com/css2?family=Overpass+Mono:wght@300;400&display=swap');
-
-div.wy-nav-content {
-    padding: 1.618em 3.236em;
-    height: 100%;
-    max-width: 1000px;
-    margin: auto;
-}
-
 div.highlight {
     border-radius: 5px;
 }
 
 div.admonition {
     border-radius: 0px 0px 5px 5px;
-}
-
-p.admonition-title {
-    border-radius: 5px 5px 0px 0px;
 }
 
 code.literal {

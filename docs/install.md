@@ -30,18 +30,17 @@ Prior to installing Squishy, you must install all of its prerequisites and requi
 First off, install `python` and `pip` onto your system if the're not there already. It is also recommended to upgrade `pip` if not already to ensure all the steps work as expected.
 
 ```{eval-rst}
-.. platform-picker::
-	.. platform-choice:: arch
-		:title: Arch Linux
+.. tab:: Arch-like
 
-		.. code-block:: console
+	.. code-block:: console
 
-		  $ sudo pacman -S python python-pip
+		$ sudo pacman -S python python-pip
 
-	.. platform-choice:: linux
-		:title: Other Linux
+.. tab:: Other Linux
 
-		.. warning:: These instructions may be incorrect or incomplete!
+	.. warning:: These instructions may be incorrect or incomplete!
+
+	.. tab:: Debian-Like
 
 		For `Debian <https://www.debian.org/>`_ based systems, use ``apt`` to install ``python3`` and ``python3-pip``
 
@@ -49,29 +48,29 @@ First off, install `python` and `pip` onto your system if the're not there alrea
 
 			$ sudo apt install python3 python3-pip
 
+	.. tab:: Fedora-like
+
 		For `Fedora <https://getfedora.org/>`_ and other ``dnf`` based systems,
 
 		.. code-block:: console
 
 			$ sudo dnf install python3 python3-pip
 
-	.. platform-choice:: macos
-		:title: macOS
+.. tab:: macOS
 
-		Install `Homebrew <https://brew.sh/>`_ if not done already, then install the requirements.
+	Install `Homebrew <https://brew.sh/>`_ if not done already, then install the requirements.
 
-		.. code-block:: console
+	.. code-block:: console
 
-		  $ brew install python
+		$ brew install python
 
-	.. platform-choice:: windows
-		:title: Windows
+.. tab:: Windows
 
-		.. warning:: These instructions may be incorrect or incomplete!
+	.. warning:: These instructions may be incorrect or incomplete!
 
-		Download the latest Python installer from the `python downloads <https://www.python.org/downloads/>`_ page.
+	Download the latest Python installer from the `python downloads <https://www.python.org/downloads/>`_ page.
 
-		Follow the instructions and ensure that the installer installs ``pip`` and puts the python executable in your ``%PATH%``
+	Follow the instructions and ensure that the installer installs ``pip`` and puts the python executable in your ``%PATH%``
 
 ```
 At this point, you may want to create a virtual environment for installing Squishy into:
@@ -88,34 +87,29 @@ If your python install doesn't have the `venv` module by default, then you will 
 
 You can then activate the virtual environment with:
 ```{eval-rst}
-.. platform-picker::
-	.. platform-choice:: arch
-		:title: Arch Linux
+.. tab:: Arch-like
 
-		.. code-block:: console
+	.. code-block:: console
 
-			$ . squishy.venv/bin/activate
+		$ . squishy.venv/bin/activate
 
-	.. platform-choice:: Linux
-		:title: Other Linux
+.. tab:: Other Linux
 
-		.. code-block:: console
+	.. code-block:: console
 
-			$ . squishy.venv/bin/activate
+		$ . squishy.venv/bin/activate
 
-	.. platform-choice:: macos
-		:title: macOS
+.. tab:: macOS
 
-		.. code-block:: console
+	.. code-block:: console
 
-			$ . squishy.venv/bin/activate
+		$ . squishy.venv/bin/activate
 
-	.. platform-choice:: windows
-		:title: Windows
+.. tab:: Windows
 
-		.. code-block:: console
+	.. code-block:: console
 
-			$ call squishy.venv/Scripts/activate.bat
+		$ call squishy.venv/Scripts/activate.bat
 ```
 
 ### Installing Yosys and nextpnr
@@ -127,76 +121,71 @@ Next, you need to install [`yosys`](https://github.com/YosysHQ/yosys) and [`next
 The next option is to do a native install of the toolchain.
 
 ```{eval-rst}
-.. platform-picker::
-	.. platform-choice:: arch
-		:title: Arch Linux
+.. tab:: Arch-like
 
-		On Arch Linux and Arch-likes, you can install nightly packages which are located in the `AUR <https://aur.archlinux.org/>`_ with an AUR helper or using ``makepkg`` directly.
+	On Arch Linux and Arch-likes, you can install nightly packages which are located in the `AUR <https://aur.archlinux.org/>`_ with an AUR helper or using ``makepkg`` directly.
 
 
-		Via an AUR helper like ``yay``
+	Via an AUR helper like ``yay``
 
-		.. code-block:: console
+	.. code-block:: console
 
-		  $ yay -S yosys-nightly nextpnr-ice40-nightly nextpnr-ecp5-nightly
+		$ yay -S yosys-nightly nextpnr-ice40-nightly nextpnr-ecp5-nightly
 
-		Via ``makepkg`` directly
+	Via ``makepkg`` directly
 
-		.. code-block:: console
+	.. code-block:: console
 
-		  $ git clone https://aur.archlinux.org/yosys-nightly.git
-		  $ git clone https://aur.archlinux.org/prjtrellis-nightly.git
-		  $ git clone https://aur.archlinux.org/icestorm-nightly.git
-		  $ git clone https://aur.archlinux.org/nextpnr-ecp5-nightly.git
-		  $ git clone https://aur.archlinux.org/nextpnr-ice40-nightly.git
-		  $ (cd yosys-nightly && makepkg -sic)
-		  $ (cd prjtrellis-nightly && makepkg -sic)
-		  $ (cd icestorm-nightly && makepkg -sic)
-		  $ (cd nextpnr-ecp5-nightly && makepkg -sic)
-		  $ (cd nextpnr-ice40-nightly && makepkg -sic)
-
-
-	.. platform-choice:: linux
-		:title: Other Linux
-
-		.. warning:: These instructions may be incorrect or incomplete!
-
-		With other Linux distributions, it is recommended to use the `OSS Cad Suite <https://github.com/YosysHQ/oss-cad-suite-build>`_ nightly build. It provides a full environment of all the tools needed built on a nightly basis.
-
-		Simply download the latest `release <https://github.com/YosysHQ/oss-cad-suite-build/releases>`_ for your architecture, extract it to a good home, and then add it to your ``$PATH``
-
-		.. code-block:: console
-
-		  $ curl -LOJ https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2022-04-26/oss-cad-suite-linux-x64-20220426.tgz
-		  $ tar xfv oss-cad-suite-linux-x64-20220426.tgz
-		  $ export PATH="`pwd`/oss-cad-suite/bin:$PATH"
+		$ git clone https://aur.archlinux.org/yosys-nightly.git
+		$ git clone https://aur.archlinux.org/prjtrellis-nightly.git
+		$ git clone https://aur.archlinux.org/icestorm-nightly.git
+		$ git clone https://aur.archlinux.org/nextpnr-ecp5-nightly.git
+		$ git clone https://aur.archlinux.org/nextpnr-ice40-nightly.git
+		$ (cd yosys-nightly && makepkg -sic)
+		$ (cd prjtrellis-nightly && makepkg -sic)
+		$ (cd icestorm-nightly && makepkg -sic)
+		$ (cd nextpnr-ecp5-nightly && makepkg -sic)
+		$ (cd nextpnr-ice40-nightly && makepkg -sic)
 
 
-	.. platform-choice:: macos
-		:title: macOS
+.. tab:: Other Linux
 
-		For macOS systems, it is recommended to use the YoWASP distribution of the toolchain. However if you want to use the native tools, and you are using an Intel based Mac, then the `OSS Cad Suite <https://github.com/YosysHQ/oss-cad-suite-build>`_ has nightly builds for x86_64 versions of Darwin.
+	.. warning:: These instructions may be incorrect or incomplete!
 
-		Simply download the latest `release <https://github.com/YosysHQ/oss-cad-suite-build/releases>`_ for your architecture, extract it to a good home, and then add it to your ``$PATH``
+	With other Linux distributions, it is recommended to use the `OSS Cad Suite <https://github.com/YosysHQ/oss-cad-suite-build>`_ nightly build. It provides a full environment of all the tools needed built on a nightly basis.
 
-		.. code-block:: console
+	Simply download the latest `release <https://github.com/YosysHQ/oss-cad-suite-build/releases>`_ for your architecture, extract it to a good home, and then add it to your ``$PATH``
 
-		  $ curl -LOJ https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2022-04-26/oss-cad-suite-darwin-x64-20220426.tgz
-		  $ tar xfv oss-cad-suite-darwin-x64-20220426.tgz
-		  $ export PATH="`pwd`/oss-cad-suite/bin:$PATH"
+	.. code-block:: console
 
-	.. platform-choice:: windows
-		:title: Windows
+		$ curl -LOJ https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2022-04-26/oss-cad-suite-linux-x64-20220426.tgz
+		$ tar xfv oss-cad-suite-linux-x64-20220426.tgz
+		$ export PATH="`pwd`/oss-cad-suite/bin:$PATH"
 
-		.. warning:: These instructions may be incorrect or incomplete!
 
-		For Windows systems, it is recommended to use the YoWASP distribution of the toolchain. However if you want to use the native tools, and you are using an Intel based PC, then the `OSS Cad Suite <https://github.com/YosysHQ/oss-cad-suite-build>`_ has nightly builds for x86_64 versions of Windows.
+.. tab:: macOS
 
-		Simply download the latest `release <https://github.com/YosysHQ/oss-cad-suite-build/releases>`_ for your architecture, extract it to a good home, and then add it to your ``%PATH%``
+	For macOS systems, it is recommended to use the YoWASP distribution of the toolchain. However if you want to use the native tools, and you are using an Intel based Mac, then the `OSS Cad Suite <https://github.com/YosysHQ/oss-cad-suite-build>`_ has nightly builds for x86_64 versions of Darwin.
 
-		.. code-block:: console
+	Simply download the latest `release <https://github.com/YosysHQ/oss-cad-suite-build/releases>`_ for your architecture, extract it to a good home, and then add it to your ``$PATH``
 
-			$ call %cd%\oss-cad-suite\environment.bat
+	.. code-block:: console
+
+		$ curl -LOJ https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2022-04-26/oss-cad-suite-darwin-x64-20220426.tgz
+		$ tar xfv oss-cad-suite-darwin-x64-20220426.tgz
+		$ export PATH="`pwd`/oss-cad-suite/bin:$PATH"
+
+.. tab:: Windows
+
+	.. warning:: These instructions may be incorrect or incomplete!
+
+	For Windows systems, it is recommended to use the YoWASP distribution of the toolchain. However if you want to use the native tools, and you are using an Intel based PC, then the `OSS Cad Suite <https://github.com/YosysHQ/oss-cad-suite-build>`_ has nightly builds for x86_64 versions of Windows.
+
+	Simply download the latest `release <https://github.com/YosysHQ/oss-cad-suite-build/releases>`_ for your architecture, extract it to a good home, and then add it to your ``%PATH%``
+
+	.. code-block:: console
+
+		$ call %cd%\oss-cad-suite\environment.bat
 
 ```
 
