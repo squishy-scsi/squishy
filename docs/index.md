@@ -9,7 +9,6 @@ applets/index
 library/index
 tutorials/index
 cli
-gui
 mascot
 faq
 
