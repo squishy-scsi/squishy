@@ -78,6 +78,9 @@ setup(
 		'dev': [
 			'nox',
 			'setuptools_scm'
+		],
+		'firmware': [
+			'meson',
 		]
 	},
 
