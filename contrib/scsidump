@@ -10,6 +10,10 @@ import sys
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter, Namespace
 from pathlib  import Path
 
+try:
+	from squishy  import __version__
+except ImportError:
+	sys.path.insert(0, '/pool/abyss/Projects/squishy/squishy')
 
 from squishy import __version__
 
@@ -145,7 +149,7 @@ def _setup_parser(parser: ArgumentParser):
 
 
 def extcap_list_interfaces():
-	print(f'extcap {{version={__version__}}}{{help=https://docs.scsi.moe/extcap.html}}')
+	print(f'extcap {{version={__version__}}}{{help=https://docs.scsi.moe/extra.html#scsidump}}')
 	print('interface {value=scsidump}{display=Squishy SCSI Bus capture}')
 
 def extcap_list_dlts():
