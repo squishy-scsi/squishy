@@ -8,7 +8,4 @@
 .. automodule:: squishy.gateware.scsi.scsi2
   :members:
 
-.. autoclass:: squishy.gateware.scsi.scsi2.SCSI2
-  :members:
-
 ```
