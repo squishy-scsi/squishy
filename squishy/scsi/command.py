@@ -604,6 +604,7 @@ class SCSICommand(Struct):
 		{'vendor': 0, 'reserved': 0, 'flag': 0, 'link': 0}
 	)
 
+	# TODO(aki): Allow for custom control block layouts
 	def __init__(self, opcode: int, group_code: GroupCode, *subcons, size: int = None, **subconskw) -> None:
 		self.opcode = opcode
 		self.group_code = group_code
