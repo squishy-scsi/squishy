@@ -4,7 +4,6 @@
 :hidden:
 
 cli
-gui
 repl
 applet
 device
@@ -15,7 +14,7 @@ Flesh this out
 ```
 
 The following APIs are available for use within Squishy applets. They allow the applet
-to register various components with the Squishy framework, such as the [GUI](./gui.md), the
+to register various components with the Squishy framework, such as the
 [CLI](./cli.md), or the [REPL](./repl.md). Out of the three subsystems, only the CLI is mandatory, the GUI and REPL are optional.
 
 For details on how to write Squishy applets, see the [Applets Tutorial](../../tutorials/applets/index.md) for a walk-through.
