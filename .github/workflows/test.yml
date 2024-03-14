@@ -44,7 +44,8 @@ jobs:
           nox -s test -- --coverage
 
       - name: Codecov Upload
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         with:
           verbose: true
           files: ./build/tests/coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}

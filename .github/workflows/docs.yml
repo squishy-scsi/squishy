@@ -39,9 +39,8 @@ jobs:
         run: |
           sphinx-build -b html ./docs ./_build/
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@3.7.1
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH: gh-pages
-          FOLDER: _build
-          CLEAN: true
+          branch: gh-pages
+          folder: _build
+          clean: true
