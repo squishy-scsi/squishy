@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 
-from setuptools import setup, find_packages
-from pathlib    import Path
+from typing                 import Callable, TypeAlias, Type
+from setuptools             import setup, find_packages
+from pathlib                import Path
+
+ScmVersion: TypeAlias = Type['setuptools_scm.version.ScmVersion']
 
 REPO_ROOT   = Path(__file__).parent
 README_FILE = (REPO_ROOT / 'README.md')
 
-def vcs_ver():
-	def scheme(version):
+def vcs_ver() -> dict[str, str | Callable[[ScmVersion], str]]:
+	def scheme(version: ScmVersion) -> str:
 		if version.tag and not version.distance:
 			return version.format_with('')
 		else:
@@ -19,7 +22,7 @@ def vcs_ver():
 		'local_scheme': scheme
 	}
 
-def doc_ver():
+def doc_ver() -> str:
 	try:
 		from setuptools_scm.git import parse as parse_git
 	except ImportError:
@@ -47,13 +50,13 @@ setup(
 	long_description = README_FILE.read_text(),
 	long_description_content_type = 'text/markdown',
 
-	setup_requires   = [
+	setup_requires = [
 		'wheel',
 		'setuptools',
 		'setuptools_scm'
 	],
 
-	install_requires  = [
+	install_requires = [
 		'Jinja2',
 		'construct>=2.10.67',
 		'arrow',
@@ -64,17 +67,16 @@ setup(
 		'sol-usb>=0.3.0,<1.0',
 	],
 
-	packages          = find_packages(
-		where   = '.',
+	packages = find_packages(
+		where = '.',
 		exclude = (
 			'tests', 'tests.*', 'examples', 'examples.*'
 		)
 	),
-	package_data      = {
 
-	},
+	package_data = { },
 
-	extras_require    = {
+	extras_require = {
 		'dev': [
 			'nox',
 			'setuptools_scm'
@@ -84,13 +86,13 @@ setup(
 		]
 	},
 
-	entry_points       = {
+	entry_points = {
 		'console_scripts': [
 			'squishy = squishy.cli:main',
 		]
 	},
 
-	classifiers       = [
+	classifiers = [
 		'Development Status :: 4 - Beta',
 
 		'Environment :: Console',
@@ -105,16 +107,15 @@ setup(
 		'Operating System :: Microsoft :: Windows',
 		'Operating System :: POSIX :: Linux',
 
-		'Programming Language :: Python :: 3.9',
 		'Programming Language :: Python :: 3.10',
 		'Programming Language :: Python :: 3.11',
+		'Programming Language :: Python :: 3.12',
 
 		'Topic :: Software Development',
 		'Topic :: System :: Hardware',
-
 	],
 
-	project_urls      = {
+	project_urls = {
 		'Documentation': 'https://docs.scsi.moe/',
 		'Source Code'  : 'https://github.com/squishy-scsi/squishy',
 		'Bug Tracker'  : 'https://github.com/squishy-scsi/squishy/issues',
