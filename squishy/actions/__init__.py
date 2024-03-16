@@ -2,7 +2,6 @@
 
 from abc           import ABCMeta, abstractmethod
 from argparse      import ArgumentParser, Namespace
-from typing        import Optional
 
 from ..core.device import SquishyHardwareDevice
 
@@ -91,7 +90,7 @@ class SquishyAction(metaclass = ABCMeta):
 		raise NotImplementedError('Actions must implement this method')
 
 	@abstractmethod
-	def run(self, args: Namespace, dev: Optional[SquishyHardwareDevice] = None) -> int:
+	def run(self, args: Namespace, dev: SquishyHardwareDevice | None = None) -> int:
 		'''
 		Run the action.
 

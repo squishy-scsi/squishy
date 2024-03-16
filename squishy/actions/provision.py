@@ -2,7 +2,6 @@
 
 import logging           as log
 from pathlib             import Path
-from typing              import Optional
 from argparse            import ArgumentParser, Namespace
 
 from torii.build.run     import LocalBuildProducts
@@ -185,7 +184,7 @@ class Provision(SquishyAction):
 			help   = 'Program the whole device, not just the bootloader'
 		)
 
-	def run(self, args: Namespace, dev: Optional[SquishyHardwareDevice] = None) -> int:
+	def run(self, args: Namespace, dev: SquishyHardwareDevice | None = None) -> int:
 		if not args.build_only and not args.whole_device and dev is None:
 			dev = SquishyHardwareDevice.get_device(serial = args.device)
 			if dev is None:

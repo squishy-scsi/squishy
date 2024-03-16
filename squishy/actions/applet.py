@@ -2,7 +2,6 @@
 import logging            as log
 from pathlib              import Path
 from argparse             import ArgumentParser, Namespace
-from typing               import Union, Optional
 
 from rich.progress        import (
 	Progress, SpinnerColumn, BarColumn,
@@ -25,7 +24,7 @@ class Applet(SquishyAction):
 	description  = 'Build and run Squishy applets'
 	requires_dev = True
 
-	def _collect_all_applets(self) -> list[dict[str, Union[str, SquishyAction]]]:
+	def _collect_all_applets(self) -> list[dict[str, str | SquishyAction]]:
 		from .. import applets
 		return [
 			*collect_members(
@@ -232,7 +231,7 @@ class Applet(SquishyAction):
 					)
 				applet.register_args(p)
 
-	def run(self, args: Namespace, dev: Optional[SquishyHardwareDevice] = None) -> int:
+	def run(self, args: Namespace, dev: SquishyHardwareDevice | None = None) -> int:
 		if not args.build_only and dev is None:
 			dev = SquishyHardwareDevice.get_device(serial = args.device)
 
