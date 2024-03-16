@@ -3,7 +3,7 @@
 from pkgutil    import walk_packages
 from importlib  import import_module
 from inspect    import getmembers, isclass
-from typing     import Union, Any
+from typing     import Callable
 
 __all__ = (
 	'collect_members',
@@ -13,7 +13,7 @@ __all__ = (
 )
 
 
-def predicate_applet(member) -> bool:
+def predicate_applet(member: object) -> bool:
 	'''
 	Applet predicate
 
@@ -32,7 +32,7 @@ def predicate_applet(member) -> bool:
 		return issubclass(member, SquishyApplet) and member is not SquishyApplet
 	return False
 
-def predicate_action(member) -> bool:
+def predicate_action(member: object) -> bool:
 	'''
 	Action predicate
 
@@ -51,7 +51,7 @@ def predicate_action(member) -> bool:
 		return issubclass(member, SquishyAction) and member is not SquishyAction
 	return False
 
-def predicate_class(member) -> bool:
+def predicate_class(member: object) -> bool:
 	'''
 	Class predicate
 
@@ -66,7 +66,9 @@ def predicate_class(member) -> bool:
 
 	return isclass(member)
 
-def collect_members(pkg, pred, prefix: str = '', make_instance: bool = True) -> list[dict[str, Union[str, Any]]]:
+def collect_members(
+	pkg: str, pred: Callable[[object], bool], prefix: str = '', make_instance: bool = True
+) -> list[dict[str, str | object]]:
 	'''
 	Collect members from package
 
@@ -75,14 +77,12 @@ def collect_members(pkg, pred, prefix: str = '', make_instance: bool = True) -> 
 
 	Returns
 	-------
-	list[dict[str, tuple[str, type]]]
+	list[dict[str, str | object]]
 		The list of members, their name and type, or optionally and instance of said type.
 
 	'''
 
-	pkg = str(pkg)
-
-	members = list()
+	members: list[dict[str, str | object]] = list()
 
 	for _, pkg_name, __ in walk_packages(
 		path  = (pkg,),

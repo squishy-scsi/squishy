@@ -4,8 +4,6 @@ import logging       as log
 from pathlib         import Path
 from lzma            import LZMACompressor
 from shutil          import rmtree
-from typing          import Union
-
 
 from torii.build.run import LocalBuildProducts
 
@@ -61,7 +59,7 @@ class SquishyBitstreamCache:
 		self._cache_root.mkdir()
 
 
-	def get(self, digest: str) -> dict[str, Union[str, LocalBuildProducts]]:
+	def get(self, digest: str) -> dict[str, str | LocalBuildProducts]:
 		'''Attempt to retrieve a bitstream based on it's elaboration digest'''
 		bitstream_name = f'{digest}.bin'
 		cache_dir = self._get_cache_dir(digest)

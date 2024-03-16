@@ -1,41 +1,19 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging                           as log
 
-from typing                              import (
-	Iterable, Type, Union, Optional
-)
+from typing                              import Iterable, Type
+from time                                import sleep
+from datetime                            import datetime
 
-from time                                import (
-	sleep
-)
-from datetime                            import (
-	datetime
-)
+from usb1                                import USBContext, USBDevice, USBError, USBConfiguration
 
-from usb1                                import (
-	USBContext, USBDevice, USBError,
-	USBConfiguration
-)
+from usb_construct.types                 import LanguageIDs
+from usb_construct.types.descriptors.dfu import FunctionalDescriptor
 
-from usb_construct.types                 import (
-	LanguageIDs
-)
+from rich.progress                       import Progress
 
-from usb_construct.types.descriptors.dfu import (
-	FunctionalDescriptor
-)
-
-from rich.progress                       import (
-	Progress
-)
-
-from .dfu_types                          import (
-	DFU_CLASS, DFURequests, DFUState, DFUStatus
-)
-
-from ..config                            import (
-	USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
-)
+from .dfu_types                          import DFU_CLASS, DFURequests, DFUState, DFUStatus
+from ..config                            import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
 
 __all__ = (
 	'SquishyHardwareDevice',
@@ -44,7 +22,7 @@ __all__ = (
 # Due to how libusb1 works and how we're using it
 # This needs to be global so it can live for the
 # life of the runtime
-_USB_CTX: Optional[USBContext] = None
+_USB_CTX: USBContext | None = None
 
 class SquishyHardwareDevice:
 	'''
@@ -71,7 +49,7 @@ class SquishyHardwareDevice:
 
 	'''
 
-	def _get_dfu_interface(self, cfg: Optional[USBConfiguration]) -> Optional[int]:
+	def _get_dfu_interface(self, cfg: USBConfiguration | None) -> int | None:
 		''' Get the interface ID that matches the ``_DFU_CLASS`` '''
 		if self._dfu_iface is None and cfg is not None:
 			for cfg in self._dev.iterConfigurations():
@@ -86,13 +64,13 @@ class SquishyHardwareDevice:
 	def _get_dfu_status(self) -> tuple[DFUStatus, DFUState]:
 		''' Get DFU Status '''
 		cfg = self._usb_hndl.getConfiguration()
-		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		interface_id = self._get_dfu_interface(cfg)
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
 		self._ensure_iface_claimed(interface_id)
 
-		data: Optional[bytearray] = self._usb_hndl.controlRead(
+		data: bytearray | None = self._usb_hndl.controlRead(
 			0b00100001,
 			DFURequests.GetStatus,
 			0,
@@ -108,13 +86,13 @@ class SquishyHardwareDevice:
 	def _get_dfu_state(self) -> DFUState:
 		''' Get the DFU State '''
 		cfg = self._usb_hndl.getConfiguration()
-		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		interface_id = self._get_dfu_interface(cfg)
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
 		self._ensure_iface_claimed(interface_id)
 
-		data: Optional[bytearray] = self._usb_hndl.controlRead(
+		data: bytearray | None = self._usb_hndl.controlRead(
 			0b00100001,
 			DFURequests.GetState,
 			0,
@@ -130,7 +108,7 @@ class SquishyHardwareDevice:
 	def _send_dfu_detach(self) -> bool:
 		''' Invoke a DFU Detach '''
 		cfg = self._usb_hndl.getConfiguration()
-		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		interface_id = self._get_dfu_interface(cfg)
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
@@ -158,7 +136,7 @@ class SquishyHardwareDevice:
 		log.debug('Getting DFU alt-modes')
 
 		cfg = self._usb_hndl.getConfiguration()
-		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		interface_id  = self._get_dfu_interface(cfg)
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
@@ -179,10 +157,10 @@ class SquishyHardwareDevice:
 
 		return alt_modes
 
-	def _get_dfu_tx_size(self) -> Optional[int]:
+	def _get_dfu_tx_size(self) -> int | None:
 		''' Get the DFU transaction size '''
 		cfg = self._usb_hndl.getConfiguration()
-		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		interface_id = self._get_dfu_interface(cfg)
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
@@ -233,7 +211,7 @@ class SquishyHardwareDevice:
 		''' Send a DFU Download transaction '''
 
 		cfg = self._usb_hndl.getConfiguration()
-		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		interface_id = self._get_dfu_interface(cfg)
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
@@ -280,8 +258,8 @@ class SquishyHardwareDevice:
 		self._usb_hndl = self._dev.open()
 		if not self.can_dfu():
 			raise RuntimeError(f'The device {dev.getVendorID():04x}:{dev.getProductID():04x} @ {dev.getBusNumber()} is not DFU capable.')
-		self._timeout: int             = timeout
-		self._dfu_iface: Optional[int] = None
+		self._timeout: int          = timeout
+		self._dfu_iface: int | None = None
 		self.serial   = serial
 		self.raw_ver  = dev.getbcdDevice()
 		self.dec_ver  = self._decode_version(self.raw_ver)
@@ -331,7 +309,7 @@ class SquishyHardwareDevice:
 		)
 
 	@classmethod
-	def get_device(cls: Type['SquishyHardwareDevice'], serial: str = None) -> Union[None, 'SquishyHardwareDevice']:
+	def get_device(cls: Type['SquishyHardwareDevice'], serial: str = None) -> Type['SquishyHardwareDevice'] | None:
 		'''
 		Get attached Squishy device.
 
@@ -451,7 +429,7 @@ class SquishyHardwareDevice:
 		''' Reset the device '''
 		return self._send_dfu_detach()
 
-	def upload(self, data: bytearray, slot: int, progress: Optional[Progress] = None) -> bool:
+	def upload(self, data: bytearray, slot: int, progress: Progress | None = None) -> bool:
 		''' Push Firmware/Gateware to device '''
 		if not self._enter_dfu_mode():
 			return False
@@ -459,7 +437,7 @@ class SquishyHardwareDevice:
 		log.info(f'Starting DFU upload of {len(data)} bytes to slot {slot}')
 
 		cfg = self._usb_hndl.getConfiguration()
-		interface_id: Optional[int] = self._get_dfu_interface(cfg)
+		interface_id = self._get_dfu_interface(cfg)
 		if interface_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
@@ -467,7 +445,6 @@ class SquishyHardwareDevice:
 
 		log.debug(f'Setting interface {interface_id} alt to {slot}')
 		self._usb_hndl.setInterfaceAltSetting(interface_id, slot)
-
 
 
 		def chunker(size: int, data: Iterable):
@@ -510,9 +487,9 @@ class SquishyHardwareDevice:
 		return True
 
 
-	def download(self, slot: int) -> Optional[bytearray]:
+	def download(self, slot: int) -> bytearray | None:
 		''' Pull Firmware/Gateware from device (if supported) '''
-		pass
+		return None
 
 	def __repr__(self) -> str:
 		return f'<SquishyHardwareDevice SN=\'{self.serial}\' REV=\'{self.rev}\' ADDR={self._dev.getDeviceAddress()}>'
