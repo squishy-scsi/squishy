@@ -9,22 +9,21 @@ from rich.progress        import (
 )
 
 from ..applets           import SquishyApplet
-from ..config            import SQUISHY_APPLETS, SQUISHY_BUILD_DIR
+from ..config            import SQUISHY_APPLETS
 from ..core.collect      import collect_members, predicate_applet
 from ..core.device       import SquishyHardwareDevice
 
 from ..gateware          import Squishy
-from ..gateware.platform import AVAILABLE_PLATFORMS
-from .                   import SquishyAction
+from .                   import SquishySynthAction
 
 
-class Applet(SquishyAction):
+class Applet(SquishySynthAction):
 	pretty_name  = 'Squishy Applets'
 	short_help   = 'Squishy applet subsystem'
 	description  = 'Build and run Squishy applets'
 	requires_dev = True
 
-	def _collect_all_applets(self) -> list[dict[str, str | SquishyAction]]:
+	def _collect_all_applets(self) -> list[dict[str, str | SquishyApplet]]:
 		from .. import applets
 		return [
 			*collect_members(
@@ -52,101 +51,12 @@ class Applet(SquishyAction):
 		# do_simulation  = actions.add_parser('simulate', help = 'Run simulation test cases')
 		# sim_options    = do_simulation.add_argument_group('Simulation Options')
 
-		build_options  = parser.add_argument_group('Build Options')
-		pnr_options    = parser.add_argument_group('Gateware Place and Route Options')
-		synth_options  = parser.add_argument_group('Gateware Synth Options')
+		self.register_synth_args(parser, cacheable = True)
 
 		usb_options    = parser.add_argument_group('USB Options')
 		uart_options   = parser.add_argument_group('Debug UART Options')
 		scsi_options   = parser.add_argument_group('SCSI Options')
 
-		parser.add_argument(
-			'--platform', '-p',
-			dest    = 'hardware_platform',
-			type    = str,
-			default = list(AVAILABLE_PLATFORMS.keys())[-1],
-			choices = list(AVAILABLE_PLATFORMS.keys()),
-			help    = 'The target hardware platform if using --build-only',
-		)
-
-		# Build Options
-		build_options.add_argument(
-			'--build-only',
-			action = 'store_true',
-			help   = 'Only build the applet, and skip device programming'
-		)
-
-		build_options.add_argument(
-			'--skip-cache',
-			action = 'store_true',
-			help   = 'Skip the cache lookup and subsequent caching of resultant bitstream'
-		)
-
-		build_options.add_argument(
-			'--skip-programming',
-			action = 'store_true',
-			help   = 'Don\'t program the device once the applet is built'
-		)
-
-		build_options.add_argument(
-			'--build-dir', '-b',
-			type    = str,
-			default = SQUISHY_BUILD_DIR,
-			help    = 'The output directory for Squishy binaries and images'
-		)
-
-		build_options.add_argument(
-			'--loud',
-			action = 'store_true',
-			help   = 'Enables the output of the Synth and PnR to the console'
-		)
-
-		# PnR Options
-		pnr_options.add_argument(
-			'--use-router2',
-			action = 'store_true',
-			help   = 'Use nextpnr\'s \'router2\' router rather than \'router1\''
-		)
-
-		pnr_options.add_argument(
-			'--tmg-ripup',
-			action  = 'store_true',
-			help    = 'Use the timing-driven ripup router'
-		)
-
-		pnr_options.add_argument(
-			'--detailed-timing-report',
-			action = 'store_true',
-			help   = 'Have nextpnr output a detailed net timing report'
-		)
-
-		pnr_options.add_argument(
-			'--routed-svg',
-			type    = Path,
-			default = None,
-			help    = 'Write a render of the routing to an SVG'
-		)
-
-		pnr_options.add_argument(
-			'--routed-json',
-			type    = Path,
-			default = None,
-			help   = 'Write the PnR output json for viewing in nextpnr after PnR'
-		)
-
-		pnr_options.add_argument(
-			'--pnr-seed',
-			type    = int,
-			default = 0,
-			help    = 'Specify the PnR seed to use'
-		)
-
-		# Synth Options
-		synth_options.add_argument(
-			'--no-abc9',
-			action = 'store_true',
-			help   = 'Disable use of Yosys\' ABC9'
-		)
 
 		# USB Options
 		usb_options.add_argument(
@@ -232,30 +142,11 @@ class Applet(SquishyAction):
 				applet.register_args(p)
 
 	def run(self, args: Namespace, dev: SquishyHardwareDevice | None = None) -> int:
-		if not args.build_only and dev is None:
-			dev = SquishyHardwareDevice.get_device(serial = args.device)
+		plt = self.get_hw_platform(args, dev)
+		if plt is None:
+			return 1
 
-			if dev is None:
-				log.error('No device selected, unable to continue.')
-				return 1
-
-			hardware_platform = f'rev{dev.rev}'
-			if hardware_platform not in AVAILABLE_PLATFORMS.keys():
-				log.error(f'Unknown hardware revision \'{hardware_platform}\'')
-				log.error(f'Expected one of {", ".join(AVAILABLE_PLATFORMS.keys())}')
-				return 1
-
-		else:
-			hardware_platform = args.hardware_platform
-
-		build_dir = Path(args.build_dir)
-		log.info(f'Targeting platform \'{hardware_platform}\'')
-
-		if not build_dir.exists():
-			log.debug(f'Making build directory {args.build_dir}')
-			build_dir.mkdir()
-		else:
-			log.debug(f'Using build directory {args.build_dir}')
+		platform, hardware_platform, dev = plt
 
 		apl = list(filter(lambda a: a['name'] == args.applet, self.applets))[0]
 
@@ -270,40 +161,6 @@ class Applet(SquishyAction):
 		if applet.preview:
 			log.warning('This applet is a preview, it may be buggy or not work at all')
 
-		platform = AVAILABLE_PLATFORMS[hardware_platform]()
-
-		pnr_opts = []
-		synth_opts = []
-
-		# PNR Opts
-		if args.use_router2:
-			pnr_opts.append('--router router2')
-		else:
-			pnr_opts.append('--router router1')
-
-		if args.tmg_ripup:
-			pnr_opts.append('--tmg-ripup')
-
-		if args.detailed_timing_report:
-			pnr_opts.append('--report timing.json')
-			pnr_opts.append('--detailed-timing-report')
-
-		if args.routed_svg is not None:
-			svg_path = args.routed_svg.resolve()
-			log.info(f'Writing PnR output svg to {svg_path}')
-			pnr_opts.append(f'--routed-svg {svg_path}')
-
-		if args.routed_json is not None:
-			json_path = args.routed_json.resolve()
-			log.info(f'Writing PnR output json to {json_path}')
-			pnr_opts.append(f'--write {json_path}')
-
-		if args.pnr_seed is not None:
-			pnr_opts.append(f'--seed {args.pnr_seed}')
-
-		# Synth Opts
-		if not args.no_abc9:
-			synth_opts.append('-abc9')
 
 		applet_elaboratable = applet.init_applet(args)
 
@@ -343,6 +200,14 @@ class Applet(SquishyAction):
 			applet      = applet_elaboratable
 		)
 
+		log.info('Building applet gateware')
+		name, prod = self.run_synth(args, platform, gateware, 'squishy_applet', cacheable = True)
+
+		if args.build_only:
+			log.info(f'Use \'dfu-util\' to flash \'{args.build_dir / name}.bin\' into slot 1 to update the applet')
+			log.info(f'e.g. \'dfu-util -d 1209:ca70,:ca71 -a 1 -R -D {args.build_dir / name}.bin\'')
+			return 0
+
 		with Progress(
 			SpinnerColumn(),
 			TextColumn('[progress.description]{task.description}'),
@@ -350,36 +215,17 @@ class Applet(SquishyAction):
 			transient = True
 		) as progress:
 
-			name, prod = platform.build(
-				gateware,
-				name          = 'squishy_applet',
-				build_dir     = args.build_dir,
-				do_build      = True,
-				do_program    = False,
-				synth_opts    = synth_opts,
-				verbose       = args.loud,
-				nextpnr_opts  = pnr_opts,
-				skip_cache    = args.skip_cache,
-				progress      = progress,
-				debug_verilog = True,
-			)
+			file_name = name
+			if not file_name.endswith('.bin'):
+				file_name += '.bin'
 
-
-			if args.build_only or args.skip_programming:
-				log.info(f'Use \'dfu-util\' to flash \'{args.build_dir / name}.bin\' into slot 1 to update the applet')
-				log.info(f'e.g. \'dfu-util -d 1209:ca70,:ca71 -a 1 -R -D {args.build_dir / name}.bin\'')
+			log.info(f'Programming applet with {file_name}')
+			if dev.upload(prod.get(file_name), 1, progress):
+				log.info('Resetting Device')
+				dev.reset()
 			else:
-				file_name = name
-				if not file_name.endswith('.bin'):
-					file_name += '.bin'
+				log.error('Device upload failed!')
+				return 1
 
-				log.info(f'Programming applet with {file_name}')
-				if dev.upload(prod.get(file_name), 1, progress):
-					log.info('Resetting Device')
-					dev.reset()
-				else:
-					log.error('Device upload failed!')
-					return 1
-				log.info('Running applet...')
-				return applet.run(dev, args)
-			return 0
+		log.info('Running applet...')
+		return applet.run(dev, args)
