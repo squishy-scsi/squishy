@@ -1,13 +1,13 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from enum           import IntEnum, auto, unique
+from enum                import IntEnum, auto, unique
 
-from torii          import Elaboratable, Module, Signal
+from torii               import Elaboratable, Module, Signal
 
-from torii.lib.fifo import AsyncFIFO
+from torii.lib.fifo      import AsyncFIFO
 
-from ...core.flash  import FlashGeometry
-
-from .spi           import SPIInterface
+from ...core.flash       import FlashGeometry
+from ..platform.platform import SquishyPlatform
+from .spi                import SPIInterface
 
 __doc__ = '''\
 
@@ -63,7 +63,7 @@ class SPIFlash(Elaboratable):
 		self.writeAddr  = Signal(self.geometry.addr_width)
 		self.byteCount  = Signal(self.geometry.addr_width)
 
-	def elaborate(self, platform) -> Module:
+	def elaborate(self, platform: SquishyPlatform | None) -> Module:
 		m = Module()
 
 		if hasattr(platform, 'flash'):

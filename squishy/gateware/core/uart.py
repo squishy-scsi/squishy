@@ -4,6 +4,7 @@ from torii.lib.fifo         import AsyncFIFO
 from torii.lib.stdio.serial import AsyncSerial
 from torii.lib.soc.wishbone import Interface
 
+from ..platform.platform    import SquishyPlatform
 
 __all__ = (
 	'UARTInterface',
@@ -43,7 +44,7 @@ class UARTInterface(Elaboratable):
 
 		self._uart = None
 
-	def elaborate(self, platform) -> Module:
+	def elaborate(self, platform: SquishyPlatform | None) -> Module:
 		self._status_led = platform.request('led', 0)
 
 		self._uart = AsyncSerial(

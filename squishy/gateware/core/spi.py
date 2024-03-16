@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii  import (
-	Elaboratable, Signal, Module, Cat
-)
+from torii               import Elaboratable, Signal, Module, Cat
+
+from ..platform.platform import SquishyPlatform
 
 __all__ = (
 	'SPIInterface',
@@ -42,7 +42,7 @@ class SPIInterface(Elaboratable):
 		self.wdat = Signal(8)
 		self.rdat = Signal(8)
 
-	def elaborate(self, platform) -> Module:
+	def elaborate(self, platform: SquishyPlatform | None) -> Module:
 		self._spi = platform.request(*self._spi_resource)
 
 		m = Module()

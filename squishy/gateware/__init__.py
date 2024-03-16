@@ -1,16 +1,18 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from typing    import Optional, Any
-import logging as log
+from typing             import Any
+import logging          as log
 
-from torii     import Elaboratable, Module
+from torii              import Elaboratable, Module
 
-from .applet   import AppletElaboratable
-from .usb      import Rev1USB, Rev2USB
-from .scsi     import SCSI1, SCSI2, SCSI3
+from .applet            import AppletElaboratable
+from .usb               import Rev1USB, Rev2USB
+from .scsi              import SCSI1, SCSI2, SCSI3
+from .platform.platform import SquishyPlatform
 
 __all__ = (
 	'AppletElaboratable',
+	'SquishyPlatform',
 	'Squishy',
 )
 
@@ -84,7 +86,7 @@ class Squishy(Elaboratable):
 		}.get(revision, lambda s: None)()
 
 
-	def elaborate(self, platform: Optional[Any]) -> Module:
+	def elaborate(self, platform: SquishyPlatform | None) -> Module:
 		m = Module()
 
 		# Setup Submodules

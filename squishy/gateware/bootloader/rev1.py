@@ -31,6 +31,7 @@ from usb_construct.types.descriptors.microsoft       import *
 from usb_construct.contextmgrs.descriptors.microsoft import *
 
 from .dfu                 import DFURequestHandler
+from ..platform.platform  import SquishyPlatform
 from ..quirks.usb.windows import WindowsRequestHandler
 
 
@@ -57,7 +58,7 @@ class Bootloader(Elaboratable):
 	def __init__(self, *, serial_number: str) -> None:
 		self._serial_number = serial_number
 
-	def elaborate(self, platform) -> Module:
+	def elaborate(self, platform: SquishyPlatform | None) -> Module:
 		m = Module()
 
 		trigger_reboot = Signal()

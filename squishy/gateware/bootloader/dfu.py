@@ -1,7 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 from enum                                   import IntEnum, unique
 from struct                                 import pack, unpack
-from typing                                 import Union
 
 from torii                                  import (
 	Module, Signal, DomainRenamer, Cat, Memory, Const
@@ -27,6 +26,7 @@ from sol_usb.gateware.stream.generator      import (
 from ...core.flash                          import FlashGeometry
 
 from ..core.flash                           import SPIFlash
+from ..platform.platform                    import SquishyPlatform
 
 __all__ = (
 	'DFURequestHandler',
@@ -64,7 +64,7 @@ class DFURequestHandler(USBRequestHandler):
 		self.triggerReboot = Signal()
 
 
-	def elaborate(self, platform) -> Module:
+	def elaborate(self, platform: SquishyPlatform | None) -> Module:
 		m = Module()
 
 		interface          = self.interface
@@ -80,7 +80,7 @@ class DFURequestHandler(USBRequestHandler):
 		slot = Signal(8)
 
 
-		_flash: dict[str, Union[dict[str, int], FlashGeometry]] = platform.flash
+		_flash: dict[str, dict[str, int] | FlashGeometry] = platform.flash
 		cfg = DFUConfig()
 
 		m.submodules.bitstream_fifo = bitstream_fifo = AsyncFIFO(
@@ -399,7 +399,7 @@ class DFURequestHandler(USBRequestHandler):
 		)
 
 
-	def _make_rom(self, flash: dict[str, Union[dict[str, int], FlashGeometry]]) -> Memory:
+	def _make_rom(self, flash: dict[str, dict[str, int] | FlashGeometry]) -> Memory:
 		'''
 		Generate ROM layout of the flash.
 
