@@ -1,21 +1,19 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from enum                            import (
-	IntEnum, unique
-)
+from enum                            import IntEnum, unique
 
-from usb_construct.types.descriptors import (
-	InterfaceClassCodes, ApplicationSubclassCodes
-)
+from usb_construct.types.descriptors import InterfaceClassCodes, ApplicationSubclassCodes
 
 __doc__ = '''\
 
 '''
 
 __all__ = (
-
+	'DFUState',
+	'DFUStatus',
+	'DFURequests',
+	'DFU_CLASS',
 )
-
 
 @unique
 class DFUState(IntEnum):
