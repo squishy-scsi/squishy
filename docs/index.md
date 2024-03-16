@@ -27,7 +27,7 @@ Hardware <https://github.com/squishy-scsi/hardware>
 	:figwidth: 350px
 ```
 
-This is the documentation for [Squishy] and it's supporting components, as well as a collection of guides and tutorials for the Squishy ecosystem.
+This is the documentation for [Squishy] and its supporting components, as well as a collection of guides and tutorials for the Squishy ecosystem.
 
 
 ## What Squishy Isn't
@@ -41,6 +41,8 @@ Squishy is not a *specialized* device targeting only a single aspect of the SCSI
 ## What Squishy Is
 
 Squishy is a platform, it allows you to accomplish almost any goal you wish to that involves a SCSI bus. It can do things as mundane as emulating a SCSI hard drive, but also you can use it to [sniff, analyze, and replay SCSI bus traffic], or even [boot a modern system from 9-track tape].
+
+You can think of Squishy as being "Software Defined SCSI", much like how a Software Defined Radio works with a hardware transceiver and a software ecosystem, Squishy provides the same, but for SCSI.
 
 It is comprised of a [gateware] and [python] library as well as a [hardware] platform that acts as a bridge between the software and SCSI bus. Squishy allows for powerful and flexible control over all things SCSI, and using its [powerful applet system] it gives that power to you.
 
