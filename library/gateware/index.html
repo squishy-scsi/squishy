@@ -144,7 +144,7 @@
           <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
         </button>
       </div>
-      <label class="toc-overlay-icon toc-header-icon no-toc" for="__toc">
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
         <div class="visually-hidden">Toggle table of contents sidebar</div>
         <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
       </label>
@@ -332,7 +332,7 @@
               <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
             </button>
           </div>
-          <label class="toc-overlay-icon toc-content-icon no-toc" for="__toc">
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
             <div class="visually-hidden">Toggle table of contents sidebar</div>
             <i class="icon"><svg><use href="#svg-toc"></use></svg></i>
           </label>
@@ -348,6 +348,87 @@ Squishy. Next is the <a class="reference internal" href="platform/index.html#mod
 the torii platform definitions for various bits of Squishy hardware.
 Finally there is the <a class="reference internal" href="scsi/index.html#module-squishy.gateware.scsi" title="squishy.gateware.scsi"><code class="xref py py-mod docutils literal notranslate"><span class="pre">squishy.gateware.scsi</span></code></a> module, this is where all
 of the SCSI machinery is for use in torii HDL projects.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">squishy.gateware.</span></span><span class="sig-name descname"><span class="pre">SquishyPlatform</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#squishy.gateware.SquishyPlatform" title="Link to this definition">#</a></dt>
+<dd><p>Squishy Base Platform</p>
+<p>This is a base platform for Squishy hardware designs. It is built to abstract away a chunk of
+the things that would be constantly repeated for new Squishy platforms and variants.</p>
+<dl class="simple">
+<dt>The primary things that are here are as follows:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">usb_vid</span></code> - The USB Vendor ID</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usb_pid_app</span></code> - The USB PID for the main gateware</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usb_pid_boot</span></code> - This USB PID for the bootloader</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usb_mfr</span></code> - The USB Manufacturer string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usb_prod</span></code> - The USB PID to string mapping</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scsi_vid</span></code> - The default SCSI Vendor ID</p></li>
+</ul>
+</dd>
+<dt>The things that the platforms are expected to provide are as follows:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">revision</span></code> - The platform revision</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">clock_domain_generator</span></code> - The Torii Elaboratable PLL/Clock Domain generator for this Squishy platform</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pll_config</span></code> - The PLL configuration for the <code class="docutils literal notranslate"><span class="pre">clock_domain_generator</span></code></p></li>
+</ul>
+</dd>
+</dl>
+<p>Platforms are also still required to inherit from the appropriate <code class="xref py py-mod docutils literal notranslate"><span class="pre">torii.vendor.platform</span></code>
+in order to properly be used.</p>
+<dl class="py property">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform.usb_vid">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">usb_vid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#squishy.gateware.SquishyPlatform.usb_vid" title="Link to this definition">#</a></dt>
+<dd><p>The USB Vendor ID used for Squishy endpoints</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform.usb_pid_app">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">usb_pid_app</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#squishy.gateware.SquishyPlatform.usb_pid_app" title="Link to this definition">#</a></dt>
+<dd><p>The USB PID for the main Squishy gateware</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform.usb_pid_boot">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">usb_pid_boot</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#squishy.gateware.SquishyPlatform.usb_pid_boot" title="Link to this definition">#</a></dt>
+<dd><p>The USB VID for the Squishy bootloader</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform.usb_mfr">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">usb_mfr</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#squishy.gateware.SquishyPlatform.usb_mfr" title="Link to this definition">#</a></dt>
+<dd><p>The USB Manufacturer string</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform.usb_prod">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">usb_prod</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#squishy.gateware.SquishyPlatform.usb_prod" title="Link to this definition">#</a></dt>
+<dd><p>The USB VID to USB Product string mapping</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform.scsi_vid">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">scsi_vid</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#squishy.gateware.SquishyPlatform.scsi_vid" title="Link to this definition">#</a></dt>
+<dd><p>The SCSI Vendor ID</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform.revision">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">revision</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#squishy.gateware.SquishyPlatform.revision" title="Link to this definition">#</a></dt>
+<dd><p>The hardware platform revision</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform.clock_domain_generator">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">clock_domain_generator</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Elaboratable</span></em><a class="headerlink" href="#squishy.gateware.SquishyPlatform.clock_domain_generator" title="Link to this definition">#</a></dt>
+<dd><p>The Torii Elaboratable that is the PLL/Clock Domain generator for this Squishy platform</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="squishy.gateware.SquishyPlatform.pll_config">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pll_config</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#squishy.gateware.SquishyPlatform.pll_config" title="Link to this definition">#</a></dt>
+<dd><p>The PLL configuration for the given clock_domain_generator</p>
+</dd></dl>
+
+</dd></dl>
+
 </section>
 
     <script type="text/javascript">
@@ -399,8 +480,38 @@ of the SCSI machinery is for use in torii HDL projects.</p>
         
       </footer>
     </div>
-    <aside class="toc-drawer no-toc">
+    <aside class="toc-drawer">
       
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">Gateware Library</a><ul>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform</span></code></a><ul>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform.usb_vid"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform.usb_vid</span></code></a></li>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform.usb_pid_app"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform.usb_pid_app</span></code></a></li>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform.usb_pid_boot"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform.usb_pid_boot</span></code></a></li>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform.usb_mfr"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform.usb_mfr</span></code></a></li>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform.usb_prod"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform.usb_prod</span></code></a></li>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform.scsi_vid"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform.scsi_vid</span></code></a></li>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform.revision"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform.revision</span></code></a></li>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform.clock_domain_generator"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform.clock_domain_generator</span></code></a></li>
+<li><a class="reference internal" href="#squishy.gateware.SquishyPlatform.pll_config"><code class="docutils literal notranslate"><span class="pre">SquishyPlatform.pll_config</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
       
       
     </aside>
