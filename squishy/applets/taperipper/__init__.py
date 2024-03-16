@@ -1,7 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from ..          import SquishyApplet
-from ...gateware import AppletElaboratable
+from argparse       import ArgumentParser, Namespace
+
+from ..             import SquishyApplet
+from ...gateware    import AppletElaboratable
+from ...core.device import SquishyHardwareDevice
+
 
 # def build_bootimage(args):
 # 	log.info('Running taperipper boot image generation')
@@ -94,7 +98,7 @@ class Taperipper(SquishyApplet):
 	)
 
 
-	def register_args(self, parser) -> None:
+	def register_args(self, parser: ArgumentParser) -> None:
 		actions = parser.add_subparsers(dest = 'taperipper_actions')
 
 		bootimage_action = actions.add_parser(
@@ -178,9 +182,9 @@ class Taperipper(SquishyApplet):
 		)
 
 
-	def init_applet(self, args) -> AppletElaboratable:
+	def init_applet(self, args: Namespace) -> AppletElaboratable:
 		pass
 
-	def run(self, device, args) -> int:
+	def run(self, device: SquishyHardwareDevice, args: Namespace) -> int:
 		# TAPERIPPER_ACTIONS.get(args.taperipper_actions, lambda _: 1)(args)
 		pass

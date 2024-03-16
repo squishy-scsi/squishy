@@ -1,13 +1,17 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii       import Module
+from torii          import Module
+from argparse       import ArgumentParser, Namespace
 
-from ..          import SquishyApplet
-from ...gateware import AppletElaboratable
+
+from ..             import SquishyApplet
+from ...gateware    import AppletElaboratable, SquishyPlatform
+from ...core.device import SquishyHardwareDevice
+
 
 class AnalyzerElaboratable(AppletElaboratable):
 
-	def elaborate(self, platform) -> Module:
+	def elaborate(self, platform: SquishyPlatform | None) -> Module:
 		m = Module()
 
 		return m
@@ -21,11 +25,11 @@ class Analyzer(SquishyApplet):
 		'rev1', 'rev2'
 	)
 
-	def register_args(self, parser) -> None:
+	def register_args(self, parser: ArgumentParser) -> None:
 		pass
 
-	def init_applet(self, args) -> AppletElaboratable:
+	def init_applet(self, args: Namespace) -> AppletElaboratable:
 		return AnalyzerElaboratable()
 
-	def run(self, device, args) -> int:
+	def run(self, device: SquishyHardwareDevice, args: Namespace) -> int:
 		pass

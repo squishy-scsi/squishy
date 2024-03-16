@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from abc        import ABCMeta, abstractmethod
-from typing     import Union
+from abc           import ABCMeta, abstractmethod
+from argparse      import ArgumentParser, Namespace
 
-from ..gateware import AppletElaboratable
+
+from ..gateware    import AppletElaboratable
+from ..core.device import SquishyHardwareDevice
 
 __all__ = (
 	'SquishyApplet',
@@ -68,7 +70,7 @@ class SquishyApplet(metaclass = ABCMeta):
 
 	@property
 	@abstractmethod
-	def hardware_rev(self) -> Union[str, tuple[str, ...]]:
+	def hardware_rev(self) -> str | tuple[str, ...]:
 		raise NotImplementedError('Applets must implement this property')
 
 	def __init__(self):
@@ -108,7 +110,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		pass
 
 	@abstractmethod
-	def init_applet(self, args) -> AppletElaboratable:
+	def init_applet(self, args: Namespace) -> AppletElaboratable:
 		'''
 		Applet Initialization
 
@@ -135,7 +137,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		raise NotImplementedError('Applets must implement this method')
 
 	@abstractmethod
-	def register_args(self, parser) -> None:
+	def register_args(self, parser: ArgumentParser) -> None:
 		'''
 		Applet argument registration
 
@@ -156,7 +158,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		raise NotImplementedError('Applets must implement this method')
 
 	@abstractmethod
-	def run(self, device, args) -> int:
+	def run(self, device: SquishyHardwareDevice, args: Namespace) -> int:
 		'''
 		Applet run step
 
