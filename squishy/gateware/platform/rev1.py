@@ -6,19 +6,11 @@ from torii.platform.resources.memory     import SPIFlashResources
 from torii.platform.resources.user       import LEDResources
 from torii.platform.resources.interface  import UARTResource
 
-from ...config                           import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
-from ...config                           import USB_MANUFACTURER, USB_PRODUCT
-from ...config                           import SCSI_VID
-
 from ...core.flash                       import FlashGeometry
-
 from ..core                              import ICE40ClockDomainGenerator
-
-from .resources                          import SCSIPhyResource
-
-from .mixins                             import SquishyCacheMixin
-
 from ..bootloader.rev1                   import Bootloader as iCE40Bootloader
+from .resources                          import SCSIPhyResource
+from .platform                           import SquishyPlatform
 
 __doc__ = '''\
 
@@ -39,7 +31,7 @@ own, however it is recommended to start with the :py:class:`squishy.gateware.pla
 
 '''
 
-class SquishyRev1(SquishyCacheMixin, ICE40Platform):
+class SquishyRev1(SquishyPlatform, ICE40Platform):
 	'''
 	Squishy hardware Revision 1
 
@@ -58,16 +50,7 @@ class SquishyRev1(SquishyCacheMixin, ICE40Platform):
 	default_clk  = 'clk'
 	toolchain    = 'IceStorm'
 
-	usb_vid      = USB_VID
-	usb_pid_app  = USB_PID_APPLICATION
-	usb_pid_boot = USB_PID_BOOTLOADER
-
-	usb_mfr      = USB_MANUFACTURER
-	usb_prod     = USB_PRODUCT
-
-	scsi_vid     = SCSI_VID
-
-	revision     = 1
+	revision     = 1.0
 
 	clock_domain_generator = ICE40ClockDomainGenerator
 

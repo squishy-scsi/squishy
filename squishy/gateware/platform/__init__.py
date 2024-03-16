@@ -14,7 +14,6 @@ __doc__ = '''\
 .. todo:: Flesh this section out
 
 
-
 ''' # noqa: E101
 
 AVAILABLE_PLATFORMS = {

@@ -6,14 +6,9 @@ from torii.platform.resources.memory    import SPIFlashResources
 from torii.platform.resources.user      import LEDResources
 from torii.platform.resources.interface import UARTResource
 
-from ...config                          import USB_VID, USB_PID_APPLICATION, USB_PID_BOOTLOADER
-from ...config                          import USB_MANUFACTURER, USB_PRODUCT
-from ...config                          import SCSI_VID
-
 from ...core.flash                      import FlashGeometry
-
 from ..core                             import ECP5ClockDomainGenerator
-from .mixins                            import SquishyCacheMixin
+from .platform                          import SquishyPlatform
 
 __doc__ = '''\
 
@@ -33,7 +28,7 @@ build your own, or keep an eye out for when the campaign goes live.
 
 '''
 
-class SquishyRev2(SquishyCacheMixin, ECP5Platform):
+class SquishyRev2(SquishyPlatform, ECP5Platform):
 	'''
 	Squishy hardware Revision 2
 
@@ -54,16 +49,7 @@ class SquishyRev2(SquishyCacheMixin, ECP5Platform):
 	default_clk  = 'clk'
 	toolchain    = 'Trellis'
 
-	usb_vid      = USB_VID
-	usb_pid_app  = USB_PID_APPLICATION
-	usb_pid_boot = USB_PID_BOOTLOADER
-
-	usb_mfr      = USB_MANUFACTURER
-	usb_prod     = USB_PRODUCT
-
-	scsi_vid     = SCSI_VID
-
-	revision     = 2
+	revision     = 2.0
 
 	clock_domain_generator = ECP5ClockDomainGenerator
 
