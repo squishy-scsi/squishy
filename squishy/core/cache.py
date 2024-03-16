@@ -94,14 +94,15 @@ class SquishyBitstreamCache:
 			bit.write(products.get(f'{name}.bin'))
 
 		if self.cache_rtl:
-			rtl_name = f'{digest}.v.xz'
-			rtl = cache_dir / rtl_name
+			for rtl_ext in ('debug.v', 'il'):
+				rtl_name = f'{digest}.{rtl_ext}.xz'
+				rtl = cache_dir / rtl_name
 
-			log.debug(f'Caching RTL \'{name}.debug.v\' in {cache_dir}')
-			log.debug(f'New RTL name: \'{rtl_name}\'')
+				log.debug(f'Caching RTL \'{name}.{rtl_ext}\' in {cache_dir}')
+				log.debug(f'New RTL name: \'{rtl_name}\'')
 
-			cpr = LZMACompressor()
+				cpr = LZMACompressor()
 
-			with open(rtl, 'wb') as r:
-				r.write(cpr.compress(products.get(f'{name}.debug.v')))
-				r.write(cpr.flush())
+				with open(rtl, 'wb') as r:
+					r.write(cpr.compress(products.get(f'{name}.{rtl_ext}')))
+					r.write(cpr.flush())
