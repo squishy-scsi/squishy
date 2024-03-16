@@ -190,7 +190,7 @@ class SquishyHardwareDevice:
 			sleep(self._timeout / 1000)
 			while len(devices) == 0:
 				devices = list(filter(
-					lambda sn, _, __: sn == self.serial,
+					lambda dev: dev[0] == self.serial,
 					SquishyHardwareDevice.enumerate()
 				))
 
@@ -420,6 +420,7 @@ class SquishyHardwareDevice:
 					hndl.close()
 				except USBError as e:
 					log.error(f'Unable to open suspected squishy device: {e}')
+					log.error('Maybe check your udev rules?')
 		return devices
 
 	def get_altmodes(self):
