@@ -65,6 +65,7 @@ setup(
 		'torii>=0.5.0,<1.0',
 		'usb-construct<1.0',
 		'sol-usb>=0.3.0,<1.0',
+		'platformdirs~=4.2.1'
 	],
 
 	packages = find_packages(
