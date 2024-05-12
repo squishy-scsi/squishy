@@ -42,7 +42,7 @@ class DFUState(IntEnum):
 			DFUState.DFUMFWait  : 'Device had programmed its memory',
 			DFUState.UpIdle     : 'Device is processing an upload',
 			DFUState.Error      : 'Device failed the vibe check',
-		}.get(self)
+		}.get(self, f'Unknown DFU State: {int(self)}')
 
 	def __int__(self) -> int:
 		return int(self)
@@ -80,7 +80,7 @@ class DFUStatus(IntEnum):
 			DFUStatus.NotDoneError      : 'Received DFU_DNLOAD with length 0 but device does not think it\'s done',
 			DFUStatus.FirmwareError     : 'Unknown error occurred',
 			DFUStatus.StalledPacketError: 'Device stalled an unexpected request'
-		}.get(self)
+		}.get(self, , f'Unknown DFU Status: {int(self)}')
 
 	def __int__(self) -> int:
 		return int(self)
