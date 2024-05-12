@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging                           as log
 
-from typing                              import Iterable, Type, Callable, TypeVar
+from typing                              import Iterable, Type, Callable, TypeVar, TYPE_CHECKING
 from time                                import sleep
 from datetime                            import datetime
 
@@ -184,19 +184,35 @@ class SquishyHardwareDevice:
 	def _get_dfu_tx_size(self) -> int | None:
 		''' Get the DFU transaction size '''
 		interface_id = self._get_dfu_interface(self._dfu_cfg)
-		if interface_id is None:
+		config_id = self._dfu_cfg
+		if interface_id is None or config_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
-		for cfg in self._dev.iterConfigurations():
-			for iface in cfg:
-				for ifset in iface:
-					if ifset.getNumber() == interface_id:
-						ext = ifset.getExtra()
-						assert len(ext) == 1, '*sadface*'
-						func_desc = FunctionalDescriptor.parse(ext[0])
-						return func_desc.wTransferSize
+		def find_if(collection: Iterable[T], predicate: Callable[[T], bool]) -> T | None:
+			for item in collection:
+				if predicate(item):
+					return item
+			return None
 
-		return None
+		# Find the correct configuration for the DFU interface we're talking to
+		config = find_if(self._dev.iterConfigurations(), lambda config: config.getConfigurationvalue() == config_id)
+		if config is None:
+			raise AssertionError('Failed to re-locate USB configuration for DFU')
+		# Then also the actual interface descriptors for the interface
+		iface = find_if(config.iterInterfaces(), lambda iface: next(iter(iface)).getNumber() == interface_id)
+		if iface is None:
+			raise AssertionError('Failed to re-locate USB interface for DFU')
+
+		# Extract the first alt-mode interface descriptor from the interface
+		settings = next(iter(iface))
+		extra = settings.getExtra()
+		# Check there's one functional descriptor
+		assert len(extra) == 1, '*sadface'
+		# Now parse the descriptor as a DFU Functional Descriptor and return the embedded transfer size
+		func_desc = FunctionalDescriptor.parse(extra[0])
+		if TYPE_CHECKING:
+			assert isinstance(func_desc.wTransferSize, int)
+		return func_desc.wTransferSize
 
 	def _enter_dfu_mode(self) -> bool:
 		''' Enter the DFU bootloader '''
