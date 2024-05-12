@@ -231,8 +231,6 @@ class SquishyHardwareDevice:
 			data,
 			self._timeout
 		)
-
-
 		return sent == len(data)
 
 	def _ensure_iface_claimed(self, id: int) -> None:
@@ -242,9 +240,14 @@ class SquishyHardwareDevice:
 
 	def _ensure_iface_released(self, id: int) -> None:
 		if id in self._claimed_interfaces:
-			self._usb_hndl.releaseInterface(id)
 			self._claimed_interfaces.remove(id)
-
+			# If this throws an exception that matches the no-device condition, turn that into a
+			# "nothing to see here" as that just means the device is rebooting
+			try:
+				self._usb_hndl.releaseInterface(id)
+			except USBError as error:
+				if error.value != LIBUSB_ERROR_NO_DEVICE:
+					raise
 
 	def can_dfu(self) -> bool:
 		''' Check to see if the Device can DFU '''
