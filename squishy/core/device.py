@@ -7,7 +7,7 @@ from datetime                            import datetime
 
 from usb1                                import USBContext, USBDevice, USBError, USBConfiguration
 from usb1.libusb1                        import (
-	LIBUSB_ERROR_IO, LIBUSB_ERROR_NO_DEVICE
+	LIBUSB_REQUEST_TYPE_CLASS, LIBUSB_RECIPIENT_INTERFACE, LIBUSB_ERROR_IO, LIBUSB_ERROR_NO_DEVICE
 )
 
 from usb_construct.types                 import LanguageIDs
@@ -77,7 +77,7 @@ class SquishyHardwareDevice:
 		self._ensure_iface_claimed(interface_id)
 
 		data: bytearray | None = self._usb_hndl.controlRead(
-			0b00100001,
+			LIBUSB_REQUEST_TYPE_CLASS | LIBUSB_RECIPIENT_INTERFACE,
 			DFURequests.GetStatus,
 			0,
 			interface_id,
@@ -99,7 +99,7 @@ class SquishyHardwareDevice:
 		self._ensure_iface_claimed(interface_id)
 
 		data: bytearray | None = self._usb_hndl.controlRead(
-			0b00100001,
+			LIBUSB_REQUEST_TYPE_CLASS | LIBUSB_RECIPIENT_INTERFACE,
 			DFURequests.GetState,
 			0,
 			interface_id,
@@ -122,7 +122,7 @@ class SquishyHardwareDevice:
 
 		try:
 			sent: int = self._usb_hndl.controlWrite(
-				0b00100001,
+				LIBUSB_REQUEST_TYPE_CLASS | LIBUSB_RECIPIENT_INTERFACE,
 				DFURequests.Detach,
 				0,
 				interface_id,
@@ -230,7 +230,7 @@ class SquishyHardwareDevice:
 		self._ensure_iface_claimed(interface_id)
 
 		sent: int = self._usb_hndl.controlWrite(
-			0b00100001,
+			LIBUSB_REQUEST_TYPE_CLASS | LIBUSB_RECIPIENT_INTERFACE,
 			DFURequests.Download,
 			chunk_num,
 			interface_id,
