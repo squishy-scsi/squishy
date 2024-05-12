@@ -56,7 +56,10 @@ class SquishyHardwareDevice:
 				for iface in cfg:
 					for ifset in iface:
 						if ifset.getClassTuple() == DFU_CLASS:
-							self._dfu_iface = ifset.getNumber()
+							self._dfu_cfg: int = cfg.getConfigurationValue()
+							self._dfu_iface: int = ifset.getNumber()
+							if self._usb_hndl.getConfiguration() != self._dfu_cfg:
+								self._usb_hndl.setConfiguration(self._dfu_cfg)
 							return self._dfu_iface
 
 		return self._dfu_iface
@@ -259,6 +262,7 @@ class SquishyHardwareDevice:
 		if not self.can_dfu():
 			raise RuntimeError(f'The device {dev.getVendorID():04x}:{dev.getProductID():04x} @ {dev.getBusNumber()} is not DFU capable.')
 		self._timeout: int          = timeout
+		self._dfu_cfg: int | None = None
 		self._dfu_iface: int | None = None
 		self.serial   = serial
 		self.raw_ver  = dev.getbcdDevice()
