@@ -1,7 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging                           as log
 
-from typing                              import Iterable, Type
+from typing                              import Iterable, Type, Callable, TypeVar
 from time                                import sleep
 from datetime                            import datetime
 
@@ -26,6 +26,9 @@ __all__ = (
 # This needs to be global so it can live for the
 # life of the runtime
 _USB_CTX: USBContext | None = None
+
+# Type variable to allow generic typing of things
+T = TypeVar('T')
 
 class SquishyHardwareDevice:
 	'''
@@ -144,25 +147,38 @@ class SquishyHardwareDevice:
 		''' Get the DFU alt-modes '''
 		log.debug('Getting DFU alt-modes')
 
-		interface_id  = self._get_dfu_interface(self._dfu_cfg)
-		if interface_id is None:
+		interface_id = self._get_dfu_interface(self._dfu_cfg)
+		config_id = self._dfu_cfg
+		if interface_id is None or config_id is None:
 			raise RuntimeError('Unable to get interface ID for DFU Device')
 
-		alt_modes: dict[int, str] = dict()
+		def find_if(collection: Iterable[T], predicate: Callable[[T], bool]) -> T | None:
+			for item in collection:
+				if predicate(item):
+					return item
+			return None
 
-		for cfg in self._dev.iterConfigurations():
-			for iface in cfg:
-				for ifset in iface:
-					if ifset.getNumber() == interface_id:
-						alt_modes[
-							ifset.getAlternateSetting()
-						] = self._usb_hndl.getStringDescriptor(
-							ifset.getDescriptor(),
-							LanguageIDs.ENGLISH_US
-						)
+		# Find the correct configuration for the DFU interface we're talking to
+		config = find_if(self._dev.iterConfigurations(), lambda config: config.getConfigurationvalue() == config_id)
+		if config is None:
+			raise AssertionError('Failed to re-locate USB configuration for DFU')
+		# Then also the actual interface descriptors for the interface
+		iface = find_if(config.iterInterfaces(), lambda iface: next(iter(iface)).getNumber() == interface_id)
+		if iface is None:
+			raise AssertionError('Failed to re-locate USB interface for DFU')
+
+		alt_modes: dict[int, str] = dict()
+		for alt_mode in iface:
+			alt_mode_id: int = alt_mode.getAlternateSetting()
+			# Try and get the interface alt-mode's string descriptor
+			alt_mode_str = self._usb_hndl.getStringDescriptor(
+				alt_mode.getDescriptor(),
+				LanguageIDs.ENGLISH_US
+			)
+			# Bake a string if that failed and add it to the dict
+			alt_modes[alt_mode_id] = alt_mode_str if alt_mode_str is not None else f'Slot {alt_mode_id}'
 
 		log.debug(f'Found {len(alt_modes.keys())} alt-modes')
-
 		return alt_modes
 
 	def _get_dfu_tx_size(self) -> int | None:
