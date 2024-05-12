@@ -6,6 +6,9 @@ from time                                import sleep
 from datetime                            import datetime
 
 from usb1                                import USBContext, USBDevice, USBError, USBConfiguration
+from usb1.libusb1                        import (
+	LIBUSB_ERROR_IO, LIBUSB_ERROR_NO_DEVICE
+)
 
 from usb_construct.types                 import LanguageIDs
 from usb_construct.types.descriptors.dfu import FunctionalDescriptor
@@ -126,12 +129,18 @@ class SquishyHardwareDevice:
 				bytearray(),
 				self._timeout
 			)
-		except USBError:
-			sent = 0
+		except USBError as error:
+			# If the error is one of the not-actually-an-error errors caused by the device rebooting, palm it off
+			if error.value in (LIBUSB_ERROR_IO, LIBUSB_ERROR_NO_DEVICE):
+				self._claimed_interfaces.remove(self._dfu_iface)
+				sent = 0
+			# Otherwise propagate the error properly
+			else:
+				raise BufferError(
+					f'Unable to send control request for DFU_DETACH to interface {interface_id}'
+				) from error
 
 		self._ensure_iface_released(interface_id)
-
-
 		return sent == 0
 
 	def _get_dfu_altmodes(self) -> dict[int, str]:
