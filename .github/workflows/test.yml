@@ -40,6 +40,7 @@ jobs:
 
       - name: Run Tests
         shell: bash
+        timeout-minutes: 30 # Python 3.12 and 3.13 seem to just hang on testing ~sometimes~
         run: |
           nox -s test -- --coverage
 
