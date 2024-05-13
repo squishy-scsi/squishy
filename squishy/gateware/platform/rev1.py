@@ -40,7 +40,7 @@ class SquishyRev1(SquishyPlatform, ICE40Platform):
 	in the BG121 footprint.
 
 	The design files for this version of the hardware can be found
-	`in the git repo <https://github.com/squishy-scsi/hardware/tree/main/rev1>`_ under
+	`in the git repo <https://github.com/squishy-scsi/hardware/tree/main/release/rev1>`_ under
 	the `rev1` tree.
 
 	'''
