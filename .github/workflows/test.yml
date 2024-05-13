@@ -8,6 +8,7 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    name: 'Test Squishy (Python ${{ matrix.python-version }})'
     strategy:
       matrix:
         python-version: ['3.10', '3.11', '3.12', '3.13.0-alpha.6', 'pypy3.10-v7.3.16']

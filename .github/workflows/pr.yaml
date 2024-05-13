@@ -5,6 +5,7 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
+    name: 'Lint Squishy'
     steps:
       - name: 'Setup Python'
         uses: actions/setup-python@v5
@@ -33,15 +34,16 @@ jobs:
         run: |
           nox -s lint
 
-  test-torii:
+  test-squishy:
     runs-on: ubuntu-latest
+    name: 'Test Squishy (Python ${{ matrix.python-version }})'
     strategy:
       matrix:
         python-version: ['3.10', '3.11', '3.12', '3.13.0-alpha.6', 'pypy3.10-v7.3.16']
       fail-fast: true
 
     steps:
-      - name: 'Setup Python'
+      - name: 'Setup Python ${{ matrix.python-version }}'
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}

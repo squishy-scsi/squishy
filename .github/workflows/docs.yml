@@ -10,6 +10,7 @@ on:
 jobs:
   linkcheck:
     runs-on: ubuntu-latest
+    name: 'Linkcheck Docs'
     steps:
       - name: 'Setup Python'
         uses: actions/setup-python@v5
@@ -40,6 +41,7 @@ jobs:
 
   document:
     runs-on: ubuntu-latest
+    name: 'Build Documentation'
     permissions:
       contents: write
       pages: write
