@@ -33,7 +33,7 @@ All in all, to make things easier on both the maintainers and community members,
 
 
 [#squishy on libera.chat]: https://web.libera.chat/#squishy
-[GitHub Discussions]: https://github.com/squishy-scsi/squishy/discussions,
+[GitHub Discussions]: https://github.com/squishy-scsi/squishy/discussions
 [Issue tracker]: https://github.com/squishy-scsi/squishy/issues
 [BlueSCSI]: https://scsi.blue/
 [CERN-OHL-S v2]: https://ohwr.org/cern_ohl_s_v2.pdf
