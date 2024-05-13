@@ -74,6 +74,10 @@ html_js_files = [
 	'js/wavedrom.skin.js',
 ]
 
+# OpenGraph config bits
+ogp_site_url = html_baseurl
+ogp_image    = f'{html_baseurl}/_images/og-image.png'
+
 autosectionlabel_prefix_document = True
 # Disable CDN so we use the local copy
 mermaid_version = ''
