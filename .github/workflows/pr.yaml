@@ -6,12 +6,12 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Python
+      - name: 'Setup Python'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
-      - name: Initialize Env
+      - name: 'Initialize Env'
         shell: bash
         env:
           WORKSPACE: ${{ github.workspace }}
@@ -19,15 +19,15 @@ jobs:
           echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
           echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
 
-      - name: Checkout
+      - name: 'Checkout'
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: 'Setup'
         shell: bash
         run: |
           python -m pip install --user --upgrade pip setuptools wheel setuptools_scm nox
 
-      - name: Run Style Check
+      - name: 'Run Style Check'
         shell: bash
         continue-on-error: true
         run: |
@@ -41,12 +41,12 @@ jobs:
       fail-fast: true
 
     steps:
-      - name: Setup Python
+      - name: 'Setup Python'
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Initialize Env
+      - name: 'Initialize Env'
         shell: bash
         env:
           WORKSPACE: ${{ github.workspace }}
@@ -54,22 +54,22 @@ jobs:
           echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
           echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
 
-      - name: Checkout
+      - name: 'Checkout'
         uses: actions/checkout@v4
 
-      - name: Setup OSS CAD Suite
+      - name: 'Setup OSS CAD Suite'
         uses: YosysHQ/setup-oss-cad-suite@v3
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Run Tests
+      - name: 'Run Tests'
         timeout-minutes: 15 # Python 3.12 and 3.13 seem to just hang on testing ~sometimes~
         continue-on-error: ${{ matrix.python-version == '3.12' || matrix.python-version == '3.13.0-alpha.6' }}
         shell: bash
         run: |
           nox -s test
 
-      - name: Codecov
+      - name: 'Codecov'
         if: success() && github.repository == 'squishy-scsi/squishy'
         uses: codecov/codecov-action@v4
         with:
