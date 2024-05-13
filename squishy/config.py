@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from pathlib      import Path
 from platformdirs import user_data_path, user_config_path, user_cache_path
 
 SQUISHY_NAME = 'squishy'
