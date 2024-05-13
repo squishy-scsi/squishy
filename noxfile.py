@@ -76,6 +76,14 @@ def docs(session: Session) -> None:
 	session.run('sphinx-build', '-b', 'html', str(DOCS_DIR), str(out_dir))
 
 @nox.session
+def docs_linkcheck(session: Session) -> None:
+	out_dir = (BUILD_DIR / 'docs-linkcheck')
+	shutil.rmtree(out_dir, ignore_errors = True)
+	session.install('-r', str(DOCS_DIR / 'requirements.txt'))
+	session.install('.')
+	session.run('sphinx-build', '-b', 'linkcheck', str(DOCS_DIR), str(out_dir))
+
+@nox.session
 def typecheck(session: Session) -> None:
 	out_dir = (BUILD_DIR / 'mypy')
 	out_dir.mkdir(parents = True, exist_ok = True)

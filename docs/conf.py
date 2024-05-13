@@ -80,3 +80,11 @@ mermaid_version = ''
 
 offline_skin_js_path = '_static/js/wavedrom.skin.js'
 offline_wavedrom_js_path = '_static/js/wavedrom.min.js'
+
+linkcheck_anchors_ignore_for_url = [
+	r'^https://web\.libera\.chat/',
+]
+
+linkcheck_ignore = [
+	r'https://www\.codesrc\.com/.*', # SSL is broken
+]
