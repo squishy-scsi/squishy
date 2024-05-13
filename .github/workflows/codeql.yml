@@ -6,12 +6,14 @@ on:
       - 'main'
     paths:
       - 'squishy/**'
+      - 'tests/**'
   pull_request:
     # The branches below must be a subset of the branches above
     branches:
       - 'main'
     paths:
       - 'squishy/**'
+      - 'tests/**'
   schedule:
     - cron: '42 6 * * 0'
 

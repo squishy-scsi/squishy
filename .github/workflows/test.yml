@@ -3,6 +3,7 @@ on:
   push:
     paths:
       - 'squishy/**'
+      - 'tests/**'
 
 jobs:
   test:
