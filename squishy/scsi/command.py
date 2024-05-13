@@ -625,6 +625,9 @@ class SCSICommand(Struct):
 		# if (self.sizeof() // 8) != self.command_size:
 		# 	raise RuntimeError(f'Structure is actually {self.sizeof() // 8} bytes long but must be {self.command_size} bytes long.')
 
+	def __repr__(self):
+		return f'\n<SCSICommand opcode:{self.opcode:02X} group:{self.group_code:X} fields: {len(self.subcons) - 2}>'
+
 	def len(self) -> int:
 		''' Return structure length in bytes '''
 
