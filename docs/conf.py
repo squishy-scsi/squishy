@@ -57,7 +57,7 @@ html_theme       = 'furo'
 html_copy_source = False
 
 html_theme_options = {
-	'top_of_page_buttons': None,
+	'top_of_page_buttons': [],
 }
 
 html_static_path = [
