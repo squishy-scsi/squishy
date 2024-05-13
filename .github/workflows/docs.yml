@@ -8,43 +8,71 @@ on:
       - 'squishy/**'
 
 jobs:
-  document:
+  linkcheck:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
-      pages: write
     steps:
-      - name: Setup Python
+      - name: 'Setup Python'
         uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Initialize Environment
+
+      - name: 'Initialize Environment'
         shell: bash
         env:
           WORKSPACE: ${{ github.workspace }}
         run: |
           echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
           echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
-      - name: Checkout
+
+      - name: 'Checkout Sources'
         uses: actions/checkout@v4
+
+      - name: 'Setup Deps'
+        shell: bash
+        run: |
+          python -m pip install --user --upgrade pip setuptools wheel setuptools_scm nox
+
+      - name: 'Run Documentation Link Check'
+        shell: bash
+        continue-on-error: true
+        run: |
+          nox -s docs_linkcheck
+
+  document:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pages: write
+    steps:
+      - name: 'Setup Python'
+        uses: actions/setup-python@v5
         with:
-          lfs: true
-          submodules: true
-      - name: Setup
+          python-version: '3.11'
+
+      - name: 'Initialize Environment'
+        shell: bash
+        env:
+          WORKSPACE: ${{ github.workspace }}
+        run: |
+          echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
+          echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
+
+      - name: 'Checkout Sources'
+        uses: actions/checkout@v4
+
+      - name: 'Setup Deps'
         shell: bash
         run: |
-          sudo apt-get update
-          sudo apt-get install graphviz
-          sudo pip3 install --upgrade pip setuptools wheel
-          pip3 install --user -r ./docs/requirements.txt
-          pip3 install --user .
-      - name: Build Docs
+          python -m pip install --user --upgrade pip setuptools wheel setuptools_scm nox
+
+      - name: 'Build Docs'
         shell: bash
         run: |
-          sphinx-build -b html ./docs ./_build/
-      - name: Deploy
+          nox -s docs
+
+      - name: 'Deploy'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: gh-pages
-          folder: _build
+          folder: build/docs
           clean: true
