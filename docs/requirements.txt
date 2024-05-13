@@ -5,4 +5,5 @@ sphinxext-opengraph
 sphinxcontrib-mermaid
 git+https://github.com/wallento/wavedrompy
 sphinxcontrib-wavedrom
+matplotlib
 myst-parser
