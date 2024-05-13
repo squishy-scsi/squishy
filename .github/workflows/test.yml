@@ -1,6 +1,8 @@
 name: "Squishy Tests"
 on:
-  push: {}
+  push:
+    paths:
+      - 'squishy/**'
 
 jobs:
   test:

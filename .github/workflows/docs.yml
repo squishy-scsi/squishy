@@ -3,6 +3,10 @@ on:
   push:
     branches:
       - 'main'
+    paths:
+      - 'docs/**'
+      - 'squishy/**'
+
 jobs:
   document:
     runs-on: ubuntu-latest

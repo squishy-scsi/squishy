@@ -2,10 +2,16 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - 'main'
+    paths:
+      - 'squishy/**'
   pull_request:
     # The branches below must be a subset of the branches above
-    branches: [ "main" ]
+    branches:
+      - 'main'
+    paths:
+      - 'squishy/**'
   schedule:
     - cron: '42 6 * * 0'
 
