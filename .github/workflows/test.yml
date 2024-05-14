@@ -51,6 +51,8 @@ jobs:
 
       - name: 'Codecov Upload'
         uses: codecov/codecov-action@v4
+        if: success() && github.repository == 'squishy-scsi/squishy'
+        continue-on-error: true # It's not super mission critical that the coverage upload fails
         with:
           verbose: true
           files: ./build/tests/coverage.xml
