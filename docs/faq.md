@@ -16,6 +16,12 @@ Squishy, at first, seems overly complicated for what it is, after all, the other
 
 But it's for a good reason, Squishy was designed to be as capable, covering everything for SCSI-1 and HVD all the way to ULTRA-320 LVD, and everything between. Such capabilities demand complexity in order to be achieved, this is the primary driver behind the complexity of both the hardware and software ecosystem. However, this allows Squishy to be as flexible as possible, able to hopefully meet any possible needs that may arise.
 
+## Why is Squishy using [Torii] rather than Amaranth or another HDL?
+
+The reason for this is due to the fact ties into the original reason why Torii forked off from [Amaranth] in the first place. To keep it brief, it was primarily due to originally the stagnation of Amaranth at the time of the fork. Once pace of the development of Amaranth picked back up, it started to go in a design direction that was not quite what we wanted out of an HDL.
+
+When using Torii, we have more tight integration in the development process between Squishy and Torii, they can effect and influence each other. We can also more rapidly respond to any bugs in the HDL without having to wait for a third party upstream.
+
 
 ## Why is Squishy so expensive?
 
@@ -37,3 +43,5 @@ All in all, to make things easier on both the maintainers and community members,
 [Issue tracker]: https://github.com/squishy-scsi/squishy/issues
 [BlueSCSI]: https://scsi.blue/
 [CERN-OHL-S v2]: https://ohwr.org/cern_ohl_s_v2.pdf
+[Torii]: https://github.com/shrine-maiden-heavy-industries/torii-hdl/
+[Amaranth]: https://github.com/amaranth-lang/amaranth
