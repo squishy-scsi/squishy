@@ -1,6 +1,7 @@
 # Contribution Guidelines
 
-> **Note** Contributions that were generated in whole or in-part from any
+> [!NOTE]
+> Contributions that were generated in whole or in-part from any
 > language model or AI, such as GitHub Copilot, ChatGPT, BARD, or any other such tool
 > are explicitly forbidden and will result in your permanent ban from contributing
 > to this project.
