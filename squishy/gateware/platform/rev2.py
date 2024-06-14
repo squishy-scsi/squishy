@@ -113,7 +113,6 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 
 		# Status LEDs
 		*LEDResources(
-			# Errata: The silkscreen is backwards, doesn't matter, we can pretend it's fine
 			# LED Num: 0  1  2  3  4
 			pins   = 'K4 K5 L4 L5 M5',
 			invert = True,
