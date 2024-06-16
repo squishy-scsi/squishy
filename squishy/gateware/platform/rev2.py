@@ -108,7 +108,7 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			Subsignal('su_attn',  Pins('W1', dir = 'o')),
 			Subsignal('dfu_trg', PinsN('V1', dir = 'o')),
 
-			attrs = Attrs(IO_TYPE = 'LVCMOS33')
+			Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
 		# Status LEDs
@@ -134,7 +134,7 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			Subsignal('rwds', Pins('H18', dir = 'io')),
 			Subsignal('rst', Pins('D17', dir = 'o')),
 
-			attrs = Attrs(IO_TYPE = 'LVCMOS18', SLEWRATE = 'FAST')
+			Attrs(IO_TYPE = 'LVCMOS18', SLEWRATE = 'FAST')
 		),
 
 		ULPIResource('usb2', 0,
@@ -154,7 +154,7 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			# Errata: The schematic has a typo calling it `PD_SCA` rather than `PD_SDA`
 			Subsignal('sda', Pins('N17', dir = 'io')),
 			Subsignal('pol', Pins('N18', dir = 'o')),
-			attrs = Attrs(IO_TYPE = 'LVCMOS33')
+			Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
 		# This will be replaced with a proper Squishy SCSI-PHY resource eventually:tm:
@@ -180,7 +180,7 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			# This /might/ go better with the ADC?
 			Subsignal('pwr_en',    PinsN('H2', dir = 'o')),
 
-			attrs = Attrs(IO_TYPE = 'LVCMOS33', SLEWRATE = 'FAST')
+			Attrs(IO_TYPE = 'LVCMOS33', SLEWRATE = 'FAST')
 		),
 
 		# SCSI PHY Current ADC
@@ -188,7 +188,7 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			Subsignal('clk',  Pins('F1', dir = 'o')),
 			Subsignal('dat',  Pins('G2', dir = 'i')),
 			Subsignal('chan', Pins('G1', dir = 'o')),
-			attrs = Attrs(IO_TYPE = 'LVCMOS33')
+			Attrs(IO_TYPE = 'LVCMOS33')
 		),
 	]
 
