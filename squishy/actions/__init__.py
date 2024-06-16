@@ -176,6 +176,8 @@ class SquishySynthAction(SquishyAction):
 
 		synth_opts: list[str] = []
 		pnr_opts: list[str] = []
+		script_pre_synth = ''
+		script_post_synth = ''
 
 		build_dir = Path(args.build_dir)
 
@@ -194,6 +196,11 @@ class SquishySynthAction(SquishyAction):
 		# Synthesis Options
 		if not args.no_abc9:
 			synth_opts.append('-abc9')
+		if args.aggressive_mapping:
+			if args.no_abc9:
+				log.error('Can not spcify `--aggressive-mapping` with ABC9 disabled, remove `--no-abc9`')
+			else:
+				script_pre_synth += 'scratchpad -copy abc9.script.flow3 abc9.script\n'
 
 		# Place and Route Options
 		if args.use_router2:
@@ -230,16 +237,18 @@ class SquishySynthAction(SquishyAction):
 		) as progress:
 			name, prod = plat.build(
 				elab,
-				name          = elab_name,
-				build_dir     = build_dir,
-				do_build      = True,
-				do_program    = False,
-				synth_opts    = synth_opts,
-				nextpnr_opts  = pnr_opts,
-				verbose       = args.loud,
-				skip_cache    = skip_cache,
-				progress      = progress,
-				debug_verilog = cacheable and not skip_cache
+				name               = elab_name,
+				build_dir          = build_dir,
+				do_build           = True,
+				do_program         = False,
+				synth_opts         = synth_opts,
+				nextpnr_opts       = pnr_opts,
+				verbose            = args.loud,
+				skip_cache         = skip_cache,
+				progress           = progress,
+				debug_verilog      = cacheable and not skip_cache,
+				script_after_read  = script_pre_synth,
+				script_after_synth = script_post_synth
 			)
 
 			return (name, prod)
@@ -292,6 +301,12 @@ class SquishySynthAction(SquishyAction):
 			'--no-abc9',
 			action = 'store_true',
 			help   = 'Disable use of Yosys\' ABC9'
+		)
+
+		synth_options.add_argument(
+			'--aggressive-mapping',
+			action = 'store_true',
+			help   = 'Run multiple ABC9 mapping more than once to improve performance in exchange for longer synth time'
 		)
 
 		# Place and Route Options
