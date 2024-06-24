@@ -159,24 +159,36 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 
 		# This will be replaced with a proper Squishy SCSI-PHY resource eventually:tm:
 		Resource('scsi_phy', 0,
-			# SCSI Bus
+			# SCSI Bus              #      0  1  2  3  4  5  6   7  P0
 			Subsignal('data_lower', Pins('B5 A6 B6 A8 B8 A9 B9 A10 B10', dir = 'io')),
-			Subsignal('data_upper', Pins('A16 B18 A18 B19 A2 B2 A3 B3 A5', dir = 'io')),
+			#                               8   9  10  11 12 13 14 15 P1
+			Subsignal('data_upper', Pins('A18 B18 A19 B19 A2 B1 A4 B2 A5', dir = 'io')),
 			Subsignal('atn', Pins('B11', dir = 'io')),
 			Subsignal('bsy', Pins('A11', dir = 'io')),
-			Subsignal('ack', Pins('B12', dir = 'io')),
-			Subsignal('rst', Pins('A12', dir = 'io')),
+			Subsignal('ack', Pins('C11', dir = 'io')),
+			Subsignal('rst', Pins('A13', dir = 'io')),
 			Subsignal('msg', Pins('B13', dir = 'io')),
-			Subsignal('sel', Pins('A13', dir = 'io')),
+			Subsignal('sel', Pins('A15', dir = 'io')),
 			Subsignal('cd',  Pins('B15', dir = 'io')),
-			Subsignal('req', Pins('A15', dir = 'io')),
+			Subsignal('req', Pins('A17', dir = 'io')),
 			Subsignal('io',  Pins('B16', dir = 'io')),
+
+			# PHY Direction Signals
+			Subsignal('data_lower_dir', Pins('B3',  dir = 'o')), # DB[00..07], DP0
+			Subsignal('data_upper_dir', Pins('C1',  dir = 'o')), # DB[08..15], DP1
+			Subsignal('trgt_dir',       Pins('B17', dir = 'o')), # C/D, I/O, MSG, REQ
+			Subsignal('init_dir',       Pins('B12', dir = 'o')), # ACK, ATN
+			Subsignal('bsy_dir',        Pins('A12', dir = 'o')), # BSY
+			Subsignal('rst_dir',        Pins('A14', dir = 'o')), # RST
+			Subsignal('sel_dir',        Pins('A16', dir = 'o')), # SEL
 
 			# PHY Control/Supervisory signals
 			Subsignal('scl',        Pins('F2', dir = 'io')),
 			Subsignal('sda',        Pins('E1', dir = 'io')),
 			Subsignal('termpwr_en', Pins('D1', dir = 'o')),
 			Subsignal('prsnt',     PinsN('E2', dir = 'i')),
+			# Extra Signals
+			Subsignal('ls_ctrl', Pins('C2 C3 C16 C17 C14 C15', dir = 'io')), # LS_CTRL[0..5] Low-speed control lines
 			# This /might/ go better with the ADC?
 			Subsignal('pwr_en',    PinsN('H2', dir = 'o')),
 
