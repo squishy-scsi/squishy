@@ -6,6 +6,7 @@ on:
     paths:
       - 'docs/**'
       - 'squishy/**'
+      - 'noxfile.py'
 
 jobs:
   linkcheck:

@@ -4,6 +4,7 @@ on:
     paths:
       - 'squishy/**'
       - 'tests/**'
+      - 'noxfile.py'
 
 jobs:
   test:
