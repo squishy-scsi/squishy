@@ -76,6 +76,7 @@ jobs:
         if: success() && github.repository == 'squishy-scsi/squishy'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
-          branch: gh-pages
+          repository-name: squishy-scsi/documentation
+          ssh-key: ${{ secrets.DEPLOY_KEY }}
           folder: build/docs
           clean: true
