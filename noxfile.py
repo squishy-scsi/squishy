@@ -74,6 +74,7 @@ def docs(session: Session) -> None:
 	session.install('-r', str(DOCS_DIR / 'requirements.txt'))
 	session.install('.')
 	session.run('sphinx-build', '-b', 'html', str(DOCS_DIR), str(out_dir))
+	shutil.copy(ROOT_DIR / 'LICENSE.docs', out_dir / 'LICENSE')
 
 @nox.session
 def docs_linkcheck(session: Session) -> None:
