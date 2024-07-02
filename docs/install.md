@@ -16,7 +16,7 @@ Support for Microsoft Windows is preliminary, and due to lack of testing and dev
 Support for Apple macOS is also unofficial, however due to its similarity to Linux and Unix-like operating systems, using Squishy on macOS should be just as painless as it is on Linux. Official support for macOS and other BSD-Family operating systems is planned.
 
 
-Regardless of the operating system, there are some core dependencies that Squishy requires. This includes Python >= 3.10, [Yosys] >= 0.38, and [nextpnr] >= 0.7.
+Regardless of the operating system, there are some core dependencies that Squishy requires. This includes Python >= 3.10, [Yosys] >= 0.39, and [nextpnr] >= 0.7.
 
 Squishy has been tested with [CPython], but might possibly run under [PyPy].
 
@@ -158,8 +158,8 @@ The next option is to do a native install of the toolchain.
 
 	.. code-block:: console
 
-		$ curl -LOJ https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2022-04-26/oss-cad-suite-linux-x64-20220426.tgz
-		$ tar xfv oss-cad-suite-linux-x64-20220426.tgz
+		$ curl -LOJ https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2024-07-02/oss-cad-suite-linux-x64-20240702.tgz
+		$ tar xfv oss-cad-suite-linux-x64-20240702.tgz
 		$ export PATH="`pwd`/oss-cad-suite/bin:$PATH"
 
 
@@ -171,8 +171,8 @@ The next option is to do a native install of the toolchain.
 
 	.. code-block:: console
 
-		$ curl -LOJ https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2022-04-26/oss-cad-suite-darwin-x64-20220426.tgz
-		$ tar xfv oss-cad-suite-darwin-x64-20220426.tgz
+		$ curl -LOJ https://github.com/YosysHQ/oss-cad-suite-build/releases/download/2024-07-02/oss-cad-suite-darwin-x64-20240702.tgz
+		$ tar xfv oss-cad-suite-darwin-x64-20240702.tgz
 		$ export PATH="`pwd`/oss-cad-suite/bin:$PATH"
 
 .. tab:: Windows
