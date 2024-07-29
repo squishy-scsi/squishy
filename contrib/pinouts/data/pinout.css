@@ -1,0 +1,103 @@
+text {
+    font-family: Verdana, Georgia, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+}
+
+.pinlabel__leader{
+    stroke-width: 2;
+    fill: none;
+}
+
+.pinlabel__text{
+    dominant-baseline: central;
+    fill: #FDFDFD;
+    font-weight: bold;
+    stroke-width: 0;
+    text-anchor: middle;
+}
+
+.pin .pinlabel__body{
+    fill: #53A9FD;
+    stroke: #1C1C1D;
+}
+.pin .pinlabel__leader{
+    stroke: #53A9FD;
+}
+.pin .swatch__body {
+    fill: #53A9FD;
+    stroke: #1C1C1D;
+}
+.gnd .pinlabel__body{
+    fill: #FFB45B;
+    stroke: #1C1C1D;
+}
+.gnd .pinlabel__leader{
+    stroke: #FFB45B;
+}
+.gnd .swatch__body {
+    fill: #FFB45B;
+}
+
+.pwr .pinlabel__body{
+    fill: #FF6D7F;
+    stroke: #1C1C1D;
+}
+.pwr .pinlabel__leader{
+    stroke: #FF6D7F;
+}
+.pwr .swatch__body {
+    fill: #FF6D7F;
+    stroke: #1C1C1D;
+}
+
+.sig .pinlabel__body{
+    fill: #AF92FB;
+    stroke: #1C1C1D;
+}
+.sig .pinlabel__leader{
+    stroke: #AF92FB;
+}
+.sig .swatch__body {
+    fill: #AF92FB;
+    stroke: #1C1C1D;
+}
+
+.nc .pinlabel__body{
+    fill: #252526;
+    stroke: #1C1C1D;
+}
+.nc .pinlabel__leader{
+    stroke: #252526;
+}
+.nc .swatch__body {
+    fill: #252526;
+    stroke: #1C1C1D;
+}
+
+.panel__inner {
+    fill: #fff;
+}
+.panel__outer {
+    fill: #333;
+}
+
+.legendentry text {
+    dominant-baseline: central;
+}
+
+.h1 {
+    font-size: 26px;
+    font-weight: bold;
+    font-style: italic;
+}
+.italic{
+    font-style: italic;
+}
+.strong{
+    font-weight: bold;
+}
+
+.panel--info .panel__inner{
+    fill: #f4f4f4;
+}
