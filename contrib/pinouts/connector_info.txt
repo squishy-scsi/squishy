@@ -1,0 +1,1316 @@
+| PIN CNT | Body Type  | Signaling | Is Shielded | Name    | SCSI Standard        | Table ID | Table Reference | Figure Reference | Connector Reference                  |
+|=========|============|===========|=============|=========|======================|==========|=================|==================|======================================|
+| 50      | IDC        | SE        | No          | IDC50   | X3.131:1986 (SCSI-1) |          | 4-1             | (FIG 4-1/4-2)    |                                      |
+| 50      | IDC        | HVD       | No          | IDC50   | X3.131:1986 (SCSI-1) |          | 4-2             | (FIG 4-1/4-2)    |                                      |
+| 50      | Centronics | SE        | Yes         | CE50    | x3.131:1986 (SCSI-1) |          | 4-1             |                  |                                      |
+| 50      | Centronics | HVD       | Yes         | CE50    | x3.131:1986 (SCSI-1) |          | 4-2             |                  |                                      |
+|---------|------------|-----------|-------------|---------|----------------------|----------|-----------------|------------------|--------------------------------------|
+| 50      | HD         | SE        | No          | HD50    | SCSI-2 R10L          |          | 2:2             | (FIG 1/2 A)      | Non-shielded connector alternative 1 |
+| 68      | HD         | SE        | No          | HD68    | SCSI-2 R10L          |          | 3               | (FIG 1/2 B)      | Non-shielded connector               |
+| 50      | HD         | HVD       | No          | HD50    | SCSI-2 R10L          |          | 4:2             | (FIG 1/2 A)      | Non-shielded connector alternative 1 |
+| 68      | HD         | HVD       | No          | HD68    | SCSI-2 R10L          |          | 5               | (FIG 1/2 B)      | Non-shielded connector               |
+| 50      | IDC        | SE        | No          | IDC50   | SCSI-2 R10L          |          | 2:1             | (FIG 3/4 A)      | Non-shielded connector alternative 2 |
+| 50      | IDC        | HVD       | No          | IDC50   | SCSI-2 R10L          |          | 4:1             | (FIG 3/4 A)      | Non-shielded connector alternative 2 |
+| 50      | HD         | SE        | Yes         | HD50    | SCSI-2 R10L          |          | 2:2             | (FIG 6/5 A)      | Shielded connector alternative 1     |
+| 68      | HD         | SE        | Yes         | HD68    | SCSI-2 R10L          |          | 3               | (FIG 6/5 B)      | Shielded connector                   |
+| 50      | HD         | HVD       | Yes         | HD50    | SCSI-2 R10L          |          | 4:2             | (FIG 6/5 A)      | Shielded connector alternative 1     |
+| 68      | HD         | HVD       | Yes         | HD68    | SCSI-2 R10L          |          | 5               | (FIG 6/5 B)      | Shielded connector                   |
+| 50      | Centronics | SE        | Yes         | CE50    | SCSI-2 R10L          |          | 2:2             | (FIG 7/8 A)      | Shielded connector alternative 2     |
+| 50      | Centronics | HVD       | Yes         | CE50    | SCSI-2 R10L          |          | 4:2             | (FIG 7/8 A)      | Shielded connector alternative 2     |
+|---------|------------|-----------|-------------|---------|----------------------|----------|-----------------|------------------|--------------------------------------|
+| 68      | HD         | SE        | No          | HD68    | SPI-1 R15A (SCSI-3)  |          | Table 1/2       | (FIG 4/5)        | Nonshielded connector                |
+| 68      | HD         | SE        | Yes         | HD68    | SPI-1 R15A (SCSI-3)  |          | Table 1/2       | (FIG 6/7)        | Shielded connector                   |
+| 68      | HD         | HVD       | No          | HD68    | SPI-1 R15A (SCSI-3)  |          | Table 3/4       | (FIG 4/5)        | Nonshielded connector                |
+| 68      | HD         | HVD       | Yes         | HD68    | SPI-1 R15A (SCSI-3)  |          | Table 3/4       | (FIG 6/7)        | Shielded connector                   |
+|---------|------------|-----------|-------------|---------|----------------------|----------|-----------------|------------------|--------------------------------------|
+| 50      | HD         | SE        | No          | HD50    | SPI-2 R20B (SCSI-3)  |          | 3:2             | (FIG 8/9 A)      | Nonshielded connector alternative 1  |
+| 50      | HD         | LVD       | No          | HD50    | SPI-2 R20B (SCSI-3)  |          | 7:2             | (FIG 8/9 A)      | Nonshielded connector alternative 1  |
+| 50      | HD         | HVD       | No          | HD50    | SPI-2 R20B (SCSI-3)  |          | 10:2            | (FIG 8/9 A)      | Nonshielded connector alternative 1  |
+| 50      | IDC        | SE        | No          | IDC50   | SPI-2 R20B (SCSI-3)  |          | 3:1             | (FIG 10/11 A)    | Nonshielded connector alternative 2  |
+| 50      | IDC        | HVD       | No          | IDC50   | SPI-2 R20B (SCSI-3)  |          | 7:1             | (FIG 10/11 A)    | Nonshielded connector alternative 2  |
+| 50      | IDC        | LVD       | No          | IDC50   | SPI-2 R20B (SCSI-3)  |          | 10:1            | (FIG 10/11 A)    | Nonshielded connector alternative 2  |
+| 68      | HD         | SE        | No          | HD68    | SPI-2 R20B (SCSI-3)  |          | 4               | (FIG 8/9 P)      | Nonshielded connector alternative 3  |
+| 68      | HD         | SE        | No          | HD68    | SPI-2 R20B (SCSI-3)  |          | 5               | (FIG 8/9 Q)      | Nonshielded connector alternative 3  |
+| 68      | HD         | LVD       | No          | HD68    | SPI-2 R20B (SCSI-3)  |          | 8               | (FIG 8/9 P)      | Nonshielded connector alternative 3  |
+| 68      | HD         | LVD       | No          | HD68    | SPI-2 R20B (SCSI-3)  |          | 9               | (FIG 8/9 Q)      | Nonshielded connector alternative 3  |
+| 68      | HD         | HVD       | No          | HD68    | SPI-2 R20B (SCSI-3)  |          | 11              | (FIG 8/9 P)      | Nonshielded connector alternative 3  |
+| 68      | HD         | HVD       | No          | HD68    | SPI-2 R20B (SCSI-3)  |          | 12              | (FIG 8/9 Q)      | Nonshielded connector alternative 3  |
+| 80      | SCA        | SE        | No          | SCA-2   | SPI-2 R20B (SCSI-3)  |          | 6               | (FIG 12/13 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | LVD       | No          | SCA-2   | SPI-2 R20B (SCSI-3)  |          | 13              | (FIG 12/13 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | HVD       | No          | SCA-2   | SPI-2 R20B (SCSI-3)  |          | 13              | (FIG 12/13 P)    | Nonshielded connector alternative 4  |
+| 50      | HD         | SE        | Yes         | HD50    | SPI-2 R20B (SCSI-3)  |          | 3:2             | (FIG 14/15 A)    | Shielded connector alternative 1     |
+| 50      | HD         | LVD       | Yes         | HD50    | SPI-2 R20B (SCSI-3)  |          | 7:2             | (FIG 14/15 A)    | Shielded connector alternative 1     |
+| 50      | HD         | HVD       | Yes         | HD50    | SPI-2 R20B (SCSI-3)  |          | 10:2            | (FIG 14/15 A)    | Shielded connector alternative 1     |
+| 50      | Centronics | SE        | Yes         | CE50    | SPI-2 R20B (SCSI-3)  |          | 3:1             | (FIG 16/17 A)    | Shielded connector alternative 2     |
+| 50      | Centronics | LVD       | Yes         | CE50    | SPI-2 R20B (SCSI-3)  |          | 7:1             | (FIG 16/17 A)    | Shielded connector alternative 2     |
+| 50      | Centronics | HVD       | Yes         | CE50    | SPI-2 R20B (SCSI-3)  |          | 10:1            | (FIG 16/17 A)    | Shielded connector alternative 2     |
+| 68      | HD         | SE        | Yes         | HD68    | SPI-2 R20B (SCSI-3)  |          | 4               | (FIG 18/19 P)    | Shielded connector alternative 3     |
+| 68      | HD         | SE        | Yes         | HD68    | SPI-2 R20B (SCSI-3)  |          | 5               | (FIG 18/19 Q)    | Shielded connector alternative 3     |
+| 68      | HD         | LVD       | Yes         | HD68    | SPI-2 R20B (SCSI-3)  |          | 8               | (FIG 18/19 P)    | Shielded connector alternative 3     |
+| 68      | HD         | LVD       | Yes         | HD68    | SPI-2 R20B (SCSI-3)  |          | 9               | (FIG 18/19 Q)    | Shielded connector alternative 3     |
+| 68      | HD         | HVD       | Yes         | HD68    | SPI-2 R20B (SCSI-3)  |          | 11              | (FIG 18/19 P)    | Shielded connector alternative 3     |
+| 68      | HD         | HVD       | Yes         | HD68    | SPI-2 R20B (SCSI-3)  |          | 12              | (FIG 18/19 Q)    | Shielded connector alternative 3     |
+| 68      | VHDCI      | SE        | Yes         | VHDCI68 | SPI-2 R20B (SCSI-3)  |          | 4               | (FIG 20/21 P)    | Shielded connector alternative 4     |
+| 68      | VHDCI      | SE        | Yes         | VHDCI68 | SPI-2 R20B (SCSI-3)  |          | 5               | (FIG 20/21 Q)    | Shielded connector alternative 4     |
+| 68      | VHDCI      | LVD       | Yes         | VHDCI68 | SPI-2 R20B (SCSI-3)  |          | 8               | (FIG 20/21 P)    | Shielded connector alternative 4     |
+| 68      | VHDCI      | LVD       | Yes         | VHDCI68 | SPI-2 R20B (SCSI-3)  |          | 9               | (FIG 20/21 Q)    | Shielded connector alternative 4     |
+| 68      | VHDCI      | HVD       | Yes         | VHDCI68 | SPI-2 R20B (SCSI-3)  |          | 11              | (FIG 20/21 P)    | Shielded connector alternative 4     |
+| 68      | VHDCI      | HVD       | Yes         | VHDCI68 | SPI-2 R20B (SCSI-3)  |          | 12              | (FIG 20/21 Q)    | Shielded connector alternative 4     |
+|---------|------------|-----------|-------------|---------|----------------------|----------|-----------------|------------------|--------------------------------------|
+| 50      | HD         | SE        | No          | HD50    | SPI-3 R14 (SCSI-3)   |          | 3:2             | (FIG 11/12 A)    | Nonshielded connector alternative 1  |
+| 50      | HD         | LVD       | No          | HD50    | SPI-3 R14 (SCSI-3)   |          | 6:2             | (FIG 11/12 A)    | Nonshielded connector alternative 1  |
+| 50      | IDC        | SE        | No          | IDC50   | SPI-3 R14 (SCSI-3)   |          | 3:1             | (FIG 12/14 A)    | Nonshielded connector alternative 2  |
+| 50      | IDC        | LVD       | No          | IDC50   | SPI-3 R14 (SCSI-3)   |          | 6:1             | (FIG 12/14 A)    | Nonshielded connector alternative 2  |
+| 68      | HD         | SE        | No          | HD68    | SPI-3 R14 (SCSI-3)   |          | 4               | (FIG 11/12 P)    | Nonshielded connector alternative 3  |
+| 68      | HD         | LVD       | No          | HD68    | SPI-3 R14 (SCSI-3)   |          | 7               | (FIG 11/12 P)    | Nonshielded connector alternative 3  |
+| 80      | SCA        | SE        | No          | SCA-2   | SPI-3 R14 (SCSI-3)   |          | 5               | (FIG 15/16 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | LVD       | No          | SCA-2   | SPI-3 R14 (SCSI-3)   |          | 8               | (FIG 15/16 P)    | Nonshielded connector alternative 4  |
+| 50      | HD         | SE        | Yes         | HD50    | SPI-3 R14 (SCSI-3)   |          | 3:2             | (FIG 17/18 A)    | Shielded connector alternative 1     |
+| 50      | HD         | LVD       | Yes         | HD50    | SPI-3 R14 (SCSI-3)   |          | 6:2             | (FIG 17/18 A)    | Shielded connector alternative 1     |
+| 50      | Centronics | SE        | Yes         | CE50    | SPI-3 R14 (SCSI-3)   |          | 3:1             | (FIG 19/20 A)    | Shielded connector alternative 2     |
+| 50      | Centronics | LVD       | Yes         | CE50    | SPI-3 R14 (SCSI-3)   |          | 6:1             | (FIG 19/20 A)    | Shielded connector alternative 2     |
+| 68      | HD         | SE        | Yes         | HD68    | SPI-3 R14 (SCSI-3)   |          | 4               | (FIG 21/22 P)    | Shielded connector alternative 3     |
+| 68      | HD         | LVD       | Yes         | HD68    | SPI-3 R14 (SCSI-3)   |          | 4               | (FIG 21/22 P)    | Shielded connector alternative 3     |
+| 68      | VHDCI      | SE        | Yes         | VHDCI68 | SPI-3 R14 (SCSI-3)   |          | 7               | (FIG 23/24 P)    | Shielded connector alternative 4     |
+| 68      | VHDCI      | LVD       | Yes         | VHDCI68 | SPI-3 R14 (SCSI-3)   |          | 7               | (FIG 23/24 P)    | Shielded connector alternative 4     |
+|---------|------------|-----------|-------------|---------|----------------------|----------|-----------------|------------------|--------------------------------------|
+| 50      | HD         | SE        | No          | HD50    | SPI-4 R10 (SCSI-3)   |          | 13:2            | (FIG 25/26 A)    | Nonshielded connector alternative 1  |
+| 50      | HD         | LVD       | No          | HD50    | SPI-4 R10 (SCSI-3)   |          | 16:2            | (FIG 25/26 A)    | Nonshielded connector alternative 1  |
+| 50      | IDC        | SE        | No          | IDC50   | SPI-4 R10 (SCSI-3)   |          | 13:1            | (FIG 27/28 A)    | Nonshielded connector alternative 2  |
+| 50      | IDC        | LVD       | No          | IDC50   | SPI-4 R10 (SCSI-3)   |          | 16:1            | (FIG 27/28 A)    | Nonshielded connector alternative 2  |
+| 68      | HD         | SE        | No          | HD68    | SPI-4 R10 (SCSI-3)   |          | 14              | (FIG 25/26 P)    | Nonshielded connector alternative 3  |
+| 68      | HD         | LVD       | No          | HD68    | SPI-4 R10 (SCSI-3)   |          | 17              | (FIG 25/26 P)    | Nonshielded connector alternative 3  |
+| 80      | SCA        | SE        | No          | SCA-2   | SPI-4 R10 (SCSI-3)   |          | 15              | (FIG 29/30 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | LVD       | No          | SCA-2   | SPI-4 R10 (SCSI-3)   |          | 18              | (FIG 29/30 P)    | Nonshielded connector alternative 4  |
+| 50      | HD         | SE        | Yes         | HD50    | SPI-4 R10 (SCSI-3)   |          | 13:2            | (FIG 31/32 A)    | Shielded connector alternative 1     |
+| 50      | HD         | LVD       | Yes         | HD50    | SPI-4 R10 (SCSI-3)   |          | 16:2            | (FIG 31/32 A)    | Shielded connector alternative 1     |
+| 50      | Centronics | SE        | Yes         | CE50    | SPI-4 R10 (SCSI-3)   |          | 13:1            | (FIG 33/34 A)    | Shielded connector alternative 2     |
+| 50      | Centronics | LVD       | Yes         | CE50    | SPI-4 R10 (SCSI-3)   |          | 16:1            | (FIG 33/34 A)    | Shielded connector alternative 2     |
+| 68      | HD         | SE        | Yes         | HD68    | SPI-4 R10 (SCSI-3)   |          | 14              | (FIG 35/36 P)    | Shielded connector alternative 3     |
+| 68      | HD         | LVD       | Yes         | HD68    | SPI-4 R10 (SCSI-3)   |          | 17              | (FIG 35/36 P)    | Shielded connector alternative 3     |
+| 68      | VHDCI      | SE        | Yes         | VHDCI68 | SPI-4 R10 (SCSI-3)   |          | 14              | (FIG 37/38 P)    | Shielded connector alternative 4     |
+| 68      | VHDCI      | LVD       | Yes         | VHDCI68 | SPI-4 R10 (SCSI-3)   |          | 17              | (FIG 37/38 P)    | Shielded connector alternative 4     |
+|---------|------------|-----------|-------------|---------|----------------------|----------|-----------------|------------------|--------------------------------------|
+| 50      | HD         | LVD       | No          | HD50    | SPI-5 R06 (SCSI-3)   |          | 13:2            | (FIG 25/26 A)    | Nonshielded connector alternative 1  |
+| 50      | IDC        | LVD       | No          | IDC50   | SPI-5 R06 (SCSI-3)   |          | 13:1            | (FIG 27/28 A)    | Nonshielded connector alternative 2  |
+| 68      | HD         | LVD       | No          | HD68    | SPI-5 R06 (SCSI-3)   |          | 14              | (FIG 25/26 P)    | Nonshielded connector alternative 3  |
+| 80      | SCA        | LVD       | No          | SCA-2   | SPI-5 R06 (SCSI-3)   |          | 15              | (FIG 29/30 P)    | Nonshielded connector alternative 4  |
+| 50      | HD         | LVD       | Yes         | HD50    | SPI-5 R06 (SCSI-3)   |          | 13:2            | (FIG 31/32 A)    | Shielded connector alternative 1     |
+| 50      | Centronics | LVD       | Yes         | CE50    | SPI-5 R06 (SCSI-3)   |          | 13:1            | (FIG 33/34 A)    | Shielded connector alternative 2     |
+| 68      | HD         | LVD       | Yes         | HD68    | SPI-5 R06 (SCSI-3)   |          | 14              | (FIG 35/36 P)    | Shielded connector alternative 3     |
+| 68      | VHDCI      | LVD       | Yes         | VHDCI68 | SPI-5 R06 (SCSI-3)   |          | 14              | (FIG 37/38 P)    | Shielded connector alternative 4     |
+|=========|============|===========|=============|=========|======================|==========|=================|==================|======================================|
+
+X3.131:1986
+
+	|         Table 4-1 (SCSI-1)            | - |         Table 4-2 (SCSI-1)            |
+	|                  SE                   | - |                  HVD                  |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | GND       | -DB0      | 2     | - | 1     | GND       | GND       | 2     |
+	| 3     | GND       | -DB1      | 4     | - | 3     | +DB0      | -DB0      | 4     |
+	| 5     | GND       | -DB2      | 6     | - | 5     | +DB1      | -DB1      | 6     |
+	| 7     | GND       | -DB3      | 8     | - | 7     | +DB2      | -DB2      | 8     |
+	| 9     | GND       | -DB4      | 10    | - | 9     | +DB3      | -DB3      | 10    |
+	| 11    | GND       | -DB5      | 12    | - | 11    | +DB4      | -DB4      | 12    |
+	| 13    | GND       | -DB6      | 14    | - | 13    | +DB5      | -DB5      | 14    |
+	| 15    | GND       | -DB7      | 16    | - | 15    | +DB6      | -DB6      | 16    |
+	| 17    | GND       | -DBP      | 18    | - | 17    | +DB7      | -DB7      | 18    |
+	| 19    | GND       | GND       | 20    | - | 19    | +DBP      | -DBP      | 20    |
+	| 21    | GND       | GND       | 22    | - | 21    | DIFFSENS  | GND       | 22    |
+	| 23    | GND       | GND       | 24    | - | 23    | GND       | GND       | 24    |
+	| 25    | NC        | TERMPWR   | 26    | - | 25    | TERMPWR   | TERMPWR   | 26    |
+	| 27    | GND       | GND       | 28    | - | 27    | GND       | GND       | 28    |
+	| 29    | GND       | GND       | 30    | - | 29    | +ATN      | -ATN      | 30    |
+	| 31    | GND       | -ATN      | 32    | - | 31    | GND       | GND       | 32    |
+	| 33    | GND       | GND       | 34    | - | 33    | +BSY      | -BSY      | 34    |
+	| 35    | GND       | -BSY      | 36    | - | 35    | +ACK      | -ACK      | 36    |
+	| 37    | GND       | -ACK      | 38    | - | 37    | +RST      | -RST      | 38    |
+	| 39    | GND       | -RST      | 40    | - | 39    | +MSG      | -MSG      | 40    |
+	| 41    | GND       | -MSG      | 42    | - | 41    | +SEL      | -SEL      | 42    |
+	| 43    | GND       | -SEL      | 44    | - | 43    | +C/D      | -C/D      | 44    |
+	| 45    | GND       | -C/D      | 46    | - | 45    | +REQ      | -REQ      | 46    |
+	| 47    | GND       | -REQ      | 48    | - | 47    | +I/O      | -I/O      | 48    |
+	| 49    | GND       | -I/O      | 50    | - | 49    | GND       | GND       | 50    |
+
+SCSI-2 R10L
+
+	|          Table 2:1 (SCSI-2)           | - |          Table 2:2 (SCSI-2)           |
+	|                  SE                   | - |                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | GND       | -DB0      | 2     | - | 1     | GND       | -DB0      | 26    |
+	| 3     | GND       | -DB1      | 4     | - | 2     | GND       | -DB1      | 27    |
+	| 5     | GND       | -DB2      | 6     | - | 3     | GND       | -DB2      | 28    |
+	| 7     | GND       | -DB3      | 8     | - | 4     | GND       | -DB3      | 29    |
+	| 9     | GND       | -DB4      | 10    | - | 5     | GND       | -DB4      | 30    |
+	| 11    | GND       | -DB5      | 12    | - | 6     | GND       | -DB5      | 31    |
+	| 13    | GND       | -DB6      | 14    | - | 7     | GND       | -DB6      | 32    |
+	| 15    | GND       | -DB7      | 16    | - | 8     | GND       | -DB7      | 33    |
+	| 17    | GND       | -DBP      | 18    | - | 9     | GND       | -DBP      | 34    |
+	| 19    | GND       | GND       | 20    | - | 10    | GND       | GND       | 35    |
+	| 21    | GND       | GND       | 22    | - | 11    | GND       | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | NC        | TERMPWR   | 26    | - | 13    | NC        | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | GND       | GND       | 30    | - | 15    | GND       | GND       | 40    |
+	| 31    | GND       | -ATN      | 32    | - | 16    | GND       | -ATN      | 41    |
+	| 33    | GND       | GND       | 34    | - | 17    | GND       | GND       | 42    |
+	| 35    | GND       | -BSY      | 36    | - | 18    | GND       | -BSY      | 43    |
+	| 37    | GND       | -ACK      | 38    | - | 19    | GND       | -ACK      | 44    |
+	| 39    | GND       | -RST      | 40    | - | 20    | GND       | -RST      | 45    |
+	| 41    | GND       | -MSG      | 42    | - | 21    | GND       | -MSG      | 56    |
+	| 43    | GND       | -SEL      | 44    | - | 22    | GND       | -SEL      | 47    |
+	| 45    | GND       | -C/D      | 46    | - | 23    | GND       | -C/D      | 48    |
+	| 47    | GND       | -REQ      | 48    | - | 24    | GND       | -REQ      | 49    |
+	| 49    | GND       | -I/O      | 50    | - | 25    | GND       | -I/O      | 50    |
+
+	|            Table 3 (SCSI-2)           |
+	|                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | GND       | GND       | 35    |
+	| 2     | GND       | -DB8      | 36    |
+	| 3     | GND       | -DB9      | 37    |
+	| 4     | GND       | -DB10     | 38    |
+	| 5     | GND       | -DB11     | 39    |
+	| 6     | GND       | -DB12     | 40    |
+	| 7     | GND       | -DB13     | 41    |
+	| 8     | GND       | -DB14     | 42    |
+	| 9     | GND       | -DB15     | 43    |
+	| 10    | GND       | -DBP1     | 44    |
+	| 11    | GND       | -ACKB     | 45    |
+	| 12    | GND       | GND       | 46    |
+	| 13    | GND       | -REQB     | 47    |
+	| 14    | GND       | -DB16     | 48    |
+	| 15    | GND       | -DB17     | 49    |
+	| 16    | GND       | -DB18     | 50    |
+	| 17    | TERMPWRB  | TERMPWRB  | 51    |
+	| 18    | TERMPWRB  | TERMPWRB  | 52    |
+	| 19    | GND       | -DB19     | 53    |
+	| 20    | GND       | -DB20     | 54    |
+	| 21    | GND       | -DB21     | 55    |
+	| 22    | GND       | -DB22     | 56    |
+	| 23    | GND       | -DB23     | 57    |
+	| 24    | GND       | -DBP2     | 58    |
+	| 25    | GND       | -DB24     | 59    |
+	| 26    | GND       | -DB25     | 60    |
+	| 27    | GND       | -DB26     | 61    |
+	| 28    | GND       | -DB27     | 62    |
+	| 29    | GND       | -DB28     | 63    |
+	| 30    | GND       | -DB29     | 64    |
+	| 31    | GND       | -DB30     | 65    |
+	| 32    | GND       | -DB31     | 66    |
+	| 33    | GND       | -DBP3     | 67    |
+	| 34    | GND       | GND       | 68    |
+
+	|          Table 4:1 (SCSI-2)           | - |          Table 4:2 (SCSI-2)           |
+	|                  HVD                  | - |                  HVD                  |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | GND       | GND       | 2     | - | 1     | GND       | GND       | 26    |
+	| 3     | +DB0      | -DB0      | 4     | - | 2     | +DB0      | -DB0      | 27    |
+	| 5     | +DB1      | -DB1      | 6     | - | 3     | +DB1      | -DB1      | 28    |
+	| 7     | +DB2      | -DB2      | 8     | - | 4     | +DB2      | -DB2      | 29    |
+	| 9     | +DB3      | -DB3      | 10    | - | 5     | +DB3      | -DB3      | 30    |
+	| 11    | +DB4      | -DB4      | 12    | - | 6     | +DB4      | -DB4      | 31    |
+	| 13    | +DB5      | -DB5      | 14    | - | 7     | +DB5      | -DB5      | 32    |
+	| 15    | +DB6      | -DB6      | 16    | - | 8     | +DB6      | -DB6      | 33    |
+	| 17    | +DB7      | -DB7      | 18    | - | 9     | +DB7      | -DB7      | 34    |
+	| 19    | +DBP      | -DBP      | 20    | - | 10    | +DBP      | -DBP      | 35    |
+	| 21    | DIFFSENS  | GND       | 22    | - | 11    | DIFFSENS  | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | TERMPWR   | TERMPWR   | 26    | - | 13    | TERMPWR   | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | +ATN      | -ATN      | 30    | - | 15    | +ATN      | -ATN      | 40    |
+	| 31    | GND       | GND       | 32    | - | 16    | GND       | GND       | 41    |
+	| 33    | +BSY      | -BSY      | 34    | - | 17    | +BSY      | -BSY      | 42    |
+	| 35    | +ACK      | -ACK      | 36    | - | 18    | +ACK      | -ACK      | 43    |
+	| 37    | +RST      | -RST      | 38    | - | 19    | +RST      | -RST      | 44    |
+	| 39    | +MSG      | -MSG      | 40    | - | 20    | +MSG      | -MSG      | 45    |
+	| 41    | +SEL      | -SEL      | 42    | - | 21    | +SEL      | -SEL      | 56    |
+	| 43    | +C/D      | -C/D      | 44    | - | 22    | +C/D      | -C/D      | 47    |
+	| 45    | +REQ      | -REQ      | 46    | - | 23    | +REQ      | -REQ      | 48    |
+	| 47    | +I/O      | -I/O      | 48    | - | 24    | +I/O      | -I/O      | 49    |
+	| 49    | GND       | GND       | 50    | - | 25    | GND       | GND       | 50    |
+
+	|            Table 5 (SCSI-2)           |
+	|                  HVD                  |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | GND       | GND       | 35    |
+	| 2     | +DB8      | -DB8      | 36    |
+	| 3     | +DB9      | -DB9      | 37    |
+	| 4     | +DB10     | -DB10     | 38    |
+	| 5     | +DB11     | -DB11     | 39    |
+	| 6     | +DB12     | -DB12     | 40    |
+	| 7     | +DB13     | -DB13     | 41    |
+	| 8     | +DB14     | -DB14     | 42    |
+	| 9     | +DB15     | -DB15     | 43    |
+	| 10    | +DBP1     | -DBP1     | 44    |
+	| 11    | +ACKB     | -ACKB     | 45    |
+	| 12    | GND       | DIFFSENS  | 46    |
+	| 13    | +REQB     | -REQB     | 47    |
+	| 14    | +DB16     | -DB16     | 48    |
+	| 15    | +DB17     | -DB17     | 49    |
+	| 16    | +DB18     | -DB18     | 50    |
+	| 17    | TERMPWRB  | TERMPWRB  | 51    |
+	| 18    | TERMPWRB  | TERMPWRB  | 52    |
+	| 19    | +DB19     | -DB19     | 53    |
+	| 20    | +DB20     | -DB20     | 54    |
+	| 21    | +DB21     | -DB21     | 55    |
+	| 22    | +DB22     | -DB22     | 56    |
+	| 23    | +DB23     | -DB23     | 57    |
+	| 24    | +DBP2     | -DBP2     | 58    |
+	| 25    | +DB24     | -DB24     | 59    |
+	| 26    | +DB25     | -DB25     | 60    |
+	| 27    | +DB26     | -DB26     | 61    |
+	| 28    | +DB27     | -DB27     | 62    |
+	| 29    | +DB28     | -DB28     | 63    |
+	| 30    | +DB29     | -DB29     | 64    |
+	| 31    | +DB30     | -DB30     | 65    |
+	| 32    | +DB31     | -DB31     | 66    |
+	| 33    | +DBP3     | -DBP3     | 67    |
+	| 34    | GND       | GND       | 68    |
+
+SPI-1 R15A (SCSI-3)
+
+    |              Primary Bus              | - |             Secondary Bus             |
+	|            Table 1 (SPI-1)            | - |            Table 2 (SPI-1)            |
+	|                  SE                   | - |                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | GND       | -DB12     | 35    | - | 1     | GND       | -DB28     | 35    |
+	| 2     | GND       | -DB13     | 36    | - | 2     | GND       | -DB29     | 36    |
+	| 3     | GND       | -DB14     | 37    | - | 3     | GND       | -DB30     | 37    |
+	| 4     | GND       | -DB15     | 38    | - | 4     | GND       | -DB31     | 38    |
+	| 5     | GND       | -DBP1     | 39    | - | 5     | GND       | -DBP3     | 39    |
+	| 6     | GND       | -DB0      | 40    | - | 6     | GND       | -DB16     | 40    |
+	| 7     | GND       | -DB1      | 41    | - | 7     | GND       | -DB17     | 41    |
+	| 8     | GND       | -DB2      | 42    | - | 8     | GND       | -DB18     | 42    |
+	| 9     | GND       | -DB3      | 43    | - | 9     | GND       | -DB19     | 43    |
+	| 10    | GND       | -DB4      | 44    | - | 10    | GND       | -DB20     | 44    |
+	| 11    | GND       | -DB5      | 45    | - | 11    | GND       | -DB21     | 45    |
+	| 12    | GND       | -DB6      | 46    | - | 12    | GND       | -DB22     | 46    |
+	| 13    | GND       | -DB7      | 47    | - | 13    | GND       | -DB23     | 47    |
+	| 14    | GND       | -DBP      | 48    | - | 14    | GND       | -DBP2     | 48    |
+	| 15    | GND       | GND       | 49    | - | 15    | GND       | GND       | 49    |
+	| 16    | GND       | GND       | 50    | - | 16    | GND       | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    | - | 17    | TERMPWRQ  | TERMPWRQ  | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    | - | 18    | TERMPWRQ  | TERMPWRQ  | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    | - | 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | GND       | GND       | 54    | - | 20    | GND       | GND       | 54    |
+	| 21    | GND       | -ATN      | 55    | - | 21    | GND       | TERMINATED| 55    |
+	| 22    | GND       | GND       | 56    | - | 22    | GND       | GND       | 56    |
+	| 23    | GND       | -BSY      | 57    | - | 23    | GND       | TERMINATED| 57    |
+	| 24    | GND       | -ACK      | 58    | - | 24    | GND       | -ACKQ     | 58    |
+	| 25    | GND       | -RST      | 59    | - | 25    | GND       | TERMINATED| 59    |
+	| 26    | GND       | -MSG      | 60    | - | 26    | GND       | TERMINATED| 60    |
+	| 27    | GND       | -SEL      | 61    | - | 27    | GND       | TERMINATED| 61    |
+	| 28    | GND       | -C/D      | 62    | - | 28    | GND       | TERMINATED| 62    |
+	| 29    | GND       | -REQ      | 63    | - | 29    | GND       | -REQQ     | 63    |
+	| 30    | GND       | -I/O      | 64    | - | 30    | GND       | TERMINATED| 64    |
+	| 31    | GND       | -DB8      | 65    | - | 31    | GND       | -DB24     | 65    |
+	| 32    | GND       | -DB9      | 66    | - | 32    | GND       | -DB25     | 66    |
+	| 33    | GND       | -DB10     | 67    | - | 33    | GND       | -DB26     | 67    |
+	| 34    | GND       | -DB11     | 68    | - | 34    | GND       | -DB27     | 68    |
+
+    |              Primary Bus              | - |             Secondary Bus             |
+	|            Table 3 (SPI-1)            | - |            Table 4 (SPI-1)            |
+	|                  HVD                  | - |                  HVD                  |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | +DB11     | -DB11     | 35    | - | 1     | +DB28     | -DB28     | 35    |
+	| 2     | +DB13     | -DB13     | 36    | - | 2     | +DB29     | -DB29     | 36    |
+	| 3     | +DB14     | -DB14     | 37    | - | 3     | +DB30     | -DB30     | 37    |
+	| 4     | +DB15     | -DB15     | 38    | - | 4     | +DB31     | -DB31     | 38    |
+	| 5     | +DBP1     | -DBP1     | 39    | - | 5     | +DBP3     | -DBP3     | 39    |
+	| 6     | GND       | GND       | 40    | - | 6     | GND       | GND       | 40    |
+	| 7     | +DB0      | -DB0      | 41    | - | 7     | +DB16     | -DB16     | 41    |
+	| 8     | +DB1      | -DB1      | 42    | - | 8     | +DB17     | -DB17     | 42    |
+	| 9     | +DB2      | -DB2      | 43    | - | 9     | +DB18     | -DB18     | 43    |
+	| 10    | +DB3      | -DB3      | 44    | - | 10    | +DB19     | -DB19     | 44    |
+	| 11    | +DB4      | -DB4      | 45    | - | 11    | +DB20     | -DB20     | 45    |
+	| 12    | +DB5      | -DB5      | 46    | - | 12    | +DB21     | -DB21     | 46    |
+	| 13    | +DB6      | -DB6      | 47    | - | 13    | +DB22     | -DB22     | 47    |
+	| 14    | +DB7      | -DB7      | 48    | - | 14    | +DB23     | -DB23     | 48    |
+	| 15    | +DBP      | -DBP      | 49    | - | 15    | +DBP2     | -DBP2     | 49    |
+	| 16    | DIFFSENS  | GND       | 50    | - | 16    | DIFFSENS  | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    | - | 17    | TERMPWRQ  | TERMPWRQ  | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    | - | 18    | TERMPWRQ  | TERMPWRQ  | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    | - | 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | +ATN      | -ATN      | 54    | - | 20    | TERMINATED| TERMINATED| 54    |
+	| 21    | GND       | GND       | 55    | - | 21    | GND       | GND       | 55    |
+	| 22    | +BSY      | -BSY      | 56    | - | 22    | TERMINATED| TERMINATED| 56    |
+	| 23    | +ACK      | -ACK      | 57    | - | 23    | +ACKQ     | -ACKQ     | 57    |
+	| 24    | +RST      | -RST      | 58    | - | 24    | TERMINATED| TERMINATED| 58    |
+	| 25    | +MSG      | -MSG      | 59    | - | 25    | TERMINATED| TERMINATED| 59    |
+	| 26    | +SEL      | -SEL      | 60    | - | 26    | TERMINATED| TERMINATED| 60    |
+	| 27    | +C/D      | -C/D      | 61    | - | 27    | TERMINATED| TERMINATED| 61    |
+	| 28    | +REQ      | -REQ      | 62    | - | 28    | +REQQ     | -REQQ     | 62    |
+	| 29    | +I/O      | -I/O      | 63    | - | 29    | TERMINATED| TERMINATED| 63    |
+	| 30    | GND       | GND       | 64    | - | 30    | GND       | GND       | 64    |
+	| 31    | +DB8      | -DB8      | 65    | - | 31    | +DB24     | -DB24     | 65    |
+	| 32    | +DB9      | -DB9      | 66    | - | 32    | +DB25     | -DB25     | 66    |
+	| 33    | +DB10     | -DB10     | 67    | - | 33    | +DB26     | -DB26     | 67    |
+	| 34    | +DB11     | -DB11     | 68    | - | 34    | +DB27     | -DB27     | 68    |
+
+SPI-2 R20B (SCSI-3)
+
+	|          Table 3:1 (SPI-2)            | - |          Table 3:2 (SPI-2)            |
+	|                  SE                   | - |                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | SIG RET   | -DB0      | 2     | - | 1     | SIG RET   | -DB0      | 26    |
+	| 3     | SIG RET   | -DB1      | 4     | - | 2     | SIG RET   | -DB1      | 27    |
+	| 5     | SIG RET   | -DB2      | 6     | - | 3     | SIG RET   | -DB2      | 28    |
+	| 7     | SIG RET   | -DB3      | 8     | - | 4     | SIG RET   | -DB3      | 29    |
+	| 9     | SIG RET   | -DB4      | 10    | - | 5     | SIG RET   | -DB4      | 30    |
+	| 11    | SIG RET   | -DB5      | 12    | - | 6     | SIG RET   | -DB5      | 31    |
+	| 13    | SIG RET   | -DB6      | 14    | - | 7     | SIG RET   | -DB6      | 32    |
+	| 15    | SIG RET   | -DB7      | 16    | - | 8     | SIG RET   | -DB7      | 33    |
+	| 17    | SIG RET   | -DBP      | 18    | - | 9     | SIG RET   | -DBP      | 34    |
+	| 19    | GND       | GND       | 20    | - | 10    | GND       | GND       | 35    |
+	| 21    | GND       | GND       | 22    | - | 11    | GND       | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | NC        | TERMPWR   | 26    | - | 13    | NC        | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | GND       | GND       | 30    | - | 15    | GND       | GND       | 40    |
+	| 31    | SIG RET   | -ATN      | 32    | - | 16    | SIG RET   | -ATN      | 41    |
+	| 33    | GND       | GND       | 34    | - | 17    | GND       | GND       | 42    |
+	| 35    | SIG RET   | -BSY      | 36    | - | 18    | SIG RET   | -BSY      | 43    |
+	| 37    | SIG RET   | -ACK      | 38    | - | 19    | SIG RET   | -ACK      | 44    |
+	| 39    | SIG RET   | -RST      | 40    | - | 20    | SIG RET   | -RST      | 45    |
+	| 41    | SIG RET   | -MSG      | 42    | - | 21    | SIG RET   | -MSG      | 56    |
+	| 43    | SIG RET   | -SEL      | 44    | - | 22    | SIG RET   | -SEL      | 47    |
+	| 45    | SIG RET   | -C/D      | 46    | - | 23    | SIG RET   | -C/D      | 48    |
+	| 47    | SIG RET   | -REQ      | 48    | - | 24    | SIG RET   | -REQ      | 49    |
+	| 49    | SIG RET   | -I/O      | 50    | - | 25    | SIG RET   | -I/O      | 50    |
+
+	|             Table 4 (SPI-2)           | - |            Table 5 (SPI-2)            |
+	|                  SE                   | - |                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | SIG RET   | -DB12     | 35    | - | 1     | SIG RET   | -DB28     | 35    |
+	| 2     | SIG RET   | -DB13     | 36    | - | 2     | SIG RET   | -DB29     | 36    |
+	| 3     | SIG RET   | -DB14     | 37    | - | 3     | SIG RET   | -DB30     | 37    |
+	| 4     | SIG RET   | -DB15     | 38    | - | 4     | SIG RET   | -DB31     | 38    |
+	| 5     | SIG RET   | -DBP1     | 39    | - | 5     | SIG RET   | -DBP3     | 39    |
+	| 6     | SIG RET   | -DB0      | 40    | - | 6     | SIG RET   | -DB16     | 40    |
+	| 7     | SIG RET   | -DB1      | 41    | - | 7     | SIG RET   | -DB17     | 41    |
+	| 8     | SIG RET   | -DB2      | 42    | - | 8     | SIG RET   | -DB18     | 42    |
+	| 9     | SIG RET   | -DB3      | 43    | - | 9     | SIG RET   | -DB19     | 43    |
+	| 10    | SIG RET   | -DB4      | 44    | - | 10    | SIG RET   | -DB20     | 44    |
+	| 11    | SIG RET   | -DB5      | 45    | - | 11    | SIG RET   | -DB21     | 45    |
+	| 12    | SIG RET   | -DB6      | 46    | - | 12    | SIG RET   | -DB22     | 46    |
+	| 13    | SIG RET   | -DB7      | 47    | - | 13    | SIG RET   | -DB23     | 47    |
+	| 14    | SIG RET   | -DBP      | 48    | - | 14    | SIG RET   | -DBP2     | 48    |
+	| 15    | GND       | GND       | 49    | - | 15    | GND       | GND       | 49    |
+	| 16    | GND       | GND       | 50    | - | 16    | GND       | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    | - | 17    | TERMPWRQ  | TERMPWRQ  | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    | - | 18    | TERMPWRQ  | TERMPWRQ  | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    | - | 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | GND       | GND       | 54    | - | 20    | GND       | GND       | 54    |
+	| 21    | SIG RET   | -ATN      | 55    | - | 21    | GND       | TERMINATED| 55    |
+	| 22    | GND       | GND       | 56    | - | 22    | GND       | GND       | 56    |
+	| 23    | SIG RET   | -BSY      | 57    | - | 23    | GND       | TERMINATED| 57    |
+	| 24    | SIG RET   | -ACK      | 58    | - | 24    | SIG RET   | -ACKQ     | 58    |
+	| 25    | SIG RET   | -RST      | 59    | - | 25    | GND       | TERMINATED| 59    |
+	| 26    | SIG RET   | -MSG      | 60    | - | 26    | GND       | TERMINATED| 60    |
+	| 27    | SIG RET   | -SEL      | 61    | - | 27    | GND       | TERMINATED| 61    |
+	| 28    | SIG RET   | -C/D      | 62    | - | 28    | GND       | TERMINATED| 62    |
+	| 29    | SIG RET   | -REQ      | 63    | - | 29    | SIG RET   | -REQQ     | 63    |
+	| 30    | SIG RET   | -I/O      | 64    | - | 30    | GND       | TERMINATED| 64    |
+	| 31    | SIG RET   | -DB8      | 65    | - | 31    | SIG RET   | -DB24     | 65    |
+	| 32    | SIG RET   | -DB9      | 66    | - | 32    | SIG RET   | -DB25     | 66    |
+	| 33    | SIG RET   | -DB10     | 67    | - | 33    | SIG RET   | -DB26     | 67    |
+	| 34    | SIG RET   | -DB11     | 68    | - | 34    | SIG RET   | -DB27     | 68    |
+
+	|            Table 6 (SPI-2)            |
+	|                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | 12V CHRG  | 12V GND   | 41    |
+	| 2     | 12V       | 12V GND   | 42    |
+	| 3     | 12V       | 12V GND   | 43    |
+	| 4     | 12V       | MATED 1   | 44    |
+	| 5     | 3.3V      | 3.3V CHRG | 45    |
+	| 6     | 3.3V      | GND       | 46    |
+	| 7     | -DB11     | SIG RET   | 47    |
+	| 8     | -DB10     | SIG RET   | 48    |
+	| 9     | -DB9      | SIG RET   | 49    |
+	| 10    | -DB8      | SIG RET   | 50    |
+	| 11    | -I/O      | SIG RET   | 51    |
+	| 12    | -REQ      | SIG RET   | 52    |
+	| 13    | -C/D      | SIG RET   | 53    |
+	| 14    | -SEL      | SIG RET   | 54    |
+	| 15    | -MSG      | SIG RET   | 55    |
+	| 16    | -RST      | SIG RET   | 56    |
+	| 17    | -ACK      | SIG RET   | 57    |
+	| 18    | -BSY      | SIG RET   | 58    |
+	| 19    | -ATN      | SIG RET   | 59    |
+	| 20    | -DBP      | SIG RET   | 60    |
+	| 21    | -DB7      | SIG RET   | 61    |
+	| 22    | -DB6      | SIG RET   | 62    |
+	| 23    | -DB5      | SIG RET   | 63    |
+	| 24    | -DB4      | SIG RET   | 64    |
+	| 25    | -DB3      | SIG RET   | 65    |
+	| 26    | -DB2      | SIG RET   | 66    |
+	| 27    | -DB1      | SIG RET   | 67    |
+	| 28    | -DB0      | SIG RET   | 68    |
+	| 29    | -DBP1     | SIG RET   | 69    |
+	| 30    | -DB15     | SIG RET   | 70    |
+	| 31    | -DB14     | SIG RET   | 71    |
+	| 32    | -DB13     | SIG RET   | 72    |
+	| 33    | -DB12     | SIG RET   | 73    |
+	| 34    | 5V        | MATED 2   | 74    |
+	| 35    | 5V        | 5V GND    | 75    |
+	| 36    | 5V CHRG   | 5V GND    | 76    |
+	| 37    | SPINDLE   | LED OUT   | 77    |
+	| 38    | RMT_START | DLYD_STRT | 78    |
+	| 39    | SCSI ID 0 | SCSI ID 1 | 79    |
+	| 40    | SCSI ID 2 | SCSI ID 3 | 80    |
+
+	|          Table 7:1 (SPI-2)            | - |          Table 7:2 (SPI-2)            |
+	|                  LVD                  | - |                  LVD                  |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | +DB0      | -DB0      | 2     | - | 1     | +DB0      | -DB0      | 26    |
+	| 3     | +DB1      | -DB1      | 4     | - | 2     | +DB1      | -DB1      | 27    |
+	| 5     | +DB2      | -DB2      | 6     | - | 3     | +DB2      | -DB2      | 28    |
+	| 7     | +DB3      | -DB3      | 8     | - | 4     | +DB3      | -DB3      | 29    |
+	| 9     | +DB4      | -DB4      | 10    | - | 5     | +DB4      | -DB4      | 30    |
+	| 11    | +DB5      | -DB5      | 12    | - | 6     | +DB5      | -DB5      | 31    |
+	| 13    | +DB6      | -DB6      | 14    | - | 7     | +DB6      | -DB6      | 32    |
+	| 15    | +DB7      | -DB7      | 16    | - | 8     | +DB7      | -DB7      | 33    |
+	| 17    | +DBP      | -DBP      | 18    | - | 9     | +DBP      | -DBP      | 34    |
+	| 19    | GND       | GND       | 20    | - | 10    | GND       | GND       | 35    |
+	| 21    | DIFFSENS  | GND       | 22    | - | 11    | DIFFSENS  | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | TERMPWR   | TERMPWR   | 26    | - | 13    | TERMPWR   | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | GND       | GND       | 30    | - | 15    | GND       | GND       | 40    |
+	| 31    | +ATN      | -ATN      | 32    | - | 16    | +ATN      | -ATN      | 41    |
+	| 33    | GND       | GND       | 34    | - | 17    | GND       | GND       | 42    |
+	| 35    | +BSY      | -BSY      | 36    | - | 18    | +BSY      | -BSY      | 43    |
+	| 37    | +ACK      | -ACK      | 38    | - | 19    | +ACK      | -ACK      | 44    |
+	| 39    | +RST      | -RST      | 40    | - | 20    | +RST      | -RST      | 45    |
+	| 41    | +MSG      | -MSG      | 42    | - | 21    | +MSG      | -MSG      | 56    |
+	| 43    | +SEL      | -SEL      | 44    | - | 22    | +SEL      | -SEL      | 47    |
+	| 45    | +C/D      | -C/D      | 46    | - | 23    | +C/D      | -C/D      | 48    |
+	| 47    | +REQ      | -REQ      | 48    | - | 24    | +REQ      | -REQ      | 49    |
+	| 49    | +I/O      | -I/O      | 50    | - | 25    | +I/O      | -I/O      | 50    |
+
+	|            Table 8 (SPI-2)            | - |            Table 9 (SPI-2)            |
+	|                  LVD                  | - |                  LVD                  |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | +DB12     | -DB12     | 35    | - | 1     | +DB28     | -DB28     | 35    |
+	| 2     | +DB13     | -DB13     | 36    | - | 2     | +DB29     | -DB29     | 36    |
+	| 3     | +DB14     | -DB14     | 37    | - | 3     | +DB30     | -DB30     | 37    |
+	| 4     | +DB15     | -DB15     | 38    | - | 4     | +DB31     | -DB31     | 38    |
+	| 5     | +DBP1     | -DBP1     | 39    | - | 5     | +DBP3     | -DBP3     | 39    |
+	| 6     | +DB0      | -DB0      | 40    | - | 6     | +DB16     | -DB16     | 40    |
+	| 7     | +DB1      | -DB1      | 41    | - | 7     | +DB17     | -DB17     | 41    |
+	| 8     | +DB2      | -DB2      | 42    | - | 8     | +DB18     | -DB18     | 42    |
+	| 9     | +DB3      | -DB3      | 43    | - | 9     | +DB19     | -DB19     | 43    |
+	| 10    | +DB4      | -DB4      | 44    | - | 10    | +DB20     | -DB20     | 44    |
+	| 11    | +DB5      | -DB5      | 45    | - | 11    | +DB21     | -DB21     | 45    |
+	| 12    | +DB6      | -DB6      | 46    | - | 12    | +DB22     | -DB22     | 46    |
+	| 13    | +DB7      | -DB7      | 47    | - | 13    | +DB23     | -DB23     | 47    |
+	| 14    | +DBP      | -DBP      | 48    | - | 14    | +DBP2     | -DBP2     | 48    |
+	| 15    | GND       | GND       | 49    | - | 15    | GND       | GND       | 49    |
+	| 16    | DIFFSENS  | GND       | 50    | - | 16    | DIFFSENS  | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    | - | 17    | TERMPWRQ  | TERMPWRQ  | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    | - | 18    | TERMPWRQ  | TERMPWRQ  | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    | - | 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | GND       | GND       | 54    | - | 20    | GND       | GND       | 54    |
+	| 21    | +ATN      | -ATN      | 55    | - | 21    | TERMINATED| TERMINATED| 55    |
+	| 22    | GND       | GND       | 56    | - | 22    | GND       | GND       | 56    |
+	| 23    | +BSY      | -BSY      | 57    | - | 23    | TERMINATED| TERMINATED| 57    |
+	| 24    | +ACK      | -ACK      | 58    | - | 24    | +ACKQ     | -ACKQ     | 58    |
+	| 25    | +RST      | -RST      | 59    | - | 25    | TERMINATED| TERMINATED| 59    |
+	| 26    | +MSG      | -MSG      | 60    | - | 26    | TERMINATED| TERMINATED| 60    |
+	| 27    | +SEL      | -SEL      | 61    | - | 27    | TERMINATED| TERMINATED| 61    |
+	| 28    | +C/D      | -C/D      | 62    | - | 28    | TERMINATED| TERMINATED| 62    |
+	| 29    | +REQ      | -REQ      | 63    | - | 29    | +REQQ     | -REQQ     | 63    |
+	| 30    | +I/O      | -I/O      | 64    | - | 30    | TERMINATED| TERMINATED| 64    |
+	| 31    | +DB8      | -DB8      | 65    | - | 31    | +DB24     | -DB24     | 65    |
+	| 32    | +DB9      | -DB9      | 66    | - | 32    | +DB25     | -DB25     | 66    |
+	| 33    | +DB10     | -DB10     | 67    | - | 33    | +DB26     | -DB26     | 67    |
+	| 34    | +DB11     | -DB11     | 68    | - | 34    | +DB27     | -DB27     | 68    |
+
+	|         Table 10:1 (SPI-2)            | - |         Table 10:2 (SPI-2)            |
+	|                  HVD                  | - |                  HVD                  |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | GND       | GND       | 2     | - | 1     | GND       | GND       | 26    |
+	| 3     | +DB0      | -DB0      | 4     | - | 2     | +DB0      | -DB0      | 27    |
+	| 5     | +DB1      | -DB1      | 6     | - | 3     | +DB1      | -DB1      | 28    |
+	| 7     | +DB2      | -DB2      | 8     | - | 4     | +DB2      | -DB2      | 29    |
+	| 9     | +DB3      | -DB3      | 10    | - | 5     | +DB3      | -DB3      | 30    |
+	| 11    | +DB4      | -DB4      | 12    | - | 6     | +DB4      | -DB4      | 31    |
+	| 13    | +DB5      | -DB5      | 14    | - | 7     | +DB5      | -DB5      | 32    |
+	| 15    | +DB6      | -DB6      | 16    | - | 8     | +DB6      | -DB6      | 33    |
+	| 17    | +DB7      | -DB7      | 18    | - | 9     | +DB7      | -DB7      | 34    |
+	| 19    | +DBP      | -DBP      | 20    | - | 10    | +DBP      | -DBP      | 35    |
+	| 21    | DIFFSENS  | GND       | 22    | - | 11    | DIFFSENS  | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | TERMPWR   | TERMPWR   | 26    | - | 13    | TERMPWR   | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | +ATN      | -ATN      | 30    | - | 15    | +ATN      | -ATN      | 40    |
+	| 31    | GND       | GND       | 32    | - | 16    | GND       | GND       | 41    |
+	| 33    | +BSY      | -BSY      | 34    | - | 17    | +BSY      | -BSY      | 42    |
+	| 35    | +ACK      | -ACK      | 36    | - | 18    | +ACK      | -ACK      | 43    |
+	| 37    | +RST      | -RST      | 38    | - | 19    | +RST      | -RST      | 44    |
+	| 39    | +MSG      | -MSG      | 40    | - | 20    | +MSG      | -MSG      | 45    |
+	| 41    | +SEL      | -SEL      | 42    | - | 21    | +SEL      | -SEL      | 56    |
+	| 43    | +C/D      | -C/D      | 44    | - | 22    | +C/D      | -C/D      | 47    |
+	| 45    | +REQ      | -REQ      | 46    | - | 23    | +REQ      | -REQ      | 48    |
+	| 47    | +I/O      | -I/O      | 48    | - | 24    | +I/O      | -I/O      | 49    |
+	| 49    | GND       | GND       | 50    | - | 25    | GND       | GND       | 50    |
+
+	|           Table 11 (SPI-2)            | - |           Table 12 (SPI-2)            |
+	|                  HVD                  | - |                  HVD                  |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | +DB12     | -DB12     | 35    | - | 1     | +DB28     | -DB28     | 35    |
+	| 2     | +DB13     | -DB13     | 36    | - | 2     | +DB29     | -DB29     | 36    |
+	| 3     | +DB14     | -DB14     | 37    | - | 3     | +DB30     | -DB30     | 37    |
+	| 4     | +DB15     | -DB15     | 38    | - | 4     | +DB31     | -DB31     | 38    |
+	| 5     | +DBP1     | -DBP1     | 39    | - | 5     | +DBP3     | -DBP3     | 39    |
+	| 6     | GND       | GND       | 40    | - | 6     | GND       | GND       | 40    |
+	| 7     | +DB0      | -DB0      | 41    | - | 7     | +DB16     | -DB16     | 41    |
+	| 8     | +DB1      | -DB1      | 42    | - | 8     | +DB17     | -DB17     | 42    |
+	| 9     | +DB2      | -DB2      | 43    | - | 9     | +DB18     | -DB18     | 43    |
+	| 10    | +DB3      | -DB3      | 44    | - | 10    | +DB19     | -DB19     | 44    |
+	| 11    | +DB4      | -DB4      | 45    | - | 11    | +DB20     | -DB20     | 45    |
+	| 12    | +DB5      | -DB5      | 46    | - | 12    | +DB21     | -DB21     | 46    |
+	| 13    | +DB6      | -DB6      | 47    | - | 13    | +DB22     | -DB22     | 47    |
+	| 14    | +DB7      | -DB7      | 48    | - | 14    | +DB23     | -DB23     | 48    |
+	| 15    | +DBP      | -DBP      | 49    | - | 15    | +DBP2     | -DBP2     | 49    |
+	| 16    | DIFFSENS  | GND       | 50    | - | 16    | DIFFSENS  | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    | - | 17    | TERMPWRQ  | TERMPWRQ  | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    | - | 18    | TERMPWRQ  | TERMPWRQ  | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    | - | 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | +ATN      | -ATN      | 54    | - | 20    | TERMINATED| TERMINATED| 54    |
+	| 21    | GND       | GND       | 55    | - | 21    | GND       | GND       | 55    |
+	| 22    | +BSY      | -BSY      | 56    | - | 22    | TERMINATED| TERMINATED| 56    |
+	| 23    | +ACK      | -ACK      | 57    | - | 23    | +ACKQ     | -ACKQ     | 57    |
+	| 24    | +RST      | -RST      | 58    | - | 24    | TERMINATED| TERMINATED| 58    |
+	| 25    | +MSG      | -MSG      | 59    | - | 25    | TERMINATED| TERMINATED| 59    |
+	| 26    | +SEL      | -SEL      | 60    | - | 26    | TERMINATED| TERMINATED| 60    |
+	| 27    | +C/D      | -C/D      | 61    | - | 27    | TERMINATED| TERMINATED| 61    |
+	| 28    | +REQ      | -REQ      | 62    | - | 28    | +REQQ     | -REQQ     | 62    |
+	| 29    | +I/O      | -I/O      | 63    | - | 29    | TERMINATED| TERMINATED| 63    |
+	| 30    | GND       | GND       | 64    | - | 30    | GND       | GND       | 64    |
+	| 31    | +DB8      | -DB8      | 65    | - | 31    | +DB24     | -DB24     | 65    |
+	| 32    | +DB9      | -DB9      | 66    | - | 32    | +DB25     | -DB25     | 66    |
+	| 33    | +DB10     | -DB10     | 67    | - | 33    | +DB26     | -DB26     | 67    |
+	| 34    | +DB11     | -DB11     | 68    | - | 34    | +DB27     | -DB27     | 68    |
+
+	|           Table 13 (SPI-2)            |
+	|                HVD/LVD                |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | 12V CHRG  | 12V GND   | 41    |
+	| 2     | 12V       | 12V GND   | 42    |
+	| 3     | 12V       | 12V GND   | 43    |
+	| 4     | 12V       | MATED 1   | 44    |
+	| 5     | 3.3V      | 3.3V CHRG | 45    |
+	| 6     | 3.3V      | DIFFSENS  | 46    |
+	| 7     | -DB11     | +DB11     | 47    |
+	| 8     | -DB10     | +DB10     | 48    |
+	| 9     | -DB9      | +DB9      | 49    |
+	| 10    | -DB8      | +DB8      | 50    |
+	| 11    | -I/O      | +I/O      | 51    |
+	| 12    | -REQ      | +REQ      | 52    |
+	| 13    | -C/D      | +C/D      | 53    |
+	| 14    | -SEL      | +SEL      | 54    |
+	| 15    | -MSG      | +MSG      | 55    |
+	| 16    | -RST      | +RST      | 56    |
+	| 17    | -ACK      | +ACK      | 57    |
+	| 18    | -BSY      | +BSY      | 58    |
+	| 19    | -ATN      | +ATN      | 59    |
+	| 20    | -DBP      | +DBP      | 60    |
+	| 21    | -DB7      | +DB7      | 61    |
+	| 22    | -DB6      | +DB6      | 62    |
+	| 23    | -DB5      | +DB5      | 63    |
+	| 24    | -DB4      | +DB4      | 64    |
+	| 25    | -DB3      | +DB3      | 65    |
+	| 26    | -DB2      | +DB2      | 66    |
+	| 27    | -DB1      | +DB1      | 67    |
+	| 28    | -DB0      | +DB0      | 68    |
+	| 29    | -DBP1     | +DBP1     | 69    |
+	| 30    | -DB15     | +DB15     | 70    |
+	| 31    | -DB14     | +DB14     | 71    |
+	| 32    | -DB13     | +DB13     | 72    |
+	| 33    | -DB12     | +DB12     | 73    |
+	| 34    | 5V        | MATED 2   | 74    |
+	| 35    | 5V        | 5V GND    | 75    |
+	| 36    | 5V CHRG   | 5V GND    | 76    |
+	| 37    | SPINDLE   | LED OUT   | 77    |
+	| 38    | RMT_START | DLYD_STRT | 78    |
+	| 39    | SCSI ID 0 | SCSI ID 1 | 79    |
+	| 40    | SCSI ID 2 | SCSI ID 3 | 80    |
+
+SPI-3 R14 (SCSI-3)
+
+	|          Table 3:1 (SPI-3)            | - |          Table 3:2 (SPI-3)            |
+	|                  SE                   | - |                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | SIG RET   | -DB0      | 2     | - | 1     | SIG RET   | -DB0      | 26    |
+	| 3     | SIG RET   | -DB1      | 4     | - | 2     | SIG RET   | -DB1      | 27    |
+	| 5     | SIG RET   | -DB2      | 6     | - | 3     | SIG RET   | -DB2      | 28    |
+	| 7     | SIG RET   | -DB3      | 8     | - | 4     | SIG RET   | -DB3      | 29    |
+	| 9     | SIG RET   | -DB4      | 10    | - | 5     | SIG RET   | -DB4      | 30    |
+	| 11    | SIG RET   | -DB5      | 12    | - | 6     | SIG RET   | -DB5      | 31    |
+	| 13    | SIG RET   | -DB6      | 14    | - | 7     | SIG RET   | -DB6      | 32    |
+	| 15    | SIG RET   | -DB7      | 16    | - | 8     | SIG RET   | -DB7      | 33    |
+	| 17    | SIG RET   | -DBP      | 18    | - | 9     | SIG RET   | -DBP      | 34    |
+	| 19    | GND       | GND       | 20    | - | 10    | GND       | GND       | 35    |
+	| 21    | GND       | GND       | 22    | - | 11    | GND       | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | NC        | TERMPWR   | 26    | - | 13    | NC        | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | GND       | GND       | 30    | - | 15    | GND       | GND       | 40    |
+	| 31    | SIG RET   | -ATN      | 32    | - | 16    | SIG RET   | -ATN      | 41    |
+	| 33    | GND       | GND       | 34    | - | 17    | GND       | GND       | 42    |
+	| 35    | SIG RET   | -BSY      | 36    | - | 18    | SIG RET   | -BSY      | 43    |
+	| 37    | SIG RET   | -ACK      | 38    | - | 19    | SIG RET   | -ACK      | 44    |
+	| 39    | SIG RET   | -RST      | 40    | - | 20    | SIG RET   | -RST      | 45    |
+	| 41    | SIG RET   | -MSG      | 42    | - | 21    | SIG RET   | -MSG      | 56    |
+	| 43    | SIG RET   | -SEL      | 44    | - | 22    | SIG RET   | -SEL      | 47    |
+	| 45    | SIG RET   | -C/D      | 46    | - | 23    | SIG RET   | -C/D      | 48    |
+	| 47    | SIG RET   | -REQ      | 48    | - | 24    | SIG RET   | -REQ      | 49    |
+	| 49    | SIG RET   | -I/O      | 50    | - | 25    | SIG RET   | -I/O      | 50    |
+
+	|            Table 4 (SPI-3)            |
+	|                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | SIG RET   | -DB12     | 35    |
+	| 2     | SIG RET   | -DB13     | 36    |
+	| 3     | SIG RET   | -DB14     | 37    |
+	| 4     | SIG RET   | -DB15     | 38    |
+	| 5     | SIG RET   | -DBP1     | 39    |
+	| 6     | SIG RET   | -DB0      | 40    |
+	| 7     | SIG RET   | -DB1      | 41    |
+	| 8     | SIG RET   | -DB2      | 42    |
+	| 9     | SIG RET   | -DB3      | 43    |
+	| 10    | SIG RET   | -DB4      | 44    |
+	| 11    | SIG RET   | -DB5      | 45    |
+	| 12    | SIG RET   | -DB6      | 46    |
+	| 13    | SIG RET   | -DB7      | 47    |
+	| 14    | SIG RET   | -DBP      | 48    |
+	| 15    | GND       | GND       | 49    |
+	| 16    | GND       | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | GND       | GND       | 54    |
+	| 21    | SIG RET   | -ATN      | 55    |
+	| 22    | GND       | GND       | 56    |
+	| 23    | SIG RET   | -BSY      | 57    |
+	| 24    | SIG RET   | -ACK      | 58    |
+	| 25    | SIG RET   | -RST      | 59    |
+	| 26    | SIG RET   | -MSG      | 60    |
+	| 27    | SIG RET   | -SEL      | 61    |
+	| 28    | SIG RET   | -C/D      | 62    |
+	| 29    | SIG RET   | -REQ      | 63    |
+	| 30    | SIG RET   | -I/O      | 64    |
+	| 31    | SIG RET   | -DB8      | 65    |
+	| 32    | SIG RET   | -DB9      | 66    |
+	| 33    | SIG RET   | -DB10     | 67    |
+	| 34    | SIG RET   | -DB11     | 68    |
+
+	|            Table 5 (SPI-3)            |
+	|                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | 12V CHRG  | 12V GND   | 41    |
+	| 2     | 12V       | 12V GND   | 42    |
+	| 3     | 12V       | 12V GND   | 43    |
+	| 4     | 12V       | MATED 1   | 44    |
+	| 5     | 3.3V      | 3.3V CHRG | 45    |
+	| 6     | 3.3V      | GND       | 46    |
+	| 7     | -DB11     | SIG RET   | 47    |
+	| 8     | -DB10     | SIG RET   | 48    |
+	| 9     | -DB9      | SIG RET   | 49    |
+	| 10    | -DB8      | SIG RET   | 50    |
+	| 11    | -I/O      | SIG RET   | 51    |
+	| 12    | -REQ      | SIG RET   | 52    |
+	| 13    | -C/D      | SIG RET   | 53    |
+	| 14    | -SEL      | SIG RET   | 54    |
+	| 15    | -MSG      | SIG RET   | 55    |
+	| 16    | -RST      | SIG RET   | 56    |
+	| 17    | -ACK      | SIG RET   | 57    |
+	| 18    | -BSY      | SIG RET   | 58    |
+	| 19    | -ATN      | SIG RET   | 59    |
+	| 20    | -DBP      | SIG RET   | 60    |
+	| 21    | -DB7      | SIG RET   | 61    |
+	| 22    | -DB6      | SIG RET   | 62    |
+	| 23    | -DB5      | SIG RET   | 63    |
+	| 24    | -DB4      | SIG RET   | 64    |
+	| 25    | -DB3      | SIG RET   | 65    |
+	| 26    | -DB2      | SIG RET   | 66    |
+	| 27    | -DB1      | SIG RET   | 67    |
+	| 28    | -DB0      | SIG RET   | 68    |
+	| 29    | -DBP1     | SIG RET   | 69    |
+	| 30    | -DB15     | SIG RET   | 70    |
+	| 31    | -DB14     | SIG RET   | 71    |
+	| 32    | -DB13     | SIG RET   | 72    |
+	| 33    | -DB12     | SIG RET   | 73    |
+	| 34    | 5V        | MATED 2   | 74    |
+	| 35    | 5V        | 5V GND    | 75    |
+	| 36    | 5V CHRG   | 5V GND    | 76    |
+	| 37    | SPINDLE   | LED OUT   | 77    |
+	| 38    | RMT_START | DLYD_STRT | 78    |
+	| 39    | SCSI ID 0 | SCSI ID 1 | 79    |
+	| 40    | SCSI ID 2 | SCSI ID 3 | 80    |
+
+	|           Table 6:1 (SPI-3)           | - |           Table 6:2 (SPI-3)           |
+	|                LVD/MSE                | - |                LVD/MSE                |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | +DB0      | -DB0      | 2     | - | 1     | +DB0      | -DB0      | 26    |
+	| 3     | +DB1      | -DB1      | 4     | - | 2     | +DB1      | -DB1      | 27    |
+	| 5     | +DB2      | -DB2      | 6     | - | 3     | +DB2      | -DB2      | 28    |
+	| 7     | +DB3      | -DB3      | 8     | - | 4     | +DB3      | -DB3      | 29    |
+	| 9     | +DB4      | -DB4      | 10    | - | 5     | +DB4      | -DB4      | 30    |
+	| 11    | +DB5      | -DB5      | 12    | - | 6     | +DB5      | -DB5      | 31    |
+	| 13    | +DB6      | -DB6      | 14    | - | 7     | +DB6      | -DB6      | 32    |
+	| 15    | +DB7      | -DB7      | 16    | - | 8     | +DB7      | -DB7      | 33    |
+	| 17    | +DBP      | -DBP      | 18    | - | 9     | +DBP      | -DBP      | 34    |
+	| 19    | GND       | GND       | 20    | - | 10    | GND       | GND       | 35    |
+	| 21    | DIFFSENS  | GND       | 22    | - | 11    | DIFFSENS  | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | TERMPWR   | TERMPWR   | 26    | - | 13    | TERMPWR   | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | GND       | GND       | 30    | - | 15    | GND       | GND       | 40    |
+	| 31    | +ATN      | -ATN      | 32    | - | 16    | +ATN      | -ATN      | 41    |
+	| 33    | GND       | GND       | 34    | - | 17    | GND       | GND       | 42    |
+	| 35    | +BSY      | -BSY      | 36    | - | 18    | +BSY      | -BSY      | 43    |
+	| 37    | +ACK      | -ACK      | 38    | - | 19    | +ACK      | -ACK      | 44    |
+	| 39    | +RST      | -RST      | 40    | - | 20    | +RST      | -RST      | 45    |
+	| 41    | +MSG      | -MSG      | 42    | - | 21    | +MSG      | -MSG      | 56    |
+	| 43    | +SEL      | -SEL      | 44    | - | 22    | +SEL      | -SEL      | 47    |
+	| 45    | +C/D      | -C/D      | 46    | - | 23    | +C/D      | -C/D      | 48    |
+	| 47    | +REQ      | -REQ      | 48    | - | 24    | +REQ      | -REQ      | 49    |
+	| 49    | +I/O      | -I/O      | 50    | - | 25    | +I/O      | -I/O      | 50    |
+
+
+	|             Table 7 (SPI-3)           |
+	|                LVD/MSE                |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | +DB12     | -DB12     | 35    |
+	| 2     | +DB13     | -DB13     | 36    |
+	| 3     | +DB14     | -DB14     | 37    |
+	| 4     | +DB15     | -DB15     | 38    |
+	| 5     | +DBP1     | -DBP1     | 39    |
+	| 6     | +DB0      | -DB0      | 40    |
+	| 7     | +DB1      | -DB1      | 41    |
+	| 8     | +DB2      | -DB2      | 42    |
+	| 9     | +DB3      | -DB3      | 43    |
+	| 10    | +DB4      | -DB4      | 44    |
+	| 11    | +DB5      | -DB5      | 45    |
+	| 12    | +DB6      | -DB6      | 46    |
+	| 13    | +DB7      | -DB7      | 47    |
+	| 14    | +DBP      | -DBP      | 48    |
+	| 15    | GND       | GND       | 49    |
+	| 16    | DIFFSENS  | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | GND       | GND       | 54    |
+	| 21    | +ATN      | -ATN      | 55    |
+	| 22    | GND       | GND       | 56    |
+	| 23    | +BSY      | -BSY      | 57    |
+	| 24    | +ACK      | -ACK      | 58    |
+	| 25    | +RST      | -RST      | 59    |
+	| 26    | +MSG      | -MSG      | 60    |
+	| 27    | +SEL      | -SEL      | 61    |
+	| 28    | +C/D      | -C/D      | 62    |
+	| 29    | +REQ      | -REQ      | 63    |
+	| 30    | +I/O      | -I/O      | 64    |
+	| 31    | +DB8      | -DB8      | 65    |
+	| 32    | +DB9      | -DB9      | 66    |
+	| 33    | +DB10     | -DB10     | 67    |
+	| 34    | +DB11     | -DB11     | 68    |
+
+	|             Table 8 (SPI-3)           |
+	|                LVD/MSE                |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | 12V CHRG  | 12V GND   | 41    |
+	| 2     | 12V       | 12V GND   | 42    |
+	| 3     | 12V       | 12V GND   | 43    |
+	| 4     | 12V       | MATED 1   | 44    |
+	| 5     | 3.3V      | 3.3V CHRG | 45    |
+	| 6     | 3.3V      | DIFFSENS  | 46    |
+	| 7     | -DB11     | +DB11     | 47    |
+	| 8     | -DB10     | +DB10     | 48    |
+	| 9     | -DB9      | +DB9      | 49    |
+	| 10    | -DB8      | +DB8      | 50    |
+	| 11    | -I/O      | +I/O      | 51    |
+	| 12    | -REQ      | +REQ      | 52    |
+	| 13    | -C/D      | +C/D      | 53    |
+	| 14    | -SEL      | +SEL      | 54    |
+	| 15    | -MSG      | +MSG      | 55    |
+	| 16    | -RST      | +RST      | 56    |
+	| 17    | -ACK      | +ACK      | 57    |
+	| 18    | -BSY      | +BSY      | 58    |
+	| 19    | -ATN      | +ATN      | 59    |
+	| 20    | -DBP      | +DBP      | 60    |
+	| 21    | -DB7      | +DB7      | 61    |
+	| 22    | -DB6      | +DB6      | 62    |
+	| 23    | -DB5      | +DB5      | 63    |
+	| 24    | -DB4      | +DB4      | 64    |
+	| 25    | -DB3      | +DB3      | 65    |
+	| 26    | -DB2      | +DB2      | 66    |
+	| 27    | -DB1      | +DB1      | 67    |
+	| 28    | -DB0      | +DB0      | 68    |
+	| 29    | -DBP1     | +DBP1     | 69    |
+	| 30    | -DB15     | +DB15     | 70    |
+	| 31    | -DB14     | +DB14     | 71    |
+	| 32    | -DB13     | +DB13     | 72    |
+	| 33    | -DB12     | +DB12     | 73    |
+	| 34    | 5V        | MATED 2   | 74    |
+	| 35    | 5V        | 5V GND    | 75    |
+	| 36    | 5V CHRG   | 5V GND    | 76    |
+	| 37    | SPINDLE   | LED OUT   | 77    |
+	| 38    | RMT_START | DLYD_STRT | 78    |
+	| 39    | SCSI ID 0 | SCSI ID 1 | 79    |
+	| 40    | SCSI ID 2 | SCSI ID 3 | 80    |
+
+SPI-4 R10 (SCSI-3)
+
+	|         Table 13:1 (SPI-4)            | - |         Table 13:2 (SPI-4)            |
+	|                  SE                   | - |                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | SIG RET   | -DB0      | 2     | - | 1     | SIG RET   | -DB0      | 26    |
+	| 3     | SIG RET   | -DB1      | 4     | - | 2     | SIG RET   | -DB1      | 27    |
+	| 5     | SIG RET   | -DB2      | 6     | - | 3     | SIG RET   | -DB2      | 28    |
+	| 7     | SIG RET   | -DB3      | 8     | - | 4     | SIG RET   | -DB3      | 29    |
+	| 9     | SIG RET   | -DB4      | 10    | - | 5     | SIG RET   | -DB4      | 30    |
+	| 11    | SIG RET   | -DB5      | 12    | - | 6     | SIG RET   | -DB5      | 31    |
+	| 13    | SIG RET   | -DB6      | 14    | - | 7     | SIG RET   | -DB6      | 32    |
+	| 15    | SIG RET   | -DB7      | 16    | - | 8     | SIG RET   | -DB7      | 33    |
+	| 17    | SIG RET   | -DBP      | 18    | - | 9     | SIG RET   | -DBP      | 34    |
+	| 19    | GND       | GND       | 20    | - | 10    | GND       | GND       | 35    |
+	| 21    | GND       | GND       | 22    | - | 11    | GND       | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | NC        | TERMPWR   | 26    | - | 13    | NC        | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | GND       | GND       | 30    | - | 15    | GND       | GND       | 40    |
+	| 31    | SIG RET   | -ATN      | 32    | - | 16    | SIG RET   | -ATN      | 41    |
+	| 33    | GND       | GND       | 34    | - | 17    | GND       | GND       | 42    |
+	| 35    | SIG RET   | -BSY      | 36    | - | 18    | SIG RET   | -BSY      | 43    |
+	| 37    | SIG RET   | -ACK      | 38    | - | 19    | SIG RET   | -ACK      | 44    |
+	| 39    | SIG RET   | -RST      | 40    | - | 20    | SIG RET   | -RST      | 45    |
+	| 41    | SIG RET   | -MSG      | 42    | - | 21    | SIG RET   | -MSG      | 56    |
+	| 43    | SIG RET   | -SEL      | 44    | - | 22    | SIG RET   | -SEL      | 47    |
+	| 45    | SIG RET   | -C/D      | 46    | - | 23    | SIG RET   | -C/D      | 48    |
+	| 47    | SIG RET   | -REQ      | 48    | - | 24    | SIG RET   | -REQ      | 49    |
+	| 49    | SIG RET   | -I/O      | 50    | - | 25    | SIG RET   | -I/O      | 50    |
+
+	|           Table 14 (SPI-4)            |
+	|                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | SIG RET   | -DB12     | 35    |
+	| 2     | SIG RET   | -DB13     | 36    |
+	| 3     | SIG RET   | -DB14     | 37    |
+	| 4     | SIG RET   | -DB15     | 38    |
+	| 5     | SIG RET   | -DBP1     | 39    |
+	| 6     | SIG RET   | -DB0      | 40    |
+	| 7     | SIG RET   | -DB1      | 41    |
+	| 8     | SIG RET   | -DB2      | 42    |
+	| 9     | SIG RET   | -DB3      | 43    |
+	| 10    | SIG RET   | -DB4      | 44    |
+	| 11    | SIG RET   | -DB5      | 45    |
+	| 12    | SIG RET   | -DB6      | 46    |
+	| 13    | SIG RET   | -DB7      | 47    |
+	| 14    | SIG RET   | -DBP      | 48    |
+	| 15    | GND       | GND       | 49    |
+	| 16    | GND       | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | GND       | GND       | 54    |
+	| 21    | SIG RET   | -ATN      | 55    |
+	| 22    | GND       | GND       | 56    |
+	| 23    | SIG RET   | -BSY      | 57    |
+	| 24    | SIG RET   | -ACK      | 58    |
+	| 25    | SIG RET   | -RST      | 59    |
+	| 26    | SIG RET   | -MSG      | 60    |
+	| 27    | SIG RET   | -SEL      | 61    |
+	| 28    | SIG RET   | -C/D      | 62    |
+	| 29    | SIG RET   | -REQ      | 63    |
+	| 30    | SIG RET   | -I/O      | 64    |
+	| 31    | SIG RET   | -DB8      | 65    |
+	| 32    | SIG RET   | -DB9      | 66    |
+	| 33    | SIG RET   | -DB10     | 67    |
+	| 34    | SIG RET   | -DB11     | 68    |
+
+	|           Table 15 (SPI-4)            |
+	|                  SE                   |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | 12V CHRG  | 12V GND   | 41    |
+	| 2     | 12V       | 12V GND   | 42    |
+	| 3     | 12V       | 12V GND   | 43    |
+	| 4     | 12V       | MATED 1   | 44    |
+	| 5     | 3.3V      | 3.3V CHRG | 45    |
+	| 6     | 3.3V      | GND       | 46    |
+	| 7     | -DB11     | SIG RET   | 47    |
+	| 8     | -DB10     | SIG RET   | 48    |
+	| 9     | -DB9      | SIG RET   | 49    |
+	| 10    | -DB8      | SIG RET   | 50    |
+	| 11    | -I/O      | SIG RET   | 51    |
+	| 12    | -REQ      | SIG RET   | 52    |
+	| 13    | -C/D      | SIG RET   | 53    |
+	| 14    | -SEL      | SIG RET   | 54    |
+	| 15    | -MSG      | SIG RET   | 55    |
+	| 16    | -RST      | SIG RET   | 56    |
+	| 17    | -ACK      | SIG RET   | 57    |
+	| 18    | -BSY      | SIG RET   | 58    |
+	| 19    | -ATN      | SIG RET   | 59    |
+	| 20    | -DBP      | SIG RET   | 60    |
+	| 21    | -DB7      | SIG RET   | 61    |
+	| 22    | -DB6      | SIG RET   | 62    |
+	| 23    | -DB5      | SIG RET   | 63    |
+	| 24    | -DB4      | SIG RET   | 64    |
+	| 25    | -DB3      | SIG RET   | 65    |
+	| 26    | -DB2      | SIG RET   | 66    |
+	| 27    | -DB1      | SIG RET   | 67    |
+	| 28    | -DB0      | SIG RET   | 68    |
+	| 29    | -DBP1     | SIG RET   | 69    |
+	| 30    | -DB15     | SIG RET   | 70    |
+	| 31    | -DB14     | SIG RET   | 71    |
+	| 32    | -DB13     | SIG RET   | 72    |
+	| 33    | -DB12     | SIG RET   | 73    |
+	| 34    | 5V        | MATED 2   | 74    |
+	| 35    | 5V        | 5V GND    | 75    |
+	| 36    | 5V CHRG   | 5V GND    | 76    |
+	| 37    | SPINDLE   | LED OUT   | 77    |
+	| 38    | RMT_START | DLYD_STRT | 78    |
+	| 39    | SCSI ID 0 | SCSI ID 1 | 79    |
+	| 40    | SCSI ID 2 | SCSI ID 3 | 80    |
+
+	|          Table 16:1 (SPI-4)           | - |          Table 16:2 (SPI-4)           |
+	|                LVD/MSE                | - |                LVD/MSE                |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | +DB0      | -DB0      | 2     | - | 1     | +DB0      | -DB0      | 26    |
+	| 3     | +DB1      | -DB1      | 4     | - | 2     | +DB1      | -DB1      | 27    |
+	| 5     | +DB2      | -DB2      | 6     | - | 3     | +DB2      | -DB2      | 28    |
+	| 7     | +DB3      | -DB3      | 8     | - | 4     | +DB3      | -DB3      | 29    |
+	| 9     | +DB4      | -DB4      | 10    | - | 5     | +DB4      | -DB4      | 30    |
+	| 11    | +DB5      | -DB5      | 12    | - | 6     | +DB5      | -DB5      | 31    |
+	| 13    | +DB6      | -DB6      | 14    | - | 7     | +DB6      | -DB6      | 32    |
+	| 15    | +DB7      | -DB7      | 16    | - | 8     | +DB7      | -DB7      | 33    |
+	| 17    | +DBP      | -DBP      | 18    | - | 9     | +DBP      | -DBP      | 34    |
+	| 19    | GND       | GND       | 20    | - | 10    | GND       | GND       | 35    |
+	| 21    | DIFFSENS  | GND       | 22    | - | 11    | DIFFSENS  | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | TERMPWR   | TERMPWR   | 26    | - | 13    | TERMPWR   | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | GND       | GND       | 30    | - | 15    | GND       | GND       | 40    |
+	| 31    | +ATN      | -ATN      | 32    | - | 16    | +ATN      | -ATN      | 41    |
+	| 33    | GND       | GND       | 34    | - | 17    | GND       | GND       | 42    |
+	| 35    | +BSY      | -BSY      | 36    | - | 18    | +BSY      | -BSY      | 43    |
+	| 37    | +ACK      | -ACK      | 38    | - | 19    | +ACK      | -ACK      | 44    |
+	| 39    | +RST      | -RST      | 40    | - | 20    | +RST      | -RST      | 45    |
+	| 41    | +MSG      | -MSG      | 42    | - | 21    | +MSG      | -MSG      | 56    |
+	| 43    | +SEL      | -SEL      | 44    | - | 22    | +SEL      | -SEL      | 47    |
+	| 45    | +C/D      | -C/D      | 46    | - | 23    | +C/D      | -C/D      | 48    |
+	| 47    | +REQ      | -REQ      | 48    | - | 24    | +REQ      | -REQ      | 49    |
+	| 49    | +I/O      | -I/O      | 50    | - | 25    | +I/O      | -I/O      | 50    |
+
+	|           Table 17 (SPI-4)            |
+	|                LVD/MSE                |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | +DB12     | -DB12     | 35    |
+	| 2     | +DB13     | -DB13     | 36    |
+	| 3     | +DB14     | -DB14     | 37    |
+	| 4     | +DB15     | -DB15     | 38    |
+	| 5     | +DBP1     | -DBP1     | 39    |
+	| 6     | +DB0      | -DB0      | 40    |
+	| 7     | +DB1      | -DB1      | 41    |
+	| 8     | +DB2      | -DB2      | 42    |
+	| 9     | +DB3      | -DB3      | 43    |
+	| 10    | +DB4      | -DB4      | 44    |
+	| 11    | +DB5      | -DB5      | 45    |
+	| 12    | +DB6      | -DB6      | 46    |
+	| 13    | +DB7      | -DB7      | 47    |
+	| 14    | +DBP      | -DBP      | 48    |
+	| 15    | GND       | GND       | 49    |
+	| 16    | DIFFSENS  | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | GND       | GND       | 54    |
+	| 21    | +ATN      | -ATN      | 55    |
+	| 22    | GND       | GND       | 56    |
+	| 23    | +BSY      | -BSY      | 57    |
+	| 24    | +ACK      | -ACK      | 58    |
+	| 25    | +RST      | -RST      | 59    |
+	| 26    | +MSG      | -MSG      | 60    |
+	| 27    | +SEL      | -SEL      | 61    |
+	| 28    | +C/D      | -C/D      | 62    |
+	| 29    | +REQ      | -REQ      | 63    |
+	| 30    | +I/O      | -I/O      | 64    |
+	| 31    | +DB8      | -DB8      | 65    |
+	| 32    | +DB9      | -DB9      | 66    |
+	| 33    | +DB10     | -DB10     | 67    |
+	| 34    | +DB11     | -DB11     | 68    |
+
+	|            Table 18 (SPI-4)           |
+	|                LVD/MSE                |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | 12V CHRG  | 12V GND   | 41    |
+	| 2     | 12V       | 12V GND   | 42    |
+	| 3     | 12V       | 12V GND   | 43    |
+	| 4     | 12V       | MATED 1   | 44    |
+	| 5     | 3.3V      | 3.3V CHRG | 45    |
+	| 6     | 3.3V      | DIFFSENS  | 46    |
+	| 7     | -DB11     | +DB11     | 47    |
+	| 8     | -DB10     | +DB10     | 48    |
+	| 9     | -DB9      | +DB9      | 49    |
+	| 10    | -DB8      | +DB8      | 50    |
+	| 11    | -I/O      | +I/O      | 51    |
+	| 12    | -REQ      | +REQ      | 52    |
+	| 13    | -C/D      | +C/D      | 53    |
+	| 14    | -SEL      | +SEL      | 54    |
+	| 15    | -MSG      | +MSG      | 55    |
+	| 16    | -RST      | +RST      | 56    |
+	| 17    | -ACK      | +ACK      | 57    |
+	| 18    | -BSY      | +BSY      | 58    |
+	| 19    | -ATN      | +ATN      | 59    |
+	| 20    | -DBP      | +DBP      | 60    |
+	| 21    | -DB7      | +DB7      | 61    |
+	| 22    | -DB6      | +DB6      | 62    |
+	| 23    | -DB5      | +DB5      | 63    |
+	| 24    | -DB4      | +DB4      | 64    |
+	| 25    | -DB3      | +DB3      | 65    |
+	| 26    | -DB2      | +DB2      | 66    |
+	| 27    | -DB1      | +DB1      | 67    |
+	| 28    | -DB0      | +DB0      | 68    |
+	| 29    | -DBP1     | +DBP1     | 69    |
+	| 30    | -DB15     | +DB15     | 70    |
+	| 31    | -DB14     | +DB14     | 71    |
+	| 32    | -DB13     | +DB13     | 72    |
+	| 33    | -DB12     | +DB12     | 73    |
+	| 34    | 5V        | MATED 2   | 74    |
+	| 35    | 5V        | 5V GND    | 75    |
+	| 36    | 5V CHRG   | 5V GND    | 76    |
+	| 37    | SPINDLE   | LED OUT   | 77    |
+	| 38    | RMT_START | DLYD_STRT | 78    |
+	| 39    | SCSI ID 0 | SCSI ID 1 | 79    |
+	| 40    | SCSI ID 2 | SCSI ID 3 | 80    |
+
+
+SPI-5 R06 (SCSI-3)
+
+	|           Table 13:1 (SPI-5)          | - |           Table 13:2 (SPI-5)          |
+	|                  LVD                  | - |                  LVD                  |
+	| Pin # | Signal    | Signal    | Pin # | - | Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------| - |-------|-----------|-----------|-------|
+	| 1     | +DB0      | -DB0      | 2     | - | 1     | +DB0      | -DB0      | 26    |
+	| 3     | +DB1      | -DB1      | 4     | - | 2     | +DB1      | -DB1      | 27    |
+	| 5     | +DB2      | -DB2      | 6     | - | 3     | +DB2      | -DB2      | 28    |
+	| 7     | +DB3      | -DB3      | 8     | - | 4     | +DB3      | -DB3      | 29    |
+	| 9     | +DB4      | -DB4      | 10    | - | 5     | +DB4      | -DB4      | 30    |
+	| 11    | +DB5      | -DB5      | 12    | - | 6     | +DB5      | -DB5      | 31    |
+	| 13    | +DB6      | -DB6      | 14    | - | 7     | +DB6      | -DB6      | 32    |
+	| 15    | +DB7      | -DB7      | 16    | - | 8     | +DB7      | -DB7      | 33    |
+	| 17    | +DBP      | -DBP      | 18    | - | 9     | +DBP      | -DBP      | 34    |
+	| 19    | GND       | GND       | 20    | - | 10    | GND       | GND       | 35    |
+	| 21    | DIFFSENS  | GND       | 22    | - | 11    | DIFFSENS  | GND       | 36    |
+	| 23    | RESERVED  | RESERVED  | 24    | - | 12    | RESERVED  | RESERVED  | 37    |
+	| 25    | TERMPWR   | TERMPWR   | 26    | - | 13    | TERMPWR   | TERMPWR   | 38    |
+	| 27    | RESERVED  | RESERVED  | 28    | - | 14    | RESERVED  | RESERVED  | 39    |
+	| 29    | GND       | GND       | 30    | - | 15    | GND       | GND       | 40    |
+	| 31    | +ATN      | -ATN      | 32    | - | 16    | +ATN      | -ATN      | 41    |
+	| 33    | GND       | GND       | 34    | - | 17    | GND       | GND       | 42    |
+	| 35    | +BSY      | -BSY      | 36    | - | 18    | +BSY      | -BSY      | 43    |
+	| 37    | +ACK      | -ACK      | 38    | - | 19    | +ACK      | -ACK      | 44    |
+	| 39    | +RST      | -RST      | 40    | - | 20    | +RST      | -RST      | 45    |
+	| 41    | +MSG      | -MSG      | 42    | - | 21    | +MSG      | -MSG      | 56    |
+	| 43    | +SEL      | -SEL      | 44    | - | 22    | +SEL      | -SEL      | 47    |
+	| 45    | +C/D      | -C/D      | 46    | - | 23    | +C/D      | -C/D      | 48    |
+	| 47    | +REQ      | -REQ      | 48    | - | 24    | +REQ      | -REQ      | 49    |
+	| 49    | +I/O      | -I/O      | 50    | - | 25    | +I/O      | -I/O      | 50    |
+
+	|            Table 14 (SPI-5)           |
+	|                  LVD                  |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | +DB12     | -DB12     | 35    |
+	| 2     | +DB13     | -DB13     | 36    |
+	| 3     | +DB14     | -DB14     | 37    |
+	| 4     | +DB15     | -DB15     | 38    |
+	| 5     | +DBP1     | -DBP1     | 39    |
+	| 6     | +DB0      | -DB0      | 40    |
+	| 7     | +DB1      | -DB1      | 41    |
+	| 8     | +DB2      | -DB2      | 42    |
+	| 9     | +DB3      | -DB3      | 43    |
+	| 10    | +DB4      | -DB4      | 44    |
+	| 11    | +DB5      | -DB5      | 45    |
+	| 12    | +DB6      | -DB6      | 46    |
+	| 13    | +DB7      | -DB7      | 47    |
+	| 14    | +DBP      | -DBP      | 48    |
+	| 15    | GND       | GND       | 49    |
+	| 16    | DIFFSENS  | GND       | 50    |
+	| 17    | TERMPWR   | TERMPWR   | 51    |
+	| 18    | TERMPWR   | TERMPWR   | 52    |
+	| 19    | RESERVED  | RESERVED  | 53    |
+	| 20    | GND       | GND       | 54    |
+	| 21    | +ATN      | -ATN      | 55    |
+	| 22    | GND       | GND       | 56    |
+	| 23    | +BSY      | -BSY      | 57    |
+	| 24    | +ACK      | -ACK      | 58    |
+	| 25    | +RST      | -RST      | 59    |
+	| 26    | +MSG      | -MSG      | 60    |
+	| 27    | +SEL      | -SEL      | 61    |
+	| 28    | +C/D      | -C/D      | 62    |
+	| 29    | +REQ      | -REQ      | 63    |
+	| 30    | +I/O      | -I/O      | 64    |
+	| 31    | +DB8      | -DB8      | 65    |
+	| 32    | +DB9      | -DB9      | 66    |
+	| 33    | +DB10     | -DB10     | 67    |
+	| 34    | +DB11     | -DB11     | 68    |
+
+	|            Table 15 (SPI-5)           |
+	|                  LVD                  |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | 12V CHRG  | 12V GND   | 41    |
+	| 2     | 12V       | 12V GND   | 42    |
+	| 3     | 12V       | 12V GND   | 43    |
+	| 4     | 12V       | MATED 1   | 44    |
+	| 5     | 3.3V      | 3.3V CHRG | 45    |
+	| 6     | 3.3V      | DIFFSENS  | 46    |
+	| 7     | -DB11     | +DB11     | 47    |
+	| 8     | -DB10     | +DB10     | 48    |
+	| 9     | -DB9      | +DB9      | 49    |
+	| 10    | -DB8      | +DB8      | 50    |
+	| 11    | -I/O      | +I/O      | 51    |
+	| 12    | -REQ      | +REQ      | 52    |
+	| 13    | -C/D      | +C/D      | 53    |
+	| 14    | -SEL      | +SEL      | 54    |
+	| 15    | -MSG      | +MSG      | 55    |
+	| 16    | -RST      | +RST      | 56    |
+	| 17    | -ACK      | +ACK      | 57    |
+	| 18    | -BSY      | +BSY      | 58    |
+	| 19    | -ATN      | +ATN      | 59    |
+	| 20    | -DBP      | +DBP      | 60    |
+	| 21    | -DB7      | +DB7      | 61    |
+	| 22    | -DB6      | +DB6      | 62    |
+	| 23    | -DB5      | +DB5      | 63    |
+	| 24    | -DB4      | +DB4      | 64    |
+	| 25    | -DB3      | +DB3      | 65    |
+	| 26    | -DB2      | +DB2      | 66    |
+	| 27    | -DB1      | +DB1      | 67    |
+	| 28    | -DB0      | +DB0      | 68    |
+	| 29    | -DBP1     | +DBP1     | 69    |
+	| 30    | -DB15     | +DB15     | 70    |
+	| 31    | -DB14     | +DB14     | 71    |
+	| 32    | -DB13     | +DB13     | 72    |
+	| 33    | -DB12     | +DB12     | 73    |
+	| 34    | 5V        | MATED 2   | 74    |
+	| 35    | 5V        | 5V GND    | 75    |
+	| 36    | 5V CHRG   | 5V GND    | 76    |
+	| 37    | SPINDLE   | LED OUT   | 77    |
+	| 38    | RMT_START | DLYD_STRT | 78    |
+	| 39    | SCSI ID 0 | SCSI ID 1 | 79    |
+	| 40    | SCSI ID 2 | SCSI ID 3 | 80    |
+
+--------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--------------------------------------
+
+
+IDC50:
+	SE: SCSI-1, SCSI-2, SPI-2, SPI-3, SPI-4
+	HVD: SCSI-1, SCSI-2, SPI-2
+	LVD: SPI-2, SPI-3, SPI-4, SPI-5
+
+CE50:
+	SE: SCSI-1, SCSI-2, SPI-2, SPI-3, SPI-4
+	HVD: SCSI-1, SCSI-2, SPI-2
+	LVD: SPI-2, SPI-3, SPI-4, SPI-5
+
+HD50 (shielded):
+	SE: SCSI-2, SPI-2, SPI-3, SPI-4
+	HVD: SCSI-2, SPI-2
+	LVD: SPI-2, SPI-3, SPI-4, SPI-5
+
+HD68 (shielded):
+	SE: SCSI-2, SPI-1 [A/B], SPI-2 [P/Q], SPI-3 [P], SPI-4 [P]
+	HVD: SCSI-2, SPI-1 [A/B], SPI-2 [P/Q]
+	LVD: SPI-2 [P/Q], SPI-3 [P], SPI-4 [P], SPI-5 [P]
+
+HD50 (un-shielded):
+	SE: SCSI-2, SPI-2, SPI-3, SPI-4
+	HVD: SCSI-2, SPI-2
+	LVD: SPI-2, SPI-3, SPI-4, SPI-5
+
+HD68 (un-shielded):
+	SE: SCSI-2, SPI-1 [A/B], SPI-2 [P/Q], SPI-3 [P], SPI-4 [P]
+	HVD: SCSI-2, SPI-1 [A/B], SPI-2 [P/Q]
+	LVD: SPI-2 [P/Q], SPI-3 [P], SPI-4 [P], SPI-5 [P]
+
+SCA-2:
+	SE: SPI-2 [P], SPI-3 [P], SPI-4 [P]
+	HVD: SPI-2 [P]
+	LVD: SPI-2 [P], SPI-3 [P], SPI-4 [P], SPI-5 [P]
+
+VHDCI68:
+	SE: SPI-2 [P/Q], SPI-3 [P], SPI-4 [P]
+	HVD: SPI-2 [P/Q]
+	LVD: SPI-2 [P/Q], SPI-3 [P], SPI-4 [P], SPI-5 [P]
+
+DB25:
+	SE: Not Standardized
+
+
+--------------------------------------
+
+Connector Sources:
+	HD68/HD50 (shielded/un-shielded):
+		te: AMPLIMITE 1.27mm D-Submiature
+	VHDCI68:
+		te: CHAMP .8mm (https://www.te.com/en/product-5796055-2.html)
