@@ -6,15 +6,15 @@
 | 50      | Centronics | HVD       | Yes         | CE50    | x3.131:1986 (SCSI-1) | HVD-50   | 4-2             |                  |                                      |
 |---------|------------|-----------|-------------|---------|----------------------|----------|-----------------|------------------|--------------------------------------|
 | 50      | HD         | SE        | No          | HD50    | SCSI-2 R10L          | MSE-50   | 2:2             | (FIG 1/2 A)      | Non-shielded connector alternative 1 |
-| 68      | HD         | SE        | No          | HD68    | SCSI-2 R10L          |          | 3               | (FIG 1/2 B)      | Non-shielded connector               |
+| 68      | HD         | SE        | No          | HD68    | SCSI-2 R10L          | SCSI2-68 | 3               | (FIG 1/2 B)      | Non-shielded connector               |
 | 50      | HD         | HVD       | No          | HD50    | SCSI-2 R10L          | HVD-50   | 4:2             | (FIG 1/2 A)      | Non-shielded connector alternative 1 |
-| 68      | HD         | HVD       | No          | HD68    | SCSI-2 R10L          |          | 5               | (FIG 1/2 B)      | Non-shielded connector               |
+| 68      | HD         | HVD       | No          | HD68    | SCSI-2 R10L          | SCSI2-68 | 5               | (FIG 1/2 B)      | Non-shielded connector               |
 | 50      | IDC        | SE        | No          | IDC50   | SCSI-2 R10L          | MSE-50   | 2:1             | (FIG 3/4 A)      | Non-shielded connector alternative 2 |
 | 50      | IDC        | HVD       | No          | IDC50   | SCSI-2 R10L          | HVD-50   | 4:1             | (FIG 3/4 A)      | Non-shielded connector alternative 2 |
 | 50      | HD         | SE        | Yes         | HD50    | SCSI-2 R10L          | MSE-50   | 2:2             | (FIG 6/5 A)      | Shielded connector alternative 1     |
-| 68      | HD         | SE        | Yes         | HD68    | SCSI-2 R10L          |          | 3               | (FIG 6/5 B)      | Shielded connector                   |
+| 68      | HD         | SE        | Yes         | HD68    | SCSI-2 R10L          | SCSI2-68 | 3               | (FIG 6/5 B)      | Shielded connector                   |
 | 50      | HD         | HVD       | Yes         | HD50    | SCSI-2 R10L          | HVD-50   | 4:2             | (FIG 6/5 A)      | Shielded connector alternative 1     |
-| 68      | HD         | HVD       | Yes         | HD68    | SCSI-2 R10L          |          | 5               | (FIG 6/5 B)      | Shielded connector                   |
+| 68      | HD         | HVD       | Yes         | HD68    | SCSI-2 R10L          | SCSI2-68 | 5               | (FIG 6/5 B)      | Shielded connector                   |
 | 50      | Centronics | SE        | Yes         | CE50    | SCSI-2 R10L          | MSE-50   | 2:2             | (FIG 7/8 A)      | Shielded connector alternative 2     |
 | 50      | Centronics | HVD       | Yes         | CE50    | SCSI-2 R10L          | HVD-50   | 4:2             | (FIG 7/8 A)      | Shielded connector alternative 2     |
 |---------|------------|-----------|-------------|---------|----------------------|----------|-----------------|------------------|--------------------------------------|
@@ -1354,8 +1354,47 @@ SCA-80
 † SIG RET in SE
 ‡ GND in SE, which is used to distinguish that from HVD/LVD
 
-
-
+SCSI2-68
+	|                SCSI-2                 |
+	|                HVD/SE                 |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | GND       | GND       | 35    |
+	| 2     | +DB8†     | -DB8      | 36    |
+	| 3     | +DB9†     | -DB9      | 37    |
+	| 4     | +DB10†    | -DB10     | 38    |
+	| 5     | +DB11†    | -DB11     | 39    |
+	| 6     | +DB12†    | -DB12     | 40    |
+	| 7     | +DB13†    | -DB13     | 41    |
+	| 8     | +DB14†    | -DB14     | 42    |
+	| 9     | +DB15†    | -DB15     | 43    |
+	| 10    | +DBP1†    | -DBP1     | 44    |
+	| 11    | +ACKB†    | -ACKB     | 45    |
+	| 12    | GND       | DIFFSENS‡ | 46    |
+	| 13    | +REQB†    | -REQB     | 47    |
+	| 14    | +DB16†    | -DB16     | 48    |
+	| 15    | +DB17†    | -DB17     | 49    |
+	| 16    | +DB18†    | -DB18     | 50    |
+	| 17    | TERMPWRB  | TERMPWRB  | 51    |
+	| 18    | TERMPWRB  | TERMPWRB  | 52    |
+	| 19    | +DB19†    | -DB19     | 53    |
+	| 20    | +DB20†    | -DB20     | 54    |
+	| 21    | +DB21†    | -DB21     | 55    |
+	| 22    | +DB22†    | -DB22     | 56    |
+	| 23    | +DB23†    | -DB23     | 57    |
+	| 24    | +DBP2†    | -DBP2     | 58    |
+	| 25    | +DB24†    | -DB24     | 59    |
+	| 26    | +DB25†    | -DB25     | 60    |
+	| 27    | +DB26†    | -DB26     | 61    |
+	| 28    | +DB27†    | -DB27     | 62    |
+	| 29    | +DB28†    | -DB28     | 63    |
+	| 30    | +DB29†    | -DB29     | 64    |
+	| 31    | +DB30†    | -DB30     | 65    |
+	| 32    | +DB31†    | -DB31     | 66    |
+	| 33    | +DBP3†    | -DBP3     | 67    |
+	| 34    | GND       | GND       | 68    |
+† GND in SCSI-2
+‡ GND in SE, which is used to distinguish that from LVD
 
 
 
