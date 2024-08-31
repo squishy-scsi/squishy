@@ -35,9 +35,9 @@
 | 68      | HD         | LVD       | No          | HD68    | SPI-2 R20B (SCSI-3)  |          | 9               | (FIG 8/9 Q)      | Nonshielded connector alternative 3  |
 | 68      | HD         | HVD       | No          | HD68    | SPI-2 R20B (SCSI-3)  |          | 11              | (FIG 8/9 P)      | Nonshielded connector alternative 3  |
 | 68      | HD         | HVD       | No          | HD68    | SPI-2 R20B (SCSI-3)  |          | 12              | (FIG 8/9 Q)      | Nonshielded connector alternative 3  |
-| 80      | SCA        | SE        | No          | SCA-2   | SPI-2 R20B (SCSI-3)  |          | 6               | (FIG 12/13 P)    | Nonshielded connector alternative 4  |
-| 80      | SCA        | LVD       | No          | SCA-2   | SPI-2 R20B (SCSI-3)  |          | 13              | (FIG 12/13 P)    | Nonshielded connector alternative 4  |
-| 80      | SCA        | HVD       | No          | SCA-2   | SPI-2 R20B (SCSI-3)  |          | 13              | (FIG 12/13 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | SE        | No          | SCA-2   | SPI-2 R20B (SCSI-3)  | SCA-80   | 6               | (FIG 12/13 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | LVD       | No          | SCA-2   | SPI-2 R20B (SCSI-3)  | SCA-80   | 13              | (FIG 12/13 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | HVD       | No          | SCA-2   | SPI-2 R20B (SCSI-3)  | SCA-80   | 13              | (FIG 12/13 P)    | Nonshielded connector alternative 4  |
 | 50      | HD         | SE        | Yes         | HD50    | SPI-2 R20B (SCSI-3)  | MSE-50   | 3:2             | (FIG 14/15 A)    | Shielded connector alternative 1     |
 | 50      | HD         | LVD       | Yes         | HD50    | SPI-2 R20B (SCSI-3)  | MSE-50   | 7:2             | (FIG 14/15 A)    | Shielded connector alternative 1     |
 | 50      | HD         | HVD       | Yes         | HD50    | SPI-2 R20B (SCSI-3)  | HVD-50   | 10:2            | (FIG 14/15 A)    | Shielded connector alternative 1     |
@@ -63,8 +63,8 @@
 | 50      | IDC        | LVD       | No          | IDC50   | SPI-3 R14 (SCSI-3)   | MSE-50   | 6:1             | (FIG 12/14 A)    | Nonshielded connector alternative 2  |
 | 68      | HD         | SE        | No          | HD68    | SPI-3 R14 (SCSI-3)   |          | 4               | (FIG 11/12 P)    | Nonshielded connector alternative 3  |
 | 68      | HD         | LVD       | No          | HD68    | SPI-3 R14 (SCSI-3)   |          | 7               | (FIG 11/12 P)    | Nonshielded connector alternative 3  |
-| 80      | SCA        | SE        | No          | SCA-2   | SPI-3 R14 (SCSI-3)   |          | 5               | (FIG 15/16 P)    | Nonshielded connector alternative 4  |
-| 80      | SCA        | LVD       | No          | SCA-2   | SPI-3 R14 (SCSI-3)   |          | 8               | (FIG 15/16 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | SE        | No          | SCA-2   | SPI-3 R14 (SCSI-3)   | SCA-80   | 5               | (FIG 15/16 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | LVD       | No          | SCA-2   | SPI-3 R14 (SCSI-3)   | SCA-80   | 8               | (FIG 15/16 P)    | Nonshielded connector alternative 4  |
 | 50      | HD         | SE        | Yes         | HD50    | SPI-3 R14 (SCSI-3)   | MSE-50   | 3:2             | (FIG 17/18 A)    | Shielded connector alternative 1     |
 | 50      | HD         | LVD       | Yes         | HD50    | SPI-3 R14 (SCSI-3)   | MSE-50   | 6:2             | (FIG 17/18 A)    | Shielded connector alternative 1     |
 | 50      | Centronics | SE        | Yes         | CE50    | SPI-3 R14 (SCSI-3)   | MSE-50   | 3:1             | (FIG 19/20 A)    | Shielded connector alternative 2     |
@@ -80,8 +80,8 @@
 | 50      | IDC        | LVD       | No          | IDC50   | SPI-4 R10 (SCSI-3)   | MSE-50   | 16:1            | (FIG 27/28 A)    | Nonshielded connector alternative 2  |
 | 68      | HD         | SE        | No          | HD68    | SPI-4 R10 (SCSI-3)   |          | 14              | (FIG 25/26 P)    | Nonshielded connector alternative 3  |
 | 68      | HD         | LVD       | No          | HD68    | SPI-4 R10 (SCSI-3)   |          | 17              | (FIG 25/26 P)    | Nonshielded connector alternative 3  |
-| 80      | SCA        | SE        | No          | SCA-2   | SPI-4 R10 (SCSI-3)   |          | 15              | (FIG 29/30 P)    | Nonshielded connector alternative 4  |
-| 80      | SCA        | LVD       | No          | SCA-2   | SPI-4 R10 (SCSI-3)   |          | 18              | (FIG 29/30 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | SE        | No          | SCA-2   | SPI-4 R10 (SCSI-3)   | SCA-80   | 15              | (FIG 29/30 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | LVD       | No          | SCA-2   | SPI-4 R10 (SCSI-3)   | SCA-80   | 18              | (FIG 29/30 P)    | Nonshielded connector alternative 4  |
 | 50      | HD         | SE        | Yes         | HD50    | SPI-4 R10 (SCSI-3)   | MSE-50   | 13:2            | (FIG 31/32 A)    | Shielded connector alternative 1     |
 | 50      | HD         | LVD       | Yes         | HD50    | SPI-4 R10 (SCSI-3)   | MSE-50   | 16:2            | (FIG 31/32 A)    | Shielded connector alternative 1     |
 | 50      | Centronics | SE        | Yes         | CE50    | SPI-4 R10 (SCSI-3)   | MSE-50   | 13:1            | (FIG 33/34 A)    | Shielded connector alternative 2     |
@@ -94,7 +94,7 @@
 | 50      | HD         | LVD       | No          | HD50    | SPI-5 R06 (SCSI-3)   | MSE-50   | 13:2            | (FIG 25/26 A)    | Nonshielded connector alternative 1  |
 | 50      | IDC        | LVD       | No          | IDC50   | SPI-5 R06 (SCSI-3)   | MSE-50   | 13:1            | (FIG 27/28 A)    | Nonshielded connector alternative 2  |
 | 68      | HD         | LVD       | No          | HD68    | SPI-5 R06 (SCSI-3)   |          | 14              | (FIG 25/26 P)    | Nonshielded connector alternative 3  |
-| 80      | SCA        | LVD       | No          | SCA-2   | SPI-5 R06 (SCSI-3)   |          | 15              | (FIG 29/30 P)    | Nonshielded connector alternative 4  |
+| 80      | SCA        | LVD       | No          | SCA-2   | SPI-5 R06 (SCSI-3)   | SCA-80   | 15              | (FIG 29/30 P)    | Nonshielded connector alternative 4  |
 | 50      | HD         | LVD       | Yes         | HD50    | SPI-5 R06 (SCSI-3)   | MSE-50   | 13:2            | (FIG 31/32 A)    | Shielded connector alternative 1     |
 | 50      | Centronics | LVD       | Yes         | CE50    | SPI-5 R06 (SCSI-3)   | MSE-50   | 13:1            | (FIG 33/34 A)    | Shielded connector alternative 2     |
 | 68      | HD         | LVD       | Yes         | HD68    | SPI-5 R06 (SCSI-3)   |          | 14              | (FIG 35/36 P)    | Shielded connector alternative 3     |
@@ -1306,8 +1306,53 @@ MSE-50
 
 Left-hand table uses wire pin (odd-even) numbering, right-hand table uses clockwise pin numbering.
 
-
-
+SCA-80
+	|      SPI-2, SPI-3, SPI-4, SPI-5       |
+	|            HVD/LVD/MSE/SE             |
+	| Pin # | Signal    | Signal    | Pin # |
+	|-------|-----------|-----------|-------|
+	| 1     | 12V CHRG  | 12V GND   | 41    |
+	| 2     | 12V       | 12V GND   | 42    |
+	| 3     | 12V       | 12V GND   | 43    |
+	| 4     | 12V       | MATED 1   | 44    |
+	| 5     | 3.3V      | 3.3V CHRG | 45    |
+	| 6     | 3.3V      | DIFFSENS‡ | 46    |
+	| 7     | -DB11     | +DB11†    | 47    |
+	| 8     | -DB10     | +DB10†    | 48    |
+	| 9     | -DB9      | +DB9†     | 49    |
+	| 10    | -DB8      | +DB8†     | 50    |
+	| 11    | -I/O      | +I/O†     | 51    |
+	| 12    | -REQ      | +REQ†     | 52    |
+	| 13    | -C/D      | +C/D†     | 53    |
+	| 14    | -SEL      | +SEL†     | 54    |
+	| 15    | -MSG      | +MSG†     | 55    |
+	| 16    | -RST      | +RST†     | 56    |
+	| 17    | -ACK      | +ACK†     | 57    |
+	| 18    | -BSY      | +BSY†     | 58    |
+	| 19    | -ATN      | +ATN†     | 59    |
+	| 20    | -DBP      | +DBP†     | 60    |
+	| 21    | -DB7      | +DB7†     | 61    |
+	| 22    | -DB6      | +DB6†     | 62    |
+	| 23    | -DB5      | +DB5†     | 63    |
+	| 24    | -DB4      | +DB4†     | 64    |
+	| 25    | -DB3      | +DB3†     | 65    |
+	| 26    | -DB2      | +DB2†     | 66    |
+	| 27    | -DB1      | +DB1†     | 67    |
+	| 28    | -DB0      | +DB0†     | 68    |
+	| 29    | -DBP1     | +DBP1†    | 69    |
+	| 30    | -DB15     | +DB15†    | 70    |
+	| 31    | -DB14     | +DB14†    | 71    |
+	| 32    | -DB13     | +DB13†    | 72    |
+	| 33    | -DB12     | +DB12†    | 73    |
+	| 34    | 5V        | MATED 2   | 74    |
+	| 35    | 5V        | 5V GND    | 75    |
+	| 36    | 5V CHRG   | 5V GND    | 76    |
+	| 37    | SPINDLE   | LED OUT   | 77    |
+	| 38    | RMT_START | DLYD_STRT | 78    |
+	| 39    | SCSI ID 0 | SCSI ID 1 | 79    |
+	| 40    | SCSI ID 2 | SCSI ID 3 | 80    |
+† SIG RET in SE
+‡ GND in SE, which is used to distinguish that from HVD/LVD
 
 
 
