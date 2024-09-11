@@ -1529,7 +1529,11 @@ DB25:
 --------------------------------------
 
 Connector Sources:
-	HD68/HD50 (shielded/un-shielded):
-		te: AMPLIMITE 1.27mm D-Submiature
+	CE50:
+		norcomp: 112-050-213R001 (https://content.norcomp.net/rohspdfs/SCSI-050Ribbon/11Y/112/112-YYY-213RYY1.pdf)
+	HD50:
+		te: AMPLIMITE 1.27mm D-Submiature 5787082-5 (https://www.te.com/en/product-5787082-5.html)
+	HD68:
+		te: AMPLIMITE 1.27mm D-Submiature 5787082-7 (https://www.te.com/en/product-5787082-7.html)
 	VHDCI68:
 		te: CHAMP .8mm (https://www.te.com/en/product-5796055-2.html)
