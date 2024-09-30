@@ -2,6 +2,7 @@ name: "Squishy Tests"
 on:
   push:
     paths:
+      - '.github/workflows/tests.yml'
       - 'squishy/**'
       - 'tests/**'
       - 'noxfile.py'
