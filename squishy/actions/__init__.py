@@ -176,6 +176,7 @@ class SquishySynthAction(SquishyAction):
 
 		synth_opts: list[str] = []
 		pnr_opts: list[str] = []
+		pack_ops: list[str] = []
 		script_pre_synth = ''
 		script_post_synth = ''
 
@@ -228,6 +229,11 @@ class SquishySynthAction(SquishyAction):
 		if args.pnr_seed is not None:
 			pnr_opts.append(f'--seed {args.pnr_seed}')
 
+		# Bitstream packing options
+
+		if args.compress:
+			pack_ops.append('--compress')
+
 		# Actually do the build
 		with Progress(
 			SpinnerColumn(),
@@ -243,6 +249,7 @@ class SquishySynthAction(SquishyAction):
 				do_program         = False,
 				synth_opts         = synth_opts,
 				nextpnr_opts       = pnr_opts,
+				ecppack_opts       = pack_ops,
 				verbose            = args.loud,
 				skip_cache         = skip_cache,
 				progress           = progress,
@@ -269,6 +276,7 @@ class SquishySynthAction(SquishyAction):
 
 		synth_options = parser.add_argument_group('Synthesis Options')
 		pnr_options   = parser.add_argument_group('Place and Route Options')
+		pack_options  = parser.add_argument_group('Packing Options')
 
 		gateware_options.add_argument(
 			'--build-only',
@@ -353,4 +361,12 @@ class SquishySynthAction(SquishyAction):
 			'--hunt-n-peck',
 			action = 'store_true',
 			help   = 'If PnR fails with given seed, try to find one that passes timing'
+		)
+
+		# Bitstream packing options
+
+		pack_options.add_argument(
+			'--compress',
+			action = 'store_true',
+			help   = 'Compress resulting bitstream (Only for ECP5 based Squishy Platforms)'
 		)
