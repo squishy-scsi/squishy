@@ -46,7 +46,7 @@ jobs:
       - name: 'Run Tests'
         shell: bash
         timeout-minutes: 15 # Python 3.12 and 3.13 seem to just hang on testing ~sometimes~
-        continue-on-error: ${{ matrix.python-version == '3.12' || matrix.python-version == '3.13.0-alpha.6' }}
+        continue-on-error: ${{ matrix.python-version == '3.12' || matrix.python-version == '3.13.0-rc.2' }}
         run: |
           nox -s test -- --coverage
 
