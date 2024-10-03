@@ -98,7 +98,7 @@ class ECP5ClockDomainGenerator(Elaboratable):
 
 			o_CLKOP   = pll_clk,
 			i_CLKFB   = pll_clk,
-			i_ENCLKOP = Const(1),
+			i_ENCLKOP = Const(0),
 			o_LOCK    = self.pll_locked,
 
 			i_RST       = Const(0),

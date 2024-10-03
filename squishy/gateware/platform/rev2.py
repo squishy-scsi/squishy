@@ -53,14 +53,14 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 
 	clock_domain_generator = ECP5ClockDomainGenerator
 
-	# generated with `ecppll -i 16 -o 400 -f /dev/stdout`
+	# generated with `ecppll -i 100 -o 400 -f /dev/stdout`
 	pll_config = {
 		'freq'     : 4e8,
-		'ifreq'    : 16,
+		'ifreq'    : 100,
 		'ofreq'    : 400,
 		'clki_div' : 1,
 		'clkop_div': 1,
-		'clkfb_div': 25,
+		'clkfb_div': 4,
 	}
 
 	flash = {
