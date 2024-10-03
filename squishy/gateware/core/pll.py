@@ -66,7 +66,7 @@ class ECP5ClockDomainGenerator(Elaboratable):
 	a 60MHz clock coming from a ULPI phy, and the `sync` domain is a PLL'd up value from
 	the system clock.
 
-	In Squishy rev2 the PLL for the `sync` domain is set for 300MHz.
+	In Squishy rev2 the PLL for the `sync` domain is set for 400MHz.
 
 	Attributes
 	----------
