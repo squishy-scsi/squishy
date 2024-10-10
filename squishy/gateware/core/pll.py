@@ -123,7 +123,7 @@ class ECP5ClockDomainGenerator(Elaboratable):
 			p_CLKOP_ENABLE    = 'ENABLED',
 			p_CLKOP_CPHASE    = Const(0),
 			p_CLKOP_FPHASE    = Const(0),
-			p_FEEDBACK_PATH   = 'CLKOP',
+			p_FEEDBK_PATH     = 'CLKOP',
 
 			p_CLKI_DIV        = platform.pll_config['clki_div'],
 			p_CLKOP_DIV       = platform.pll_config['clkop_div'],
