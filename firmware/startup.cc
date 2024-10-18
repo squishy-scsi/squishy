@@ -133,3 +133,10 @@ void irq_fault() noexcept {
 			b _HCF
 	)");
 }
+
+
+namespace std {
+	void terminate() noexcept {
+		irq_fault();
+	}
+}
