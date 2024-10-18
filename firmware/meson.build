@@ -122,6 +122,7 @@ ld_args = [
 firmware_srcs = files([
 	'main.cc',
 	'startup.cc',
+        'memory.cc',
 ])
 
 firmware_full = executable(
