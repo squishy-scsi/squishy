@@ -275,15 +275,15 @@ struct port_t final {
 		dirtgl = 1U << pin;
 	}
 
-	void low_out(const std::uint8_t pin) noexcept {
+	void set_low(const std::uint8_t pin) noexcept {
 		outclr = 1U << pin;
 	}
 
-	void high_out(const std::uint8_t pin) noexcept {
+	void set_high(const std::uint8_t pin) noexcept {
 		outset = 1U << pin;
 	}
 
-	void toggle_out(const std::uint8_t pin) noexcept {
+	void toggle(const std::uint8_t pin) noexcept {
 		outtgl = 1U << pin;
 	}
 

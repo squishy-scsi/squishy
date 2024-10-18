@@ -4,31 +4,25 @@
 
 #include "platform.hh"
 #include "peripherals.hh"
+#include "pindefs.hh"
 
 void setup_io() noexcept {
 	/* Setup the global clock input */
-	PORTA.setup_pin(8U, true, false, false, false, port_t::pin_func_t::H);
-	PORTA.set_input(8U);
-
-	/* Setup the SERCOM0 pins */
-	/* ~CS */
-	PORTA.setup_pin(4U, false, false, false, false, port_t::pin_func_t::C);
-	PORTA.high_out(4U);
-	PORTA.set_output(4U);
-	/* CLK */
-	PORTA.setup_pin(5U, true,  false, false, false, port_t::pin_func_t::D);
-	PORTA.set_output(5U);
-	/* COPI */
-	PORTA.setup_pin(6U, true,  false, false, false, port_t::pin_func_t::C);
-	PORTA.set_output(6U);
-	/* CIPO */
-	PORTA.setup_pin(7U, true,  true,  false, false, port_t::pin_func_t::D);
-	PORTA.set_input(7U);
+	PORTA.setup_pin(pin::CLKIN, true, false, false, false, port_t::pin_func_t::H);
+	PORTA.set_input(pin::CLKIN);
 
 	/* Setup LEDs */
-	PORTA.set_output(2U); /* status LED */
-	PORTA.set_output(3U); /* error LED */
+	PORTA.set_high(pin::SU_LED_G);
+	PORTA.set_output(pin::SU_LED_G); /* status LED */
+	PORTA.set_high(pin::SU_LED_R);
+	PORTA.set_output(pin::SU_LED_R); /* error LED */
 
+	/* Setup External DFU Trigger */
+	PORTA.set_input(pin::DFU_BTN);
+	/* Setup FPGA Side attention lines */
+	/* TODO: This need to be EXTINTs, not normal inputs */
+	PORTA.set_input(pin::DFU_TRIG);
+	PORTA.set_input(pin::SU_ATTN);
 }
 
 void setup_clocking() noexcept {
@@ -73,10 +67,8 @@ void start() noexcept {
 	setup_clocking();
 	setup_sercom();
 
-	PORTA.toggle_out(2U);
 	for(;;) {
-		PORTA.toggle_out(2U);
-		PORTA.toggle_out(3U);
+		PORTA.toggle(pin::SU_LED_G);
 		for (std::size_t i{0z}; i < 65525*10z; ++i) {
 			asm volatile ("");
 		}
