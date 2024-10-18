@@ -134,9 +134,10 @@ firmware_full = executable(
 	name_suffix: 'elf',
 	cpp_args: compile_args,
 	link_args: ld_args,
+        link_depends: files('atsamd09.ld'),
 	gnu_symbol_visibility: 'inlineshidden',
 	implicit_include_directories: false,
-	native: false
+	native: false,
 )
 
 firmware_symbols = custom_target(
