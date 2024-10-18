@@ -122,6 +122,7 @@ ld_args = [
 
 firmware_srcs = files([
 	'main.cc',
+        'spi.cc',
 	'startup.cc',
         'memory.cc',
 ])

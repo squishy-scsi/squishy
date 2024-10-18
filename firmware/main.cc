@@ -2,9 +2,13 @@
 
 #include <cstdint>
 
+#include <exception>
+
 #include "platform.hh"
 #include "peripherals.hh"
 #include "pindefs.hh"
+
+#include "spi.hh"
 
 void setup_io() noexcept {
 	/* Setup the global clock input */
@@ -38,34 +42,15 @@ void setup_clocking() noexcept {
 	GCLK.config_clk(gclk_t::clkid_t::SERCOMx_SLOW, gclk_t::clkgen_t::GCLK0, true, false);
 }
 
-void setup_sercom() noexcept {
-	/* Check if by some change the SERCOM is enabled, if so, disable it */
-	if (SERCOM0_SPI.enabled()) {
-		SERCOM0_SPI.disable();
-	}
 
-	SERCOM0_SPI.configure(
-		sercom_spi_t::mode_t::Controller,
-		/* PAD0 = COPI; PAD1 = CLK; PAD2 = CS; PAD3 = CIPO */
-		sercom_spi_t::dopo_t::CFG0, sercom_spi_t::dipo_t::PAD3,
-		sercom_spi_t::form_t::SPI,
-		sercom_spi_t::cpha_t::SAMPLE_TRAILING, sercom_spi_t::cpol_t::IDLE_LOW,
-		sercom_spi_t::dord_t::MSB
-	);
-
-	/* Set the SERCOM baud */
-	/* baud = (32MHz / (2 * 16MHz)) - 1 = 0 */
-	SERCOM0_SPI.baud = 0U;
-
-
-	/* Enable the SERCOM */
-	SERCOM0_SPI.enable();
-}
 
 void start() noexcept {
 	setup_io();
 	setup_clocking();
-	setup_sercom();
+
+	if (!setup_spi()) {
+		std::terminate();
+	}
 
 	for(;;) {
 		PORTA.toggle(pin::SU_LED_G);
