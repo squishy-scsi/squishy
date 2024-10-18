@@ -108,11 +108,12 @@ size    = find_program('size',    required: true,  native: false)
 source_dir = meson.project_source_root()
 
 common_args = [
-	'-ffreestanding', '-nostdlib', '-nostartfiles', '-mthumb', '-mcpu=cortex-m0plus'
+	'-ffreestanding', '-nostdlib', '-nostartfiles', '-mthumb', '-mcpu=cortex-m0plus',
+        '-fno-exceptions', '-fno-rtti'
 ]
 
 compile_args = [
-	'-fno-exceptions', '-fno-rtti'
+
 ] + common_args
 
 ld_args = [
