@@ -441,14 +441,14 @@ struct sercom_spi_t final {
 
 	void enable() noexcept {
 		ctrla |= (1U << 1U);
-		while (sync_busy()) {
+		while (sync_busy_ctrla()) {
 			continue;
 		}
 	}
 
 	void disable() noexcept {
 		ctrla &= ~(1U << 1U);
-		while (sync_busy()) {
+		while (sync_busy_ctrla()) {
 			continue;
 		}
 	}
@@ -459,8 +459,23 @@ struct sercom_spi_t final {
 	}
 
 	[[nodiscard]]
-	bool sync_busy() noexcept {
+	bool sync_busy_ctrla() noexcept {
 		return (syncbusy & (1U << 1U));
+	}
+
+	[[nodiscard]]
+	bool sync_busy_ctrlb() noexcept {
+		return (syncbusy & (1U << 2U));
+	}
+
+	[[nodiscard]]
+	bool data_empty() noexcept {
+		return (intflag & (1U << 0U));
+	}
+
+	[[nodiscard]]
+	bool receve_complete() noexcept {
+		return (intflag & (1U << 2U));
 	}
 
 	void configure(
