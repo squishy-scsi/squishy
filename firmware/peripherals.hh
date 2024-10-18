@@ -91,7 +91,7 @@ struct pm_t final {
 	}
 };
 
-auto& PM{*reinterpret_cast<pm_t*>(PM_BASE)};
+inline auto& PM{*reinterpret_cast<pm_t*>(PM_BASE)};
 
 /* System Controller */
 
@@ -101,7 +101,7 @@ struct sysctrl_t final {
 	/* TODO */
 };
 
-auto& SYSCTRL{*reinterpret_cast<sysctrl_t*>(SYSCTRL_BASE)};
+inline auto& SYSCTRL{*reinterpret_cast<sysctrl_t*>(SYSCTRL_BASE)};
 
 /* GCLK */
 
@@ -178,7 +178,7 @@ struct gclk_t final {
 	}
 };
 
-auto& GCLK{*reinterpret_cast<gclk_t*>(GCLK_BASE)};
+inline auto& GCLK{*reinterpret_cast<gclk_t*>(GCLK_BASE)};
 
 /* Watchdog */
 
@@ -189,7 +189,7 @@ struct wdt_t final {
 
 };
 
-auto& WDT{*reinterpret_cast<wdt_t*>(WDT_BASE)};
+inline auto& WDT{*reinterpret_cast<wdt_t*>(WDT_BASE)};
 
 /* RTC */
 
@@ -199,7 +199,7 @@ struct rtc_t final {
 	/* TODO */
 };
 
-auto& RTC{*reinterpret_cast<rtc_t*>(RTC_BASE)};
+inline auto& RTC{*reinterpret_cast<rtc_t*>(RTC_BASE)};
 
 /* EIC */
 
@@ -209,7 +209,7 @@ struct eic_t final {
 	/* TODO */
 };
 
-auto& EIC{*reinterpret_cast<eic_t*>(EIC_BASE)};
+inline auto& EIC{*reinterpret_cast<eic_t*>(EIC_BASE)};
 
 /* Device Service Unit */
 
@@ -219,7 +219,7 @@ struct dsu_t final {
 	/* TODO */
 };
 
-auto& DSU{*reinterpret_cast<dsu_t*>(DSU_BASE)};
+inline auto& DSU{*reinterpret_cast<dsu_t*>(DSU_BASE)};
 
 /* NVMCTRL */
 
@@ -229,7 +229,7 @@ struct nvmctrl_t final {
 	/* TODO */
 };
 
-auto& NVMCTRL{*reinterpret_cast<nvmctrl_t*>(NVMCTRL_BASE)};
+inline auto& NVMCTRL{*reinterpret_cast<nvmctrl_t*>(NVMCTRL_BASE)};
 
 /* Ports */
 
@@ -328,8 +328,8 @@ struct port_t final {
 	}
 };
 
-auto& PORTA{*reinterpret_cast<port_t*>(PORTA_BASE)};
-auto& PORTB{*reinterpret_cast<port_t*>(PORTB_BASE)};
+inline auto& PORTA{*reinterpret_cast<port_t*>(PORTA_BASE)};
+inline auto& PORTB{*reinterpret_cast<port_t*>(PORTB_BASE)};
 
 /* DMAC */
 
@@ -339,7 +339,7 @@ struct dmac_t final {
 	/* TODO */
 };
 
-auto& DMAC{*reinterpret_cast<dmac_t*>(DMAC_BASE)};
+inline auto& DMAC{*reinterpret_cast<dmac_t*>(DMAC_BASE)};
 
 /* MTB */
 
@@ -349,7 +349,7 @@ struct mtb_t final {
 	/* TODO */
 };
 
-auto& MTB{*reinterpret_cast<mtb_t*>(MTB_BASE)};
+inline auto& MTB{*reinterpret_cast<mtb_t*>(MTB_BASE)};
 
 /* Event System */
 
@@ -359,7 +359,7 @@ struct evsys_t final {
 	/* TODO */
 };
 
-auto& EVSYS{*reinterpret_cast<evsys_t*>(EVSYS_BASE)};
+inline auto& EVSYS{*reinterpret_cast<evsys_t*>(EVSYS_BASE)};
 
 /* SERCOM */
 
@@ -483,14 +483,14 @@ struct sercom_spi_t final {
 	}
 };
 
-auto& SERCOM0_USART{*reinterpret_cast<sercom_usart_t*>(SERCOM0_BASE)};
-auto& SERCOM1_USART{*reinterpret_cast<sercom_usart_t*>(SERCOM1_BASE)};
+inline auto& SERCOM0_USART{*reinterpret_cast<sercom_usart_t*>(SERCOM0_BASE)};
+inline auto& SERCOM1_USART{*reinterpret_cast<sercom_usart_t*>(SERCOM1_BASE)};
 
-auto& SERCOM0_I2C{*reinterpret_cast<sercom_i2c_t*>(SERCOM0_BASE)};
-auto& SERCOM1_I2C{*reinterpret_cast<sercom_i2c_t*>(SERCOM1_BASE)};
+inline auto& SERCOM0_I2C{*reinterpret_cast<sercom_i2c_t*>(SERCOM0_BASE)};
+inline auto& SERCOM1_I2C{*reinterpret_cast<sercom_i2c_t*>(SERCOM1_BASE)};
 
-auto& SERCOM0_SPI{*reinterpret_cast<sercom_spi_t*>(SERCOM0_BASE)};
-auto& SERCOM1_SPI{*reinterpret_cast<sercom_spi_t*>(SERCOM1_BASE)};
+inline auto& SERCOM0_SPI{*reinterpret_cast<sercom_spi_t*>(SERCOM0_BASE)};
+inline auto& SERCOM1_SPI{*reinterpret_cast<sercom_spi_t*>(SERCOM1_BASE)};
 
 
 /* Timers/Counters */
@@ -502,8 +502,8 @@ struct tic_t final {
 	/* TODO */
 };
 
-auto& TIC1{*reinterpret_cast<tic_t*>(TIC1_BASE)};
-auto& TIC2{*reinterpret_cast<tic_t*>(TIC2_BASE)};
+inline auto& TIC1{*reinterpret_cast<tic_t*>(TIC1_BASE)};
+inline auto& TIC2{*reinterpret_cast<tic_t*>(TIC2_BASE)};
 
 /* ADC */
 
@@ -513,6 +513,6 @@ struct adc_t final {
 	/* TODO */
 };
 
-auto& ADC{*reinterpret_cast<adc_t*>(ADC_BASE)};
+inline auto& ADC{*reinterpret_cast<adc_t*>(ADC_BASE)};
 
 #endif /* SQUISHY_SUPERVISOR_PERIPHERALS_HH */
