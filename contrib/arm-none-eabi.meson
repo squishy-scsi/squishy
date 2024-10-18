@@ -1,0 +1,24 @@
+[constants]
+toolchain_path   = ''
+toolchain_prefix = 'arm-none-eabi-'
+toolchain_base   = toolchain_path / toolchain_prefix
+
+[binaries]
+c       = toolchain_base + 'gcc'
+cpp     = toolchain_base + 'g++'
+ld      = toolchain_base + 'g++'
+as      = toolchain_base + 'as'
+ar      = toolchain_base + 'ar'
+strip   = toolchain_base + 'strip'
+objcopy = toolchain_base + 'objcopy'
+objdump = toolchain_base + 'objdump'
+nm      = toolchain_base + 'nm'
+size    = toolchain_base + 'size'
+gdb     = toolchain_base + 'gdb'
+cmake   = 'false'
+
+[host_machine]
+system     = 'bare-metal'
+cpu_family = 'arm'
+cpu        = 'Cortex-M0+'
+endian     = 'little'
