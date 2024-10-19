@@ -7,6 +7,7 @@
 #include "peripherals.hh"
 #include "pindefs.hh"
 #include "units.hh"
+#include "timing.hh"
 
 
 enum struct flash_cmd_t : std::uint16_t {
@@ -144,6 +145,10 @@ bool setup_spi() noexcept {
 		return false;
 	}
 
+	PORTA.set_low(pin::FPGA_PROG);
+	delay(1);
+	PORTA.set_high(pin::FPGA_PROG);
+	delay(50);
 
 	if (read_fpga_id() != 0x01112043U) {
 		PORTA.set_low(pin::SU_LED_R);
