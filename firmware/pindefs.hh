@@ -26,9 +26,10 @@ namespace pin {
 	inline constexpr std::uint8_t PSRAM_CS{14U};
 
 	/* FPGA SPI Comm/Programming bus */
-	inline constexpr std::uint8_t FPGA_CS{16U};
-	inline constexpr std::uint8_t FPGA_COPI{17U};
-	inline constexpr std::uint8_t FPGA_CIPO{22U};
+	/* BUG: The schematic and PCB layout are out of sync for these, go with the PCB layout */
+	inline constexpr std::uint8_t FPGA_CS{22U};
+	inline constexpr std::uint8_t FPGA_COPI{16U};
+	inline constexpr std::uint8_t FPGA_CIPO{17U};
 	inline constexpr std::uint8_t FPGA_CLK{23U};
 
 	/* FPGA Configuration interface signals */
