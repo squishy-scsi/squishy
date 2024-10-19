@@ -283,6 +283,10 @@ struct port_t final {
 		outset = 1U << pin;
 	}
 
+	void set_value(const bool state, const std::uint8_t pin) noexcept {
+		(state ? outset : outclr) = 1U << pin;
+	}
+
 	void toggle(const std::uint8_t pin) noexcept {
 		outtgl = 1U << pin;
 	}
