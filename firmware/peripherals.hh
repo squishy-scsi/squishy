@@ -480,7 +480,7 @@ struct sercom_spi_t final {
 	}
 
 	[[nodiscard]]
-	bool receve_complete() noexcept {
+	bool receive_complete() noexcept {
 		return (intflag & (1U << 2U));
 	}
 

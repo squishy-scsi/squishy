@@ -163,7 +163,7 @@ static std::uint8_t flash_xfr(const std::uint8_t data) noexcept {
 
 	SERCOM0_SPI.data = data;
 
-	while (!SERCOM0_SPI.receve_complete()) {
+	while (!SERCOM0_SPI.receive_complete()) {
 		continue;
 	}
 
