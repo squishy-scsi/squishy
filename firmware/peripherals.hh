@@ -7,6 +7,8 @@
 #include <cstddef>
 #include <array>
 
+/* ==== SAMD09 Peripherals ==== */
+
 /* Power Manager */
 
 constexpr static std::uintptr_t PM_BASE{0x40000400U};
@@ -533,5 +535,22 @@ struct adc_t final {
 };
 
 inline auto& ADC{*reinterpret_cast<adc_t*>(ADC_BASE)};
+
+/* ==== ARM Peripherals ==== */
+
+constexpr static std::uintptr_t SYSTICK_BASE{0xE000E010U};
+
+struct systick_t final {
+	volatile std::uint32_t ctrl_status;
+	volatile std::uint32_t reload_value;
+	volatile std::uint32_t current_value;
+	volatile const std::uint32_t calibration_value;
+
+	void enable() noexcept {
+		ctrl_status |= (1U << 0U) | (1U << 1U) | (1U << 2U);
+	}
+};
+
+inline auto& SYSTICK{*reinterpret_cast<systick_t*>(SYSTICK_BASE)};
 
 #endif /* SQUISHY_SUPERVISOR_PERIPHERALS_HH */
