@@ -4,6 +4,7 @@
 #include <array>
 
 #include "platform.hh"
+#include "timing.hh"
 
 extern "C" const std::uint32_t stack_top;
 extern "C" const std::uint32_t text_end;
@@ -23,6 +24,8 @@ void irq_noop() noexcept;
 [[using gnu: naked, noreturn]]
 void irq_fault() noexcept;
 
+void irq_systick() noexcept;
+
 struct nvic_table_t final {
 	const void* stack_top;
 	std::array<irq_func_t, 32> vector_table;
@@ -37,16 +40,16 @@ static constexpr nvic_table_t nvic_table {
 		irq_fault,
 
 		/* Cortex-M Fixed Vectors  */
-		nullptr,  /* Reserved */
-		nullptr,  /* Reserved */
-		nullptr,  /* Reserved */
-		nullptr,  /* Reserved */
-		nullptr,  /* Reserved */
-		nullptr,  /* Reserved */
-		nullptr,  /* Reserved */
-		irq_noop, /* SV Call */
-		irq_noop, /* Pend SV */
-		irq_noop, /* SysTick */
+		nullptr,     /* Reserved */
+		nullptr,     /* Reserved */
+		nullptr,     /* Reserved */
+		nullptr,     /* Reserved */
+		nullptr,     /* Reserved */
+		nullptr,     /* Reserved */
+		nullptr,     /* Reserved */
+		irq_noop,    /* SV Call */
+		irq_noop,    /* Pend SV */
+		irq_systick, /* SysTick */
 
 		/* ATSAMD06 Vectors */
 		irq_noop, /* Power Manager */
@@ -134,6 +137,10 @@ void irq_fault() noexcept {
 	)");
 }
 
+/* Gives us a (roughly) monotonic tick every 1ms */
+void irq_systick() noexcept {
+	++ms_elapsed;
+}
 
 namespace std {
 	void terminate() noexcept {
