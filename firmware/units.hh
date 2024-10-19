@@ -10,5 +10,10 @@ constexpr std::uint32_t operator ""_KiB(const unsigned long long value) noexcept
 [[nodiscard]]
 constexpr std::uint32_t operator ""_MiB(const unsigned long long value) noexcept { return std::uint32_t(value) * 1'048'576; }
 
+[[nodiscard]]
+constexpr std::uint32_t operator ""_kHz(const unsigned long long value) noexcept { return std::uint32_t(value) * 1'000; }
+[[nodiscard]]
+constexpr std::uint32_t operator ""_MHz(const unsigned long long value) noexcept { return std::uint32_t(value) * 1'000'000; }
+
 
 #endif /* SQUISHY_SUPERVISOR_UNITS_HH */
