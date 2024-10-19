@@ -28,7 +28,7 @@ void irq_systick() noexcept;
 
 struct nvic_table_t final {
 	const void* stack_top;
-	std::array<irq_func_t, 32> vector_table;
+	std::array<irq_func_t, 34> vector_table;
 };
 
 
@@ -48,6 +48,8 @@ static constexpr nvic_table_t nvic_table {
 		nullptr,     /* Reserved */
 		nullptr,     /* Reserved */
 		irq_noop,    /* SV Call */
+		nullptr,     /* Reserved */
+		nullptr,     /* Reserved */
 		irq_noop,    /* Pend SV */
 		irq_systick, /* SysTick */
 
