@@ -127,10 +127,14 @@ bool setup_spi() noexcept {
 	setup_sercom();
 	setup_fpga();
 
-	const auto id{read_jedec_id()};
+	const auto flash_id{read_jedec_id()};
 
 	/* Ensure we get the expected ID from the flash */
-	if (id != decltype(id){{0xC8U, 0x40U, 0x17U}}) {
+	if (flash_id != decltype(flash_id){{0xC8U, 0x40U, 0x17U}}) {
+		PORTA.set_low(pin::SU_LED_R);
+		return false;
+	}
+
 		PORTA.set_low(pin::SU_LED_R);
 		return false;
 	}
