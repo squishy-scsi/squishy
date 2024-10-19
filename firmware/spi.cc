@@ -38,7 +38,16 @@ static void flash_setup_xfr(const flash_cmd_t command, const std::uint32_t addr 
 static void flash_run_cmd(const flash_cmd_t command, const std::uint32_t addr = 0x0000'0000U) noexcept;
 
 [[nodiscard]]
+static std::uint8_t fpga_xfr(const std::uint8_t data = 0x00U) noexcept;
+
+static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data) noexcept;
+static void fpga_cmd_write(const fpga_cmd_t command, const std::span<std::uint8_t>& data) noexcept;
+
+[[nodiscard]]
 std::array<std::uint8_t, 3> read_jedec_id() noexcept;
+
+[[nodiscard]]
+std::uint32_t read_fpga_id() noexcept;
 
 static void setup_fpga_pins() noexcept {
 
@@ -135,6 +144,8 @@ bool setup_spi() noexcept {
 		return false;
 	}
 
+
+	if (read_fpga_id() != 0x01112043U) {
 		PORTA.set_low(pin::SU_LED_R);
 		return false;
 	}
@@ -253,4 +264,79 @@ void write_flash(const std::uint32_t addr, const std::span<std::uint8_t>& buffer
 
 		PORTA.set_high(pin::FLASH_CS);
 	}
+}
+
+[[nodiscard]]
+std::uint32_t read_fpga_id() noexcept {
+	std::array<std::uint8_t, 4> id;
+
+	fpga_cmd_read(fpga_cmd_t::READ_ID, {id});
+
+
+	return read_be(id);
+}
+
+static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data) noexcept {
+	const auto cmd{static_cast<std::uint8_t>(command)};
+
+	PORTA.set_low(pin::FPGA_CS);
+
+	[[maybe_unused]]
+	auto _{fpga_xfr(cmd)};
+	/* Dummy Cycle */
+	_ = fpga_xfr();
+	_ = fpga_xfr();
+	_ = fpga_xfr();
+
+	for (auto& byte : data) {
+		byte = fpga_xfr();
+	}
+
+	PORTA.set_high(pin::FPGA_CS);
+}
+
+static void fpga_cmd_write(const fpga_cmd_t command, const std::span<std::uint8_t>& data) noexcept {
+	const auto cmd{static_cast<std::uint8_t>(command)};
+
+	PORTA.set_low(pin::FPGA_CS);
+
+	[[maybe_unused]]
+	auto _{fpga_xfr(cmd)};
+	/* Dummy Cycle */
+	_ = fpga_xfr();
+	_ = fpga_xfr();
+	_ = fpga_xfr();
+
+	for (const auto& byte : data) {
+		_ = fpga_xfr(byte);
+	}
+
+	PORTA.set_high(pin::FPGA_CS);
+}
+
+
+[[nodiscard]]
+static std::uint8_t fpga_xfr(const std::uint8_t data) noexcept {
+	std::uint8_t res{};
+
+	for (std::size_t bit{}; bit < 8U; ++bit) {
+		PORTA.set_low(pin::FPGA_CLK);
+
+		PORTA.set_value((data >> (7U - bit)) & 0b1, pin::FPGA_COPI);
+
+		/* High tech delay */
+		asm (R"(
+			nop
+			nop
+		)");
+
+		PORTA.set_high(pin::FPGA_CLK);
+
+		res |= std::uint8_t(PORTA.pin_state(pin::FPGA_CIPO) << (7U - bit));
+	}
+
+	PORTA.set_low(pin::FPGA_CLK);
+
+
+	return res;
 }
