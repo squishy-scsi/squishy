@@ -4,6 +4,7 @@
 
 #include <exception>
 
+#include "units.hh"
 #include "platform.hh"
 #include "peripherals.hh"
 #include "pindefs.hh"
@@ -47,6 +48,9 @@ void setup_clocking() noexcept {
 void start() noexcept {
 	setup_io();
 	setup_clocking();
+
+	SYSTICK.reload_value = (32_MHz / 1_kHz) - 1U;
+	SYSTICK.enable();
 
 	if (!setup_spi()) {
 		std::terminate();
