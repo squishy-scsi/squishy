@@ -125,6 +125,7 @@ firmware_srcs = files([
         'spi.cc',
 	'startup.cc',
         'memory.cc',
+        'units.cc',
         'timing.cc',
         'atomic.cc',
 ])

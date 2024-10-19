@@ -4,6 +4,7 @@
 #define SQUISHY_SUPERVISOR_UNITS_HH
 
 #include <cstdint>
+#include <span>
 
 [[nodiscard]]
 constexpr std::uint32_t operator ""_KiB(const unsigned long long value) noexcept { return std::uint32_t(value) * 1'024; }
@@ -15,5 +16,12 @@ constexpr std::uint32_t operator ""_kHz(const unsigned long long value) noexcept
 [[nodiscard]]
 constexpr std::uint32_t operator ""_MHz(const unsigned long long value) noexcept { return std::uint32_t(value) * 1'000'000; }
 
+/* Convert a span of 4 bytes into a little-endian uint32_t */
+[[nodiscard]]
+std::uint32_t read_le(const std::span<std::uint8_t, 4>& data) noexcept;
+
+/* Convert a span of 4 bytes into a big-endian uint32_t */
+[[nodiscard]]
+std::uint32_t read_be(const std::span<std::uint8_t, 4>& data) noexcept;
 
 #endif /* SQUISHY_SUPERVISOR_UNITS_HH */
