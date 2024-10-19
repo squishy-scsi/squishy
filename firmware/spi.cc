@@ -21,6 +21,17 @@ enum struct flash_cmd_t : std::uint16_t {
 	READ_SFDP     = 0x005AU | 0x0800U | 0x0100U,
 };
 
+enum struct fpga_cmd_t : std::uint8_t {
+	NOP            = 0xFFU,
+	READ_ID        = 0xE0U,
+	READ_STATUS    = 0x3CU,
+	CHECK_BUSY     = 0xF0U,
+	ENABLE         = 0xC6U,
+	ENABLE_TRANS   = 0x74U,
+	DISABLE        = 0x26U,
+	YEET_BITSTREAM = 0x7AU,
+};
+
 [[nodiscard]]
 static std::uint8_t flash_xfr(const std::uint8_t data = 0x00U) noexcept;
 static void flash_setup_xfr(const flash_cmd_t command, const std::uint32_t addr = 0x0000'0000U) noexcept;
