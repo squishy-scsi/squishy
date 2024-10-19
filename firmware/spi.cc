@@ -9,7 +9,7 @@
 #include "units.hh"
 
 
-enum struct flash_cmd_t : uint16_t {
+enum struct flash_cmd_t : std::uint16_t {
 	WRITE_ENABLE  = 0x0006U,
 	WRITE_DISABLE = 0x0004U,
 	READ_STATUS   = 0x0005U,
