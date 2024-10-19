@@ -53,8 +53,10 @@ static void setup_fpga_pins() noexcept {
 	PORTA.set_low(pin::FPGA_CLK);
 	PORTA.set_output(pin::FPGA_CLK);
 
+	PORTA.set_low(pin::FPGA_COPI);
 	PORTA.set_output(pin::FPGA_COPI);
-	PORTA.set_input(pin::FLASH_CIPO);
+	PORTA.setup_pin(pin::FPGA_CIPO, false, true, false, false, port_t::pin_func_t::A);
+	PORTA.set_input(pin::FPGA_CIPO);
 
 
 	/* Setup FPGA Config Signals */
