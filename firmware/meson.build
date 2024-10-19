@@ -125,6 +125,7 @@ firmware_srcs = files([
         'spi.cc',
 	'startup.cc',
         'memory.cc',
+        'atomic.cc',
 ])
 
 firmware_full = executable(
