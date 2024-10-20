@@ -5,6 +5,7 @@
 
 #include "platform.hh"
 #include "timing.hh"
+#include "fault.hh"
 
 extern "C" const std::uint32_t stack_top;
 extern "C" const std::uint32_t text_end;
