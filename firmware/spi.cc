@@ -74,13 +74,15 @@ static void setup_fpga_pins() noexcept {
 
 	/* Setup FPGA Config Signals */
 	PORTA.set_high(pin::FPGA_HOLD);
-	PORTA.set_high(pin::FPGA_INIT);
 	PORTA.set_high(pin::FPGA_PROG);
 
+	PORTA.setup_pin(pin::FPGA_INIT, false, true, false, false, port_t::pin_func_t::A);
+	PORTA.set_input(pin::FPGA_INIT);
+
 	PORTA.set_output(pin::FPGA_HOLD);
-	PORTA.set_output(pin::FPGA_INIT);
 	PORTA.set_output(pin::FPGA_PROG);
 
+	PORTA.setup_pin(pin::FPGA_DONE, false, true, false, false, port_t::pin_func_t::A);
 	PORTA.set_input(pin::FPGA_DONE);
 }
 
