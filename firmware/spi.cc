@@ -138,6 +138,13 @@ static void setup_fpga() noexcept {
 	setup_fpga_pins();
 }
 
+static void fpga_enter_cfg() noexcept {
+	PORTA.set_low(pin::FPGA_PROG);
+	delay(1);
+	PORTA.set_high(pin::FPGA_PROG);
+	delay(50);
+}
+
 bool setup_spi() noexcept {
 	setup_sercom();
 	setup_fpga();
@@ -150,10 +157,7 @@ bool setup_spi() noexcept {
 		return false;
 	}
 
-	PORTA.set_low(pin::FPGA_PROG);
-	delay(1);
-	PORTA.set_high(pin::FPGA_PROG);
-	delay(50);
+	fpga_enter_cfg();
 
 	if (read_fpga_id() != 0x01112043U) {
 		PORTA.set_low(pin::SU_LED_R);
