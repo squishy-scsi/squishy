@@ -147,6 +147,22 @@ void irq_systick() noexcept {
 
 namespace std {
 	void terminate() noexcept {
+		asm volatile(R"(
+			sub sp, #0x20
+			str r0, [sp, #0x00]
+			str r1, [sp, #0x04]
+			str r2, [sp, #0x08]
+			str r3, [sp, #0x0C]
+			mov r0, r12
+			str r0, [sp, #0x10]
+			mov r0, lr
+			str r0, [sp, #0x14]
+			mov r0, pc
+			str r0, [sp, #0x18]
+			mrs r0, xpsr
+			str r0, [sp, #0x1C]
+		)" : : : "r0"); /* Don't tell the compiler we're clobbering the stack pointer */
+
 		irq_fault();
 	}
 }
