@@ -4,7 +4,7 @@
 #include <cstdint>
 
 extern "C" {
-	[[gnu::optimize("-fno-tree-loop-distribute-patterns")]]
+	[[using gnu: optimize("-fno-tree-loop-distribute-patterns"), used]]
 	void* memcpy(void* dest, const void* src, const std::size_t size) noexcept {
 		auto* dest_buff{reinterpret_cast<std::uint8_t*>(dest)};
 		const auto* src_buff{reinterpret_cast<const std::uint8_t*>(src)};
@@ -16,7 +16,7 @@ extern "C" {
 		return dest;
 	}
 
-	[[gnu::optimize("-fno-tree-loop-distribute-patterns")]]
+	[[using gnu: optimize("-fno-tree-loop-distribute-patterns"), used]]
 	void* memset(void* dest, const std::uint8_t val, const std::size_t size) noexcept {
 		auto* dest_buff{reinterpret_cast<std::uint8_t*>(dest)};
 
@@ -27,7 +27,7 @@ extern "C" {
 		return dest;
 	}
 
-	[[gnu::optimize("-fno-tree-loop-distribute-patterns")]]
+	[[using gnu: optimize("-fno-tree-loop-distribute-patterns"), used]]
 	std::int32_t memcmp(const void* lhs, const void* rhs, const std::size_t size) noexcept {
 		const auto* lhs_buff{reinterpret_cast<const std::uint8_t*>(lhs)};
 		const auto* rhs_buff{reinterpret_cast<const std::uint8_t*>(rhs)};
