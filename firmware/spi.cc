@@ -9,6 +9,7 @@
 #include "units.hh"
 #include "timing.hh"
 #include "flash.hh"
+#include "fault.hh"
 
 enum struct flash_cmd_t : std::uint16_t {
 	WRITE_ENABLE  = 0x0006U,
@@ -153,6 +154,7 @@ bool setup_spi() noexcept {
 
 	/* Ensure we get the expected ID from the flash */
 	if (flash_id != decltype(flash_id){{0xC8U, 0x40U, 0x17U}}) {
+		active_fault = fault_code_t::SPI_FLASH_BAD;
 		PORTA.set_low(pin::SU_LED_R);
 		return false;
 	}
@@ -163,6 +165,7 @@ bool setup_spi() noexcept {
 	active_fpga_id = read_fpga_id();
 
 	if (active_fpga_id != fpga_id_t::LEF5UM45) {
+		active_fault = fault_code_t::FPGA_ID_BAD;
 		PORTA.set_low(pin::SU_LED_R);
 		return false;
 	}
