@@ -8,7 +8,7 @@
 #include "pindefs.hh"
 #include "units.hh"
 #include "timing.hh"
-
+#include "flash.hh"
 
 enum struct flash_cmd_t : std::uint16_t {
 	WRITE_ENABLE  = 0x0006U,
@@ -48,8 +48,8 @@ static void fpga_cmd_write(const fpga_cmd_t command, const std::span<std::uint8_
 std::array<std::uint8_t, 3> read_jedec_id() noexcept;
 
 [[nodiscard]]
-std::uint32_t read_fpga_id() noexcept;
-
+fpga_id_t read_fpga_id() noexcept;
+static fpga_id_t active_fpga_id{};
 
 static std::array<std::uint8_t, 1_KiB> spi_buffer{{}};
 
@@ -159,7 +159,10 @@ bool setup_spi() noexcept {
 
 	fpga_enter_cfg();
 
-	if (read_fpga_id() != 0x01112043U) {
+	// Cache the ID of the FPGA that is attached to the board
+	active_fpga_id = read_fpga_id();
+
+	if (active_fpga_id != fpga_id_t::LEF5UM45) {
 		PORTA.set_low(pin::SU_LED_R);
 		return false;
 	}
@@ -281,13 +284,12 @@ void write_flash(const std::uint32_t addr, const std::span<std::uint8_t>& buffer
 }
 
 [[nodiscard]]
-std::uint32_t read_fpga_id() noexcept {
+fpga_id_t read_fpga_id() noexcept {
 	std::array<std::uint8_t, 4> id;
 
 	fpga_cmd_read(fpga_cmd_t::READ_ID, {id});
 
-
-	return read_be(id);
+	return static_cast<fpga_id_t>(read_be(id));
 }
 
 static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data) noexcept {
