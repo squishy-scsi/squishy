@@ -50,6 +50,9 @@ std::array<std::uint8_t, 3> read_jedec_id() noexcept;
 [[nodiscard]]
 std::uint32_t read_fpga_id() noexcept;
 
+
+static std::array<std::uint8_t, 1_KiB> spi_buffer{{}};
+
 static void setup_fpga_pins() noexcept {
 
 	/* Set up PSRAM Chip select */
@@ -212,7 +215,7 @@ std::array<std::uint8_t, 3> read_jedec_id() noexcept {
 	return id;
 }
 
-void read_flash(const std::uint32_t addr, std::span<std::uint8_t>& buffer) noexcept {
+void read_flash(const std::uint32_t addr, std::span<std::uint8_t> buffer) noexcept {
 	flash_setup_xfr(flash_cmd_t::READ, addr);
 
 	for (auto& data : buffer) {

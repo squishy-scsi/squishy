@@ -10,7 +10,7 @@
 [[nodiscard]]
 bool setup_spi() noexcept;
 
-void read_flash(std::uint32_t addr, std::span<std::uint8_t>& buffer) noexcept;
+void read_flash(std::uint32_t addr, std::span<std::uint8_t> buffer) noexcept;
 void erase_flash(std::uint32_t addr, std::size_t length) noexcept;
 void write_flash(std::uint32_t addr, const std::span<std::uint8_t>& buffer) noexcept;
 
