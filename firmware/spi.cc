@@ -360,3 +360,80 @@ static std::uint8_t fpga_xfr(const std::uint8_t data) noexcept {
 
 	return res;
 }
+
+bool load_bitstream(std::uint8_t slot_index) noexcept {
+	if (slot_index > 3) {
+		active_fault = fault_code_t::SLOT_INDEX_BAD;
+		return false;
+	}
+
+	std::uint32_t slot_addr{slot_index * 2_MiB};
+
+	slot_header_t slot_header{};
+	read_flash(slot_addr, {reinterpret_cast<std::uint8_t*>(&slot_header), sizeof(slot_header)});
+
+	const auto bit_len{slot_header.bitstream_len()};
+
+	if (slot_header.idcode == fpga_id_t::BAD || bit_len == 0x00FFFFFFU) {
+		active_fault = fault_code_t::SLOT_HEADER_BAD;
+		return false;
+	}
+
+	if (slot_header.idcode != active_fpga_id) {
+		active_fault = fault_code_t::FPGA_ID_MISMATCH;
+		return false;
+	}
+
+	/* Check if the FPGA is in configuration mode, if not, bail */
+	if (PORTA.pin_state(pin::FPGA_DONE) || !PORTA.pin_state(pin::FPGA_INIT)) {
+		active_fault = fault_code_t::FPGA_CFG_INVALID;
+		return false;
+	}
+
+	/* Advance past the slot header to the start of the bitstream */
+	slot_addr += sizeof(slot_header);
+
+	/* Tell the FPGA we're going to shove a bitstream in it's face */
+	fpga_cmd_run(fpga_cmd_t::ENABLE);
+
+	fpga_begin_cmd(fpga_cmd_t::YEET_BITSTREAM);
+
+	for (std::size_t offset{}; offset < bit_len; offset += 1_KiB) {
+		read_flash(slot_addr + offset, spi_buffer);
+
+		const auto buff_amount{std::min(std::uint32_t(bit_len - offset), 1_KiB)};
+
+		for (const auto& byte : std::span{spi_buffer.data(), buff_amount}) {
+			[[maybe_unused]]
+			auto _{fpga_xfr(byte)};
+		}
+
+	};
+
+	PORTA.set_high(pin::FPGA_CS);
+
+	std::array<std::uint8_t, 4> fpga_status_bytes{};
+	fpga_cmd_read(fpga_cmd_t::READ_STATUS, {fpga_status_bytes});
+	const auto fpga_status{read_be(fpga_status_bytes)};
+
+	const auto bse_err_code{std::uint8_t((fpga_status & (0x7 << 23U)) >> 23U)};
+
+	if (fpga_status & (1U << 27U) || bse_err_code == 0b001) {
+		active_fault = fault_code_t::FPGA_BIT_MISMATCH;
+		return false;
+	}
+
+	if (!PORTA.pin_state(pin::FPGA_INIT)) {
+		active_fault = fault_code_t::FPGA_CFG_FAILED;
+		return false;
+	}
+
+	fpga_cmd_run(fpga_cmd_t::DISABLE);
+
+	if (!PORTA.pin_state(pin::FPGA_DONE)) {
+		active_fault = fault_code_t::FPGA_CFG_FAILED;
+		return false;
+	}
+
+	return true;
+}

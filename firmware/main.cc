@@ -56,6 +56,10 @@ void start() noexcept {
 		std::terminate();
 	}
 
+	if (!load_bitstream(0)) {
+		std::terminate();
+	}
+
 	for(;;) {
 		PORTA.toggle(pin::SU_LED_G);
 		for (std::size_t i{0z}; i < 65525*10z; ++i) {
