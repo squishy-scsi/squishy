@@ -292,7 +292,7 @@ fpga_id_t read_fpga_id() noexcept {
 	return static_cast<fpga_id_t>(read_be(id));
 }
 
-static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data) noexcept {
+static void fpga_begin_cmd(const fpga_cmd_t command) noexcept {
 	const auto cmd{static_cast<std::uint8_t>(command)};
 
 	PORTA.set_low(pin::FPGA_CS);
@@ -303,6 +303,16 @@ static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data
 	_ = fpga_xfr();
 	_ = fpga_xfr();
 	_ = fpga_xfr();
+
+};
+
+static void fpga_cmd_run(const fpga_cmd_t command) noexcept {
+	fpga_begin_cmd(command);
+	PORTA.set_high(pin::FPGA_CS);
+}
+
+static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data) noexcept {
+	fpga_begin_cmd(command);
 
 	for (auto& byte : data) {
 		byte = fpga_xfr();
@@ -312,19 +322,11 @@ static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data
 }
 
 static void fpga_cmd_write(const fpga_cmd_t command, const std::span<std::uint8_t>& data) noexcept {
-	const auto cmd{static_cast<std::uint8_t>(command)};
-
-	PORTA.set_low(pin::FPGA_CS);
-
-	[[maybe_unused]]
-	auto _{fpga_xfr(cmd)};
-	/* Dummy Cycle */
-	_ = fpga_xfr();
-	_ = fpga_xfr();
-	_ = fpga_xfr();
+	fpga_begin_cmd(command);
 
 	for (const auto& byte : data) {
-		_ = fpga_xfr(byte);
+		[[maybe_unused]]
+		auto _{fpga_xfr(byte)};
 	}
 
 	PORTA.set_high(pin::FPGA_CS);
@@ -352,7 +354,6 @@ static std::uint8_t fpga_xfr(const std::uint8_t data) noexcept {
 	}
 
 	PORTA.set_low(pin::FPGA_CLK);
-
 
 	return res;
 }
