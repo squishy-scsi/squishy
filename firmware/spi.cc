@@ -46,7 +46,7 @@ static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data
 static void fpga_cmd_write(const fpga_cmd_t command, const std::span<std::uint8_t>& data) noexcept;
 
 [[nodiscard]]
-std::array<std::uint8_t, 3> read_jedec_id() noexcept;
+std::array<std::uint8_t, 3> read_flash_id() noexcept;
 
 [[nodiscard]]
 fpga_id_t read_fpga_id() noexcept;
@@ -150,7 +150,7 @@ bool setup_spi() noexcept {
 	setup_sercom();
 	setup_fpga();
 
-	const auto flash_id{read_jedec_id()};
+	const auto flash_id{read_flash_id()};
 
 	/* Ensure we get the expected ID from the flash */
 	if (flash_id != decltype(flash_id){{0xC8U, 0x40U, 0x17U}}) {
@@ -211,7 +211,7 @@ static void flash_run_cmd(const flash_cmd_t command, const std::uint32_t addr) n
 }
 
 [[nodiscard]]
-std::array<std::uint8_t, 3> read_jedec_id() noexcept {
+std::array<std::uint8_t, 3> read_flash_id() noexcept {
 	std::array<std::uint8_t, 3> id;
 
 	flash_setup_xfr(flash_cmd_t::READ_ID);
