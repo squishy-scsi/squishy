@@ -3,6 +3,8 @@
 #include <cstdint>
 #include <array>
 
+#include "peripherals.hh"
+#include "pindefs.hh"
 #include "platform.hh"
 #include "timing.hh"
 #include "fault.hh"
@@ -147,6 +149,13 @@ void irq_systick() noexcept {
 
 namespace std {
 	void terminate() noexcept {
+		/* Ensure we blank the generic status LED first */
+		PORTA.set_high(pin::SU_LED_G);
+		if (active_fault == fault_code_t::NONE) {
+			/* We somehow got here without an active fault, uhoh, just go solid */
+			PORTA.set_low(pin::SU_LED_R);
+		}
+
 		asm volatile(R"(
 			sub sp, #0x20
 			str r0, [sp, #0x00]
