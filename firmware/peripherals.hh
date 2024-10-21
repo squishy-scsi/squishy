@@ -553,4 +553,40 @@ struct systick_t final {
 
 inline auto& SYSTICK{*reinterpret_cast<systick_t*>(SYSTICK_BASE)};
 
+constexpr static std::uintptr_t NVIC_BASE{0xE000E100U};
+
+struct nvic_t final {
+	enum struct priority_t : std::uint8_t {
+		TOP = 0x00U,
+
+		LOW = 0x3FU,
+	};
+
+	volatile std::uint32_t itrseten;
+	const std::array<const std::uint32_t, 31> _reserved0;
+	volatile std::uint32_t itrclren;
+	const std::array<const std::uint32_t, 31> _reserved1;
+	volatile std::uint32_t itrsetpend;
+	const std::array<const std::uint32_t, 31> _reserved2;
+	volatile std::uint32_t itrclrpend;
+	const std::array<const std::uint32_t, 31> _reserved3;
+	std::array<volatile std::uint32_t, 8> itrpriority;
+
+
+	void set_priority(std::uint8_t interrupt_number, priority_t priority) noexcept {
+		const auto reg_num{interrupt_number >> 2U};
+		const auto pri_idx{interrupt_number & 0x3U};
+
+		auto& reg{itrpriority.at(reg_num)};
+
+		/* Clear old priority */
+		reg &= ~(static_cast<std::uint8_t>(priority_t::LOW) << (pri_idx * 8U));
+		/* Set new priority */
+		reg |= static_cast<std::uint8_t>(priority) << (pri_idx * 8U);
+	}
+};
+
+inline auto& NVIC{*reinterpret_cast<nvic_t*>(NVIC_BASE)};
+
+
 #endif /* SQUISHY_SUPERVISOR_PERIPHERALS_HH */
