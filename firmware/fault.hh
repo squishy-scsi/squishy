@@ -19,6 +19,9 @@ enum struct fault_code_t : std::uint16_t {
 	FPGA_CFG_INVALID  = 0x0006U,
 	FPGA_CFG_FAILED   = 0x0007U,
 	FPGA_BIT_MISMATCH = 0x0008U,
+
+	SPI_PSRAM_BAD     = 0x0009U,
+
 };
 
 extern std::atomic<fault_code_t> active_fault;
