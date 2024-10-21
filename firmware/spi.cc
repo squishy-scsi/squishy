@@ -155,7 +155,6 @@ bool setup_spi() noexcept {
 	/* Ensure we get the expected ID from the flash */
 	if (flash_id != decltype(flash_id){{0xC8U, 0x40U, 0x17U}}) {
 		active_fault = fault_code_t::SPI_FLASH_BAD;
-		PORTA.set_low(pin::SU_LED_R);
 		return false;
 	}
 
@@ -166,7 +165,6 @@ bool setup_spi() noexcept {
 
 	if (active_fpga_id != fpga_id_t::LEF5UM45) {
 		active_fault = fault_code_t::FPGA_ID_BAD;
-		PORTA.set_low(pin::SU_LED_R);
 		return false;
 	}
 
