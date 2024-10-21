@@ -49,6 +49,9 @@ void start() noexcept {
 	setup_io();
 	setup_clocking();
 
+	/* Ensure SysTick keeps running when we call std::terminate() so we can blink a panic code  */
+	NVIC.set_priority(15, nvic_t::priority_t::TOP);
+
 	SYSTICK.reload_value = (32_MHz / 1_kHz) - 1U;
 	SYSTICK.enable();
 
