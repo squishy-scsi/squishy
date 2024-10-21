@@ -16,6 +16,8 @@ extern "C" const std::uint32_t data_end;
 extern "C" std::uint32_t bss_start;
 extern "C" const std::uint32_t bss_end;
 
+static std::uint8_t fault_tick{};
+
 using ctor_func_t = void(*)();
 using irq_func_t  = void(*)();
 
@@ -145,6 +147,13 @@ void irq_fault() noexcept {
 /* Gives us a (roughly) monotonic tick every 1ms */
 void irq_systick() noexcept {
 	++ms_elapsed;
+
+	if (fault_tick == 100) {
+		update_fault_led();
+		fault_tick = 0;
+	} else {
+		++fault_tick;
+	}
 }
 
 namespace std {
