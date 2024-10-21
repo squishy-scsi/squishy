@@ -9,6 +9,25 @@
 
 #include "units.hh"
 
+/*
+	╭────────╮ 0x00000000
+	│ SLOT 0 ├─────────────────╮
+	├────────┤ 0x00200000 ╭────┴────╮ 0x00N00000
+	│ SLOT 1 │            │ SLT HDR ├─────────────────╮
+	├────────┤ 0x00400000 ├─────────┤ 0x00N00008 ╭────┴────╮ 0x00N00000
+	│ SLOT 2 │            │ SLT DAT │            │ FPGA ID │
+	├────────┤ 0x00600000 ╰─────────╯ 0x00NFFFFF ├─────────┤ 0x00N00004
+	│ META 0 ├─────────────────╮                 │  FLAGS  │
+	╰────────╯ 0x00800000 ╭────┴────╮ 0x00600000 ├─────────┤ 0x00N00005
+                          │  RSRVD  │            │ BIT LEN │
+						  ╰─────────╯ 0x00800000 ╰─────────╯ 0x00N00008
+
+	Slot Allocation:
+		Slot 0: Bootloader
+		Slot 1: applet gateware
+		Slot 2: Unallocated
+*/
+
 enum struct fpga_id_t : std::uint32_t {
 	LEF5UM25   = 0x01111043U,
 	LEF5UM45   = 0x01112043U,
@@ -17,8 +36,6 @@ enum struct fpga_id_t : std::uint32_t {
 	LEF5UM5G25 = 0x81111043U,
 	LEF5UM5G45 = 0x81112043U,
 	LEF5UM5G85 = 0x81113043U,
-
-
 
 	BAD = std::numeric_limits<std::uint32_t>::max(),
 };
