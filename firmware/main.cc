@@ -46,6 +46,11 @@ void setup_clocking() noexcept {
 
 
 void start() noexcept {
+	/* This will do until BOD is configured */
+	if (PM.was_por()) {
+		DSU.reset_core();
+	}
+
 	setup_io();
 	setup_clocking();
 

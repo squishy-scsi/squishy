@@ -91,6 +91,10 @@ struct pm_t final {
 			apbcmask | (1U << static_cast<std::uint8_t>(periph))
 		);
 	}
+
+	bool was_por() noexcept {
+		return (rcause & 0x01U);
+	}
 };
 
 inline auto& PM{*reinterpret_cast<pm_t*>(PM_BASE)};
@@ -218,7 +222,14 @@ inline auto& EIC{*reinterpret_cast<eic_t*>(EIC_BASE)};
 constexpr static std::uintptr_t DSU_BASE{0x41002000U};
 
 struct dsu_t final {
-	/* TODO */
+	volatile std::uint8_t ctrl;
+	volatile std::uint8_t statusa;
+	volatile std::uint8_t statusb;
+	const std::uint8_t _reserved0;
+
+	void reset_core() noexcept {
+		ctrl |= 0x01U;
+	}
 };
 
 inline auto& DSU{*reinterpret_cast<dsu_t*>(DSU_BASE)};
@@ -574,15 +585,15 @@ struct nvic_t final {
 
 
 	void set_priority(std::uint8_t interrupt_number, priority_t priority) noexcept {
-		const auto reg_num{interrupt_number >> 2U};
-		const auto pri_idx{interrupt_number & 0x3U};
+		const auto reg_num{std::uint8_t(interrupt_number >> 2U)};
+		const auto pri_idx{std::uint8_t(interrupt_number & 0x3U)};
 
 		auto& reg{itrpriority.at(reg_num)};
 
 		/* Clear old priority */
-		reg &= ~(static_cast<std::uint8_t>(priority_t::LOW) << (pri_idx * 8U));
+		reg &= ~std::uint32_t(static_cast<std::uint8_t>(priority_t::LOW) << (pri_idx * 8U));
 		/* Set new priority */
-		reg |= static_cast<std::uint8_t>(priority) << (pri_idx * 8U);
+		reg |= std::uint32_t(static_cast<std::uint8_t>(priority) << (pri_idx * 8U));
 	}
 };
 
