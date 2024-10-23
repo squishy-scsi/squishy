@@ -45,9 +45,13 @@ static std::uint8_t fpga_xfr(const std::uint8_t data = 0x00U) noexcept;
 static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data) noexcept;
 static void fpga_cmd_write(const fpga_cmd_t command, const std::span<std::uint8_t>& data) noexcept;
 
+static void psram_setup_xfr(const flash_cmd_t command, const std::uint32_t addr = 0x0000'0000U) noexcept;
+static void psram_run_cmd(const flash_cmd_t command, const std::uint32_t addr = 0x0000'0000U) noexcept;
+
 [[nodiscard]]
 std::array<std::uint8_t, 3> read_flash_id() noexcept;
-
+[[nodiscard]]
+std::array<std::uint8_t, 8> read_psram_id() noexcept;
 [[nodiscard]]
 fpga_id_t read_fpga_id() noexcept;
 static fpga_id_t active_fpga_id{};
@@ -56,8 +60,8 @@ static std::array<std::uint8_t, 1_KiB> spi_buffer{{}};
 
 static void setup_fpga_pins() noexcept {
 
-	/* Set up PSRAM Chip select */
-	PORTA.set_high(pin::PSRAM_CS);
+	/* Set up PSRAM Chip select is inverted */
+	PORTA.set_low(pin::PSRAM_CS);
 	PORTA.set_output(pin::PSRAM_CS);
 
 	/* Set up FPGA SPI Bus */
@@ -155,6 +159,14 @@ bool setup_spi() noexcept {
 	/* Ensure we get the expected ID from the flash */
 	if (flash_id != decltype(flash_id){{0xC8U, 0x40U, 0x17U}}) {
 		active_fault = fault_code_t::SPI_FLASH_BAD;
+		return false;
+	}
+
+
+	const auto psram_id{read_psram_id()};
+	const auto psram_size{std::uint8_t((psram_id[2] & 0xE0U) >> 5U)};
+	if (psram_id[0] != 0x9D /* ISSI */ || psram_size != 2U /* 32Mb */) {
+		active_fault = fault_code_t::SPI_PSRAM_BAD;
 		return false;
 	}
 
@@ -283,6 +295,84 @@ void write_flash(const std::uint32_t addr, const std::span<std::uint8_t>& buffer
 		PORTA.set_high(pin::FLASH_CS);
 	}
 }
+
+static void psram_setup_xfr(const flash_cmd_t command, const std::uint32_t addr) noexcept {
+	PORTA.set_high(pin::PSRAM_CS);
+
+	const auto opcode{std::uint8_t(command)};
+
+	[[maybe_unused]]
+	auto _{fpga_xfr(opcode)};
+
+	if ((static_cast<std::uint16_t>(command) & 0x0800U) == 0x0800U) {
+		_ = fpga_xfr(std::uint8_t(addr >> 16U));
+		_ = fpga_xfr(std::uint8_t(addr >>  8U));
+		_ = fpga_xfr(std::uint8_t(addr >>  0U));
+	} else if (command == flash_cmd_t::READ_ID) {
+		/* We need to fill the ADDR slot with 0's for the PSRAM */
+		_ = fpga_xfr();
+		_ = fpga_xfr();
+		_ = fpga_xfr();
+	}
+
+	/* Wiggle out the intersticial bytes between addr and data phase */
+	const std::size_t inter_len{(static_cast<std::uint16_t>(command) & 0x0700U) >> 8U};
+	for (std::size_t ctr{}; ctr < inter_len; ++ctr) {
+		_ = fpga_xfr();
+	}
+}
+
+static void psram_run_cmd(const flash_cmd_t command, const std::uint32_t addr) noexcept {
+	psram_setup_xfr(command, addr);
+	PORTA.set_low(pin::PSRAM_CS);
+}
+
+void read_psram(std::uint32_t addr, std::span<std::uint8_t> buffer) noexcept {
+	psram_setup_xfr(flash_cmd_t::READ, addr);
+
+	for (auto& data : buffer) {
+		data = fpga_xfr();
+	}
+
+	PORTA.set_low(pin::PSRAM_CS);
+}
+
+void write_psram(std::uint32_t addr, const std::span<std::uint8_t>& buffer) noexcept {
+	for (std::size_t off{}; off < buffer.size_bytes(); off += 256) {
+		psram_setup_xfr(flash_cmd_t::PAGE_PROGRAM, addr + off);
+
+		for (const auto byte : buffer.subspan(off, 256)) {
+			[[maybe_unused]]
+			const auto _{fpga_xfr(byte)};
+		}
+
+		PORTA.set_low(pin::PSRAM_CS);
+
+
+		psram_setup_xfr(flash_cmd_t::READ_STATUS);
+		while (fpga_xfr() & 0x03U) {
+			continue;
+		}
+
+		PORTA.set_low(pin::PSRAM_CS);
+	}
+}
+
+[[nodiscard]]
+std::array<std::uint8_t, 8> read_psram_id() noexcept {
+	std::array<std::uint8_t, 8> id;
+
+	psram_setup_xfr(flash_cmd_t::READ_ID);
+
+	for (auto& byte : id) {
+		byte = fpga_xfr();
+	}
+
+	PORTA.set_low(pin::PSRAM_CS);
+
+	return id;
+}
+
 
 [[nodiscard]]
 fpga_id_t read_fpga_id() noexcept {
