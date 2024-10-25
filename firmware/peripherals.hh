@@ -95,6 +95,10 @@ struct pm_t final {
 	bool was_por() noexcept {
 		return (rcause & 0x01U);
 	}
+
+	bool was_brownout() noexcept {
+		return (rcause & 0x06U);
+	}
 };
 
 inline auto& PM{*reinterpret_cast<pm_t*>(PM_BASE)};
