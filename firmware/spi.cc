@@ -449,7 +449,8 @@ static std::uint8_t fpga_xfr(const std::uint8_t data) noexcept {
 	return res;
 }
 
-bool load_bitstream(std::uint8_t slot_index) noexcept {
+
+bool load_bitstream_flash(std::uint8_t slot_index) noexcept {
 	if (slot_index > 3) {
 		active_fault = fault_code_t::SLOT_INDEX_BAD;
 		return false;

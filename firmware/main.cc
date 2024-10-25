@@ -66,7 +66,7 @@ void start() noexcept {
 		std::terminate();
 	}
 
-	if (!load_bitstream(0)) {
+	if (!load_bitstream_flash(0)) {
 		std::terminate();
 	}
 
