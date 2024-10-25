@@ -43,6 +43,12 @@ enum struct fpga_id_t : std::uint32_t {
 enum struct flash_flags_t : std::uint8_t {
 	F1 = 0b0000'0001,
 	F2 = 0b0000'0010,
+	F3 = 0b0000'0100,
+	F4 = 0b0000'1000,
+	F5 = 0b0001'0000,
+	F6 = 0b0010'0000,
+	F7 = 0b0100'0000,
+	F8 = 0b1000'0000,
 };
 
 struct slot_header_t final {
