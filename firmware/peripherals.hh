@@ -104,7 +104,38 @@ inline auto& PM{*reinterpret_cast<pm_t*>(PM_BASE)};
 constexpr static std::uintptr_t SYSCTRL_BASE{0x40000800U};
 
 struct sysctrl_t final {
-	/* TODO */
+	volatile std::uint32_t intencrl;
+	volatile std::uint32_t intenset;
+	volatile std::uint32_t intflag;
+	volatile std::uint32_t pclksr;
+	volatile std::uint16_t xosc;
+	const std::uint16_t _reserved0;
+	volatile std::uint16_t xosc32k;
+	const std::uint16_t _reserved1;
+	volatile std::uint32_t osc32k;
+	volatile std::uint8_t osculp32k;
+	const std::array<const std::uint8_t, 3> _reserved2;
+	volatile std::uint32_t osc8m;
+	volatile std::uint16_t dfllctrl;
+	const std::uint16_t _reserved3;
+	volatile std::uint32_t dfllval;
+	volatile std::uint32_t dfllmul;
+	volatile std::uint8_t dfllsync;
+	const std::array<const std::uint8_t, 3> _reserved4;
+	volatile std::uint32_t bod33;
+	const std::array<const std::uint32_t, 2> _reserved5;
+	volatile std::uint32_t vref;
+	volatile std::uint8_t dpllctrla;
+	const std::array<const std::uint8_t, 3> _reserved6;
+	volatile std::uint32_t dpllratio;
+	volatile std::uint32_t dpllctrlb;
+	volatile std::uint8_t dpllstatus;
+	const std::array<const std::uint8_t, 3> _reserved7;
+
+
+	void enable_bod33(std::uint8_t level) noexcept {
+		bod33 = (1U << 1U) | (1U << 3U) | (1U << 6U) | ((level & 0x3FU) << 16U);
+	}
 };
 
 inline auto& SYSCTRL{*reinterpret_cast<sysctrl_t*>(SYSCTRL_BASE)};
