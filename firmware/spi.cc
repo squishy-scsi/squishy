@@ -10,6 +10,7 @@
 #include "timing.hh"
 #include "flash.hh"
 #include "fault.hh"
+#include "memory.hh"
 
 enum struct flash_cmd_t : std::uint16_t {
 	WRITE_ENABLE  = 0x0006U,
@@ -481,6 +482,61 @@ static bool fpga_program_status() noexcept {
 	}
 
 	if (!PORTA.pin_state(pin::FPGA_INIT)) {
+		active_fault = fault_code_t::FPGA_CFG_FAILED;
+		return false;
+	}
+
+	return true;
+}
+
+bool load_bitstram_psram() noexcept {
+	slot_header_t header;
+	[[maybe_unused]]
+	auto next_addr{read_psram(0x0000'0000, spi_buffer)};
+
+	memcpy(spi_buffer.data(), &header, sizeof(header));
+
+	const auto bit_len{header.bitstream_len()};
+
+	if (header.idcode == fpga_id_t::BAD || bit_len == 0x00FFFFFFU) {
+		active_fault = fault_code_t::SLOT_HEADER_BAD;
+		return false;
+	}
+
+	if (header.idcode != active_fpga_id) {
+		active_fault = fault_code_t::FPGA_ID_MISMATCH;
+		return false;
+	}
+
+	/* Force the FPGA to stop what it's doing and enter config mode */
+	fpga_enter_cfg();
+
+	/* Tell the FPGA we're going to shove a bitstream in it's face */
+	fpga_cmd_run(fpga_cmd_t::ENABLE);
+	fpga_begin_cmd(fpga_cmd_t::YEET_BITSTREAM);
+
+	/* First partial segmented transfer of the bitstream to the FPGA */
+	const auto bit_off{spi_buffer.size() - sizeof(header)};
+	fpga_segmented_xfer(std::span{spi_buffer}.subspan(sizeof(header), bit_off));
+
+	/* Transfer the rest over in 1KiB pages up to the end */
+	for (std::size_t offset{bit_off}; offset < bit_len; offset += 1_KiB) {
+		const auto buff_amount{std::min(std::uint32_t(bit_len - offset), 1_KiB)};
+		next_addr = read_psram(next_addr, spi_buffer);
+		fpga_segmented_xfer(std::span{spi_buffer}.subspan(0, buff_amount));
+	};
+
+	/* Ensure the FPGA is released from the hold */
+	PORTA.set_high(pin::FPGA_HOLD);
+	PORTA.set_low(pin::FPGA_CS);
+
+	if (!fpga_program_status() ) {
+		return false;
+	}
+
+	fpga_cmd_run(fpga_cmd_t::DISABLE);
+
+	if (!PORTA.pin_state(pin::FPGA_DONE)) {
 		active_fault = fault_code_t::FPGA_CFG_FAILED;
 		return false;
 	}
