@@ -329,7 +329,7 @@ static void psram_run_cmd(const flash_cmd_t command, const std::uint32_t addr) n
 	PORTA.set_low(pin::PSRAM_CS);
 }
 
-void read_psram(std::uint32_t addr, std::span<std::uint8_t> buffer) noexcept {
+std::uint32_t read_psram(std::uint32_t addr, std::span<std::uint8_t> buffer) noexcept {
 	psram_setup_xfr(flash_cmd_t::READ, addr);
 
 	for (auto& data : buffer) {
@@ -337,9 +337,10 @@ void read_psram(std::uint32_t addr, std::span<std::uint8_t> buffer) noexcept {
 	}
 
 	PORTA.set_low(pin::PSRAM_CS);
+	return addr + buffer.size_bytes();
 }
 
-void write_psram(std::uint32_t addr, const std::span<std::uint8_t>& buffer) noexcept {
+std::uint32_t write_psram(std::uint32_t addr, const std::span<std::uint8_t>& buffer) noexcept {
 	for (std::size_t off{}; off < buffer.size_bytes(); off += 256) {
 		psram_setup_xfr(flash_cmd_t::PAGE_PROGRAM, addr + off);
 
@@ -358,6 +359,8 @@ void write_psram(std::uint32_t addr, const std::span<std::uint8_t>& buffer) noex
 
 		PORTA.set_low(pin::PSRAM_CS);
 	}
+
+	return addr + buffer.size_bytes();
 }
 
 [[nodiscard]]
