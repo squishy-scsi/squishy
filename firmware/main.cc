@@ -46,8 +46,10 @@ void setup_clocking() noexcept {
 
 
 void start() noexcept {
+	/* Brown-out detect @ 1v7 ± 50mV */
+	SYSCTRL.enable_bod33(7U);
 	/* This will do until BOD is configured */
-	if (PM.was_por()) {
+	if (PM.was_brownout()) {
 		DSU.reset_core();
 	}
 
