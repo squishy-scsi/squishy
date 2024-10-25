@@ -454,6 +454,20 @@ static std::uint8_t fpga_xfr(const std::uint8_t data) noexcept {
 	return res;
 }
 
+static bool fpga_segmented_xfer(const std::span<std::uint8_t>& buffer) noexcept {
+	PORTA.set_high(pin::FPGA_HOLD);
+
+	for (const auto& byte : buffer) {
+		[[maybe_unused]]
+		auto _{fpga_xfr(byte)};
+	}
+
+	// TODO(aki): Ditto
+	PORTA.set_low(pin::FPGA_HOLD);
+
+	return true;
+}
+
 static bool fpga_program_status() noexcept {
 	std::array<std::uint8_t, 4> fpga_status_bytes{};
 	fpga_cmd_read(fpga_cmd_t::READ_STATUS, {fpga_status_bytes});
