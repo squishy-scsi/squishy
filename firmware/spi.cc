@@ -41,6 +41,8 @@ static void flash_run_cmd(const flash_cmd_t command, const std::uint32_t addr = 
 
 [[nodiscard]]
 static std::uint8_t fpga_xfr(const std::uint8_t data = 0x00U) noexcept;
+[[nodiscard]]
+static bool fpga_program_status() noexcept;
 
 static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data) noexcept;
 static void fpga_cmd_write(const fpga_cmd_t command, const std::span<std::uint8_t>& data) noexcept;
@@ -449,6 +451,25 @@ static std::uint8_t fpga_xfr(const std::uint8_t data) noexcept {
 	return res;
 }
 
+static bool fpga_program_status() noexcept {
+	std::array<std::uint8_t, 4> fpga_status_bytes{};
+	fpga_cmd_read(fpga_cmd_t::READ_STATUS, {fpga_status_bytes});
+	const auto fpga_status{read_be(fpga_status_bytes)};
+
+	const auto bse_err_code{std::uint8_t((fpga_status & (0x7 << 23U)) >> 23U)};
+
+	if (fpga_status & (1U << 27U) || bse_err_code == 0b001) {
+		active_fault = fault_code_t::FPGA_BIT_MISMATCH;
+		return false;
+	}
+
+	if (!PORTA.pin_state(pin::FPGA_INIT)) {
+		active_fault = fault_code_t::FPGA_CFG_FAILED;
+		return false;
+	}
+
+	return true;
+}
 
 bool load_bitstream_flash(std::uint8_t slot_index) noexcept {
 	if (slot_index > 3) {
@@ -501,19 +522,7 @@ bool load_bitstream_flash(std::uint8_t slot_index) noexcept {
 
 	PORTA.set_high(pin::FPGA_CS);
 
-	std::array<std::uint8_t, 4> fpga_status_bytes{};
-	fpga_cmd_read(fpga_cmd_t::READ_STATUS, {fpga_status_bytes});
-	const auto fpga_status{read_be(fpga_status_bytes)};
-
-	const auto bse_err_code{std::uint8_t((fpga_status & (0x7 << 23U)) >> 23U)};
-
-	if (fpga_status & (1U << 27U) || bse_err_code == 0b001) {
-		active_fault = fault_code_t::FPGA_BIT_MISMATCH;
-		return false;
-	}
-
-	if (!PORTA.pin_state(pin::FPGA_INIT)) {
-		active_fault = fault_code_t::FPGA_CFG_FAILED;
+	if (!fpga_program_status() ) {
 		return false;
 	}
 
