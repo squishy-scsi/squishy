@@ -64,6 +64,11 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: 'Setup'
+        shell: bash
+        run: |
+          python -m pip install --user --upgrade pip setuptools wheel setuptools_scm nox
+
       - name: 'Run Tests'
         timeout-minutes: 15 # Python 3.12 and 3.13 seem to just hang on testing ~sometimes~
         continue-on-error: ${{ matrix.python-version == '3.12' || matrix.python-version == '3.13.0-rc.2' }}
