@@ -1,6 +1,6 @@
 name: Bug Report
 description: Report an issue with Squishy
-title: "[BUG]: "
+title: ""
 labels: ["Bug"]
 body:
   - type: markdown
@@ -15,9 +15,7 @@ body:
     attributes:
       label: Which part of Squishy shows this problem
       options:
-        - GUI
         - CLI
-        - REPL
         - Gateware Library
         - Python Library
         - Applet

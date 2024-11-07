@@ -1,9 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
-from construct import *
 
-__doc__ = '''
+'''
 This module defines the commands that are specific to printers
 '''
+
+from construct import *
 
 __all__ = (
 	'format_printer',

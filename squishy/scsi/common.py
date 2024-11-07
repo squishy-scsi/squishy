@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from enum import (
-	auto, unique, IntEnum
-)
+'''
 
-from typing import Union
+'''
+
+from enum   import auto, unique, IntEnum
 
 __all__ = (
 	'SCSIInterface',
@@ -12,10 +12,6 @@ __all__ = (
 	'SCSIClockMode',
 	'SCSI_BUSSES',
 )
-
-__doc__ = '''\
-'''
-
 
 @unique
 class SCSIStandard(IntEnum):
@@ -73,11 +69,13 @@ class SCSIClockMode(IntEnum):
 	DDR = auto()
 	''' Double Data Rate clock '''
 
+# TODO(aki): This should be cleaned up into more sane types/objects
+
 SCSIBusSpeed      = tuple[float, SCSIClockMode]
 ''' The tuple of speed in MHz and clock mode (SDR vs DDR) '''
 SCSIBusElectrical = tuple[SCSIElectrical, ...]
 ''' The rough electrical characteristics of the SCSI Bus '''
-SCSIBusDefinition = dict[str, Union[SCSIBusElectrical, int, SCSIBusSpeed]]
+SCSIBusDefinition = dict[str, SCSIBusElectrical | int | SCSIBusSpeed]
 ''' A definition of the type of bus the given SCSI version supports '''
 
 SCSI_BUSSES: dict[SCSIInterface, SCSIBusDefinition] = {

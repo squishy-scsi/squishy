@@ -31,10 +31,11 @@ source_suffix = {
 	'.md': 'markdown',
 }
 
-pygments_style         = 'monokai'
-autodoc_member_order   = 'bysource'
-graphviz_output_format = 'svg'
-todo_include_todos     = True
+pygments_style              = 'monokai'
+autodoc_member_order        = 'bysource'
+autodoc_docstring_signature = False
+graphviz_output_format      = 'svg'
+todo_include_todos          = True
 
 intersphinx_mapping = {
 	'python'   : ('https://docs.python.org/3', None),
@@ -43,12 +44,13 @@ intersphinx_mapping = {
 	'construct': ('https://construct.readthedocs.io/en/latest', None),
 }
 
-napoleon_google_docstring = False
-napoleon_numpy_docstring  = True
-napoleon_use_ivar         = True
-napoleon_custom_sections  = [
-	'Platform overrides'
-]
+napoleon_google_docstring              = True
+napoleon_numpy_docstring               = True
+napoleon_use_ivar                      = True
+napoleon_use_admonition_for_notes      = True
+napoleon_use_admonition_for_examples   = True
+napoleon_use_admonition_for_references = True
+
 
 myst_heading_anchors = 3
 
@@ -79,8 +81,7 @@ ogp_site_url = html_baseurl
 ogp_image    = f'{html_baseurl}/_images/og-image.png'
 
 autosectionlabel_prefix_document = True
-# Disable CDN so we use the local copy
-mermaid_version = ''
+
 
 offline_skin_js_path = '_static/js/wavedrom.skin.js'
 offline_wavedrom_js_path = '_static/js/wavedrom.min.js'

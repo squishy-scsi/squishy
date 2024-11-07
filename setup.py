@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 # SPDX-License-Identifier: BSD-3-Clause
 
-from typing                 import Callable, TypeAlias, Type
-from setuptools             import setup, find_packages
-from pathlib                import Path
+from typing     import Callable, TypeAlias
+from setuptools import setup, find_packages
+from pathlib    import Path
 
-ScmVersion: TypeAlias = Type['setuptools_scm.version.ScmVersion']
+ScmVersion: TypeAlias = 'setuptools_scm.version.ScmVersion'
 
 REPO_ROOT   = Path(__file__).parent
 README_FILE = (REPO_ROOT / 'README.md')
@@ -22,20 +22,6 @@ def vcs_ver() -> dict[str, str | Callable[[ScmVersion], str]]:
 		'local_scheme': scheme
 	}
 
-def doc_ver() -> str:
-	try:
-		from setuptools_scm.git import parse as parse_git
-	except ImportError:
-		return ''
-
-	git = parse_git('.')
-	if not git:
-		return ''
-	elif git.exact:
-		return git.format_with('{tag}')
-	else:
-		return 'latest'
-
 setup(
 	name = 'Squishy',
 	use_scm_version  = vcs_ver(),
@@ -43,7 +29,7 @@ setup(
 	author_email     = 'nya@catgirl.link',
 	description      = 'SCSI Multitool and Torii HDL Library',
 	license          = 'BSD-3-Clause',
-	python_requires  = '~=3.10',
+	python_requires  = '~=3.11',
 	zip_safe         = True,
 	url              = 'https://github.com/squishy-scsi/squishy',
 

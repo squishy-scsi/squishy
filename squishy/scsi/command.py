@@ -1,5 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
+'''
+
+
+'''
+
 from enum      import IntEnum, unique
 from itertools import takewhile
 from typing    import Any
@@ -25,9 +30,6 @@ __all__ = (
 	'CommandEmitter',
 )
 
-__doc__ = '''\
-
-'''
 
 @unique
 class GroupCode(IntEnum):
@@ -410,7 +412,7 @@ class SCSICommandField(Subconstruct):
 			return BitsInteger(size)
 
 
-	def __init__(self, description: str = '', default: Any = None, *, length: int = None) -> None:
+	def __init__(self, description: str = '', default: Any = None, *, length: int | None = None) -> None:
 		self.description = description
 		self.default = default
 		self.len = length
@@ -605,7 +607,7 @@ class SCSICommand(Struct):
 	)
 
 	# TODO(aki): Allow for custom control block layouts
-	def __init__(self, opcode: int, group_code: GroupCode, *subcons, size: int = None, **subconskw) -> None:
+	def __init__(self, opcode: int, group_code: GroupCode, *subcons, size: int | None = None, **subconskw) -> None:
 		self.opcode = opcode
 		self.group_code = group_code
 		if group_code not in _KNOWN_SIZED_GROUPS:
@@ -828,6 +830,7 @@ class SCSICommand12(SCSICommand):
 	def __init__(self, opcode: int, *subcons, **subconmskw) -> None:
 		super().__init__(opcode, GroupCode.GROUP5, *subcons, **subconmskw)
 
+# TODO(aki): We should probably see if we can try to type this
 class CommandEmitter:
 	'''
 	Creates an emitter based on the specified SCSI command.

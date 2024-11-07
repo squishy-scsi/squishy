@@ -13,12 +13,13 @@ jobs:
     name: 'Test Squishy (Python ${{ matrix.python-version }})'
     strategy:
       matrix:
-        python-version: ['3.10', '3.11', '3.12', '3.13.0-rc.2', 'pypy3.10-v7.3.16']
+        python-version: ['3.11', '3.12', '3.13', '3.14.0-alpha.1']
     steps:
       - name: 'Setup Python'
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+
       - name: 'Initialize Environment'
         shell: bash
         env:
@@ -47,7 +48,7 @@ jobs:
       - name: 'Run Tests'
         shell: bash
         timeout-minutes: 15 # Python 3.12 and 3.13 seem to just hang on testing ~sometimes~
-        continue-on-error: ${{ matrix.python-version == '3.12' || matrix.python-version == '3.13.0-rc.2' }}
+        continue-on-error: ${{ matrix.python-version == '3.12' || matrix.python-version == '3.13' }}
         run: |
           nox -s test -- --coverage
 

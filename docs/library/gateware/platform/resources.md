@@ -1,4 +1,4 @@
-# `squishy.gateware.platform.resources`
+# Platform Resources
 
 ```{toctree}
 :hidden:
@@ -6,11 +6,5 @@
 
 ```{eval-rst}
 .. automodule:: squishy.gateware.platform.resources
-
-```
-
-```{eval-rst}
-.. automodule:: squishy.gateware.platform.resources.scsi
-  :members:
 
 ```

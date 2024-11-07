@@ -3,12 +3,14 @@
 ```{toctree}
 :hidden:
 
+applet/index
+bootloader/index
 core/index
+peripherals/index
 platform/index
 scsi/index
 usb/index
-quirks/index
-bootloader/index
+test/
 
 ```
 

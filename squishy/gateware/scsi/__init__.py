@@ -1,35 +1,13 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from .scsi1     import SCSI1
-from .scsi2     import SCSI2
-from .scsi3     import SCSI3
-
-from .device    import SCSI1Device, SCSI2Device, SCSI3Device
-from .initiator import SCSI1Initiator, SCSI2Initiator, SCSI3Initiator
-
-__all__ = (
-	'SCSI1',
-	'SCSI2',
-	'SCSI3',
-
-	'SCSI1Device',
-	'SCSI1Initiator',
-
-	'SCSI2Device',
-	'SCSI2Initiator',
-
-	'SCSI3Device',
-	'SCSI3Initiator',
-)
-
-__doc__ = '''\
+'''
 
 Anatomy of a SCSI Bus
 ---------------------
 
 SCSI Is a bus based system, all devices on the bus have a unique ID and are split into two categories,
 Initiator, and Target. In general Initiators are show as an adapter connected to a host, and Targets are
-shown as controllers attatches to a target device. This abstraction serves to represent that there can be
+shown as controllers attaches to a target device. This abstraction serves to represent that there can be
 multiple possible targets behind a single controller, which share a single bus connection.
 
 As SCSI is not a purely point-to-point bus, and allows for multiple bus initiators, there are three possible
@@ -252,4 +230,60 @@ targets all on the shared bus.
 		M -> BF [label = ""];
 	}
 
+
+The following table lists the timing requirements for each SCSI version.
+
++-----------------------+--------------+--------------+--------------+
+|  Name                 | SCSI1        | SCSI2        | SCSI3        |
++=======================+==============+==============+==============+
+| Arbitration           | 2.2us        | 2.4us        | 2.4us        |
++-----------------------+--------------+--------------+--------------+
+| Assertion             | 90ns         | 90ns         | Unspecified  |
++-----------------------+--------------+--------------+--------------+
+| Bus Clear             | 800ns        | 800ns        | 800ns        |
++-----------------------+--------------+--------------+--------------+
+| Bus Free              | 800ns        | 800ns        | 800ns        |
++-----------------------+--------------+--------------+--------------+
+| Bus Set               | 1.8us        | 1.8us        | 1.6us        |
++-----------------------+--------------+--------------+--------------+
+| Bus Settle            | 400ns        | 400ns        | 400ns        |
++-----------------------+--------------+--------------+--------------+
+| Cable Skew            | 10ns         | 10ns         | 4ns          |
++-----------------------+--------------+--------------+--------------+
+| Data Release          | 400ns        | 400ns        | 400ns        |
++-----------------------+--------------+--------------+--------------+
+| Deskew                | 45ns         | 45ns         | 45ns         |
++-----------------------+--------------+--------------+--------------+
+| Hold Time             | 45ns         | 45ns         | Unspecified  |
++-----------------------+--------------+--------------+--------------+
+| Negation              | 90ns         | 90ns         | Unspecified  |
++-----------------------+--------------+--------------+--------------+
+| Reset Hold            | 25us         | 25us         | 25us         |
++-----------------------+--------------+--------------+--------------+
+| Selection Abort       | 200us        | 200us        | 200us        |
++-----------------------+--------------+--------------+--------------+
+| Selection Timeout     | 250ms        | 250ms        | 250ms        |
++-----------------------+--------------+--------------+--------------+
+| Disconnect            | Unspecified  | 200us        | Unspecified  |
++-----------------------+--------------+--------------+--------------+
+| Power to Selection    | Unspecified  | 10s          | 10s          |
++-----------------------+--------------+--------------+--------------+
+| Reset to Selection    | Unspecified  | 250ms        | 250ms        |
++-----------------------+--------------+--------------+--------------+
+| Fast Assert           | Unspecified  | 30ns         | Unspecified  |
++-----------------------+--------------+--------------+--------------+
+| Fast Cable Skew       | Unspecified  | 5ns          | Unspecified  |
++-----------------------+--------------+--------------+--------------+
+| Fast Deskew           | Unspecified  | 20ns         | Unspecified  |
++-----------------------+--------------+--------------+--------------+
+| Fast Hold             | Unspecified  | 10ns         | Unspecified  |
++-----------------------+--------------+--------------+--------------+
+| Fast Negation         | Unspecified  | 30ns         | Unspecified  |
++-----------------------+--------------+--------------+--------------+
+
+
 ''' # noqa: E101
+
+__all__ = (
+
+)

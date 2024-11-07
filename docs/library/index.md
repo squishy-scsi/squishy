@@ -2,6 +2,8 @@
 
 ```{toctree}
 :hidden:
+
+applet/index
 gateware/index
 python/index
 

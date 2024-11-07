@@ -1,10 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from enum import IntEnum, unique
-
-__doc__ = '''\
+'''
 
 '''
+
+from enum import IntEnum, unique
 
 __all__ = (
 	'PeripheralDeviceType',

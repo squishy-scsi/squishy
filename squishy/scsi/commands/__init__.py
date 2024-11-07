@@ -1,5 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
+'''
+
+'''
+
 from . import common
 from . import direct
 from . import sequential
@@ -17,6 +21,3 @@ __all__ = (
 	'worm',
 	'ro_direct',
 )
-
-__doc__ = '''\
-'''

@@ -1,9 +1,9 @@
-# `squishy.gateware.usb`
+# USB
 
 ```{toctree}
 :hidden:
 
-
+quirks/index
 ```
 
 ```{eval-rst}
@@ -13,18 +13,5 @@
 
 ```{eval-rst}
 .. automodule:: squishy.gateware.usb.dfu
-  :members:
-
-```
-
-```{eval-rst}
-.. automodule:: squishy.gateware.usb.rev1
-  :members:
-
-```
-
-```{eval-rst}
-.. automodule:: squishy.gateware.usb.rev2
-  :members:
-
+	:members:
 ```

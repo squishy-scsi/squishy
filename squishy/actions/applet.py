@@ -1,213 +1,174 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging            as log
-from pathlib              import Path
-from argparse             import ArgumentParser, Namespace
 
-from rich.progress        import (
-	Progress, SpinnerColumn, BarColumn,
-	TextColumn
+'''
+
+'''
+
+import logging         as log
+from pathlib           import Path
+from argparse          import ArgumentParser, Namespace
+
+from rich.prompt       import Confirm
+from rich.progress     import Progress, SpinnerColumn, BarColumn, TextColumn
+
+from .                 import SquishySynthAction
+from ..applets         import SquishyApplet
+from ..paths           import SQUISHY_APPLETS, SQUISHY_BUILD_APPLET
+from ..device          import SquishyDevice
+from ..core.reflection import collect_members, is_applet
+from ..gateware        import Squishy as SquishyGateware
+
+__all__ = (
+	'AppletAction',
 )
 
-from ..applets           import SquishyApplet
-from ..config            import SQUISHY_APPLETS
-from ..core.collect      import collect_members, predicate_applet
-from ..core.device       import SquishyHardwareDevice
 
-from ..gateware          import Squishy
-from .                   import SquishySynthAction
+class AppletAction(SquishySynthAction):
+	'''
+	Build and Run Squishy Applets
 
+	This action implements all the machinery needed to build and run :py:class:`SquishyApplet`'s, on
+	both gateware-side and host-side, along with setting up a the optional communication channel
+	between then if needed.
 
-class Applet(SquishySynthAction):
-	pretty_name  = 'Squishy Applets'
-	short_help   = 'Squishy applet subsystem'
+	Note
+	----
+	Not all applets will have a host-side invocation runtime, some might be gateware only and implement
+	something such as a SCSI disk endpoint over USB and let th host OS drivers deal with it.
+
+	'''
+
+	name         = 'applet'
 	description  = 'Build and run Squishy applets'
-	requires_dev = True
+	# TODO(aki): We /technically/ want this, but it would be nice to be able to build them w/o a device attached
+	requires_dev = False
 
-	def _collect_all_applets(self) -> list[dict[str, str | SquishyApplet]]:
+	def _collect_applets(self, external:  bool = True) -> list[SquishyApplet]:
+		'''
+		Try to collect known applets.
+
+		Parameters
+		----------
+		external : bool
+			Also try to collect applets located in the ``SQUISHY_APPLETS`` directory where
+			users can drop their own or third-party applets.
+
+		Returns
+		-------
+		'''
+
 		from .. import applets
 		return [
 			*collect_members(
 				Path(applets.__path__[0]),
-				predicate_applet,
-				f'{applets.__name__}.'
+				is_applet,
+				f'{applets.__name__}.',
+				make_instance = True
 			),
-			*collect_members(
+			# BUG(aki): This is likely entirely busted
+			*(collect_members(
 				SQUISHY_APPLETS,
-				predicate_applet,
-				''
-			)
+				is_applet,
+				make_instance = True,
+			) if external else ())
 		]
 
-	def __init__(self):
+	def __init__(self) -> None:
 		super().__init__()
-		self.applets = self._collect_all_applets()
+		self._applets = self._collect_applets()
 
 	def register_args(self, parser: ArgumentParser) -> None:
-		# actions = parser.add_subparsers(dest = 'gateware_action')
+		self.register_synth_args(parser)
 
-		# do_verify = actions.add_parser('verify', help = 'Run formal verification')
-		# verify_options = do_verify.add_argument_group('Verification options')
-
-		# do_simulation  = actions.add_parser('simulate', help = 'Run simulation test cases')
-		# sim_options    = do_simulation.add_argument_group('Simulation Options')
-
-		self.register_synth_args(parser, cacheable = True)
-
-		usb_options    = parser.add_argument_group('USB Options')
-		uart_options   = parser.add_argument_group('Debug UART Options')
-		scsi_options   = parser.add_argument_group('SCSI Options')
-
-
-		# USB Options
-		usb_options.add_argument(
-			'--enable-webusb',
+		parser.add_argument(
+			'--noconfirm', '-Y',
 			action = 'store_true',
-			help   = 'Enable the experimental WebUSB descriptors'
+			help   = 'Do not ask for confirmation if the target applet is in preview.'
 		)
 
-		usb_options.add_argument(
-			'--webusb-url',
-			type    = str,
-			default = 'https://localhost',
-			help    = 'The location URL to encode in the device descriptor'
+		parser.add_argument(
+			'--flash', '-f',
+			action = 'store_true',
+			help   = 'Flash the gateware into persistent flash rather than doing an ephemeral load'
 		)
 
-		# SCSI Options
-		scsi_options.add_argument(
-			'--scsi-did',
-			type    = int,
-			default = 0x01,
-			help    = 'The SCSI Device ID to use'
-		)
-
-		scsi_options.add_argument(
-			'--scsi-arbitrating',
-			default = False,
-			action  = 'store_true',
-			help    = 'Enable SCSI Bus arbitration'
-		)
-
-		scsi_options.add_argument(
-			'--scsi-device',
-			default = False,
-			action  = 'store_true',
-			help    = 'Set the SCSI bus to be a device rather than an initiator',
-		)
-
-		# UART Options
-		uart_options.add_argument(
-			'--enable-uart', '-U',
-			default = False,
-			action  = 'store_true',
-			help    = 'Enable the debug UART',
-		)
-
-		uart_options.add_argument(
-			'--baud', '-B',
-			type    = int,
-			default = 9600,
-			help    = 'The rate at which to run the debug UART'
-		)
-
-		uart_options.add_argument(
-			'--data-bits', '-D',
-			type    = int,
-			default = 8,
-			help    = 'The data bits to use for the UART'
-		)
-
-		uart_options.add_argument(
-			'--parity', '-c',
-			type    = str,
-			choices = [
-				'none', 'mark', 'space'
-				'even', 'odd'
-			],
-			default = 'none',
-			help    = 'The parity mode for the debug UART'
-		)
+		# TODO(aki): Peripheral options and the like
 
 		applet_parser = parser.add_subparsers(
 			dest     = 'applet',
 			required = True
 		)
 
-		if len(self.applets) > 0:
-			for apl in self.applets:
-				applet = apl['instance']
-				p = applet_parser.add_parser(
-						apl['name'],
-						help = applet.short_help,
-					)
-				applet.register_args(p)
+		for applet in self._applets:
+			p = applet_parser.add_parser(applet.name, help = applet.description)
+			applet.register_args(p)
 
-	def run(self, args: Namespace, dev: SquishyHardwareDevice | None = None) -> int:
-		plt = self.get_hw_platform(args, dev)
-		if plt is None:
+	def run(self, args: Namespace, dev: SquishyDevice) -> int:
+		# Get the platform
+		platform_type = self.get_platform(args, dev)
+		if platform_type is None:
+			# the call to `get_platform` will have already printed an error message
 			return 1
 
-		platform, hardware_platform, dev = plt
+		# Initialize the platform
+		plat = platform_type()
 
-		apl = list(filter(lambda a: a['name'] == args.applet, self.applets))[0]
+		# Pull out the selected applet
+		applet: SquishyApplet = next(filter(lambda applet: applet.name == args.applet, self._applets), None)
 
-		name: str             = apl['name']
-		applet: SquishyApplet = apl['instance']
-
-		if not applet.supported_platform(hardware_platform):
-			log.error(f'Applet {name} does not support platform {hardware_platform}')
-			log.error(f'Supported platform(s) {applet.hardware_rev}')
+		# Check to make sure we support this platform
+		if not applet.is_supported(plat):
+			log.error(f'Applet \'{applet.name}\' does not support revision {plat.revision_str} hardware')
 			return 1
 
+		# Warn the user if this applet is unstable
 		if applet.preview:
-			log.warning('This applet is a preview, it may be buggy or not work at all')
+			log.warning(f'The {applet.name} applet is a preview, it may be buggy or not work at all')
+			if not args.noconfirm:
+				if not Confirm.ask('Are you sure you would like to use this applet?'):
+					return 0
+
+		# Setup our requested build dir
+		build_dir = SQUISHY_BUILD_APPLET
+		if args.build_dir is not None:
+			build_dir = Path(args.build_dir)
+
+		# Try to initialize the applet gateware
+		applet_elab = applet.initialize(args)
+		if applet_elab is None:
+			log.error('Failure initializing applet elaboratable, aborting')
+			return 1
+
+		# TODO(aki): Construct gateware superstructure peripherals and the like
+
+		# Get the target slot, ephemeral or otherwise
+		slot: int | None = plat.ephemeral_slot
+		if slot is None or args.flash:
+			slot = 1
 
 
-		applet_elaboratable = applet.init_applet(args)
-
-		uart_config = {
-			'enabled'  : args.enable_uart,
-			'baud'     : args.baud,
-			'parity'   : args.parity,
-			'data_bits': args.data_bits,
-		}
-
-		usb_config = {
-			'vid': platform.usb_vid,
-			'pid': platform.usb_pid_app,
-			'manufacturer': platform.usb_mfr,
-			'serial_number': SquishyHardwareDevice.make_serial() if dev is None else dev.serial,
-			'product': platform.usb_prod[platform.usb_pid_app],
-			'webusb': {
-				'enabled': args.enable_webusb,
-				'url'    : args.webusb_url,
-			}
-		}
-
-		scsi_config = {
-			'version'    : applet_elaboratable.scsi_version,
-			'vid'        : platform.scsi_vid,
-			'did'        : args.scsi_did,
-			'arbitrating': args.scsi_arbitrating,
-			'is_device'  : args.scsi_device,
-		}
-
-
-		gateware = Squishy(
-			revision    = platform.revision,
-			uart_config = uart_config,
-			usb_config  = usb_config,
-			scsi_config = scsi_config,
-			applet      = applet_elaboratable
+		# Construct the gateware
+		gateware = SquishyGateware(
+			revision = plat.revision,
+			applet   = applet_elab
 		)
 
-		log.info('Building applet gateware')
-		name, prod = self.run_synth(args, platform, gateware, 'squishy_applet', cacheable = True)
+		# TODO(aki): This should be made unique to the applet being made?
+		applet_name = f'squishy_applet_{applet.name}_v{plat.revision_str}'
 
+		# Actually build the gateware
+		log.info('Building applet gateware')
+		prod = self.run_synth(args, plat, gateware, applet_name, build_dir)
+
+		f_name = f'{applet_name}.{plat.bitstream_suffix}'
+
+		# if on the off chance the user only built the gateware, display how to use dfu-util to flash it
 		if args.build_only:
-			log.info(f'Use \'dfu-util\' to flash \'{args.build_dir / name}.bin\' into slot 1 to update the applet')
-			log.info(f'e.g. \'dfu-util -d 1209:ca70,:ca71 -a 1 -R -D {args.build_dir / name}.bin\'')
+			log.info(self.dfu_util_msg(f_name, slot, build_dir, dev))
 			return 0
 
+
+		# If we *are* programming the device, then
 		with Progress(
 			SpinnerColumn(),
 			TextColumn('[progress.description]{task.description}'),
@@ -215,17 +176,23 @@ class Applet(SquishySynthAction):
 			transient = True
 		) as progress:
 
-			file_name = name
-			if not file_name.endswith('.bin'):
-				file_name += '.bin'
+			# TODO(aki): We don't cache the packed artifact, we re-pack it each time
+			#            should we cache it?
+			# Pack the bitstream artifact in a way the platform wants
+			packed = plat.pack_artifact(prod.get(f_name, 'b'))
 
-			log.info(f'Programming applet with {file_name}')
-			if dev.upload(prod.get(file_name), 1, progress):
-				log.info('Resetting Device')
+			# Make sure there is actually a device attached
+			if dev is None:
+				log.error('No device specified, however we were asked to program the device, aborting')
+				return 1
+
+			log.info(f'Programming device with \'{f_name}\'')
+			if dev.upload(packed, slot, progress):
+				log.info('Resetting device')
 				dev.reset()
 			else:
-				log.error('Device upload failed!')
+				log.error('Device upload failed')
 				return 1
 
 		log.info('Running applet...')
-		return applet.run(dev, args)
+		return applet.run(args, dev)

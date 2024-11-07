@@ -1,11 +1,14 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
+'''
+
+'''
+
 from abc           import ABCMeta, abstractmethod
 from argparse      import ArgumentParser, Namespace
 
-
-from ..gateware    import AppletElaboratable
-from ..core.device import SquishyHardwareDevice
+from ..device      import SquishyDevice
+from ..gateware    import SquishyPlatformType, AppletElaboratable
 
 __all__ = (
 	'SquishyApplet',
@@ -13,164 +16,151 @@ __all__ = (
 
 class SquishyApplet(metaclass = ABCMeta):
 	'''
-	Squishy applet base class.
+	Base class for all Squishy applets.
 
-	This is the abstract base class that is used
-	to implement any possible applet for squishy.
+	This class provides the public facing API for all Squishy applets, both internal
+	and out-of-tree/third-party applet modules.
 
-	It represents a combination of client-side python,
-	and gateware that will run the the hardware platform.
-
-	Users can then invoke the build and execution of implemented
-	applets by name.
+	Squishy applets are made out of a combination of host-site Python logic and hardware-side
+	gateware.
 
 	Attributes
 	----------
-	preview : bool
-		If the applet is a preview/pre-release applet.
-
-	pretty_name : str
-		A pretty string name of the applet.
-
-	short_help : str
-		A short section of help for the applet.
-
-	help : str
-		A longer more detailed help string.
+	name : str
+		The name used to address this applet and display in the help documentation.
 
 	description : str
-		A brief description about the applet.
+		A short description of this applet.
 
-	hardware_rev : str, tuple
-		A single string, or a tuple of strings for supported hardware revisions
+	preview : bool
+		If this applet is preview/pre-release.
+
+	version : float
+		The version of the applet.
+
+	supported_platforms : tuple[tuple[int, int], ...]
+		The platform revisions this applet supports.
 
 	'''
+
+	@property
+	@abstractmethod
+	def name(self) -> str:
+		''' The name of the applet. '''
+		raise NotImplementedError('Applets must implement this property')
+
+	@property
+	@abstractmethod
+	def description(self) -> str:
+		''' Short description of the applet. '''
+		raise NotImplementedError('Applets must implement this property')
+
 	@property
 	@abstractmethod
 	def preview(self) -> bool:
+		''' If this applet is a preview or not '''
 		raise NotImplementedError('Applets must implement this property')
 
 	@property
 	@abstractmethod
-	def pretty_name(self) -> str:
+	def version(self) -> float:
+		''' Applet version '''
 		raise NotImplementedError('Applets must implement this property')
 
 	@property
 	@abstractmethod
-	def short_help(self) -> str:
+	def supported_platforms(self) -> tuple[tuple[int, int], ...]:
+		''' The platforms this applet supports. '''
 		raise NotImplementedError('Applets must implement this property')
 
-	@property
-	def help(self) -> str:
-		return '<HELP MISSING>'
+	def __init__(self) -> None:
+		pass
 
-	@property
-	def description(self) -> str:
-		return '<DESCRIPTION MISSING>'
-
-	@property
-	@abstractmethod
-	def hardware_rev(self) -> str | tuple[str, ...]:
-		raise NotImplementedError('Applets must implement this property')
-
-	def __init__(self):
-		if not (
-			isinstance(self.hardware_rev, str) or
-			(
-				isinstance(self.hardware_rev, tuple) and
-				all(isinstance(r, str) for r in self.hardware_rev)
-			)
-		):
-			raise ValueError(f'Applet `hardware_rev` must be a str or tuple of str not `{type(self.hardware_rev)!r}`')
-
-
-	def supported_platform(self, platform: str) -> bool:
+	def is_supported(self, platform: SquishyPlatformType) -> bool:
 		'''
-		Check to see if the given platform is supported
+		Check to see if the given platform is supported.
 
 		Parameters
 		----------
-		platform : str
-			The platform to check
+		platform : squishy.gateware.SquishyPlatformType
+			The platform to check against.
 
 		Returns
 		-------
 		bool
-			True if the applet supports the platform, otherwise False.
-
+			True if the given platform is supported by this applet, otherwise False.
 		'''
 
-		if isinstance(self.hardware_rev, str):
-			return platform == self.hardware_rev
-		else:
-			return platform in self.hardware_rev
-
-	def show_help(self) -> None:
-		''' Shows applets built-in help '''
-		pass
-
-	@abstractmethod
-	def init_applet(self, args: Namespace) -> AppletElaboratable:
-		'''
-		Applet Initialization
-
-		Called to initialize the applet prior to
-		the applet being built and ran
-
-		Parameters
-		----------
-		args : argsparse.Namespace
-			Any command line arguments passed.
-
-		Returns
-		-------
-		AppletElaboratable
-			The applet logic/elaboratable
-
-		Raises
-		------
-		NotImplementedError
-			The abstract method must be implemented by the applet
-
-		'''
-
-		raise NotImplementedError('Applets must implement this method')
+		return platform.revision in self.supported_platforms
 
 	@abstractmethod
 	def register_args(self, parser: ArgumentParser) -> None:
 		'''
-		Applet argument registration
+		Register applet argument parsers.
 
-		Called to register any applet specific arguments.
+		Prior to :py:func:`.initialize` and :py:func:`.run` this method will
+		be called to allow the applet to register any wanted command line options.
+
+		This is also used when displaying help.
 
 		Parameters
 		----------
 		parser : argparse.ArgumentParser
-			The root argparse parser.
+			The Squishy CLI argument parser group to register arguments into.
 
 		Raises
 		------
 		NotImplementedError
-			The abstract method must be implemented by the applet
+			The abstract method must be implemented by the applet.
 
 		'''
-
-		raise NotImplementedError('Applets must implement this method')
+		raise NotImplementedError('Actions must implement this method')
 
 	@abstractmethod
-	def run(self, device: SquishyHardwareDevice, args: Namespace) -> int:
+	def initialize(self, args: Namespace) -> AppletElaboratable | None:
 		'''
-		Applet run step
+		Initialize applet.
 
-		Called to run any specialized machinery for the applet.
+		This is called prior to the gateware side of the applet being elaborated. It ensures
+		that any initialization and configuration needed to be done can be done.
 
 		Parameters
 		----------
-		device : squishy.core.device.SquishyHardwareDevice
-			The target squishy device.
-
 		args : argsparse.Namespace
-			Any command line arguments passed.
+			The parsed arguments from the Squishy CLI
+
+		Returns
+		-------
+		AppletElaboratable | None
+			An AppletElaboratable if initialization was successful otherwise None
+
+		Raises
+		------
+		NotImplementedError
+			The abstract method must be implemented by the applet.
+		'''
+		raise NotImplementedError('Applets must implement this method')
+
+
+	@abstractmethod
+	def run(self, args: Namespace, dev: SquishyDevice) -> int:
+		'''
+		Invoke the applet.
+
+		This method is run when the Squishy CLI has determined that this applet
+		was to be ran.
+
+		This is for host-side applet logic only, such as USB communication, if the
+		applet does not have any host-side logic, this may simple just return ``0``
+		as if it ran successfully.
+
+		Parameters
+		----------
+		args : argsparse.Namespace
+			The parsed arguments from the Squishy CLI
+
+		dev : squishy.device.SquishyDevice
+			The target device
 
 		Returns
 		-------
@@ -180,8 +170,7 @@ class SquishyApplet(metaclass = ABCMeta):
 		Raises
 		------
 		NotImplementedError
-			The abstract method must be implemented by the applet
+			The abstract method must be implemented by the applet.
 
 		'''
-
-		raise NotImplementedError('Applets must implement this method')
+		raise NotImplementedError('Actions must implement this method')

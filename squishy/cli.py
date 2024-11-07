@@ -1,20 +1,30 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging          as log
-from argparse           import ArgumentParser, ArgumentDefaultsHelpFormatter, Namespace
+from argparse           import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 from rich               import traceback
 from rich.logging       import RichHandler
 
-from .                  import config
-from .actions.applet    import Applet as ActionApplet
-from .actions.cache     import Cache  as ActionCache
-from .actions.provision import Provision as ActionProvision
+from .paths             import initialize_dirs
+
+from .actions           import SquishyAction
+from .actions.applet    import AppletAction
+from .actions.provision import ProvisionAction
+
+from .device            import SquishyDevice
+
+from .                  import __version__
 
 __all__ = (
 	'main',
 )
 
-def setup_logging(args: Namespace = None) -> None:
+AVAILABLE_ACTIONS = (
+	(AppletAction.name,    AppletAction()),
+	(ProvisionAction.name, ProvisionAction()),
+)
+
+def setup_logging(verbose: bool = False) -> None:
 	'''
 	Initialize logging subscriber
 
@@ -23,14 +33,15 @@ def setup_logging(args: Namespace = None) -> None:
 
 	Parameters
 	----------
-	args : argparse.Namespace
-		Any command line arguments passed.
+	verbose : bool
+		If set, debug logging will be enabled
 
 	'''
 
-	level = log.INFO
-	if args is not None and args.verbose:
+	if verbose:
 		level = log.DEBUG
+	else:
+		level = log.INFO
 
 	log.basicConfig(
 		force    = True,
@@ -42,40 +53,9 @@ def setup_logging(args: Namespace = None) -> None:
 		]
 	)
 
-def init_dirs() -> None:
-	'''
-	Initialize Squishy application directories.
-
-	Creates all of the appropriate directories that Squishy
-	expects, such as the config, and cache directories.
-
-	This uses the XDG_* environment variables if they exist,
-	otherwise they assume that all the needed dirs are in the
-	running users home directory.
-
-	'''
-
-	dirs = (
-		config.SQUISHY_CACHE,
-		config.SQUISHY_DATA,
-		config.SQUISHY_CONFIG,
-
-		config.SQUISHY_APPLETS,
-		config.SQUISHY_APPLET_CACHE,
-
-		config.SQUISHY_BUILD_DIR,
-	)
-
-	for d in dirs:
-		if not d.exists():
-			d.mkdir(parents = True, exist_ok = True)
-
-
 def main() -> int:
 	'''
-	Squishy CLI/REPL Runner
-
-	This is the main invocation point for the Squishy CLI and REPL.
+	Squishy CLI Entrypoint.
 
 	Returns
 	-------
@@ -84,58 +64,78 @@ def main() -> int:
 
 	'''
 
+	traceback.install()
+
+	initialize_dirs()
+	setup_logging()
+
+	parser = ArgumentParser(
+		formatter_class = ArgumentDefaultsHelpFormatter,
+		description     = 'Squishy SCSI Multitool',
+		prog            = 'squishy'
+	)
+
+	parser.add_argument(
+		'--device', '-d',
+		type = str,
+		help = 'The serial number of the squishy to use if more than one is attached'
+	)
+
+	parser.add_argument(
+		'--verbose', '-v',
+		action = 'store_true',
+		help   = 'Enable verbose output during synth and pnr'
+	)
+
+	parser.add_argument(
+		'--version', '-V',
+		action  = 'version',
+		version = f'Squishy v{__version__}',
+		help    = 'Print Squishy version and exit'
+	)
+
+	action_parser = parser.add_subparsers(
+		dest = 'action',
+		required = True
+	)
+
+	# Enumerate available actions and register their arguments
+	if len(AVAILABLE_ACTIONS) > 0:
+		for (name, action) in AVAILABLE_ACTIONS:
+			p = action_parser.add_parser(name, help = action.description)
+			action.register_args(p)
+
+	# Actually parse the arguments
+	args = parser.parse_args()
+
+	# Set-up logging *again* but if we want verbose output this time
+	setup_logging(args.verbose)
+
 	try:
-		traceback.install()
+		# Get the specified action, and invoke it with the appropriate arguments
+		act: tuple[str, SquishyAction] = next(filter(lambda a: a[0] == args.action, AVAILABLE_ACTIONS), None)
+		# Stupidly needed because we can't type an unpacked tuple
+		(name, instance) = act
 
-		init_dirs()
-		setup_logging()
+		dev: SquishyDevice | None = None
 
-		ACTIONS = (
-			{ 'name': 'applet',    'instance': ActionApplet()    },
-			{ 'name': 'cache',     'instance': ActionCache()     },
-			{ 'name': 'provision', 'instance': ActionProvision() }
-		)
+		# Pull in the option, we don't care if it's set right now.
+		serial: str | None = args.device
 
-		parser = ArgumentParser(
-			formatter_class = ArgumentDefaultsHelpFormatter,
-			description     = 'Squishy SCSI Multitool',
-			prog            = 'squishy'
-		)
+		# This is now the specified device, or the first device, or no device
+		dev = SquishyDevice.get_device(serial = serial)
 
-		parser.add_argument(
-			'--device', '-d',
-			type = str,
-			help = 'The serial number of the squishy to use if more than one is attached'
-		)
+		# This action requires a device, so we need ensure we have gotten one
+		if instance.requires_dev:
+			if dev is None:
+				log.error('Selected action requires an attached device, but none found, aborting')
+				return 1
 
-		core_options = parser.add_argument_group('Core configuration options')
+			log.info(f'Selecting device: {dev}')
 
-		core_options.add_argument(
-			'--verbose', '-v',
-			action = 'store_true',
-			help   = 'Enable verbose output during synth and pnr'
-		)
+		ret = instance.run(args, dev)
 
-		action_parser = parser.add_subparsers(
-			dest = 'action',
-			required = True
-		)
-
-		if len(ACTIONS) > 0:
-			for act in ACTIONS:
-				action = act['instance']
-				p = action_parser.add_parser(
-						act['name'],
-						help = action.short_help,
-					)
-				action.register_args(p)
-
-		args = parser.parse_args()
-
-		setup_logging(args)
-
-		act = list(filter(lambda a: a['name'] == args.action, ACTIONS))[0]
-		return act['instance'].run(args)
-
+		return ret
 	except KeyboardInterrupt:
 		log.info('bye!')
+		return 0

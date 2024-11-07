@@ -1,20 +1,25 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import logging                    as log
 
-from abc                          import ABCMeta, abstractmethod
-from argparse                     import ArgumentParser, Namespace
-from pathlib                      import Path
+'''
 
-from rich.progress                import (
-	Progress, SpinnerColumn, BarColumn,
-	TextColumn
-)
+'''
 
-from ..core.device                import SquishyHardwareDevice
-from ..gateware.platform.platform import SquishyPlatform
-from ..gateware.platform          import AVAILABLE_PLATFORMS
-from ..config                     import SQUISHY_BUILD_DIR
+import logging       as log
+import json
 
+from abc             import ABCMeta, abstractmethod
+from argparse        import ArgumentParser, Namespace
+from pathlib         import Path
+
+from rich.progress   import Progress, SpinnerColumn, BarColumn, TextColumn
+
+from torii           import Elaboratable
+from torii.build.run import BuildPlan, LocalBuildProducts
+
+from ..device        import SquishyDevice
+from ..core.config   import USB_VID, USB_APP_PID, USB_DFU_PID
+from ..core.cache    import SquishyCache
+from ..gateware      import AVAILABLE_PLATFORMS, SquishyPlatformType
 
 __all__ = (
 	'SquishyAction',
@@ -23,74 +28,66 @@ __all__ = (
 
 class SquishyAction(metaclass = ABCMeta):
 	'''
-	Squishy action base class
+	Base class for all invocable actions from the Squishy CLI.
 
-	This is the abstract base class that is used
-	to implement any possible action for the squishy
-	command line interface.
+	This defines a common interface that the main CLI, or any other
+	consumer of Squishy can use to reliably invoke actions.
 
 	Attributes
 	----------
-	pretty_name : str
-		The pretty name of the action to show.
-
-	short_help : str
-		A short help string for the action.
-
-	help : str
-		A more comprehensive help string for the action.
+	name : str
+		The name used to invoke the action and display in the help documentation.
 
 	description : str
-		The description of the action.
+		A short description of what this action does, used in the help.
 
 	requires_dev : bool
-		If this action requires a Squishy to be attached to the machine.
+		Whether or not this action requires physical Squishy hardware.
+
+	Note
+	----
+	Actions should be sure to also overload the doc comments when derived
+	as to allow for :py:class:`HelpAction` to generate appropriate long-form
+	documentation when invoked.
 
 	'''
+
 	@property
 	@abstractmethod
-	def pretty_name(self) -> str:
-		''' The pretty name of the action  '''
+	def name(self) -> str:
+		''' The name of the action. '''
 		raise NotImplementedError('Actions must implement this property')
 
 	@property
 	@abstractmethod
-	def short_help(self) -> str:
-		''' A short help description for the action '''
-		raise NotImplementedError('Actions must implement this property')
-
-	@property
-	def help(self) -> str:
-		''' A longer help message for the action '''
-		return '<HELP MISSING>'
-
-	@property
 	def description(self) -> str:
-		''' A description for the action  '''
-		return '<DESCRIPTION MISSING>'
+		''' Short description of the action. '''
+		raise NotImplementedError('Actions must implement this property')
 
 	@property
 	@abstractmethod
 	def requires_dev(self) -> bool:
-		''' Does this action require a squishy device to be attached '''
+		''' Whether or not this action requires a physical hardware device. '''
 		raise NotImplementedError('Actions must implement this property')
 
-	def __init__(self):
+	def __init__(self) -> None:
 		pass
 
 	@abstractmethod
 	def register_args(self, parser: ArgumentParser) -> None:
 		'''
-		Register action arguments.
+		Register action argument parsers.
 
-		When an action instance is initialized this method is
-		called so when :py:func:`run` is called any needed
-		arguments can be passed to the action.
+		After initialization, but prior to being invoked with :py:func:`.run`
+		this method will be called to allow the action to register any wanted
+		command line options.
+
+		This is also used when displaying help.
 
 		Parameters
 		----------
 		parser : argparse.ArgumentParser
-			The argument parser to register commands with.
+			The Squishy CLI argument parser group to register arguments into.
 
 		Raises
 		------
@@ -98,23 +95,22 @@ class SquishyAction(metaclass = ABCMeta):
 			The abstract method must be implemented by the action.
 
 		'''
-
 		raise NotImplementedError('Actions must implement this method')
 
 	@abstractmethod
-	def run(self, args: Namespace, dev: SquishyHardwareDevice | None = None) -> int:
+	def run(self, args: Namespace, dev: SquishyDevice | None = None) -> int:
 		'''
-		Run the action.
+		Invoke the action.
 
-		Run the action instance, passing the parsed
-		arguments and the selected device if any.
+		This method is run when the Squishy CLI has determined that this action
+		was to be called.
 
 		Parameters
 		----------
 		args : argsparse.Namespace
-			Any command line arguments passed.
+			The parsed arguments from the Squishy CLI
 
-		dev : Optional[squishy.core.device.SquishyHardwareDevice]
+		dev : squishy.device.SquishyDevice | None
 			The device this action was invoked on if any.
 
 		Returns
@@ -128,245 +124,349 @@ class SquishyAction(metaclass = ABCMeta):
 			The abstract method must be implemented by the action.
 
 		'''
-
 		raise NotImplementedError('Actions must implement this method')
-
 
 class SquishySynthAction(SquishyAction):
 	'''
-	This class is a sub-type of :py:class:`SquishyAction` that is dedicated to actions
-	that deal with building gateware for Squishy hardware platforms.
+	Common base class derived from :py:`SquishyAction` for all Squishy CLI
+	actions that synthesize gateware.
 
-	It centralizes the needed arguments for gateware Synthesis as well as Place and Routing,
-	allowing for it to be updated without needing duplicated effort.
+	This lets us abstract away needed common command line argument setup and
+	parsing, and having all the needed machinery for it be self-contained.
+
+	There are three additional methods that this provides that are for use
+	by synthesis based actions.
+
+	The first is :py:meth:`.get_platform`, this will return the appropriate
+	:py:class:`squishy.gateware.SquishyPlatform` for the given hardware device
+	that is attached, or ``None`` if it's not able to determine the platform or
+	a device is not attached
+
+	The next is :py:meth:`.register_synth_args`, this provides the registration
+	mechanism to populate the action with all relevant command line arguments
+	related to the synthesis of the gateware for the target device.
+
+	Finally there is :py:meth:`.run_synth` which does the actual invocation of
+	the synthesis run.
 
 	'''
 
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
+		self._cache = SquishyCache()
 
+	def get_platform(self, args: Namespace, dev: SquishyDevice | None) -> type[SquishyPlatformType] | None:
+		'''
+		Get the platform to synthesize for, either from the selected device or the `--platform` cli option.
 
-	def get_hw_platform(
-		self, args: Namespace, dev: SquishyHardwareDevice | None
-	) -> tuple[SquishyPlatform, str, SquishyHardwareDevice] | None:
-		''' Acquire the connected or specified hardware platform '''
-		if not args.build_only and dev is None:
-			dev = SquishyHardwareDevice.get_device(serial = args.device)
+		Parameters
+		----------
+		args : argsparse.Namespace
+			The parsed arguments from the action invocation.
 
-			if dev is None:
-				log.error('No device selected, unable to continue.')
-				return None
+		dev : SquishyDevice | None
+			The optional device to extract the platform from
 
-			hardware_platform = f'rev{dev.rev}'
-			if hardware_platform not in AVAILABLE_PLATFORMS.keys():
-				log.error(f'Unknown hardware revision \'{hardware_platform}\'')
-				log.error(f'Expected one of {", ".join(AVAILABLE_PLATFORMS.keys())}')
-				return None
+		Returns
+		-------
+		SquishyPlatformType | None
+			The extracted platform if possible, otherwise None
+		'''
+
+		# TODO(aki): If we are in `--build-only` mode, should we override the resulting platform if we *do* have a dev?
+		#            This means we need to change `--platform` so it doesn't have a default.
+
+		# If we were passed a device, pull the platform from that
+		if dev is not None:
+			plat = dev.get_platform()
+			if plat is None:
+				log.error(f'Attempted to get platform for device {dev.serial}, but failed?')
+		# Otherwise, get it the long way
 		else:
-			hardware_platform = args.hardware_platform
+			plat = AVAILABLE_PLATFORMS.get(args.platform, None)
+			if plat is None:
+				log.error(f'Unknown platform {args.platform}')
 
-		log.info(f'Targeting platform \'{hardware_platform}\'')
-		return (AVAILABLE_PLATFORMS[hardware_platform](), hardware_platform, dev)
-
+		return plat
 
 	def run_synth(
-		self, args: Namespace, plat: SquishyPlatform, elab, elab_name: str, cacheable: bool = False
-	): # -> tuple[str, LocalBuildProducts]:
-		''' Run Synthesis and Place and Route '''
+			self, args: Namespace, platform: SquishyPlatformType, elaboratable: Elaboratable,
+			name: str, build_dir: Path, cacheable: bool = True
+	) -> LocalBuildProducts:
+		'''
+		Run gateware synthesis, place-and-route, and bitstream packing in a cache-aware manner.
+
+		Parameters
+		----------
+		args : argsparse.Namespace
+			The parsed arguments from the action invocation.
+
+		platform : SquishyPlatformType
+			The target Squishy platform we are synthesizing for.
+
+		elaboratable : torii.Elaboratable
+			The root/'top' gateware module to synthesize.
+
+		name : str
+			The root/'top' gateware module name.
+
+		build_dir : Path
+			The requested build directory, is overridden by the `--build-dir` cli option
+
+		cacheable : bool
+			Whether or not to process cache-related options. Default: True
+
+		Returns
+		-------
+		LocalBuildProducts
+			The resulting built artifacts.
+		'''
 
 		synth_opts: list[str] = []
 		pnr_opts: list[str] = []
-		pack_ops: list[str] = []
+		pack_opts: list[str] = []
+
 		script_pre_synth = ''
 		script_post_synth = ''
 
-		build_dir = Path(args.build_dir)
 
 		if not build_dir.exists():
-			log.debug(f'Making build directory {args.build_dir}')
-			build_dir.mkdir()
-		else:
-			log.debug(f'Using build directory {args.build_dir}')
+			log.debug(f'Creating build directory {build_dir}')
+			build_dir.mkdir(parents = True)
 
-		# Build Options
+		# By default skip cache
+		skip_cache = not cacheable
 		if cacheable:
-			skip_cache = args.skip_cache
-		else:
-			skip_cache = True
+			skip_cache: bool = args.skip_cache
 
 		# Synthesis Options
 		if not args.no_abc9:
 			synth_opts.append('-abc9')
-		if args.aggressive_mapping:
+
+		if not args.no_aggressive_mapping:
 			if args.no_abc9:
-				log.error('Can not spcify `--aggressive-mapping` with ABC9 disabled, remove `--no-abc9`')
+				log.warning('option `--no_aggressive_mapping` passed along with `--no-abc9`, ignoring')
 			else:
 				script_pre_synth += 'scratchpad -copy abc9.script.flow3 abc9.script\n'
 
-		# Place and Route Options
-		if args.use_router2:
-			pnr_opts.append('--router router2')
-		else:
-			pnr_opts.append('--router router1')
-
-		if args.tmg_ripup:
-			pnr_opts.append('--tmg-ripup')
-
-		if args.detailed_timing_report:
-			pnr_opts.append('--report timing.json')
+		# Place-and-Route Options
+		pnr_opts.append(f'--report {name}.tim.json')
+		if args.detailed_report:
 			pnr_opts.append('--detailed-timing-report')
 
-		if args.routed_svg is not None:
-			svg_path = args.routed_svg.resolve()
-			log.info(f'Writing PnR output svg to {svg_path}')
-			pnr_opts.append(f'--routed-svg {svg_path}')
+		if not args.no_routed_netlist:
+			pnr_opts.append(f'--write {name}.pnr.json')
 
-		if args.routed_json is not None:
-			json_path = args.routed_json.resolve()
-			log.info(f'Writing PnR output json to {json_path}')
-			pnr_opts.append(f'--write {json_path}')
-
-		if args.pnr_seed is not None:
+		# If the seed is negative, use a random seed
+		if args.pnr_seed > 0:
+			pnr_opts.append('-r')
+		else:
 			pnr_opts.append(f'--seed {args.pnr_seed}')
 
-		# Bitstream packing options
 
-		if args.compress:
-			pack_ops.append('--compress')
+		# Packing Options
+		if not args.dont_compress:
+			pack_opts.append('--compress')
 
-		# Actually do the build
+		log.info(f'Using platform version: {platform.revision_str}')
+		log.info(f'    Device: {platform.device}-{platform.package}')
+
+		# Run the synth, pnr, et. al.
 		with Progress(
 			SpinnerColumn(),
 			TextColumn('[progress.description]{task.description}'),
 			BarColumn(bar_width = None),
 			transient = True
 		) as progress:
-			name, prod = plat.build(
-				elab,
-				name               = elab_name,
+			# First we run a `prepare` which will do RTL generation
+
+			task = progress.add_task('Elaborating Bitstream', start = False)
+
+			plan: BuildPlan = platform.prepare(
+				elaboratable,
+				name               = name,
 				build_dir          = build_dir,
-				do_build           = True,
-				do_program         = False,
 				synth_opts         = synth_opts,
 				nextpnr_opts       = pnr_opts,
-				ecppack_opts       = pack_ops,
-				verbose            = args.loud,
-				skip_cache         = skip_cache,
-				progress           = progress,
+				ecppack_opts       = pack_opts,
+				verbose            = args.build_verbose,
 				debug_verilog      = cacheable and not skip_cache,
 				script_after_read  = script_pre_synth,
 				script_after_synth = script_post_synth
 			)
 
-			return (name, prod)
+			# If we are not skipping the cache, try to get the built result
+			prod = None
+			if not skip_cache:
+				prod = self._cache.get(plan)
 
-	def register_synth_args(self, parser: ArgumentParser, cacheable: bool = False) -> None:
-		''' Register the common gateware options '''
+			# Run the build
+			if prod is None:
+				log.info('Bitstream is not cached, this might take [yellow][i]a while[/][/]', extra = { 'markup': True })
+				progress.update(task, description = 'Building bitstream')
+				prod = plan.execute_local(build_dir)
+				# If we're allowed to, cache the products and then return that cached version
+				if not skip_cache:
+					progress.update(task, description = 'Caching build')
+					prod = self._cache.store(name, prod, plan, platform)
+
+			progress.remove_task(task)
+		# If we're in verbose logging mode, go the extra step and print out the utilization report
+		if args.verbose:
+			self.dump_utilization(name, prod)
+
+		return prod
+
+
+	def register_synth_args(self, parser: ArgumentParser, cacheable: bool = True) -> None:
+		'''
+		Register common Synthesis, Place and Route, and Bitstream packing options.
+
+		Parameters
+		----------
+		parser : argsparse.ArgumentParser
+			The root action argument parser to register the options into.
+
+		cacheable : bool
+			Whether or not to show cache-related options. Default: True
+		'''
 
 		parser.add_argument(
 			'--platform', '-p',
-			dest    = 'hardware_platform',
 			type    = str,
-			default = list(AVAILABLE_PLATFORMS.keys())[-1],
+			default = list(AVAILABLE_PLATFORMS.keys())[-1], # Always pick the latest platform as the default
 			choices = list(AVAILABLE_PLATFORMS.keys()),
-			help    = 'The target hardware platform if using --build-only',
+			help    = 'The target hardware platform to synthesize for.'
 		)
 
-		gateware_options = parser.add_argument_group('Gateware Options')
+		generic_options = parser.add_argument_group('Generic Options')
 
-		synth_options = parser.add_argument_group('Synthesis Options')
-		pnr_options   = parser.add_argument_group('Place and Route Options')
-		pack_options  = parser.add_argument_group('Packing Options')
-
-		gateware_options.add_argument(
-			'--build-only',
+		# TODO(aki): Should this be the default w/ needing to pass `--program` to program instead?
+		generic_options.add_argument(
+			'--build-only', '-B',
 			action = 'store_true',
-			help   = 'Only build the gateware, skip device programming'
+			help   = 'Only build and pack the gateware, skip device programming.'
+		)
+
+		generic_options.add_argument(
+			'--build-dir', '-b',
+			type    = Path,
+			help    = 'The output directory for the intermediate and final build artifacts.'
 		)
 
 		if cacheable:
-			gateware_options.add_argument(
-				'--skip-cache',
+			generic_options.add_argument(
+				'--skip-cache', '-C',
 				action = 'store_true',
-				help   = 'Skip gateware cache lookup and subsequent caching of resultant gateware'
+				help   = 'Skip artifact cache lookup, and don\'t cache the resulting gateware artifact once built.'
 			)
 
-		gateware_options.add_argument(
-			'--build-dir', '-b',
-			type = str,
-			default = SQUISHY_BUILD_DIR,
-			help    = 'The output directory for Squishy binaries and firmware images'
-		)
-
-		gateware_options.add_argument(
-			'--loud',
+		# TODO(aki): Should this be rather tied into `-v`, and if we pass 2 it flips this switch?
+		generic_options.add_argument(
+			'--build-verbose',
 			action = 'store_true',
-			help   = 'Enables verbose output of Synthesis and PnR runs'
+			help   = 'Enable verbose output during build (very noisy)'
 		)
 
-		# Synthesis Options
+		synth_options = parser.add_argument_group('Synthesis Options')
+
 		synth_options.add_argument(
 			'--no-abc9',
 			action = 'store_true',
-			help   = 'Disable use of Yosys\' ABC9'
+			help   = 'Disable the use of `abc9` during synth.'
 		)
 
 		synth_options.add_argument(
-			'--aggressive-mapping',
+			'--no-aggressive-mapping',
 			action = 'store_true',
-			help   = 'Run multiple ABC9 mapping more than once to improve performance in exchange for longer synth time'
+			help   = 'Disable multiple `abc9` mapping passes, resulting in faster synth time but worse overall gateware performance.'
 		)
 
-		# Place and Route Options
+		pnr_options = parser.add_argument_group('Place-and-Route Options')
+
 		pnr_options.add_argument(
-			'--use-router2',
+			'--detailed-report',
 			action = 'store_true',
-			help   = 'Use nextpnr\'s \'router2\' routing engine rather than \'router1\''
+			help   = 'Have nextpnr output a detailed timing report'
 		)
 
 		pnr_options.add_argument(
-			'--tmg-ripup',
-			action  = 'store_true',
-			help    = 'Use the timing-driven ripup router'
-		)
-
-		pnr_options.add_argument(
-			'--detailed-timing-report',
+			'--no-routed-netlist',
 			action = 'store_true',
-			help   = 'Have nextpnr output a detailed net timing report'
-		)
-
-		pnr_options.add_argument(
-			'--routed-svg',
-			type    = Path,
-			default = None,
-			help    = 'Write a render of the routing to an SVG'
-		)
-
-		pnr_options.add_argument(
-			'--routed-json',
-			type    = Path,
-			default = None,
-			help   = 'Write the PnR output json for viewing in nextpnr after PnR'
+			help   = 'Don\'t write out the netlist with embedded routing information for later inspection.'
 		)
 
 		pnr_options.add_argument(
 			'--pnr-seed',
 			type    = int,
 			default = 0,
-			help    = 'Specify the PnR seed to use'
+			help    = 'The place and route RNG seed to use.'
 		)
 
-		pnr_options.add_argument(
-			'--hunt-n-peck',
-			action = 'store_true',
-			help   = 'If PnR fails with given seed, try to find one that passes timing'
-		)
-
-		# Bitstream packing options
+		pack_options = parser.add_argument_group('Bitstream Packing Options')
 
 		pack_options.add_argument(
-			'--compress',
-			action = 'store_true',
-			help   = 'Compress resulting bitstream (Only for ECP5 based Squishy Platforms)'
+			'--dont-compress',
+			action  = 'store_true',
+			help    = 'Disable bitstream compression if viable for target platform.'
 		)
+
+	def dfu_util_msg(self, name: str, slot: int, build_dir: Path, dev: SquishyDevice | None = None) -> str:
+		'''
+		Build up a message that accuratly displays how to flash a built artifact to the given Squishy device.
+
+		Parameters
+		----------
+		name : str
+			The name of the artifact that was generated.
+
+		slot : int
+			The DFU slot/alt-mode to specify.
+
+		build_dir : Path
+			The gateware build directory that was used
+
+		dev : SquishyDevice | None
+			If attached, a Squishy device to pull the serial number from
+
+		Returns
+		-------
+		str
+			The appropriate help message for flashing the given built artifact to the Squishy device.
+		'''
+
+		artifact_file = build_dir / name
+
+		serial = ''
+		if dev is not None:
+			serial = f' -S {dev.serial}'
+
+		msg = f'Use \'dfu-util\' to flash \'{artifact_file}\' into slot {slot}\n'
+		msg += f'e.g. \'dfu-util -d {USB_VID:04X}:{USB_APP_PID:04X},:{USB_DFU_PID:04X}{serial} -a {slot} -R -D {artifact_file}\'\n'
+
+		return msg
+
+	def dump_utilization(self, name: str, products: LocalBuildProducts) -> None:
+		'''
+		Print out resource utilization and fmax timing info from the build.
+
+		Parameters
+		----------
+		name : str
+			The name of the built resource.
+
+		products : LocalBuildProducts
+			The build products
+		'''
+
+		pnr_rpt = json.loads(products.get(f'{name}.tim.json', 't'))
+
+		log.debug('Clock network Fmax:')
+		for net, fmax in pnr_rpt['fmax'].items():
+			log.debug(f'    \'{net}\': {fmax["achieved"]:.2f}MHz (min: {fmax["constraint"]:.2f}MHz)')
+
+		log.debug('Resource Utilization:')
+		for name, util in pnr_rpt['utilization'].items():
+			used: int      = util['used']
+			available: int = util['available']
+			log.debug(f'    {name:>15}: {used:>5}/{available:>5} ({(used/available) * 100.0:>6.2f}%)')

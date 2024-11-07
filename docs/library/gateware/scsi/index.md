@@ -1,14 +1,9 @@
-# `squishy.gateware.scsi`
+# SCSI
 
 ```{toctree}
 :hidden:
 
-common
-device
-initiator
-scsi1
-scsi2
-scsi3
+quirks/index
 ```
 
 ```{eval-rst}

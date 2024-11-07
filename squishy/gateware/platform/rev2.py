@@ -1,81 +1,201 @@
 # SPDX-License-Identifier: BSD-3-Clause
+
+'''
+This is the `Torii <https://torii.shmdn.link/>`_ platform definition for Squishy rev2 hardware.
+If you are for some reason using Squishy rev2 as a general-purpose FPGA development board with
+Torii, this is the platform you need to invoke.
+
+Important
+-------
+This platform is for specialized hardware, as such it can not be used with any other hardware
+than it was designed for. This includes any popular FPGA development or evaluation boards.
+
+Note
+----
+There are no official releases of the Squishy rev2 hardware for purchase as it is currently
+in the early engineering-validation-test phases, and will likely change drastically before
+any are offered.
+
+'''
+import logging                          as log
+from pathlib                            import Path
+
 from torii                              import *
 from torii.build                        import *
+from torii.build.run                    import BuildProducts
 from torii.platform.vendor.lattice.ecp5 import ECP5Platform
 from torii.platform.resources.memory    import SDCardResources
 from torii.platform.resources.user      import LEDResources
 from torii.platform.resources.interface import ULPIResource
 
-from ...core.flash                      import FlashGeometry
-from ..core                             import ECP5ClockDomainGenerator
-from .platform                          import SquishyPlatform
+from .                                  import SquishyPlatform
+from ...core.flash                      import Geometry as FlashGeometry
+from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
 
-__doc__ = '''\
+__all__ = (
+	'SquishyRev2',
+)
 
-This is the torii platform definition for Squishy rev2 hardware, if you are using
-Squishy rev2 as a generic FPGA development board, this is the platform you need to invoke.
 
-Warning
--------
-This platform is for specialized hardware and **must not** be used with any other
-hardware other than the hardware it was designed for. This include any popular
-development or eval boards.
+class Rev2ClockDomainGenerator(Elaboratable):
+	'''
+	Clock domain and PLL generator for Squishy rev2.
 
-Note
-----
-There are no official released of the Squishy rev2 hardware for purchase at the moment. You can
-build your own, or keep an eye out for when the campaign goes live.
+	This module sets up 3 primary clock domains, ``sync``, ``usb``, and ``scsi``. The first
+	domain ``sync`` is the global core clock, the ``usb`` domain is a 60MHz domain originating
+	from the ULPI PHY. The final domain ``scsi`` is the SCSI PHY domain.
 
-'''
+
+	Attributes
+	----------
+	pll_locked : Signal
+		An active high signal indicating if the PLL is locked and stable.
+	'''
+
+	def __init__(self) -> None:
+		self.pll_locked = Signal()
+
+	def elaborate(self, platform: 'SquishyRev2') -> Module:
+		m = Module()
+
+		# Set up our domains
+		m.domains.usb  = ClockDomain()
+		m.domains.sync = ClockDomain()
+		m.domains.scsi = ClockDomain()
+
+		# The ECP5 PLL and clock output configs
+		# TODO(aki): We don't need them at the moment but cascaded PLLs might come in handy
+		pll_cfg: ECP5PLLConfig = platform.pll_cfg
+
+		pll_sync_cfg = pll_cfg.clkp
+		# TODO(aki): Handle secondary, tertiary, and quaternary PLL outputs
+
+		# The PLL output clocks
+		pll_sync_clk = Signal()
+
+		m.submodules.pll = Instance(
+			'EHXPLLL',
+
+			i_CLKI    = platform.request(platform.default_clk, dir = 'i'),
+
+			o_CLKOP   = pll_sync_clk,
+			i_CLKFB   = pll_sync_clk,
+			i_ENCLKOP = Const(0),
+			o_LOCK    = self.pll_locked,
+
+			i_RST       = Const(0),
+			i_STDBY     = Const(0),
+
+			i_PHASESEL0    = Const(0),
+			i_PHASESEL1    = Const(0),
+			i_PHASEDIR     = Const(1),
+			i_PHASESTEP    = Const(1),
+			i_PHASELOADREG = Const(1),
+			i_PLLWAKESYNC  = Const(0),
+
+			# Params
+			p_PLLRST_ENA      = 'DISABLED',
+			p_INTFB_WAKE      = 'DISABLED',
+			p_STDBY_ENABLE    = 'DISABLED',
+			p_DPHASE_SOURCE   = 'DISABLED',
+			p_OUTDIVIDER_MUXA = 'DIVA',
+			p_OUTDIVIDER_MUXB = 'DIVB',
+			p_OUTDIVIDER_MUXC = 'DIVC',
+			p_OUTDIVIDER_MUXD = 'DIVD',
+			p_FEEDBK_PATH     = 'CLKOP',
+
+			p_CLKI_DIV        = pll_cfg.clki_div,
+			p_CLKFB_DIV       = pll_cfg.clkfb_div,
+
+			p_CLKOP_DIV       = pll_sync_cfg.clk_div,
+			p_CLKOP_ENABLE    = 'ENABLED',
+			p_CLKOP_CPHASE    = Const(pll_sync_cfg.cphase),
+			p_CLKOP_FPHASE    = Const(pll_sync_cfg.fphase),
+
+			# Attributes for synth
+			a_FREQUENCY_PIN_CLKI     = str(pll_cfg.ifreq),
+			a_FREQUENCY_PIN_CLKOP    = str(pll_sync_cfg.ofreq),
+			a_ICP_CURRENT            = '12',
+			a_LPF_RESISTOR           = '8',
+			a_MFG_ENABLE_FILTEROPAMP = '1',
+			a_MFG_GMCREF_SEL         = '2',
+		)
+
+		# Set up clock constraints
+		platform.add_clock_constraint(pll_sync_clk, pll_sync_cfg.ofreq * 1e6)
+
+		# Hook up needed PLL outputs
+		m.d.comb += [
+			# Hold domain in reset until the PLL stabilizes
+			ResetSignal('sync').eq(~self.pll_locked),
+
+			# Wiggle the clock
+			ClockSignal('sync').eq(pll_sync_clk)
+		]
+
+		return m
 
 class SquishyRev2(SquishyPlatform, ECP5Platform):
 	'''
-	Squishy hardware Revision 2
+	Squishy hardware, Revision 2.
 
-	This is the torii platform for the first revision of the Squishy hardware.
-	It is based around the `Lattice ECP5-5G LFE5UM5G-45F <https://www.latticesemi.com/Products/FPGAandCPLD/ECP5>`_
-	in the BG381 footprint.
+	This `Torii <https://torii.shmdn.link/>`_ platform is for the first revision of the Squishy SCSI hardware. It
+	is based on the `Lattice ECP5-5G <https://www.latticesemi.com/Products/FPGAandCPLD/ECP5>`_ Specifically the
+	``LFE5UM5G-45F`` and is built to be as flexible as possible, as such it is split between the main board, the
+	SCSI PHY, and the various connectors boards.
 
-	The design files for this version of the hardware can be found
-	`in the git repo <https://github.com/squishy-scsi/hardware/tree/main/boards/squishy>`_ under
-	the `boards/squishy` tree.
+	The hardware `design files <https://github.com/squishy-scsi/hardware/tree/main/release/rev2-evt>`_ can be
+	found in the hardware repository on `GitHub <https://github.com/squishy-scsi/hardware>`_  under
+	the ``release/rev2-evt`` tree.
 
+
+	Warning
+	-------
+	Squishy rev2 is currently in engineering-validation-test, and is unstable, the hardware
+	may change and new, possibly fatal errata may be found at any time. Use with caution.
 
 	'''
 
-	device       = 'LFE5UM5G-45F'
-	speed        = '8'
-	package      = 'BG381'
-	default_clk  = 'clk'
-	toolchain    = 'Trellis'
+	device           = 'LFE5UM5G-45F'
+	speed            = '8'
+	package          = 'BG381'
+	default_clk      = 'clk'
+	toolchain        = 'Trellis'
+	bitstream_suffix = 'bit'
 
-	revision     = 2.0
+	revision     = (2, 0)
 
-	clock_domain_generator = ECP5ClockDomainGenerator
-
-	# generated with `ecppll -i 100 -o 400 -f /dev/stdout`
-	pll_config = {
-		'freq'     : 4e8,
-		'ifreq'    : 100,
-		'ofreq'    : 400,
-		'clki_div' : 1,
-		'clkop_div': 1,
-		'clkfb_div': 4,
-	}
-
-	flash = {
-		'geometry': FlashGeometry(
+	flash = FlashConfig(
+		geometry = FlashGeometry(
 			size       = 8388608, # 8MiB
 			page_size  = 256,
 			erase_size = 4096,    # 4KiB
+			slot_size  = 2097152, # 2MiB
 			addr_width = 24
-		).init_slots(device = device),
-		'commands': {
+		),
+		commands = {
 			'erase': 0x20,
 		}
-	}
+	)
 
-	bootloader_module = None
+	# generated with `ecppll -i 100 -o 400 -f /dev/stdout`
+	pll_cfg = ECP5PLLConfig(
+		ifreq     = 100,
+		clki_div  = 1,
+		clkfb_div = 4,
+		# Primary `sync` clock, 400 is too high but as a placeholder it works
+		clkp = ECP5PLLOutput(
+			ofreq   = 400,
+			clk_div = 1,
+			cphase  = 0,
+			fphase  = 0,
+		)
+	)
+
+	clk_domain_generator = Rev2ClockDomainGenerator
+
+	# Set DFU alt-mode slot for the ephemeral endpoint
+	ephemeral_slot = 3
 
 	resources  = [
 		Resource('clk', 0,
@@ -137,10 +257,10 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			Attrs(IO_TYPE = 'LVCMOS18', SLEWRATE = 'FAST')
 		),
 
-		ULPIResource('usb2', 0,
+		ULPIResource('ulpi', 0,
 			#        D0  D1  D2  D3  D4  D5  D6  D7
 			data = 'R18 R20 P19 P20 N20 N19 M20 M19',
-			clk  = 'P18', clk_dir = 'i',
+			clk  = 'P18', clk_dir = 'i', # NOTE(aki): This /not technically/ a clock input pin, oops
 			dir  = 'T19',
 			nxt  = 'T20',
 			stp  = 'U20',
@@ -204,7 +324,56 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		),
 	]
 
+	connectors = []
 
-	connectors = [
+	def __init__(self) -> None:
+		# Force us to always use the FOSS
+		super().__init__(toolchain = 'Trellis')
 
-	]
+	def pack_artifact(self,  artifact: bytes) -> bytes:
+		'''
+		Pack bitstream/gateware into device artifact.
+
+		Parameters
+		----------
+		artifact : bytes
+			The input data of the result of gateware elaboration, typically
+			the raw FPGA bitstream file.
+
+		Returns
+		-------
+		bytes
+			The resulting packed artifact for DFU upload.
+
+		'''
+
+		log.warning('TODO: pack_artifact() for rev2')
+		return artifact
+
+
+	def build_image(self, name: str, build_dir: Path, boot_name: str, products: BuildProducts) -> Path:
+		'''
+		Build multi-boot compatible flash image to provision onto the device.
+
+		Parameters
+		----------
+		name : str
+			The name of the flash image to produce.
+
+		build_dir : Path
+			Output directory for the finalized flash image.
+
+		boot_name: str
+			The name of the bootloader in the build products
+
+		products : BuildProducts
+			The resulting build products from the bootloader build.
+
+		Returns
+		-------
+		Path
+			The path to the resulting image file.
+		'''
+
+		log.warning('TODO: build_image() for rev2')
+		return build_dir

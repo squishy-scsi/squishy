@@ -32,7 +32,7 @@ There are two main ways to get squishy hardware, buying it, or building it.
 ### Buying Hardware
 
 ```{note}
-As of 2024-03-10, Squishy hardware is not available for sale, however, once engineering and validation of Revision 2 is completed, rev2 units are expected to be available to purchase.
+As of 2024-11-07, Squishy hardware is not available for sale, however, once engineering and validation of Revision 2 is completed, rev2 units are expected to be available to purchase.
 ```
 
 ### Building Hardware
@@ -48,11 +48,11 @@ If you buy a pre-built Squishy, it will already be provisioned, but in case some
 
 ### Work-In-Progress Hardware
 
-The hardware is always a work in progress, you can view a live rendering of the WIP hardware in your web browser [here](https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Fsquishy-scsi%2Fhardware%2Ftree%2Fmain%2Fboards%2Fsquishy), thanks to [KiCanvas].
+The hardware is always a work in progress, you can view a live rendering of the WIP hardware in your web browser [here](https://kicanvas.org/?github=https://github.com/squishy-scsi/hardware/blob/main/boards/squishy/main-unit/squishy-main.kicad_pro), thanks to [KiCanvas].
 
 
 [provisioning]: ../tutorials/provisioning.md
 [`rev1`]: ./rev1.md
 [`rev2`]: ./rev2.md
-[here]: https://kicanvas.org/?github=https%3A%2F%2Fgithub.com%2Fsquishy-scsi%2Fhardware%2Ftree%2Fmain%2Fboards%2Fsquishy
+[here]: https://kicanvas.org/?github=https://github.com/squishy-scsi/hardware/blob/main/boards/squishy/main-unit/squishy-main.kicad_pro
 [KiCanvas]: https://kicanvas.org

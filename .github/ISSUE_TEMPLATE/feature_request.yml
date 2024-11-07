@@ -1,6 +1,6 @@
 name: Feature Request
 description: Have a feature you'd like? Let us know.
-title: "[FEATURE]: "
+title: ""
 labels: ["Feature"]
 body:
   - type: markdown
@@ -16,9 +16,7 @@ body:
     attributes:
       label: Which part of Squishy does this feature generally fit into?
       options:
-        - GUI
         - CLI
-        - REPL
         - Gateware Library
         - Python Library
         - Applet

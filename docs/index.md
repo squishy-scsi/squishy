@@ -40,7 +40,7 @@ Squishy is not a *specialized* device targeting only a single aspect of the SCSI
 
 ## What Squishy Is
 
-Squishy is a platform, it allows you to accomplish almost any goal you wish to that involves a SCSI bus. It can do things as mundane as emulating a SCSI hard drive, but also you can use it to [sniff, analyze, and replay SCSI bus traffic], or even [boot a modern system from 9-track tape].
+Squishy is a platform, it allows you to accomplish almost any goal you wish to that involves a SCSI bus. It can do things as mundane as emulating a SCSI hard drive, but also you can use it to [sniff, analyze, and replay SCSI bus traffic], or even boot a modern system from 9-track tape.
 
 You can think of Squishy as being "Software Defined SCSI", much like how a Software Defined Radio works with a hardware transceiver and a software ecosystem, Squishy provides the same, but for SCSI.
 
@@ -99,7 +99,6 @@ There are also [GitHub Discussions] enabled on the repository if you have any qu
 Squishy does not have an official discord, nor any endorsed discord servers, for an explanation as to why, see the [F.A.Q.]
 ```
 [sniff, analyze, and replay SCSI bus traffic]: ./applets/analyzer.md
-[boot a modern system from 9-track tape]: ./applets/taperipper.md
 [gateware]: ./library/gateware/index.md
 [python]: ./library/python/index.md
 [hardware]: ./hardware/index.md

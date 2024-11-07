@@ -1,4 +1,9 @@
 # SPDX-License-Identifier: BSD-3-Clause
+
+'''
+
+'''
+
 from enum import IntEnum, unique
 
 __all__ = (
@@ -6,9 +11,6 @@ __all__ = (
 	'ExtendedMessageCodes',
 )
 
-__doc__ = '''\
-
-'''
 
 @unique
 class MessageCodes(IntEnum):

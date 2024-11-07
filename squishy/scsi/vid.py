@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-__doc__ = '''\
+'''
 This files contains the full map of SCSI VID to Vendor Name.
 
-It is up-to-date as of 2023-02-14
+Source: https://www.t10.org/ftp/t10/vendorid.txt
+
+It is up-to-date as of 2024-11-10
 
 '''
 
@@ -33,6 +35,7 @@ VID_MAP = {
 	'AERODISK': 'AERO DISK LLC',
 	'AERONICS': 'Aeronics, Inc.',
 	'AGFA':     'AGFA',
+	'AGILACK':  'Agilack',
 	'Agilent':  'Agilent Technologies',
 	'AIC':      'Advanced Industrial Computer, Inc.',
 	'AIPTEK':   'AIPTEK International Inc.',
@@ -148,6 +151,7 @@ VID_MAP = {
 	'CDC':      'Control Data or MPI',
 	'CDP':      'Columbia Data Products',
 	'CDS':      'Cirrus Data Solutions, Inc.',
+	'ceacent':  'Shenzhen Jiahua Zhongli Technology Co.',
 	'Celsia':   'A M Bromley Limited',
 	'CenData':  'Central Data Corporation',
 	'Cereva':   'Cereva Networks Inc.',
@@ -355,7 +359,7 @@ VID_MAP = {
 	'HYUNWON':  'HYUNWON inc',
 	'i-cubed':  'i-cubed ltd.',
 	'I-O DATA': 'I-O DATA DEVICE',
-	'IBM':      'International Business Machines',
+	'IBM':      'International Business Machines Corporation',
 	'Icefield': 'Icefield Tools Corporation',
 	'Iceweb':   'Iceweb Storage Corp',
 	'ICL':      'ICL',
@@ -431,6 +435,7 @@ VID_MAP = {
 	'LASERDRV': 'LaserDrive Limited',
 	'LASERGR':  'Lasergraphics, Inc.',
 	'LeapFrog': 'LeapFrog Enterprises, Inc.',
+	'LeapIO':   'LeapIO',
 	'LEFTHAND': 'LeftHand Networks (now HPE)',
 	'Leica':    'Leica Camera AG',
 	'LENOVO':   'Lenovo',
@@ -626,6 +631,7 @@ VID_MAP = {
 	'Qi-Hardw': 'Qi Hardware',
 	'QIC':      'Quarter-Inch Cartridge Drive Standards, Inc.',
 	'QLogic':   'QLogic Corporation',
+	'QLS':      'QLS Consulting',
 	'QNAP':     'QNAP Systems',
 	'Qsan':     'QSAN Technology, Inc.',
 	'QStar':    'QStar Technologies, Inc',
@@ -859,6 +865,7 @@ VID_MAP = {
 	'YINHE':    'NUDT Computer Co.',
 	'YIXUN':    'Yixun Electronic Co.,Ltd.',
 	'YOTTA':    'YottaYotta, Inc.',
+	'zadara':   'Zadara Inc.',
 	'Zarva':    'Zarva Digital Technology Co., Ltd.',
 	'ZBS':      'SMARTX Corporation',
 	'ZETTA':    'Zetta Systems, Inc.',
@@ -866,3 +873,4 @@ VID_MAP = {
 	'ZVAULT':   'Zetavault',
 	'Zvezda':   'Zvezda LLC',
 }
+''' A VID to Company name mapping for SCSI Vendor IDs '''

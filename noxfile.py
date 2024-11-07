@@ -91,6 +91,7 @@ def typecheck(session: Session) -> None:
 
 	session.install('mypy')
 	session.install('lxml')
+	session.install('construct-typing')
 	session.install('.')
 	session.run(
 		'mypy', '--non-interactive', '--install-types', '--pretty',

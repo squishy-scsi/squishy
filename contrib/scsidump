@@ -7,15 +7,18 @@
 
 import sys
 
-from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter, Namespace
-from pathlib  import Path
+from argparse  import ArgumentParser, ArgumentDefaultsHelpFormatter
+from pathlib   import Path
 
 try:
 	from squishy  import __version__
 except ImportError:
 	sys.path.insert(0, '/pool/abyss/Projects/squishy/squishy')
 
-from squishy import __version__
+	from squishy import __version__
+
+from squishy.gateware import AVAILABLE_PLATFORMS
+from squishy.device   import SquishyDevice
 
 def _setup_extcap_parser(parser: ArgumentParser):
 	parser.add_argument(
@@ -67,70 +70,16 @@ def _setup_extcap_parser(parser: ArgumentParser):
 
 
 APPLET_OPTIONS = {
-	'platform': {
-		'type': str,
-		'required': True,
-		'default': 'rev2',
-		'help': 'Squishy Hardware Platform',
-		'extcap_type': 'selector',
-		'extcap_name': 'Hardware Platform',
-		'values': ('rev1', 'rev2'),
-		'group': 'Hardware Options',
-	},
-	'scsi-did': {
-		'type': int,
-		'required': True,
-		'default': 7,
-		'range': (0, 7),
-		'help': 'SCSI ID',
-		'extcap_type': 'integer',
-		'extcap_name': 'SCSI ID',
-		'group': 'SCSI Options'
-	},
-	'scsi-arbitrating': {
-		'type': bool,
-		'help': 'Enable SCSI Bus arbitration',
-		'extcap_type': 'boolean',
-		'extcap_name': 'Bus Arbitration',
-		'group': 'SCSI Options'
-	},
-
-	'skip-cache': {
-		'type': bool,
-		'help': 'Skip cache lookup for built gateware',
-		'extcap_type': 'boolean',
-		'extcap_name': 'Skip Cache',
-		'group': 'Gateware Options'
-	},
-	'use-router2': {
-		'type': bool,
-		'help': 'Use nextpnr\'s router2',
-		'extcap_type': 'boolean',
-		'extcap_name': 'Use router2',
-		'group': 'Gateware Options'
-	},
-	'tmg-ripup': {
-		'type': bool,
-		'help': 'Use the timing-driven ripup router',
-		'extcap_type': 'boolean',
-		'extcap_name': 'Use the timing-driven ripup router',
-		'group': 'Gateware Options'
-	},
-	'pnr-seed': {
-		'type': int,
-		'help': 'nextpnr seed',
-		'defualt': 0,
-		'extcap_type': 'integer',
-		'extcap_name': 'PNR seed',
-		'group': 'Gateware Options'
-	},
-	'no-abc9': {
-		'type': bool,
-		'help': 'Disable ABC9',
-		'extcap_type': 'boolean',
-		'extcap_name': 'Disable ABC9',
-		'group': 'Gateware Options'
-	}
+	# 'platform': {
+	# 	'type': str,
+	# 	'required': True,
+	# 	'default': list(AVAILABLE_PLATFORMS.keys())[-1],
+	# 	'help': 'Squishy Hardware Platform',
+	# 	'extcap_type': 'selector',
+	# 	'extcap_name': 'Hardware Platform',
+	# 	'values': (rev for rev in list(AVAILABLE_PLATFORMS.keys())),
+	# 	'group': 'Hardware Options',
+	# }
 }
 
 
@@ -150,7 +99,9 @@ def _setup_parser(parser: ArgumentParser):
 
 def extcap_list_interfaces():
 	print(f'extcap {{version={__version__}}}{{help=https://docs.scsi.moe/extra.html#scsidump}}')
-	print('interface {value=scsidump}{display=Squishy SCSI Bus capture}')
+
+	for (sn, rev, _) in SquishyDevice.enumerate():
+		print(f'interface {{value={sn}}}{{display=Squishy rev{rev[0]}: SCSI Bus capture}}')
 
 def extcap_list_dlts():
 	print('dlt {number=147}{name=squishy}{display=SCSI}')
@@ -181,7 +132,7 @@ def extcap_list_config():
 					extcap_arg_value += '{default=true}'
 				print(extcap_arg_value)
 
-	# print('arg {number=0}{call=--meow}{display=Meow}{type=boolean}{tooltip=Meow Meow Meow}')
+
 
 def main() -> int:
 	parser = ArgumentParser(
@@ -207,7 +158,6 @@ def main() -> int:
 			extcap_list_dlts()
 		if args.extcap_config:
 			extcap_list_config()
-
 
 
 	return 0

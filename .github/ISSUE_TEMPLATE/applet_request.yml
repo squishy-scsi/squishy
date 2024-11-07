@@ -1,6 +1,6 @@
 name: Applet Request
 description: Do you think we're missing a built in Applet?
-title: "[APPLET REQ]: "
+title: ""
 labels: ["Applets"]
 body:
   - type: markdown

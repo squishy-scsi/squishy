@@ -1,14 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from ..command import (
-	SCSICommand6, SCSICommand10,
-	SCSICommandField
-)
-
-__doc__ = '''
+'''
 This module contains common commands, that other device classes
 can support.
 '''
+
+from ..command import SCSICommand6, SCSICommand10, SCSICommandField
 
 __all__ = (
 	'TestUnitReady',
@@ -47,7 +44,7 @@ RequestSense = SCSICommand6(0x03,
 '''
 Request Sense
 
-This command requests that the target transfers :ref:`sense data` to the initiator.
+This command requests that the target transfers Sense Data to the initiator.
 
 The sense data shall be valid for a ``CHECK CONDITION`` status returned on the prior
 command. It will also be preserved by the target for the initiator until it is retrieved
@@ -61,7 +58,7 @@ that the ``REQUEST SENSES`` command is from the same initiator.
 
 The ``AllocLen`` field specifies the number of bytes that the initiator has allocated for the returned
 sense data. An allocation length of zero indicates that four bytes of sense data will be transferred. Any
-other value indicates the maximum number of bytes to be transferred. The target must terminate the :ref:`DATA IN`
+other value indicates the maximum number of bytes to be transferred. The target must terminate the ``DATA IN``
 phase when ``AllocLen`` bytes  have been sent to the initiator or when all sense data has been exhausted, whichever
 is less.
 
@@ -93,7 +90,7 @@ data.
 
 The non-extended sense data is depicted below:
 
-.. sense data:
+.. sense-data:
 
 +---------+-----------+----+----+---+---+---+---+---+
 | .. centered:: Non-extended Sense Data             |
@@ -418,55 +415,55 @@ The segment descriptor formats are designated by the ``Function Code``
 +----------+----------+               +                    +                              +
 | Source   | Dest     |               |                    |                              |
 +==========+==========+===============+====================+==============================+
-| ``0x00`` | ``0x01`` | ``0x00``      | :ref:`segment 1`   | **Direct to Sequential**     |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x00`` | ``0x02`` | ``0x00``      | :ref:`segment 1`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x00`` | ``0x03`` | ``0x00``      | :ref:`segment 1`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x04`` | ``0x01`` | ``0x00``      | :ref:`segment 1`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x04`` | ``0x02`` | ``0x00``      | :ref:`segment 1`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x04`` | ``0x03`` | ``0x00``      | :ref:`segment 1`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x05`` | ``0x01`` | ``0x00``      | :ref:`segment 1`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x05`` | ``0x02`` | ``0x00``      | :ref:`segment 1`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x05`` | ``0x03`` | ``0x00``      | :ref:`segment 1`   |                              |
+| ``0x00`` | ``0x01`` | ``0x00``      | Segment 1          | **Direct to Sequential**     |
++----------+----------+-------+-------+                    +                              +
+| ``0x00`` | ``0x02`` | ``0x00``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x00`` | ``0x03`` | ``0x00``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x04`` | ``0x01`` | ``0x00``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x04`` | ``0x02`` | ``0x00``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x04`` | ``0x03`` | ``0x00``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x05`` | ``0x01`` | ``0x00``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x05`` | ``0x02`` | ``0x00``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x05`` | ``0x03`` | ``0x00``      |                    |                              |
 +----------+----------+-------+-------+--------------------+------------------------------+
-| ``0x01`` | ``0x00`` | ``0x01``      | :ref:`segment 1`   | **Sequential to Direct**     |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x01`` | ``0x04`` | ``0x01``      | :ref:`segment 1`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x03`` | ``0x00`` | ``0x01``      | :ref:`segment 1`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x03`` | ``0x04`` | ``0x01``      | :ref:`segment 1`   |                              |
+| ``0x01`` | ``0x00`` | ``0x01``      | Segment 1          | **Sequential to Direct**     |
++----------+----------+-------+-------+                    +                              +
+| ``0x01`` | ``0x04`` | ``0x01``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x03`` | ``0x00`` | ``0x01``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x03`` | ``0x04`` | ``0x01``      |                    |                              |
 +----------+----------+-------+-------+--------------------+------------------------------+
-| ``0x00`` | ``0x00`` | ``0x02``      | :ref:`segment 2`   | **Direct to Direct**         |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x00`` | ``0x04`` | ``0x02``      | :ref:`segment 2`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x04`` | ``0x00`` | ``0x02``      | :ref:`segment 2`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x04`` | ``0x04`` | ``0x02``      | :ref:`segment 2`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x05`` | ``0x00`` | ``0x02``      | :ref:`segment 2`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x05`` | ``0x04`` | ``0x02``      | :ref:`segment 2`   |                              |
+| ``0x00`` | ``0x00`` | ``0x02``      | Segment 2          | **Direct to Direct**         |
++----------+----------+-------+-------+                    +                              +
+| ``0x00`` | ``0x04`` | ``0x02``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x04`` | ``0x00`` | ``0x02``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x04`` | ``0x04`` | ``0x02``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x05`` | ``0x00`` | ``0x02``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x05`` | ``0x04`` | ``0x02``      |                    |                              |
 +----------+----------+-------+-------+--------------------+------------------------------+
-| ``0x01`` | ``0x01`` | ``0x03``      | :ref:`segment 3`   | **Sequential to Sequential** |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x01`` | ``0x02`` | ``0x03``      | :ref:`segment 3`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x01`` | ``0x03`` | ``0x03``      | :ref:`segment 3`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x03`` | ``0x01`` | ``0x03``      | :ref:`segment 3`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x03`` | ``0x02`` | ``0x03``      | :ref:`segment 3`   |                              |
-+----------+----------+-------+-------+--------------------+                              +
-| ``0x03`` | ``0x03`` | ``0x03``      | :ref:`segment 3`   |                              |
+| ``0x01`` | ``0x01`` | ``0x03``      | Segment 3          | **Sequential to Sequential** |
++----------+----------+-------+-------+                    +                              +
+| ``0x01`` | ``0x02`` | ``0x03``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x01`` | ``0x03`` | ``0x03``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x03`` | ``0x01`` | ``0x03``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x03`` | ``0x02`` | ``0x03``      |                    |                              |
++----------+----------+-------+-------+                    +                              +
+| ``0x03`` | ``0x03`` | ``0x03``      |                    |                              |
 +----------+----------+-------+-------+--------------------+------------------------------+
 
 The ``Device Type`` is defined by the values in the :py:class:`squishy.scsi.device.PeripheralDeviceType` enum.
@@ -503,8 +500,6 @@ The ``COPY`` function codes are as follows:
 		key must contain the difference between the number of blocks from the segment descriptor vs the
 		number of blocks that were successfully copied.
 
-
-.. _segment 1:
 
 The segment descriptor format for copies between direct and sequential
 access devices are specified below. The descriptor may be repeated up to
@@ -558,7 +553,6 @@ command.
 The ``Sequential-Access Device Block-Length`` field specifies the block length to be used on the sequential-access
 logical unit during this segment of the ``COPY`` command.
 
-.. _segment 2:
 
 +---------+-----------+----+----+-----+----+-----+-----+-----+
 | Segment Descriptor for functions ``0x02``                  |
@@ -598,8 +592,6 @@ logical unit during this segment of the ``COPY`` command.
 | ``15``  | .. centered:: Destination  LBA (LSB)             |
 +---------+-----------+----+----+-----+----+-----+-----+-----+
 
-
-.. _segment 3:
 
 +---------+-----------+----+----+-----+----+-----+-----+-----+
 | Segment Descriptor for functions ``0x03``                  |

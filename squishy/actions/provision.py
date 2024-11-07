@@ -1,139 +1,121 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-import logging           as log
-from pathlib             import Path
-from argparse            import ArgumentParser, Namespace
+'''
 
-from torii.build.run     import LocalBuildProducts
+'''
 
-from rich.progress       import (
-	Progress, SpinnerColumn, BarColumn,
-	TextColumn
+import logging     as log
+from argparse      import ArgumentParser, Namespace
+from pathlib       import Path
+
+from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
+
+from .             import SquishySynthAction
+from ..paths       import SQUISHY_BUILD_BOOT
+from ..device      import SquishyDevice
+from ..gateware    import SquishyBootloader
+
+__all__ = (
+	'ProvisionAction',
 )
 
-from ..core.device       import SquishyHardwareDevice
-from ..core.flash        import FlashGeometry
+class ProvisionAction(SquishySynthAction):
+	'''
+	Provision Squishy Hardware.
 
-from .                   import SquishySynthAction
+	This action is for provisioning actions, such as building full-device flash images, or
+	just the bootloader.
 
+	'''
 
-class Provision(SquishySynthAction):
-	pretty_name  = 'Squishy Provision'
-	short_help   = 'Squishy first-time provisioning'
-	description  = 'Build squishy bootloader flash image'
-	requires_dev = False
-
-	def _build_slots(self, flash_geometry: FlashGeometry) -> bytes:
-		'''  '''
-		from ..gateware.bootloader.bitstream import iCE40BitstreamSlots
-
-		slot_data = bytearray(flash_geometry.erase_size)
-		slots     = iCE40BitstreamSlots(flash_geometry).build()
-
-		slot_data[0:len(slots)] = slots
-
-		for byte in range(len(slots), flash_geometry.erase_size):
-			slot_data[byte] = 0xFF
-
-		return bytes(slot_data)
-
-	def _build_multiboot(self,
-		build_dir: str, name: str, boot_products:  tuple[str, LocalBuildProducts],
-		flash_geometry: FlashGeometry
-	) -> Path:
-
-		build_path = Path(build_dir) / name
-
-		log.debug(f'Building multiboot bitstream in \'{build_path}\'')
-
-		boot_name = boot_products[0]
-		if not boot_name.endswith('.bin'):
-			boot_name = boot_name + '.bin'
-
-		log.debug(f'Bootloader bitstream name: \'{boot_name}\'')
-
-		with build_path.open('wb') as multiboot:
-			slot_data = self._build_slots(flash_geometry)
-
-			log.debug('Writing slot data')
-			multiboot.write(slot_data)
-			log.debug('Writing bootloader bitstream')
-			multiboot.write(boot_products[1].get(boot_name))
-
-			start = multiboot.tell()
-			end   = flash_geometry.partitions[1]['start_addr']
-
-			log.debug('Padding bitstream')
-			for _ in range(start, end):
-				multiboot.write(b'\xFF')
-
-			# Stuff in a copy of the bootloader entry
-			log.debug('Copying bootloader entry to active slot')
-			multiboot.write(slot_data[32:64])
-
-		return build_path
-
-	def __init__(self):
-		super().__init__()
-
+	name         = 'provision'
+	description  = 'Provision Squishy hardware'
+	requires_dev = False # We need one to provision a live device, but not to build the image
 
 	def register_args(self, parser: ArgumentParser) -> None:
 		self.register_synth_args(parser, cacheable = False)
 
-		provision_opts = parser.add_argument_group('Provisioning Options')
+		prov_opts = parser.add_argument_group('Provisioning Options')
 
-		# Provisioning Options
-		provision_opts.add_argument(
+		prov_opts.add_argument(
 			'--serial-number', '-S',
 			type    = str,
 			default = None,
-			help    = 'Specify the device serial number rather than automatically generating it'
+			help    = 'Directly specify the device serial number rather than automatically generating it'
 		)
 
-		provision_opts.add_argument(
+		prov_opts.add_argument(
 			'--whole-device', '-W',
 			action = 'store_true',
-			default = False,
-			help   = 'Program the whole device, not just the bootloader'
+			help   = 'Generate a whole-device flash image, not just the bootloader.'
 		)
 
-	def run(self, args: Namespace, dev: SquishyHardwareDevice | None = None) -> int:
-		plt = self.get_hw_platform(args, dev)
-		if plt is None:
+	def run(self, args: Namespace, dev: SquishyDevice | None) -> int:
+		# Get the platform
+		platform_type = self.get_platform(args, dev)
+		if platform_type is None:
+			# the call to `get_platform` will have already printed an error message
 			return 1
 
-		device, _, dev = plt
+		# Initialize the platform
+		plat = platform_type()
 
-		if device.bootloader_module is None:
-			log.error('Unable to provision for platform, no bootloader module!')
-			return 1
-
-		# Provisioning Options
+		# If we were passed a serial number, then use that
 		if args.serial_number is not None:
-			serial_number = args.serial_number
-		if dev is not None:
-			serial_number = dev.serial
+			serial: str = args.serial_number
+		# Otherwise, if we have an attached device, use it's existing serial
+		elif dev is not None:
+			serial = dev.serial
+		# Otherwise otherwise, generate a brand new one
 		else:
-			serial_number = SquishyHardwareDevice.make_serial()
+			serial = SquishyDevice.generate_serial()
 
-		log.info(f'Assigning device serial number \'{serial_number}\'')
-		bootloader = device.bootloader_module(serial_number = serial_number)
+		log.info(f'Assigning device serial number \'{serial}\'')
+
+		build_dir = SQUISHY_BUILD_BOOT
+		if args.build_dir is not None:
+			build_dir = Path(args.build_dir)
+
+		# TODO(aki): Booloader opts etc
+		bootloader = SquishyBootloader(
+			serial_number = serial, revision = plat.revision
+		)
+
+		boot_name = f'squishy_boot_v{plat.revision_str}'
 
 		log.info('Building bootloader gateware')
-		name, prod = self.run_synth(args, device, bootloader, 'squishy_bootloader', cacheable = False)
+		prod = self.run_synth(args, plat, bootloader, boot_name, build_dir, cacheable = False)
 
 		if args.whole_device:
-			log.info('Building whole-device bitstream')
-			path = self._build_multiboot(args.build_dir, 'squishy-unified.bin', (name, prod), device.flash['geometry'])
+			log.info('Building full device flash image')
+			image_name = f'squishy-{plat.revision_str}-monolithic.bin'
+			image = plat.build_image(image_name, build_dir, boot_name, prod)
 
 			if args.build_only:
-				log.info(f'Please flash the file at \'{path}\' on to the hardware to provision the device.')
+				log.info(f'Provisioning image generated at \'{image}\', Flash to device to provision')
+			else:
+				# TODO(aki): Eventually when we have the ability to automatically provision the flash
+				#            This would be done by either making use of something like an attached
+				#            blackmagic probe in SPI, or the "brainslug" passthru of a supervisor.
+				#
+				#            This kinda depends a lot on the hardware platform so that might need to be
+				#            abstracted out to them, as only the platform really knows how to best provision
+				#            itself.
+				log.warning('Unable to automatically provision device at this time')
+				log.warning(f'Provisioning image generated at \'{image}\', Flash to device to provision')
+			return 0
+
+		else:
+			f_name = f'{boot_name}.{plat.bitstream_suffix}'
+			if args.build_only:
+				log.info(self.dfu_util_msg(f_name, 0, build_dir, dev))
 				return 0
 
-		if args.build_only:
-			log.info(f'Use \'dfu-util\' to flash \'{args.build_dir / name}.bin\' into slot 0 to update the bootloader')
-			log.info(f'e.g. \'dfu-util -d 1209:ca70,:ca71 -a 0 -R -D {args.build_dir / name}.bin\'')
-			return 0
+			image = plat.pack_artifact(prod.get(f_name))
+
+		if dev is None:
+			log.error('No device specified, however we were asked to program the device, aborting')
+			return 1
 
 		with Progress(
 			SpinnerColumn(),
@@ -141,15 +123,14 @@ class Provision(SquishySynthAction):
 			BarColumn(bar_width = None),
 			transient = True
 		) as progress:
-			file_name = name
-			if not file_name.endswith('.bin'):
-				file_name += '.bin'
-
-			log.info(f'Programming bootloader with {file_name}')
-			if dev.upload(prod.get(file_name), 0, progress):
-				log.info('Resetting Device')
-				dev.reset()
+			if args.whole_image:
+				log.warning('TODO: Whole image flash stuff')
 			else:
-				log.error('Device upload failed!')
-				return 1
+				log.info('Programming bootloader')
+				if dev.upload(image, 0, progress):
+					log.info('Resetting device')
+					dev.reset()
+				else:
+					log.error('Device upload failed')
+					return 1
 		return 0

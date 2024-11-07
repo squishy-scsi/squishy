@@ -1,15 +1,14 @@
-# `squishy.gateware.platform`
+# Hardware Platforms
 
 ```{toctree}
 :hidden:
 
 rev1
 rev2
-mixins
 resources
 ```
 
 ```{eval-rst}
 .. automodule:: squishy.gateware.platform
-
+	:members:
 ```

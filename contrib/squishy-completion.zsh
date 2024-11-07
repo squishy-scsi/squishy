@@ -6,7 +6,6 @@
 _squishy_command() {
 	local -a commands=(
 		'applet[Squishy applet subsystem]'
-		'cache[Squishy applet cache managment]'
 		'provision[Squishy hardware provisioning]'
 	)
 	_values 'squishy commands' : $commands
@@ -15,7 +14,6 @@ _squishy_command() {
 _squishy_applet_command() {
 	local -a commands=(
 		'analyzer[Squishy SCSI analyzer]'
-		'taperipper[UEFI Boot from 9-track tape]'
 	)
 	_values 'squishy applets' : $commands
 }
@@ -31,50 +29,30 @@ _squishy_applet_analyzer() {
 	_arguments -s : $arguments
 }
 
-_squishy_applet_taperipper() {
-	local arguments
-
-	arguments=(
-		'(-h --help)'{-h,--help}'[Show help message and exit]'
-
-	)
-
-	_arguments -s : $arguments
-}
-
 _squishy_applet() {
 	local arguments
-	local platforms=`python -m squishy applet -h | tail -n +4 | grep -m1 -e '\-\-platform\s{' | sed 's/,\s-p\s.*$//' | sed 's/--platform\s{\([^}]*\)}/\1/'`
+	local platforms=`python -m squishy applet -h | tail -n +4 | grep -m1 -e '--platform\s{' | sed 's/,\s-p\s.*$//' | sed 's/--platform\s{\([^}]*\)}/\1/'`
 
 	arguments=(
 		'(-h --help)'{-h,--help}'[Show help message and exit]'
 		'(-p --platforms)'{-p=,--platforms=}"[Target hardware platform]:platform:(${(s/,/)platforms})"
 
-		'--skip-cache[Skip bitstream cache lookup]'
-		'(-b --build-dir)'{-b,--build-dir}"[Output directory for build products]:dir:_directories"
-		'--loud[Enables output from PnR and synthesis]'
-		'--build-only[Only build the applet]'
+		'(-Y --noconfirm)'{-Y,--noconfirm}'[Do not ask for confirmation if the target applet is in preview]'
+		'(-F --flash)'{-f,--flash}'[Flash the applet into persistent storage raather then doing an ephemeral load if supported]'
 
-		'--use-router2[Use nextpnrs router2 rather than router1]'
-		'--tmp-ripup[Use timing driven ripup]'
-		'--detailed-timing-report[Output a detailed timing report]'
-		'--routed-svg[Save an svg of the routed output]:svg:_files -g "*.svg"'
-		'--routed-json[Save routed json netlist]:json:_files -g "*.json"'
+		'(-B --build-only)'{-B,--build-only}'[Only build and pack the applet, skip device programming]'
+		'(-b --build-dir)'{-b,--build-dir}"[Output directory for build products]:dir:_directories"
+		'(-C --skip-cache)'{-C,--skip-cache}'[Skip artifact cache lookup and squesequent insertion when build is completed]'
+		'--build-verbose[Enable verbose tool output during build]'
+
+		'--no-abc9[Disable use of abc9, will likely result in worse applet performance]'
+		'--no-aggressive-mapping[Disable multiple abc9 passes, speeds up build time in exchange for worse performance]'
+
+		'--detailed-report[Output a detailed timing report]'
+		'--no-routed-netlist[Do not save routed json netlist]'
 		'--pnr-seed[Specify PNR seed]:seed:_numbers -l 0 "PNR_SEED"'
 
-
-		'--no-abc9[Disable ABC9 durring synthesis]'
-
-		'--enable-webusb[Enable the experimental WebUSB support]'
-		'--webusb-url=[WebUSB URL to encode]:url:_urls'
-
-		'(-U --enable-uart)'{-U,--enable-uart}'[Enable debug UART]'
-		'(-B --baud)'{-B,--baud}'=[Baud rate to run the debug UART at]:baud:_numbers -d 9600'
-		'(-D --data-bits)'{-D,--data-bits}'=[Data bits to use for the debug UART]:data:_numbers -d 8'
-		'(-c --parity)'{-c,--parity}'=[Parity mode to use for the debug UART]:parity:(none mark spaceeven odd)'
-
-		'--scsi-did=[The SCSI ID to use]:scsi_id:_numbers -l 0 -m 7 "SCSI ID"'
-		'--scsi-arbitrating[Enable SCSI bus arbitration]'
+		'--dont-compress[Disable bitstream compression if supported on the platform]'
 
 		'(-): :->applet'
 		'(-)*:: :->applet_args'
@@ -92,9 +70,6 @@ _squishy_applet() {
 				(analyzer)
 					_squishy_applet_analyzer && ret=0
 					;;
-				(taperipper)
-					_squishy_applet_taperipper && ret=0
-					;;
 			esac
 			;;
 	esac
@@ -103,28 +78,30 @@ _squishy_applet() {
 
 _squishy_provision() {
 	local arguments
-	local platforms=`python -m squishy provision -h | tail -n +4 | grep -m1 -e '\-\-platform\s{' | sed 's/,\s-p\s.*$//' | sed 's/--platform\s{\([^}]*\)}/\1/'`
+	local platforms=`python -m squishy provision -h | tail -n +4 | grep -m1 -e '--platform\s{' | sed 's/,\s-p\s.*$//' | sed 's/--platform\s{\([^}]*\)}/\1/'`
 
 	arguments=(
 		'(-h --help)'{-h,--help}'[Show help message and exit]'
 		'(-p --platforms)'{-p=,--platforms=}"[Target hardware platform]:platform:(${(s/,/)platforms})"
 
-		'--skip-cache[Skip bitstream cache lookup]'
-		'(-b --build-dir)'{-b,--build-dir}"[Output directory for build products]:dir:_directories"
-		'--loud[Enables output from PnR and synthesis]'
-		'--build-only[Only build the applet]'
+		'(-Y --noconfirm)'{-Y,--noconfirm}'[Do not ask for confirmation if the target applet is in preview]'
+		'(-F --flash)'{-f,--flash}'[Flash the applet into persistent storage raather then doing an ephemeral load if supported]'
 
-		'--use-router2[Use nextpnrs router2 rather than router1]'
-		'--tmp-ripup[Use timing driven ripup]'
-		'--detailed-timing-report[Output a detailed timing report]'
-		'--routed-svg[Save an svg of the routed output]:svg:_files -g "*.svg"'
-		'--routed-json[Save routed json netlist]:json:_files -g "*.json"'
+		'(-B --build-only)'{-B,--build-only}'[Only build and pack the applet, skip device programming]'
+		'(-b --build-dir)'{-b,--build-dir}"[Output directory for build products]:dir:_directories"
+		'--build-verbose[Enable verbose tool output during build]'
+
+		'--no-abc9[Disable use of abc9, will likely result in worse applet performance]'
+		'--no-aggressive-mapping[Disable multiple abc9 passes, speeds up build time in exchange for worse performance]'
+
+		'--detailed-report[Output a detailed timing report]'
+		'--no-routed-netlist[Do not save routed json netlist]'
 		'--pnr-seed[Specify PNR seed]:seed:_numbers -l 0 "PNR_SEED"'
 
-		'--no-abc9[Disable ABC9 durring synthesis]'
+		'--dont-compress[Disable bitstream compression if supported on the platform]'
 
-		'(-S --serial-number)'{-S,--serial-number}'[Specify Serial Number to use]'
-		'(-W --whole-device)'{-W,--whole-device}'=[Generate a whole device provisioning image for factory progrssming]'
+		'(-S --serial-number)'{-S,--serial-number}'[Specify serial number to use]'
+		'(-W --whole-device)'{-W,--whole-device}'=[Generate a whole device provisioning image for factory programming]'
 	)
 
 	_arguments -s : $arguments && return
@@ -133,65 +110,6 @@ _squishy_provision() {
 	return 0
 }
 
-_squishy_cache_command() {
-	local -a commands=(
-		'list[Show cache status]'
-		'clear[Clear cache]'
-	)
-	_values 'squishy cache' : $commands
-}
-
-_squishy_cache_list() {
-	local arguments
-	arguments=(
-		'(-h --help)'{-h,--help}'[Show help message and exit]'
-		'--list-cache-items[List each item in the cache (WARNING: CAN BE LARGE)]'
-	)
-
-	_arguments -s : $arguments
-}
-
-_squishy_cache_clear() {
-	local arguments
-	arguments=(
-		'(-h --help)'{-h,--help}'[Show help message and exit]'
-
-	)
-
-	_arguments -s : $arguments
-}
-
-_squishy_cache() {
-	local arguments
-	integer ret=1
-
-	arguments=(
-		'(-h --help)'{-h,--help}'[Show help and exit]'
-
-		'(-): :->action'
-		'(-)*:: :->action_args'
-	)
-
-	_arguments -s : $arguments && return
-
-	case $state in
-		(action)
-			_squishy_cache_command && ret=0
-			;;
-		(action_args)
-			curcontext=${curcontext%:*:*}:squishy-$words[1]:
-			case $words[1] in
-				(list)
-					_squishy_cache_list && ret=0
-					;;
-				(clear)
-					_squishy_cache_clear && ret=0
-					;;
-			esac
-			;;
-	esac
-	return $ret
-}
 
 _squishy() {
 	local arguments context curcontext=$curcontext state state_descr line
@@ -201,6 +119,7 @@ _squishy() {
 		'(-h --help)'{-h,--help}'[show version and help then exit]'
 		'(-d --device)'{-d,--device}'=[specify device serial number]'
 		'(-v --verbose)'{-v,--verbose}'[verbose logging]'
+		'(-V --version)'{-V,--version}'[show version and exit]'
 		'(-): :->command'
 		'(-)*:: :->arguments'
 	)
@@ -216,9 +135,6 @@ _squishy() {
 			case $words[1] in
 				(applet)
 					_squishy_applet && ret=0
-					;;
-				(cache)
-					_squishy_cache && ret=0
 					;;
 				(provision)
 					_squishy_provision && ret=0

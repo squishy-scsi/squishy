@@ -3,10 +3,6 @@
 ```{toctree}
 :hidden:
 
-pll
-scsi
-spi
-uart
 ```
 
 ```{eval-rst}

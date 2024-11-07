@@ -10,6 +10,14 @@ code.literal {
     border-radius: 5px;
 }
 
+div.sidebar-container {
+    width: 25em;
+}
+
+div.toc-drawer {
+    width: 20em;
+}
+
 svg.WaveDrom {
     padding: 10px;
     border-radius: 5px;

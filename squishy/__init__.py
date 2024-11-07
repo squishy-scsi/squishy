@@ -3,8 +3,8 @@
 from sys import version_info
 
 # Bounce out if python is  too old
-if version_info < (3, 10):
-	raise RuntimeError('Python version 3.10 or newer is required to use Squishy')
+if version_info < (3, 11):
+	raise RuntimeError('Python version 3.11 or newer is required to use Squishy')
 
 try:
 	from importlib import metadata
@@ -12,11 +12,9 @@ try:
 except ImportError:
 	__version__ = 'unknown' # :nocov:
 
-__all__ = (
+__all__ = ()
 
-)
-
-'''\
+'''
 ╭─────────────────────────────────────╮
 │                                     │
 │           !!! WARNING !!!           │

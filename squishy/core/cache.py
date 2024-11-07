@@ -1,106 +1,135 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-import logging       as log
-from pathlib         import Path
-from lzma            import LZMACompressor
-from shutil          import rmtree
+'''
 
-from torii.build.run import LocalBuildProducts
+'''
 
-from ..config        import SQUISHY_APPLET_CACHE
+import logging           as log
+from io                  import BytesIO
+from tarfile             import open as tf_open
+from tarfile             import TarInfo
+
+from torii.build.run     import BuildPlan, BuildProducts, LocalBuildProducts
+
+from ..paths             import SQUISHY_ASSET_CACHE
+from ..gateware.platform import SquishyPlatformType
 
 __all__ = (
-	'SquishyBitstreamCache',
+	'SquishyCache',
 )
 
-class SquishyBitstreamCache:
-	''' Bitstream Cache system '''
+class SquishyCache:
+	'''
+	Squishy on-disk bitstream cache.
 
-	# Initialize the cache directory
-	def _init_cache_dir(self, root: Path, depth: int = 1) -> None:
-		if depth == 0:
-			return
+	'''
 
-		for i in range(256):
-			cache_stub = root / f'{i:02x}'
-			if not cache_stub.exists():
-				cache_stub.mkdir()
-				self._init_cache_dir(cache_stub, depth - 1)
+	ARCHIVE_ASSETS = (
+		# Synthesis Input
+		'debug.v', 'il', 'ys',
+		# PnR Output
+		'tim', 'tim.json', 'pnr.json',
+	)
 
-	def _decompose_digest(self, digest: str) -> list[str]:
-		return [
-			digest[
-				(i*2):((i*2)+2)
-			]
-			for i in range(len(digest) // 2)
-		]
+	def __init__(self) -> None:
+		self._cache_root = SQUISHY_ASSET_CACHE
 
-	def _get_cache_dir(self, digest: str) -> Path:
-		return self._cache_root.joinpath(
-			*self._decompose_digest(digest)[
-				:self.tree_depth
-			]
-		)
+	def get(self, plan: BuildPlan) -> BuildProducts | None:
+		'''
+		Get the cached version of the built gateware
 
-	def __init__(self, do_init: bool = True, tree_depth: int = 1, cache_rtl: bool = True) -> None:
-		self.tree_depth  = tree_depth
-		self.cache_rtl   = cache_rtl
-		self._cache_root = Path(SQUISHY_APPLET_CACHE)
+		Parameters
+		----------
+		plan : BuildPlan
+			The generated build plan from Torii.
 
-		if do_init:
-			if not (self._cache_root / 'ca').exists():
-				log.debug('Initializing bitstream cache tree')
-				self._init_cache_dir(self._cache_root, tree_depth)
+		Returns
+		-------
+		BuildProducts | None
+			If found in the cache, an instance of LocalBuildProducts, otherwise None
 
-	def flush(self) -> None:
-		''' Flush the cache '''
-		log.info('Flushing applet cache')
-		rmtree(self._cache_root)
-		self._cache_root.mkdir()
+		'''
 
+		plan_digest = plan.digest(size = 32).hex()
+		cache_dir   = self._cache_root / plan_digest[0:2] / plan_digest
 
-	def get(self, digest: str) -> dict[str, str | LocalBuildProducts]:
-		'''Attempt to retrieve a bitstream based on it's elaboration digest'''
-		bitstream_name = f'{digest}.bin'
-		cache_dir = self._get_cache_dir(digest)
-		bitstream = cache_dir / bitstream_name
-
-		log.debug(f'Looking up bitstream \'{bitstream_name}\' in {cache_dir}')
-
-		if not bitstream.exists():
-			log.debug('Bitstream not found in cache')
+		if not cache_dir.exists():
 			return None
 
-		log.debug('Bitstream found')
+		log.debug(f'Found cache entry \'{plan_digest}\'')
 
-		return {
-			'name'    : bitstream_name,
-			'products': LocalBuildProducts(str(cache_dir))
-		}
+		return LocalBuildProducts(cache_dir)
 
-	def store(self, digest: str, products: LocalBuildProducts, name: str) -> None:
-		''' Store the synth products in the cache '''
+	def store(self, name: str, products: BuildProducts, plan: BuildPlan, plat: SquishyPlatformType) -> BuildProducts:
+		'''
+		Store the gateware, generated HDL, and synthesis/pnr logs in the cache.
 
-		bitstream_name = f'{digest}.bin'
-		cache_dir = self._get_cache_dir(digest)
-		bitstream = cache_dir / bitstream_name
+		Parameters
+		----------
+		name : str
+			The name of the gateware.
 
-		log.debug(f'Caching bitstream \'{name}.bin\' in {cache_dir}')
-		log.debug(f'New bitstream name: \'{bitstream_name}\'')
+		products : BuildProducts
+			The output BuildProducts from executing the Torii BuildPlan.
 
-		with open(bitstream, 'wb') as bit:
-			bit.write(products.get(f'{name}.bin'))
+		products : BuildPlan
+			The plan that was used to produce `products`
 
-		if self.cache_rtl:
-			for rtl_ext in ('debug.v', 'il'):
-				rtl_name = f'{digest}.{rtl_ext}.xz'
-				rtl = cache_dir / rtl_name
+		plat : SquishyPlatformType
+			The platform that we built against
 
-				log.debug(f'Caching RTL \'{name}.{rtl_ext}\' in {cache_dir}')
-				log.debug(f'New RTL name: \'{rtl_name}\'')
+		Returns
+		-------
+		BuildProducts
+			The re-homed BuildProducts from the cache rather than the build directory.
 
-				cpr = LZMACompressor()
+		'''
 
-				with open(rtl, 'wb') as r:
-					r.write(cpr.compress(products.get(f'{name}.{rtl_ext}')))
-					r.write(cpr.flush())
+		plan_digest = plan.digest(size = 32).hex()
+		cache_dir   = self._cache_root / plan_digest[0:2] / plan_digest
+
+		log.debug(f'Caching build assets for \'{name}\'')
+		log.debug(f'Cache path: \'{cache_dir}\'')
+
+		if cache_dir.exists():
+			log.warning(f'Cache collision on asset entry \'{plan_digest}\'')
+			for item in cache_dir.iterdir():
+				item.unlink()
+		else:
+			log.debug('No cache entry found, creating')
+			cache_dir.mkdir(parents = True)
+
+
+		# Archive build assets
+		arc_name = f'{name}.src.tar.xz'
+		arc_path = cache_dir / arc_name
+
+		log.debug(f'Archiving build assets to cache in \'{arc_name}\'')
+
+		with tf_open(arc_path, 'w:xz') as arc:
+			for asset in self.ARCHIVE_ASSETS:
+				f_name = f'{name}.{asset}'
+				try:
+					data = products.get(f_name, 'b')
+
+					log.debug(f' => \'{f_name}\'')
+
+					info = TarInfo(f_name)
+					info.size   = len(data)
+
+					arc.addfile(info, BytesIO(data))
+				except OSError:
+					continue
+
+		# Copy the timing/utilization report out before we re-home
+		log.debug('Caching PnR Utilization report outside of asset archive')
+		with (cache_dir / f'{name}.tim.json').open('wb') as bitstream:
+			bitstream.write(products.get(f'{name}.tim.json', 'b'))
+
+		# Cache the bitstream
+		log.debug('Caching bitstream')
+		f_name = f'{name}.{plat.bitstream_suffix}'
+		with (cache_dir / f_name).open('wb') as bitstream:
+			bitstream.write(products.get(f_name, 'b'))
+
+		return LocalBuildProducts(cache_dir)
