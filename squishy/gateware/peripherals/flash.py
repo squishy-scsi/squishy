@@ -4,11 +4,11 @@
 
 '''
 
-from enum            import IntEnum, auto, unique
+from enum           import IntEnum, auto, unique
 
 from torii          import Elaboratable, Module, Signal
 from torii.lib.fifo import AsyncFIFO
-from .spi           import SPIInterface
+from .spi           import SPIController
 from ..platform     import SquishyPlatformType
 from ...core.flash  import Geometry
 
@@ -46,7 +46,6 @@ class SPIFlash(Elaboratable):
 		self._flash_resource = flash_resource
 		self.geometry        = flash_geometry
 		self._fifo           = fifo
-		self._spi            = SPIInterface(resource_name = self._flash_resource)
 		self._erase_cmd      = erase_cmd
 
 		self.ready      = Signal()
@@ -69,7 +68,11 @@ class SPIFlash(Elaboratable):
 		else:
 			erase_cmd = self._erase_cmd
 
-		m.submodules.spi = self._spi
+		flash_resource = platform.request(*self._flash_resource)
+
+		m.submodules.spi = spi = self._spi = SPIController(
+			clk = flash_resource.clk.o, cipo = flash_resource.cipo.i, copi = flash_resource.copi.o, cs = flash_resource.cs.o
+		)
 
 		fifo = self._fifo
 
@@ -90,8 +93,8 @@ class SPIFlash(Elaboratable):
 		m.d.comb += [
 			self.ready.eq(0),
 			self.done.eq(0),
-			self._spi.xfr.eq(0),
-			self._spi.wdat.eq(fifo.r_data),
+			spi.xfr.eq(0),
+			spi.wdat.eq(fifo.r_data),
 		]
 
 		# TODO: Add `READ` support
@@ -100,18 +103,18 @@ class SPIFlash(Elaboratable):
 				with m.Switch(resetStep):
 					with m.Case(0):
 						m.d.comb += [
-							self._spi.xfr.eq(1),
-							self._spi.wdat.eq(SPIFlashCmd.RELEASE_PWRDWN),
+							spi.xfr.eq(1),
+							spi.wdat.eq(SPIFlashCmd.RELEASE_PWRDWN),
 						]
 						m.d.sync += [
-							self._spi.cs.eq(1),
+							spi.cs.eq(1),
 							resetStep.eq(1),
 						]
 					with m.Case(1):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.comb += self.ready.eq(1)
 							m.d.sync += [
-								self._spi.cs.eq(0),
+								spi.cs.eq(0),
 								enableStep.eq(0),
 							]
 							m.next = 'IDLE'
@@ -140,17 +143,17 @@ class SPIFlash(Elaboratable):
 				with m.Switch(enableStep):
 					with m.Case(0):
 						m.d.comb += [
-							self._spi.xfr.eq(1),
-							self._spi.wdat.eq(SPIFlashCmd.WRITE_ENABLE),
+							spi.xfr.eq(1),
+							spi.wdat.eq(SPIFlashCmd.WRITE_ENABLE),
 						]
 						m.d.sync += [
-							self._spi.cs.eq(1),
+							spi.cs.eq(1),
 							enableStep.eq(1),
 						]
 					with m.Case(1):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.sync += [
-								self._spi.cs.eq(0),
+								spi.cs.eq(0),
 								enableStep.eq(2),
 							]
 					with m.Case(2):
@@ -163,38 +166,38 @@ class SPIFlash(Elaboratable):
 				with m.Switch(eraseCmdStep):
 					with m.Case(0):
 						m.d.comb += [
-							self._spi.xfr.eq(1),
-							self._spi.wdat.eq(erase_cmd),
+							spi.xfr.eq(1),
+							spi.wdat.eq(erase_cmd),
 						]
 						m.d.sync += [
-							self._spi.cs.eq(1),
+							spi.cs.eq(1),
 							eraseCmdStep.eq(1),
 						]
 					with m.Case(1):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.comb += [
-								self._spi.xfr.eq(1),
-								self._spi.wdat.eq(self.eraseAddr[16:24]),
+								spi.xfr.eq(1),
+								spi.wdat.eq(self.eraseAddr[16:24]),
 							]
 							m.d.sync += eraseCmdStep.eq(2)
 					with m.Case(2):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.comb += [
-								self._spi.xfr.eq(1),
-								self._spi.wdat.eq(self.eraseAddr[8:16]),
+								spi.xfr.eq(1),
+								spi.wdat.eq(self.eraseAddr[8:16]),
 							]
 							m.d.sync += eraseCmdStep.eq(3)
 					with m.Case(3):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.comb += [
-								self._spi.xfr.eq(1),
-								self._spi.wdat.eq(self.eraseAddr[0:8]),
+								spi.xfr.eq(1),
+								spi.wdat.eq(self.eraseAddr[0:8]),
 							]
 							m.d.sync += eraseCmdStep.eq(4)
 					with m.Case(4):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.sync += [
-								self._spi.cs.eq(0),
+								spi.cs.eq(0),
 								eraseCmdStep.eq(5),
 							]
 					with m.Case(5):
@@ -207,29 +210,29 @@ class SPIFlash(Elaboratable):
 				with m.Switch(eraseWaitStep):
 					with m.Case(0):
 						m.d.comb += [
-							self._spi.xfr.eq(1),
-							self._spi.wdat.eq(SPIFlashCmd.READ_STATUS),
+							spi.xfr.eq(1),
+							spi.wdat.eq(SPIFlashCmd.READ_STATUS),
 						]
 						m.d.sync += [
-							self._spi.cs.eq(1),
+							spi.cs.eq(1),
 							eraseWaitStep.eq(1),
 						]
 					with m.Case(1):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.comb += [
-								self._spi.xfr.eq(1),
-								self._spi.wdat.eq(0),
+								spi.xfr.eq(1),
+								spi.wdat.eq(0),
 							]
 							m.d.sync += eraseWaitStep.eq(2)
 					with m.Case(2):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.sync += [
-								self._spi.cs.eq(0),
+								spi.cs.eq(0),
 								eraseWaitStep.eq(3),
 							]
 					with m.Case(3):
 						m.d.sync += eraseWaitStep.eq(0)
-						with m.If(~self._spi.rdat[0]):
+						with m.If(~spi.rdat[0]):
 							with m.If((self.writeAddr + byteCount) <= self.endAddr):
 								m.d.sync += op.eq(SPIFlashOp.WRITE)
 							m.next = 'WRITE_ENABLE'
@@ -237,47 +240,47 @@ class SPIFlash(Elaboratable):
 				with m.Switch(writeCmdStep):
 					with m.Case(0):
 						m.d.comb += [
-							self._spi.xfr.eq(1),
-							self._spi.wdat.eq(SPIFlashCmd.PAGE_PROGRAM),
+							spi.xfr.eq(1),
+							spi.wdat.eq(SPIFlashCmd.PAGE_PROGRAM),
 						]
 						m.d.sync += [
-							self._spi.cs.eq(1),
+							spi.cs.eq(1),
 							writeCmdStep.eq(1),
 						]
 					with m.Case(1):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.comb += [
-								self._spi.xfr.eq(1),
-								self._spi.wdat.eq(self.writeAddr[16:24]),
+								spi.xfr.eq(1),
+								spi.wdat.eq(self.writeAddr[16:24]),
 							]
 							m.d.sync += writeCmdStep.eq(2)
 					with m.Case(2):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.comb += [
-								self._spi.xfr.eq(1),
-								self._spi.wdat.eq(self.writeAddr[8:16]),
+								spi.xfr.eq(1),
+								spi.wdat.eq(self.writeAddr[8:16]),
 							]
 							m.d.sync += writeCmdStep.eq(3)
 					with m.Case(3):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.comb += [
-								self._spi.xfr.eq(1),
-								self._spi.wdat.eq(self.writeAddr[0:8]),
+								spi.xfr.eq(1),
+								spi.wdat.eq(self.writeAddr[0:8]),
 							]
 							m.d.sync += writeCmdStep.eq(4)
 					with m.Case(4):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.sync += [
 								writeTrigger.eq(1),
 								writeCmdStep.eq(0)
 							]
 							m.next = 'WRITE'
 			with m.State('WRITE'):
-				with m.If(self._spi.done | writeTrigger):
+				with m.If(spi.done | writeTrigger):
 					m.d.sync += writeTrigger.eq(0)
 					with m.If(fifo.r_rdy):
 						m.d.comb += [
-							self._spi.xfr.eq(1),
+							spi.xfr.eq(1),
 							fifo.r_en.eq(1),
 						]
 						m.d.sync += [
@@ -295,9 +298,9 @@ class SPIFlash(Elaboratable):
 			with m.State('WRITE_FINISH'):
 				with m.Switch(writeFinishStep):
 					with m.Case(0):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.sync += [
-								self._spi.cs.eq(0),
+								spi.cs.eq(0),
 								writeFinishStep.eq(1),
 							]
 					with m.Case(1):
@@ -311,29 +314,29 @@ class SPIFlash(Elaboratable):
 				with m.Switch(writeWaitStep):
 					with m.Case(0):
 						m.d.comb += [
-							self._spi.xfr.eq(1),
-							self._spi.wdat.eq(SPIFlashCmd.READ_STATUS),
+							spi.xfr.eq(1),
+							spi.wdat.eq(SPIFlashCmd.READ_STATUS),
 						]
 						m.d.sync += [
-							self._spi.cs.eq(1),
+							spi.cs.eq(1),
 							writeWaitStep.eq(1),
 						]
 					with m.Case(1):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.comb += [
-								self._spi.xfr.eq(1),
-								self._spi.wdat.eq(0),
+								spi.xfr.eq(1),
+								spi.wdat.eq(0),
 							]
 							m.d.sync += writeWaitStep.eq(2)
 					with m.Case(2):
-						with m.If(self._spi.done):
+						with m.If(spi.done):
 							m.d.sync += [
-								self._spi.cs.eq(0),
+								spi.cs.eq(0),
 								writeWaitStep.eq(3),
 							]
 					with m.Case(3):
 						m.d.sync += writeWaitStep.eq(0)
-						with m.If(~self._spi.rdat[0]):
+						with m.If(~spi.rdat[0]):
 							with m.If(byteCount):
 								m.next = 'WRITE_ENABLE'
 							with m.Else():
