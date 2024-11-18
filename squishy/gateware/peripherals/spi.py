@@ -4,16 +4,42 @@
 
 '''
 
-from torii      import Elaboratable, Signal, Module, Cat
-from ..platform import SquishyPlatformType
+from enum              import Flag, auto, unique
+
+from torii             import Elaboratable, Signal, Module, Cat, ResetSignal, ClockSignal, ClockDomain
+from torii.build       import Subsignal
+from torii.lib.soc.csr import Multiplexer
+from torii.lib.cdc     import FFSynchronizer
+from ..platform        import SquishyPlatformType
 
 __all__ = (
-	'SPIInterface',
+	'SPIController',
 )
+
 
 class SPIInterface(Elaboratable):
 	'''
 	Generic SPI interface.
+
+
+class SPIController(Elaboratable):
+	'''
+
+	A generic SPI Bus Controller for a SPI bus with one peripheral on it. (for now)
+
+	Parameters
+	----------
+	clk : Signal, out
+		The clock generated for the SPI bus from this controller.
+
+	cipo : Signal, in
+		The data signal coming in from the peripherals on the bus.
+
+	copi : Signal, out
+		The data signal going out to the SPI bus from this controller.
+
+	cs : Signal, out
+		The selection signal for the device on the SPI bus.
 
 	Attributes
 	----------
@@ -31,13 +57,13 @@ class SPIInterface(Elaboratable):
 
 	rdat : Signal(8)
 		Read data register.
-
 	'''
-	def __init__(self, *, resource_name: tuple[str, int]) -> None:
 
-		self._spi_resource = resource_name
-		self._status_led = None
-		self._spi = None
+	def __init__(self, *, clk: Signal, cipo: Signal, copi: Signal, cs: Signal) -> None:
+		self._clk  = clk
+		self._cipo = cipo
+		self._copi = copi
+		self._cs   = cs
 
 		self.cs   = Signal()
 		self.xfr  = Signal()
@@ -45,23 +71,21 @@ class SPIInterface(Elaboratable):
 		self.wdat = Signal(8)
 		self.rdat = Signal(8)
 
-	def elaborate(self, platform: SquishyPlatformType | None) -> Module:
-		self._spi = platform.request(*self._spi_resource)
-
+	def elaborate(self, _: SquishyPlatformType | None) -> Module:
 		m = Module()
 
 		bit = Signal(range(8))
 		clk = Signal(reset = 1)
 
-		cipo = self._spi.cipo.i
-		copi = self._spi.copi.o
+		copi = self._copi
+		cipo = self._cipo
 
 		d_in  = Signal.like(self.rdat)
 		d_out = Signal.like(self.wdat)
 
 		m.d.comb += self.done.eq(0)
 
-		with m.FSM(name = 'spi'):
+		with m.FSM(name = 'spi_controller'):
 			with m.State('IDLE'):
 				m.d.sync += clk.eq(1)
 				with m.If(self.xfr):
@@ -92,8 +116,8 @@ class SPIInterface(Elaboratable):
 					m.next = 'IDLE'
 
 		m.d.comb += [
-			self._spi.clk.o.eq(clk),
-			self._spi.cs.o.eq(self.cs),
+			self._clk.eq(clk),
+			self._cs.eq(self.cs),
 		]
 
 		return m
