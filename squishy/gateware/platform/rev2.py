@@ -221,8 +221,8 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			# NOTE(aki): The clk can be driven by the MCU *or* the FPGA, which
 			# might cause issues, we need to have an interlock
 			Subsignal('clk',      Pins('U2', dir = 'io')),
-			Subsignal('copi',     Pins('W2', dir = 'i')),
-			Subsignal('cipo',     Pins('V2', dir = 'o')),
+			Subsignal('copi',     Pins('W2', dir = 'io')),
+			Subsignal('cipo',     Pins('V2', dir = 'io')),
 			Subsignal('attn',    PinsN('T2', dir = 'i')), # This is the CS for the FPGA
 			Subsignal('psram',   PinsN('Y2', dir = 'o')), # The bitstram cache PSRAM CS from our side
 			Subsignal('su_attn',  Pins('W1', dir = 'o')),
