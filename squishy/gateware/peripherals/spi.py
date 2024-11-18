@@ -14,6 +14,7 @@ from ..platform        import SquishyPlatformType
 
 __all__ = (
 	'SPIController',
+	'SPIPeripheral'
 )
 
 
@@ -118,6 +119,108 @@ class SPIController(Elaboratable):
 		m.d.comb += [
 			self._clk.eq(clk),
 			self._cs.eq(self.cs),
+		]
+
+		return m
+
+
+class SPIPeripheral(Elaboratable):
+	'''
+
+	Attributes
+	----------
+
+	'''
+
+	def __init__(self, *, clk: Signal, cipo: Signal, copi: Signal, cs: Signal, reg_map: Multiplexer | None = None) -> None:
+		self._clk  = clk
+		self._cipo = cipo
+		self._copi = copi
+		self._cs   = cs
+
+		self._reg_bus = reg_map.bus
+
+	def elaborate(self, _: SquishyPlatformType | None) -> Module:
+		m = Module()
+
+		m.domains.spi = ClockDomain()
+
+		addr       = Signal(self._reg_bus.addr_width)
+		addr_cntr  = Signal(range(self._reg_bus.addr_width))
+		wait_cntr  = Signal(range(8))
+		data_read  = Signal(self._reg_bus.data_width) # Out to the SPI Bus
+		data_write = Signal.like(data_read)           # In from the SPI Bus
+		data_cntr  = Signal(range(data_write.width))
+
+		with m.FSM(name = 'spi_peripheral', domain = 'spi'):
+			with m.State('IDLE'):
+				with m.If(self._cs):
+					m.d.spi += [
+						addr.eq(0),
+						addr_cntr.eq(0),
+					]
+					m.next = 'READ_ADDR'
+
+			with m.State('READ_ADDR'):
+				m.d.spi += [
+					addr_cntr.eq(addr_cntr + 1),
+					addr.eq(Cat(self._copi, addr.shift_left(1))),
+				]
+
+				with m.If(addr_cntr == (addr.width - 1)):
+					if (addr.width & 0b111):
+						m.d.spi += [ wait_cntr.eq(0), ]
+						m.next = 'WAIT_DATA'
+					else:
+						# This and the identical block in `WAIT_DATA` can't be in their own state
+						# due to cycle timing, so alas, we duplicate
+						m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
+						m.d.spi  += [ data_read.eq(self._reg_bus.r_data), ]
+						m.next = 'READ_DATA'
+
+			with m.State('WAIT_DATA'):
+				m.d.spi += [
+					wait_cntr.eq(wait_cntr + 1),
+				]
+
+				with m.If(wait_cntr == 7 - (addr.width & 0b111)):
+					m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
+					m.d.spi  += [ data_read.eq(self._reg_bus.r_data), ]
+					m.next = 'READ_DATA'
+
+			with m.State('READ_DATA'):
+				m.d.spi += [
+					data_cntr.eq(data_cntr + 1),
+					# Wiggle in the `data_write` value
+					data_write.eq(Cat(self._copi, data_write.shift_left(1))),
+					# Wiggle out the `data_read` value
+					self._cipo.eq(data_read.bit_select(data_cntr, 1)),
+				]
+
+				with m.If(data_cntr == (data_write.width - 1)):
+					with m.If(self._cs):
+						m.d.spi += [
+							addr.eq(addr + 1),
+							data_cntr.eq(0),
+							data_read.eq(self._reg_bus.r_data),
+						]
+						m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
+						# If we're still selected, then give the address uppies and read the next register out
+					with m.Else():
+						m.next = 'STORE_DATA'
+
+			with m.State('STORE_DATA'):
+				m.d.spi += [ self._reg_bus.w_data.eq(data_write), ]
+				m.d.comb += [ self._reg_bus.w_stb.eq(1), ]
+
+				m.next = 'IDLE'
+
+
+		m.d.comb += [
+			ResetSignal('spi').eq(ClockDomain('sync').rst),
+			ClockSignal('spi').eq(self._clk),
+
+			self._reg_bus.addr.eq(addr),
 		]
 
 		return m
