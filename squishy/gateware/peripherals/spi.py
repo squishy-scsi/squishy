@@ -13,14 +13,76 @@ from torii.lib.cdc     import FFSynchronizer
 from ..platform        import SquishyPlatformType
 
 __all__ = (
+	'SPIInterface',
+	'SPIInterfaceMode',
 	'SPIController',
 	'SPIPeripheral'
 )
 
+@unique
+class SPIInterfaceMode(Flag):
+	CONTROLLER = auto()
+	PERIPHERAL = auto()
+	BOTH       = CONTROLLER | PERIPHERAL
 
 class SPIInterface(Elaboratable):
 	'''
 	Generic SPI interface.
+
+
+	Attributes
+	----------
+	active_mode: Signal
+
+	'''
+
+	def __init__(
+		self, *,
+		clk: Subsignal, cipo: Subsignal, copi: Subsignal, cs_peripheral: Subsignal, cs_controller: Subsignal,
+		mode: SPIInterfaceMode = SPIInterfaceMode.BOTH, reg_map: Multiplexer | None = None
+	) -> None:
+
+		# Subsignals for SPI Bus from SPI Resource
+		self._clk  = clk
+		self._cipo = cipo
+		self._copi = copi
+		self._cs_peripheral = cs_peripheral
+		self._cs_controller = cs_controller
+
+		self._mode = mode
+
+		if self._mode == SPIInterfaceMode.BOTH:
+			self.active_mode = Signal(decoder = lambda i: 'ctrl' if i == 1 else 'perh')
+
+		if self._mode & SPIInterfaceMode.CONTROLLER:
+			self.controller = SPIController(
+				clk = self._clk.o, cipo = self._cipo.i, copi = self._copi.o, cs = self._cs_controller.o
+			)
+
+		if self._mode & SPIInterfaceMode.PERIPHERAL:
+			self.peripheral = SPIPeripheral(
+				clk = self._clk.i, cipo = self._cipo.o, copi = self._copi.i, cs = self._cs_peripheral.i,
+				reg_map = reg_map
+			)
+
+	def elaborate(self, _: SquishyPlatformType | None) -> Module:
+		m = Module()
+
+		if self._mode & SPIInterfaceMode.CONTROLLER:
+			m.submodules.ctrl = self.controller
+
+		if self._mode & SPIInterfaceMode.PERIPHERAL:
+			m.submodules.perh = self.peripheral
+
+		if self._mode == SPIInterfaceMode.BOTH:
+			# active_mode: 1 = Controller; 0 = Peripheral
+			m.d.comb += [
+				self._clk.oe.eq(self.active_mode),
+				self._cipo.oe.eq(~self.active_mode),
+				self._copi.oe.eq(self.active_mode),
+			]
+
+		return m
 
 
 class SPIController(Elaboratable):
