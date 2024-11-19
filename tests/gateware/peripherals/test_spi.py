@@ -1,9 +1,11 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii                            import Signal
+from torii                            import Signal, Module, Elaboratable
 from torii.sim                        import Settle
 from torii.test                       import ToriiTestCase
 from torii.test.mock                  import MockPlatform
+
+from torii.lib.soc.csr.bus            import Multiplexer, Element
 
 from squishy.gateware.peripherals.spi import SPIInterface, SPIController, SPIPeripheral, SPIInterfaceMode
 
@@ -73,3 +75,86 @@ class SPIControllerTests(ToriiTestCase):
 		yield self.dut.cs.eq(0)
 		yield Settle()
 		yield
+
+
+class TestRegisters(Multiplexer):
+	def __init__(self, *, name: str | None = None) -> None:
+
+		self._data_width = 8
+
+		if name is None:
+			name = type(self).__name__
+
+		super().__init__(addr_width = 2, data_width = self._data_width, name = name)
+
+		self._test1   = Element(self._data_width, Element.Access.RW,  name = 'test1')
+		self._test2   = Element(self._data_width, Element.Access.RW,  name = 'test2')
+
+
+		self.add(self._test1, addr = 0x0)
+		self.add(self._test2, addr = 0x1)
+
+		self.test1_r = Signal(8)
+		self.test1_w = Signal(8)
+		self.test2_r = Signal(8)
+		self.test2_w = Signal(8)
+
+	def elaborate(self, platform) -> Module:
+		m = super().elaborate(platform)
+
+		m.d.comb += [
+			self._test1.r_data.eq(self.test1_r),
+			self._test2.r_data.eq(self.test2_r),
+		]
+
+		with m.If(self._test1.w_stb):
+			m.d.sync += [ self.test1_w.eq(self._test1.w_data), ]
+
+		with m.If(self._test2.w_stb):
+			m.d.sync += [ self.test2_w.eq(self._test2.w_data), ]
+
+		return m
+
+
+
+class PeripheralDUTWrapper(Elaboratable):
+	def __init__(self) -> None:
+
+		self._reg_map = TestRegisters()
+		self._spi     = SPIPeripheral(
+			clk = clk, cipo = cipo, copi = copi, cs = cs, reg_map = self._reg_map
+		)
+
+		self.test1_r = self._reg_map.test1_r
+		self.test1_w = self._reg_map.test1_w
+		self.test2_r = self._reg_map.test2_r
+		self.test2_w = self._reg_map.test2_w
+
+	def elaborate(self, _) -> Module:
+		m = Module()
+
+		m.submodules.reg_map = self._reg_map
+		m.submodules.spi     = self._spi
+
+		return m
+
+class SPIPeripheralTests(ToriiTestCase):
+	dut: PeripheralDUTWrapper = PeripheralDUTWrapper
+	dut_args = { }
+	domains  = (('sync', 100e6), ('spi', 15e6))
+	platform = MockPlatform()
+
+	@ToriiTestCase.simulation
+	def test_spi_peripheral(self):
+
+		@ToriiTestCase.sync_domain(domain = 'sync')
+		def sync_domain(self: SPIPeripheralTests):
+			yield
+
+		@ToriiTestCase.sync_domain(domain = 'spi')
+		def spi_domain(self: SPIPeripheralTests):
+			yield
+
+
+		sync_domain(self)
+		spi_domain(self)
