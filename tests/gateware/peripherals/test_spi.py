@@ -20,7 +20,6 @@ class SPIControllerTests(ToriiTestCase):
 	}
 	platform = MockPlatform()
 
-
 	def send_recv(self, d_out, d_in, ovlp = False):
 		self.assertEqual((yield clk), 1)
 		yield self.dut.wdat.eq(d_out)
@@ -52,7 +51,7 @@ class SPIControllerTests(ToriiTestCase):
 
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'sync')
-	def test_spi(self):
+	def test_spi_controller(self):
 		yield
 		self.assertEqual((yield clk), 1)
 		yield self.dut.cs.eq(1)
