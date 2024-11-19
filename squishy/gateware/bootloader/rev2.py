@@ -133,6 +133,21 @@ class Rev2(Elaboratable):
 	def elaborate(self, platform: SquishyPlatformType | None) -> Module:
 		m = Module()
 
+		sup_int = platform.request('supervisor', 0)
+
+		su_attn = sup_int.su_attn.o
+		dfu_trg = sup_int.dfu_trg.o
+
+		m.submodules.regs = regs = SupervisorRegisters(name = 'supervisor')
+		m.submodules.spi  = spi  = SPIInterface(
+			clk = sup_int.clk, cipo = sup_int.cipo, copi = sup_int.copi,
+			cs_peripheral = sup_int.attn, cs_controller = sup_int.psram,
+			mode = SPIInterfaceMode.BOTH, reg_map = regs
+		)
+
+		spi_ctrl = spi.controller
+		spi_perh = spi.peripheral
+
 
 
 		return m
