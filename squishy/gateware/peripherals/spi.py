@@ -207,6 +207,16 @@ class SPIPeripheral(Elaboratable):
 
 		m.domains.spi = ClockDomain()
 
+		clk     = Signal.like(self._clk)
+		clk_dly = Signal.like(clk)
+		cs      = Signal.like(self._cs)
+		copi    = Signal.like(self._copi)
+		cipo    = self._cipo
+
+		m.submodules.clk_ff  = FFSynchronizer(self._clk,   clk, o_domain = 'sync')
+		m.submodules.cs_ff   = FFSynchronizer(self._cs,     cs, o_domain = 'sync')
+		m.submodules.copi_ff = FFSynchronizer(self._copi, copi, o_domain = 'sync')
+
 		addr       = Signal(self._reg_bus.addr_width)
 		addr_cntr  = Signal(range(self._reg_bus.addr_width))
 		wait_cntr  = Signal(range(8))
@@ -214,69 +224,77 @@ class SPIPeripheral(Elaboratable):
 		data_write = Signal.like(data_read)           # In from the SPI Bus
 		data_cntr  = Signal(range(data_write.width))
 
-		with m.FSM(name = 'spi_peripheral', domain = 'spi'):
+		with m.FSM(name = 'spi_peripheral'):
 			with m.State('IDLE'):
-				with m.If(self._cs):
-					m.d.spi += [
+				with m.If(cs):
+					m.d.sync += [
 						addr.eq(0),
 						addr_cntr.eq(0),
 					]
 					m.next = 'READ_ADDR'
 
 			with m.State('READ_ADDR'):
-				m.d.spi += [
-					addr_cntr.eq(addr_cntr + 1),
-					addr.eq(Cat(self._copi, addr.shift_left(1))),
-				]
+				with m.If(clk & ~clk_dly):
+					m.d.sync += [
+						addr_cntr.eq(addr_cntr + 1),
+						addr.eq(Cat(copi, addr.shift_left(1))),
+					]
 
-				with m.If(addr_cntr == (addr.width - 1)):
-					if (addr.width & 0b111):
-						m.d.spi += [ wait_cntr.eq(0), ]
-						m.next = 'WAIT_DATA'
-					else:
-						# This and the identical block in `WAIT_DATA` can't be in their own state
-						# due to cycle timing, so alas, we duplicate
-						m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
-						m.d.spi  += [ data_read.eq(self._reg_bus.r_data), ]
-						m.next = 'READ_DATA'
+					with m.If(addr_cntr == (addr.width - 1)):
+						if (addr.width & 0b111):
+							m.d.sync += [ wait_cntr.eq(0), ]
+							m.next = 'WAIT_DATA'
+						else:
+							m.next = 'PREPARE_DATA'
 
 			with m.State('WAIT_DATA'):
-				m.d.spi += [
-					wait_cntr.eq(wait_cntr + 1),
-				]
+				with m.If(clk & ~clk_dly):
+					m.d.sync += [ wait_cntr.eq(wait_cntr + 1), ]
+					with m.If(wait_cntr == 7 - (addr.width & 0b111)):
+						m.next = 'PREPARE_DATA'
 
-				with m.If(wait_cntr == 7 - (addr.width & 0b111)):
+			with m.State('PREPARE_DATA'):
+				with m.If(~clk & clk_dly):
 					m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
-					m.d.spi  += [ data_read.eq(self._reg_bus.r_data), ]
-					m.next = 'READ_DATA'
+					m.d.sync  += [ data_read.eq(self._reg_bus.r_data), ]
+					m.next = 'XFR_DATA'
 
-			with m.State('READ_DATA'):
-				m.d.spi += [
-					data_cntr.eq(data_cntr + 1),
-					# Wiggle in the `data_write` value
-					data_write.eq(Cat(self._copi, data_write.shift_left(1))),
-					# Wiggle out the `data_read` value
-					self._cipo.eq(data_read.bit_select(data_cntr, 1)),
-				]
+			with m.State('XFR_DATA'):
 
-				with m.If(data_cntr == (data_write.width - 1)):
-					with m.If(self._cs):
-						m.d.spi += [
-							addr.eq(addr + 1),
-							data_cntr.eq(0),
-							data_read.eq(self._reg_bus.r_data),
-						]
-						m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
-						# If we're still selected, then give the address uppies and read the next register out
-					with m.Else():
-						m.next = 'STORE_DATA'
+				with m.If(clk & ~clk_dly):
+					m.d.sync += [
+						# Wiggle in the `data_write` value
+						data_write.eq(Cat(copi, data_write.shift_left(1))),
+					]
+
+				with m.Elif(~clk & clk_dly):
+					m.d.sync += [
+						data_cntr.eq(data_cntr + 1),
+						# Wiggle out the `data_read` value
+						cipo.eq(data_read.bit_select(data_cntr, 1)),
+					]
+
+					with m.If(data_cntr == (data_write.width - 1)):
+						with m.If(cs):
+							m.d.sync += [
+								addr.eq(addr + 1),
+								data_cntr.eq(0),
+								data_read.eq(self._reg_bus.r_data),
+							]
+							m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
+							# If we're still selected, then give the address uppies and read the next register out
+						with m.Else():
+							m.next = 'STORE_DATA'
 
 			with m.State('STORE_DATA'):
-				m.d.spi += [ self._reg_bus.w_data.eq(data_write), ]
+				m.d.sync += [ self._reg_bus.w_data.eq(data_write), ]
 				m.d.comb += [ self._reg_bus.w_stb.eq(1), ]
 
 				m.next = 'IDLE'
 
+		m.d.sync += [
+			clk_dly.eq(clk), # Generate the delayed clock by one cycle for edge detection
+		]
 
 		m.d.comb += [
 			ResetSignal('spi').eq(ClockDomain('sync').rst),
