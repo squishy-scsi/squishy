@@ -21,18 +21,54 @@ __all__ = (
 
 @unique
 class SPIInterfaceMode(Flag):
+	''' The operating mode for ``SPIInterface`` '''
 	CONTROLLER = auto()
+	''' Enable the ``SPIController`` inside ``SPIInterface`` '''
 	PERIPHERAL = auto()
+	''' Enable the ``SPIPeripheral`` inside ``SPIInterface`` '''
 	BOTH       = CONTROLLER | PERIPHERAL
+	''' Enable both the ``SPIController`` and the ``SPIPeripheral`` inside ``SPIInterface`` '''
+
 
 class SPIInterface(Elaboratable):
 	'''
-	Generic SPI interface.
+	An SPI interface that can act as both an SPI controller and/or an SPI peripheral.
 
+	Parameters
+	----------
+	clk : Subsignal, inout
+		The SPI bus clock line.
+
+	cipo : Subsignal, inout
+		The SPI bus CIPO line.
+
+	copi : Subsignal, inout
+		The SPI bus COPI line.
+
+	cs_peripheral : Subsignal, in
+		The chip-select signal to route to the SPIPeripheral
+
+	cs_controller : Subsignal, out
+		The chip-select signal to route out from the SPIController
+
+	mode : SPIInterfaceMode
+		The mode this SPI interface represents, either a SPI Controller, a SPI Peripheral, or both.
+
+	reg_map : torii.lib.soc.csr.Multiplexer | None
+		The CSR register map to feed the ``SPIPeripheral`` if mode is either ``PERIPHERAL`` or ``BOTH``
 
 	Attributes
 	----------
 	active_mode: Signal
+		This signal is only present if ``mode`` is ``BOTH``. It controls the output-enables for the COPI,
+		CIPO, and CLK lines depending if it is high, for the controller, or low, for the peripheral.
+
+
+	controller : SPIController
+		The ``SPIController`` module if ``mode`` is ``CONTROLLER`` or ``BOTH``.
+
+	peripheral : SPIPeripheral
+		The ``SPIPeripheral`` module if ``mode`` is ``PERIPHERAL`` or ``BOTH``.
 
 	'''
 
@@ -189,8 +225,25 @@ class SPIController(Elaboratable):
 class SPIPeripheral(Elaboratable):
 	'''
 
-	Attributes
+	A SPI peripheral that exposes a set of registers to the SPI bus.
+
+	Parameters
 	----------
+
+	clk : Signal, in
+		The incoming SPI Bus clock signal
+
+	cipo : Signal, out
+		The output from the SPI peripheral to the bus.
+
+	copi : Signal, in
+		The input from the controller on the SPI bus to the peripheral.
+
+	cs : Signal, in
+		The chip-select signal from the SPI bus to indicate this peripheral should be active.
+
+	reg_map : torii.lib.soc.csr.Multiplexer
+		The CSR register map to expose to the SPI bus.
 
 	'''
 
