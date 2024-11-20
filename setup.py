@@ -48,7 +48,7 @@ setup(
 		'arrow',
 		'libusb1>=1.8.1',
 		'rich',
-		'torii>=0.6.0,<1.0',
+		'torii>=0.7.1,<1.0',
 		'usb-construct<1.0',
 		'sol-usb>=0.4.0,<1.0',
 		'platformdirs~=4.2.1'
