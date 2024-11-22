@@ -7,7 +7,7 @@ from torii.test.mock                  import MockPlatform
 
 from torii.lib.soc.csr.bus            import Multiplexer, Element
 
-from squishy.gateware.peripherals.spi import SPIInterface, SPIController, SPIPeripheral, SPIInterfaceMode
+from squishy.gateware.peripherals.spi import SPIInterface, SPIController, SPIPeripheral, SPIInterfaceMode, SPICPOL
 
 clk  = Signal()
 cs   = Signal()
@@ -15,10 +15,10 @@ copi = Signal()
 cipo = Signal()
 
 
-class SPIControllerTests(ToriiTestCase):
+class SPIControllerCLKHighTests(ToriiTestCase):
 	dut: SPIController = SPIController
 	dut_args = {
-		'clk': clk, 'cipo': cipo, 'copi': copi, 'cs': cs,
+		'clk': clk, 'cipo': cipo, 'copi': copi, 'cs': cs, 'cpol': SPICPOL.HIGH
 	}
 	platform = MockPlatform()
 
