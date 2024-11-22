@@ -215,6 +215,7 @@ class SPIController(Elaboratable):
 
 		bit   = Signal(range(8))
 		clk   = Signal(reset = int(self._cpol), name = 'spi_clk')
+		xfrph = Signal()
 
 		copi = self._copi
 		cipo = self._cipo
@@ -231,17 +232,19 @@ class SPIController(Elaboratable):
 					m.d.sync += d_out.eq(self.wdat)
 					m.next = 'XFR'
 			with m.State('XFR'):
-				with m.If(clk):
+				with m.If(xfrph == 0):
 					m.d.sync += [
 						clk.eq(0 if self._cpha == SPICPHA.RISING else 1),
 						bit.eq(bit + 1),
 						copi.eq(d_out[7]),
+						xfrph.eq(1),
 					]
 				with m.Else():
 					m.d.sync += [
 						clk.eq(1 if self._cpha == SPICPHA.RISING else 0),
 						d_out.eq(d_out.shift_left(1)),
 						d_in.eq(Cat(cipo, d_in[:-1])),
+						xfrph.eq(0),
 					]
 					with m.If(bit == 0):
 						m.next = 'DONE'
