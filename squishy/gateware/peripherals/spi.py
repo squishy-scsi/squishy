@@ -4,7 +4,7 @@
 
 '''
 
-from enum              import Flag, auto, unique
+from enum              import IntEnum, Flag, auto, unique
 
 from torii             import Elaboratable, Signal, Module, Cat, ResetSignal, ClockSignal, ClockDomain
 from torii.build       import Subsignal
@@ -16,7 +16,10 @@ __all__ = (
 	'SPIInterface',
 	'SPIInterfaceMode',
 	'SPIController',
-	'SPIPeripheral'
+	'SPIPeripheral',
+
+	'SPICPOL',
+	'SPICPHA',
 )
 
 @unique
@@ -29,6 +32,21 @@ class SPIInterfaceMode(Flag):
 	BOTH       = CONTROLLER | PERIPHERAL
 	''' Enable both the ``SPIController`` and the ``SPIPeripheral`` inside ``SPIInterface`` '''
 
+@unique
+class SPICPOL(IntEnum):
+	''' The state of the electrical idle for the SPI controller clock '''
+	LOW  = 0
+	''' SPI Controller clock is electrical idle high '''
+	HIGH = 1
+	''' SPI Controller clock is electrical idle low '''
+
+@unique
+class SPICPHA(IntEnum):
+	''' The phase of the SPI controller clock '''
+	RISING = 0
+	''' Data is sampled on the rising edge '''
+	FALLING = 1
+	''' Data is sampled on the falling edge '''
 
 class SPIInterface(Elaboratable):
 	'''
@@ -54,6 +72,12 @@ class SPIInterface(Elaboratable):
 	mode : SPIInterfaceMode
 		The mode this SPI interface represents, either a SPI Controller, a SPI Peripheral, or both.
 
+	cpol : SPICPOL
+		The SPI bus clock electrical idle. (default: HIGH)
+
+	cpha : SPICPHA
+		The SPI bus clock phase. (default: RISING)
+
 	reg_map : torii.lib.soc.csr.Multiplexer | None
 		The CSR register map to feed the ``SPIPeripheral`` if mode is either ``PERIPHERAL`` or ``BOTH``
 
@@ -75,7 +99,8 @@ class SPIInterface(Elaboratable):
 	def __init__(
 		self, *,
 		clk: Subsignal, cipo: Subsignal, copi: Subsignal, cs_peripheral: Subsignal, cs_controller: Subsignal,
-		mode: SPIInterfaceMode = SPIInterfaceMode.BOTH, reg_map: Multiplexer | None = None
+		mode: SPIInterfaceMode = SPIInterfaceMode.BOTH, cpol: SPICPOL = SPICPOL.HIGH, cpha: SPICPHA = SPICPHA.RISING,
+		reg_map: Multiplexer | None = None
 	) -> None:
 
 		# Subsignals for SPI Bus from SPI Resource
@@ -86,13 +111,16 @@ class SPIInterface(Elaboratable):
 		self._cs_controller = cs_controller
 
 		self._mode = mode
+		self._cpol = cpol
+		self._cpha = cpha
 
 		if self._mode == SPIInterfaceMode.BOTH:
 			self.active_mode = Signal(decoder = lambda i: 'ctrl' if i == 1 else 'perh')
 
 		if self._mode & SPIInterfaceMode.CONTROLLER:
 			self.controller = SPIController(
-				clk = self._clk.o, cipo = self._cipo.i, copi = self._copi.o, cs = self._cs_controller.o
+				clk = self._clk.o, cipo = self._cipo.i, copi = self._copi.o, cs = self._cs_controller.o,
+				cpol = self._cpol, cpha = self._cpha
 			)
 
 		if self._mode & SPIInterfaceMode.PERIPHERAL:
@@ -120,7 +148,6 @@ class SPIInterface(Elaboratable):
 
 		return m
 
-
 class SPIController(Elaboratable):
 	'''
 
@@ -140,6 +167,12 @@ class SPIController(Elaboratable):
 	cs : Signal, out
 		The selection signal for the device on the SPI bus.
 
+	cpol : SPICPOL
+		The SPI bus clock electrical idle. (default: HIGH)
+
+	cpha : SPICPHA
+		The SPI bus clock phase. (default: RISING)
+
 	Attributes
 	----------
 	cs : Signal
@@ -158,11 +191,18 @@ class SPIController(Elaboratable):
 		Read data register.
 	'''
 
-	def __init__(self, *, clk: Signal, cipo: Signal, copi: Signal, cs: Signal) -> None:
+	def __init__(
+		self, *,
+		clk: Signal, cipo: Signal, copi: Signal, cs: Signal, cpol: SPICPOL = SPICPOL.HIGH, cpha: SPICPHA = SPICPHA.RISING
+	) -> None:
+
 		self._clk  = clk
 		self._cipo = cipo
 		self._copi = copi
 		self._cs   = cs
+
+		self._cpol = cpol
+		self._cpha = cpha
 
 		self.cs   = Signal()
 		self.xfr  = Signal()
@@ -173,8 +213,8 @@ class SPIController(Elaboratable):
 	def elaborate(self, _: SquishyPlatformType | None) -> Module:
 		m = Module()
 
-		bit = Signal(range(8))
-		clk = Signal(reset = 1)
+		bit   = Signal(range(8))
+		clk   = Signal(reset = int(self._cpol), name = 'spi_clk')
 
 		copi = self._copi
 		cipo = self._cipo
@@ -186,20 +226,20 @@ class SPIController(Elaboratable):
 
 		with m.FSM(name = 'spi_controller'):
 			with m.State('IDLE'):
-				m.d.sync += clk.eq(1)
+				m.d.sync += clk.eq(int(self._cpol))
 				with m.If(self.xfr):
 					m.d.sync += d_out.eq(self.wdat)
 					m.next = 'XFR'
 			with m.State('XFR'):
 				with m.If(clk):
 					m.d.sync += [
-						clk.eq(0),
+						clk.eq(0 if self._cpha == SPICPHA.RISING else 1),
 						bit.eq(bit + 1),
 						copi.eq(d_out[7]),
 					]
 				with m.Else():
 					m.d.sync += [
-						clk.eq(1),
+						clk.eq(1 if self._cpha == SPICPHA.RISING else 0),
 						d_out.eq(d_out.shift_left(1)),
 						d_in.eq(Cat(cipo, d_in[:-1])),
 					]
