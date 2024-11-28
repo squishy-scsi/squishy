@@ -250,7 +250,8 @@ class SPIController(Elaboratable):
 						m.next = 'DONE'
 			with m.State('DONE'):
 				m.d.comb += self.done.eq(1)
-				m.d.sync += self.rdat.eq(d_in)
+				m.d.sync += [ self.rdat.eq(d_in), clk.eq(int(self._cpol)) ]
+
 				with m.If(self.xfr):
 					m.d.sync += d_out.eq(self.wdat)
 					m.next = 'XFR'
