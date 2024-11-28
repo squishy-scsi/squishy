@@ -18,12 +18,14 @@ __all__ = (
 )
 
 
-# NOTE(aki): This needs torii main, so we're stubbing it out for now
-# class CtrlRegister(Record):
-# 	erase: Signal[1, Direction.FANOUT]
-#
-# class StatusRegister(Record):
-# 	erase_done: Signal[1, Direction.FANIN]
+class CtrlRegister(Record):
+	erase: Signal[1, Direction.FANOUT]
+	_rsvd: Signal[7, Direction.FANOUT]
+
+class StatusRegister(Record):
+	erase_done: Signal[1, Direction.FANIN]
+	_rsvd: Signal[7, Direction.FANOUT]
+
 
 class SupervisorRegisters(Multiplexer):
 	def __init__(self, *, name: str | None = None) -> None:
@@ -44,12 +46,9 @@ class SupervisorRegisters(Multiplexer):
 		self.dest_slot = Signal(4)
 		self.txlen     = Signal(16)
 
-		# NOTE(aki): See note above
-		# self.ctrl      = CtrlRegister()
-		# self.status    = StatusRegister()
+		self.ctrl      = CtrlRegister()
+		self.status    = StatusRegister()
 
-		self.ctrl      = Signal(8)
-		self.status    = Signal(8)
 
 	def elaborate(self, platform: SquishyPlatformType | None) -> Module:
 		m = super().elaborate(platform)
