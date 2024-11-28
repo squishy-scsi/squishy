@@ -93,16 +93,11 @@ class SPIControllerCLKLowTests(ToriiTestCase):
 		yield self.dut.xfr.eq(0)
 		yield Settle()
 		yield
-		self.assertEqual((yield clk), 0)
-		yield cipo.eq((d_in >> 6) & 1)
-		yield Settle()
-		yield
-		self.assertEqual((yield clk), 0)
-		self.assertEqual((yield copi), ((d_out >> 6) & 1))
-		yield Settle()
-		yield
-		for bit in range(1, 7):
-			self.assertEqual((yield clk), 1)
+		for bit in range(8):
+			if bit == 0:
+				self.assertEqual((yield clk), 0)
+			else:
+				self.assertEqual((yield clk), 1)
 			yield cipo.eq((d_in >> (7 - bit)) & 1)
 			yield Settle()
 			yield
@@ -111,15 +106,11 @@ class SPIControllerCLKLowTests(ToriiTestCase):
 			yield Settle()
 			yield
 		self.assertEqual((yield clk), 1)
-		yield Settle()
-		yield
-		yield Settle()
-		yield
 		self.assertEqual((yield self.dut.done), 1)
 		if not ovlp:
 			yield Settle()
 			yield
-			self.assertEqual((yield clk), 1)
+			self.assertEqual((yield clk), 0)
 			self.assertEqual((yield self.dut.done), 0)
 			self.assertEqual((yield self.dut.rdat), d_in)
 		yield Settle()
