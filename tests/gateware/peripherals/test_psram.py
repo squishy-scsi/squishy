@@ -22,11 +22,18 @@ cipo = Signal()
 class DUTWrapper(Elaboratable):
 	def __init__(self) -> None:
 
-		self._fifo  = AsyncFIFO(width = 8, depth = 4096, r_domain = 'sync', w_domain = 'sync')
+		self._write_fifo = AsyncFIFO(
+			width = 8, depth = len(_PSRAM_DATA), r_domain = 'sync', w_domain = 'sync'
+		)
+		self._read_fifo  = AsyncFIFO(
+			width = 8, depth = len(_PSRAM_DATA) // 2, r_domain = 'sync', w_domain = 'sync'
+		)
 		self._spi   = SPIController(
 			clk = clk, cipo = cipo, copi = copi, cs = cs, cpol = SPICPOL.LOW
 		)
-		self._psram = SPIPSRAM(controller = self._spi, fifo = self._fifo)
+		self._psram = SPIPSRAM(
+			controller = self._spi, write_fifo = self._write_fifo, read_fifo = self._read_fifo
+		)
 
 
 		self.ready      = self._psram.ready
@@ -45,11 +52,12 @@ class DUTWrapper(Elaboratable):
 	def elaborate(self, _) -> Module:
 		m = Module()
 
-		m.submodules.fifo  = self._fifo
+		m.submodules.write_fifo = self._write_fifo
+		m.submodules.read_fifo  = self._read_fifo
 		m.submodules.spi   = self._spi
 		m.submodules.psram = self._psram
 
-		with m.If(self._fifo.w_en):
+		with m.If(self._write_fifo.w_en | self._read_fifo.w_en):
 			m.d.sync += [ self.itr.inc(), ]
 
 		return m
@@ -61,14 +69,14 @@ class SPIPSRAMTests(ToriiTestCase):
 	domains = (('sync', 60e6), )
 	platform = MockPlatform()
 
-	def fill_fifo(self, byte: int, idx: int):
+	def fill_write_fifo(self, byte: int, idx: int):
 		final   = idx == len(_PSRAM_DATA) - 1
 		do_cont = (idx & 1023) != 1023
 
-		yield self.dut._fifo.w_en.eq(1)
-		yield self.dut._fifo.w_data.eq(byte)
+		yield self.dut._write_fifo.w_en.eq(1)
+		yield self.dut._write_fifo.w_data.eq(byte)
 		yield
-		yield self.dut._fifo.w_en.eq(0)
+		yield self.dut._write_fifo.w_en.eq(0)
 		yield from self.step(3)
 
 		yield from self.spi_trans(
@@ -167,22 +175,22 @@ class SPIPSRAMTests(ToriiTestCase):
 		self.assertEqual((yield cs), 0)
 		yield
 		yield from self.spi_trans(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True)
-		self.assertEqual((yield self.dut._fifo.r_rdy), 0)
+		self.assertEqual((yield self.dut._write_fifo.r_rdy), 0)
 		yield
 		yield Settle()
 		self.assertEqual((yield cs), 1)
 		self.assertEqual((yield clk), 0)
-		self.assertEqual((yield self.dut._fifo.r_rdy), 0)
+		self.assertEqual((yield self.dut._write_fifo.r_rdy), 0)
 		self.assertEqual((yield cs), 1)
 		self.assertEqual((yield clk), 0)
 		yield
 		yield Settle()
-		self.assertEqual((yield self.dut._fifo.r_rdy), 0)
+		self.assertEqual((yield self.dut._write_fifo.r_rdy), 0)
 		self.assertEqual((yield cs), 1)
 		self.assertEqual((yield clk), 0)
 
 		for idx, byte in enumerate(_PSRAM_DATA):
-			yield from self.fill_fifo(byte, idx)
+			yield from self.fill_write_fifo(byte, idx)
 
 		self.assertEqual((yield self.dut.done), 1)
 		# Check to ensure SPI bus is idle, again
@@ -201,3 +209,93 @@ class SPIPSRAMTests(ToriiTestCase):
 		yield
 		yield Settle()
 		yield
+
+	@ToriiTestCase.simulation
+	@ToriiTestCase.sync_domain(domain = 'sync')
+	def test_psram_read(self):
+		self.skipTest('Incomplete - Needs FIFO Draining')
+		yield
+		# Check to ensure SPI bus is idle
+		self.assertEqual((yield clk),  0)
+		self.assertEqual((yield cs),   0)
+		self.assertEqual((yield copi), 0)
+		self.assertEqual((yield cipo), 0)
+		# Setup the PSRAM Address stuff
+		yield self.dut._psram.start_addr.eq(0xA5A5A5)
+		yield self.dut.rst_addrs.eq(1)
+		yield Settle()
+		yield
+		yield self.dut.rst_addrs.eq(0)
+		yield Settle()
+		yield
+		# Start a read
+		yield self.dut.start_r.eq(1)
+		yield self.dut.byte_count.eq(len(_PSRAM_DATA))
+		yield Settle()
+		yield
+		yield self.dut.start_r.eq(0)
+		yield Settle()
+		self.assertEqual((yield self.dut.curr_addr), 0xA5A5A5)
+		self.assertEqual((yield self.dut.start_addr), 0xA5A5A5)
+		self.assertEqual((yield cs), 0)
+		yield
+		yield from self.spi_trans(copi_data = (SPIPSRAMCmd.READ, 0xA5, 0xA5, 0xA5), partial = True)
+
+		for idx, byte in enumerate(_PSRAM_DATA):
+			final   = idx == len(_PSRAM_DATA) - 1
+			do_cont = (idx & 1023) != 1023
+
+			if idx == 0:
+				yield
+
+			if (yield self.dut._read_fifo.w_rdy) == 0:
+				pass
+
+			yield from self.spi_trans(cipo_data = (byte,) , partial = do_cont, continuation = True)
+
+			# We are wrapping addresses
+			if not do_cont:
+				# yield Settle()
+				# self.assertEqual((yield cs), 0)
+				# yield
+
+				if not final:
+					yield from self.spi_trans(
+						copi_data = (SPIPSRAMCmd.READ, *(idx + 0xA5A5A6).to_bytes(3, byteorder = 'big')), partial = True
+					)
+
+		# self.assertEqual((yield self.dut._read_fifo.w_rdy), 1)
+		# yield
+		# yield Settle()
+
+
+# 		self.assertEqual((yield cs), 1)
+# 		self.assertEqual((yield clk), 0)
+# 		self.assertEqual((yield self.dut._write_fifo.r_rdy), 0)
+# 		self.assertEqual((yield cs), 1)
+# 		self.assertEqual((yield clk), 0)
+# 		yield
+# 		yield Settle()
+# 		self.assertEqual((yield self.dut._write_fifo.r_rdy), 0)
+# 		self.assertEqual((yield cs), 1)
+# 		self.assertEqual((yield clk), 0)
+#
+
+
+		# self.assertEqual((yield self.dut.done), 1)
+		# # Check to ensure SPI bus is idle, again
+		# self.assertEqual((yield clk),  0)
+		# self.assertEqual((yield cs),   0)
+		# self.assertEqual((yield cipo), 0)
+		# # Set our transaction to be done
+		# yield self.dut.finish.eq(1)
+		# yield
+		# self.assertEqual((yield self.dut.done), 1)
+		# yield self.dut.finish.eq(0)
+		# yield Settle()
+		# yield
+		# self.assertEqual((yield self.dut.done), 0)
+		# yield Settle()
+		# yield
+		# yield Settle()
+		# yield
