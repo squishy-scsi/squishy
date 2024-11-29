@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii                            import Signal, Module, Elaboratable
+from torii                            import Signal, Module, Elaboratable, ClockDomain
 from torii.sim                        import Settle
 from torii.test                       import ToriiTestCase
 from torii.test.mock                  import MockPlatform
@@ -9,10 +9,10 @@ from torii.lib.soc.csr.bus            import Multiplexer, Element
 
 from squishy.gateware.peripherals.spi import SPIInterface, SPIController, SPIPeripheral, SPIInterfaceMode, SPICPOL
 
-clk  = Signal()
-cs   = Signal()
-copi = Signal()
-cipo = Signal()
+clk  = Signal(name = 'bus_clk' )
+cs   = Signal(name = 'bus_cs'  )
+copi = Signal(name = 'bus_copi')
+cipo = Signal(name = 'bus_cipo')
 
 
 class SPIControllerCLKHighTests(ToriiTestCase):
@@ -194,8 +194,12 @@ class PeripheralDUTWrapper(Elaboratable):
 		self.test2_r = self._reg_map.test2_r
 		self.test2_w = self._reg_map.test2_w
 
+		self.csr_bus = self._reg_map.bus
+
 	def elaborate(self, _) -> Module:
 		m = Module()
+
+		m.domains.test = ClockDomain()
 
 		m.submodules.reg_map = self._reg_map
 		m.submodules.spi     = self._spi
@@ -205,19 +209,103 @@ class PeripheralDUTWrapper(Elaboratable):
 class SPIPeripheralTests(ToriiTestCase):
 	dut: PeripheralDUTWrapper = PeripheralDUTWrapper
 	dut_args = { }
-	domains  = (('sync', 100e6), ('spi', 15e6))
+	domains  = (('sync', 100e6), ('test', 15e6))
 	platform = MockPlatform()
+
+	def send_recv(self, addr: int | None, data_in: int, data_out: int, term: bool = True):
+		self.assertEqual((yield clk), 0)
+		# Select the peripheral so we go into `READ_ADDR`
+		yield cs.eq(1)
+		yield
+		self.assertEqual((yield clk), 0)
+
+		if addr is not None:
+			for addr_bit in range(8):
+				yield copi.eq((addr >> addr_bit) & 1)
+				yield Settle()
+				yield
+				yield clk.eq(1)
+				yield Settle()
+				yield
+				yield clk.eq(0)
+
+		for bit in range(8):
+			yield copi.eq((data_in >> bit) & 1)
+			yield Settle()
+			yield
+			if bit >= 1:
+				self.assertEqual((yield cipo), ((data_out >> (bit - 1)) & 1))
+			yield clk.eq(1)
+			yield Settle()
+			yield
+			yield clk.eq(0)
+			yield Settle()
+		if term:
+			yield cs.eq(0)
+		yield Settle()
+		yield
+		self.assertEqual((yield cipo), ((data_out >> 7) & 1))
+
 
 	@ToriiTestCase.simulation
 	def test_spi_peripheral(self):
 
 		@ToriiTestCase.sync_domain(domain = 'sync')
 		def sync_domain(self: SPIPeripheralTests):
-			yield
+			csr_bus = self.dut.csr_bus
+			test1_r = self.dut.test1_r
+			test2_r = self.dut.test2_r
 
-		@ToriiTestCase.sync_domain(domain = 'spi')
+			test2_w = self.dut.test2_w
+
+			yield from self.wait_until_high(csr_bus.r_stb)
+			self.assertEqual((yield csr_bus.addr), 1)
+			yield
+			self.assertEqual((yield csr_bus.r_data), 0)
+			yield from self.wait_until_high(csr_bus.w_stb)
+			self.assertEqual((yield csr_bus.addr), 1)
+			self.assertEqual((yield csr_bus.w_data), 0xA5)
+			yield Settle()
+			yield
+			yield Settle()
+			self.assertEqual((yield test2_w), 0xA5)
+
+			# Load the registers with data
+			yield test1_r.eq(0x55)
+			yield test2_r.eq(0x0F)
+			yield from self.wait_until_high(csr_bus.r_stb)
+			self.assertEqual((yield csr_bus.addr), 0)
+			yield
+			self.assertEqual((yield csr_bus.r_stb), 0)
+			self.assertEqual((yield csr_bus.r_data), 0x55)
+			yield from self.wait_until_high(csr_bus.w_stb)
+			self.assertEqual((yield csr_bus.addr), 0)
+			self.assertEqual((yield csr_bus.w_data), 0xF0)
+			yield
+			self.assertEqual((yield csr_bus.r_stb), 1)
+			self.assertEqual((yield csr_bus.w_stb), 0)
+			self.assertEqual((yield csr_bus.addr), 1)
+			yield
+			self.assertEqual((yield csr_bus.r_data), 0x0F)
+			yield from self.wait_until_high(csr_bus.w_stb)
+			self.assertEqual((yield csr_bus.addr), 1)
+			self.assertEqual((yield csr_bus.w_data), 0xAA)
+
+
+		@ToriiTestCase.sync_domain(domain = 'test')
 		def spi_domain(self: SPIPeripheralTests):
 			yield
+			# Check to ensure SPI bus is idle
+			self.assertEqual((yield clk),  0)
+			self.assertEqual((yield cs),   0)
+			self.assertEqual((yield copi), 0)
+			self.assertEqual((yield cipo), 0)
+			yield Settle()
+			yield
+			yield from self.send_recv(1, 0xA5, 0x00)
+			yield
+			yield from self.send_recv(0, 0xF0, 0x55, False)
+			yield from self.send_recv(None, 0xAA, 0x0F, True)
 
 
 		sync_domain(self)
