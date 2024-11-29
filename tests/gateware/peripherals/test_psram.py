@@ -10,7 +10,7 @@ from torii.test                         import ToriiTestCase
 from torii.test.mock                    import MockPlatform
 
 from squishy.gateware.peripherals.spi   import SPIController, SPICPOL
-from squishy.gateware.peripherals.psram import SPIPSRAM
+from squishy.gateware.peripherals.psram import SPIPSRAM, SPIPSRAMCmd
 
 _PSRAM_DATA = randbytes(4096)
 
@@ -18,8 +18,6 @@ clk  = Signal()
 cs   = Signal()
 copi = Signal()
 cipo = Signal()
-
-
 
 class DUTWrapper(Elaboratable):
 	def __init__(self) -> None:
@@ -31,16 +29,17 @@ class DUTWrapper(Elaboratable):
 		self._psram = SPIPSRAM(controller = self._spi, fifo = self._fifo)
 
 
-		self.fill_fifo  = False
-
 		self.ready      = self._psram.ready
 		self.done       = self._psram.done
-		self.start      = self._psram.start
+		self.start_r    = self._psram.start_r
+		self.start_w    = self._psram.start_w
 		self.finish     = self._psram.finish
 		self.rst_addrs  = self._psram.rst_addrs
 		self.start_addr = self._psram.start_addr
 		self.curr_addr  = self._psram.curr_addr
 		self.byte_count = self._psram.byte_count
+
+		self.itr = Signal(range(len(_PSRAM_DATA)))
 
 
 	def elaborate(self, _) -> Module:
@@ -49,6 +48,9 @@ class DUTWrapper(Elaboratable):
 		m.submodules.fifo  = self._fifo
 		m.submodules.spi   = self._spi
 		m.submodules.psram = self._psram
+
+		with m.If(self._fifo.w_en):
+			m.d.sync += [ self.itr.inc(), ]
 
 		return m
 
@@ -59,59 +61,93 @@ class SPIPSRAMTests(ToriiTestCase):
 	domains = (('sync', 60e6), )
 	platform = MockPlatform()
 
-	def spi_trans(self, *,
-		copi: tuple[int, ...] | None = None, cipo: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False
-	):
-		if cipo is not None and copi is not None:
-			self.assertEqual(len(cipo), len(copi))
+	def fill_fifo(self, byte: int, idx: int):
+		final   = idx == len(_PSRAM_DATA) - 1
+		do_cont = (idx & 1023) != 1023
 
-		bytes = max(0 if copi is None else len(copi), 0 if cipo is None else len(cipo))
-		self.assertEqual((yield self.dut._psram._spi._clk), 0)
+		yield self.dut._fifo.w_en.eq(1)
+		yield self.dut._fifo.w_data.eq(byte)
+		yield
+		yield self.dut._fifo.w_en.eq(0)
+		yield from self.step(3)
+
+		yield from self.spi_trans(
+			copi_data = (byte,), partial = not final, continuation = True
+		)
+
+		# We are wrapping addresses
+		if not do_cont:
+			yield Settle()
+			self.assertEqual((yield cs), 0)
+			yield
+
+			if not final:
+				yield from self.spi_trans(
+					copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True
+				)
+
+	def spi_trans(self, *,
+		copi_data: tuple[int, ...] | None = None, cipo_data: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False
+	):
+		if cipo_data is not None and copi_data is not None:
+			self.assertEqual(len(cipo_data), len(copi_data))
+
+		bytes = max(0 if copi_data is None else len(copi_data), 0 if cipo_data is None else len(cipo_data))
+		self.assertEqual((yield clk), 0)
 		if continuation:
 			yield Settle()
-			self.assertEqual((yield self.dut._psram._spi._cs), 1)
+			self.assertEqual((yield cs), 1)
 		else:
-			self.assertEqual((yield self.dut._psram._spi._cs), 0)
+			self.assertEqual((yield cs), 0)
 			yield Settle()
 		yield
-		self.assertEqual((yield self.dut._psram._spi._clk), 0)
-		self.assertEqual((yield self.dut._psram._spi._cs), 1)
+		self.assertEqual((yield clk), 0)
+		self.assertEqual((yield cs), 1)
 		yield Settle()
-		yield
+		# yield
 		for byte in range(bytes):
 			for bit in range(8):
-				self.assertEqual((yield self.dut._psram._spi._clk), 1)
-				if copi is not None and copi[byte] is not None:
-					self.assertEqual((yield self.dut._psram._spi._copi), ((copi[byte] << bit) & 0x80) >> 7)
-				self.assertEqual((yield self.dut._psram._spi._cs), 1)
+				if bit == 0:
+					self.assertEqual((yield clk), 0)
+				else:
+					self.assertEqual((yield clk), 1)
+				self.assertEqual((yield cs), 1)
 				yield Settle()
-				if cipo is not None and cipo[byte] is not None:
-					yield self.dut._psram._spi._cipo.eq(((cipo[byte] << bit) & 0x80) >> 7)
+				if cipo_data is not None and cipo_data[byte] is not None:
+					yield cipo.eq(((cipo_data[byte] << bit) & 0x80) >> 7)
 				yield
-				self.assertEqual((yield self.dut._psram._spi._clk), 1)
-				self.assertEqual((yield self.dut._psram._spi._cs), 1)
+				self.assertEqual((yield clk), 0)
+				self.assertEqual((yield cs), 1)
+				if copi_data is not None and copi_data[byte] is not None:
+					self.assertEqual((yield copi), ((copi_data[byte] << bit) & 0x80) >> 7)
 				yield Settle()
 				yield
 			if byte < bytes - 1:
-				self.assertEqual((yield self.dut._psram._spi._clk), 1)
-				self.assertEqual((yield self.dut._psram._spi._cs), 1)
+				self.assertEqual((yield clk), 1)
+				self.assertEqual((yield cs), 1)
 			self.assertEqual((yield self.dut.done), 0)
 			yield Settle()
-			if cipo is not None and cipo[byte] is not None:
-				yield self.dut._psram._spi._cipo.eq(0)
+			if cipo_data is not None and cipo_data[byte] is not None:
+				yield cipo.eq(0)
 			if byte < bytes - 1:
 				yield
 		if not partial:
-			self.assertEqual((yield self.dut._psram._spi._clk), 1)
-			self.assertEqual((yield self.dut._psram._spi._cs), 0)
+			self.assertEqual((yield clk), 0)
+			self.assertEqual((yield cs), 0)
 			yield Settle()
 			yield
 
+
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'sync')
-	def test_psram(self):
+	def test_psram_write(self):
 		yield
-		self.skipTest('aaaaa')
+		# Check to ensure SPI bus is idle
+		self.assertEqual((yield clk),  0)
+		self.assertEqual((yield cs),   0)
+		self.assertEqual((yield copi), 0)
+		self.assertEqual((yield cipo), 0)
+		# Setup the PSRAM Address stuff
 		yield self.dut._psram.start_addr.eq(0)
 		yield self.dut.rst_addrs.eq(1)
 		yield Settle()
@@ -119,68 +155,41 @@ class SPIPSRAMTests(ToriiTestCase):
 		yield self.dut.rst_addrs.eq(0)
 		yield Settle()
 		yield
-		yield self.dut.start.eq(1)
+		# Start a write
+		yield self.dut.start_w.eq(1)
 		yield self.dut.byte_count.eq(len(_PSRAM_DATA))
 		yield Settle()
 		yield
-		yield self.dut.start.eq(0)
+		yield self.dut.start_w.eq(0)
 		yield Settle()
 		self.assertEqual((yield self.dut.curr_addr), 0)
 		self.assertEqual((yield self.dut.start_addr), 0)
-		self.assertEqual((yield self.dut._psram._spi._cs), 0)
+		self.assertEqual((yield cs), 0)
 		yield
-		yield from self.spi_trans(copi = (0x02,))
-		yield from self.spi_trans(copi = (0x00, 0x00, 0x00))
-		yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x03))
-		yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x03))
-		yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x03))
-		yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
-		yield from self.spi_trans(copi = (0x06,))
+		yield from self.spi_trans(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True)
 		self.assertEqual((yield self.dut._fifo.r_rdy), 0)
-		yield from self.spi_trans(copi = (0x02, 0x00, 0x00, 0x00), partial = True)
 		yield
 		yield Settle()
-		self.assertEqual((yield self.dut._psram._spi._cs), 1)
-		self.assertEqual((yield self.dut._psram._spi._clk), 1)
+		self.assertEqual((yield cs), 1)
+		self.assertEqual((yield clk), 0)
 		self.assertEqual((yield self.dut._fifo.r_rdy), 0)
-		self.assertEqual((yield self.dut._psram._spi._cs), 1)
-		self.assertEqual((yield self.dut._psram._spi._clk), 1)
+		self.assertEqual((yield cs), 1)
+		self.assertEqual((yield clk), 0)
 		yield
 		yield Settle()
 		self.assertEqual((yield self.dut._fifo.r_rdy), 0)
-		self.assertEqual((yield self.dut._psram._spi._cs), 1)
-		self.assertEqual((yield self.dut._psram._spi._clk), 1)
-		self.dut.fill_fifo = True
-		for _ in range(6):
-			yield Settle()
-			yield
-			self.assertEqual((yield self.dut._psram._spi._cs), 1)
-			self.assertEqual((yield self.dut._psram._spi._clk), 1)
-		# :<
-		yield from self.spi_trans(copi = _PSRAM_DATA[0:64], continuation = True)
-		self.assertEqual((yield self.dut.writeAddr), 64)
-		yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x03))
-		yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
+		self.assertEqual((yield cs), 1)
+		self.assertEqual((yield clk), 0)
 
-		yield from self.spi_trans(copi = (0x06,))
-		yield from self.spi_trans(copi = (0x02, 0x00, 0x00, 0x40), partial = True)
-		yield from self.spi_trans(copi = _PSRAM_DATA[64:128], continuation = True)
-		self.assertEqual((yield self.dut.writeAddr), 128)
-		yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
-
-		yield from self.spi_trans(copi = (0x06,))
-		yield from self.spi_trans(copi = (0x02, 0x00, 0x00, 0x80), partial = True)
-		yield from self.spi_trans(copi = _PSRAM_DATA[128:192], continuation = True)
-		self.assertEqual((yield self.dut.writeAddr), 192)
-		yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
-
-		yield from self.spi_trans(copi = (0x06,))
-		yield from self.spi_trans(copi = (0x02, 0x00, 0x00, 0xC0), partial = True)
-		yield from self.spi_trans(copi = _PSRAM_DATA[192:256], continuation = True)
-		self.assertEqual((yield self.dut.writeAddr), 256)
-		yield from self.spi_trans(copi = (0x05, None), cipo = (None, 0x00))
+		for idx, byte in enumerate(_PSRAM_DATA):
+			yield from self.fill_fifo(byte, idx)
 
 		self.assertEqual((yield self.dut.done), 1)
+		# Check to ensure SPI bus is idle, again
+		self.assertEqual((yield clk),  0)
+		self.assertEqual((yield cs),   0)
+		self.assertEqual((yield cipo), 0)
+		# Set our transaction to be done
 		yield self.dut.finish.eq(1)
 		yield
 		self.assertEqual((yield self.dut.done), 1)
