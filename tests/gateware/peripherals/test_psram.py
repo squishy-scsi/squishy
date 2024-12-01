@@ -1,5 +1,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 # torii: UnusedElaboratable=no
+
+from os                                 import getenv
 from random                             import randbytes
 
 from torii                              import Elaboratable, Module, Signal, ClockDomain
@@ -11,7 +13,10 @@ from torii.test.mock                    import MockPlatform
 from squishy.gateware.peripherals.spi   import SPIController, SPICPOL
 from squishy.gateware.peripherals.psram import SPIPSRAM, SPIPSRAMCmd
 
-_PSRAM_DATA = randbytes(4096)
+if getenv('GITHUB_WORKSPACE') is not None:
+	_PSRAM_DATA = randbytes(1536) # 1024 to get an addr wrap + a bit
+else:
+	_PSRAM_DATA = randbytes(4096)
 
 clk  = Signal()
 cs   = Signal()
