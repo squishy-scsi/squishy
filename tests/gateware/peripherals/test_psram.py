@@ -16,7 +16,7 @@ from squishy.gateware.peripherals.psram import SPIPSRAM, SPIPSRAMCmd
 if getenv('GITHUB_WORKSPACE') is not None:
 	_PSRAM_DATA = randbytes(1536) # 1024 to get an addr wrap + a bit
 else:
-	_PSRAM_DATA = randbytes(4096)
+	_PSRAM_DATA = randbytes(4096) # :nocov:
 
 clk  = Signal()
 cs   = Signal()
