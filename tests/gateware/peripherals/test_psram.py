@@ -156,6 +156,8 @@ class SPIPSRAMTests(ToriiTestCase):
 		self.assertEqual((yield cs),   0)
 		self.assertEqual((yield copi), 0)
 		self.assertEqual((yield cipo), 0)
+		# Ensure the FSM is ready and willing
+		self.assertEqual((yield self.dut.ready), 1)
 		# Setup the PSRAM Address stuff
 		yield self.dut._psram.start_addr.eq(0)
 		yield self.dut.rst_addrs.eq(1)
@@ -164,6 +166,8 @@ class SPIPSRAMTests(ToriiTestCase):
 		yield self.dut.rst_addrs.eq(0)
 		yield Settle()
 		yield
+		# Ensure the FSM is /still/ ready and willing
+		self.assertEqual((yield self.dut.ready), 1)
 		# Start a write
 		yield self.dut.start_w.eq(1)
 		yield self.dut.byte_count.eq(len(_PSRAM_DATA))
@@ -174,6 +178,8 @@ class SPIPSRAMTests(ToriiTestCase):
 		self.assertEqual((yield self.dut.curr_addr), 0)
 		self.assertEqual((yield self.dut.start_addr), 0)
 		self.assertEqual((yield cs), 0)
+		# Check to make sure the FSM advanced out of IDLE
+		self.assertEqual((yield self.dut.ready), 0)
 		yield
 		yield from self.spi_trans(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True)
 		self.assertEqual((yield self.dut._write_fifo.r_rdy), 0)
@@ -206,6 +212,8 @@ class SPIPSRAMTests(ToriiTestCase):
 		yield Settle()
 		yield
 		self.assertEqual((yield self.dut.done), 0)
+		# Make sure the FSM is back waiting
+		self.assertEqual((yield self.dut.ready), 1)
 		yield Settle()
 		yield
 		yield Settle()
@@ -238,6 +246,8 @@ class SPIPSRAMTests(ToriiTestCase):
 			self.assertEqual((yield cs),   0)
 			self.assertEqual((yield copi), 0)
 			self.assertEqual((yield cipo), 0)
+			# Ensure the FSM is ready and willing
+			self.assertEqual((yield self.dut.ready), 1)
 			# Setup the PSRAM Address stuff
 			yield self.dut._psram.start_addr.eq(0xA5A5A5)
 			yield self.dut.rst_addrs.eq(1)
@@ -246,6 +256,8 @@ class SPIPSRAMTests(ToriiTestCase):
 			yield self.dut.rst_addrs.eq(0)
 			yield Settle()
 			yield
+			# Ensure the FSM is /still/ ready and willing
+			self.assertEqual((yield self.dut.ready), 1)
 			# Start a read
 			yield self.dut.start_r.eq(1)
 			yield self.dut.byte_count.eq(len(_PSRAM_DATA))
@@ -256,6 +268,8 @@ class SPIPSRAMTests(ToriiTestCase):
 			self.assertEqual((yield self.dut.curr_addr), 0xA5A5A5)
 			self.assertEqual((yield self.dut.start_addr), 0xA5A5A5)
 			self.assertEqual((yield cs), 0)
+			# Check to make sure the FSM advanced out of IDLE
+			self.assertEqual((yield self.dut.ready), 0)
 			yield
 			yield from self.spi_trans(copi_data = (SPIPSRAMCmd.READ, 0xA5, 0xA5, 0xA5), partial = True)
 
@@ -293,6 +307,8 @@ class SPIPSRAMTests(ToriiTestCase):
 			yield Settle()
 			yield
 			self.assertEqual((yield self.dut.done), 0)
+			# Make sure the FSM is back waiting
+			self.assertEqual((yield self.dut.ready), 1)
 			yield Settle()
 			yield
 			yield Settle()

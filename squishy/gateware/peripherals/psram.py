@@ -116,14 +116,15 @@ class SPIPSRAM(Elaboratable):
 
 
 		m.d.comb += [
-			self.ready.eq(0),
 			self.done.eq(0),
 			spi.xfr.eq(0),
 			spi.wdat.eq(write_fifo.r_data),
 			read_fifo.w_data.eq(spi.rdat),
 		]
 
-		with m.FSM(name = 'psram'):
+		with m.FSM(name = 'psram') as psram_fsm:
+			# make sure the FMS is IDLE for our ready signal
+			m.d.comb += [ self.ready.eq(psram_fsm.ongoing('IDLE')), ]
 			with m.State('IDLE'):
 				m.d.sync += [ xfr_step.eq(0), ]
 
