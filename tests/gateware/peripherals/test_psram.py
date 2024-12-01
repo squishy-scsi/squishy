@@ -303,7 +303,7 @@ class SPIPSRAMTests(ToriiTestCase):
 			# Check to ensure SPI bus is idle, again
 			self.assertEqual((yield clk),  0)
 			self.assertEqual((yield cs),   0)
-			self.assertEqual((yield cipo), 0)
+			self.assertEqual((yield copi), 0)
 			# Set our transaction to be done
 			yield self.dut.finish.eq(1)
 			yield
