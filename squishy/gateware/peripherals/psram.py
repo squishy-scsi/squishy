@@ -39,10 +39,10 @@ class SPIPSRAM(Elaboratable):
 	controller : SPIController
 		The SPI Controller to use, typically from an ``SPIInterface`` module instance.
 
-	write_fifo : torii.lib.fifo.AsyncFIFO
+	write_fifo : torii.lib.fifo.AsyncFIFO | None
 		The data storage FIFO for transfers to the PSRAM.
 
-	read_fifo : torii.lib.fifo.AsyncFIFO
+	read_fifo : torii.lib.fifo.AsyncFIFO | None
 		The data storage FIFO for transfers from the PSRAM.
 
 	Attributes
@@ -80,7 +80,14 @@ class SPIPSRAM(Elaboratable):
 
 	'''
 
-	def __init__(self, *, controller: SPIController, write_fifo: AsyncFIFO, read_fifo: AsyncFIFO) -> None:
+	def __init__(
+			self, *, controller: SPIController, write_fifo: AsyncFIFO | None = None, read_fifo: AsyncFIFO | None = None
+	) -> None:
+
+		# Make sure we actually have
+		if write_fifo is None and read_fifo is None:
+			raise ValueError('One or both of `write_fifo` or `read_fifo` is required to be set')
+
 		self._spi        = controller
 		self._write_fifo = write_fifo
 		self._read_fifo  = read_fifo
@@ -90,8 +97,12 @@ class SPIPSRAM(Elaboratable):
 		self.curr_addr  = Signal.like(self.start_addr)
 		self.rst_addrs  = Signal()
 		self.byte_count = Signal(24)
-		self.start_r    = Signal()
-		self.start_w    = Signal()
+
+		if read_fifo is not None:
+			self.start_r    = Signal()
+		if write_fifo is not None:
+			self.start_w    = Signal()
+
 		self.done       = Signal()
 		self.finish     = Signal()
 
@@ -112,15 +123,28 @@ class SPIPSRAM(Elaboratable):
 		byte_count  = Signal.like(self.byte_count)
 
 		trigger_write = Signal()
+		start_w       = Signal()
 		trigger_read  = Signal()
+		start_r       = Signal()
 
 
 		m.d.comb += [
 			self.done.eq(0),
 			spi.xfr.eq(0),
-			spi.wdat.eq(write_fifo.r_data),
-			read_fifo.w_data.eq(spi.rdat),
 		]
+
+
+		if write_fifo is not None:
+			m.d.comb += [
+				start_w.eq(self.start_w),
+				spi.wdat.eq(write_fifo.r_data),
+			]
+
+		if read_fifo is not None:
+			m.d.comb += [
+				start_r.eq(self.start_r),
+				read_fifo.w_data.eq(spi.rdat),
+			]
 
 		with m.FSM(name = 'psram') as psram_fsm:
 			# make sure the FMS is IDLE for our ready signal
@@ -131,10 +155,10 @@ class SPIPSRAM(Elaboratable):
 				with m.If(self.rst_addrs):
 					m.d.sync += [ self.curr_addr.eq(self.start_addr), ]
 
-				with m.If(self.start_w | self.start_r):
+				with m.If(start_w | start_r):
 					m.d.sync += [
 						byte_count.eq(self.byte_count),
-						self._rnw_op.eq(self.start_r),
+						self._rnw_op.eq(start_r),
 					]
 					m.next = 'WRITE_CMD'
 
@@ -146,8 +170,9 @@ class SPIPSRAM(Elaboratable):
 
 						with m.If(self._rnw_op):
 							m.d.comb += [ spi.wdat.eq(SPIPSRAMCmd.READ), ]
-							# Ensure the read FIFO is not inhaling garbage
-							m.d.sync += [ read_fifo.w_en.eq(0), ]
+							if read_fifo is not None:
+								# Ensure the read FIFO is not inhaling garbage
+								m.d.sync += [ read_fifo.w_en.eq(0), ]
 						with m.Else():
 							m.d.comb += [ spi.wdat.eq(SPIPSRAMCmd.WRITE), ]
 
@@ -195,95 +220,105 @@ class SPIPSRAM(Elaboratable):
 							m.d.sync += [ trigger_read.eq(1), ]
 							m.next = 'DATA_READ'
 
-			with m.State('DATA_WRITE'):
-				# If the SPI transaction was just completed OR we need to start a transaction
-				with m.If(spi.done | trigger_write):
-					# If we are at the PSRAM Wrap boundary
-					with m.If(write_count == 1024):
-						# Reset the wrap counter, and start a new transaction with the advanced
-						# address in `curr_addr`.
-						m.d.sync += [
-							write_count.eq(0),
-							spi.cs.eq(0),
-						]
-						m.next = 'WRITE_CMD'
-					# If there is data in the FIFO
-					with m.Elif(write_fifo.r_rdy):
-						# Ensure the current address is incremented as well as our wrap position
-						# and drain a byte from the byte_count
-						m.d.sync += [
-							self.curr_addr.inc(),
-							write_count.inc(),
-							byte_count.dec(),
-						]
+			if write_fifo is not None:
+				with m.State('DATA_WRITE'):
+					# If the SPI transaction was just completed OR we need to start a transaction
+					with m.If(spi.done | trigger_write):
+						# If we are at the PSRAM Wrap boundary
+						with m.If(write_count == 1024):
+							# Reset the wrap counter, and start a new transaction with the advanced
+							# address in `curr_addr`.
+							m.d.sync += [
+								write_count.eq(0),
+								spi.cs.eq(0),
+							]
+							m.next = 'WRITE_CMD'
+						# If there is data in the FIFO
+						with m.Elif(write_fifo.r_rdy):
+							# Ensure the current address is incremented as well as our wrap position
+							# and drain a byte from the byte_count
+							m.d.sync += [
+								self.curr_addr.inc(),
+								write_count.inc(),
+								byte_count.dec(),
+							]
 
-						# Start a new SPI transaction with the next byte
-						m.d.comb += [
-							spi.xfr.eq(1),
-							write_fifo.r_en.eq(1),
-						]
+							# Start a new SPI transaction with the next byte
+							m.d.comb += [
+								spi.xfr.eq(1),
+								write_fifo.r_en.eq(1),
+							]
 
-						# If we are on the last byte of the transfer
-						with m.If(byte_count == 1):
-							m.next = 'XFR_FINISH'
-					# Otherwise the FIFO is not ready, we need to wait
+							# If we are on the last byte of the transfer
+							with m.If(byte_count == 1):
+								m.next = 'XFR_FINISH'
+						# Otherwise the FIFO is not ready, we need to wait
+						with m.Else():
+							m.next = 'WRITE_WAIT'
+
+						# Reset the write trigger, so we don't loop forever
+						m.d.sync += [ trigger_write.eq(0), ]
+
+				with m.State('WRITE_WAIT'):
+					with m.If(write_fifo.r_rdy):
+						m.d.sync += [ trigger_write.eq(1), ]
+						m.next = 'DATA_WRITE'
+			else:
+				# Stub out the state as a pass through to terminate the transaction
+				with m.State('DATA_WRITE'):
+					m.next = 'XFR_FINISH'
+
+			if read_fifo is not None:
+				with m.State('DATA_READ'):
+					# If the SPI transaction is done, write the input data into the FIFO
+					with m.If(spi.done):
+						m.d.sync += [ read_fifo.w_en.eq(1), ]
 					with m.Else():
-						m.next = 'WRITE_WAIT'
+						m.d.sync += [ read_fifo.w_en.eq(0), ]
 
-					# Reset the write trigger, so we don't loop forever
-					m.d.sync += [ trigger_write.eq(0), ]
+					# If the SPI transaction was just completed OR we need to start a transaction
+					with m.If(spi.done | trigger_read):
+						# If we are at the PSRAM Wrap boundary
+						with m.If(read_count == 1024):
+							# Reset the wrap counter, and start a new transaction with the advanced
+							# address in `curr_addr`.
+							m.d.sync += [
+								read_count.eq(0),
+								spi.cs.eq(0),
+							]
+							m.next = 'WRITE_CMD'
+						# If there is space to stuff more data into the FIFOs mouth
+						with m.Elif(read_fifo.w_rdy):
+							# Ensure the current address is incremented as well as our wrap position
+							# and drain a byte from the byte_count
+							m.d.sync += [
+								self.curr_addr.inc(),
+								read_count.inc(),
+								byte_count.dec(),
+							]
 
-			with m.State('WRITE_WAIT'):
-				with m.If(write_fifo.r_rdy):
-					m.d.sync += [ trigger_write.eq(1), ]
-					m.next = 'DATA_WRITE'
+							# Start a new SPI transaction with the next byte
+							m.d.comb += [ spi.xfr.eq(1), ]
 
-			with m.State('DATA_READ'):
-				# If the SPI transaction is done, write the input data into the FIFO
-				with m.If(spi.done):
-					m.d.sync += [ read_fifo.w_en.eq(1), ]
-				with m.Else():
+							# If we are on the last byte of the transfer
+							with m.If(byte_count == 1):
+								m.next = 'XFR_FINISH'
+						# Otherwise the FIFO is not ready, we need to wait
+						with m.Else():
+							m.next = 'READ_WAIT'
+
+						# Reset the write trigger, so we don't loop forever
+						m.d.sync += [ trigger_read.eq(0), ]
+
+				with m.State('READ_WAIT'):
 					m.d.sync += [ read_fifo.w_en.eq(0), ]
-
-				# If the SPI transaction was just completed OR we need to start a transaction
-				with m.If(spi.done | trigger_read):
-					# If we are at the PSRAM Wrap boundary
-					with m.If(read_count == 1024):
-						# Reset the wrap counter, and start a new transaction with the advanced
-						# address in `curr_addr`.
-						m.d.sync += [
-							read_count.eq(0),
-							spi.cs.eq(0),
-						]
-						m.next = 'WRITE_CMD'
-					# If there is space to stuff more data into the FIFOs mouth
-					with m.Elif(read_fifo.w_rdy):
-						# Ensure the current address is incremented as well as our wrap position
-						# and drain a byte from the byte_count
-						m.d.sync += [
-							self.curr_addr.inc(),
-							read_count.inc(),
-							byte_count.dec(),
-						]
-
-						# Start a new SPI transaction with the next byte
-						m.d.comb += [ spi.xfr.eq(1), ]
-
-						# If we are on the last byte of the transfer
-						with m.If(byte_count == 1):
-							m.next = 'XFR_FINISH'
-					# Otherwise the FIFO is not ready, we need to wait
-					with m.Else():
-						m.next = 'READ_WAIT'
-
-					# Reset the write trigger, so we don't loop forever
-					m.d.sync += [ trigger_read.eq(0), ]
-
-			with m.State('READ_WAIT'):
-				m.d.sync += [ read_fifo.w_en.eq(0), ]
-				with m.If(read_fifo.w_rdy):
-					m.d.sync += [ trigger_read.eq(1), ]
-					m.next = 'DATA_READ'
+					with m.If(read_fifo.w_rdy):
+						m.d.sync += [ trigger_read.eq(1), ]
+						m.next = 'DATA_READ'
+			else:
+				# Stub out the state as a pass through to terminate the transaction
+				with m.State('DATA_READ'):
+					m.next = 'XFR_FINISH'
 
 			with m.State('XFR_FINISH'):
 				# Wait for the last SPI transfer to complete
@@ -292,15 +327,18 @@ class SPIPSRAM(Elaboratable):
 						read_count.eq(0),
 						write_count.eq(0),
 						spi.cs.eq(0),
-						read_fifo.w_en.eq(self._rnw_op),
 					]
+					if read_fifo is not None:
+						m.d.sync += [ read_fifo.w_en.eq(self._rnw_op), ]
 
 					m.next = 'FINISH'
-				with m.Else():
-					m.d.sync += [ read_fifo.w_en.eq(0), ]
+				if read_fifo is not None:
+					with m.Else():
+						m.d.sync += [ read_fifo.w_en.eq(0), ]
 
 			with m.State('FINISH'):
-				m.d.sync += [ read_fifo.w_en.eq(0), ]
+				if read_fifo is not None:
+					m.d.sync += [ read_fifo.w_en.eq(0), ]
 				m.d.comb += [ self.done.eq(1), ]
 
 				with m.If(self.finish):

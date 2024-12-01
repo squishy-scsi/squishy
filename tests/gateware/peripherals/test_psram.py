@@ -1,5 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-
+# torii: UnusedElaboratable=no
 from random                             import randbytes
 
 from torii                              import Elaboratable, Module, Signal, ClockDomain
@@ -316,3 +316,43 @@ class SPIPSRAMTests(ToriiTestCase):
 
 		drain_fifo(self)
 		psram_read(self)
+
+	def test_psram_fifo_configurations(self):
+		from torii.hdl.ir import Fragment
+
+		spi = SPIController(
+			clk = clk, cipo = cipo, copi = copi, cs = cs, cpol = SPICPOL.LOW
+		)
+
+		fifo = AsyncFIFO(
+			width = 8, depth = len(_PSRAM_DATA), r_domain = 'sync', w_domain = 'sync'
+		)
+
+		# Make sure we dont accept a bogus config
+		with self.assertRaisesRegex(
+			ValueError, r'^One or both of `write_fifo` or `read_fifo` is required to be set$'
+		):
+			_ = SPIPSRAM(controller = spi)
+
+
+		# Ensure we can construct a write-only SPIPSRAM controller
+		dut = SPIPSRAM(controller = spi, write_fifo = fifo)
+
+		self.assertIsNone(dut._read_fifo)
+		self.assertIsNotNone(dut._write_fifo)
+		self.assertTrue(hasattr(dut, 'start_w'))
+		self.assertFalse(hasattr(dut, 'start_r'))
+		m = dut.elaborate(None)
+		self.assertIsNotNone(m)
+		self.assertIsNotNone(Fragment.get(m, None))
+
+		# Ensure we can construct a read-only SPIPSRAM controller
+		dut = SPIPSRAM(controller = spi, read_fifo = fifo)
+
+		self.assertIsNotNone(dut._read_fifo)
+		self.assertIsNone(dut._write_fifo)
+		self.assertFalse(hasattr(dut, 'start_w'))
+		self.assertTrue(hasattr(dut, 'start_r'))
+		m = dut.elaborate(None)
+		self.assertIsNotNone(m)
+		self.assertIsNotNone(Fragment.get(m, None))
