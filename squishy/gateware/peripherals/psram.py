@@ -45,6 +45,39 @@ class SPIPSRAM(Elaboratable):
 	read_fifo : torii.lib.fifo.AsyncFIFO
 		The data storage FIFO for transfers from the PSRAM.
 
+	Attributes
+	----------
+	ready : Signal, out
+		The PSRAM FSM is in the IDLE state and ready to start a transaction with `start_r` or `start_w`
+
+	start_addr : Signal[24], in
+		The address to start the transaction at.
+
+	curr_addr : Signal[24], out
+		The current address of the next access of the state machine. Due to how the PSRAM wraps ever 1024
+		bytes, this is auto-incremented and wrapped appropriately.
+
+	rst_addrs : Signal, in
+		Reset `curr_addr` to the address given in `start_addr`
+
+	byte_count : Signal[24], in
+		The number of bytes to be transferred in the given read or write request
+
+	start_r : Signal, in
+		Starts a read transaction of `byte_count` bytes from the device into the `read_fifo`, starting from `curr_addr`, setting
+		up the address as needed for the device.
+
+	start_w : Signal, in
+		Starts a write transaction of `byte_count` bytes from the `write_fifo`, starting from `curr_addr`, setting up the address
+		as needed for the device.
+
+	done : Signal, out
+		The Transaction was fully completed and the FSM is about to transition into the `IDLE` state waiting for another
+		transaction to start.
+
+	finish : Signal, in
+		Signal to the FSM that our transaction is completed so it can wrap up.
+
 	'''
 
 	def __init__(self, *, controller: SPIController, write_fifo: AsyncFIFO, read_fifo: AsyncFIFO) -> None:
@@ -53,14 +86,14 @@ class SPIPSRAM(Elaboratable):
 		self._read_fifo  = read_fifo
 
 		self.ready      = Signal()
-		self.done       = Signal()
-		self.finish     = Signal()
-		self.start_r    = Signal()
-		self.start_w    = Signal()
-		self.rst_addrs  = Signal()
 		self.start_addr = Signal(24)
 		self.curr_addr  = Signal.like(self.start_addr)
+		self.rst_addrs  = Signal()
 		self.byte_count = Signal(24)
+		self.start_r    = Signal()
+		self.start_w    = Signal()
+		self.done       = Signal()
+		self.finish     = Signal()
 
 		# Read if 1, otherwise Write
 		self._rnw_op = Signal()
