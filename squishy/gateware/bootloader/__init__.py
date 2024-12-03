@@ -195,17 +195,6 @@ class SquishyBootloader(Elaboratable):
 		ep0.add_request_handler(dfu_handler)
 		ep0.add_request_handler(win_handler)
 
-		# We need to add a new stall condition to ensure we stall properly
-		def _stall_condition(setup: SetupPacket) -> Operator:
-			return ~(
-				(setup.type == USBRequestType.STANDARD) |
-				dfu_handler.handler_condition(setup)    |
-				win_handler.handler_condition(setup)
-			)
-		ep0.add_request_handler(StallOnlyRequestHandler(stall_condition = _stall_condition))
-
-		# TODO(aki): Hook up the internal DFU transfer signals to our platform-specific programming stuff
-
 		# Instantiate the correct platform interface
 		match self._rev_raw[0]:
 			case 1:
