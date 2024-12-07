@@ -6,18 +6,25 @@
 # To enable in Wireshark, drop/symlink this file to `~/.local/lib/wireshark/extcap`
 
 import sys
+import platform
+import logging as log
 
-from argparse  import ArgumentParser, ArgumentDefaultsHelpFormatter
+from argparse  import ArgumentParser, ArgumentDefaultsHelpFormatter, Namespace
 from pathlib   import Path
+from datetime  import datetime, timezone
+
+from typing    import TypedDict, TypeVar, Generic, Literal, TypeAlias, BinaryIO
 
 try:
 	from squishy  import __version__
 except ImportError:
-	sys.path.insert(0, '/pool/abyss/Projects/squishy/squishy')
+	# This is kinda jank, but /should/ work
+	scsidump_path = Path(__file__).resolve().parent.parent
+	if (scsidump_path / 'squishy').is_dir():
+		sys.path.insert(0, str(scsidump_path))
 
 	from squishy import __version__
 
-from squishy.gateware import AVAILABLE_PLATFORMS
 from squishy.device   import SquishyDevice
 
 def _setup_extcap_parser(parser: ArgumentParser):
@@ -68,46 +75,143 @@ def _setup_extcap_parser(parser: ArgumentParser):
 		help = 'Capture dump file/fifo'
 	)
 
+EXTCAP_OPTION_TYPE: TypeAlias = Literal[
+	'integer', 'unsigned', 'long', 'double', 'string', 'password', 'boolean', 'boolflag',
+	'fileselect', 'selector', 'editselector', 'radio', 'multicheck'
+]
+T = TypeVar('T')
+class ExtcapOptionT(Generic[T], TypedDict):
+	type: type[T]
+	required: bool
+	default: T
+	# Only if extcap_type is `integer | unsigned | long | double`
+	range: tuple[T, T] | None
+	# Only if extcap_type is `string`
+	validator: str | None
+	# Only if extcap_type is `fileselect`
+	must_exist: bool | None
+	# Only if extcap_type is `selector | editselector | radio | multiccheck`
+	values: tuple[str, ...] | None
+	help: str
+	extcap_type: EXTCAP_OPTION_TYPE
+	extcap_name: str
+	group: str | None
 
-APPLET_OPTIONS = {
-	# 'platform': {
-	# 	'type': str,
-	# 	'required': True,
-	# 	'default': list(AVAILABLE_PLATFORMS.keys())[-1],
-	# 	'help': 'Squishy Hardware Platform',
-	# 	'extcap_type': 'selector',
-	# 	'extcap_name': 'Hardware Platform',
-	# 	'values': (rev for rev in list(AVAILABLE_PLATFORMS.keys())),
-	# 	'group': 'Hardware Options',
-	# }
+
+_EXTCAP_APPLET_OPTIONS_COMMON: dict[str, ExtcapOptionT[T]] = {
+
 }
 
+EXTCAP_OPTIONS = {
+	'scsicap': {
+		**_EXTCAP_APPLET_OPTIONS_COMMON,
+	},
+	'scsipkt': {
+		**_EXTCAP_APPLET_OPTIONS_COMMON,
+	},
+	'scsirndpkt': {
+		'max-bytes': ExtcapOptionT[int]({
+			'type': int,
+			'required': True,
+			'default': 4096,
+			'range': (1024, 8196),
+			'help': 'Max bytes per packet',
+			'extcap_type': 'integer',
+			'extcap_name': 'Max bytes in packet',
+		}),
+		'pkt-count': ExtcapOptionT[int]({
+			'type': int,
+			'required': True,
+			'default': 4096,
+			'help': 'Number of packets to generate',
+			'extcap_type': 'integer',
+			'extcap_name': 'Packet Count',
+		}),
+		'pkt-delay': ExtcapOptionT[int]({
+			'type': int,
+			'required': True,
+			'default': 0,
+			'help': 'Inter-packet delay',
+			'extcap_type': 'integer',
+			'extcap_name': 'Packet Delay',
+		})
+	}
+}
 
 def _setup_parser(parser: ArgumentParser):
 	extcap = parser.add_argument_group('extcap interface')
 	_setup_extcap_parser(extcap)
 
-	applet = parser.add_argument_group('Squishy applet')
+	for (extcap_name, extcap_opts) in EXTCAP_OPTIONS.items():
+		extcap_group = parser.add_argument_group(f'Squishy: {extcap_name}')
 
-	for opt_name, opt_val in APPLET_OPTIONS.items():
-		applet.add_argument(
-			f'--{opt_name}',
-			type = opt_val['type'],
-			help = opt_val['help'],
-		)
+		for opt_name, opt_val in extcap_opts.items():
+			extcap_group.add_argument(
+				f'--{opt_name}',
+				type = opt_val['type'],
+				help = opt_val['help'],
+			)
+
+def _setup_logging() -> None:
+	operating_system = platform.system()
+
+	if operating_system == 'Windows':
+		from logging.handlers import NTEventLogHandler
+		log_handler = NTEventLogHandler('scsidump')
+	elif operating_system == 'Linux':
+		try:
+			from systemd.journal import JournalHandler
+			log_handler = JournalHandler()
+		except ImportError:
+			from logging.handlers import SysLogHandler
+			log_handler = SysLogHandler()
+	elif operating_system == 'Darwin':
+		from logging.handlers import SysLogHandler
+		log_handler = SysLogHandler()
+	else:
+		from logging import NullHandler
+		log_handler = NullHandler()
 
 
-def extcap_list_interfaces():
+	log.basicConfig(
+		force    = True,
+		format   = '%(message)s',
+		datefmt  = '[%X]',
+		level    = log.INFO,
+		handlers = [ log_handler, ]
+	)
+
+def extcap_list_interfaces() -> int:
+	log.info('Enumerating extcap interfaces')
+
 	print(f'extcap {{version={__version__}}}{{help=https://docs.scsi.moe/extra.html#scsidump}}')
 
+	# Enumerate attached Squishy devices
 	for (sn, rev, _) in SquishyDevice.enumerate():
-		print(f'interface {{value={sn}}}{{display=Squishy rev{rev[0]}: SCSI Bus capture}}')
+		print(f'interface {{value=scsicap,{sn}}}{{display=Squishy rev{rev[0]}: SCSI Bus capture}}')
+		print(f'interface {{value=scsipkt,{sn}}}{{display=Squishy rev{rev[0]}: SCSI Traffic Generator}}')
 
-def extcap_list_dlts():
+	# Add the fixed offline SCSI traffic generator
+	print('interface {value=scsirndpkt,}{display=Offline SCSI Traffic Generator}')
+
+	return 0
+
+def extcap_list_dlts(interface: str) -> int:
+	log.info(f'Enumerating extcap DLTs for interface: {interface}')
 	print('dlt {number=147}{name=squishy}{display=SCSI}')
+	return 0
 
-def extcap_list_config():
-	for idx, (opt_name, opt_val) in enumerate(APPLET_OPTIONS.items()):
+def extcap_list_config(interface: str) -> int:
+	# Get the extcap options
+	applet_target = interface.split(',')[0]
+	if applet_target in EXTCAP_OPTIONS.keys():
+		extcap_opts = EXTCAP_OPTIONS[applet_target]
+	else:
+		return 1
+
+	log.info(f'Enumerating extcap options for target: {applet_target}')
+
+	for idx, (opt_name, opt_val) in enumerate(extcap_opts.items()):
 		extcap_arg_entry = f'arg {{number={idx}}}{{call=--{opt_name}}}{{tooltip={opt_val["help"]}}}{{display={opt_val["extcap_name"]}}}'
 		extcap_arg_entry += f'{{type={opt_val["extcap_type"]}}}'
 		if 'required' in opt_val:
@@ -116,25 +220,144 @@ def extcap_list_config():
 		if 'group' in opt_val:
 			extcap_arg_entry += f'{{group={opt_val["group"]}}}'
 
-		if opt_val["extcap_type"] == 'integer':
-			if 'default' in opt_val:
-				extcap_arg_entry += f'{{default={opt_val["default"]}}}'
-			if 'range' in opt_val:
-				low, high = opt_val['range']
-				extcap_arg_entry += f'{{range={low},{high}}}'
+		match opt_val['extcap_type']:
+			case 'integer' | 'unsigned' | 'double' | 'long':
+				if 'default' in opt_val:
+					extcap_arg_entry += f'{{default={opt_val["default"]}}}'
+				if 'range' in opt_val:
+					low, high = opt_val['range']
+					extcap_arg_entry += f'{{range={low},{high}}}'
+				log.info(extcap_arg_entry)
+				print(extcap_arg_entry)
+			case 'string':
+				if 'validator' in opt_val:
+					extcap_arg_entry += f'{{validator={opt_val["validator"]}}}'
+				log.info(extcap_arg_entry)
+				print(extcap_arg_entry)
+			case 'password':
+				log.info(extcap_arg_entry)
+				print(extcap_arg_entry)
+			case 'boolean' | 'boolflag':
+				log.info(extcap_arg_entry)
+				print(extcap_arg_entry)
+			case 'fileselect':
+				if 'must_exist' in opt_val:
+					extcap_arg_entry += f'{{mustexist={opt_val["must_exist"]}}}'
+				log.info(extcap_arg_entry)
+				print(extcap_arg_entry)
+			case 'selector' | 'editselector' | 'radio' | 'multicheck':
+				log.info(extcap_arg_entry)
+				print(extcap_arg_entry)
+				for val in opt_val['values']:
+					extcap_arg_value = f'value {{arg={idx}}}{{value={val}}}{{display={val}}}'
+					if val == opt_val['default']:
+						extcap_arg_value += '{default=true}'
+					log.info(extcap_arg_value)
+					print(extcap_arg_value)
+
+	return 0
+
+from squishy.applets.analyzer.pcapng import (
+	link_type, block_type, option_type, pcapng_block
+)
 
 
-		print(extcap_arg_entry)
-		if opt_val["extcap_type"] == 'selector':
-			for val in opt_val['values']:
-				extcap_arg_value = f'value {{arg={idx}}}{{value={val}}}{{display={val}}}'
-				if val == opt_val['default']:
-					extcap_arg_value += '{default=true}'
-				print(extcap_arg_value)
+def write_pcapng_header(stream: BinaryIO, interface: str):
+	sys_uname = platform.uname()
+
+	system_name = sys_uname.system
+	system_rel  = sys_uname.release
+
+	iface, sn = interface.split(',', maxsplit = 2)
+
+	log.info(f'Writing PCAP-NG Header for extcap session on interface {iface}')
+	# PCAPNG Header
+	stream.write(pcapng_block.build({
+		'Type': block_type.section_header,
+		'Data': {
+			'Section Len': 0x0000FFFF,
+		},
+		'Options': [
+			{
+				'Code': 0x0003,
+				'Value': f'{system_name} {system_rel}'
+			},
+			{
+				'Code': 0x0004,
+				'Value': f'Squishy {iface}'
+			},
+			{
+				'Code': option_type.end,
+				'Value': None
+			}
+		]
+	}))
+	log.info('Writing PCAP-NG interface descriptor')
+	# Interface descriptor
+	stream.write(pcapng_block.build({
+		'Type': block_type.interface,
+		'Data': {
+			'LinkType': link_type.user_00, # DLT 147
+			'SnapLen': 4096
+		},
+		'Options': [
+			{
+				'Code': 0x0002,
+				'Value': 'SCSI RANDPKT',
+			},
+			{
+				'Code': 0x0009,
+				'Value': 6,
+			},
+			{
+				'Code': 0x000C,
+				'Value': f'{system_name} {system_rel}',
+			},
+			{
+				'Code': option_type.end,
+				'Value': None
+			}
+		]
+	}))
+	log.info('Flushing extcap FIFO stream')
+	stream.flush()
+
+def write_pcapng_packet(stream: BinaryIO, data: bytearray, timestamp: datetime = datetime.now(timezone.utc)):
+	stream.write(pcapng_block.build({
+		'Type': block_type.enhanced_packet,
+		'Data': {
+			'InterfaceID': 0,
+			'TimestampRaw': { 'Value': timestamp },
+			'ActualLen': len(data),
+			'PacketData': data
+		},
+		'Options': None
+	}))
+	stream.flush()
+
+# Generate random SCSI packets offline
+def run_randpkt(fifo: Path, interface: str, args: Namespace) -> int:
+	from time     import sleep
+	from random   import randbytes
+
+	log.info('Starting SCSI Randpkt')
+
+	with fifo.open('wb') as f:
+		write_pcapng_header(f, interface)
+		while True:
+			write_pcapng_packet(f, randbytes(128))
+			sleep(0.5)
 
 
+	return 0
+
+# This is passive bus capture or active response capture from the traffic generator
+def run_capture(fifo: Path, interface: str, args: Namespace) -> int:
+	return 0
 
 def main() -> int:
+	_setup_logging()
+
 	parser = ArgumentParser(
 		formatter_class = ArgumentDefaultsHelpFormatter,
 		description     = 'Squishy SCSI extcap interface for Wireshark',
@@ -146,20 +369,30 @@ def main() -> int:
 	args = parser.parse_args()
 
 	if args.extcap_interfaces:
-		extcap_list_interfaces()
-		return 0
+		return extcap_list_interfaces()
 
-	if not args.extcap_interface:
-		return 1
-	elif args.extcap_interface != 'scsidump':
+	interface = args.extcap_interface
+
+	if not interface:
+		log.error('No extcap interface specified')
 		return 1
 	else:
+		log.info(f'Using extcap interface {interface}')
 		if args.extcap_dlts:
-			extcap_list_dlts()
+			return extcap_list_dlts(interface)
 		if args.extcap_config:
-			extcap_list_config()
+			return extcap_list_config(interface)
 
+		if args.capture:
+			fifo: Path = args.fifo
 
+			log.info(f'Running extcap capture on interface: {interface}')
+			log.info(f'    Capture FIFO: {fifo}')
+
+			if interface.split(',')[0] == 'scsirndpkt':
+				return run_randpkt(fifo, interface, args)
+			else:
+				return run_capture(fifo, interface, args)
 	return 0
 
 
