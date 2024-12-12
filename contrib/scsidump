@@ -257,97 +257,25 @@ def extcap_list_config(interface: str) -> int:
 
 	return 0
 
-from squishy.applets.analyzer.pcapng import (
-	link_type, block_type, option_type, pcapng_block
-)
+from squishy.core.pcapng import PCAPNGStream, LinkType
 
-
-def write_pcapng_header(stream: BinaryIO, interface: str):
-	sys_uname = platform.uname()
-
-	system_name = sys_uname.system
-	system_rel  = sys_uname.release
-
-	iface, sn = interface.split(',', maxsplit = 2)
-
-	log.info(f'Writing PCAP-NG Header for extcap session on interface {iface}')
-	# PCAPNG Header
-	stream.write(pcapng_block.build({
-		'Type': block_type.section_header,
-		'Data': {
-			'Section Len': 0x0000FFFF,
-		},
-		'Options': [
-			{
-				'Code': 0x0003,
-				'Value': f'{system_name} {system_rel}'
-			},
-			{
-				'Code': 0x0004,
-				'Value': f'Squishy {iface}'
-			},
-			{
-				'Code': option_type.end,
-				'Value': None
-			}
-		]
-	}))
-	log.info('Writing PCAP-NG interface descriptor')
-	# Interface descriptor
-	stream.write(pcapng_block.build({
-		'Type': block_type.interface,
-		'Data': {
-			'LinkType': link_type.user_00, # DLT 147
-			'SnapLen': 4096
-		},
-		'Options': [
-			{
-				'Code': 0x0002,
-				'Value': 'SCSI RANDPKT',
-			},
-			{
-				'Code': 0x0009,
-				'Value': 6,
-			},
-			{
-				'Code': 0x000C,
-				'Value': f'{system_name} {system_rel}',
-			},
-			{
-				'Code': option_type.end,
-				'Value': None
-			}
-		]
-	}))
-	log.info('Flushing extcap FIFO stream')
-	stream.flush()
-
-def write_pcapng_packet(stream: BinaryIO, data: bytearray, timestamp: datetime = datetime.now(timezone.utc)):
-	stream.write(pcapng_block.build({
-		'Type': block_type.enhanced_packet,
-		'Data': {
-			'InterfaceID': 0,
-			'TimestampRaw': { 'Value': timestamp },
-			'ActualLen': len(data),
-			'PacketData': data
-		},
-		'Options': None
-	}))
-	stream.flush()
 
 # Generate random SCSI packets offline
 def run_randpkt(fifo: Path, interface: str, args: Namespace) -> int:
 	from time     import sleep
-	from random   import randbytes
+	from random   import randbytes, randint
+
+	iface, sn = interface.split(',', maxsplit = 2)
 
 	log.info('Starting SCSI Randpkt')
-
-	with fifo.open('wb') as f:
-		write_pcapng_header(f, interface)
+	with PCAPNGStream(fifo) as stream:
+		log.info(f'Writing PCAP-NG Header for extcap session on interface {iface}')
+		stream.emit_header(hardware = 'SCSI Randpkt')
+		log.info('Creating Interface')
+		iface = stream.emit_interface(LinkType.USER07, iface)
 		while True:
-			write_pcapng_packet(f, randbytes(128))
-			sleep(0.5)
-
+			iface.emit_packet(randbytes(randint(128, 4096)))
+			sleep(randint(1, 5) * 0.01)
 
 	return 0
 
@@ -394,6 +322,7 @@ def main() -> int:
 			else:
 				return run_capture(fifo, interface, args)
 	return 0
+
 
 
 if __name__ == '__main__':
