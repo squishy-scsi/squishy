@@ -86,6 +86,10 @@ class ProvisionAction(SquishySynthAction):
 		log.info('Building bootloader gateware')
 		prod = self.run_synth(args, plat, bootloader, boot_name, build_dir, cacheable = False)
 
+		if prod is None:
+			# Synth failed, the call to `run_synth` will have already printed the reason.
+			return 1
+
 		if args.whole_device:
 			log.info('Building full device flash image')
 			image_name = f'squishy-{plat.revision_str}-monolithic.bin'

@@ -10,6 +10,7 @@ import json
 from abc             import ABCMeta, abstractmethod
 from argparse        import ArgumentParser, Namespace
 from pathlib         import Path
+from subprocess      import CalledProcessError
 
 from rich.progress   import Progress, SpinnerColumn, BarColumn, TextColumn
 
@@ -192,7 +193,7 @@ class SquishySynthAction(SquishyAction):
 	def run_synth(
 			self, args: Namespace, platform: SquishyPlatformType, elaboratable: Elaboratable,
 			name: str, build_dir: Path, cacheable: bool = True
-	) -> LocalBuildProducts:
+	) -> LocalBuildProducts | None:
 		'''
 		Run gateware synthesis, place-and-route, and bitstream packing in a cache-aware manner.
 
@@ -219,7 +220,10 @@ class SquishySynthAction(SquishyAction):
 		Returns
 		-------
 		LocalBuildProducts
-			The resulting built artifacts.
+			The resulting built artifacts upon successful build
+
+		None
+			On a failed build there are no resulting products
 		'''
 
 		synth_opts: list[str] = []
@@ -304,7 +308,17 @@ class SquishySynthAction(SquishyAction):
 			if prod is None:
 				log.info('Bitstream is not cached, this might take [yellow][i]a while[/][/]', extra = { 'markup': True })
 				progress.update(task, description = 'Building bitstream')
-				prod = plan.execute_local(build_dir)
+				try:
+					prod = plan.execute_local(build_dir)
+				except CalledProcessError:
+					# TODO(aki): Should we copy the files out from the build directory into somewhere like '/tmp'
+					#            and point users to that rather than make them reach into the cache dir?
+					log.error(f'Building bitstream for \'{name}\' failed')
+					log.error(f'Consult the following log files in {build_dir} for more details:')
+					log.error(f'  [cyan]*[/] [link={build_dir}/{name}.rpt]\'{name}.rpt\'[/] [dim](Synthesis Report)[/]', extra = { 'markup': True })
+					log.error(f'  [cyan]*[/] [link={build_dir}/{name}.tim]\'{name}.tim\'[/] [dim](PnR Report)[/]', extra = { 'markup': True })
+					return None
+
 				# If we're allowed to, cache the products and then return that cached version
 				if not skip_cache:
 					progress.update(task, description = 'Caching build')

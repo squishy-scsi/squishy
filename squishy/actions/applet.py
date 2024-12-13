@@ -160,6 +160,10 @@ class AppletAction(SquishySynthAction):
 		log.info('Building applet gateware')
 		prod = self.run_synth(args, plat, gateware, applet_name, build_dir)
 
+		if prod is None:
+			# Synth failed, the call to `run_synth` will have already printed the reason.
+			return 1
+
 		f_name = f'{applet_name}.{plat.bitstream_suffix}'
 
 		# if on the off chance the user only built the gateware, display how to use dfu-util to flash it
