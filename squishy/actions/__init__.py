@@ -262,7 +262,7 @@ class SquishySynthAction(SquishyAction):
 			pnr_opts.append(f'--write {name}.pnr.json')
 
 		# If the seed is negative, use a random seed
-		if args.pnr_seed > 0:
+		if args.pnr_seed < 0:
 			pnr_opts.append('-r')
 		else:
 			pnr_opts.append(f'--seed {args.pnr_seed}')
