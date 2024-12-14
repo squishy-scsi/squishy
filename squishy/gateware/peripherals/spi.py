@@ -332,7 +332,9 @@ class SPIPeripheral(Elaboratable):
 					m.next = 'READ_ADDR'
 
 			with m.State('READ_ADDR'):
-				with m.If(clk & ~clk_dly):
+				with m.If(~cs):
+					m.next = 'IDLE'
+				with m.Elif(clk & ~clk_dly):
 					m.d.sync += [
 						addr_cntr.eq(addr_cntr + 1),
 						addr.eq(Cat(addr[1:], copi)),
@@ -346,13 +348,17 @@ class SPIPeripheral(Elaboratable):
 							m.next = 'PREPARE_DATA'
 
 			with m.State('WAIT_DATA'):
-				with m.If(clk & ~clk_dly):
+				with m.If(~cs):
+					m.next = 'IDLE'
+				with m.Elif(clk & ~clk_dly):
 					m.d.sync += [ wait_cntr.eq(wait_cntr + 1), ]
 					with m.If(wait_cntr == 7 - (addr.width & 0b111)):
 						m.next = 'PREPARE_DATA'
 
 			with m.State('PREPARE_DATA'):
-				with m.If(~clk & clk_dly):
+				with m.If(~cs):
+					m.next = 'IDLE'
+				with m.Elif(~clk & clk_dly):
 					m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
 					m.d.sync += [ data_prep.eq(1), ]
 					m.next = 'XFR_DATA'
@@ -368,6 +374,8 @@ class SPIPeripheral(Elaboratable):
 						# Wiggle in the `data_write` value
 						data_write.eq(Cat(data_write[1:], copi)),
 					]
+					with m.If(~cs):
+						m.next = 'IDLE'
 
 				with m.Elif(~clk & clk_dly):
 					m.d.sync += [
@@ -378,6 +386,9 @@ class SPIPeripheral(Elaboratable):
 
 					with m.If(data_cntr == (data_write.width - 1)):
 						m.next = 'STORE_DATA'
+					with m.Elif(~cs):
+						m.next = 'IDLE'
+
 
 			with m.State('STORE_DATA'):
 				m.d.comb += [
