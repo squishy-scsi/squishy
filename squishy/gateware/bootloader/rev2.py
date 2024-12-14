@@ -2,7 +2,43 @@
 
 '''
 
-'''
+
+Squishy Supervisor Bootloader Protocol:
+
+	If we are in an applet and wish to drop into the bootloader:
+
+		1. FPGA raises `~SU_IRQ` with the IRQ register value `DFU` set to 1
+		2. Supervisor resets the FPGA configuration and loads the bootloader bitstream
+		3. Supervisor then waits for the next IRQ event
+		4. Supervisor then checks the IRQ register to make sure it is `in_boot`
+
+	When the FPGA enters bootloader:
+
+		0. FPGA waits for a DFU upload, and if done stuffs it into the PSRAM
+			a. FPGA sticks the destination slot for the DFU payload into the `dest_slot` half of the `slots` register
+			b. FPGA writes the DFU payload size into the `txlen` register
+
+		1. FPGA sets the IRQ Reason to `in_boot`*
+		2. FPGA raises the `~SU_IRQ` line to notify the supervisor we are in the bootloader*
+
+		3. Supervisor reads the `slots` and `txlen` registers
+			a. If the destination slot is not ephemeral:
+				  I. Supervisor erases the flash region mapped to that slot
+				 II. Supervisor write the contents of the PSRAM for `txlen` into the target flash slot
+				III. Supervisor then writes into the FPGA control register that the erase/flash cycle is done
+				 IV. Supervisor waits for the FPGA to tell it to reboot into a given slot
+				  V. FPGA triggers reboot on DFU detach to last written slot?
+			b. If the destination slot *is* ephemeral:
+				  I. Supervisor resets the FPGA into configuration mode
+				 II. Read a block into our SPI buffer from the PSRAM
+				III. While we have not written the full bitstream:
+					α. Read at most buffers worth of bitstream data from PSRAM
+					β. Dump buffer into FPGA configuration
+				 IV. Check FPGA configuration status
+				  V. let the FPGA boot into new bitstream
+
+
+''' # noqa: E101
 
 from torii                 import Elaboratable, Module, Signal, Record
 from torii.hdl.rec         import Direction
