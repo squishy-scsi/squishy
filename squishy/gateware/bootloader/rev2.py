@@ -130,8 +130,10 @@ class Rev2(Elaboratable):
 
 		sup_int = platform.request('supervisor', 0)
 
-		su_attn = sup_int.su_attn.o
-		dfu_trg = sup_int.dfu_trg.o
+		su_irq = sup_int.su_irq.o
+
+		# NOTE(aki): We are not using this signal for anything at the moment, drive it to a defined state
+		m.d.comb += [ sup_int.dfu_trg.o.eq(0), ]
 
 		m.submodules.regs = regs = SupervisorRegisters(name = 'supervisor')
 		m.submodules.spi  = spi  = SPIInterface(
