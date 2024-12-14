@@ -48,6 +48,7 @@ from torii.lib.soc.csr.bus import Multiplexer, Element
 
 from ..platform            import SquishyPlatformType
 from ..peripherals.spi     import SPIInterface, SPIInterfaceMode
+from ..peripherals.psram   import SPIPSRAM
 
 __all__ = (
 	'Rev2',
@@ -100,8 +101,6 @@ class SupervisorRegisters(Multiplexer):
 			m.d.sync += [ self.ctrl.eq(self._ctrl_sts.w_data), ]
 
 		return m
-
-
 
 class Rev2(Elaboratable):
 	'''
@@ -181,6 +180,9 @@ class Rev2(Elaboratable):
 		spi_ctrl = spi.controller
 		spi_perh = spi.peripheral
 
+		m.submodules.psram = psram = SPIPSRAM(
+			controller = spi_ctrl, write_fifo = self._bit_fifo
+		)
 
 
 		return m
