@@ -178,16 +178,15 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		}
 	)
 
-	# generated with `ecppll -i 100 -o 400 -f /dev/stdout`
+	# generated with `ecppll -i 100 -o 170 -f /dev/stdout`
 	pll_cfg = ECP5PLLConfig(
 		ifreq     = 100,
-		clki_div  = 1,
-		clkfb_div = 4,
-		# Primary `sync` clock, 400 is too high but as a placeholder it works
+		clki_div  = 10,
+		clkfb_div = 17,
 		clkp = ECP5PLLOutput(
-			ofreq   = 400,
-			clk_div = 1,
-			cphase  = 0,
+			ofreq   = 170,
+			clk_div = 4,
+			cphase  = 1,
 			fphase  = 0,
 		)
 	)
