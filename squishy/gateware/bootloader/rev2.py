@@ -40,12 +40,10 @@ Squishy Supervisor Bootloader Protocol:
 
 ''' # noqa: E101
 
-from torii                 import Elaboratable, Module, Signal, Record
-from torii.hdl.rec         import Direction
+from torii                 import Elaboratable, Module, Signal
 from torii.lib.fifo        import AsyncFIFO
 
-from torii.lib.soc.csr.bus import Multiplexer, Element
-
+from ..core.supervisor_csr import SupervisorCSRMap
 from ..platform            import SquishyPlatformType
 from ..peripherals.spi     import SPIInterface, SPIInterfaceMode
 from ..peripherals.psram   import SPIPSRAM
@@ -53,54 +51,6 @@ from ..peripherals.psram   import SPIPSRAM
 __all__ = (
 	'Rev2',
 )
-
-
-class CtrlRegister(Record):
-	erase: Signal[1, Direction.FANOUT]
-	_rsvd: Signal[7, Direction.FANOUT]
-
-class StatusRegister(Record):
-	erase_done: Signal[1, Direction.FANIN]
-	_rsvd: Signal[7, Direction.FANOUT]
-
-
-class SupervisorRegisters(Multiplexer):
-	def __init__(self, *, name: str | None = None) -> None:
-
-		self._data_width = 8
-
-		super().__init__(addr_width = 2, data_width = self._data_width, name = name)
-
-		self._ctrl_sts = Element(self._data_width,     Element.Access.RW, name = 'ctrl/status')
-		self._slots    = Element(self._data_width,     Element.Access.RW, name = 'slots'      )
-		self._txlen    = Element(self._data_width * 2, Element.Access.R,  name = 'txlen'      )
-
-		self.add(self._ctrl_sts, addr = 0x0)
-		self.add(self._slots,    addr = 0x1)
-		self.add(self._txlen,    addr = 0x2)
-
-		self.boot_slot = Signal(4)
-		self.dest_slot = Signal(4)
-		self.txlen     = Signal(16)
-
-		self.ctrl      = CtrlRegister()
-		self.status    = StatusRegister()
-
-
-	def elaborate(self, platform: SquishyPlatformType | None) -> Module:
-		m = super().elaborate(platform)
-
-		m.d.comb += [
-			self._txlen.r_data.eq(self.txlen),
-			self._slots.r_data[0:4].eq(self.dest_slot),
-			self._slots.r_data[4:8].eq(self.boot_slot),
-			self._ctrl_sts.r_data.eq(self.status),
-		]
-
-		with m.If(self._ctrl_sts.w_stb):
-			m.d.sync += [ self.ctrl.eq(self._ctrl_sts.w_data), ]
-
-		return m
 
 class Rev2(Elaboratable):
 	'''
@@ -170,7 +120,7 @@ class Rev2(Elaboratable):
 		# NOTE(aki): We are not using this signal for anything at the moment, drive it to a defined state
 		m.d.comb += [ sup_int.dfu_trg.o.eq(0), ]
 
-		m.submodules.regs = regs = SupervisorRegisters(name = 'supervisor')
+		m.submodules.regs = regs = SupervisorCSRMap(name = 'supervisor')
 		m.submodules.spi  = spi  = SPIInterface(
 			clk = sup_int.clk, cipo = sup_int.cipo, copi = sup_int.copi,
 			cs_peripheral = sup_int.attn, cs_controller = sup_int.psram,
