@@ -127,11 +127,8 @@ class Rev2(Elaboratable):
 			mode = SPIInterfaceMode.BOTH, reg_map = regs
 		)
 
-		spi_ctrl = spi.controller
-		spi_perh = spi.peripheral
-
 		m.submodules.psram = psram = SPIPSRAM(
-			controller = spi_ctrl, write_fifo = self._bit_fifo
+			controller = spi.controller, write_fifo = self._bit_fifo
 		)
 
 
