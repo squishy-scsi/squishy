@@ -5,6 +5,12 @@
 The analyzer applet turns squishy into a passive SCSI bus sniffer, allowing for you to inspect, copy, replay,
 and modify SCSI traffic.
 
+It uses the :py:mod:`squishy.core.pcapng` module to write ```LINKTYPE_PARALLEL_SCSI```_ compatible `PCAPNG`_
+files.
+
+
+.. _LINKTYPE_PARALLEL_SCSI: https://github.com/squishy-scsi/wireshark-scsi/docs/LINKTYPE_PARALLEL_SCSI.md
+.. _PCAPNG: https://datatracker.ietf.org/doc/draft-ietf-opsawg-pcapng/02/
 
 '''
 

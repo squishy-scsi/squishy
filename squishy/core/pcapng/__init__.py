@@ -20,6 +20,9 @@ from construct import (
 	Switch, len_, this
 )
 
+from .linktype import (
+	SCSIDataRate, SCSISpeed, SCSIType, SCSIWidth, SCSIFrameType, linktype_parallel_scsi, scsi_bus_opt
+)
 
 __all__ = (
 	'PCAPNGStream',
@@ -87,6 +90,9 @@ class LinkType(IntEnum):
 	''' DLT_USER14 '''
 	USER15 = 0x00A2
 	''' DLT_USER15 '''
+
+	# NOTE(aki): Temporary:tm:
+	PARALLEL_SCSI = USER07
 
 link_type = 'Link Type' / Enum(Int16ul, LinkType)
 
@@ -262,7 +268,9 @@ option_value = Aligned(4, Switch(
 		OptionType.COMMENT: PaddedString(this.length, 'utf8'),
 
 		OptionType.CUSTOM0: PaddedString(this.length, 'utf8'),
-		OptionType.CUSTOM1: HexDump(Bytes(this.length)),
+		OptionType.CUSTOM1: Switch(lambda this: int(this._.type), {
+			BlockType.INTERFACE_DESCRIPTION: scsi_bus_opt # For LINKTYPE_PARALLEL_SCSI
+		}, HexDump(Bytes(this.length))),
 		OptionType.CUSTOM2: PaddedString(this.length, 'utf8'),
 		OptionType.CUSTOM3: HexDump(Bytes(this.length)),
 
@@ -771,6 +779,61 @@ def write_dsb(
 		'options': _options
 	}))
 
+
+def write_psf(
+	stream: BinaryIO, /, interface: int, data: BinaryIO | bytes | bytearray, type: SCSIFrameType,
+	orig: int, dest: int,
+	ts: Arrow | None = None,
+	*, options: Iterable = ()
+) -> int:
+	'''
+	Write a Parallel SCSI Frame wrapped in an Extended Packet Block to
+	the stream.
+
+	Parameters
+	----------
+	stream : BinaryIO
+		The output stream to write to.
+
+	interface : int
+		The interface this packet came from.
+
+	data : BinaryIO | bytes | bytearray
+		The raw data to write into the packet.
+
+	type : SCSIFrameType
+		The type of Parallel SCSI Frame we're writing.
+
+	orig : int
+
+	dest : int
+
+	ts : Arrow | None
+		The capture timestamp of this packet.
+
+	options : Iterable
+		Any extra options to attach to the block. (default: [])
+	'''
+
+	if isinstance(data, (bytearray, bytes)):
+		data_len = len(data)
+	else:
+		_data_offset = data.tell()
+		data.seek(0, SEEK_END)
+		_data_end  = data.tell()
+		data_len = _data_end - _data_offset
+		data.seek(_data_offset, SEEK_SET)
+
+	frame_data = linktype_parallel_scsi.build({
+		'len': 0,
+		'type': type,
+		'orig_id': orig,
+		'dest_id': dest,
+		'data_len': data_len,
+		'data': data
+	})
+
+	return write_epb(stream, interface, frame_data, ts, options = options)
 
 class _PCAPNGInterface:
 	'''
