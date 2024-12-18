@@ -19,3 +19,8 @@
 .. automodule:: squishy.gateware.peripherals.flash
 	:members:
 ```
+
+```{eval-rst}
+.. automodule:: squishy.gateware.peripherals.psram
+	:members:
+```

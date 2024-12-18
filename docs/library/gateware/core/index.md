@@ -1,4 +1,4 @@
-# `squishy.gateware.core`
+# Core
 
 ```{toctree}
 :hidden:

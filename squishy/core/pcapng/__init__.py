@@ -748,9 +748,9 @@ class PCAPNGStream:
 	'''
 	A PCAPNG stream-based emitter
 
-
-
 	Some example usage is as follows:
+
+	.. code-block:: python
 
 		with PCAPNGStream('/tmp/garbage.pcapng') as stream:
 			stream.emit_header(hardware = 'trash-can')
