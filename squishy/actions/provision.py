@@ -33,7 +33,7 @@ class ProvisionAction(SquishySynthAction):
 	requires_dev = False # We need one to provision a live device, but not to build the image
 
 	def register_args(self, parser: ArgumentParser) -> None:
-		self.register_synth_args(parser, cacheable = False)
+		self.register_synth_args(parser)
 
 		prov_opts = parser.add_argument_group('Provisioning Options')
 
@@ -84,7 +84,7 @@ class ProvisionAction(SquishySynthAction):
 		boot_name = f'squishy_boot_v{plat.revision_str}'
 
 		log.info('Building bootloader gateware')
-		prod = self.run_synth(args, plat, bootloader, boot_name, build_dir, cacheable = False)
+		prod = self.run_synth(args, plat, bootloader, boot_name, build_dir)
 
 		if prod is None:
 			# Synth failed, the call to `run_synth` will have already printed the reason.
