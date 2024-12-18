@@ -29,6 +29,7 @@ from torii.platform.resources.user      import LEDResources
 from torii.platform.resources.interface import ULPIResource
 
 from .                                  import SquishyPlatform
+from .resources                         import BankedHyperRAM
 from ...core.flash                      import Geometry as FlashGeometry
 from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
 
@@ -240,21 +241,18 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		),
 
 		# HyperRAM Cache, This is a weird 2-banked w/ 2 chips per bank layout
-		Resource('ram', 0,
-			#                         DQ0 DQ1 DQ2 DQ3 DQ4 DQ5 DQ6 DQ7
-			Subsignal('dq_odd', Pins('J18 J17 H20 J19 J20 K20 K19 K18', dir = 'io')),
-			Subsignal('dq_evn', Pins('E18 E17 D18 E19 E20 F19 F18 F17', dir = 'io')),
-			#                          CS0 CS1
-			Subsignal('cs_odd', PinsN('G19 G18', dir = 'o')),
-			Subsignal('cs_evn', PinsN('D20 C18', dir = 'o')),
+		BankedHyperRAM('ram', 0,
+			data_even = 'E18 E17 D18 E19 E20 F19 F18 F17', # DQ[0:7]
+			cs_even   = 'D20 C18', # CS0/CS1
+			clk_even  = 'C20 D19', # P/N
 
-			Subsignal('clk_odd', DiffPairs('F20', 'G20', dir = 'o')),
-			Subsignal('clk_evn', DiffPairs('C20', 'D19', dir = 'o')),
+			data_odd  = 'J18 J17 H20 J19 J20 K20 K19 K18', # DQ[0:7]
+			cs_odd    = 'G19 G18', # CS0/CS1
+			clk_odd   = 'F20 G20', # P/N
 
-			Subsignal('rwds', Pins('H18', dir = 'io')),
-			Subsignal('rst', Pins('D17', dir = 'o')),
-
-			Attrs(IO_TYPE = 'LVCMOS18', SLEWRATE = 'FAST')
+			rwds      = 'H18',
+			rst       = 'D17',
+			attrs     = Attrs(IO_TYPE = 'LVCMOS18', SLEWRATE = 'FAST')
 		),
 
 		ULPIResource('ulpi', 0,
