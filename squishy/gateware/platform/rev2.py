@@ -225,7 +225,8 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			Subsignal('attn',    PinsN('T2', dir = 'i')), # This is the CS for the FPGA
 			Subsignal('psram',   PinsN('Y2', dir = 'o')), # The bitstram cache PSRAM CS from our side
 			Subsignal('su_irq',  Pins('W1', dir = 'o')),
-			Subsignal('dfu_trg', PinsN('V1', dir = 'o')),
+			# This /could/ be done by clamping CS on our side but a dedicated signal is fine
+			Subsignal('bus_hold', Pins('V1', dir = 'o')),
 
 			Attrs(IO_TYPE = 'LVCMOS33')
 		),

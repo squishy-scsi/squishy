@@ -26,7 +26,7 @@ void setup_io() noexcept {
 	PORTA.set_input(pin::DFU_BTN);
 	/* Setup FPGA Side attention lines */
 	/* TODO: This need to be EXTINTs, not normal inputs */
-	PORTA.set_input(pin::DFU_TRIG);
+	PORTA.set_input(pin::BUS_HOLD);
 	PORTA.set_input(pin::SU_ATTN);
 }
 

@@ -28,9 +28,9 @@ Bootloader Mode
 Upon the FPGA entering the bootloader:
 
 0. FPGA waits for a DFU upload, and if done stuffs it into the PSRAM
-
-  a. FPGA sticks the destination slot for the DFU payload into the ``dest_slot`` half of the ``slots`` register
-  b. FPGA writes the DFU payload size into the ``txlen`` register
+  a. FPGA Holds ``bus_hold`` high until DFU upload is complete
+  b. FPGA sticks the destination slot for the DFU payload into the ``dest_slot`` half of the ``slots`` register
+  c. FPGA writes the DFU payload size into the ``txlen`` register
 
 1. FPGA sets the IRQ Reason to ``in_boot``
 2. FPGA raises the ``~SU_IRQ`` line to notify the supervisor we are in the bootloader
@@ -132,10 +132,8 @@ class Rev2(Elaboratable):
 
 		sup_int = platform.request('supervisor', 0)
 
-		su_irq = sup_int.su_irq.o
-
-		# NOTE(aki): We are not using this signal for anything at the moment, drive it to a defined state
-		m.d.comb += [ sup_int.dfu_trg.o.eq(0), ]
+		su_irq: Signal   = sup_int.su_irq.o
+		bus_hold: Signal = sup_int.bus_hold.o
 
 		m.submodules.regs = regs = SupervisorCSRMap(name = 'supervisor')
 		m.submodules.spi  = spi  = SPIInterface(
@@ -147,6 +145,11 @@ class Rev2(Elaboratable):
 		m.submodules.psram = psram = SPIPSRAM(
 			controller = spi.controller, write_fifo = self._bit_fifo
 		)
+
+		m.d.comb += [
+			bus_hold.eq(spi.active_mode), # Due to how `spi.active_mode` is defined, we can just tie these together
+			spi.active_mode.eq(0), # We should always be a peripheral unless we're explicitly writing to the PSRAM
+		]
 
 		# TODO(aki): Don't forget to drive spi.active_mode for the controller or peripheral
 

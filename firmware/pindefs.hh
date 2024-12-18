@@ -40,7 +40,7 @@ namespace pin {
 
 	/* FPGA Facing DFU/Comm triggers */
 	inline constexpr std::uint8_t SU_ATTN{15U};
-	inline constexpr std::uint8_t DFU_TRIG{11U};
+	inline constexpr std::uint8_t BUS_HOLD{11U};
 }
 
 #endif /* SQUISHY_SUPERVISOR_PINDEFS_HH */
