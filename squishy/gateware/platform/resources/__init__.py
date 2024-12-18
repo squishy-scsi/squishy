@@ -8,6 +8,7 @@ from torii.build.dsl import Attrs, Pins, PinsN, Resource, Subsignal, DiffPairs, 
 
 __all__ = (
 	'BankedHyperRAM',
+	'PDController',
 )
 
 def BankedHyperRAM(
@@ -44,3 +45,24 @@ def BankedHyperRAM(
 		ios.append(attrs)
 
 	return Resource.family(name_or_number, number, default_name = 'hyperram', ios = ios)
+
+
+def PDController(
+	name_or_number: str | int, number: int | None = None, *,
+	scl: str, sda: str, pol: str | None = None,
+	conn: ResourceConn | None = None, attrs: Attrs | None = None
+) -> Resource:
+	''' Basically just I²C with an outgoing `pol` signal for a USB-3 mux '''
+
+	ios: list[SubsigArgT] = [
+		Subsignal('scl', Pins(scl, dir = 'io', conn = conn, assert_width = 1)),
+		Subsignal('sda', Pins(sda, dir = 'io', conn = conn, assert_width = 1)),
+	]
+
+	if pol is not None:
+		ios.append(Subsignal('pol', Pins(pol, dir = 'o', conn = conn, assert_width = 1)))
+
+	if attrs is not None:
+		ios.append(attrs)
+
+	return Resource.family(name_or_number, number, default_name = 'usb_pd', ios = ios)

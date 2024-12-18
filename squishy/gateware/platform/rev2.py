@@ -29,7 +29,7 @@ from torii.platform.resources.user      import LEDResources
 from torii.platform.resources.interface import ULPIResource
 
 from .                                  import SquishyPlatform
-from .resources                         import BankedHyperRAM
+from .resources                         import BankedHyperRAM, PDController
 from ...core.flash                      import Geometry as FlashGeometry
 from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
 
@@ -266,13 +266,14 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			# Make the signal edges be sharp enough to cause me to bleed
 			attrs = Attrs(IO_TYPE = 'LVCMOS33', SLEWRATE = 'FAST')
 		),
+
 		# The USB 3.1 Super-Speed is bound to DCU1 Chan1 (W17 W18)
-		Resource('usb_pd',  0,
-			Subsignal('scl', Pins('M18', dir = 'io')),
+		PDController('usb_pd', 0,
+			scl = 'M18',
 			# Errata: The schematic has a typo calling it `PD_SCA` rather than `PD_SDA`
-			Subsignal('sda', Pins('N17', dir = 'io')),
-			Subsignal('pol', Pins('N18', dir = 'o')),
-			Attrs(IO_TYPE = 'LVCMOS33')
+			sda = 'N17',
+			pol = 'N18',
+			attrs = Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
 		# This will be replaced with a proper Squishy SCSI-PHY resource eventually:tm:
