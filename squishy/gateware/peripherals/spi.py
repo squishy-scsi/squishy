@@ -304,6 +304,7 @@ class SPIPeripheral(Elaboratable):
 
 		m.domains.spi = ClockDomain()
 
+		# TODO(aki): Replace the use of `clk_dly` with `Rose`/`Fell`
 		clk     = Signal.like(self._clk,  name = 'spi_pclk'    )
 		clk_dly = Signal.like(clk,        name = 'spi_pclk_dly')
 		cs      = Signal.like(self._cs,   name = 'spi_pcs'     )
