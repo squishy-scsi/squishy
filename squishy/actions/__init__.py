@@ -321,8 +321,11 @@ class SquishySynthAction(SquishyAction):
 
 				# If we're allowed to, cache the products and then return that cached version
 				if not skip_cache:
+					log.info('Caching built bitstream')
 					progress.update(task, description = 'Caching build')
 					prod = self._cache.store(name, prod, plan, platform)
+			else:
+				log.info('Found built gateware in cache, using that')
 
 			progress.remove_task(task)
 		# If we're in verbose logging mode, go the extra step and print out the utilization report
