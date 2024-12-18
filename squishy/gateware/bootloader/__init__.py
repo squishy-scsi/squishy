@@ -5,14 +5,10 @@
 '''
 
 from torii                                           import Elaboratable, Module, ResetSignal
-from torii.hdl.ast                                   import Operator
 from torii.lib.fifo                                  import AsyncFIFO
 
 from sol_usb.usb2                                    import USBDevice
-from sol_usb.gateware.usb.request                    import SetupPacket
-from sol_usb.gateware.usb.usb2.request               import StallOnlyRequestHandler
 
-from usb_construct.types                             import USBRequestType
 from usb_construct.emitters.descriptors.standard     import (
 	DeviceDescriptorCollection, LanguageIDs, DeviceClassCodes,
 	InterfaceClassCodes, ApplicationSubclassCodes, DFUProtocolCodes
