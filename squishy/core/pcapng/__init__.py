@@ -52,110 +52,192 @@ timestamp = 'Timestamp' / Struct(
 )
 
 class LinkType(IntEnum):
-	# User DLTs
-	USER00 = 0x0093 # DLT_USER00
-	USER01 = 0x0094 # DLT_USER01
-	USER02 = 0x0095 # DLT_USER02
-	USER03 = 0x0096 # DLT_USER03
-	USER04 = 0x0097 # DLT_USER04
-	USER05 = 0x0098 # DLT_USER05
-	USER06 = 0x0099 # DLT_USER06
-	USER07 = 0x009A # DLT_USER07
-	USER08 = 0x009B # DLT_USER08
-	USER09 = 0x009C # DLT_USER09
-	USER10 = 0x009D # DLT_USER10
-	USER11 = 0x009E # DLT_USER11
-	USER12 = 0x009F # DLT_USER12
-	USER13 = 0x00A0 # DLT_USER13
-	USER14 = 0x00A1 # DLT_USER14
-	USER15 = 0x00A2 # DLT_USER15
+	''' PCAPNG LinkType '''
 
+	# User DLTs
+	USER00 = 0x0093
+	''' DLT_USER00 '''
+	USER01 = 0x0094
+	''' DLT_USER01 '''
+	USER02 = 0x0095
+	''' DLT_USER02 '''
+	USER03 = 0x0096
+	''' DLT_USER03 '''
+	USER04 = 0x0097
+	''' DLT_USER04 '''
+	USER05 = 0x0098
+	''' DLT_USER05 '''
+	USER06 = 0x0099
+	''' DLT_USER06 '''
+	USER07 = 0x009A
+	''' DLT_USER07 '''
+	USER08 = 0x009B
+	''' DLT_USER08 '''
+	USER09 = 0x009C
+	''' DLT_USER09 '''
+	USER10 = 0x009D
+	''' DLT_USER10 '''
+	USER11 = 0x009E
+	''' DLT_USER11 '''
+	USER12 = 0x009F
+	''' DLT_USER12 '''
+	USER13 = 0x00A0
+	''' DLT_USER13 '''
+	USER14 = 0x00A1
+	''' DLT_USER14 '''
+	USER15 = 0x00A2
+	''' DLT_USER15 '''
 
 link_type = 'Link Type' / Enum(Int16ul, LinkType)
 
 
 class BlockType(IntEnum):
-	SECTION_HEADER        = 0x0A0D0D0A # PCAPNG capture header
-	INTERFACE_DESCRIPTION = 0x00000001 # Capture interface description
-	SIMPLE_PACKET         = 0x00000003 # Simple capture storage block
-	NAME_RESOLUTION       = 0x00000004 # Name <-> Address mapping block
-	INTERFACE_STATISTICS  = 0x00000005 # Capture interface statistics
-	ENHANCED_PACKET       = 0x00000006 # Enhanced capture storage block
-	DECRYPTION_SECRETS    = 0x0000000A # Capture session token/secret storage for decryption
+	''' PCAPNG Block Type '''
 
-	CUSTOM0 = 0x00000BAD # Vendor defined block
-	CUSTOM1 = 0x00004BAD # Like CUSTOM0, but not copied
+	SECTION_HEADER        = 0x0A0D0D0A
+	''' PCAPNG capture header '''
+	INTERFACE_DESCRIPTION = 0x00000001
+	''' Capture interface description '''
+	SIMPLE_PACKET         = 0x00000003
+	''' Simple capture storage block '''
+	NAME_RESOLUTION       = 0x00000004
+	''' Name <-> Address mapping block '''
+	INTERFACE_STATISTICS  = 0x00000005
+	''' Capture interface statistics '''
+	ENHANCED_PACKET       = 0x00000006
+	''' Enhanced capture storage block '''
+	DECRYPTION_SECRETS    = 0x0000000A
+	''' Capture session token/secret storage for decryption '''
+
+	CUSTOM0 = 0x00000BAD
+	''' Vendor defined block '''
+	CUSTOM1 = 0x00004BAD
+	''' Like CUSTOM0, but not copied '''
 
 block_type = 'Block Type' / Enum(Int32ul, BlockType)
 
 
 class OptionType(IntEnum):
-	# "Bare" Option Types
-	END     = 0x0000 # End of list of block Options
-	COMMENT = 0x0001 # UTF-8 String: Block comment
+	''' PCAPNG Option Types '''
 
-	CUSTOM0 = 0x0BAC # Arbitrary UTF-8 String option
-	CUSTOM1 = 0x0BAD # Arbitrary binary data option
-	CUSTOM2 = 0x4BAC # Non-copyable version of custom0
-	CUSTOM3 = 0x4BAD # Non-copyable version of custom1
+	# "Bare" Option Types
+	END     = 0x0000
+	''' End of list of block Options '''
+	COMMENT = 0x0001
+	''' UTF-8 String: Block comment '''
+
+	CUSTOM0 = 0x0BAC
+	''' Arbitrary UTF-8 String option '''
+	CUSTOM1 = 0x0BAD
+	''' Arbitrary binary data option '''
+	CUSTOM2 = 0x4BAC
+	''' Non-copyable version of ``CUSTOM0`` '''
+	CUSTOM3 = 0x4BAD
+	''' Non-copyable version of ``CUSTOM1`` '''
 
 	# Section Header Block Options
-	SHB_HARDWARE = 0x0002 # UTF-8 String: Hardware on which this PCAPNG file was generated (not the interface)
-	SHB_OS       = 0x0003 # UTF-8 String: Operating System on which this PCAPNG file was generated
-	SHB_USERAPPL = 0x0004 # UTF-8 String: Application that generated this PCAPNG file
+	SHB_HARDWARE = 0x0002
+	''' UTF-8 String: Hardware on which this PCAPNG file was generated (not the interface) '''
+	SHB_OS       = 0x0003
+	''' UTF-8 String: Operating System on which this PCAPNG file was generated '''
+	SHB_USERAPPL = 0x0004
+	''' UTF-8 String: Application that generated this PCAPNG file '''
 
 	# Interface Description Block Options
-	IF_NAME        = 0x0002 # UTF-8 String: The interface name
-	IF_DESCRIPTION = 0x0003 # UTF-8 String: The interface description
-	IF_IPV4ADDR    = 0x0004 # Bytes ( 8): IPv4 Address and Netmask
-	IF_IPV6ADDR    = 0x0005 # Bytes (17): IPv6 Address and Prefix Length
-	IF_MACADDR     = 0x0006 # Bytes ( 6): Interface EUI MAC Address
-	IF_EUIADDR     = 0x0007 # Bytes ( 8): Interface EUI Address
-	IF_SPEED       = 0x0008 # uint64: Interface speed in bits-per-second (bps)
-	IF_TSRESOL     = 0x0009 # uint8: interface timestamp resolution
-	IF_TZONE       = 0x000A # uint32: Unused/Do-not-use
-	IF_FILTER      = 0x000B # UTF-8 String: Filter used to generate capture for this interface if any
-	IF_OS          = 0x000C # UTF-8 String: Operating System this interface was installed on
-	IF_FCSLEN      = 0x000D # uint8: Frame-check-sequence length in bits
-	IF_TSOFFSET    = 0x000E # uint64: Offset adjustment to apply to capture block timestamps, omit or 0 for absolute
-	IF_HARDWARE    = 0x000F # UTF-8 String: Interface hardware description
-	IF_TXSPEED     = 0x0010 # uint64: Interface transmit speed in bits-per-second
-	IF_RXSPEED     = 0x0011 # uint64: Interface receive speed in bits-per-second
-	IF_IANA_TZNAME = 0x0012 # UTF-8 String: Timezone in which the interface was when capture occurred
+	IF_NAME        = 0x0002
+	''' UTF-8 String: The interface name '''
+	IF_DESCRIPTION = 0x0003
+	''' UTF-8 String: The interface description '''
+	IF_IPV4ADDR    = 0x0004
+	''' Bytes ( 8): IPv4 Address and Netmask '''
+	IF_IPV6ADDR    = 0x0005
+	''' Bytes (17): IPv6 Address and Prefix Length '''
+	IF_MACADDR     = 0x0006
+	''' Bytes ( 6): Interface EUI MAC Address '''
+	IF_EUIADDR     = 0x0007
+	''' Bytes ( 8): Interface EUI Address '''
+	IF_SPEED       = 0x0008
+	''' uint64: Interface speed in bits-per-second (bps) '''
+	IF_TSRESOL     = 0x0009
+	''' uint8: interface timestamp resolution '''
+	IF_TZONE       = 0x000A
+	''' uint32: Unused/Do-not-use '''
+	IF_FILTER      = 0x000B
+	''' UTF-8 String: Filter used to generate capture for this interface if any '''
+	IF_OS          = 0x000C
+	''' UTF-8 String: Operating System this interface was installed on '''
+	IF_FCSLEN      = 0x000D
+	''' uint8: Frame-check-sequence length in bits '''
+	IF_TSOFFSET    = 0x000E
+	''' uint64: Offset adjustment to apply to capture block timestamps, omit or 0 for absolute '''
+	IF_HARDWARE    = 0x000F
+	''' UTF-8 String: Interface hardware description '''
+	IF_TXSPEED     = 0x0010
+	''' uint64: Interface transmit speed in bits-per-second '''
+	IF_RXSPEED     = 0x0011
+	''' uint64: Interface receive speed in bits-per-second '''
+	IF_IANA_TZNAME = 0x0012
+	''' UTF-8 String: Timezone in which the interface was when capture occurred '''
 
 	# Enhanced Packet Block Options
-	EPB_FLAGS     = 0x0002 # ehb_flags: Enhanced Packet Block flags structure
-	EPB_HASH      = 0x0003 # bytes (1, N): packet contents hash, first byte is type followed by N digest bytes
-	EPB_DROPCOUNT = 0x0004 # uint64: Number of packets lost by the interface and OS between this packet and the preceding
-	EPB_PACKETID  = 0x0005 # uint64: Packet unique identifier
-	EPB_QUEUE     = 0x0006 # uint32: Interface queue ID
-	EPB_VERDICT   = 0x0007 # bytes (1, N): packet verdict, first byte is type, followed by N bytes of the verdict data
-	EPB_PID_TID   = 0x0008 # uint32,uint32: Process ID and Thread ID pair of the process that originated this packet
+	EPB_FLAGS     = 0x0002
+	''' ehb_flags: Enhanced Packet Block flags structure '''
+	EPB_HASH      = 0x0003
+	''' bytes (1, N): packet contents hash, first byte is type followed by N digest bytes '''
+	EPB_DROPCOUNT = 0x0004
+	'''  uint64: Number of packets lost by the interface and OS between this packet and the preceding '''
+	EPB_PACKETID  = 0x0005
+	''' uint64: Packet unique identifier '''
+	EPB_QUEUE     = 0x0006
+	''' uint32: Interface queue ID '''
+	EPB_VERDICT   = 0x0007
+	''' bytes (1, N): packet verdict, first byte is type, followed by N bytes of the verdict data '''
+	EPB_PID_TID   = 0x0008
+	''' uint32,uint32: Process ID and Thread ID pair of the process that originated this packet '''
 
 	# Name Resolution Block Options
-	NRB_DNSNAME    = 0x0002 # UTF-8 String: Name of the DNS server used to resolve names
-	NRB_DNSIP4ADDR = 0x0003 # bytes ( 4): IPv4 Address of the DNS server used to resolve names
-	NRB_DNSIP6ADDR = 0x0004 # bytes (16): IPv6 Address of the DNS server used to resolve names
+
+	NRB_DNSNAME    = 0x0002
+	''' UTF-8 String: Name of the DNS server used to resolve names '''
+	NRB_DNSIP4ADDR = 0x0003
+	''' bytes ( 4): IPv4 Address of the DNS server used to resolve names '''
+	NRB_DNSIP6ADDR = 0x0004
+	''' bytes (16): IPv6 Address of the DNS server used to resolve names '''
 
 	# Interface Statistics Block Options
-	ISB_STARTTIME    = 0x0002 # timestamp: Start of capture on given interface
-	ISB_ENDTIME      = 0x0003 # timestamp: End of capture on given interface
-	ISB_IFRECV       = 0x0004 # uint64: Total number of packets received on the interface from start of capture
-	ISB_IFDROP       = 0x0005 # uint64: Total number of dropped packets on the interface from the start of capture
-	ISB_FILTERACCEPT = 0x0006 # uint64: Number of packets accepted by the filter from start of capture
-	ISB_OSDROP       = 0x0007 # uint64: Number of packets dropped by the OS from the start of capture
-	ISB_USERDELIV    = 0x0008 # uint64: Number of packets delivered to the user from the start of the capture
+	ISB_STARTTIME    = 0x0002
+	''' timestamp: Start of capture on given interface '''
+	ISB_ENDTIME      = 0x0003
+	''' timestamp: End of capture on given interface '''
+	ISB_IFRECV       = 0x0004
+	''' uint64: Total number of packets received on the interface from start of capture '''
+	ISB_IFDROP       = 0x0005
+	''' uint64: Total number of dropped packets on the interface from the start of capture '''
+	ISB_FILTERACCEPT = 0x0006
+	''' uint64: Number of packets accepted by the filter from start of capture '''
+	ISB_OSDROP       = 0x0007
+	''' uint64: Number of packets dropped by the OS from the start of capture '''
+	ISB_USERDELIV    = 0x0008
+	''' uint64: Number of packets delivered to the user from the start of the capture '''
 
 option_type = 'Option Type' / Enum(Int16ul, OptionType)
 
 
 class SecretType(IntEnum):
+	''' PCAPNG Decryption Secrets Block Type '''
+
 	SSH_KEY_LOG       = 0x5353484B
+	''' SSH Key Log '''
 	TLS_KEY_LOG       = 0x544C534B
+	''' TLS Key Log '''
 	OPC_UA_KEY_LOG    = 0x55414B4C
+	''' OPC UA Key Log '''
 	WIREGAURD_KEY_LOG = 0x57474B4C
+	''' WireGuard Key Log '''
 	ZIGBEE_NWK_KEY    = 0x5A4E574B
+	''' ZigBee NWK Key and ZigBee PANID '''
 	ZIGBEE_APS_KEY    = 0x5A415053
+	''' ZigBee APS Key '''
 
 secret_type = 'Secrete Type' / Enum(Int32ul, SecretType)
 
