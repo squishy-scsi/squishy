@@ -87,7 +87,7 @@ class DUTWrapper(Elaboratable):
 
 		return m
 
-class DFURequestHandlerTests(SquishyUSBGatewareTest):
+class Rev1BootloaderTests(SquishyUSBGatewareTest):
 	dut: DUTWrapper = DUTWrapper
 	dut_args = {}
 	domains  = (('usb', 60e6), ('sync', 80e6), )
@@ -163,7 +163,7 @@ class DFURequestHandlerTests(SquishyUSBGatewareTest):
 	@ToriiTestCase.simulation
 	def test_integration(self):
 		@ToriiTestCase.sync_domain(domain = 'usb')
-		def dfu(self: DFURequestHandlerTests):
+		def dfu(self: Rev1BootloaderTests):
 			# Setup the active interface
 			yield self.dut.dfu.interface.active_config.eq(1)
 			yield Settle()
@@ -211,7 +211,7 @@ class DFURequestHandlerTests(SquishyUSBGatewareTest):
 			yield from self.step(10)
 
 		@ToriiTestCase.sync_domain(domain = 'sync')
-		def flash(self: DFURequestHandlerTests):
+		def flash(self: Rev1BootloaderTests):
 			yield from self.spi_trans(copi = (0xAB,))
 			yield from self.step(45)
 			yield from self.spi_trans(copi = (0x06,))
