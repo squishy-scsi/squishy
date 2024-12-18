@@ -1003,16 +1003,3 @@ class PCAPNGStream:
 		else:
 			# There was an exception, bubble it up
 			return False
-
-
-if __name__ == '__main__':
-	from random import randbytes, randint
-
-
-	test_file = Path('/tmp/test.pcapng').resolve()
-
-	with PCAPNGStream(test_file) as stream:
-		stream.emit_header(hardware = 'Test')
-		iface = stream.emit_interface(LinkType.USER00, 'test0')
-		for _ in range(128):
-			iface.emit_packet(randbytes(randint(128, 4096)))
