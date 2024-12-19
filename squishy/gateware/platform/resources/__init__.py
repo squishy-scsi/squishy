@@ -9,6 +9,7 @@ from torii.build.dsl import Attrs, Pins, PinsN, Resource, Subsignal, DiffPairs, 
 __all__ = (
 	'BankedHyperRAM',
 	'PDController',
+	'PhyADC',
 )
 
 def BankedHyperRAM(
@@ -66,3 +67,19 @@ def PDController(
 		ios.append(attrs)
 
 	return Resource.family(name_or_number, number, default_name = 'usb_pd', ios = ios)
+
+def PhyADC(
+	name_or_number: str | int, number: int | None = None, *,
+	clk: str, dat: str, chan: str,
+	conn: ResourceConn | None = None, attrs: Attrs | None = None
+) -> Resource:
+	ios: list[SubsigArgT] = [
+		Subsignal('clk',  Pins(clk,  dir = 'o', conn = conn, assert_width = 1)),
+		Subsignal('dat',  Pins(dat,  dir = 'i', conn = conn, assert_width = 1)),
+		Subsignal('chan', Pins(chan, dir = 'o', conn = conn, assert_width = 1)),
+	]
+
+	if attrs is not None:
+		ios.append(attrs)
+
+	return Resource.family(name_or_number, number, default_name = 'phy_adc', ios = ios)

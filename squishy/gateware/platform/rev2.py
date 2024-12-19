@@ -29,7 +29,7 @@ from torii.platform.resources.user      import LEDResources
 from torii.platform.resources.interface import ULPIResource
 
 from .                                  import SquishyPlatform
-from .resources                         import BankedHyperRAM, PDController
+from .resources                         import BankedHyperRAM, PDController, PhyADC
 from ...core.flash                      import Geometry as FlashGeometry
 from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
 
@@ -315,11 +315,9 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		),
 
 		# SCSI PHY Current ADC
-		Resource('phy_adc', 0,
-			Subsignal('clk',  Pins('F1', dir = 'o')),
-			Subsignal('dat',  Pins('G2', dir = 'i')),
-			Subsignal('chan', Pins('G1', dir = 'o')),
-			Attrs(IO_TYPE = 'LVCMOS33')
+		PhyADC('phy_adc', 0,
+			clk = 'F1', dat = 'G2', chan = 'G1',
+			attrs = Attrs(IO_TYPE = 'LVCMOS33')
 		),
 	]
 
