@@ -30,6 +30,7 @@ from torii.platform.resources.interface import ULPIResource
 
 from .                                  import SquishyPlatform
 from .resources                         import BankedHyperRAM, PDController, PhyADC, SquishySupervisor
+from .resources.scsi                    import SquishySCSIPhy
 from ...core.flash                      import Geometry as FlashGeometry
 from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
 
@@ -272,42 +273,17 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			attrs = Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
-		# This will be replaced with a proper Squishy SCSI-PHY resource eventually:tm:
-		Resource('scsi_phy', 0,
-			# SCSI Bus              #      0  1  2  3  4  5  6   7  P0
-			Subsignal('data_lower', Pins('B5 A6 B6 A8 B8 A9 B9 A10 B10', dir = 'io')),
-			#                               8   9  10  11 12 13 14 15 P1
-			Subsignal('data_upper', Pins('A18 B18 A19 B19 A2 B1 A4 B2 A5', dir = 'io')),
-			Subsignal('atn', Pins('B11', dir = 'io')),
-			Subsignal('bsy', Pins('A11', dir = 'io')),
-			Subsignal('ack', Pins('C11', dir = 'io')),
-			Subsignal('rst', Pins('A13', dir = 'io')),
-			Subsignal('msg', Pins('B13', dir = 'io')),
-			Subsignal('sel', Pins('A15', dir = 'io')),
-			Subsignal('cd',  Pins('B15', dir = 'io')),
-			Subsignal('req', Pins('A17', dir = 'io')),
-			Subsignal('io',  Pins('B16', dir = 'io')),
-
-			# PHY Direction Signals
-			Subsignal('data_lower_dir', Pins('B3',  dir = 'o')), # DB[00..07], DP0
-			Subsignal('data_upper_dir', Pins('C1',  dir = 'o')), # DB[08..15], DP1
-			Subsignal('trgt_dir',       Pins('B17', dir = 'o')), # C/D, I/O, MSG, REQ
-			Subsignal('init_dir',       Pins('B12', dir = 'o')), # ACK, ATN
-			Subsignal('bsy_dir',        Pins('A12', dir = 'o')), # BSY
-			Subsignal('rst_dir',        Pins('A14', dir = 'o')), # RST
-			Subsignal('sel_dir',        Pins('A16', dir = 'o')), # SEL
-
-			# PHY Control/Supervisory signals
-			Subsignal('scl',        Pins('F2', dir = 'io')),
-			Subsignal('sda',        Pins('E1', dir = 'io')),
-			Subsignal('termpwr_en', Pins('D1', dir = 'o')),
-			Subsignal('prsnt',     PinsN('E2', dir = 'i')),
-			# Extra Signals
-			Subsignal('ls_ctrl', Pins('C2 C3 C16 C17 C14 C15', dir = 'io')), # LS_CTRL[0..5] Low-speed control lines
-			# This /might/ go better with the ADC?
-			Subsignal('pwr_en',    PinsN('H2', dir = 'o')),
-
-			Attrs(IO_TYPE = 'LVCMOS33', SLEWRATE = 'FAST')
+		SquishySCSIPhy('scsi_phy', 0,
+			#              0  1  2  3  4  5  6   7  P0
+			data_lower = 'B5 A6 B6 A8 B8 A9 B9 A10 B10',
+			#               8   9  10  11 12 13 14 15 P1
+			data_upper = 'A18 B18 A19 B19 A2 B1 A4 B2 A5',
+			atn = 'B11', bsy = 'A11', ack = 'C11', rst = 'A13', msg = 'B13', sel = 'A15', cd = 'B15', req = 'A17', io = '16',
+			data_lower_dir = 'B3', data_upper_dir = 'C1',
+			target_dir = 'B17', initiator_dir = 'B12', bsy_dir = 'A12', rst_dir = 'A14', sel_dir = 'A16',
+			scl = 'F2', sda = 'E1', termpwr_en = 'D1', prsnt = 'E2',
+			lowspeed_ctrl = 'C2 C3 C16 C17 C14 C15', phy_pwr_en = 'H2',
+			attrs = Attrs(IO_TYPE = 'LVCMOS33', SLEWRATE = 'FAST')
 		),
 
 		# SCSI PHY Current ADC

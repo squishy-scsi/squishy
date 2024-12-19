@@ -1,6 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 '''
+This module contains a collection of mostly Squishy-specific resources, for the generic SCSI bus resources see
+:py:mod:`squishy.platform.resources.scsi`.
 
 '''
 
