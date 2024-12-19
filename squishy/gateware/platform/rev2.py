@@ -29,7 +29,7 @@ from torii.platform.resources.user      import LEDResources
 from torii.platform.resources.interface import ULPIResource
 
 from .                                  import SquishyPlatform
-from .resources                         import BankedHyperRAM, PDController, PhyADC
+from .resources                         import BankedHyperRAM, PDController, PhyADC, SquishySupervisor
 from ...core.flash                      import Geometry as FlashGeometry
 from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
 
@@ -217,19 +217,15 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		),
 
 		# Supervisor bus
-		Resource('supervisor',  0,
-			# NOTE(aki): The clk can be driven by the MCU *or* the FPGA, which
-			# might cause issues, we need to have an interlock
-			Subsignal('clk',      Pins('U2', dir = 'io')),
-			Subsignal('copi',     Pins('W2', dir = 'io')),
-			Subsignal('cipo',     Pins('V2', dir = 'io')),
-			Subsignal('attn',    PinsN('T2', dir = 'i')), # This is the CS for the FPGA
-			Subsignal('psram',   PinsN('Y2', dir = 'o')), # The bitstram cache PSRAM CS from our side
-			Subsignal('su_irq',  Pins('W1', dir = 'o')),
-			# This /could/ be done by clamping CS on our side but a dedicated signal is fine
-			Subsignal('bus_hold', Pins('V1', dir = 'o')),
-
-			Attrs(IO_TYPE = 'LVCMOS33')
+		SquishySupervisor(
+			clk      = 'U2',
+			copi     = 'W2',
+			cipo     = 'V2',
+			attn     = 'T2',
+			psram    = 'Y2',
+			su_irq   = 'W1',
+			bus_hold = 'V1',
+			attrs    = Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
 		# Status LEDs

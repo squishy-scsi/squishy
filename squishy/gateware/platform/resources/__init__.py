@@ -10,6 +10,7 @@ __all__ = (
 	'BankedHyperRAM',
 	'PDController',
 	'PhyADC',
+	'SquishySupervisor',
 )
 
 def BankedHyperRAM(
@@ -83,3 +84,25 @@ def PhyADC(
 		ios.append(attrs)
 
 	return Resource.family(name_or_number, number, default_name = 'phy_adc', ios = ios)
+
+def SquishySupervisor(
+	clk: str, copi: str, cipo: str, attn: str, psram: str, su_irq: str, bus_hold: str,
+	conn: ResourceConn | None = None, attrs: Attrs | None = None
+) -> Resource:
+	ios: list[SubsigArgT] = [
+		Subsignal('clk',   Pins(clk,  dir = 'io', conn = conn, assert_width = 1)),
+		Subsignal('copi',  Pins(cipo, dir = 'io', conn = conn, assert_width = 1)),
+		Subsignal('cipo',  Pins(copi, dir = 'io', conn = conn, assert_width = 1)),
+		# Supervisor -> FPGA "CS"
+		Subsignal('attn', PinsN(attn, dir = 'i',  conn = conn, assert_width = 1)),
+		# FPGA -> PSRAM CS
+		Subsignal('psram', PinsN(psram, dir = 'o', conn = conn, assert_width = 1)),
+		# FPGA -> Supervisor IRQ/Bus Hold
+		Subsignal('su_irq',   Pins(su_irq,   dir = 'o', conn = conn, assert_width = 1)),
+		Subsignal('bus_hold', Pins(bus_hold, dir = 'o', conn = conn, assert_width = 1)),
+	]
+
+	if attrs is not None:
+		ios.append(attrs)
+
+	return Resource.family('supervisor', 0, default_name = 'supervisor', ios = ios)
