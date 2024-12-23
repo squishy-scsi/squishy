@@ -55,6 +55,14 @@ class IRQRegister(Record):
 	'''
 
 	want_dfu: Signal[1, Direction.FANOUT]
+	''' We are in an applet, and want to be loaded with bootloader gateware '''
+
+	write_slot: Signal[1, Direction.FANOUT]
+	''' We want the supervisor to write the contents of PSRAM into the target slot '''
+
+	boot: Signal[1, Direction.FANOUT]
+	''' We want the supervisor to boot us from the given slot '''
+
 
 class SupervisorCSRMap(Multiplexer):
 	'''
