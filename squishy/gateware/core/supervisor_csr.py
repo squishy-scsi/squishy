@@ -42,8 +42,12 @@ class SlotRegister(Record):
 	'''
 	Squishy slot register layout
 	'''
+
 	boot: Signal[4, Direction.FANOUT]
+	''' The slot we wish to be booted into '''
+
 	dest: Signal[4, Direction.FANOUT]
+	''' The slot to write DFU payload data into '''
 
 class IRQRegister(Record):
 	'''
