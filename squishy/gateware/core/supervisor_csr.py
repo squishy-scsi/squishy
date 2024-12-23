@@ -24,16 +24,19 @@ class CtrlRegister(Record):
 	Squishy bootloader control register layout
 	'''
 
-	erase: Signal[1, Direction.FANOUT]
-	_rsvd: Signal[7, Direction.FANOUT]
+	write_done: Signal[1, Direction.FANOUT]
+	''' Supervisor is done with the slot storage write  '''
+
+	irq_ack: Signal[1, Direction.FANOUT]
+	''' Supervisor actioned on our IRQ '''
 
 class StatusRegister(Record):
 	'''
 	Squishy bootloader status register layout
 	'''
 
-	erase_done: Signal[1, Direction.FANIN]
-	_rsvd: Signal[7, Direction.FANOUT]
+	_rsvd: Signal[8, Direction.FANOUT]
+	''' TBD '''
 
 class SlotRegister(Record):
 	'''
