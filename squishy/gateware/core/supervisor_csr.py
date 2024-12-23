@@ -127,6 +127,7 @@ class SupervisorCSRMap(Multiplexer):
 		self.txlen     = Signal(16)
 
 		self.ctrl       = CtrlRegister()
+		self.ctrl_rst   = Signal()
 		self.status     = StatusRegister()
 		self.slot       = SlotRegister()
 		self.irq_reason = IRQRegister()
@@ -145,5 +146,8 @@ class SupervisorCSRMap(Multiplexer):
 
 		with m.If(self._ctrl_sts.w_stb):
 			m.d.sync += [ self.ctrl.eq(self._ctrl_sts.w_data), ]
+		with m.Elif(self.ctrl_rst):
+			m.d.sync += [ self.ctrl.eq(0), ]
+
 
 		return m
