@@ -98,9 +98,6 @@ class Rev2(Elaboratable):
 	dl_done : Signal
 		Output: When the backing storage is done storing the data.
 
-	dl_reset_slot : Signal
-		Input: Signals to the storage to reset the active slot.
-
 	dl_size : Signal(16)
 		Input: The size of the DFU transfer into the the FIFO
 
@@ -122,7 +119,6 @@ class Rev2(Elaboratable):
 		self.dl_finish     = Signal()
 		self.dl_ready      = Signal()
 		self.dl_done       = Signal()
-		self.dl_reset_slot = Signal()
 		self.dl_size       = Signal(16)
 
 		self.slot_changed = Signal()
