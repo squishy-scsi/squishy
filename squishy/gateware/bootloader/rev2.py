@@ -32,25 +32,26 @@ Upon the FPGA entering the bootloader:
   b. FPGA sticks the destination slot for the DFU payload into the ``dest_slot`` half of the ``slots`` register
   c. FPGA writes the DFU payload size into the ``txlen`` register
 
-1. FPGA sets the IRQ Reason to ``in_boot``
-2. FPGA raises the ``~SU_IRQ`` line to notify the supervisor we are in the bootloader
+1. FPGA sets the IRQ Reason to ``write_slot``
+2. FPGA raises the ``~SU_IRQ`` line to notify the supervisor we want to write slot data
 3. Supervisor reads the ``slots`` and ``txlen`` registers
+4. Supervisor ACK's the IRQ
 
   a. If the destination slot *is not* ephemeral:
 
     I. Supervisor erases the flash region mapped to that slot
     II. Supervisor write the contents of the PSRAM for ``txlen`` into the target flash slot
-    III. Supervisor then writes into the FPGA control register that the erase/flash cycle is done
-    IV. Supervisor waits for the FPGA to tell it to reboot into a given slot
-    V. FPGA triggers reboot on DFU detach to last written slot?
+	III. Goto 3.b
 
   b. If the destination slot *is* ephemeral:
+	I. Supervisor then writes into the FPGA control register that the erase/flash cycle is done
+    II. Supervisor waits for the FPGA to tell it to reboot into a given slot with the ``boot`` IRQ
+    III. FPGA triggers reboot on DFU detach to last written slot?
+    IV. Supervisor resets the FPGA into configuration mode
+    V. Read a block into our SPI buffer from the slot backing storage
+    VI. While we have not written the full bitstream:
 
-    I. Supervisor resets the FPGA into configuration mode
-    II. Read a block into our SPI buffer from the PSRAM
-    III. While we have not written the full bitstream:
-
-      0. Read at most buffers worth of bitstream data from PSRAM
+      0. Read at most buffers worth of bitstream data from backing store
       1. Dump buffer into FPGA configuration
 
     IV. Check FPGA configuration status
