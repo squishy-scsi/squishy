@@ -165,15 +165,13 @@ class Rev2(Elaboratable):
 			regs.ctrl_rst.eq(0),
 			spi.active_mode.eq(bus_hold), # We should always be a peripheral unless we're explicitly writing to the PSRAM
 
-			dl_ready.eq(0),
+			dl_ready.eq(psram.ready),
 			slot_ack.eq(0),
 		]
 
 		with m.FSM(name = 'storage'):
 			with m.State('RESET'):
 				m.d.sync += [
-					regs.slot.dest.eq(slot_selection),
-					regs.slot.boot.eq(slot_selection),
 					regs.txlen.eq(0),
 					psram.rst_addrs.eq(1),
 				]
@@ -181,6 +179,14 @@ class Rev2(Elaboratable):
 
 			with m.State('IDLE'):
 				m.d.sync += [ psram.rst_addrs.eq(0), ]
+				with m.If(slot_changed):
+					m.d.sync += [
+						regs.slot.dest.eq(slot_selection),
+						regs.slot.boot.eq(slot_selection),
+					]
+					m.d.comb += [
+						slot_ack.eq(1),
+					]
 				with m.If(dl_start):
 					m.d.sync += [
 						bus_hold.eq(1),
