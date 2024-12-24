@@ -137,8 +137,43 @@ class Rev2BootloaderTests(SquishyUSBGatewareTest):
 			type = USBRequestType.CLASS, retrieve = True, req = DFURequests.GET_STATE, value = 0, index = 0, length = 1
 		)
 
+	def send_recv(self, addr: int | None, data_in: int, data_out: int, term: bool = True):
+		self.assertEqual((yield _SUPERVISOR_RECORD.clk.i), 0)
+		# Select the peripheral so we go into `READ_ADDR`
+		yield _SUPERVISOR_RECORD.attn.i.eq(1)
+		yield
+		self.assertEqual((yield _SUPERVISOR_RECORD.clk.i), 0)
+
+		if addr is not None:
+			for addr_bit in range(8):
+				yield _SUPERVISOR_RECORD.copi.i.eq((addr >> addr_bit) & 1)
+				yield Settle()
+				yield
+				yield _SUPERVISOR_RECORD.clk.i.eq(1)
+				yield Settle()
+				yield
+				yield _SUPERVISOR_RECORD.clk.i.eq(0)
+		for bit in range(8):
+			yield _SUPERVISOR_RECORD.copi.i.eq((data_in >> bit) & 1)
+			yield Settle()
+			yield
+			yield _SUPERVISOR_RECORD.clk.i.eq(1)
+			yield Settle()
+			yield
+			yield _SUPERVISOR_RECORD.clk.i.eq(0)
+			yield Settle()
+			if bit >= 1:
+				self.assertEqual((yield _SUPERVISOR_RECORD.cipo.o), ((data_out >> (bit - 1)) & 1))
+		if term:
+			yield _SUPERVISOR_RECORD.attn.i.eq(0)
+		yield Settle()
+		yield
+		self.assertEqual((yield _SUPERVISOR_RECORD.cipo.o), ((data_out >> 7) & 1))
+
 	@ToriiTestCase.simulation
 	def test_integration(self):
+		PAYLOAD_SIZE = len(_DFU_DATA).to_bytes(2, byteorder = 'little')
+
 		@ToriiTestCase.sync_domain(domain = 'usb')
 		def dfu(self: Rev2BootloaderTests):
 			# Setup the active interface
@@ -196,7 +231,53 @@ class Rev2BootloaderTests(SquishyUSBGatewareTest):
 		@ToriiTestCase.sync_domain(domain = 'supervisor')
 		def supervisor(self: Rev2BootloaderTests):
 			yield
+			# Ensure the whole SPI bus is idle
+			self.assertEqual((yield _SUPERVISOR_RECORD.clk.i),       0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.su_irq.o),    0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.bus_hold.o),  0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.attn.i),      0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.psram.o),     0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.copi.o),      0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.cipo.i),      0)
+			yield Settle()
 			yield
+			# wait until `bus_hold` goes high, then ensure it and `su_irq` are as expected later
+			yield from self.wait_until_high(_SUPERVISOR_RECORD.bus_hold.o, timeout = 50)
+			yield from self.step(50)
+			yield
+			self.assertEqual((yield _SUPERVISOR_RECORD.bus_hold.o), 1)
+			self.assertEqual((yield _SUPERVISOR_RECORD.su_irq.o), 0)
+			# Now, we need to wait until the FPGA gateware is done dumping DFU stuff into PSRAM,
+			# We time out just in case `su_irq` is never actually called in a reasonable amount of time
+			yield from self.wait_until_high(_SUPERVISOR_RECORD.su_irq.o, timeout = 50000)
+			yield
+			# We need to now read the IRQ register, the problem is that's internal so we need to actually
+			# run the SPI transaction to pull the value out and check it.
+			yield from self.send_recv(4, 0x00, 0x02)
+			yield
+			# With the proper IRQ, we then read the slots register
+			yield from self.send_recv(1, 0x00, 0x11)
+			yield
+			# Now we read the txlen register
+			yield from self.send_recv(2, 0x00, PAYLOAD_SIZE[0])
+			yield
+			yield from self.send_recv(3, 0x00, PAYLOAD_SIZE[1])
+			yield
+			# We got the slot and txlen we expected, ack the IRQ
+			yield from self.send_recv(0, 0b0000_0010, 0x00)
+			yield
+			# Now we emulate a *really fast* erase/write
+			yield from self.step(50)
+			# instruct the bootloader that we did the thing
+			yield from self.send_recv(0, 0b0000_0001, 0x00)
+			yield
+			# Now we wait for the FPGA to tell us to reboot
+			yield from self.wait_until_high(_SUPERVISOR_RECORD.su_irq.o, timeout = 128)
+			yield
+			# Okay, FPGA wants to tell us something, it should be that it wants a reboot
+			yield from self.send_recv(4, 0x00, 0x04)
+			yield
+			# We can now reboot the FPGA, tests pass on our end
 
 		dfu(self)
 		psram(self)
