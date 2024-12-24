@@ -216,6 +216,7 @@ class SquishyBootloader(Elaboratable):
 			platform_interface.slot_changed.eq(dfu_handler.slot_changed),
 			platform_interface.dl_start.eq(dfu_handler.dl_start),
 			platform_interface.dl_finish.eq(dfu_handler.dl_finish),
+			platform_interface.dl_completed.eq(dfu_handler.dl_completed),
 			platform_interface.dl_size.eq(dfu_handler.dl_size),
 			dfu_handler.slot_ack.eq(platform_interface.slot_ack),
 			dfu_handler.dl_ready.eq(platform_interface.dl_ready),

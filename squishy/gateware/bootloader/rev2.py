@@ -100,6 +100,9 @@ class Rev2(Elaboratable):
 	dl_done : Signal
 		Output: When the backing storage is done storing the data.
 
+	dl_completed : Signal
+		Input: Signal from the DFU handler when a full slot download is completed.
+
 	dl_size : Signal(16)
 		Input: The size of the DFU transfer into the the FIFO
 
@@ -121,6 +124,7 @@ class Rev2(Elaboratable):
 		self.dl_finish     = Signal()
 		self.dl_ready      = Signal()
 		self.dl_done       = Signal()
+		self.dl_completed  = Signal()
 		self.dl_size       = Signal(16)
 
 		self.slot_changed = Signal()
@@ -155,6 +159,7 @@ class Rev2(Elaboratable):
 		dl_finish      = Signal.like(self.dl_finish)
 		dl_ready       = Signal.like(self.dl_ready)
 		dl_done        = Signal.like(self.dl_done)
+		dl_completed   = Signal.like(self.dl_completed)
 
 		m.d.comb += [
 			regs.ctrl_rst.eq(0),
@@ -216,13 +221,14 @@ class Rev2(Elaboratable):
 				]
 
 
-		m.submodules.ffs_reboot    = FFSynchronizer(self.trigger_reboot, trigger_reboot)
-		m.submodules.ffs_dl_finish = FFSynchronizer(self.dl_finish, dl_finish)
-		m.submodules.ffs_dl_size   = FFSynchronizer(self.dl_size,   dl_size)
-		m.submodules.ffs_dl_start  = FFSynchronizer(self.dl_start,  dl_start)
-		m.submodules.ffs_dl_done   = FFSynchronizer(dl_done, self.dl_done, o_domain = 'usb')
-		m.submodules.ffs_slot_chg  = FFSynchronizer(self.slot_changed, slot_changed)
-		m.submodules.ffs_slot_sel  = FFSynchronizer(self.slot_selection, slot_selection)
+		m.submodules.ffs_reboot       = FFSynchronizer(self.trigger_reboot, trigger_reboot)
+		m.submodules.ffs_dl_finish    = FFSynchronizer(self.dl_finish, dl_finish)
+		m.submodules.ffs_dl_size      = FFSynchronizer(self.dl_size, dl_size)
+		m.submodules.ffs_dl_start     = FFSynchronizer(self.dl_start, dl_start)
+		m.submodules.ffs_dl_completed = FFSynchronizer(self.dl_completed, dl_completed)
+		m.submodules.ffs_dl_done      = FFSynchronizer(dl_done, self.dl_done, o_domain = 'usb')
+		m.submodules.ffs_slot_chg     = FFSynchronizer(self.slot_changed, slot_changed)
+		m.submodules.ffs_slot_sel     = FFSynchronizer(self.slot_selection, slot_selection)
 
 		m.submodules.ps_dl_ready = ps_dl_ready = PulseSynchronizer(i_domain = 'sync', o_domain = 'usb')
 		m.submodules.ps_slot_ack = ps_slot_ack = PulseSynchronizer(i_domain = 'sync', o_domain = 'usb')

@@ -47,6 +47,9 @@ class Rev1(Elaboratable):
 	dl_done : Signal
 		Output: When the backing storage is done storing the data.
 
+	dl_completed : Signal
+		Input: Unused
+
 	dl_size : Signal(16)
 		Input: The size of the DFU transfer into the the FIFO
 
@@ -68,11 +71,12 @@ class Rev1(Elaboratable):
 		self.slot_changed   = Signal()
 		self.slot_ack       = Signal()
 
-		self.dl_start  = Signal()
-		self.dl_finish = Signal()
-		self.dl_ready  = Signal()
-		self.dl_done   = Signal()
-		self.dl_size   = Signal(16)
+		self.dl_start     = Signal()
+		self.dl_finish    = Signal()
+		self.dl_ready     = Signal()
+		self.dl_done      = Signal()
+		self.dl_completed = Signal()
+		self.dl_size      = Signal(16)
 
 	def elaborate(self, platform: SquishyPlatformType | None) -> Module:
 		m = Module()

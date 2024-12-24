@@ -94,6 +94,7 @@ class DUTWrapper(Elaboratable):
 			self.rev2.dl_start.eq(self.dfu.dl_start),
 			self.rev2.dl_finish.eq(self.dfu.dl_finish),
 			self.rev2.dl_size.eq(self.dfu.dl_size),
+			self.rev2.dl_completed.eq(self.dfu.dl_completed),
 			self.dfu.slot_ack.eq(self.rev2.slot_ack),
 			self.dfu.dl_ready.eq(self.rev2.dl_ready),
 			self.dfu.dl_done.eq(self.rev2.dl_done),
