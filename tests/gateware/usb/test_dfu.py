@@ -134,9 +134,9 @@ class DFURequestHandlerTests(SquishyUSBGatewareTest):
 			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DETACH, value = 1000, index = 0, length = 0
 		)
 
-	def sendDFUDownload(self):
+	def sendDFUDownload(self, len: int):
 		yield from self.sendSetup(
-			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DOWNLOAD, value = 0, index = 0, length = 256
+			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DOWNLOAD, value = 0, index = 0, length = len
 		)
 
 	def sendDFUGetStatus(self):
@@ -185,7 +185,7 @@ class DFURequestHandlerTests(SquishyUSBGatewareTest):
 		yield Settle()
 		yield
 		# Yeet the data
-		yield from self.sendDFUDownload()
+		yield from self.sendDFUDownload(len = len(_DFU_DATA))
 		yield from self.sendData(data = _DFU_DATA)
 		yield from self.sendDFUGetStatus()
 		yield from self.receiveData(data = (0, 0, 0, 0, DFUState.DlBusy, 0))
@@ -215,6 +215,9 @@ class DFURequestHandlerTests(SquishyUSBGatewareTest):
 		yield from self.sendDFUGetState()
 		yield from self.receiveData(data = (DFUState.DlIdle,))
 		yield
+		# Make sure we advance the state machine,
+		yield from self.sendDFUDownload(len = 0)
+		yield from self.sendData(data = ())
 		# And trigger a reboot
 		self.assertEqual((yield self.dut.dfu.trigger_reboot), 0)
 		yield from self.sendDFUDetach()

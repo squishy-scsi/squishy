@@ -83,6 +83,9 @@ class DFURequestHandler(USBRequestHandler):
 	dl_done : Signal
 		Input: When the backing storage is done storing the data.
 
+	dl_completed : Signal
+		Output: Raised when the DFU state machine has completed a download to a slot.
+
 	dl_size : Signal(16)
 		Output: The size of the DFU transfer into the the FIFO
 
@@ -124,6 +127,7 @@ class DFURequestHandler(USBRequestHandler):
 			self.dl_finish     = Signal()
 			self.dl_ready      = Signal()
 			self.dl_done       = Signal()
+			self.dl_completed  = Signal()
 			self.dl_size       = Signal(16)
 
 			self.slot_changed = Signal()
@@ -272,6 +276,7 @@ class DFURequestHandler(USBRequestHandler):
 
 						m.next = 'HANDLE_DOWNLOAD_DATA'
 					with m.Else():
+						m.d.comb += [ self.dl_completed.eq(1), ]
 						m.next = 'HANDLE_DOWNLOAD_COMPLETE'
 
 				with m.State('HANDLE_DOWNLOAD_DATA'):
