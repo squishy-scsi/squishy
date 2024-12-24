@@ -2,7 +2,7 @@
 
 from random                              import randbytes
 
-from torii                               import Record, Elaboratable, Module
+from torii                               import Record, Elaboratable, Module, ClockDomain, Signal
 from torii.hdl.rec                       import DIR_FANIN, DIR_FANOUT
 from torii.lib.fifo                      import AsyncFIFO
 from torii.sim                           import Settle
@@ -87,6 +87,10 @@ class DUTWrapper(Elaboratable):
 		m.submodules.dfu  = self.dfu
 		m.submodules.rev2 = self.rev2
 
+		m.domains.supervisor = ClockDomain()
+
+		sclk = Signal()
+
 		m.d.comb += [
 			self.rev2.trigger_reboot.eq(self.dfu.trigger_reboot),
 			self.rev2.slot_selection.eq(self.dfu.slot_selection),
@@ -100,13 +104,17 @@ class DUTWrapper(Elaboratable):
 			self.dfu.dl_done.eq(self.rev2.dl_done),
 		]
 
+		m.d.supervisor += [
+			sclk.eq(~sclk),
+		]
+
 		return m
 
 
 class Rev2BootloaderTests(SquishyUSBGatewareTest):
 	dut: DUTWrapper = DUTWrapper
 	dut_args = {}
-	domains  = (('usb', 60e6), ('sync', 80e6), )
+	domains  = (('usb', 60e6), ('sync', 80e6), ('supervisor', 36e6),)
 	platform = DUTPlatform()
 
 	def sendDFUDetach(self):
@@ -136,8 +144,14 @@ class Rev2BootloaderTests(SquishyUSBGatewareTest):
 			yield
 
 		@ToriiTestCase.sync_domain(domain = 'sync')
-		def psram_and_supervisor(self: Rev2BootloaderTests):
+		def psram(self: Rev2BootloaderTests):
+			yield
+
+		@ToriiTestCase.sync_domain(domain = 'supervisor')
+		def supervisor(self: Rev2BootloaderTests):
+			yield
 			yield
 
 		dfu(self)
-		psram_and_supervisor(self)
+		psram(self)
+		supervisor(self)
