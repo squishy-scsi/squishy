@@ -122,9 +122,9 @@ class Rev2BootloaderTests(SquishyUSBGatewareTest):
 			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DETACH, value = 1000, index = 0, length = 0
 		)
 
-	def sendDFUDownload(self):
+	def sendDFUDownload(self, len: int):
 		yield from self.sendSetup(
-			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DOWNLOAD, value = 0, index = 0, length = 256
+			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DOWNLOAD, value = 0, index = 0, length = len
 		)
 
 	def sendDFUGetStatus(self):
@@ -141,7 +141,53 @@ class Rev2BootloaderTests(SquishyUSBGatewareTest):
 	def test_integration(self):
 		@ToriiTestCase.sync_domain(domain = 'usb')
 		def dfu(self: Rev2BootloaderTests):
+			# Setup the active interface
+			yield self.dut.dfu.interface.active_config.eq(1)
+			yield Settle()
+			yield from self.wait_until_high(self.dut.dfu.dl_ready)
+			# Make sure we're in Idle
+			yield from self.sendDFUGetStatus()
+			yield from self.receiveData(data = (0, 0, 0, 0, DFUState.DFUIdle, 0))
+			# Set the interface up
+			yield from self.sendSetupSetInterface(interface = 0, alt_mode = 1)
+			yield from self.receiveZLP()
+			self.assertEqual((yield self.dut.dfu.slot_selection), 1)
+			yield from self.wait_until_high(self.dut.dfu.slot_ack)
+			yield from self.step(3)
+			# Yeet the data
+			yield from self.sendDFUDownload(len = len(_DFU_DATA))
+			yield from self.sendData(data = _DFU_DATA)
+			yield from self.sendDFUGetStatus()
+			yield from self.receiveData(data = (0, 0, 0, 0, DFUState.DlBusy, 0))
+			yield from self.sendDFUGetState()
+			yield from self.receiveData(data = (DFUState.DlBusy, ))
+			yield from self.step(6)
+			yield from self.sendDFUGetState()
+			# The backing storage is chewing on the data, just spin for a bit
+			while (yield from self.receiveData(data = (DFUState.DlBusy,), check = False)):
+				yield from self.sendDFUGetState()
+			yield from self.step(3)
+			# Make sure we're in sync
+			yield from self.sendDFUGetState()
+			yield from self.receiveData(data = (DFUState.DlSync,))
+			yield from self.sendDFUGetStatus()
+			yield from self.receiveData(data = (0, 0, 0, 0, DFUState.DlSync, 0))
+			# And back to Idle
+			yield from self.sendDFUGetState()
+			yield from self.receiveData(data = (DFUState.DlIdle,))
 			yield
+			yield from self.sendDFUDownload(len = 0)
+			yield from self.sendData(data = ())
+			# And trigger a reboot
+			self.assertEqual((yield self.dut.dfu.trigger_reboot), 0)
+			yield from self.sendDFUDetach()
+			yield from self.receiveZLP()
+			self.assertEqual((yield self.dut.dfu.trigger_reboot), 1)
+			yield Settle()
+			yield
+			self.assertEqual((yield self.dut.dfu.trigger_reboot), 1)
+			yield
+			yield from self.step(10)
 
 		@ToriiTestCase.sync_domain(domain = 'sync')
 		def psram(self: Rev2BootloaderTests):
