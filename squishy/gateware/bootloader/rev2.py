@@ -180,22 +180,26 @@ class Rev2(Elaboratable):
 			with m.State('IDLE'):
 				m.d.sync += [ psram.rst_addrs.eq(0), ]
 				with m.If(slot_changed):
-					m.d.sync += [
-						regs.slot.dest.eq(slot_selection),
-						regs.slot.boot.eq(slot_selection),
-					]
-					m.d.comb += [
-						slot_ack.eq(1),
-					]
-				with m.If(dl_start):
+					m.next = 'SLOT_CHANGED'
+				with m.Elif(dl_start):
 					m.d.sync += [
 						bus_hold.eq(1),
 						regs.txlen.eq(regs.txlen + dl_size)
 					]
-					with m.If(dl_size == 0):
-						m.next = 'DFU_TRANSFER_DONE'
-					with m.Else():
-						m.next = 'DFU_TRANSFER_START'
+					m.next = 'DFU_TRANSFER_START'
+				with m.Elif(dl_completed):
+					m.next = 'DFU_TRANSFER_DONE'
+
+			with m.State('SLOT_CHANGED'):
+				m.d.sync += [
+					regs.slot.dest.eq(slot_selection),
+					regs.slot.boot.eq(slot_selection),
+				]
+				m.d.comb += [
+					slot_ack.eq(1),
+				]
+				m.next = 'IDLE'
+
 
 			with m.State('DFU_TRANSFER_START'):
 				with m.If(dl_finish):
