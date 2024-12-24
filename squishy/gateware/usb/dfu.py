@@ -293,7 +293,7 @@ class DFURequestHandler(USBRequestHandler):
 
 				with m.State('HANDLE_DOWNLOAD_COMPLETE'):
 					with m.If(interface.status_requested):
-						m.d.usb  += [ dfu_cfg.state.eq(DFUState.AppIdle), ]
+						m.d.usb  += [ dfu_cfg.state.eq(DFUState.DFUIdle), ]
 						m.d.comb += [ self.send_zlp(), ]
 
 					with m.If(interface.handshakes_in.ack):
