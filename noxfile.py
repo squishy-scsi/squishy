@@ -44,7 +44,7 @@ def test(session: Session) -> None:
 	out_dir.mkdir(parents = True, exist_ok = True)
 	coverage = '--coverage' in session.posargs
 
-	unitest_args = ('-m', 'unittest', 'discover', '-s', str(ROOT_DIR))
+	unitest_args = ('-m', 'unittest', 'discover', '-v', '-s', str(ROOT_DIR))
 
 	session.install('.')
 	if coverage:
