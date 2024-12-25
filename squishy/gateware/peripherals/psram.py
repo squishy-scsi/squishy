@@ -211,7 +211,9 @@ class SPIPSRAM(Elaboratable):
 							with m.Else():
 								m.d.sync += [ xfr_step.eq(0), ]
 								# Trigger the initial write for the first data byte
-								m.d.sync += [ trigger_write.eq(1), ]
+								if write_fifo is not None:
+									with m.If(~write_fifo.r_rdy):
+										m.d.sync += [ trigger_write.eq(1), ]
 								m.next = 'DATA_WRITE'
 					# Stall until the read address transfer cycle is over
 					with m.Case(4):
