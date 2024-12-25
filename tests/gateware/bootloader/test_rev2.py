@@ -1,5 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
+from os                                  import getenv
 from random                              import randbytes
 
 from torii                               import Record, Elaboratable, Module, ClockDomain, Signal
@@ -17,8 +18,13 @@ from squishy.core.flash                  import Geometry
 
 from squishy.gateware.usb.dfu            import DFURequestHandler, DFUState
 from squishy.gateware.bootloader.rev2    import Rev2
+from squishy.gateware.peripherals.psram  import SPIPSRAMCmd
 
-_DFU_DATA = randbytes(256)
+if getenv('GITHUB_WORKSPACE') is not None:
+	_DFU_DATA = randbytes(1536) # 1024 to get an addr wrap + a bit
+else:
+	_DFU_DATA = randbytes(4096) # :nocov:
+
 
 _SUPERVISOR_RECORD = Record((
 	('clk', [
