@@ -65,7 +65,7 @@ from torii.hdl.ast         import Rose
 
 from ..core.supervisor_csr import SupervisorCSRMap
 from ..platform            import SquishyPlatformType
-from ..peripherals.spi     import SPIInterface, SPIInterfaceMode
+from ..peripherals.spi     import SPIInterface, SPIInterfaceMode, SPICPOL
 from ..peripherals.psram   import SPIPSRAM
 
 __all__ = (
@@ -142,6 +142,7 @@ class Rev2(Elaboratable):
 		m.submodules.spi  = spi  = SPIInterface(
 			clk = sup_int.clk, cipo = sup_int.cipo, copi = sup_int.copi,
 			cs_peripheral = sup_int.attn, cs_controller = sup_int.psram,
+			cpol = SPICPOL.LOW,
 			mode = SPIInterfaceMode.BOTH, reg_map = regs
 		)
 
