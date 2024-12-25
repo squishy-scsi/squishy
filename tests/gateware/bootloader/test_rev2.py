@@ -143,7 +143,7 @@ class Rev2BootloaderTests(SquishyUSBGatewareTest):
 			type = USBRequestType.CLASS, retrieve = True, req = DFURequests.GET_STATE, value = 0, index = 0, length = 1
 		)
 
-	def send_recv(self, addr: int | None, data_in: int, data_out: int, term: bool = True):
+	def send_recv_supervisor(self, addr: int | None, data_in: int, data_out: int, term: bool = True):
 		self.assertEqual((yield _SUPERVISOR_RECORD.clk.i), 0)
 		# Select the peripheral so we go into `READ_ADDR`
 		yield _SUPERVISOR_RECORD.attn.i.eq(1)
@@ -175,6 +175,57 @@ class Rev2BootloaderTests(SquishyUSBGatewareTest):
 		yield Settle()
 		yield
 		self.assertEqual((yield _SUPERVISOR_RECORD.cipo.o), ((data_out >> 7) & 1))
+
+	def send_recv_psram(self, *,
+		copi_data: tuple[int, ...] | None = None, cipo_data: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False
+	):
+		if cipo_data is not None and copi_data is not None:
+			self.assertEqual(len(cipo_data), len(copi_data))
+
+		bytes = max(0 if copi_data is None else len(copi_data), 0 if cipo_data is None else len(cipo_data))
+		self.assertEqual((yield _SUPERVISOR_RECORD.clk.o), 0)
+		if continuation:
+			yield Settle()
+			self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
+		else:
+			self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 0)
+			yield Settle()
+		yield
+		self.assertEqual((yield _SUPERVISOR_RECORD.clk.o), 0)
+		self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
+		yield Settle()
+		# yield
+		for byte in range(bytes):
+			for bit in range(8):
+				if bit == 0:
+					self.assertEqual((yield _SUPERVISOR_RECORD.clk.o), 0)
+				else:
+					self.assertEqual((yield _SUPERVISOR_RECORD.clk.o), 1)
+				self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
+				yield Settle()
+				if cipo_data is not None and cipo_data[byte] is not None:
+					yield _SUPERVISOR_RECORD.cipo.i.eq(((cipo_data[byte] << bit) & 0x80) >> 7)
+				yield
+				self.assertEqual((yield _SUPERVISOR_RECORD.clk.o), 0)
+				self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
+				if copi_data is not None and copi_data[byte] is not None:
+					self.assertEqual((yield _SUPERVISOR_RECORD.copi.o), ((copi_data[byte] << bit) & 0x80) >> 7)
+				yield Settle()
+				yield
+			if byte < bytes - 1:
+				self.assertEqual((yield _SUPERVISOR_RECORD.clk.o), 1)
+				self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
+			yield Settle()
+			if cipo_data is not None and cipo_data[byte] is not None:
+				yield _SUPERVISOR_RECORD.cipo.i.eq(0)
+			if byte < bytes - 1:
+				yield
+		if not partial:
+			self.assertEqual((yield _SUPERVISOR_RECORD.clk.o), 0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 0)
+			yield Settle()
+			yield
+
 
 	@ToriiTestCase.simulation
 	def test_integration(self):
@@ -233,6 +284,33 @@ class Rev2BootloaderTests(SquishyUSBGatewareTest):
 		@ToriiTestCase.sync_domain(domain = 'sync')
 		def psram(self: Rev2BootloaderTests):
 			yield
+			# Ensure the SPI bus is idle
+			self.assertEqual((yield _SUPERVISOR_RECORD.clk.o),      0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.su_irq.o),   0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.bus_hold.o), 0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.attn.i),     0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.psram.o),    0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.copi.i),     0)
+			self.assertEqual((yield _SUPERVISOR_RECORD.cipo.o),     0)
+			# Wait for `bus_hold`, while it doesn't go to the PSRAM, it helps us time things
+			# so the psram send_recv can check all it needs to
+			yield from self.wait_until_high(_SUPERVISOR_RECORD.bus_hold.o, timeout = 1024)
+			yield from self.send_recv_psram(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True)
+			for idx, byte in enumerate(_DFU_DATA):
+				final   = idx == len(_DFU_DATA) - 1
+				do_cont = (idx & 1023) != 1023
+
+				yield from self.send_recv_psram(copi_data = (byte,) , partial = not final, continuation = True)
+
+				# We are wrapping addresses
+				if not do_cont:
+					yield Settle()
+					yield
+					if not final:
+						yield from self.send_recv_psram(
+							copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True
+						)
+
 
 		@ToriiTestCase.sync_domain(domain = 'supervisor')
 		def supervisor(self: Rev2BootloaderTests):
@@ -259,29 +337,29 @@ class Rev2BootloaderTests(SquishyUSBGatewareTest):
 			yield
 			# We need to now read the IRQ register, the problem is that's internal so we need to actually
 			# run the SPI transaction to pull the value out and check it.
-			yield from self.send_recv(4, 0x00, 0x02)
+			yield from self.send_recv_supervisor(4, 0x00, 0x02)
 			yield
 			# With the proper IRQ, we then read the slots register
-			yield from self.send_recv(1, 0x00, 0x11)
+			yield from self.send_recv_supervisor(1, 0x00, 0x11)
 			yield
 			# Now we read the txlen register
-			yield from self.send_recv(2, 0x00, PAYLOAD_SIZE[0])
+			yield from self.send_recv_supervisor(2, 0x00, PAYLOAD_SIZE[0])
 			yield
-			yield from self.send_recv(3, 0x00, PAYLOAD_SIZE[1])
+			yield from self.send_recv_supervisor(3, 0x00, PAYLOAD_SIZE[1])
 			yield
 			# We got the slot and txlen we expected, ack the IRQ
-			yield from self.send_recv(0, 0b0000_0010, 0x00)
+			yield from self.send_recv_supervisor(0, 0b0000_0010, 0x00)
 			yield
 			# Now we emulate a *really fast* erase/write
 			yield from self.step(50)
 			# instruct the bootloader that we did the thing
-			yield from self.send_recv(0, 0b0000_0001, 0x00)
+			yield from self.send_recv_supervisor(0, 0b0000_0001, 0x00)
 			yield
 			# Now we wait for the FPGA to tell us to reboot
 			yield from self.wait_until_high(_SUPERVISOR_RECORD.su_irq.o, timeout = 128)
 			yield
 			# Okay, FPGA wants to tell us something, it should be that it wants a reboot
-			yield from self.send_recv(4, 0x00, 0x04)
+			yield from self.send_recv_supervisor(4, 0x00, 0x04)
 			yield
 			# We can now reboot the FPGA, tests pass on our end
 
