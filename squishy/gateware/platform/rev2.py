@@ -54,6 +54,8 @@ class Rev2ClockDomainGenerator(Elaboratable):
 		An active high signal indicating if the PLL is locked and stable.
 	'''
 
+	# TODO(aki): We need to make an ECLKBRIDGECS so we can cross devices clock-tree segments
+	#            without routing our PLL clock into the damn fabric.
 	def __init__(self) -> None:
 		self.pll_locked = Signal()
 
