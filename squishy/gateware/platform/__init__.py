@@ -5,6 +5,7 @@
 '''
 
 from abc              import ABCMeta, abstractmethod
+from argparse         import Namespace
 from pathlib          import Path
 from typing           import TypeAlias
 from itertools        import count
@@ -106,7 +107,7 @@ class SquishyPlatform(metaclass = ABCMeta):
 
 	# TODO(aki): single bitstream/artifact packing + whole image packing
 	@abstractmethod
-	def pack_artifact(self, artifact: bytes) -> bytes:
+	def pack_artifact(self, artifact: bytes, *, args: Namespace) -> bytes:
 		'''
 		Pack a signal bitstream image into a device appropriate artifact.
 
@@ -115,6 +116,9 @@ class SquishyPlatform(metaclass = ABCMeta):
 		artifact : bytes
 			The input data of the result of gateware elaboration, typically
 			the raw FPGA bitstream file.
+
+		args: Namespace
+			Command line arguments used when building the artifact.
 
 		Returns
 		-------
@@ -125,7 +129,7 @@ class SquishyPlatform(metaclass = ABCMeta):
 		raise NotImplementedError('SquishyPlatform requires pack_artifact to be implemented')
 
 	@abstractmethod
-	def build_image(self, name: str, build_dir: Path, boot_name: str, products: BuildProducts) -> Path:
+	def build_image(self, name: str, build_dir: Path, boot_name: str, products: BuildProducts, *, args: Namespace) -> Path:
 		'''
 		Build a platform compatible flash image for provisioning.
 
@@ -142,6 +146,9 @@ class SquishyPlatform(metaclass = ABCMeta):
 
 		products : BuildProducts
 			The resulting build products from the bootloader build.
+
+		args: Namespace
+			Command line arguments used when building the image.
 
 		Returns
 		-------

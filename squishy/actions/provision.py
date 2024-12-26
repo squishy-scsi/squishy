@@ -93,7 +93,7 @@ class ProvisionAction(SquishySynthAction):
 		if args.whole_device:
 			log.info('Building full device flash image')
 			image_name = f'squishy-{plat.revision_str}-monolithic.bin'
-			image = plat.build_image(image_name, build_dir, boot_name, prod)
+			image = plat.build_image(image_name, build_dir, boot_name, prod, args = args)
 
 			if args.build_only:
 				log.info(f'Provisioning image generated at \'{image}\', Flash to device to provision')
@@ -111,11 +111,16 @@ class ProvisionAction(SquishySynthAction):
 
 		else:
 			f_name = f'{boot_name}.{plat.bitstream_suffix}'
+			p_name = f'{f_name}.pak'
+			image = plat.pack_artifact(prod.get(f_name), args = args)
+
 			if args.build_only:
-				log.info(self.dfu_util_msg(f_name, 0, build_dir, dev))
+				with (build_dir / p_name).open('wb') as f:
+					f.write(image)
+
+				log.info(self.dfu_util_msg(p_name, 0, build_dir, dev))
 				return 0
 
-			image = plat.pack_artifact(prod.get(f_name))
 
 		if dev is None:
 			log.error('No device specified, however we were asked to program the device, aborting')

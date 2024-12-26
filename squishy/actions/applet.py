@@ -165,10 +165,19 @@ class AppletAction(SquishySynthAction):
 			return 1
 
 		f_name = f'{applet_name}.{plat.bitstream_suffix}'
+		p_name = f'{f_name}.pak'
+
+		# TODO(aki): We don't cache the packed artifact, we re-pack it each time
+		#            should we cache it?
+		# Pack the bitstream artifact in a way the platform wants
+		packed = plat.pack_artifact(prod.get(f_name, 'b'), args = args)
 
 		# if on the off chance the user only built the gateware, display how to use dfu-util to flash it
 		if args.build_only:
-			log.info(self.dfu_util_msg(f_name, slot, build_dir, dev))
+			with (build_dir / p_name).open('wb') as f:
+				f.write(packed)
+
+			log.info(self.dfu_util_msg(p_name, slot, build_dir, dev))
 			return 0
 
 
@@ -179,11 +188,6 @@ class AppletAction(SquishySynthAction):
 			BarColumn(bar_width = None),
 			transient = True
 		) as progress:
-
-			# TODO(aki): We don't cache the packed artifact, we re-pack it each time
-			#            should we cache it?
-			# Pack the bitstream artifact in a way the platform wants
-			packed = plat.pack_artifact(prod.get(f_name, 'b'))
 
 			# Make sure there is actually a device attached
 			if dev is None:

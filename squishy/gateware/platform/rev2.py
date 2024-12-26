@@ -18,6 +18,7 @@ any are offered.
 
 '''
 import logging                          as log
+from argparse                           import Namespace
 from pathlib                            import Path
 
 from torii                              import *
@@ -301,7 +302,7 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		# Force us to always use the FOSS
 		super().__init__(toolchain = 'Trellis')
 
-	def pack_artifact(self,  artifact: bytes) -> bytes:
+	def pack_artifact(self,  artifact: bytes, *, args: Namespace) -> bytes:
 		'''
 		Pack bitstream/gateware into device artifact.
 
@@ -310,6 +311,9 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		artifact : bytes
 			The input data of the result of gateware elaboration, typically
 			the raw FPGA bitstream file.
+
+		args: Namespace
+			Command line arguments used when building the artifact.
 
 		Returns
 		-------
@@ -322,7 +326,7 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		return artifact
 
 
-	def build_image(self, name: str, build_dir: Path, boot_name: str, products: BuildProducts) -> Path:
+	def build_image(self, name: str, build_dir: Path, boot_name: str, products: BuildProducts, *, args: Namespace) -> Path:
 		'''
 		Build multi-boot compatible flash image to provision onto the device.
 
@@ -339,6 +343,9 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 
 		products : BuildProducts
 			The resulting build products from the bootloader build.
+
+		args: Namespace
+			Command line arguments used when building the image.
 
 		Returns
 		-------
