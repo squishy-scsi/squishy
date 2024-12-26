@@ -272,8 +272,19 @@ class SquishySynthAction(SquishyAction):
 		if not args.dont_compress:
 			pack_opts.append('--compress')
 
+		if args.lie:
+			match platform.device[-3:]:
+				case '25F':
+					pack_opts.append('--idcode 0x01111043')
+				case '45F':
+					pack_opts.append('--idcode 0x01112043')
+				case '85F':
+					pack_opts.append('--idcode 0x01113043')
+
 		log.info(f'Using platform version: {platform.revision_str}')
 		log.info(f'    Device: {platform.device}-{platform.package}')
+		if args.lie:
+			log.warning('Packing for non-5G device, you\'re on your own, good luck')
 
 		# Run the synth, pnr, et. al.
 		with Progress(
@@ -426,6 +437,12 @@ class SquishySynthAction(SquishyAction):
 			'--dont-compress',
 			action  = 'store_true',
 			help    = 'Disable bitstream compression if viable for target platform.'
+		)
+
+		pack_options.add_argument(
+			'--lie',
+			action = 'store_true',
+			help   = 'Lie about our device ID, telling the packing tool to emit a bitstream for the non 5G version'
 		)
 
 	def dfu_util_msg(self, name: str, slot: int, build_dir: Path, dev: SquishyDevice | None = None) -> str:
