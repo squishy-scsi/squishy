@@ -4,29 +4,83 @@
 
 '''
 
-from construct import Struct, Int8ul, Int32ul, Int24ul, Array, len_, this
+from enum import IntEnum, IntFlag
+
+from construct import (
+	Struct, Int8ul, Int32ul, Int24ul, Array, Byte, len_, this, Enum, FlagsEnum, Padding, Rebuild
+)
 
 __all__ = (
+	'FPGAID',
+	'SlotFlags',
+	'rev2_flash_slot',
+	'rev2_flash_layout',
+
 	'Geometry',
 	'Partition',
 )
 
+class FPGAID(IntEnum):
+	LEF5UM25   = 0x01111043
+	LEF5UM45   = 0x01112043
+	LEF5UM85   = 0x01113043
+
+	LEF5UM5G25 = 0x81111043
+	LEF5UM5G45 = 0x81112043
+	LEF5UM5G85 = 0x81113043
+
+	BAD        = 0xFFFFFFFF
+
+	@staticmethod
+	def from_dev(name: str) -> 'FPGAID':
+		match name[-6:]:
+			case 'UM-25F':
+				return FPGAID.LEF5UM25
+			case 'UM-45F':
+				return FPGAID.LEF5UM45
+			case 'UM-85F':
+				return FPGAID.LEF5UM85
+			case '5G-25F':
+				return FPGAID.LEF5UM5G25
+			case '5G-45F':
+				return FPGAID.LEF5UM5G45
+			case '5G-85F':
+				return FPGAID.LEF5UM5G85
+			case _:
+				return FPGAID.BAD
+
+fpga_id = 'FPGA ID' / Enum(Int32ul, FPGAID)
+
+class SlotFlags(IntFlag):
+	F1 = 0b0000_0001
+	F2 = 0b0000_0010
+	F3 = 0b0000_0100
+	F4 = 0b0000_1000
+	F5 = 0b0001_0000
+	F6 = 0b0010_0000
+	F7 = 0b0100_0000
+	F8 = 0b1000_0000
+
+rev2_slot_flags = 'Slot Flags' / FlagsEnum(Int8ul, SlotFlags)
 
 # Rev2+ Flash structure
-slot_header = Struct(
-	'fpga_id'          / Int32ul,
-	'flags'            / Int8ul,
-	'bitstream_length' / Int24ul
+rev2_slot_header = Struct(
+	'fpga_id'          / fpga_id,
+	'flags'            / rev2_slot_flags,
+	'bitstream_length' / Rebuild(Int24ul, len_(this._.bitstream))
 )
 
-flash_slot = Struct(
-	'header'    / slot_header,
-	'bitstream' / Array(len_(this.header) - 2097152, Int8ul)
+rev2_flash_slot = Struct(
+	'header'    / rev2_slot_header,
+	'bitstream' / Byte[this.header.bitstream_length],
 )
 
-flash_layout = Struct(
-	'slots' / Array(3, flash_slot),
-	'data'  / Array(2097152, Int8ul)
+rev2_flash_layout = Struct(
+	'slots' / Array(3, Struct(
+		'slot' / rev2_flash_slot,
+		Padding(2097152 - len_(this.slot), pattern = b'\xFF')
+	)),
+	'data'  / Padding(2097152, pattern = b'\xFF')
 )
 
 class Partition:
