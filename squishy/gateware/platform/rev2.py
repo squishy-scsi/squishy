@@ -32,7 +32,7 @@ from torii.platform.resources.interface import ULPIResource
 from .                                  import SquishyPlatform
 from .resources                         import BankedHyperRAM, PDController, PhyADC, SquishySupervisor
 from .resources.scsi                    import SquishySCSIPhy
-from ...core.flash                      import Geometry as FlashGeometry
+from ...core.flash                      import Geometry as FlashGeometry, FPGAID, rev2_flash_slot, rev2_flash_layout
 from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
 
 __all__ = (
@@ -322,8 +322,17 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 
 		'''
 
-		log.warning('TODO: pack_artifact() for rev2')
-		return artifact
+		fpga_id = FPGAID.from_dev(self.device.replace('5G' if args.lie else '', ''))
+
+		slot = rev2_flash_slot.build({
+			'header': {
+				'fpga_id': fpga_id,
+				'flags': 0x00,
+			},
+			'bitstream': artifact
+		})
+
+		return slot
 
 
 	def build_image(self, name: str, build_dir: Path, boot_name: str, products: BuildProducts, *, args: Namespace) -> Path:
