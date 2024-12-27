@@ -184,7 +184,7 @@ class SquishyBootloader(Elaboratable):
 		)
 
 		# Set up the DFU and the special Windows compat request handlers
-		dfu_handler = DFURequestHandler(configuration = 1, interface = 1, boot_stub = False, fifo = bit_fifo)
+		dfu_handler = DFURequestHandler(configuration = 1, interface = 0, boot_stub = False, fifo = bit_fifo)
 		win_handler = WindowsRequestHandler(plat_descs)
 
 		# Add our handlers to the endpoint
