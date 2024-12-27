@@ -208,7 +208,7 @@ class SquishyBootloader(Elaboratable):
 			dev.full_speed_only.eq(0),
 			# TODO(aki): Should this be tied to the PLL lock like we do with 'sync'?
 			# Release the reset on the USB clock domain
-			ResetSignal('usb').eq(pll.pll_locked),
+			ResetSignal('usb').eq(~pll.pll_locked),
 			# Hook together the platform interface and the DFU handler
 			# TODO(aki): These really *really* should be pulled into an interface
 			platform_interface.trigger_reboot.eq(dfu_handler.trigger_reboot),
