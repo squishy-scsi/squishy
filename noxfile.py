@@ -38,7 +38,7 @@ def squishy_version() -> str:
 		relative_to    = __file__
 	)
 
-@nox.session(reuse_venv = True)
+@nox.session(reuse_venv = True, venv_params = ['--system-site-packages'])
 def test(session: Session) -> None:
 	out_dir = (BUILD_DIR / 'tests')
 	out_dir.mkdir(parents = True, exist_ok = True)
