@@ -11,26 +11,37 @@ for USB, but directed at SCSI instead.
 
 '''
 
-from torii.sim           import Settle
-from torii.test          import ToriiTestCase
-from torii.test.mock     import MockPlatform
+from typing                              import Literal, Iterable
 
-from usb_construct.types import USBRequestRecipient, USBRequestType, USBStandardRequests
+from torii.sim                           import Settle
+from torii.test                          import ToriiTestCase
+
+from usb_construct.types                 import USBRequestRecipient, USBRequestType, USBStandardRequests, USBPacketID
+from usb_construct.types.descriptors.dfu import DFURequests
 
 __all__ = (
-	'SquishyUSBGatewareTest',
-	'SquishySCSIGatewareTest',
+	'SquishyGatewareTest',
+	'USBGatewareTestHelpers',
+	'DFUGatewareTestHelpers',
+	'SPIGatewareTestHelpers',
+	'SCSIGatewareTestHelpers',
 )
 
-class SquishyUSBGatewareTest(ToriiTestCase):
+
+
+class USBGatewareTestHelpers:
 	'''
-	Squishy test harness for gateware in the USB clock domain.
+	Unlike :py:class:`USBGatewarePHYTestHelpers`, this class relies on access to a SOL interface exposed in the DUT
+	or DUT wrapper.
+
+	Most of the USB tests in Squishy use this type of helpers, as the :py:class:`USBGatewarePHYTestHelpers` is only
+	used for full end-to-end USB integration validation if absolutely needed.
 	'''
 
-	domains  = (('usb', 60e6), ) # USB Domain @ 60MHz
-	platform = MockPlatform()
+	def setup_helper(self):
+		self.domains = (('usb', 60e6), *self.domains)
 
-	def setupReceived(self):
+	def setup_received(self):
 		yield self.dut.interface.setup.received.eq(1)
 		yield Settle()
 		yield
@@ -39,17 +50,7 @@ class SquishyUSBGatewareTest(ToriiTestCase):
 		yield
 		yield
 
-	def sendSetupSetInterface(self, *, interface: int = 0, alt_mode: int = 1):
-		yield from self.sendSetup(
-			type     = USBRequestType.STANDARD,
-			retrieve = False,
-			req      = USBStandardRequests.SET_INTERFACE,
-			value    = alt_mode,
-			index    = interface,
-			length   = 0
-		)
-
-	def sendSetup(
+	def send_setup(
 		self, *, type: USBRequestType, retrieve: bool, req, value: tuple[int, int] | int, index: tuple[int, int] | int,
 		length: int, recipient: USBRequestRecipient = USBRequestRecipient.INTERFACE
 	):
@@ -68,9 +69,19 @@ class SquishyUSBGatewareTest(ToriiTestCase):
 			yield self.dut.interface.setup.index[0:8].eq(index[0])
 			yield self.dut.interface.setup.index[8:16].eq(index[1])
 		yield self.dut.interface.setup.length.eq(length)
-		yield from self.setupReceived()
+		yield from self.setup_received()
 
-	def receiveData(self, *, data: tuple[int, ...] | bytes, check: bool = True):
+	def send_setup_set_interface(self, *, interface: int = 0, alt_mode: int = 0):
+		yield from self.send_setup(
+			type     = USBRequestType.STANDARD,
+			retrieve = False,
+			req      = USBStandardRequests.SET_INTERFACE,
+			value    = alt_mode,
+			index    = interface,
+			length   = 0
+		)
+
+	def receive_data(self, *, data: tuple[int, ...] | bytes, check: bool = True):
 		result = True
 		yield self.dut.interface.tx.ready.eq(1)
 		yield self.dut.interface.data_requested.eq(1)
@@ -105,7 +116,7 @@ class SquishyUSBGatewareTest(ToriiTestCase):
 		self.assertEqual((yield self.dut.interface.handshakes_out.ack), 0)
 		return result
 
-	def receiveZLP(self):
+	def receive_zlp(self):
 		self.assertEqual((yield self.dut.interface.tx.valid), 0)
 		self.assertEqual((yield self.dut.interface.tx.last), 0)
 		yield self.dut.interface.status_requested.eq(1)
@@ -123,7 +134,7 @@ class SquishyUSBGatewareTest(ToriiTestCase):
 		yield Settle()
 		yield
 
-	def sendData(self, *, data: tuple[int, ...] | bytes):
+	def send_data(self, *, data: tuple[int, ...] | bytes):
 		yield self.dut.interface.rx.valid.eq(1)
 		for val in data:
 			yield Settle()
@@ -167,10 +178,56 @@ class SquishyUSBGatewareTest(ToriiTestCase):
 		yield Settle()
 		yield
 
-class SquishySCSIGatewareTest(ToriiTestCase):
+
+	def send_get_desc(self, *, vendor_code, length, index):
+		yield from self.send_setup(
+			type = USBRequestType.VENDOR, retrieve = True,
+			req = vendor_code, value = 0, index = index,
+			length = length, recipient = USBRequestRecipient.DEVICE
+		)
+
+class DFUGatewareTestHelpers:
 	'''
-	Squishy test harness for gateware in the SCSI clock domain.
+	This mixin provides some simple wrappers for sending DFU bits via the :py:class:`USBGatewareTestHelpers` mixin.
 	'''
 
-	domains  = (('scsi', 100e6), ) # SCSI Domain @ 100MHz
-	platform = MockPlatform()
+	def send_dfu_detach(self):
+		yield from self.send_setup(
+			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DETACH, value = 1000, index = 0, length = 0
+		)
+
+	def send_dfu_download(self, *, length: int = 256):
+		yield from self.send_setup(
+			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DOWNLOAD, value = 0, index = 0, length = length
+		)
+
+	def send_dfu_get_status(self):
+		yield from self.send_setup(
+			type = USBRequestType.CLASS, retrieve = True, req = DFURequests.GET_STATUS, value = 0, index = 0, length = 6
+		)
+
+	def send_dfu_get_state(self):
+		yield from self.send_setup(
+			type = USBRequestType.CLASS, retrieve = True, req = DFURequests.GET_STATE, value = 0, index = 0, length = 1
+		)
+
+class SPIGatewareTestHelpers:
+	'''  '''
+
+	def setup_helper(self):
+		pass
+
+
+class SCSIGatewareTestHelpers:
+	''' '''
+
+	def setup_helper(self):
+		pass
+
+class SquishyGatewareTest(ToriiTestCase):
+	''' '''
+
+	domains = ()
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)

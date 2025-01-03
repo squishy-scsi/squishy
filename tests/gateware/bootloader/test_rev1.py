@@ -8,10 +8,7 @@ from torii.lib.fifo                      import AsyncFIFO
 from torii.sim                           import Settle
 from torii.test                          import ToriiTestCase
 
-from usb_construct.types                 import USBRequestType
-from usb_construct.types.descriptors.dfu import DFURequests
-
-from squishy.support.test                import SquishyUSBGatewareTest
+from squishy.support.test                import SquishyGatewareTest, USBGatewareTestHelpers, DFUGatewareTestHelpers
 from squishy.core.config                 import FlashConfig
 from squishy.core.flash                  import Geometry
 
@@ -87,31 +84,16 @@ class DUTWrapper(Elaboratable):
 
 		return m
 
-class Rev1BootloaderTests(SquishyUSBGatewareTest):
+class Rev1BootloaderTests(SquishyGatewareTest, USBGatewareTestHelpers, DFUGatewareTestHelpers):
 	dut: DUTWrapper = DUTWrapper
 	dut_args = {}
-	domains  = (('usb', 60e6), ('sync', 80e6), )
+	domains  = (('sync', 80e6), )
 	platform = DFUPlatform()
 
-	def sendDFUDetach(self):
-		yield from self.sendSetup(
-			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DETACH, value = 1000, index = 0, length = 0
-		)
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
 
-	def sendDFUDownload(self):
-		yield from self.sendSetup(
-			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DOWNLOAD, value = 0, index = 0, length = 256
-		)
-
-	def sendDFUGetStatus(self):
-		yield from self.sendSetup(
-			type = USBRequestType.CLASS, retrieve = True, req = DFURequests.GET_STATUS, value = 0, index = 0, length = 6
-		)
-
-	def sendDFUGetState(self):
-		yield from self.sendSetup(
-			type = USBRequestType.CLASS, retrieve = True, req = DFURequests.GET_STATE, value = 0, index = 0, length = 1
-		)
+		USBGatewareTestHelpers.setup_helper(self)
 
 	def spi_trans(self, *,
 		copi: tuple[int, ...] | None = None, cipo: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False
@@ -169,40 +151,40 @@ class Rev1BootloaderTests(SquishyUSBGatewareTest):
 			yield Settle()
 			yield from self.wait_until_high(self.dut.dfu.dl_ready)
 			# Make sure we're in Idle
-			yield from self.sendDFUGetStatus()
-			yield from self.receiveData(data = (0, 0, 0, 0, DFUState.DFUIdle, 0))
+			yield from self.send_dfu_get_status()
+			yield from self.receive_data(data = (0, 0, 0, 0, DFUState.DFUIdle, 0))
 			# Set the interface up
-			yield from self.sendSetupSetInterface(interface = 0, alt_mode = 1)
-			yield from self.receiveZLP()
+			yield from self.send_setup_set_interface(interface = 0, alt_mode = 1)
+			yield from self.receive_zlp()
 			self.assertEqual((yield self.dut.dfu.slot_selection), 1)
 			yield from self.wait_until_high(self.dut.dfu.slot_ack)
 			yield from self.step(3)
 			# Yeet the data
-			yield from self.sendDFUDownload()
-			yield from self.sendData(data = _DFU_DATA)
-			yield from self.sendDFUGetStatus()
-			yield from self.receiveData(data = (0, 0, 0, 0, DFUState.DlBusy, 0))
-			yield from self.sendDFUGetState()
-			yield from self.receiveData(data = (DFUState.DlBusy, ))
+			yield from self.send_dfu_download()
+			yield from self.send_data(data = _DFU_DATA)
+			yield from self.send_dfu_get_status()
+			yield from self.receive_data(data = (0, 0, 0, 0, DFUState.DlBusy, 0))
+			yield from self.send_dfu_get_state()
+			yield from self.receive_data(data = (DFUState.DlBusy, ))
 			yield from self.step(6)
-			yield from self.sendDFUGetState()
+			yield from self.send_dfu_get_state()
 			# The backing storage is chewing on the data, just spin for a bit
-			while (yield from self.receiveData(data = (DFUState.DlBusy,), check = False)):
-				yield from self.sendDFUGetState()
+			while (yield from self.receive_data(data = (DFUState.DlBusy,), check = False)):
+				yield from self.send_dfu_get_state()
 			yield from self.step(3)
 			# Make sure we're in sync
-			yield from self.sendDFUGetState()
-			yield from self.receiveData(data = (DFUState.DlSync,))
-			yield from self.sendDFUGetStatus()
-			yield from self.receiveData(data = (0, 0, 0, 0, DFUState.DlSync, 0))
+			yield from self.send_dfu_get_state()
+			yield from self.receive_data(data = (DFUState.DlSync,))
+			yield from self.send_dfu_get_status()
+			yield from self.receive_data(data = (0, 0, 0, 0, DFUState.DlSync, 0))
 			# And back to Idle
-			yield from self.sendDFUGetState()
-			yield from self.receiveData(data = (DFUState.DlIdle,))
+			yield from self.send_dfu_get_state()
+			yield from self.receive_data(data = (DFUState.DlIdle,))
 			yield
 			# And trigger a reboot
 			self.assertEqual((yield self.dut.dfu.trigger_reboot), 0)
-			yield from self.sendDFUDetach()
-			yield from self.receiveZLP()
+			yield from self.send_dfu_detach()
+			yield from self.receive_zlp()
 			self.assertEqual((yield self.dut.dfu.trigger_reboot), 1)
 			yield Settle()
 			yield

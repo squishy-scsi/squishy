@@ -7,7 +7,7 @@ from usb_construct.emitters.descriptors.microsoft import PlatformDescriptorColle
 from usb_construct.types                          import USBRequestRecipient, USBRequestType
 from usb_construct.types.descriptors.microsoft    import MicrosoftRequests
 
-from squishy.support.test                         import SquishyUSBGatewareTest
+from squishy.support.test                         import SquishyGatewareTest, USBGatewareTestHelpers
 from squishy.gateware.usb.quirks.windows          import GetDescriptorSetHandler, WindowsRequestHandler
 
 def _make_platform_descriptors():
@@ -29,12 +29,18 @@ def _make_platform_descriptors():
 	return (desc_collection, desc_collection.descriptors)
 
 
-class GetDescriptorSetHandlerTests(SquishyUSBGatewareTest):
+class GetDescriptorSetHandlerTests(SquishyGatewareTest, USBGatewareTestHelpers):
 	_desc_collection, _descriptors = _make_platform_descriptors()
 	dut: GetDescriptorSetHandler = GetDescriptorSetHandler
 	dut_args = {
 		'desc_collection': _desc_collection
 	}
+
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
+		USBGatewareTestHelpers.setup_helper(self)
+
 
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'usb')
@@ -126,37 +132,35 @@ class GetDescriptorSetHandlerTests(SquishyUSBGatewareTest):
 		yield Settle()
 		yield
 
-class WindowsRequestHandlerTests(SquishyUSBGatewareTest):
+class WindowsRequestHandlerTests(SquishyGatewareTest, USBGatewareTestHelpers):
 	_desc_collection, _descriptors = _make_platform_descriptors()
 	dut: WindowsRequestHandler = WindowsRequestHandler
 	dut_args = {
 		'descriptors': _desc_collection
 	}
 
-	def send_get_desc(self, *, vendor_code, length):
-		yield from self.sendSetup(
-			type = USBRequestType.VENDOR, retrieve = True,
-			req = vendor_code, value = 0, index = MicrosoftRequests.GET_DESCRIPTOR_SET,
-			length = length, recipient = USBRequestRecipient.DEVICE
-		)
+	def __init__(self, *args, **kwargs):
+		super().__init__(*args, **kwargs)
+
+		USBGatewareTestHelpers.setup_helper(self)
 
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'usb')
 	def test_windows_request(self):
 		yield
-		yield from self.send_get_desc(vendor_code = 1, length = 46)
-		yield from self.receiveData(data = self._descriptors[1])
-		yield from self.send_get_desc(vendor_code = 0, length = 46)
+		yield from self.send_get_desc(vendor_code = 1, length = 46, index = MicrosoftRequests.GET_DESCRIPTOR_SET)
+		yield from self.receive_data(data = self._descriptors[1])
+		yield from self.send_get_desc(vendor_code = 0, length = 46, index = MicrosoftRequests.GET_DESCRIPTOR_SET)
 		yield from self.ensure_stall()
-		yield from self.send_get_desc(vendor_code = 2, length = 46)
+		yield from self.send_get_desc(vendor_code = 2, length = 46, index = MicrosoftRequests.GET_DESCRIPTOR_SET)
 		yield from self.ensure_stall()
-		yield from self.sendSetup(
+		yield from self.send_setup(
 			type = USBRequestType.VENDOR, retrieve = False, req = 1,
 			value = 0, index = MicrosoftRequests.GET_DESCRIPTOR_SET,
 			length = 0, recipient = USBRequestRecipient.DEVICE
 		)
 		yield from self.ensure_stall()
-		yield from self.sendSetup(
+		yield from self.send_setup(
 			type = USBRequestType.VENDOR, retrieve = True, req = 1,
 			value = 1, index = MicrosoftRequests.GET_DESCRIPTOR_SET,
 			length = 0, recipient = USBRequestRecipient.DEVICE
