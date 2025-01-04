@@ -8,6 +8,8 @@
 #include "platform.hh"
 #include "peripherals.hh"
 #include "pindefs.hh"
+#include "fault.hh"
+
 
 #include "spi.hh"
 
@@ -25,12 +27,16 @@ void setup_io() noexcept {
 	/* Setup External DFU Trigger */
 	PORTA.set_input(pin::DFU_BTN);
 	/* Setup FPGA Side attention lines */
-	/* TODO: This need to be EXTINTs, not normal inputs */
-	PORTA.set_input(pin::BUS_HOLD);
+	PORTA.setup_pin(pin::SU_ATTN, true, false, false, false, port_t::pin_func_t::A);
 	PORTA.set_input(pin::SU_ATTN);
+
+	/* SPI Bus hold line */
+	PORTA.set_input(pin::BUS_HOLD);
 }
 
 void setup_clocking() noexcept {
+	/* TODO(aki): Setup the PLL so we can boost our core clock to 48MHz */
+
 	/* Set GCLK0 to use the external clock input on PA08 */
 	GCLK.config_gen(gclk_t::clkgen_t::GCLK0, gclk_t::clksrc_t::GCLKIN, true);
 
@@ -41,9 +47,15 @@ void setup_clocking() noexcept {
 	GCLK.config_clk(gclk_t::clkid_t::SERCOM0_CORE, gclk_t::clkgen_t::GCLK0, true, false);
 	/* Set SERCOMx_SLOW to GCLK0 */
 	GCLK.config_clk(gclk_t::clkid_t::SERCOMx_SLOW, gclk_t::clkgen_t::GCLK0, true, false);
+
+	/* Enable the EIC */
+	// PM.unmask(pm_t::apba_periph_t::EIC);
+	// GCLK.config_clk(gclk_t::clkid_t::EIC, gclk_t::clkgen_t::GCLK0, true, false);
 }
 
+void setup_extint() noexcept {
 
+}
 
 void start() noexcept {
 	/* Brown-out detect @ 1v7 ± 50mV */
@@ -55,6 +67,7 @@ void start() noexcept {
 
 	setup_io();
 	setup_clocking();
+	setup_extint();
 
 	/* Ensure SysTick keeps running when we call std::terminate() so we can blink a panic code  */
 	NVIC.set_priority(15, nvic_t::priority_t::TOP);
@@ -62,17 +75,24 @@ void start() noexcept {
 	SYSTICK.reload_value = (32_MHz / 1_kHz) - 1U;
 	SYSTICK.enable();
 
+	/* If we can't initialize SPI, then we're SOL, so bail */
 	if (!setup_spi()) {
 		std::terminate();
 	}
 
-	if (!load_bitstream_flash(0)) {
-		std::terminate();
+	/* Try to load the first applet */
+	if (!load_bitstream_flash(1)) {
+		/* We *might* still be okay, clear the fault code and try to load the bootloader */
+		active_fault = fault_code_t::NONE;
+		if (!load_bitstream_flash(0)) {
+			/* Well shit,,, */
+			std::terminate();
+		}
 	}
 
 	for(;;) {
 		PORTA.toggle(pin::SU_LED_G);
-		for (std::size_t i{0z}; i < 65525*10z; ++i) {
+		for (std::size_t i{0z}; i < 65525*20z; ++i) {
 			asm volatile ("");
 		}
 	}

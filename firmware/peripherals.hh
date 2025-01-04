@@ -247,7 +247,16 @@ inline auto& RTC{*reinterpret_cast<rtc_t*>(RTC_BASE)};
 constexpr static std::uintptr_t EIC_BASE{0x40001800U};
 
 struct eic_t final {
-	/* TODO */
+	volatile std::uint8_t ctrl;
+	volatile std::uint8_t status;
+	volatile std::uint8_t nmictrl;
+	volatile std::uint8_t nmiflag;
+	volatile std::uint32_t evctrl;
+	volatile std::uint32_t intenclr;
+	volatile std::uint32_t intenset;
+	volatile std::uint32_t intflag;
+	volatile std::uint32_t wakeup;
+	volatile std::uint32_t config0;
 };
 
 inline auto& EIC{*reinterpret_cast<eic_t*>(EIC_BASE)};
