@@ -4,7 +4,9 @@
 
 '''
 
-from torii                                           import Elaboratable, Module, ResetSignal
+from torii                                           import (
+	Elaboratable, Module, ResetSignal, Signal, Cat
+)
 from torii.lib.fifo                                  import AsyncFIFO
 
 from sol_usb.usb2                                    import USBDevice
@@ -200,6 +202,11 @@ class SquishyBootloader(Elaboratable):
 
 		m.submodules.platform_interface = platform_interface
 
+		# NOTE(aki): 5 is kinda a magic number, but it's how many stripes are in the trans flag
+		#            and due to the LED colors for all platforms being that, we are pretty safe
+		#            in assuming that there will be 5 LEDs
+		leds = [ led.o for led in [ platform.request('led', r) for r in range(5) ] ]
+
 		m.d.comb += [
 			# ensure we connect the USB device
 			dev.connect.eq(1),
@@ -222,5 +229,18 @@ class SquishyBootloader(Elaboratable):
 			dfu_handler.dl_ready.eq(platform_interface.dl_ready),
 			dfu_handler.dl_done.eq(platform_interface.dl_done),
 		]
+
+		# TODO(aki): pull out from sync domain
+		timer = Signal(range(int(170e6 // 10)), reset = int(170e6 // 10) - 1)
+		flops = Signal(len(leds), reset = 1)
+
+		m.d.comb += [ Cat(leds).eq(flops), ]
+		with m.If(timer == 0):
+			m.d.sync += [
+				timer.eq(timer.reset),
+				flops.eq(flops.rotate_left(1)),
+			]
+		with m.Else():
+			m.d.sync += [ timer.eq(timer - 1), ]
 
 		return m
