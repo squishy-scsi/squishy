@@ -120,10 +120,23 @@ class DUTWrapper(Elaboratable):
 	def __init__(self) -> None:
 		self.bootloader = SquishyBootloader(serial_number = 'TEST', revision = (2, 0))
 
+		self.d_p = Signal()
+		self.d_n = Signal()
+
 	def elaborate(self, _) -> Module:
 		m = Module()
 
 		m.submodules.bootloader = self.bootloader
+
+		with m.If(_USB_RECORD.d_p.oe):
+			m.d.comb += [ self.d_p.eq(_USB_RECORD.d_p.o), ]
+		with m.Else():
+			m.d.comb += [ self.d_p.eq(_USB_RECORD.d_p.i), ]
+
+		with m.If(_USB_RECORD.d_n.oe):
+			m.d.comb += [ self.d_n.eq(_USB_RECORD.d_n.o), ]
+		with m.Else():
+			m.d.comb += [ self.d_n.eq(_USB_RECORD.d_n.i), ]
 
 		return m
 
