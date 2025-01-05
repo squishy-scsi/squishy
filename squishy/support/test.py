@@ -43,10 +43,11 @@ class USBGatewarePHYTestHelpers:
 	_last_trans: int = 0
 	_last_data: USBPacketID | None = None
 
-	def setup_helper(self, *, raw_record):
+	def __init__(self, *args, raw_record, **kwargs):
 		self.domains = (('usb', 12e6), ('usb_io', 48e6), *self.domains)
+		super().__init__(*args, **kwargs)
 
-		USBGatewarePHYTestHelpers._USB_DP_RECORD = raw_record
+		self._USB_DP_RECORD = raw_record
 
 	@staticmethod
 	def crc5(data: int, bit_len: int) -> int:

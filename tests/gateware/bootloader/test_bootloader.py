@@ -19,8 +19,6 @@ from squishy.core.dfu            import DFUState, DFUStatus
 
 from squishy.gateware.bootloader import SquishyBootloader
 
-from sys import stderr
-
 __all__ = ()
 
 _SUPERVISOR_RECORD = Record((
@@ -130,7 +128,7 @@ class DUTWrapper(Elaboratable):
 		return m
 
 
-class BootloaderTests(SquishyGatewareTest, USBGatewarePHYTestHelpers):
+class BootloaderTests(USBGatewarePHYTestHelpers, SquishyGatewareTest):
 	dut: SquishyBootloader = SquishyBootloader
 	dut_args = {
 		'serial_number': 'TEST',
@@ -140,10 +138,7 @@ class BootloaderTests(SquishyGatewareTest, USBGatewarePHYTestHelpers):
 	platform = DUTPlatform()
 
 	def __init__(self, *args, **kwargs):
-		super().__init__(*args, **kwargs)
-
-		USBGatewarePHYTestHelpers.setup_helper(self, raw_record = _USB_RECORD)
-
+		super().__init__(*args, **kwargs, raw_record = _USB_RECORD)
 
 
 	@ToriiTestCase.simulation
