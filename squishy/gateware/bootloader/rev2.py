@@ -238,15 +238,17 @@ class Rev2(Elaboratable):
 		m.submodules.ffs_dl_start     = FFSynchronizer(self.dl_start, dl_start)
 		m.submodules.ffs_dl_completed = FFSynchronizer(self.dl_completed, dl_completed)
 		m.submodules.ffs_dl_done      = FFSynchronizer(dl_done, self.dl_done, o_domain = 'usb')
-		m.submodules.ffs_slot_chg     = FFSynchronizer(self.slot_changed, slot_changed)
 		m.submodules.ffs_slot_sel     = FFSynchronizer(self.slot_selection, slot_selection)
 		m.submodules.ffs_dl_read      = FFSynchronizer(dl_ready, self.dl_ready, o_domain = 'usb')
 
 		m.submodules.ps_slot_ack = ps_slot_ack = PulseSynchronizer(i_domain = 'sync', o_domain = 'usb')
+		m.submodules.ps_slot_chg = ps_slot_cng = PulseSynchronizer(i_domain = 'usb', o_domain = 'sync')
 
 		m.d.comb += [
 			ps_slot_ack.i.eq(slot_ack),
 			self.slot_ack.eq(ps_slot_ack.o),
+			ps_slot_cng.i.eq(self.slot_changed),
+			slot_changed.eq(ps_slot_cng.o),
 
 			psram.finish.eq(dl_finish),
 			dl_done.eq(psram.done),
