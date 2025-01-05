@@ -37,8 +37,8 @@ class DFUConfig:
 	'''
 
 	def __init__(self) -> None:
-		self.status = Signal(4, decoder = DFUStatus)
-		self.state  = Signal(4, decoder = DFUState)
+		self.status = Signal(DFUStatus)
+		self.state  = Signal(DFUState)
 
 class DFURequestHandler(USBRequestHandler):
 	'''
