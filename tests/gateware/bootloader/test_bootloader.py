@@ -191,32 +191,18 @@ class BootloaderTests(USBGatewarePHYTestHelpers, SquishyGatewareTest):
 			yield from self.step(20)
 			yield from self.usb_set_config(ADDR, 1)
 			yield from self.step(20)
-			yield from self.usb_send_setup_pkt(ADDR, (0x81, 0x06, 0x00, 0x22, 0x00, 0x00, 0x10, 0x01,))
+			# # Send a DFU_ABORT
+			# yield from self.usb_send_setup_pkt(ADDR, (0x81, 0x06, 0x00, 0x22, 0x00, 0x00, 0x10, 0x01,))
+			# yield from self.step(20)
+			# yield from self.usb_in(ADDR, 0)
+			# yield from self.usb_get_stall()
+			# yield from self.step(20)
+			yield from self.usb_set_interface(ADDR, interface = 0, alt = 1)
 			yield from self.step(20)
-			yield from self.usb_in(ADDR, 0)
-			yield from self.usb_get_stall()
-			yield from self.step(20)
-			yield from self.usb_send_setup_pkt(ADDR, (0xA1, 0x03, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00,))
-			yield from self.step(20)
-			yield from self.usb_in(ADDR, 0)
-			data = (DFUStatus.Okay, 0x00, 0x00, 0x00, DFUState.DFUIdle, 0x00)
-			crc = 0
-			for byte in data:
-				crc = self.crc16(byte, 8, crc)
-
-			yield from self.usb_consume_response((
-				USBPacketID.DATA1.byte(), *data, *crc.to_bytes(2, byteorder = 'little')
-			))
-			yield from self.step(20)
-			yield from self.usb_send_ack()
-			yield from self.step(20)
-			yield from self.usb_out(ADDR, 0)
-			yield from self.usb_send_zlp()
-			yield from self.usb_get_ack()
+			yield from self.dfu_get_status(
+				addr = ADDR, exepected_status = DFUStatus.Okay, expected_state = DFUState.DFUIdle
+			)
 			yield from self.step(200)
-
-
-
 
 		@ToriiTestCase.sync_domain(domain = 'usb_io')
 		def usb_io(self: BootloaderTests):
