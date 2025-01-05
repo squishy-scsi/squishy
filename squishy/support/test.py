@@ -79,6 +79,13 @@ class USBGatewarePHYTestHelpers:
 		crc ^= 0xFFFF
 		return int(f'{crc:016b}'[::-1], base = 2)
 
+	@staticmethod
+	def crc16_buff(data: Iterable[int]) -> int:
+		crc = 0
+		for byte in data:
+			crc = USBGatewarePHYTestHelpers.crc16(byte, 8, crc)
+		return crc
+
 	def usb_emit_bits(self, bits: int, count: int = 8):
 		for bit_idx in range(count):
 			bit = (bits >> bit_idx) & 1
