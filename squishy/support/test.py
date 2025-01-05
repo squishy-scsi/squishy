@@ -11,13 +11,16 @@ for USB, but directed at SCSI instead.
 
 '''
 
-from typing                              import Literal, Iterable
+from typing                                   import Literal, Iterable
 
-from torii.sim                           import Settle
-from torii.test                          import ToriiTestCase
+from torii.sim                                import Settle
+from torii.test                               import ToriiTestCase
 
-from usb_construct.types                 import USBRequestRecipient, USBRequestType, USBStandardRequests, USBPacketID
-from usb_construct.types.descriptors.dfu import DFURequests
+from usb_construct.types                      import (
+	USBRequestRecipient, USBRequestType, USBStandardRequests, USBPacketID, LanguageIDs
+)
+from usb_construct.types.descriptors.standard import StandardDescriptorNumbers
+from usb_construct.types.descriptors.dfu      import DFURequests
 
 __all__ = (
 	'SquishyGatewareTest',
@@ -305,6 +308,33 @@ class USBGatewarePHYTestHelpers:
 		yield from self.usb_send_zlp()
 		yield from self.usb_get_ack()
 
+	def usb_get_string(self, addr: int, string_idx: int, string: str):
+		string_bytes = string.encode(encoding = 'utf-16le')
+		data = (len(string_bytes) + 2, StandardDescriptorNumbers.STRING, *string_bytes)
+
+		yield from self.usb_send_setup_pkt(addr, (
+			0x80, USBStandardRequests.GET_DESCRIPTOR, string_idx, StandardDescriptorNumbers.STRING,
+			*LanguageIDs.ENGLISH_US.to_bytes(2, byteorder = 'little'), *(255).to_bytes(2, byteorder = 'little')
+		))
+		last_data = USBPacketID.DATA0
+		for offset in range(0, len(data), 64):
+			chunk = data[offset : offset + 64]
+			crc = self.crc16_buff(chunk)
+			match last_data:
+				case USBPacketID.DATA0:
+					last_data = USBPacketID.DATA1
+				case USBPacketID.DATA1:
+					last_data = USBPacketID.DATA0
+
+			yield from self.usb_in(addr, 0x00)
+			yield from self.usb_consume_response((
+				last_data.byte(), *chunk, *crc.to_bytes(2, byteorder = 'little')
+			))
+			yield from self.usb_send_ack()
+			yield from self.step(20)
+		yield from self.usb_out(addr, 0)
+		yield from self.usb_send_zlp()
+		yield from self.usb_get_ack()
 
 	def usb_get_state(self):
 		dp = yield self._USB_DP_RECORD.d_p.o
