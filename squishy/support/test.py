@@ -205,10 +205,13 @@ class USBGatewarePHYTestHelpers:
 		self._last_data = None
 		yield from self.usb_solicit(addr, 0, USBPacketID.SETUP)
 
-	def usb_ack(self):
+	def usb_send_ack(self):
 		yield from self.usb_sync()
 		yield from self.usb_emit_bits(USBPacketID.ACK.byte())
 		yield from self.usb_eop()
+
+	def usb_get_ack(self):
+		yield from self.usb_consume_response((USBPacketID.ACK.byte(),))
 
 	def usb_solicit(self, addr: int, ep: int, pid: USBPacketID):
 		yield from self.usb_sync()
@@ -242,7 +245,7 @@ class USBGatewarePHYTestHelpers:
 	def usb_send_setup_pkt(self, addr: int, data: Iterable[int]):
 		yield from self.usb_setup(addr)
 		yield from self.usb_data(data)
-		yield from self.usb_consume_response((USBPacketID.ACK.byte(), ))
+		yield from self.usb_get_ack()
 		yield from self.step(10)
 
 
@@ -253,7 +256,7 @@ class USBGatewarePHYTestHelpers:
 		))
 		yield from self.usb_in(0x00, 0x00)
 		yield from self.usb_get_zlp()
-		yield from self.usb_ack()
+		yield from self.usb_send_ack()
 
 	def usb_set_config(self, addr: int, cfg: int):
 		yield from self.usb_send_setup_pkt(addr, (
@@ -262,7 +265,7 @@ class USBGatewarePHYTestHelpers:
 		))
 		yield from self.usb_in(addr, 0x00)
 		yield from self.usb_get_zlp()
-		yield from self.usb_ack()
+		yield from self.usb_send_ack()
 
 
 	def usb_get_state(self):

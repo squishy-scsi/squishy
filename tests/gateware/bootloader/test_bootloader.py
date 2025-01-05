@@ -169,11 +169,11 @@ class BootloaderTests(USBGatewarePHYTestHelpers, SquishyGatewareTest):
 				USBPacketID.DATA1.byte(), *data, *crc.to_bytes(2, byteorder = 'little')
 			))
 			yield from self.step(20)
-			yield from self.usb_ack()
+			yield from self.usb_send_ack()
 			yield from self.step(20)
 			yield from self.usb_out(ADDR, 0)
 			yield from self.usb_send_zlp()
-			yield from self.usb_ack()
+			yield from self.usb_get_ack()
 			yield from self.step(200)
 
 
