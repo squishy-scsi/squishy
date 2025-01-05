@@ -213,6 +213,9 @@ class USBGatewarePHYTestHelpers:
 	def usb_get_ack(self):
 		yield from self.usb_consume_response((USBPacketID.ACK.byte(),))
 
+	def usb_get_stall(self):
+		yield from self.usb_consume_response((USBPacketID.STALL.byte(),))
+
 	def usb_solicit(self, addr: int, ep: int, pid: USBPacketID):
 		yield from self.usb_sync()
 		yield from self.usb_emit_bits(pid.byte())
