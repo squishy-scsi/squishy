@@ -10,6 +10,7 @@ from torii.sim                   import Settle
 from torii.test                  import ToriiTestCase
 
 from usb_construct.types         import USBPacketID, USBStandardRequests
+from usb_construct.types.descriptors.dfu import DFURequests
 
 from squishy.core.config         import FlashConfig
 from squishy.core.flash          import Geometry
@@ -152,6 +153,26 @@ class BootloaderTests(USBGatewarePHYTestHelpers, SquishyGatewareTest):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs, raw_record = _USB_RECORD)
+
+	def dfu_get_status(self, *, addr: int, exepected_status: DFUStatus, expected_state: DFUState):
+		data = (exepected_status, 0x00, 0x00, 0x00, expected_state, 0x00)
+		crc = self.crc16_buff(data)
+
+		# Send the SETUP packet to the device
+		yield from self.usb_send_setup_pkt(addr, (0xA1,  DFURequests.GET_STATUS, 0x00, 0x00, 0x00, 0x00, 0x06, 0x00,))
+		yield from self.step(20)
+		# Now solicit a response for the 6 bytes needed
+		yield from self.usb_in(addr, 0)
+		yield from self.usb_consume_response((
+			USBPacketID.DATA1.byte(), *data, *crc.to_bytes(2, byteorder = 'little')
+		))
+		# ACK that response
+		yield from self.usb_send_ack()
+		yield from self.step(20)
+		# Finish up by sending the status phase to ack our end of the bargain
+		yield from self.usb_out(addr, 0)
+		yield from self.usb_send_zlp()
+		yield from self.usb_get_ack()
 
 
 	@ToriiTestCase.simulation
