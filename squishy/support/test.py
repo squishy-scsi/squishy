@@ -261,6 +261,17 @@ class USBGatewarePHYTestHelpers:
 		yield from self.usb_get_zlp()
 		yield from self.usb_send_ack()
 
+	def usb_set_interface(self, addr: int, interface: int, alt: int):
+		yield from self.usb_send_setup_pkt(addr, (
+			0x01, USBStandardRequests.SET_INTERFACE,
+			*alt.to_bytes(2, byteorder = 'little'),
+			*interface.to_bytes(2, byteorder = 'little'),
+			0x00, 0x00
+		))
+		yield from self.usb_in(addr, 0)
+		yield from self.usb_get_zlp()
+		yield from self.usb_send_ack()
+
 	def usb_set_config(self, addr: int, cfg: int):
 		yield from self.usb_send_setup_pkt(addr, (
 			0x00, USBStandardRequests.SET_CONFIGURATION,
