@@ -142,7 +142,7 @@ class USBGatewarePHYTestHelpers:
 		yield
 
 	def usb_wait_j(self):
-		yield from self.wait_until_high(self._USB_DP_RECORD.d_p.o, timeout = 1e4)
+		yield from self.wait_until_high(self._USB_DP_RECORD.d_p.o, timeout = 1e3)
 		yield from self.usb_assert_j()
 
 	def usb_assert_j(self):
@@ -156,7 +156,7 @@ class USBGatewarePHYTestHelpers:
 		yield
 
 	def usb_wait_k(self):
-		yield from self.wait_until_high(self._USB_DP_RECORD.d_n.o, timeout = 1e4)
+		yield from self.wait_until_high(self._USB_DP_RECORD.d_n.o, timeout = 1e3)
 		yield from self.usb_assert_k()
 
 	def usb_assert_k(self):
