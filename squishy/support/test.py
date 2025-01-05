@@ -96,6 +96,12 @@ class USBGatewarePHYTestHelpers:
 						self._last_state = 'j'
 			else:
 				self._last_trans += 1
+				match self._last_state:
+					case 'k':
+						yield from self.usb_k()
+					case 'j':
+						yield from self.usb_j()
+
 				# Do bit-stuffing if we need to
 				if self._last_trans == 6:
 					self._last_trans = 0
@@ -106,12 +112,6 @@ class USBGatewarePHYTestHelpers:
 						case 'j':
 							yield from self.usb_k()
 							self._last_state = 'k'
-
-				match self._last_state:
-					case 'k':
-						yield from self.usb_k()
-					case 'j':
-						yield from self.usb_j()
 
 	def usb_single_zero(self):
 		yield self._USB_DP_RECORD.d_p.i.eq(0)
