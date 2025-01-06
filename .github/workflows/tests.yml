@@ -6,6 +6,7 @@ on:
       - 'squishy/**'
       - 'tests/**'
       - 'noxfile.py'
+      - 'setup.py'
 
 jobs:
   test:
