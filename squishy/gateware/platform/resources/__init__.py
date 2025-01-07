@@ -109,3 +109,17 @@ def SquishySupervisor(
 		ios.append(attrs)
 
 	return Resource.family('supervisor', 0, default_name = 'supervisor', ios = ios)
+
+def USB3SerDesPHY(
+	name_or_number: str | int, number: int | None = None, *,
+	rx_p: str, rx_n: str, tx_p: str, tx_n: str, refclk_p: str | None = None, refclk_n: str | None = None
+) -> Resource:
+	ios: list[SubsigArgT] = [
+		Subsignal('rx', DiffPairs(rx_p, rx_n, dir = 'i', assert_width = 1)),
+		Subsignal('tx', DiffPairs(tx_p, tx_n, dir = 'o', assert_width = 1)),
+	]
+
+	if None not in (refclk_p, refclk_n):
+		ios.append(Subsignal('refclk', DiffPairs(refclk_p, refclk_n, dir = 'i', assert_width = 1)))
+
+	return Resource.family(name_or_number, number, default_name = 'usb3', ios = ios)
