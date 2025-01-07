@@ -30,7 +30,7 @@ from torii.platform.resources.user      import LEDResources
 from torii.platform.resources.interface import ULPIResource
 
 from .                                  import SquishyPlatform
-from .resources                         import BankedHyperRAM, PDController, PhyADC, SquishySupervisor
+from .resources                         import BankedHyperRAM, PDController, PhyADC, SquishySupervisor, USB3SerDesPHY
 from .resources.scsi                    import SquishySCSIPhy
 from ...core.flash                      import Geometry as FlashGeometry, FPGAID, rev2_flash_slot, rev2_flash_layout
 from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
@@ -267,7 +267,13 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			attrs = Attrs(IO_TYPE = 'LVCMOS33', SLEWRATE = 'FAST')
 		),
 
-		# The USB 3.1 Super-Speed is bound to DCU1 Chan1 (W17 W18)
+		# The USB 3.1 Super-Speed is bound to DCU 1, CH 1, refclk is 200MHz
+		USB3SerDesPHY('usb3', 0,
+			rx_p = 'Y16', rx_n = 'Y17',
+			tx_p = 'W17', tx_n = 'W18',
+			refclk_p = 'Y19', refclk_n = 'W20', # NOTE(aki): Polarity inverted
+		),
+
 		PDController('usb_pd', 0,
 			scl = 'M18',
 			# Errata: The schematic has a typo calling it `PD_SCA` rather than `PD_SDA`

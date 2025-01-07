@@ -13,6 +13,7 @@ __all__ = (
 	'PDController',
 	'PhyADC',
 	'SquishySupervisor',
+	'USB3SerDesPHY',
 )
 
 def BankedHyperRAM(
