@@ -164,6 +164,8 @@ void irq_systick() noexcept {
 
 namespace std {
 	void terminate() noexcept {
+		/* Shhhh- no more interrupts plz */
+		EIC.disable();
 		/* Ensure we blank the generic status LED first */
 		PORTA.set_high(pin::SU_LED_G);
 		if (active_fault == fault_code_t::NONE) {
