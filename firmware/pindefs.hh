@@ -14,7 +14,7 @@ namespace pin {
 	inline constexpr std::uint8_t SU_LED_R{3U};
 
 	/* User-facing DFU trigger */
-	inline constexpr std::uint8_t DFU_BTN{9U};
+	inline constexpr std::uint8_t DFU_BTN{9U}; // EXTINT7
 
 	/* Bitstream/configuration flash storage */
 	inline constexpr std::uint8_t FLASH_CS{4U};
@@ -39,7 +39,7 @@ namespace pin {
 	inline constexpr std::uint8_t FPGA_DONE{27U};
 
 	/* FPGA Facing DFU/Comm triggers */
-	inline constexpr std::uint8_t SU_ATTN{15U}; // This EXTINT needs to be rising edge, not level
+	inline constexpr std::uint8_t SU_ATTN{15U}; // This EXTINT1 needs to be rising edge, not level
 	inline constexpr std::uint8_t BUS_HOLD{11U};
 }
 
