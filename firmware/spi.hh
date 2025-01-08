@@ -28,6 +28,14 @@ bool load_bitstream_flash(std::uint8_t slot_index) noexcept;
 [[nodiscard]]
 bool load_bitstream_psram() noexcept;
 
+namespace squishy::registers {
+	constexpr inline std::uint8_t CTRL{0U};
+	constexpr inline std::uint8_t SLOT{1U};
+	constexpr inline std::uint8_t TXLEN_HIGH{2U};
+	constexpr inline std::uint8_t TXLEN_LOW{3U};
+	constexpr inline std::uint8_t IRQ{4U};
+}
+
 [[nodiscard]]
 std::uint8_t read_squishy_register(std::uint8_t addr) noexcept;
 void write_squishy_register(std::uint8_t addr, std::uint8_t val) noexcept;
