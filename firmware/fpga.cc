@@ -28,3 +28,16 @@ void fpga_enter_cfg() noexcept {
 	delay(50);
 }
 
+[[nodiscard]]
+bool fpga_handle_irq() noexcept {
+	/*
+		IRQ Register: 0bXXXXXBWD
+			* B - Boot       - FPGA Wants us to boot it from the given slot
+			* W - Write Slot - FPGA Wants us to write the PSRAM contents to the given slot
+			* D - Want DFU   - FPGA Wants to be reloaded into the bootloader
+
+		Slot ID 3 is the Ephemeral slot, don't write to flash, just re-program the FPGA
+	*/
+	const auto squishy_irq{read_squishy_register(squishy::registers::IRQ)};
+	return true;
+}

@@ -34,5 +34,7 @@ namespace squishy {
 
 void setup_fpga_ctrl_pins() noexcept;
 void fpga_enter_cfg() noexcept;
+[[nodiscard]]
+bool fpga_handle_irq() noexcept;
 
 #endif /* SQUISHY_SUPERVISOR_FPGA_HH */

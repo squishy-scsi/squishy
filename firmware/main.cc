@@ -119,6 +119,13 @@ void start() noexcept {
 				}
 			}
 
+			/* FPGA wants our attention */
+			if (interrupts & (1U << 7U)) {
+				if(!fpga_handle_irq()) {
+					/* Simply, explode, */
+					std::terminate();
+				}
+			}
 		}
 
 		asm ("wfi"); // Wiggle for interrupt:tm:
