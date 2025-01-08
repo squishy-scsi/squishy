@@ -20,21 +20,12 @@ std::uint32_t read_psram(std::uint32_t addr, std::span<std::uint8_t> buffer) noe
 std::uint32_t write_psram(std::uint32_t addr, const std::span<std::uint8_t>& buffer) noexcept;
 
 
-void fpga_enter_cfg() noexcept;
 /* Load the bitstream from the given slot into the FPGA */
 [[nodiscard]]
 bool load_bitstream_flash(std::uint8_t slot_index) noexcept;
 /* Load bitstream from PSRAM into FPGA directly */
 [[nodiscard]]
 bool load_bitstream_psram() noexcept;
-
-namespace squishy::registers {
-	constexpr inline std::uint8_t CTRL{0U};
-	constexpr inline std::uint8_t SLOT{1U};
-	constexpr inline std::uint8_t TXLEN_HIGH{2U};
-	constexpr inline std::uint8_t TXLEN_LOW{3U};
-	constexpr inline std::uint8_t IRQ{4U};
-}
 
 [[nodiscard]]
 std::uint8_t read_squishy_register(std::uint8_t addr) noexcept;

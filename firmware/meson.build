@@ -129,6 +129,7 @@ firmware_srcs = files([
         'timing.cc',
         'atomic.cc',
         'fault.cc',
+        'fpga.cc',
 ])
 
 firmware_full = executable(

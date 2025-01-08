@@ -10,6 +10,7 @@
 #include "timing.hh"
 #include "flash.hh"
 #include "fault.hh"
+#include "fpga.hh"
 #include "memory.hh"
 
 enum struct flash_cmd_t : std::uint16_t {
@@ -78,20 +79,6 @@ static void setup_fpga_pins() noexcept {
 	PORTA.set_output(pin::FPGA_COPI);
 	PORTA.setup_pin(pin::FPGA_CIPO, false, true, false, false, port_t::pin_func_t::A);
 	PORTA.set_input(pin::FPGA_CIPO);
-
-
-	/* Setup FPGA Config Signals */
-	PORTA.set_high(pin::FPGA_HOLD);
-	PORTA.set_high(pin::FPGA_PROG);
-
-	PORTA.setup_pin(pin::FPGA_INIT, false, true, false, false, port_t::pin_func_t::A);
-	PORTA.set_input(pin::FPGA_INIT);
-
-	PORTA.set_output(pin::FPGA_HOLD);
-	PORTA.set_output(pin::FPGA_PROG);
-
-	PORTA.setup_pin(pin::FPGA_DONE, false, true, false, false, port_t::pin_func_t::A);
-	PORTA.set_input(pin::FPGA_DONE);
 }
 
 static void setup_flash_pins() noexcept {
@@ -142,20 +129,9 @@ static void setup_sercom() noexcept {
 	SERCOM0_SPI.enable();
 }
 
-static void setup_fpga() noexcept {
-	setup_fpga_pins();
-}
-
-void fpga_enter_cfg() noexcept {
-	PORTA.set_low(pin::FPGA_PROG);
-	delay(1);
-	PORTA.set_high(pin::FPGA_PROG);
-	delay(50);
-}
-
 bool setup_spi() noexcept {
 	setup_sercom();
-	setup_fpga();
+	setup_fpga_pins();
 
 	const auto flash_id{read_flash_id()};
 

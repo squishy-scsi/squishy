@@ -9,7 +9,7 @@
 #include "peripherals.hh"
 #include "pindefs.hh"
 #include "fault.hh"
-
+#include "fpga.hh"
 #include "spi.hh"
 
 std::atomic<std::uint8_t> extint{0U};
@@ -83,6 +83,7 @@ void start() noexcept {
 	setup_io();
 	setup_clocking();
 	setup_extint();
+	setup_fpga_ctrl_pins();
 
 	/* Ensure SysTick keeps running when we call std::terminate() so we can blink a panic code  */
 	NVIC.set_priority(15, nvic_t::priority_t::TOP);
