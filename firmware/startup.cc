@@ -25,7 +25,6 @@ extern "C" const ctor_func_t ctors_start, ctors_end;
 
 void irq_reset() noexcept;
 void irq_nmi() noexcept;
-void irq_eic() noexcept;
 void irq_noop() noexcept;
 [[using gnu: naked, noreturn]]
 void irq_fault() noexcept;
@@ -107,11 +106,6 @@ void irq_reset() noexcept {
 }
 
 void irq_nmi() noexcept {
-	for(;;)
-		continue;
-}
-
-void irq_eic() noexcept {
 	for(;;)
 		continue;
 }

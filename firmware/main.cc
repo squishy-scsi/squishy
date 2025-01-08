@@ -13,6 +13,8 @@
 
 #include "spi.hh"
 
+std::atomic<std::uint8_t> extint{0U};
+
 void setup_io() noexcept {
 	/* Setup the global clock input */
 	PORTA.setup_pin(pin::CLKIN, true, false, false, false, port_t::pin_func_t::H);
@@ -25,12 +27,14 @@ void setup_io() noexcept {
 	PORTA.set_output(pin::SU_LED_R); /* error LED */
 
 	/* Setup External DFU Trigger */
+	PORTA.setup_pin(pin::DFU_BTN, true, false, false, false, port_t::pin_func_t::A);
 	PORTA.set_input(pin::DFU_BTN);
 	/* Setup FPGA Side attention lines */
 	PORTA.setup_pin(pin::SU_ATTN, true, false, false, false, port_t::pin_func_t::A);
 	PORTA.set_input(pin::SU_ATTN);
 
 	/* SPI Bus hold line */
+	PORTA.setup_pin(pin::BUS_HOLD, false, true, false, false, port_t::pin_func_t::A);
 	PORTA.set_input(pin::BUS_HOLD);
 }
 
@@ -49,12 +53,24 @@ void setup_clocking() noexcept {
 	GCLK.config_clk(gclk_t::clkid_t::SERCOMx_SLOW, gclk_t::clkgen_t::GCLK0, true, false);
 
 	/* Enable the EIC */
-	// PM.unmask(pm_t::apba_periph_t::EIC);
-	// GCLK.config_clk(gclk_t::clkid_t::EIC, gclk_t::clkgen_t::GCLK0, true, false);
+	PM.unmask(pm_t::apba_periph_t::EIC);
+	GCLK.config_clk(gclk_t::clkid_t::EIC, gclk_t::clkgen_t::GCLK0, true, false);
 }
 
 void setup_extint() noexcept {
 
+	/* Configure the EXTINTS */
+
+	/* SU_ATTN line */
+	EIC.enable_extint_irq(1U);
+	EIC.enable_extint(1U, false, eic_t::sense_t::RISE);
+
+	/* DFU_TRIG line */
+	EIC.enable_extint_irq(7U);
+	EIC.enable_extint(7U, true, eic_t::sense_t::RISE); // When button is released
+
+	/* Finally, enable the EIC */
+	EIC.enable();
 }
 
 void start() noexcept {
@@ -94,6 +110,23 @@ void start() noexcept {
 		PORTA.toggle(pin::SU_LED_G);
 		for (std::size_t i{0z}; i < 65525*20z; ++i) {
 			asm volatile ("");
+		}
+
+	}
+}
+
+void irq_eic() noexcept {
+	/* Get the triggered EXTINTs */
+	const auto intnum{EIC.get_extint_irq()};
+
+	/* Set which interrupts were triggered */
+	extint = intnum;
+
+	/* ACK triggered interrupts */
+	for (std::size_t i{0U}; i < 8U; ++i) {
+		const auto was_enabled{static_cast<bool>(std::uint32_t(intnum >> i) & 0b1U)};
+		if (was_enabled) {
+			EIC.ack_extint(static_cast<std::uint8_t>(i));
 		}
 	}
 }
