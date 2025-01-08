@@ -622,3 +622,13 @@ std::uint8_t read_squishy_register(const std::uint8_t addr) noexcept {
 
 	return val;
 }
+
+void write_squishy_register(const std::uint8_t addr, const std::uint8_t val) noexcept {
+	PORTA.set_low(pin::FPGA_CS);
+
+	[[maybe_unused]]
+	auto _{fpga_xfr(addr)};
+	_ = fpga_xfr(val);
+
+	PORTA.set_high(pin::FPGA_CS);
+}

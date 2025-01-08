@@ -30,5 +30,6 @@ bool load_bitstream_psram() noexcept;
 
 [[nodiscard]]
 std::uint8_t read_squishy_register(std::uint8_t addr) noexcept;
+void write_squishy_register(std::uint8_t addr, std::uint8_t val) noexcept;
 
 #endif /* SQUISHY_SUPERVISOR_SPI_HH */
