@@ -47,7 +47,7 @@ void update_fault_led() noexcept {
 	}
 
 	if (cycles_rem == 0U) {
-		const auto nybble{std::uint8_t((displayed_fault >> ((3U - curr_nybble) * 4U)) & 0xFU)};
+		const auto nybble{std::uint8_t((std::uint32_t(displayed_fault) >> ((3U - curr_nybble) * 4U)) & 0xFU)};
 		const auto blnk_pattern{blink_table[nybble]};
 		const auto patrn_len{std::uint8_t((blnk_pattern & 0b111'00000) >> 5U)};
 
