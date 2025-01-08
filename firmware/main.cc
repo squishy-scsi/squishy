@@ -97,10 +97,10 @@ void start() noexcept {
 	}
 
 	/* Try to load the first applet */
-	if (!load_bitstream_flash(1)) {
+	if (!load_bitstream_flash(squishy::slots::APPLET1)) {
 		/* We *might* still be okay, clear the fault code and try to load the bootloader */
 		active_fault = fault_code_t::NONE;
-		if (!load_bitstream_flash(0)) {
+		if (!load_bitstream_flash(squishy::slots::BOOTLOADER)) {
 			/* Well shit,,, */
 			std::terminate();
 		}
@@ -114,7 +114,7 @@ void start() noexcept {
 			if (interrupts & (1U << 1U)) {
 				fpga_enter_cfg();
 				/* Load the bootloader bitstream */
-				if (!load_bitstream_flash(0)) {
+				if (!load_bitstream_flash(squishy::slots::BOOTLOADER)) {
 					std::terminate();
 				}
 			}
