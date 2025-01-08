@@ -28,5 +28,7 @@ bool load_bitstream_flash(std::uint8_t slot_index) noexcept;
 [[nodiscard]]
 bool load_bitstream_psram() noexcept;
 
+[[nodiscard]]
+std::uint8_t read_squishy_register(std::uint8_t addr) noexcept;
 
 #endif /* SQUISHY_SUPERVISOR_SPI_HH */

@@ -608,3 +608,17 @@ bool load_bitstream_flash(std::uint8_t slot_index) noexcept {
 
 	return true;
 }
+
+[[nodiscard]]
+std::uint8_t read_squishy_register(const std::uint8_t addr) noexcept {
+
+	PORTA.set_low(pin::FPGA_CS);
+	[[maybe_unused]]
+	auto _{fpga_xfr(addr)};
+
+	const auto val{fpga_xfr(0U)};
+
+	PORTA.set_high(pin::FPGA_CS);
+
+	return val;
+}
