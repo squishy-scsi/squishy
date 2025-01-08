@@ -110,6 +110,23 @@ extern "C" bool atomic_cmpxchng_1(
 	return res;
 }
 
+extern "C" std::uint8_t atomic_exchange_1(
+	std::uint8_t* const atomic_value, const std::uint8_t new_value, const int swap_model
+) noexcept {
+
+	pre_seq_barrier(swap_model);
+
+	const auto prot_state{protect_begin(atomic_value)};
+	const auto old_value{*atomic_value};
+
+	*atomic_value = new_value;
+
+	protect_end(atomic_value, prot_state);
+	post_seq_barrier(swap_model);
+
+	return old_value;
+}
+
 extern "C" bool atomic_cmpxchng_2(
 	std::uint16_t* const atomic_value, std::uint16_t* const expected_value, const std::uint16_t new_value,
 	const bool, const int success_model, const int
@@ -165,6 +182,9 @@ extern "C" {
 
 	[[using gnu: alias("atomic_fetch_add_4"), used]]
 	unsigned int __atomic_fetch_add_4(volatile void* atomic_value, unsigned int add_value, int swap_model) noexcept;
+
+	[[using gnu: alias("atomic_exchange_1"), used]]
+	unsigned char __atomic_exchange_1(volatile void* atomic_value, unsigned char new_value, int swap_model) noexcept;
 
 	[[using gnu: alias("atomic_cmpxchng_1"), used]]
 	bool __atomic_compare_exchange_1(volatile void* atomic_value, void* expected_value, unsigned char new_value, bool weak, int success_model, int failure_model) noexcept;
