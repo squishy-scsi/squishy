@@ -247,6 +247,15 @@ inline auto& RTC{*reinterpret_cast<rtc_t*>(RTC_BASE)};
 constexpr static std::uintptr_t EIC_BASE{0x40001800U};
 
 struct eic_t final {
+	enum struct sense_t : std::uint8_t {
+		NONE = 0x00U,
+		RISE = 0x01U,
+		FALL = 0x02U,
+		BOTH = 0x03U,
+		HIGH = 0x04U,
+		LOW  = 0x05U,
+	};
+
 	volatile std::uint8_t ctrl;
 	volatile std::uint8_t status;
 	volatile std::uint8_t nmictrl;
@@ -256,7 +265,52 @@ struct eic_t final {
 	volatile std::uint32_t intenset;
 	volatile std::uint32_t intflag;
 	volatile std::uint32_t wakeup;
-	volatile std::uint32_t config0;
+	volatile std::uint32_t config;
+
+	void enable() noexcept {
+		ctrl |= (1U << 1U);
+		while (syncbusy()) {
+			continue;
+		}
+	}
+
+	void disable() noexcept {
+		ctrl &= static_cast<std::uint8_t>(~(1U << 1U));
+		while (syncbusy()) {
+			continue;
+		}
+	}
+
+	[[nodiscard]]
+	bool syncbusy() noexcept {
+		return (status & 0x80) >> 7U;
+	}
+
+	void enable_extint_irq(const std::uint8_t extint) noexcept {
+		intenset = (1U << extint);
+	}
+
+	void disable_extint_irq(const std::uint8_t extint) noexcept {
+		intenclr = (1U << extint);
+	}
+
+	std::uint8_t get_extint_irq() noexcept {
+		return static_cast<std::uint8_t>(intflag);
+	}
+
+	void ack_extint(const std::uint8_t extint) noexcept {
+		intflag = (1U << extint);
+	}
+
+	void enable_extint(const std::uint8_t extint, const bool filt_en, const sense_t sense) noexcept {
+		config |= (std::uint32_t{
+			(static_cast<std::uint32_t>(filt_en) << 3U) | static_cast<std::uint8_t>(sense)
+		} << (extint * 4U));
+	}
+
+	void disable_extint(const std::uint8_t extint) noexcept {
+		config &= ~(0x0FU << (extint * 4U));
+	}
 };
 
 inline auto& EIC{*reinterpret_cast<eic_t*>(EIC_BASE)};
