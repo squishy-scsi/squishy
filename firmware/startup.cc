@@ -17,6 +17,7 @@ extern "C" std::uint32_t bss_start;
 extern "C" const std::uint32_t bss_end;
 
 static std::uint8_t fault_tick{};
+static std::uint8_t blink_tick{};
 
 using ctor_func_t = void(*)();
 using irq_func_t  = void(*)();
@@ -151,6 +152,14 @@ void irq_systick() noexcept {
 	if (fault_tick == 100) {
 		update_fault_led();
 		fault_tick = 0;
+
+		if (active_fault == fault_code_t::NONE && blink_tick == 10) {
+			PORTA.toggle(pin::SU_LED_G);
+			blink_tick = 0;
+		} else {
+			++blink_tick;
+		}
+
 	} else {
 		++fault_tick;
 	}

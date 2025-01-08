@@ -107,10 +107,6 @@ void start() noexcept {
 	}
 
 	for(;;) {
-		PORTA.toggle(pin::SU_LED_G);
-		for (std::size_t i{0z}; i < 65525*20z; ++i) {
-			asm volatile ("");
-		}
 
 	}
 }
