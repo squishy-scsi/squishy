@@ -10,7 +10,6 @@
 #include "pindefs.hh"
 #include "fault.hh"
 
-
 #include "spi.hh"
 
 std::atomic<std::uint8_t> extint{0U};
@@ -107,7 +106,21 @@ void start() noexcept {
 	}
 
 	for(;;) {
+		const auto interrupts{extint.exchange(0U)};
 
+		if (interrupts != 0) {
+			/* Someone pressed the DFU button (EXTINT1) */
+			if (interrupts & (1U << 1U)) {
+				fpga_enter_cfg();
+				/* Load the bootloader bitstream */
+				if (!load_bitstream_flash(0)) {
+					std::terminate();
+				}
+			}
+
+		}
+
+		asm ("wfi"); // Wiggle for interrupt:tm:
 	}
 }
 

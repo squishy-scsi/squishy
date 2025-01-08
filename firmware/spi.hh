@@ -19,6 +19,8 @@ std::uint32_t read_psram(std::uint32_t addr, std::span<std::uint8_t> buffer) noe
 [[nodiscard]]
 std::uint32_t write_psram(std::uint32_t addr, const std::span<std::uint8_t>& buffer) noexcept;
 
+
+void fpga_enter_cfg() noexcept;
 /* Load the bitstream from the given slot into the FPGA */
 [[nodiscard]]
 bool load_bitstream_flash(std::uint8_t slot_index) noexcept;

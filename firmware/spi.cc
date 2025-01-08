@@ -146,7 +146,7 @@ static void setup_fpga() noexcept {
 	setup_fpga_pins();
 }
 
-static void fpga_enter_cfg() noexcept {
+void fpga_enter_cfg() noexcept {
 	PORTA.set_low(pin::FPGA_PROG);
 	delay(1);
 	PORTA.set_high(pin::FPGA_PROG);
