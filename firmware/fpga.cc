@@ -2,6 +2,7 @@
 
 #include "peripherals.hh"
 #include "pindefs.hh"
+#include "flash.hh"
 #include "fpga.hh"
 #include "spi.hh"
 #include "timing.hh"
@@ -44,6 +45,32 @@ bool fpga_handle_irq() noexcept {
 		/* FPGA wants to be in bootloader mode, yeet it. */
 		fpga_enter_cfg();
 		return load_bitstream_flash(squishy::slots::BOOTLOADER);
-	}
+	} else if (squishy_irq & squishy::registers::IRQ_WRITE_SLOT) {
+		/* FPGA as written the target slot and payload size, retrieve them */
+		const auto slot{std::uint8_t(
+			(read_squishy_register(squishy::registers::SLOT) & squishy::registers::SLOT_DEST_MASK) >> 4U
+		)};
+		const auto txlen{[](){
+			const auto low{read_squishy_register(squishy::registers::TXLEN_LOW)};
+			const auto high{read_squishy_register(squishy::registers::TXLEN_HIGH)};
+			return std::uint16_t((high << 8U) | low);
+		}()};
+		/* Let the FPGA know we're good to go */
+		write_squishy_register(squishy::registers::CTRL, squishy::registers::CTRL_IRQ_ACK);
+
+		/* Check if the slot is ephemeral or not */
+		if (slot != squishy::slots::REV2_EPHEMERAL) {
+			/* We need to slurp the yummy data from the PSRAM and spit it to the FLASH */
+			if(!move_to_slot(slot, txlen - sizeof(slot_header_t))) {
+				/* We expect that `move_to_slot` set the fault code */
+				return false;
+			}
+		}
+
+		/* Tell the FPGA we're done */
+		write_squishy_register(squishy::registers::CTRL, squishy::registers::CTRL_WRITE_DONE);
+
+		/* Now we wait for the boot IRQ */
+	} 
 	return true;
 }
