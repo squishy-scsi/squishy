@@ -586,6 +586,11 @@ bool load_bitstream_flash(std::uint8_t slot_index) noexcept {
 }
 
 [[nodiscard]]
+bool move_to_slot(std::uint8_t slot_index, std::uint16_t expected_len) noexcept {
+	return true;
+}
+
+[[nodiscard]]
 std::uint8_t read_squishy_register(const std::uint8_t addr) noexcept {
 
 	PORTA.set_low(pin::FPGA_CS);

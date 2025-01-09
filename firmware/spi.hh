@@ -26,6 +26,9 @@ bool load_bitstream_flash(std::uint8_t slot_index) noexcept;
 /* Load bitstream from PSRAM into FPGA directly */
 [[nodiscard]]
 bool load_bitstream_psram() noexcept;
+/* Shuffle the data from the PSRAM to FLASH, note that expected_len does not include the header size */
+[[nodiscard]]
+bool move_to_slot(std::uint8_t slot_index, std::uint16_t expected_len) noexcept;
 
 [[nodiscard]]
 std::uint8_t read_squishy_register(std::uint8_t addr) noexcept;
