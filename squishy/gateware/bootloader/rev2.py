@@ -19,7 +19,7 @@ When the FPGA is hosting an applet, we can request to drop into the bootloader a
 0. FPGA raises ``~SU_IRQ`` with the IRQ register value ``DFU`` set to ``1``
 1. Supervisor resets the FPGA configuration and loads the bootloader bitstream
 2. Supervisor then waits for the next IRQ event
-3. Supervisor then checks the IRQ register to make sure it is ``in_boot``
+
 
 ---------------
 Bootloader Mode
@@ -41,7 +41,7 @@ Upon the FPGA entering the bootloader:
 
     I. Supervisor erases the flash region mapped to that slot
     II. Supervisor write the contents of the PSRAM for ``txlen`` into the target flash slot
-	III. Goto 3.b
+	III. Goto 4.b
 
   b. If the destination slot *is* ephemeral:
 	I. Supervisor then writes into the FPGA control register that the erase/flash cycle is done

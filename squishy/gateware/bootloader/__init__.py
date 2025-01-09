@@ -126,7 +126,7 @@ class SquishyBootloader(Elaboratable):
 		with descriptors.ConfigurationDescriptor() as cfg_desc:
 			cfg_desc.bConfigurationValue = 1
 			cfg_desc.iConfiguration      = 'Squishy DFU'
-			cfg_desc.bmAttributes        = 0x80 # Default: 0b100'000
+			cfg_desc.bmAttributes        = 0x80 # Default: 0b1000'0000
 			cfg_desc.bMaxPower           = 250  # 2mA * 250
 
 			# Populate our valid DFU slots
