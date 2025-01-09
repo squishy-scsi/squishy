@@ -39,5 +39,11 @@ bool fpga_handle_irq() noexcept {
 		Slot ID 3 is the Ephemeral slot, don't write to flash, just re-program the FPGA
 	*/
 	const auto squishy_irq{read_squishy_register(squishy::registers::IRQ)};
+
+	if (squishy_irq & squishy::registers::IRQ_WANT_DFU) {
+		/* FPGA wants to be in bootloader mode, yeet it. */
+		fpga_enter_cfg();
+		return load_bitstream_flash(squishy::slots::BOOTLOADER);
+	}
 	return true;
 }
