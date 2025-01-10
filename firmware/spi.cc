@@ -154,7 +154,7 @@ bool setup_spi() noexcept {
 	// Cache the ID of the FPGA that is attached to the board
 	active_fpga_id = read_fpga_id();
 
-	if (active_fpga_id != fpga_id_t::LEF5UM45) {
+	if (!((active_fpga_id == fpga_id_t::LEF5UM45) || (active_fpga_id == fpga_id_t::LEF5UM5G45))) {
 		active_fault = fault_code_t::FPGA_ID_BAD;
 		return false;
 	}
