@@ -113,7 +113,7 @@ common_args = [
 ]
 
 compile_args = [
-
+        '-U_GLIBCXX_ASSERTIONS', # This is a super *dirty* hack, but we are in a context where we can't deal with them
 ] + common_args
 
 ld_args = [
