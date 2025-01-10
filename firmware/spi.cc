@@ -465,7 +465,7 @@ static bool fpga_program_status() noexcept {
 	return true;
 }
 
-bool load_bitstram_psram() noexcept {
+bool load_bitstream_psram() noexcept {
 	slot_header_t header;
 	[[maybe_unused]]
 	auto next_addr{read_psram(0x0000'0000, spi_buffer)};
