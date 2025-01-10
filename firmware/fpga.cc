@@ -71,6 +71,22 @@ bool fpga_handle_irq() noexcept {
 		write_squishy_register(squishy::registers::CTRL, squishy::registers::CTRL_WRITE_DONE);
 
 		/* Now we wait for the boot IRQ */
-	} 
+	} else if (squishy_irq & squishy::registers::IRQ_BOOT) {
+		const auto slot{std::uint8_t(
+			read_squishy_register(squishy::registers::SLOT) & squishy::registers::SLOT_BOOT_MASK
+		)};
+
+		/* Toss the FPGA into configuration mode */
+		fpga_enter_cfg();
+		/* Check if we need to load the bitstream from PSRAM or flash */
+		if (slot != squishy::slots::REV2_EPHEMERAL) {
+			/* Load th FPGA with the slot from flash */
+			return load_bitstream_flash(slot);
+		} else {
+			/* We *are* in the ephemeral slot, dump the slot in PSRAM to the FPGA directly */
+			return load_bitstream_psram();
+		}
+	}
+
 	return true;
 }
