@@ -575,6 +575,33 @@ bool load_bitstream_flash(std::uint8_t slot_index) noexcept {
 
 [[nodiscard]]
 bool move_to_slot(std::uint8_t slot_index, std::uint16_t expected_len) noexcept {
+	slot_header_t header;
+	[[maybe_unused]]
+	auto next_addr{read_psram(0x0000'0000, spi_buffer)};
+
+	memcpy(spi_buffer.data(), &header, sizeof(header));
+
+	if (!header.is_valid(active_fpga_id)) {
+		return false;
+	}
+
+	const auto bit_len{header.bitstream_len()};
+
+	/* Check that the slot header and the size of the data we want agree */
+	if (bit_len != expected_len) {
+		active_fault = fault_code_t::SLOT_SIZE_MISMATCH;
+		return false;
+	}
+
+	std::uint32_t slot_addr{slot_index * 2_MiB};
+
+	/* Transfer the slot over in 1KiB pages */
+	for (std::size_t offset{0}; offset < bit_len; offset += 1_KiB) {
+		const auto buff_amount{std::min(std::uint32_t(bit_len - offset), 1_KiB)};
+		next_addr = read_psram(next_addr, spi_buffer);
+		write_flash((slot_addr + offset), std::span{spi_buffer}.subspan(0, buff_amount));
+	};
+
 	return true;
 }
 
