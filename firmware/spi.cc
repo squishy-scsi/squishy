@@ -472,17 +472,11 @@ bool load_bitstram_psram() noexcept {
 
 	memcpy(spi_buffer.data(), &header, sizeof(header));
 
+	if (!header.is_valid(active_fpga_id)) {
+		return false;
+	}
+
 	const auto bit_len{header.bitstream_len()};
-
-	if (header.idcode == fpga_id_t::BAD || bit_len == 0x00FFFFFFU) {
-		active_fault = fault_code_t::SLOT_HEADER_BAD;
-		return false;
-	}
-
-	if (header.idcode != active_fpga_id) {
-		active_fault = fault_code_t::FPGA_ID_MISMATCH;
-		return false;
-	}
 
 	/* Force the FPGA to stop what it's doing and enter config mode */
 	fpga_enter_cfg();
@@ -531,17 +525,11 @@ bool load_bitstream_flash(std::uint8_t slot_index) noexcept {
 	slot_header_t slot_header{};
 	read_flash(slot_addr, {reinterpret_cast<std::uint8_t*>(&slot_header), sizeof(slot_header)});
 
+	if (!slot_header.is_valid(active_fpga_id)) {
+		return false;
+	}
+
 	const auto bit_len{slot_header.bitstream_len()};
-
-	if (slot_header.idcode == fpga_id_t::BAD || bit_len == 0x00FFFFFFU) {
-		active_fault = fault_code_t::SLOT_HEADER_BAD;
-		return false;
-	}
-
-	if (slot_header.idcode != active_fpga_id) {
-		active_fault = fault_code_t::FPGA_ID_MISMATCH;
-		return false;
-	}
 
 	/* Check if the FPGA is in configuration mode, if not, bail */
 	if (PORTA.pin_state(pin::FPGA_DONE) || !PORTA.pin_state(pin::FPGA_INIT)) {

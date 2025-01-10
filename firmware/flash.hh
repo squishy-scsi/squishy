@@ -7,6 +7,7 @@
 #include <array>
 #include <limits>
 
+#include "fault.hh"
 #include "units.hh"
 
 /*
@@ -62,6 +63,26 @@ struct slot_header_t final {
 			(std::uint32_t(len[1]) <<  8U) |
 			std::uint32_t(len[0])
 		;
+	}
+
+	/*
+		Check if the slot header is valid and matches the given FPGA ID.
+
+		This sets the `active_fault` as appropriate.
+	*/
+	[[nodiscard]]
+	bool is_valid(const fpga_id_t fpga_id) const noexcept {
+		if (idcode == fpga_id_t::BAD || bitstream_len() == 0x00FFFFFFU) {
+			active_fault = fault_code_t::SLOT_HEADER_BAD;
+			return false;
+		}
+
+		if (idcode != fpga_id) {
+			active_fault = fault_code_t::FPGA_ID_MISMATCH;
+			return false;
+		}
+
+		return true;
 	}
 };
 
