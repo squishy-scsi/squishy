@@ -99,7 +99,7 @@ def SquishySupervisor(
 		# Supervisor -> FPGA "CS"
 		Subsignal('attn', PinsN(attn, dir = 'i',  conn = conn, assert_width = 1)),
 		# FPGA -> PSRAM CS
-		Subsignal('psram', PinsN(psram, dir = 'o', conn = conn, assert_width = 1)),
+		Subsignal('psram', Pins(psram, dir = 'o', conn = conn, assert_width = 1)),
 		# FPGA -> Supervisor IRQ/Bus Hold
 		Subsignal('su_irq',   Pins(su_irq,   dir = 'o', conn = conn, assert_width = 1)),
 		Subsignal('bus_hold', Pins(bus_hold, dir = 'o', conn = conn, assert_width = 1)),
