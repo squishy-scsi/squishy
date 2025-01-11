@@ -142,7 +142,7 @@ class SPIInterface(Elaboratable):
 			# active_mode: 1 = Controller; 0 = Peripheral
 			m.d.comb += [
 				self._clk.oe.eq(self.active_mode),
-				self._cipo.oe.eq(~self.active_mode),
+				self._cipo.oe.eq(~self.active_mode & self._cs_peripheral.i),
 				self._copi.oe.eq(self.active_mode),
 			]
 
