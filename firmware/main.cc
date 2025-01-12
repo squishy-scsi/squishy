@@ -29,7 +29,8 @@ void setup_io() noexcept {
 	PORTA.setup_pin(pin::DFU_BTN, true, false, false, false, port_t::pin_func_t::A);
 	PORTA.set_input(pin::DFU_BTN);
 	/* Setup FPGA Side attention lines */
-	PORTA.setup_pin(pin::SU_ATTN, true, false, false, false, port_t::pin_func_t::A);
+	PORTA.set_low(pin::SU_ATTN);
+	PORTA.setup_pin(pin::SU_ATTN, true, false, true, false, port_t::pin_func_t::A);
 	PORTA.set_input(pin::SU_ATTN);
 
 	/* SPI Bus hold line */
