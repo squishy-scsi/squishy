@@ -24,6 +24,8 @@ enum struct fault_code_t : std::uint16_t {
 
 	/* The size of the slot does not match its header */
 	SLOT_SIZE_MISMATCH = 0x000AU,
+
+	SQUISHY_IRQ_RESP_BAD = 0x000BU,
 };
 
 extern std::atomic<fault_code_t> active_fault;
