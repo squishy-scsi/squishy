@@ -76,6 +76,9 @@ void setup_extint() noexcept {
 	EIC.ack_extint(1U);
 	EIC.ack_extint(7U);
 
+	/* Tell the NVIC we actually want to have this work */
+	NVIC.enable_irq(4);
+	NVIC.set_priority(20, nvic_t::priority_t::MID);
 }
 
 void start() noexcept {
