@@ -223,8 +223,11 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		# Supervisor bus
 		SquishySupervisor(
 			clk      = 'U2',
-			copi     = 'W2',
-			cipo     = 'V2',
+			# ??? These are backwards???? Why???
+			# copi     = 'W2',
+			copi     = 'V2',
+			# cipo     = 'V2',
+			cipo     = 'W2',
 			attn     = 'T2',
 			psram    = 'Y2',
 			su_irq   = 'W1',
