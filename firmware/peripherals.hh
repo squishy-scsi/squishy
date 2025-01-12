@@ -667,7 +667,7 @@ constexpr static std::uintptr_t NVIC_BASE{0xE000E100U};
 struct nvic_t final {
 	enum struct priority_t : std::uint8_t {
 		TOP = 0x00U,
-
+		MID = 0x1FU,
 		LOW = 0x3FU,
 	};
 
