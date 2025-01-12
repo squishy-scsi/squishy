@@ -4,12 +4,14 @@
 
 '''
 
-from enum              import IntEnum, Flag, auto, unique
+from enum              import Flag, IntEnum, auto, unique
 
-from torii             import Elaboratable, Signal, Module, Cat, ResetSignal, ClockSignal, ClockDomain
+from torii             import Cat, ClockDomain, ClockSignal, Elaboratable, Module, ResetSignal, Signal
 from torii.build       import Subsignal
-from torii.lib.soc.csr import Multiplexer
+from torii.hdl.ast     import Fell, Rose
 from torii.lib.cdc     import FFSynchronizer
+from torii.lib.soc.csr import Multiplexer
+
 from ..platform        import SquishyPlatformType
 
 __all__ = (
@@ -304,12 +306,10 @@ class SPIPeripheral(Elaboratable):
 
 		m.domains.spi = ClockDomain()
 
-		# TODO(aki): Replace the use of `clk_dly` with `Rose`/`Fell`
-		clk     = Signal.like(self._clk,  name = 'spi_pclk'    )
-		clk_dly = Signal.like(clk,        name = 'spi_pclk_dly')
-		cs      = Signal.like(self._cs,   name = 'spi_pcs'     )
-		copi    = Signal.like(self._copi, name = 'spi_pcopi'   )
-		cipo    = self._cipo
+		clk  = Signal.like(self._clk,  name = 'spi_pclk' )
+		cs   = Signal.like(self._cs,   name = 'spi_pcs'  )
+		copi = Signal.like(self._copi, name = 'spi_pcopi')
+		cipo = self._cipo
 
 		m.submodules.clk_ff  = FFSynchronizer(self._clk,   clk, o_domain = 'sync')
 		m.submodules.cs_ff   = FFSynchronizer(self._cs,     cs, o_domain = 'sync')
@@ -335,7 +335,7 @@ class SPIPeripheral(Elaboratable):
 			with m.State('READ_ADDR'):
 				with m.If(~cs):
 					m.next = 'IDLE'
-				with m.Elif(clk & ~clk_dly):
+				with m.Elif(Rose(clk)):
 					m.d.sync += [
 						addr_cntr.eq(addr_cntr + 1),
 						addr.eq(Cat(addr[1:], copi)),
@@ -351,7 +351,7 @@ class SPIPeripheral(Elaboratable):
 			with m.State('WAIT_DATA'):
 				with m.If(~cs):
 					m.next = 'IDLE'
-				with m.Elif(clk & ~clk_dly):
+				with m.Elif(Rose(clk)):
 					m.d.sync += [ wait_cntr.eq(wait_cntr + 1), ]
 					with m.If(wait_cntr == 7 - (addr.width & 0b111)):
 						m.next = 'PREPARE_DATA'
@@ -359,7 +359,7 @@ class SPIPeripheral(Elaboratable):
 			with m.State('PREPARE_DATA'):
 				with m.If(~cs):
 					m.next = 'IDLE'
-				with m.Elif(~clk & clk_dly):
+				with m.Elif(Fell(clk)):
 					m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
 					m.d.sync += [ data_prep.eq(1), ]
 					m.next = 'XFR_DATA'
@@ -370,7 +370,7 @@ class SPIPeripheral(Elaboratable):
 						data_read.eq(self._reg_bus.r_data),
 						data_prep.eq(0),
 					]
-				with m.If(clk & ~clk_dly):
+				with m.If(Rose(clk)):
 					m.d.sync += [
 						# Wiggle in the `data_write` value
 						data_write.eq(Cat(data_write[1:], copi)),
@@ -378,7 +378,7 @@ class SPIPeripheral(Elaboratable):
 					with m.If(~cs):
 						m.next = 'IDLE'
 
-				with m.Elif(~clk & clk_dly):
+				with m.Elif(Fell(clk)):
 					m.d.sync += [
 						data_cntr.eq(data_cntr + 1),
 						# Wiggle out the `data_read` value
@@ -411,10 +411,6 @@ class SPIPeripheral(Elaboratable):
 			with m.State('XFR_READY'):
 				m.d.comb += [ self._reg_bus.r_stb.eq(1), ]
 				m.next = 'XFR_DATA'
-
-		m.d.sync += [
-			clk_dly.eq(clk), # Generate the delayed clock by one cycle for edge detection
-		]
 
 		m.d.comb += [
 			ResetSignal('spi').eq(ClockDomain('sync').rst),

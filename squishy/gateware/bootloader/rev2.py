@@ -61,7 +61,6 @@ Upon the FPGA entering the bootloader:
 from torii                 import Elaboratable, Module, Signal
 from torii.lib.fifo        import AsyncFIFO
 from torii.lib.cdc         import FFSynchronizer, PulseSynchronizer
-from torii.hdl.ast         import Rose
 
 from ..core.supervisor_csr import SupervisorCSRMap
 from ..platform            import SquishyPlatformType
