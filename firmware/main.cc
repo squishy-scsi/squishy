@@ -71,6 +71,11 @@ void setup_extint() noexcept {
 
 	/* Finally, enable the EIC */
 	EIC.enable();
+
+	/* Clear out anything that may have accidentally triggered */
+	EIC.ack_extint(1U);
+	EIC.ack_extint(7U);
+
 }
 
 void start() noexcept {
