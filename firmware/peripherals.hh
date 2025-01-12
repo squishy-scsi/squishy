@@ -682,7 +682,7 @@ struct nvic_t final {
 	std::array<volatile std::uint32_t, 8> itrpriority;
 
 
-	void set_priority(std::uint8_t interrupt_number, priority_t priority) noexcept {
+	void set_priority(const std::uint8_t interrupt_number, const priority_t priority) noexcept {
 		const auto reg_num{std::uint8_t(interrupt_number >> 2U)};
 		const auto pri_idx{std::uint8_t(interrupt_number & 0x3U)};
 
