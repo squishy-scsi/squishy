@@ -190,6 +190,10 @@ class Rev2(Elaboratable):
 					m.next = 'DFU_TRANSFER_START'
 				with m.Elif(dl_completed):
 					m.next = 'DFU_TRANSFER_DONE'
+				with m.Elif(trigger_reboot):
+					# Handle the case where the host doesn't do and DFU download but wants us to
+					# reboot anyway.
+					m.next = 'REQUEST_REBOOT'
 
 			with m.State('SLOT_CHANGED'):
 				m.d.sync += [
