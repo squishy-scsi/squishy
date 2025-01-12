@@ -41,6 +41,12 @@ bool fpga_handle_irq() noexcept {
 	*/
 	const auto squishy_irq{read_squishy_register(squishy::registers::IRQ)};
 
+	if (squishy_irq == 0xFFU) {
+		/* Invalid IRQ Response, bail */
+		active_fault = fault_code_t::SQUISHY_IRQ_RESP_BAD;
+		return false;
+	}
+
 	if (squishy_irq & squishy::registers::IRQ_WANT_DFU) {
 		/* FPGA wants to be in bootloader mode, yeet it. */
 		fpga_enter_cfg();
