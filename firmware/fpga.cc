@@ -42,6 +42,11 @@ bool fpga_handle_irq() noexcept {
 	const auto squishy_irq{read_squishy_register(squishy::registers::IRQ)};
 
 	if (squishy_irq == 0xFFU) {
+		/* Check to make sure we're not just wiggled by a glitch */
+		if (!PORTA.pin_state(pin::SU_ATTN)) {
+			/* The SU_ATTN line is held for the duration of the IRQ, if it's low now then we glitched */
+			return true;
+		}
 		/* Invalid IRQ Response, bail */
 		active_fault = fault_code_t::SQUISHY_IRQ_RESP_BAD;
 		return false;
