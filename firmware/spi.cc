@@ -49,6 +49,9 @@ static bool fpga_program_status() noexcept;
 static void fpga_cmd_read(const fpga_cmd_t command, std::span<std::uint8_t> data) noexcept;
 static void fpga_cmd_write(const fpga_cmd_t command, const std::span<std::uint8_t>& data) noexcept;
 
+[[nodiscard]]
+static std::uint8_t gateware_xfr(const std::uint8_t data = 0x00U) noexcept;
+
 static void psram_setup_xfr(const flash_cmd_t command, const std::uint32_t addr = 0x0000'0000U) noexcept;
 static void psram_run_cmd(const flash_cmd_t command, const std::uint32_t addr = 0x0000'0000U) noexcept;
 
@@ -431,6 +434,31 @@ static std::uint8_t fpga_xfr(const std::uint8_t data) noexcept {
 	return res;
 }
 
+[[nodiscard]]
+static std::uint8_t gateware_xfr(const std::uint8_t data) noexcept {
+	std::uint8_t res{};
+
+	for (std::size_t bit{}; bit < 8U; ++bit) {
+		PORTA.set_low(pin::FPGA_CLK);
+
+		PORTA.set_value((data >> bit) & 0b1, pin::FPGA_COPI);
+
+		/* High tech delay */
+		asm (R"(
+			nop
+			nop
+		)");
+
+		PORTA.set_high(pin::FPGA_CLK);
+
+		res |= std::uint8_t(PORTA.pin_state(pin::FPGA_CIPO) << bit);
+	}
+
+	PORTA.set_low(pin::FPGA_CLK);
+
+	return res;
+}
+
 static bool fpga_segmented_xfer(const std::span<std::uint8_t>& buffer) noexcept {
 	PORTA.set_high(pin::FPGA_HOLD);
 
@@ -610,9 +638,9 @@ std::uint8_t read_squishy_register(const std::uint8_t addr) noexcept {
 
 	PORTA.set_low(pin::FPGA_CS);
 	[[maybe_unused]]
-	auto _{fpga_xfr(addr)};
+	auto _{gateware_xfr(addr)};
 
-	const auto val{fpga_xfr(0U)};
+	const auto val{gateware_xfr(0U)};
 
 	PORTA.set_high(pin::FPGA_CS);
 
@@ -623,8 +651,8 @@ void write_squishy_register(const std::uint8_t addr, const std::uint8_t val) noe
 	PORTA.set_low(pin::FPGA_CS);
 
 	[[maybe_unused]]
-	auto _{fpga_xfr(addr)};
-	_ = fpga_xfr(val);
+	auto _{gateware_xfr(addr)};
+	_ = gateware_xfr(val);
 
 	PORTA.set_high(pin::FPGA_CS);
 }
