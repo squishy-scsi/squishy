@@ -120,7 +120,7 @@ void start() noexcept {
 
 		if (interrupts != 0) {
 			/* Someone pressed the DFU button (EXTINT1) */
-			if (interrupts & (1U << 1U)) {
+			if (interrupts & (1U << 7U)) {
 				fpga_enter_cfg();
 				/* Load the bootloader bitstream */
 				if (!load_bitstream_flash(squishy::slots::BOOTLOADER)) {
@@ -129,7 +129,7 @@ void start() noexcept {
 			}
 
 			/* FPGA wants our attention */
-			if (interrupts & (1U << 7U)) {
+			if (interrupts & (1U << 1U)) {
 				if(!fpga_handle_irq()) {
 					/* Simply, explode, */
 					std::terminate();
