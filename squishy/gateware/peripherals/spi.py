@@ -374,6 +374,8 @@ class SPIPeripheral(Elaboratable):
 					m.d.sync += [
 						# Wiggle in the `data_write` value
 						data_write.eq(Cat(data_write[1:], copi)),
+						# Wiggle out the `data_read` value
+						cipo.eq(data_read.bit_select(data_cntr, 1)),
 					]
 					with m.If(~cs):
 						m.next = 'IDLE'
@@ -381,8 +383,6 @@ class SPIPeripheral(Elaboratable):
 				with m.Elif(Fell(clk)):
 					m.d.sync += [
 						data_cntr.eq(data_cntr + 1),
-						# Wiggle out the `data_read` value
-						cipo.eq(data_read.bit_select(data_cntr, 1)),
 					]
 
 					with m.If(data_cntr == (data_write.width - 1)):
