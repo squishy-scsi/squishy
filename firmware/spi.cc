@@ -623,8 +623,11 @@ bool move_to_slot(std::uint8_t slot_index, std::uint32_t expected_len) noexcept 
 
 	std::uint32_t slot_addr{slot_index * 2_MiB};
 
+	/* Flush the first buffer */
+	write_flash(slot_addr, spi_buffer);
+
 	/* Transfer the slot over in 1KiB pages */
-	for (std::size_t offset{0}; offset < bit_len; offset += 1_KiB) {
+	for (std::size_t offset{next_addr}; offset < bit_len; offset += 1_KiB) {
 		const auto buff_amount{std::min(std::uint32_t(bit_len - offset), 1_KiB)};
 		next_addr = read_psram(next_addr, spi_buffer);
 		write_flash((slot_addr + offset), std::span{spi_buffer}.subspan(0, buff_amount));
