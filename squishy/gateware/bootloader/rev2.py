@@ -237,23 +237,33 @@ class Rev2(Elaboratable):
 				]
 
 
-		m.submodules.ffs_reboot       = FFSynchronizer(self.trigger_reboot, trigger_reboot)
-		m.submodules.ffs_dl_finish    = FFSynchronizer(self.dl_finish, dl_finish)
-		m.submodules.ffs_dl_size      = FFSynchronizer(self.dl_size, dl_size)
-		m.submodules.ffs_dl_start     = FFSynchronizer(self.dl_start, dl_start)
-		m.submodules.ffs_dl_completed = FFSynchronizer(self.dl_completed, dl_completed)
-		m.submodules.ffs_dl_done      = FFSynchronizer(dl_done, self.dl_done, o_domain = 'usb')
-		m.submodules.ffs_slot_sel     = FFSynchronizer(self.slot_selection, slot_selection)
-		m.submodules.ffs_dl_read      = FFSynchronizer(dl_ready, self.dl_ready, o_domain = 'usb')
+		m.submodules.ffs_reboot   = FFSynchronizer(self.trigger_reboot, trigger_reboot)
+		m.submodules.ffs_dl_size  = FFSynchronizer(self.dl_size, dl_size, stages = 3)
+		m.submodules.ffs_dl_done  = FFSynchronizer(dl_done, self.dl_done, o_domain = 'usb')
+		m.submodules.ffs_slot_sel = FFSynchronizer(self.slot_selection, slot_selection)
+		m.submodules.ffs_dl_read  = FFSynchronizer(dl_ready, self.dl_ready, o_domain = 'usb')
 
 		m.submodules.ps_slot_ack = ps_slot_ack = PulseSynchronizer(i_domain = 'sync', o_domain = 'usb')
 		m.submodules.ps_slot_chg = ps_slot_cng = PulseSynchronizer(i_domain = 'usb', o_domain = 'sync')
+
+		m.submodules.ps_dl_start     = ps_dl_start     = PulseSynchronizer(i_domain = 'usb', o_domain = 'sync')
+		m.submodules.ps_dl_completed = ps_dl_completed = PulseSynchronizer(i_domain = 'usb', o_domain = 'sync')
+		m.submodules.ps_dl_finish    = ps_dl_finish    = PulseSynchronizer(i_domain = 'usb', o_domain = 'sync')
 
 		m.d.comb += [
 			ps_slot_ack.i.eq(slot_ack),
 			self.slot_ack.eq(ps_slot_ack.o),
 			ps_slot_cng.i.eq(self.slot_changed),
 			slot_changed.eq(ps_slot_cng.o),
+
+			ps_dl_start.i.eq(self.dl_start),
+			dl_start.eq(ps_dl_start.o),
+
+			ps_dl_completed.i.eq(self.dl_completed),
+			dl_completed.eq(ps_dl_completed.o),
+
+			ps_dl_finish.i.eq(self.dl_finish),
+			dl_finish.eq(ps_dl_finish.o),
 
 			psram.finish.eq(dl_finish),
 			dl_done.eq(psram.done),
