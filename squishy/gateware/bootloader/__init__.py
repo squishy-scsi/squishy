@@ -230,8 +230,8 @@ class SquishyBootloader(Elaboratable):
 			dfu_handler.dl_done.eq(platform_interface.dl_done),
 		]
 
-		# TODO(aki): pull out from sync domain
-		timer = Signal(range(int(170e6 // 10)), reset = int(170e6 // 10) - 1)
+		timer_range = int((platform.pll_cfg.clkp.ofreq * 1e6) // 10)
+		timer = Signal(range(timer_range), reset = timer_range - 1)
 		flops = Signal(len(leds), reset = 1)
 
 		m.d.comb += [ Cat(leds).eq(flops), ]
