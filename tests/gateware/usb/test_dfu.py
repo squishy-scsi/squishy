@@ -69,6 +69,7 @@ class DFURequestHandlerStubTests(USBGatewareTest, DFUGatewareTest):
 		'interface': 0,
 		'boot_stub': True
 	}
+	domains = ()
 
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
@@ -117,6 +118,7 @@ class DFURequestHandlerTests(USBGatewareTest, DFUGatewareTest):
 	dut: DUTWrapper = DUTWrapper
 	dut_args = {}
 	platform = DFUPlatform()
+	domains = ()
 
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)

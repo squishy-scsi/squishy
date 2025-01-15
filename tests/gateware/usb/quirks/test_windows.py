@@ -35,6 +35,7 @@ class GetDescriptorSetHandlerTests(USBGatewareTest):
 	dut_args = {
 		'desc_collection': _desc_collection
 	}
+	domains = ()
 
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
@@ -136,6 +137,7 @@ class WindowsRequestHandlerTests(USBGatewareTest):
 	dut_args = {
 		'descriptors': _desc_collection
 	}
+	domains = ()
 
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
