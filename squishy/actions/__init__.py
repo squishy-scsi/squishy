@@ -192,7 +192,7 @@ class SquishySynthAction(SquishyAction):
 
 	def run_synth(
 			self, args: Namespace, platform: SquishyPlatformType, elaboratable: Elaboratable,
-			name: str, build_dir: Path, cacheable: bool = True
+			name: str, build_dir: Path, cacheable: bool = True, *, pnr_seed: int | None = None
 	) -> LocalBuildProducts | None:
 		'''
 		Run gateware synthesis, place-and-route, and bitstream packing in a cache-aware manner.
@@ -216,6 +216,9 @@ class SquishySynthAction(SquishyAction):
 
 		cacheable : bool
 			Whether or not to process cache-related options. Default: True
+
+		pnr_seed : int | None
+			The new default PNR seed to use if supplied, still overloaded by `--pnr-seed`.
 
 		Returns
 		-------
@@ -261,8 +264,12 @@ class SquishySynthAction(SquishyAction):
 		if not args.no_routed_netlist:
 			pnr_opts.append(f'--write {name}.pnr.json')
 
-		# If the seed is negative, use a random seed
-		if args.pnr_seed < 0:
+
+		# Check to see if we're overloading the default PNR seed, and said seed is the default
+		if pnr_seed is not None and args.pnr_seed == 0:
+			pnr_opts.append(f'--seed {pnr_seed}')
+		elif args.pnr_seed < 0:
+			# If the seed is negative, use a random seed
 			pnr_opts.append('-r')
 		else:
 			pnr_opts.append(f'--seed {args.pnr_seed}')

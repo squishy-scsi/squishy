@@ -41,6 +41,13 @@ class SquishyApplet(metaclass = ABCMeta):
 	supported_platforms : tuple[tuple[int, int], ...]
 		The platform revisions this applet supports.
 
+	pnr_seed : int | None
+		If the applet needs a given PNR seed to synth, it can be supplied here.
+		By default this is `None`, which uses the default PNR seed for Squishy,
+		but when set will override that.
+
+		However, the `--pnr-seed` CLI option will usurp this option if passed.
+
 	'''
 
 	@property
@@ -72,6 +79,12 @@ class SquishyApplet(metaclass = ABCMeta):
 	def supported_platforms(self) -> tuple[tuple[int, int], ...]:
 		''' The platforms this applet supports. '''
 		raise NotImplementedError('Applets must implement this property')
+
+	@property
+	def pnr_seed(self) -> int | None:
+		''' The requested PNR seed for this applet if needed '''
+
+		return None
 
 	def __init__(self) -> None:
 		pass

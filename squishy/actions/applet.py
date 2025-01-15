@@ -158,7 +158,7 @@ class AppletAction(SquishySynthAction):
 
 		# Actually build the gateware
 		log.info('Building applet gateware')
-		prod = self.run_synth(args, plat, gateware, applet_name, build_dir)
+		prod = self.run_synth(args, plat, gateware, applet_name, build_dir, pnr_seed = applet.pnr_seed)
 
 		if prod is None:
 			# Synth failed, the call to `run_synth` will have already printed the reason.
