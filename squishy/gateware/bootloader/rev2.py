@@ -180,7 +180,7 @@ class Rev2(Elaboratable):
 			with m.State('IDLE'):
 				m.d.sync += [ psram.rst_addrs.eq(0), ]
 				with m.If(slot_changed):
-					m.next = 'SLOT_CHANGED'
+					m.next = 'WAIT_SLOT'
 				with m.Elif(dl_start):
 					m.d.sync += [
 						bus_hold.eq(1),
@@ -194,6 +194,8 @@ class Rev2(Elaboratable):
 					# reboot anyway.
 					m.next = 'REQUEST_REBOOT'
 
+			with m.State('WAIT_SLOT'):
+				m.next = 'SLOT_CHANGED'
 			with m.State('SLOT_CHANGED'):
 				m.d.sync += [
 					regs.slot.dest.eq(slot_selection),
