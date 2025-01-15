@@ -318,7 +318,7 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			yield
 			# We need to now read the IRQ register, the problem is that's internal so we need to actually
 			# run the SPI transaction to pull the value out and check it.
-			yield from self.send_recv_supervisor(4, 0x00, 0x02)
+			yield from self.send_recv_supervisor(5, 0x00, 0x02)
 			yield
 			# With the proper IRQ, we then read the slots register
 			yield from self.send_recv_supervisor(1, 0x00, 0x11)
@@ -340,7 +340,7 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			yield from self.wait_until_high(_SUPERVISOR_RECORD.su_irq.o, timeout = 128)
 			yield
 			# Okay, FPGA wants to tell us something, it should be that it wants a reboot
-			yield from self.send_recv_supervisor(4, 0x00, 0x04)
+			yield from self.send_recv_supervisor(5, 0x00, 0x04)
 			yield
 			# We can now reboot the FPGA, tests pass on our end
 

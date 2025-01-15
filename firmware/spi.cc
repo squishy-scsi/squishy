@@ -602,7 +602,7 @@ bool load_bitstream_flash(std::uint8_t slot_index) noexcept {
 }
 
 [[nodiscard]]
-bool move_to_slot(std::uint8_t slot_index, std::uint16_t expected_len) noexcept {
+bool move_to_slot(std::uint8_t slot_index, std::uint32_t expected_len) noexcept {
 	slot_header_t header;
 	[[maybe_unused]]
 	auto next_addr{read_psram(0x0000'0000, spi_buffer)};

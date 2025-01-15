@@ -63,8 +63,9 @@ bool fpga_handle_irq() noexcept {
 		)};
 		const auto txlen{[](){
 			const auto low{read_squishy_register(squishy::registers::TXLEN_LOW)};
+			const auto mid{read_squishy_register(squishy::registers::TXLEN_MID)};
 			const auto high{read_squishy_register(squishy::registers::TXLEN_HIGH)};
-			return std::uint16_t((high << 8U) | low);
+			return std::uint32_t((high << 16U) | (mid << 8U) | low);
 		}()};
 		/* Let the FPGA know we're good to go */
 		write_squishy_register(squishy::registers::CTRL, squishy::registers::CTRL_IRQ_ACK);

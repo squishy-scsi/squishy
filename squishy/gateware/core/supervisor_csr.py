@@ -116,15 +116,15 @@ class SupervisorCSRMap(Multiplexer):
 
 		self._ctrl_sts   = Element(self._data_width,     Element.Access.RW, name = 'ctrl/status')
 		self._slots      = Element(self._data_width,     Element.Access.RW, name = 'slots'      )
-		self._txlen      = Element(self._data_width * 2, Element.Access.R,  name = 'txlen'      )
+		self._txlen      = Element(self._data_width * 3, Element.Access.R,  name = 'txlen'      )
 		self._irq_reason = Element(self._data_width,     Element.Access.R,  name = 'IRQ'        )
 
 		self.add(self._ctrl_sts,   addr = 0x0)
 		self.add(self._slots,      addr = 0x1)
 		self.add(self._txlen,      addr = 0x2)
-		self.add(self._irq_reason, addr = 0x4)
+		self.add(self._irq_reason, addr = 0x5)
 
-		self.txlen     = Signal(16)
+		self.txlen     = Signal(24)
 
 		self.ctrl       = CtrlRegister()
 		self.ctrl_rst   = Signal()

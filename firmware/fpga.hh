@@ -16,8 +16,9 @@ namespace squishy {
 		constexpr inline std::uint8_t CTRL{0U};
 		constexpr inline std::uint8_t SLOT{1U};
 		constexpr inline std::uint8_t TXLEN_HIGH{2U};
-		constexpr inline std::uint8_t TXLEN_LOW{3U};
-		constexpr inline std::uint8_t IRQ{4U};
+		constexpr inline std::uint8_t TXLEN_MID{3U};
+		constexpr inline std::uint8_t TXLEN_LOW{4U};
+		constexpr inline std::uint8_t IRQ{5U};
 
 		constexpr inline std::uint8_t CTRL_WRITE_DONE{1U << 0U};
 		constexpr inline std::uint8_t CTRL_IRQ_ACK{1U << 1U};
