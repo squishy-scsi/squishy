@@ -9,7 +9,7 @@ from torii.lib.fifo                      import AsyncFIFO
 from torii.sim                           import Settle
 from torii.test                          import ToriiTestCase
 
-from squishy.support.test                import SquishyGatewareTest, USBGatewareTestHelpers, DFUGatewareTestHelpers
+from squishy.support.test                import USBGatewareTest, DFUGatewareTest
 from squishy.core.config                 import FlashConfig
 from squishy.core.flash                  import Geometry
 
@@ -114,16 +114,14 @@ class DUTWrapper(Elaboratable):
 		return m
 
 
-class Rev2BootloaderTests(SquishyGatewareTest, USBGatewareTestHelpers, DFUGatewareTestHelpers):
+class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 	dut: DUTWrapper = DUTWrapper
 	dut_args = {}
 	domains  = (('sync', 80e6), ('supervisor', 36e6),)
 	platform = DUTPlatform()
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
-
-		USBGatewareTestHelpers.setup_helper(self)
 
 
 	def send_recv_supervisor(self, addr: int | None, data_in: int, data_out: int, term: bool = True):

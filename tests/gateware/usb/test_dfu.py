@@ -6,7 +6,7 @@ from torii.lib.fifo                      import AsyncFIFO
 from torii.sim                           import Settle
 from torii.test                          import ToriiTestCase
 
-from squishy.support.test                import SquishyGatewareTest, USBGatewareTestHelpers, DFUGatewareTestHelpers
+from squishy.support.test                import USBGatewareTest, DFUGatewareTest
 from squishy.gateware.usb.dfu            import DFURequestHandler, DFUState
 from squishy.core.config                 import FlashConfig
 from squishy.core.flash                  import Geometry
@@ -62,7 +62,7 @@ class DFUPlatform:
 	def request(self, name, number):
 		return _SPI_RECORD
 
-class DFURequestHandlerStubTests(SquishyGatewareTest, USBGatewareTestHelpers, DFUGatewareTestHelpers):
+class DFURequestHandlerStubTests(USBGatewareTest, DFUGatewareTest):
 	dut: DFURequestHandler = DFURequestHandler
 	dut_args = {
 		'configuration': 1,
@@ -70,10 +70,9 @@ class DFURequestHandlerStubTests(SquishyGatewareTest, USBGatewareTestHelpers, DF
 		'boot_stub': True
 	}
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 
-		USBGatewareTestHelpers.setup_helper(self)
 
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'usb')
@@ -114,15 +113,13 @@ class DUTWrapper(Elaboratable):
 		return m
 
 # TODO(aki): We need to build a DUTWrapper for this test now
-class DFURequestHandlerTests(SquishyGatewareTest, USBGatewareTestHelpers, DFUGatewareTestHelpers):
+class DFURequestHandlerTests(USBGatewareTest, DFUGatewareTest):
 	dut: DUTWrapper = DUTWrapper
 	dut_args = {}
 	platform = DFUPlatform()
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
-
-		USBGatewareTestHelpers.setup_helper(self)
 
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'usb')

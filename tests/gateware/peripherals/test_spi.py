@@ -7,6 +7,7 @@ from torii.test.mock                  import MockPlatform
 
 from torii.lib.soc.csr.bus            import Multiplexer, Element
 
+from squishy.support.test             import SPIGatewareTest
 from squishy.gateware.peripherals.spi import SPIInterface, SPIController, SPIPeripheral, SPIInterfaceMode, SPICPOL
 
 clk  = Signal(name = 'bus_clk' )
@@ -15,12 +16,16 @@ copi = Signal(name = 'bus_copi')
 cipo = Signal(name = 'bus_cipo')
 
 
-class SPIControllerCLKHighTests(ToriiTestCase):
+class SPIControllerCLKHighTests(SPIGatewareTest):
 	dut: SPIController = SPIController
 	dut_args = {
 		'clk': clk, 'cipo': cipo, 'copi': copi, 'cs': cs, 'cpol': SPICPOL.HIGH
 	}
+	domains = (('sync', 170e6), )
 	platform = MockPlatform()
+
+	def __init__(self, *args, **kwargs) -> None:
+		super().__init__(*args, **kwargs)
 
 	def send_recv(self, d_out, d_in, ovlp = False):
 		self.assertEqual((yield clk), 1)
@@ -76,12 +81,16 @@ class SPIControllerCLKHighTests(ToriiTestCase):
 		yield Settle()
 		yield
 
-class SPIControllerCLKLowTests(ToriiTestCase):
+class SPIControllerCLKLowTests(SPIGatewareTest):
 	dut: SPIController = SPIController
 	dut_args = {
 		'clk': clk, 'cipo': cipo, 'copi': copi, 'cs': cs, 'cpol': SPICPOL.LOW
 	}
+	domains = (('sync', 170e6), )
 	platform = MockPlatform()
+
+	def __init__(self, *args, **kwargs) -> None:
+		super().__init__(*args, **kwargs)
 
 	def send_recv(self, d_out, d_in, ovlp = False):
 		self.assertEqual((yield clk), 0)
@@ -206,11 +215,14 @@ class PeripheralDUTWrapper(Elaboratable):
 
 		return m
 
-class SPIPeripheralTests(ToriiTestCase):
+class SPIPeripheralTests(SPIGatewareTest):
 	dut: PeripheralDUTWrapper = PeripheralDUTWrapper
 	dut_args = { }
 	domains  = (('sync', 100e6), ('test', 15e6))
 	platform = MockPlatform()
+
+	def __init__(self, *args, **kwargs) -> None:
+		super().__init__(*args, **kwargs)
 
 	def send_recv(self, addr: int | None, data_in: int, data_out: int, term: bool = True):
 		self.assertEqual((yield clk), 0)

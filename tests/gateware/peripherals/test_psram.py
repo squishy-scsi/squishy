@@ -10,6 +10,7 @@ from torii.sim                          import Settle
 from torii.test                         import ToriiTestCase
 from torii.test.mock                    import MockPlatform
 
+from squishy.support.test               import SPIGatewareTest
 from squishy.gateware.peripherals.spi   import SPIController, SPICPOL
 from squishy.gateware.peripherals.psram import SPIPSRAM, SPIPSRAMCmd
 
@@ -69,11 +70,14 @@ class DUTWrapper(Elaboratable):
 		return m
 
 
-class SPIPSRAMTests(ToriiTestCase):
+class SPIPSRAMTests(SPIGatewareTest):
 	dut: DUTWrapper = DUTWrapper
 	dut_args = { }
 	domains = (('sync', 60e6), ('test', 60e6))
 	platform = MockPlatform()
+
+	def __init__(self, *args, **kwargs) -> None:
+		super().__init__(*args, **kwargs)
 
 	def fill_write_fifo(self, byte: int, idx: int):
 		final   = idx == len(_PSRAM_DATA) - 1

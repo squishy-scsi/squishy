@@ -15,7 +15,7 @@ from usb_construct.types.descriptors.microsoft import MicrosoftRequests
 
 from squishy.core.config         import FlashConfig
 from squishy.core.flash          import Geometry
-from squishy.support.test        import SquishyGatewareTest, USBGatewarePHYTestHelpers
+from squishy.support.test        import USBGatewarePHYTest
 from squishy.core.dfu            import DFUState, DFUStatus
 
 
@@ -143,7 +143,7 @@ class DUTWrapper(Elaboratable):
 		return m
 
 
-class BootloaderTests(USBGatewarePHYTestHelpers, SquishyGatewareTest):
+class BootloaderTests(USBGatewarePHYTest):
 	dut: SquishyBootloader = SquishyBootloader
 	dut_args = {
 		'serial_number': 'TEST',
@@ -152,7 +152,7 @@ class BootloaderTests(USBGatewarePHYTestHelpers, SquishyGatewareTest):
 	domains  = (('sync', 170e6), )
 	platform = DUTPlatform()
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs, raw_record = _USB_RECORD)
 
 	def dfu_get_status(self, *, addr: int, exepected_status: DFUStatus, expected_state: DFUState):

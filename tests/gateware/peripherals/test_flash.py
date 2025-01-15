@@ -7,6 +7,8 @@ from torii.sim                          import Settle
 from torii.test                         import ToriiTestCase
 from torii.test.mock                    import MockPlatform
 
+
+from squishy.support.test               import SPIGatewareTest
 from squishy.core.flash                 import Geometry
 from squishy.core.config                import FlashConfig
 from squishy.gateware.peripherals.flash import SPIFlash
@@ -99,13 +101,16 @@ class DUTWrapper(Elaboratable):
 		return m
 
 
-class SPIFlashTests(ToriiTestCase):
+class SPIFlashTests(SPIGatewareTest):
 	dut: DUTWrapper = DUTWrapper
 	dut_args = {
 		'resource': ('spi_flash_x1', 0)
 	}
 	domains = (('sync', 60e6), ('usb', 60e6))
 	platform = MockPlatform()
+
+	def __init__(self, *args, **kwargs) -> None:
+		super().__init__(*args, **kwargs)
 
 	def spi_trans(self, *,
 		copi: tuple[int, ...] | None = None, cipo: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False

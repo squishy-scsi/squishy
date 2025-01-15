@@ -7,7 +7,7 @@ from usb_construct.emitters.descriptors.microsoft import PlatformDescriptorColle
 from usb_construct.types                          import USBRequestRecipient, USBRequestType
 from usb_construct.types.descriptors.microsoft    import MicrosoftRequests
 
-from squishy.support.test                         import SquishyGatewareTest, USBGatewareTestHelpers
+from squishy.support.test                         import USBGatewareTest
 from squishy.gateware.usb.quirks.windows          import GetDescriptorSetHandler, WindowsRequestHandler
 
 def _make_platform_descriptors():
@@ -29,17 +29,15 @@ def _make_platform_descriptors():
 	return (desc_collection, desc_collection.descriptors)
 
 
-class GetDescriptorSetHandlerTests(SquishyGatewareTest, USBGatewareTestHelpers):
+class GetDescriptorSetHandlerTests(USBGatewareTest):
 	_desc_collection, _descriptors = _make_platform_descriptors()
 	dut: GetDescriptorSetHandler = GetDescriptorSetHandler
 	dut_args = {
 		'desc_collection': _desc_collection
 	}
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
-
-		USBGatewareTestHelpers.setup_helper(self)
 
 
 	@ToriiTestCase.simulation
@@ -132,17 +130,15 @@ class GetDescriptorSetHandlerTests(SquishyGatewareTest, USBGatewareTestHelpers):
 		yield Settle()
 		yield
 
-class WindowsRequestHandlerTests(SquishyGatewareTest, USBGatewareTestHelpers):
+class WindowsRequestHandlerTests(USBGatewareTest):
 	_desc_collection, _descriptors = _make_platform_descriptors()
 	dut: WindowsRequestHandler = WindowsRequestHandler
 	dut_args = {
 		'descriptors': _desc_collection
 	}
 
-	def __init__(self, *args, **kwargs):
+	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
-
-		USBGatewareTestHelpers.setup_helper(self)
 
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'usb')
