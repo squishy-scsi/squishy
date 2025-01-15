@@ -13,7 +13,7 @@ from usb_construct.types         import USBPacketID, USBStandardRequests
 from usb_construct.types.descriptors.dfu import DFURequests
 from usb_construct.types.descriptors.microsoft import MicrosoftRequests
 
-from squishy.core.config         import FlashConfig
+from squishy.core.config         import FlashConfig, ECP5PLLConfig, ECP5PLLOutput
 from squishy.core.flash          import Geometry
 from squishy.support.test        import USBGatewarePHYTest
 from squishy.core.dfu            import DFUState, DFUStatus
@@ -104,6 +104,17 @@ class DUTPlatform:
 	clk_domain_generator = DUTPlatformClockGenerator
 	ephemeral_slot = 3
 	device = 'TEST'
+	pll_cfg = ECP5PLLConfig(
+		ifreq     = 100,
+		clki_div  = 10,
+		clkfb_div = 17,
+		clkp = ECP5PLLOutput(
+			ofreq   = 170,
+			clk_div = 4,
+			cphase  = 1,
+			fphase  = 0,
+		)
+	)
 
 	SIM_PLATFORM = True
 
