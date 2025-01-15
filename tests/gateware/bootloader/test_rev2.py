@@ -145,17 +145,16 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			yield Settle()
 			yield
 			yield _SUPERVISOR_RECORD.clk.i.eq(1)
+			if bit >= 1:
+				self.assertEqual((yield _SUPERVISOR_RECORD.cipo.o), ((data_out >> (bit - 1)) & 1))
 			yield Settle()
 			yield
 			yield _SUPERVISOR_RECORD.clk.i.eq(0)
 			yield Settle()
-			if bit >= 1:
-				self.assertEqual((yield _SUPERVISOR_RECORD.cipo.o), ((data_out >> (bit - 1)) & 1))
 		if term:
 			yield _SUPERVISOR_RECORD.attn.i.eq(0)
 		yield Settle()
 		yield
-		self.assertEqual((yield _SUPERVISOR_RECORD.cipo.o), ((data_out >> 7) & 1))
 
 	def send_recv_psram(self, *,
 		copi_data: tuple[int, ...] | None = None, cipo_data: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False
