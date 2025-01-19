@@ -132,12 +132,3 @@ def upload(session: Session) -> None:
 		f'{DIST_DIR}/squishy-{squishy_version()}.tar.gz',
 		f'{DIST_DIR}/squishy-{squishy_version()}-py3-*.whl'
 	)
-
-@nox.session
-def bandit(session: Session) -> None:
-	session.install('bandit')
-	out_file = (BUILD_DIR / 'bandit.txt')
-	session.run(
-		'bandit', '-f', 'txt', '-o', str(out_file),
-		'-r', 'squishy'
-	)
