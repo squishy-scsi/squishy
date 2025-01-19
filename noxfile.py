@@ -1,11 +1,10 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import shutil
-from pathlib        import Path
-from setuptools_scm import (
-	get_version, ScmVersion
-)
-from os import getenv
+from pathlib import Path
+from os      import getenv
+
+from setuptools_scm import get_version, ScmVersion
 
 import nox
 from nox.sessions import Session
