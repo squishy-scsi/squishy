@@ -62,7 +62,7 @@ def test(session: Session) -> None:
 
 	session.chdir(str(out_dir))
 	session.run(
-		'python', *coverage_args, *unitest_args
+		'python', *coverage_args, *unitest_args, *session.posargs
 	)
 	if ENABLE_COVERAGE:
 		session.run(
