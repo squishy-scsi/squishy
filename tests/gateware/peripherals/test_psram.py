@@ -100,8 +100,13 @@ class SPIPSRAMTests(SPIGatewareTest):
 			yield
 
 			if not final:
+				yield from self.step(10)
+				yield from self.settle()
+				self.assertEqual((yield cs), 1)
+				yield from self.step(10)
+				self.assertEqual((yield cs), 1)
 				yield from self.spi_trans(
-					copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True
+					copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True, continuation = True
 				)
 
 	def spi_trans(self, *,
@@ -189,8 +194,11 @@ class SPIPSRAMTests(SPIGatewareTest):
 		self.assertEqual((yield cs), 0)
 		# Check to make sure the FSM advanced out of IDLE
 		self.assertEqual((yield self.dut.ready), 0)
-		yield
-		yield from self.spi_trans(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True)
+		yield from self.settle()
+		self.assertEqual((yield cs), 1)
+		yield from self.step(11)
+		self.assertEqual((yield cs), 1)
+		yield from self.spi_trans(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True, continuation = True)
 		self.assertEqual((yield self.dut._write_fifo.r_rdy), 0)
 		yield
 		yield Settle()
@@ -207,6 +215,9 @@ class SPIPSRAMTests(SPIGatewareTest):
 
 		for idx, byte in enumerate(_PSRAM_DATA):
 			yield from self.fill_write_fifo(byte, idx)
+
+		yield from self.wait_until_low(cs, timeout = 16)
+		yield from self.step(10)
 
 		self.assertEqual((yield self.dut.done), 1)
 		# Check to ensure SPI bus is idle, again
@@ -279,8 +290,11 @@ class SPIPSRAMTests(SPIGatewareTest):
 			self.assertEqual((yield cs), 0)
 			# Check to make sure the FSM advanced out of IDLE
 			self.assertEqual((yield self.dut.ready), 0)
-			yield
-			yield from self.spi_trans(copi_data = (SPIPSRAMCmd.READ, 0xA5, 0xA5, 0xA5), partial = True)
+			yield from self.settle()
+			self.assertEqual((yield cs), 1)
+			yield from self.step(11)
+			self.assertEqual((yield cs), 1)
+			yield from self.spi_trans(copi_data = (SPIPSRAMCmd.READ, 0xA5, 0xA5, 0xA5), partial = True, continuation = True)
 
 			for idx, byte in enumerate(_PSRAM_DATA):
 				final   = idx == len(_PSRAM_DATA) - 1
@@ -298,10 +312,19 @@ class SPIPSRAMTests(SPIGatewareTest):
 				# We are wrapping addresses
 				if not do_cont:
 					if not final:
+						yield from self.step(10)
+						yield from self.settle()
+						self.assertEqual((yield cs), 1)
+						yield from self.step(10)
+						self.assertEqual((yield cs), 1)
 						yield from self.spi_trans(
-							copi_data = (SPIPSRAMCmd.READ, *(idx + 0xA5A5A6).to_bytes(3, byteorder = 'big')), partial = True
+							copi_data = (SPIPSRAMCmd.READ, *(idx + 0xA5A5A6).to_bytes(3, byteorder = 'big')), partial = True,
+							continuation = True
 						)
 						yield
+
+			yield from self.wait_until_low(cs, timeout = 16)
+			yield from self.step(10)
 
 			self.assertEqual((yield self.dut.done), 1)
 			# Check to ensure SPI bus is idle, again
