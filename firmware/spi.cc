@@ -132,6 +132,27 @@ static void setup_sercom() noexcept {
 	SERCOM0_SPI.enable();
 }
 
+bool test_psram() noexcept {
+	for(std::size_t idx{}; idx < spi_buffer.size(); ++idx) {
+		spi_buffer[idx] = idx & 0xFFU;
+	}
+
+	for(std::size_t offset{}; offset < 4_KiB; offset += spi_buffer.size()) {
+		[[maybe_unused]]
+		auto _{write_psram(offset, spi_buffer)};
+	}
+
+	[[maybe_unused]]
+	auto _{read_psram(0x0000'0000U, spi_buffer)};
+
+	for(std::size_t idx{}; idx < spi_buffer.size(); ++idx) {
+		if (spi_buffer[idx] != (idx & 0xFFU))
+			return false;
+	}
+
+	return true;
+}
+
 bool setup_spi() noexcept {
 	setup_sercom();
 	setup_fpga_pins();
@@ -151,6 +172,12 @@ bool setup_spi() noexcept {
 		active_fault = fault_code_t::SPI_PSRAM_BAD;
 		return false;
 	}
+
+	if (!test_psram()) {
+		active_fault = fault_code_t::SPI_PSRAM_BAD;
+		return false;
+	}
+
 
 	fpga_enter_cfg();
 
