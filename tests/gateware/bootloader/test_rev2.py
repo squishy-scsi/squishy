@@ -248,6 +248,31 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			yield from self.send_dfu_get_state()
 			yield from self.receive_data(data = (DFUState.DlIdle,))
 			yield
+
+
+			yield from self.send_dfu_download(length = 128)
+			yield from self.send_data(data = _DFU_DATA[:128])
+			yield from self.send_dfu_get_status()
+			yield from self.receive_data(data = (0, 0, 0, 0, DFUState.DlBusy, 0))
+			yield from self.send_dfu_get_state()
+			yield from self.receive_data(data = (DFUState.DlBusy, ))
+			yield from self.step(6)
+			yield from self.send_dfu_get_state()
+			# The backing storage is chewing on the data, just spin for a bit
+			while (yield from self.receive_data(data = (DFUState.DlBusy,), check = False)):
+				yield from self.send_dfu_get_state()
+			yield from self.step(3)
+			# Make sure we're in sync
+			yield from self.send_dfu_get_state()
+			yield from self.receive_data(data = (DFUState.DlSync,))
+			yield from self.send_dfu_get_status()
+			yield from self.receive_data(data = (0, 0, 0, 0, DFUState.DlSync, 0))
+			# And back to Idle
+			yield from self.send_dfu_get_state()
+			yield from self.receive_data(data = (DFUState.DlIdle,))
+			yield
+
+
 			yield from self.send_dfu_download(length = 0)
 			yield from self.send_data(data = ())
 			# And trigger a reboot
