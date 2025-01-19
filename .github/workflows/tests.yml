@@ -51,7 +51,7 @@ jobs:
         timeout-minutes: 15 # Python 3.12, 3.13, and 3.14 seem to just hang on testing ~sometimes~
         continue-on-error: ${{ matrix.python-version == '3.12' || matrix.python-version == '3.13' || matrix.python-version == '3.14.0-alpha.2' }}
         run: |
-          nox -s test -- --coverage
+          nox -s test
 
       - name: 'Codecov Upload'
         uses: codecov/codecov-action@v4
