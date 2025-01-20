@@ -324,7 +324,7 @@ class SPIPSRAMTests(SPIGatewareTest):
 						yield
 
 			yield from self.wait_until_low(cs, timeout = 16)
-			yield from self.step(10)
+			yield from self.step(11)
 
 			self.assertEqual((yield self.dut.done), 1)
 			# Check to ensure SPI bus is idle, again
