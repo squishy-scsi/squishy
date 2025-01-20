@@ -300,7 +300,11 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			# Wait for `bus_hold`, while it doesn't go to the PSRAM, it helps us time things
 			# so the psram send_recv can check all it needs to
 			yield from self.wait_until_high(_SUPERVISOR_RECORD.bus_hold.o, timeout = 1024)
-			yield from self.send_recv_psram(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True)
+			yield from self.settle()
+			self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
+			yield from self.step(10)
+			self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
+			yield from self.send_recv_psram(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True, continuation = True)
 			for idx, byte in enumerate(_DFU_DATA):
 				final   = idx == len(_DFU_DATA) - 1
 				do_cont = (idx & 1023) != 1023
@@ -312,8 +316,13 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 					yield Settle()
 					yield
 					if not final:
+						yield from self.step(10)
+						yield from self.settle()
+						self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
+						yield from self.step(10)
+						self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
 						yield from self.send_recv_psram(
-							copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True
+							copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True, continuation = True
 						)
 
 
