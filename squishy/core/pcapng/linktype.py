@@ -1,7 +1,16 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 '''
+This module contains the Squishy-specific implementation of the ``LINKTYPE_PARALLEL_SCSI`` framing
+format for PCAPNG files, as described here: https://github.com/squishy-scsi/wireshark-scsi/docs/LINKTYPE_PARALLEL_SCSI.md
 
+It is part of the living/reference implementation, as it is the only emitter of the frame type as of writing
+and as such is acting the driving force behind any changes or updates that need to be made to the
+format as it evolves.
+
+
+The framing itself is fairly simple, most of the magic involved is within the capture engine and the
+wireshark dissector.
 '''
 
 from typing    import Final
