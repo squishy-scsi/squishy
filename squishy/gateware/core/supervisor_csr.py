@@ -106,7 +106,7 @@ class SupervisorCSRMap(Multiplexer):
 	irq_reason : In, IRQRegister
 		IRQ Reason register. Used to set the reason the `~SU_IRQ` interrupt was triggered.
 
-	'''
+	''' # noqa: E101
 
 	def __init__(self, *, boot: bool = False, name: str | None = None) -> None:
 

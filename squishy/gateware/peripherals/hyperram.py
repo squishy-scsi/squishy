@@ -4,8 +4,8 @@
 
 '''
 
-from torii             import Elaboratable, Signal, Module
-from ..platform        import SquishyPlatformType
+from torii      import Elaboratable, Module
+from ..platform import SquishyPlatformType
 
 
 __all__ = (
