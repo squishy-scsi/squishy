@@ -1,6 +1,12 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 '''
+This module provides mechanisms for interacting with the Squishy cache.
+
+The primary method is via the :py:class:`SquishyCache` class, which provides the
+means to get and store things within the cache. However, :py:class:`SquishyCache`
+is only really meant to be used with Torii :py:class:`torii.build.run.BuildPlan`
+objects as returned from the the gateware synthesis process.
 
 '''
 
