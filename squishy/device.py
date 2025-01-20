@@ -1,6 +1,16 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 '''
+This module contains the :py:class:`SquishyDevice` object. It is the primary method for interacting
+with the physical Squishy hardware, as such, it abstracts away a large portion of the the common
+tasks such as DFU uploads to load new applets onto the system.
+
+However, it can only be so generic, more advanced applets will likely define custom USB endpoints and
+functions, and may choose to ignore most if not all of the functionality of this module.
+
+For example, an applet that implements a USB Attached SCSI (UAS) bridge device will likely only
+ever use the :py:class:`SquishyDevice` to upload the gateware onto the device, after that the
+host OS will treat Squishy like any other UAS device, assuming it has drivers for it.
 
 '''
 
