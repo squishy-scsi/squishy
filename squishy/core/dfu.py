@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 '''
-
+This module contains various DFU constants used in both the DFU gateware, as well as
+the DFU upload portion of :py:class:`squishy.device.SquishyDevice`.
 
 '''
 
