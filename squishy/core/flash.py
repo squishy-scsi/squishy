@@ -1,7 +1,8 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 '''
-
+This module contains the structures and constants used for generating SPI Flash images
+for Squishy hardware.
 '''
 
 from enum import IntEnum, IntFlag
