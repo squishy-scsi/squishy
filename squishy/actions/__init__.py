@@ -1,6 +1,20 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 '''
+The Squishy CLI (and to some extent, the eventual REPL), consists mainly of invoking actions.
+
+Currently there are the following actions:
+* :py:mod:`squishy.actions.applet` - Everything to do with building and running Squishy Applets.
+* :py:mod:`squishy.actions.provision` - Used for producing device images for hardware.
+
+There are two primary types of actions, the first is the :py:class:`SquishyAction`, this is the
+progenitor for every action within Squishy, it defines the needed properties and public interface
+used to invoke the action.
+
+The second of the two is the :py:class:`SquishySynthAction`, this has extra specialization for any
+Squishy actions that involve synthesizing gateware for the Squishy hardware. It is superset of
+:py:class:`SquishyAction` and abstracts all of the synthesis, pnr, and packing options and machinery
+away.
 
 '''
 
@@ -454,7 +468,7 @@ class SquishySynthAction(SquishyAction):
 
 	def dfu_util_msg(self, name: str, slot: int, build_dir: Path, dev: SquishyDevice | None = None) -> str:
 		'''
-		Build up a message that accuratly displays how to flash a built artifact to the given Squishy device.
+		Build up a message that accurately displays how to flash a built artifact to the given Squishy device.
 
 		Parameters
 		----------

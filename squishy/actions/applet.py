@@ -1,9 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-'''
-
-'''
-
 import logging         as log
 from pathlib           import Path
 from argparse          import ArgumentParser, Namespace
@@ -22,6 +18,27 @@ __all__ = (
 	'AppletAction',
 )
 
+# FIXME(aki):
+# This action dynamically collects and instantiates all of the `SquishyApplet`'s that it finds
+# this is likely a performance hit on two fronts.
+#
+# The first being the the package iteration looking for modules that contain the `SquishyApplet`
+# classes both locally in the Squishy package as well as in the `SQUISHY_APPLETS` directory. The
+# second being the construction of every single one found, we are relying on the `__init__` of the
+# applets to be cheap enough.
+#
+# This should be fixed, the second problem could be solved easily enough, we can rely on the fact that
+# things like the applet name, and other fixed properties are part of the static description of the
+# class object, and only construct it when we need to interact with it. This *could* possibly cause
+# complications when we are registering CLI args, as we need to construct the applet, then register
+# it's CLI args before being able to continue with the CLI parsing, which is slightly hard to do.
+#
+# The first problem can be fixed by only doing dynamic search on the external `SQUISHY_APPLETS` directory
+# and having a fixed collection of built-in applets, like we do with the Squishy actions. This can be
+# further improved by only doing the search in `SQUISHY_APPLETS` if there are files/directories within it.
+#
+# All in all it would help with performance from a useability standpoint, but we're not quite at the
+# the point where we need to worry too heavily about it.
 
 class AppletAction(SquishySynthAction):
 	'''
@@ -55,6 +72,9 @@ class AppletAction(SquishySynthAction):
 
 		Returns
 		-------
+		list[squishy.applets.SquishyApplet]
+			The list of instances all Squishy applets found.
+
 		'''
 
 		from .. import applets

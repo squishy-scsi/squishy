@@ -1,9 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-'''
-
-'''
-
 import logging     as log
 from argparse      import ArgumentParser, Namespace
 from pathlib       import Path
@@ -23,9 +19,23 @@ class ProvisionAction(SquishySynthAction):
 	'''
 	Provision Squishy Hardware.
 
-	This action is for provisioning actions, such as building full-device flash images, or
-	just the bootloader.
+	This action is responsible for Squishy hardware device provisioning.
 
+	It does so in two primary ways, the first being bootloader gateware generation, most of the platform
+	specific differentiation is handled withing the :py:class:`squishy.gateware.bootloader.SquishyBootloader`
+	module, so all this action needs to do is build the bootloader gateware with the target platform and
+	device options such as serial number. These can be detected automatically if updating an existing Squishy
+	device with working and valid gateware on it, or specified manually as part of Initial device provisioning.
+
+	The second being whole-device image generation, this is slightly more platform specific, but once again
+	the gritty details have been shuffled away into the respective :py:class:`squishy.gateware.platform.SquishyPlatform`
+	objects. These whole-device images are used to either un-brick a Squishy, where the onboard flash got
+	entirely toasted, or to produce a 'factory image' for loading onto new/unprogrammed Squishy units.
+
+
+	If we are only building the bootloader, and this is for updating the bootloader on an existing Squishy
+	device with a working bootloader, we have the capability to automatically load the new gateware image
+	onto the Squishy hardware.
 	'''
 
 	name         = 'provision'
