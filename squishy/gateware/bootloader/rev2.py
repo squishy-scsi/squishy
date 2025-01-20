@@ -2,6 +2,15 @@
 
 
 '''
+
+This module contains the implementation of the rev2 hardware-specific bootloader.
+
+The rev2 hardware has a more complex boot process due to the following reasons:
+	* The addition of a supervisor MCU
+	* The presence of a shared PSRAM between the supervisor and the FPGA
+
+As such, there is a boot protocol that has to be established between the supervisor and the FPGA.
+
 ===================
 Bootloader Protocol
 ===================
@@ -54,8 +63,8 @@ Upon the FPGA entering the bootloader:
       0. Read at most buffers worth of bitstream data from backing store
       1. Dump buffer into FPGA configuration
 
-    IV. Check FPGA configuration status
-    V. let the FPGA boot into new bitstream
+    VII. Check FPGA configuration status
+    VIII. let the FPGA boot into new bitstream
 ''' # noqa: E101
 
 from torii                 import Elaboratable, Module, Signal
