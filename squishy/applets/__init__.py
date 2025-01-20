@@ -1,6 +1,17 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 '''
+Squishy Applets are the primary mechanism in which the Squishy hardware actually becomes useful.
+They implement all the needed gateware logic for the FPGA to drive the hardware, as well as the
+needed host-side logic to drive the hardware if any is required.
+
+All squishy applets are derived from :py:class:`SquishyApplet`, it defined the public interface that
+Squishy expects and interacts with via it's API and CLI.
+
+Note
+----
+Not all applets will have a host-side invocation runtime, some might be gateware only and implement
+something such as a SCSI disk endpoint over USB and let th host OS drivers deal with it.
 
 '''
 
