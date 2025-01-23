@@ -173,10 +173,12 @@ bool setup_spi() noexcept {
 		return false;
 	}
 
-	if (!test_psram()) {
-		active_fault = fault_code_t::SPI_PSRAM_BAD;
-		return false;
-	}
+	// NOTE(aki): There is a hardware bug (squishy-scsi/hardware#17) that causes this test to run
+	// forever until you gently boop the FPGA_CIPO line with your finger or oscliscope probe.
+	// if (!test_psram()) {
+	// 	active_fault = fault_code_t::SPI_PSRAM_BAD;
+	// 	return false;
+	// }
 
 
 	fpga_enter_cfg();
