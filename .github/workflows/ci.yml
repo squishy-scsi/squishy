@@ -233,6 +233,11 @@ jobs:
       - ci-checkpoint
     runs-on: ubuntu-latest
     steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: 'Download docs artifact'
         uses: actions/download-artifact@v4
         with:
