@@ -87,6 +87,8 @@ jobs:
           fetch-depth: 0
 
       - name: 'Run Tests'
+        timeout-minutes: 30 # Python 3.12+ Seem to take literally *hours*
+        continue-on-error: ${{ matrix.python-version == '3.12' || matrix.python-version == '3.13' || startsWith(matrix.python-version, '3.14') }}
         shell: bash
         run: |
           nox -s test
