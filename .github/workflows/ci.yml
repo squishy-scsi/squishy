@@ -130,7 +130,7 @@ jobs:
       - name: 'Build Firmware'
         shell: bash
         run: |
-          meson setup --cross-file contrib/arm-non-eabi.meson build firmware
+          meson setup --cross-file contrib/arm-none-eabi.meson build firmware
           meson compile -C build
 
   linkcheck-docs:
