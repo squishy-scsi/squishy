@@ -7,7 +7,7 @@ env:
 jobs:
   lint-squishy:
     runs-on: ubuntu-latest
-    name: 'Lint Torii'
+    name: 'Lint Squishy'
     steps:
       - name: 'Setup Python (${{ env.TOOL_PYTHON_VERSION }})'
         uses: actions/setup-python@v5
