@@ -55,7 +55,7 @@ jobs:
           - python-version: '3.14-dev'
             allow-failure: true
 
-    name: 'Test Squishy (Python ${{ matrix.python-version }})'
+    name: 'Squishy - Test (Python ${{ matrix.python-version }})'
     continue-on-error: ${{ matrix.allow-failure }}
     steps:
       - name: 'Setup Python (${{ matrix.python-version }})'
@@ -98,6 +98,40 @@ jobs:
           verbose: true
           files: ./build/tests/coverage.xml
           token: ${{ secrets.CODECOV_TOKEN }}
+
+  build-firmware:
+    runs-on: ubuntu-latest
+    name: 'Squishy - Build Firmware'
+    steps:
+      - name: 'Initialize Environment'
+        shell: bash
+        env:
+          WORKSPACE: ${{ github.workspace }}
+        run: |
+          echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
+          echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
+
+      - name: 'Setup ARM GCC'
+        uses: carlosperate/arm-none-eabi-gcc-action@v1
+        with:
+          release: '14.2.Rel1'
+
+      - name: 'Install Dependencies'
+        shell: bash
+        run: |
+          python -m pip install --user --upgrade pip setuptools wheel
+          python -m pip install meson ninja
+
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 'Build Firmware'
+        shell: bash
+        run: |
+          meson setup build --cross-file contrib/arm-non-eabi.meson
+          meson compile -C build
 
   linkcheck-docs:
     runs-on: ubuntu-latest
@@ -173,7 +207,7 @@ jobs:
           retention-days: 1
 
   docs:
-    name: 'Torii Docs (Meta Job)'
+    name: 'Squishy Docs (Meta Job)'
     needs:
       - linkcheck-docs
       - build-docs
@@ -186,6 +220,7 @@ jobs:
     needs:
       - lint-squishy
       - test-squishy
+      - build-firmware
       - docs
     runs-on: ubuntu-latest
     steps:
@@ -221,7 +256,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: pypi
-      url: https://pypi.org/p/torii
+      url: https://pypi.org/p/squishy
     permissions:
       id-token: write
     steps:
