@@ -2,7 +2,7 @@
 
 '''
 This module contains the Squishy-specific implementation of the ``LINKTYPE_PARALLEL_SCSI`` framing
-format for PCAPNG files, as described here: https://github.com/squishy-scsi/wireshark-scsi/docs/LINKTYPE_PARALLEL_SCSI.md
+format for PCAPNG files, as described here: https://github.com/squishy-scsi/wireshark-scsi/blob/main/docs/LINKTYPE_PARALLEL_SCSI.md
 
 It is part of the living/reference implementation, as it is the only emitter of the frame type as of writing
 and as such is acting the driving force behind any changes or updates that need to be made to the

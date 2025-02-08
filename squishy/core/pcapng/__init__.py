@@ -5,7 +5,7 @@ This modules contains a surprisingly complete implementation of the PCAPNG file 
 for use with the Squishy SCSI Analyzer applet to generate traffic captures.
 
 This also is part of the "living" standardization/documentation for the ``LINKTYPE_PARALLEL_SCSI``
-found at https://github.com/squishy-scsi/wireshark-scsi/docs/LINKTYPE_PARALLEL_SCSI.md
+found at https://github.com/squishy-scsi/wireshark-scsi/blob/main/docs/LINKTYPE_PARALLEL_SCSI.md
 
 '''
 
