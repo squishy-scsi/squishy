@@ -3,8 +3,8 @@
 from os                                  import getenv
 from random                              import randbytes
 
-from torii.hdl                            import Record, Elaboratable, Module, ClockDomain, Signal
-from torii.hdl.rec                       import DIR_FANIN, DIR_FANOUT
+from torii.hdl                           import Record, Elaboratable, Module, ClockDomain, Signal
+from torii.hdl.rec                       import Direction
 from torii.lib.fifo                      import AsyncFIFO
 from torii.sim                           import Settle
 from torii.test                          import ToriiTestCase
@@ -25,31 +25,31 @@ else:
 
 _SUPERVISOR_RECORD = Record((
 	('clk', [
-		('o', 1 , DIR_FANOUT),
-		('i',  1, DIR_FANIN ),
-		('oe', 1, DIR_FANOUT),
+		('o', 1 , Direction.FANOUT),
+		('i',  1, Direction.FANIN ),
+		('oe', 1, Direction.FANOUT),
 	]),
 	('copi', [
-		('o',  1, DIR_FANOUT),
-		('i',  1, DIR_FANIN ),
-		('oe', 1, DIR_FANOUT),
+		('o',  1, Direction.FANOUT),
+		('i',  1, Direction.FANIN ),
+		('oe', 1, Direction.FANOUT),
 	]),
 	('cipo', [
-		('o',  1, DIR_FANOUT),
-		('i',  1, DIR_FANIN ),
-		('oe', 1, DIR_FANOUT),
+		('o',  1, Direction.FANOUT),
+		('i',  1, Direction.FANIN ),
+		('oe', 1, Direction.FANOUT),
 	]),
 	('attn', [
-		('i',  1, DIR_FANIN ),
+		('i',  1, Direction.FANIN ),
 	]),
 	('psram', [
-		('o',  1, DIR_FANOUT ),
+		('o',  1, Direction.FANOUT ),
 	]),
 	('su_irq', [
-		('o',  1, DIR_FANOUT ),
+		('o',  1, Direction.FANOUT ),
 	]),
 	('bus_hold', [
-		('o',  1, DIR_FANOUT ),
+		('o',  1, Direction.FANOUT ),
 	]),
 ))
 

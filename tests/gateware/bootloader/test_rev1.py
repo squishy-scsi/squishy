@@ -3,7 +3,7 @@
 from random                              import randbytes
 
 from torii.hdl                           import Record, Elaboratable, Module
-from torii.hdl.rec                       import DIR_FANIN, DIR_FANOUT
+from torii.hdl.rec                       import Direction
 from torii.lib.fifo                      import AsyncFIFO
 from torii.sim                           import Settle
 from torii.test                          import ToriiTestCase
@@ -19,16 +19,16 @@ _DFU_DATA = randbytes(256)
 
 _SPI_RECORD = Record((
 	('clk', [
-		('o', 1, DIR_FANOUT),
+		('o', 1, Direction.FANOUT),
 	]),
 	('cs', [
-		('o', 1, DIR_FANOUT),
+		('o', 1, Direction.FANOUT),
 	]),
 	('copi', [
-		('o', 1, DIR_FANOUT),
+		('o', 1, Direction.FANOUT),
 	]),
 	('cipo', [
-		('i', 1, DIR_FANIN),
+		('i', 1, Direction.FANIN),
 	]),
 ))
 
