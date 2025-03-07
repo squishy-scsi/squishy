@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii                            import Signal, Module, Elaboratable, ClockDomain
+from torii.hdl                        import Signal, Module, Elaboratable, ClockDomain
 from torii.sim                        import Settle
 from torii.test                       import ToriiTestCase
 from torii.test.mock                  import MockPlatform

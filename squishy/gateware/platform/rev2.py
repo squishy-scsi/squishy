@@ -21,7 +21,7 @@ import logging                          as log
 from argparse                           import Namespace
 from pathlib                            import Path
 
-from torii                              import *
+from torii.hdl                          import *
 from torii.build                        import *
 from torii.build.run                    import BuildProducts
 from torii.platform.vendor.lattice.ecp5 import ECP5Platform

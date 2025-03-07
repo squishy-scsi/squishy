@@ -10,7 +10,7 @@ from pathlib          import Path
 from typing           import TypeAlias
 from itertools        import count
 
-from torii            import Elaboratable
+from torii.hdl        import Elaboratable
 from torii.build      import Resource, ResourceError
 from torii.build.plat import Platform
 from torii.build.run  import BuildProducts

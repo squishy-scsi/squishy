@@ -28,7 +28,7 @@ from subprocess      import CalledProcessError
 
 from rich.progress   import Progress, SpinnerColumn, BarColumn, TextColumn
 
-from torii           import Elaboratable
+from torii.hdl       import Elaboratable
 from torii.build.run import BuildPlan, LocalBuildProducts
 
 from ..device        import SquishyDevice

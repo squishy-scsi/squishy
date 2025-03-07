@@ -6,7 +6,7 @@
 
 from struct              import pack, unpack
 
-from torii               import Elaboratable, Module, Instance, Signal, Const, Memory, Cat
+from torii.hdl           import Elaboratable, Module, Instance, Signal, Const, Memory, Cat
 from torii.lib.cdc       import FFSynchronizer, PulseSynchronizer
 from torii.lib.fifo      import AsyncFIFO
 

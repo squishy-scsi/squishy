@@ -8,7 +8,7 @@ from typing                                       import Type
 
 from struct                                       import pack, unpack
 
-from torii                                        import Module, Signal, Elaboratable, Memory, DomainRenamer
+from torii.hdl                                    import Module, Signal, Elaboratable, Memory, DomainRenamer
 from torii.hdl.ast                                import Operator
 
 from usb_construct.types                          import USBRequestType, USBRequestRecipient

@@ -3,7 +3,7 @@
 from os                                  import getenv
 from random                              import randbytes
 
-from torii                               import Record, Elaboratable, Module, ClockDomain, Signal
+from torii.hdl                            import Record, Elaboratable, Module, ClockDomain, Signal
 from torii.hdl.rec                       import DIR_FANIN, DIR_FANOUT
 from torii.lib.fifo                      import AsyncFIFO
 from torii.sim                           import Settle

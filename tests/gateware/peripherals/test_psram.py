@@ -4,7 +4,7 @@
 from os                                 import getenv
 from random                             import randbytes
 
-from torii                              import Elaboratable, Module, Signal, ClockDomain
+from torii.hdl                          import Elaboratable, Module, Signal, ClockDomain
 from torii.lib.fifo                     import AsyncFIFO
 from torii.sim                          import Settle
 from torii.test                         import ToriiTestCase

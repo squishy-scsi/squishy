@@ -14,13 +14,13 @@ files.
 
 '''
 
-from torii          import Module
-from argparse       import ArgumentParser, Namespace
+from torii.hdl   import Module
+from argparse    import ArgumentParser, Namespace
 
 
-from ..             import SquishyApplet
-from ...gateware    import AppletElaboratable, SquishyPlatformType
-from ...device      import SquishyDevice
+from ..          import SquishyApplet
+from ...gateware import AppletElaboratable, SquishyPlatformType
+from ...device   import SquishyDevice
 
 __all__ = (
 	'Analyzer',

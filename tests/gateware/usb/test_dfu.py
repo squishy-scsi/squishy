@@ -1,6 +1,6 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii                               import Record, Elaboratable, Module
+from torii.hdl                           import Record, Elaboratable, Module
 from torii.hdl.rec                       import DIR_FANIN, DIR_FANOUT
 from torii.lib.fifo                      import AsyncFIFO
 from torii.sim                           import Settle

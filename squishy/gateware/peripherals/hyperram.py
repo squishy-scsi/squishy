@@ -4,7 +4,7 @@
 
 '''
 
-from torii      import Elaboratable, Module
+from torii.hdl  import Elaboratable, Module
 from ..platform import SquishyPlatformType
 
 

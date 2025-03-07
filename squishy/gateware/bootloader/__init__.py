@@ -4,7 +4,7 @@
 
 '''
 
-from torii                                           import (
+from torii.hdl                                       import (
 	Elaboratable, Module, ResetSignal, Signal, Cat
 )
 from torii.lib.fifo                                  import AsyncFIFO

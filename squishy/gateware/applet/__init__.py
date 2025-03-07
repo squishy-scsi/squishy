@@ -7,7 +7,7 @@
 from abc                                         import ABCMeta, abstractmethod
 from typing                                      import Self
 
-from torii                                       import Elaboratable, Module
+from torii.hdl                                   import Elaboratable, Module
 
 # TODO(aki): USB3 bits for rev2+ (eventually)
 from sol_usb.gateware.usb.usb2.request           import USBRequestHandler

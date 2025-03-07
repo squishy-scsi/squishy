@@ -12,7 +12,7 @@ of the SCSI machinery is for use in torii HDL projects.
 
 '''
 
-from torii          import Elaboratable, Module
+from torii.hdl      import Elaboratable, Module
 
 from .applet        import AppletElaboratable
 from .bootloader    import SquishyBootloader

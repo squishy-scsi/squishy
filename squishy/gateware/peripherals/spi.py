@@ -6,7 +6,7 @@
 
 from enum              import Flag, IntEnum, auto, unique
 
-from torii             import Cat, ClockDomain, ClockSignal, Elaboratable, Module, ResetSignal, Signal
+from torii.hdl         import Cat, ClockDomain, ClockSignal, Elaboratable, Module, ResetSignal, Signal
 from torii.build       import Subsignal
 from torii.hdl.ast     import Fell, Rose
 from torii.lib.cdc     import FFSynchronizer

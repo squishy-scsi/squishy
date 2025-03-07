@@ -4,7 +4,7 @@ from os                          import getenv
 from random                      import randbytes
 from typing                      import Literal, Iterable
 
-from torii                       import Record, Elaboratable, Module, Signal
+from torii.hdl                   import Record, Elaboratable, Module, Signal
 from torii.hdl.rec               import DIR_FANIN, DIR_FANOUT
 from torii.sim                   import Settle
 from torii.test                  import ToriiTestCase

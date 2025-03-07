@@ -4,7 +4,7 @@
 
 '''
 
-from torii                               import Module, Signal, Cat
+from torii.hdl                           import Module, Signal, Cat
 from torii.hdl.ast                       import Operator
 from torii.lib.fifo                      import AsyncFIFO
 

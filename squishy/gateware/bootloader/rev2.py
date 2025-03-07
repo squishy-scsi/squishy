@@ -67,7 +67,7 @@ Upon the FPGA entering the bootloader:
     VIII. let the FPGA boot into new bitstream
 ''' # noqa: E101
 
-from torii                 import Elaboratable, Module, Signal
+from torii.hdl             import Elaboratable, Module, Signal
 from torii.lib.fifo        import AsyncFIFO
 from torii.lib.cdc         import FFSynchronizer, PulseSynchronizer
 

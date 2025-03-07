@@ -6,7 +6,7 @@
 
 from enum           import IntEnum, unique, auto
 
-from torii          import Elaboratable, Module, Signal
+from torii.hdl      import Elaboratable, Module, Signal
 from torii.lib.fifo import AsyncFIFO
 
 
