@@ -245,14 +245,14 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: docs
-          path: docs/
+          path: built_docs/
 
       - name: 'Deploy Docs'
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           repository-name: squishy-scsi/documentation
           ssh-key: ${{ secrets.DEPLOY_KEY }}
-          folder: docs/
+          folder: built_docs/
           clean: true
 
   publish-pypi:
