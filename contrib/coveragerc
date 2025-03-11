@@ -1,8 +1,24 @@
 [run]
 branch = False
+omit =
+  */setup.py
 
 [report]
+show_missing = True
+skip_covered = True
 exclude_lines =
   :nocov:
+  # allow defensive code
+  ^\s*raise AssertionError\b
+  ^\s*raise NotImplementedError\b
+  ^\s*return NotImplemented\b
+  ^\s*raise$
+
+  # typing-related code
+  ^\s*if (False|TYPE_CHECKING):
+  : \.\.\.(\s*#.*)?$
+  ^ +\.\.\.$
+  -> ['"]?NoReturn['"]?:
+
 partial_branches =
    :nobr:
