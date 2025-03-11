@@ -107,11 +107,7 @@ def lint(session: Session) -> None:
 	session.install('flake8')
 	session.run(
 		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()),
-		'./squishy'
-	)
-	session.run(
-		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()),
-		'./tests'
+		'./squishy', './tests', './examples'
 	)
 
 @nox.session
