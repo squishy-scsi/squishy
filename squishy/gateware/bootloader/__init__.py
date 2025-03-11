@@ -9,7 +9,7 @@ from torii.hdl                                       import (
 )
 from torii.lib.fifo                                  import AsyncFIFO
 
-from sol_usb.usb2                                    import USBDevice
+from torii_usb.usb2                                  import USBDevice
 
 from usb_construct.emitters.descriptors.standard     import (
 	DeviceDescriptorCollection, LanguageIDs, DeviceClassCodes,

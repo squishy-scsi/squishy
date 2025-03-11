@@ -7,8 +7,8 @@ This module contains 6 classes which augment the standard :py:class:`torii.test.
 functionality to help with writing and running Squishy-related gateware tests. They are as follows:
 
 	* :py:class:`SquishyGatewareTest` - Generalized test parent, all other test classes are derived from this.
-	* :py:class:`USBGatewarePHYTest` - Tests for end-to-end USB interface tests, contains machinery for driving SOL Gateware USB PHY
-	* :py:class:`USBGatewareTest` - A more general set of USB interface tests, directly drives the SOL USB interface.
+	* :py:class:`USBGatewarePHYTest` - Tests for end-to-end USB interface tests, contains machinery for driving Torii-USB Gateware USB PHY
+	* :py:class:`USBGatewareTest` - A more general set of USB interface tests, directly drives the Torii-USB USB interface.
 	* :py:class:`DFUGatewareTest` - Augments the :py:class:`USBGatewareTest` with DFU helpers.
 	* :py:class:`SPIGatewareTest` - Tests for SPI related gateware, contains helpers for driving a SPI bus for tests.
 	* :py:class:`SCSIGatewareTest` - Tests for SCSI related gateware.
@@ -53,7 +53,7 @@ class USBGatewarePHYTest(SquishyGatewareTest):
 	bus, this helps test end-to-end integration.
 
 	To use this, the DUT platform rather than returning a ULPI or UTMI resource should return a DirectUSB resource, this
-	will cause SOL to use it's gateware PHY and we can then manually drive D+ and D- for tests.
+	will cause Torii-USB to use it's gateware PHY and we can then manually drive D+ and D- for tests.
 
 	Parameters
 	----------
@@ -704,7 +704,7 @@ class USBGatewarePHYTest(SquishyGatewareTest):
 
 class USBGatewareTest(SquishyGatewareTest):
 	'''
-	Unlike :py:class:`USBGatewarePHYTest`, this class relies on access to a SOL interface exposed in the DUT
+	Unlike :py:class:`USBGatewarePHYTest`, this class relies on access to a Torii-USB interface exposed in the DUT
 	or DUT wrapper.
 
 	Most of the USB tests in Squishy use this type of helpers, as the :py:class:`USBGatewarePHYTest` is only
@@ -817,7 +817,7 @@ class USBGatewareTest(SquishyGatewareTest):
 		yield
 		yield self.dut.interface.data_requested.eq(0)
 		self.assertEqual((yield self.dut.interface.tx.valid), 0)
-		self.assertEqual((yield self.dut.interface.tx.payload), 0)
+		self.assertEqual((yield self.dut.interface.tx.data), 0)
 		while (yield self.dut.interface.tx.first) == 0:
 			yield Settle()
 			yield
@@ -826,8 +826,8 @@ class USBGatewareTest(SquishyGatewareTest):
 			self.assertEqual((yield self.dut.interface.tx.last), (1 if idx == len(data) - 1 else 0))
 			self.assertEqual((yield self.dut.interface.tx.valid), 1)
 			if check:
-				self.assertEqual((yield self.dut.interface.tx.payload), val)
-			if (yield self.dut.interface.tx.payload) != val:
+				self.assertEqual((yield self.dut.interface.tx.data), val)
+			if (yield self.dut.interface.tx.data) != val:
 				result = False
 			self.assertEqual((yield self.dut.interface.handshakes_out.ack), 0)
 			if idx == len(data) - 1:
@@ -836,7 +836,7 @@ class USBGatewareTest(SquishyGatewareTest):
 			yield Settle()
 			yield
 		self.assertEqual((yield self.dut.interface.tx.valid), 0)
-		self.assertEqual((yield self.dut.interface.tx.payload), 0)
+		self.assertEqual((yield self.dut.interface.tx.data), 0)
 		self.assertEqual((yield self.dut.interface.handshakes_out.ack), 1)
 		yield self.dut.interface.status_requested.eq(0)
 		yield Settle()
@@ -878,7 +878,7 @@ class USBGatewareTest(SquishyGatewareTest):
 		for val in data:
 			yield Settle()
 			yield
-			yield self.dut.interface.rx.payload.eq(val)
+			yield self.dut.interface.rx.data.eq(val)
 			yield self.dut.interface.rx.next.eq(1)
 			yield Settle()
 			yield

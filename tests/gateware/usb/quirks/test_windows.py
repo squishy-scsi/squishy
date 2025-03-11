@@ -69,7 +69,7 @@ class GetDescriptorSetHandlerTests(USBGatewareTest):
 			self.assertEqual((yield self.dut.tx.first), (1 if byte == 0 else 0))
 			self.assertEqual((yield self.dut.tx.last), (1 if byte == last_byte else 0))
 			self.assertEqual((yield self.dut.tx.valid), 1)
-			self.assertEqual((yield self.dut.tx.payload), desc[byte])
+			self.assertEqual((yield self.dut.tx.data), desc[byte])
 			self.assertEqual((yield self.dut.stall), 0)
 			yield
 			yield Settle()

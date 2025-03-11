@@ -15,8 +15,8 @@ from usb_construct.types                          import USBRequestType, USBRequ
 from usb_construct.types.descriptors.microsoft    import MicrosoftRequests
 from usb_construct.emitters.descriptors.microsoft import PlatformDescriptorCollection
 
-from sol_usb.gateware.usb.stream                  import USBInStreamInterface
-from sol_usb.gateware.usb.usb2.request            import USBRequestHandler, SetupPacket
+from torii_usb.usb.stream                         import USBInStreamInterface
+from torii_usb.usb.usb2.request                   import USBRequestHandler, SetupPacket
 
 __all__ = (
 	'WindowsRequestHandler',
@@ -252,7 +252,7 @@ class GetDescriptorSetHandler(Elaboratable):
 				m.d.comb += [
 					self.tx.valid.eq(1),
 					read_port.addr.eq(desc_data_base_addr + word_in_stream),
-					self.tx.payload.eq(read_port.data.word_select((3 - byte_in_stream).as_unsigned(), 8)),
+					self.tx.data.eq(read_port.data.word_select((3 - byte_in_stream).as_unsigned(), 8)),
 					self.tx.first.eq(on_first_packet),
 					self.tx.last.eq(on_last_packet),
 				]

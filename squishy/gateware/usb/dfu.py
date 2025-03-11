@@ -11,9 +11,9 @@ from torii.lib.fifo                      import AsyncFIFO
 from usb_construct.types                 import USBRequestType, USBRequestRecipient, USBStandardRequests
 from usb_construct.types.descriptors.dfu import DFURequests
 
-from sol_usb.gateware.usb.usb2.request   import USBRequestHandler, SetupPacket
-from sol_usb.gateware.usb.stream         import USBInStreamInterface, USBOutStreamInterface
-from sol_usb.gateware.stream.generator   import StreamSerializer
+from torii_usb.usb.usb2.request          import USBRequestHandler, SetupPacket
+from torii_usb.usb.stream                import USBInStreamInterface, USBOutStreamInterface
+from torii_usb.stream.generator          import StreamSerializer
 
 from ...core.dfu   import DFUState, DFUStatus
 from ..platform    import SquishyPlatformType
@@ -147,7 +147,7 @@ class DFURequestHandler(USBRequestHandler):
 
 		if not self._is_stub:
 			rx_trig   = Signal()
-			rx_stream = USBOutStreamInterface(payload_width = 8)
+			rx_stream = USBOutStreamInterface(data_width = 8)
 
 			recv_start    = Signal()
 			recv_count    = Signal.like(setup_pkt.length)
@@ -216,7 +216,7 @@ class DFURequestHandler(USBRequestHandler):
 
 			with m.State('HANDLE_GET_STATUS'):
 				m.d.comb += [
-					transmitter.stream.connect(interface.tx),
+					transmitter.stream.attach(interface.tx),
 					transmitter.max_length.eq(6),
 					transmitter.data[0].eq(DFUStatus.Okay if self._is_stub else dfu_cfg.status),
 					Cat(transmitter.data[1:4]).eq(0),
@@ -243,7 +243,7 @@ class DFURequestHandler(USBRequestHandler):
 
 			with m.State('HANDLE_GET_STATE'):
 				m.d.comb += [
-					transmitter.stream.connect(interface.tx),
+					transmitter.stream.attach(interface.tx),
 					transmitter.max_length.eq(1),
 				]
 
@@ -326,7 +326,7 @@ class DFURequestHandler(USBRequestHandler):
 
 			with m.State('GET_INTERFACE'):
 				m.d.comb += [
-					transmitter.stream.connect(interface.tx),
+					transmitter.stream.attach(interface.tx),
 					transmitter.max_length.eq(1),
 					# TODO(aki): This inline if might blow up
 					transmitter.data[0].eq(0 if self._is_stub else self.slot_selection),
@@ -363,7 +363,7 @@ class DFURequestHandler(USBRequestHandler):
 		if not self._is_stub:
 			m.d.comb += [
 				self._bit_fifo.w_en.eq(0),
-				self._bit_fifo.w_data.eq(rx_stream.payload),
+				self._bit_fifo.w_data.eq(rx_stream.data),
 			]
 
 			recv_cont = (recv_consumed < recv_count)

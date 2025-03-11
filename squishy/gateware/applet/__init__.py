@@ -10,7 +10,7 @@ from typing                                      import Self
 from torii.hdl                                   import Elaboratable, Module
 
 # TODO(aki): USB3 bits for rev2+ (eventually)
-from sol_usb.gateware.usb.usb2.request           import USBRequestHandler
+from torii_usb.usb.usb2.request                  import USBRequestHandler
 
 from usb_construct.emitters.descriptors.standard import DeviceDescriptorCollection
 
