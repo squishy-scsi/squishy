@@ -24,6 +24,7 @@ extensions = [
 	'myst_parser',
 	'sphinx_inline_tabs',
 	'sphinxext.opengraph',
+	'sphinx_autodoc_typehints',
 ]
 
 source_suffix = {
@@ -82,6 +83,10 @@ ogp_image    = f'{html_baseurl}/_images/og-image.png'
 
 autosectionlabel_prefix_document = True
 
+always_use_bars_union = True
+typehints_defaults = 'braces-after'
+typehints_use_signature = True
+typehints_use_signature_return = True
 
 offline_skin_js_path = '_static/js/wavedrom.skin.js'
 offline_wavedrom_js_path = '_static/js/wavedrom.min.js'
