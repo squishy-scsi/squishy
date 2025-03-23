@@ -12,13 +12,20 @@ cli
 extra
 mascot
 faq
+```
 
-changelog
+```{toctree}
+:caption: Development
+:hidden:
 
 Source Code <https://github.com/squishy-scsi/squishy>
 Hardware <https://github.com/squishy-scsi/hardware>
 
+Contributing <https://github.com/squishy-scsi/squishy/blob/main/CONTRIBUTING.md>
+changelog
+license
 ```
+
 # Squishy: The SCSI Multitool
 
 ```{eval-rst}

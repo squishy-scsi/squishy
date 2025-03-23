@@ -1,6 +1,10 @@
 # Mascot - Sachi
 
-```{image} ../contrib/img/sachi/electrichearts_20211013A_sachi_trans.png
+
+```{eval-rst}
+.. image:: ../contrib/img/sachi/electrichearts_20211013A_sachi_trans.png
+	:align: right
+	:width: 350px
 ```
 
 ## About
@@ -9,19 +13,29 @@ Sachi (さち, 幸, means happiness) is a spirit fox who attaches to an old magn
 
 She was known for helping the locals with her wisdom in the past. Nowadays her shrine has been built over by a university, and she assumes her human identity as Professor Suka Sachiko (須賀 早智子) and teaches Japanese History and Computer Science there.
 
+<br />
+<br />
+<br />
+<br />
+
 ## Images
 
+```{eval-rst}
+.. grid:: 2
 
-```{image} ../contrib/img/sachi/electrichearts_20220323A_sachi.png
-```
+	.. grid-item::
 
-```{image} ../contrib/img/sachi/electrichearts_20230322A_sachi_human_english.png
-```
+		.. image:: ../contrib/img/sachi/electrichearts_20220323A_sachi.png
 
-```{image} ../contrib/img/sachi/electrichearts_20211013A_sachi.png
-```
+	.. grid-item::
 
-```{image} ../contrib/img/sachi/electrichearts_20220325A_sachi_yellow_english.png
+		.. image:: ../contrib/img/sachi/electrichearts_20211013A_sachi.png
+
+
+.. image:: ../contrib/img/sachi/electrichearts_20230322A_sachi_human_english.png
+
+.. image:: ../contrib/img/sachi/electrichearts_20220325A_sachi_yellow_english.png
+
 ```
 
 Full-resolution images with and without transparent backgrounds can be downloaded from the [GitHub Repository] in the [`etc/img/sachi`] directory.

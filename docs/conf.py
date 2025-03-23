@@ -4,7 +4,6 @@ sys.path.insert(0, os.path.abspath('.'))
 
 from squishy import __version__ as squishy_version
 
-
 project   = 'Squishy'
 version   = squishy_version
 release   = version.split('+')[0]
@@ -14,6 +13,7 @@ language  = 'en'
 extensions = [
 	'sphinx.ext.autodoc',
 	'sphinx.ext.doctest',
+	'sphinx.ext.extlinks',
 	'sphinx.ext.githubpages',
 	'sphinx.ext.graphviz',
 	'sphinx.ext.intersphinx',
@@ -21,15 +21,23 @@ extensions = [
 	'sphinx.ext.todo',
 	'sphinxcontrib.mermaid',
 	'sphinxcontrib.wavedrom',
-	'myst_parser',
-	'sphinx_inline_tabs',
 	'sphinxext.opengraph',
+	'myst_parser',
 	'sphinx_autodoc_typehints',
+	'sphinx_copybutton',
+	'sphinx_inline_tabs',
+	'sphinx_design',
 ]
 
 source_suffix = {
 	'.rst': 'restructuredtext',
 	'.md': 'markdown',
+}
+
+extlinks = {
+	'sw-issue': ('https://github.com/squishy-scsi/squishy/issues/%s',  'squishy/%s', ),
+	'hw-issue': ('https://github.com/squishy-scsi/hardware/issues/%s', 'squishy-hardware/%s', ),
+	'pypi':     ('https://pypi.org/project/%s/', '%s', ),
 }
 
 pygments_style              = 'monokai'
@@ -51,7 +59,9 @@ napoleon_use_ivar                      = True
 napoleon_use_admonition_for_notes      = True
 napoleon_use_admonition_for_examples   = True
 napoleon_use_admonition_for_references = True
-
+napoleon_custom_sections  = [
+	('Attributes', 'params_style'),
+]
 
 myst_heading_anchors = 3
 

@@ -8,3 +8,5 @@ git+https://github.com/wallento/wavedrompy
 sphinxcontrib-wavedrom
 matplotlib
 myst-parser
+sphinx-copybutton
+sphinx-design
