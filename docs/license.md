@@ -3,17 +3,23 @@
 ## BSD-3-Clause
 
 ```{literalinclude} ../LICENSE.software
-:lang: plain
+---
+language: text
+---
 ```
 
 ## CC-BY-SA
 
 ```{literalinclude} ../LICENSE.docs
-:lang: plain
+---
+language: text
+---
 ```
 
 ## LGPL v2.1
 
 ```{literalinclude} ../LICENSE.icons
-:lang: plain
+---
+language: text
+---
 ```
