@@ -96,7 +96,7 @@ jobs:
 
       - name: 'Codecov Upload'
         if: success() && github.repository == 'squishy-scsi/squishy'
-        uses: codecov/codecov-action@v4
+        uses: codecov/codecov-action@v5
         with:
           verbose: true
           files: ./build/tests/coverage.xml
