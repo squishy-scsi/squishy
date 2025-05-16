@@ -46,7 +46,7 @@ The hardware is licensed under the [CERN-OHL-S], the full text of which can be f
 
 The software and gateware are licensed under the [BSD-3-Clause], the full text of which can be found in the [`LICENSE.software`] file.
 
-The documentation is licensed under the Creative Commons [CC-BY-SA], the full text of which can be found in the [`LICENSE.docs`] file.
+The documentation is licensed under the Creative Commons [CC-BY-SA 4.0], the full text of which can be found in the [`LICENSE.docs`] file.
 
 The icons used in the GUI are from the [KDE] project. They are the [breeze-icons] and they are licensed under the [LGPL v2.1], the full text of which can be found in the [`LICENSE.icons`] file.
 
@@ -66,7 +66,7 @@ Sachi, the mascot is dual-licensed under the [BSD-3-Clause] and the Creative Com
 [`squishy-scsi/hardware/LICENSE`]: https://github.com/squishy-scsi/hardware/tree/main/LICENSE
 [BSD-3-Clause]: https://spdx.org/licenses/BSD-3-Clause.html
 [`LICENSE.software`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.software
-[CC-BY-SA]: https://creativecommons.org/licenses/by-sa/2.0/
+[CC-BY-SA 4.0]: https://creativecommons.org/licenses/by-sa/4.0/
 [`LICENSE.docs`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.docs
 [KDE]: https://kde.org
 [breeze-icons]: https://github.com/KDE/breeze-icons/

@@ -5,7 +5,7 @@
 Contributions to Squishy are released under the following licenses depending on the component:
 
 * [BSD-3-Clause] - Software
-* [CC-BY-SA] - Documentation
+* [CC-BY-SA 4.0] - Documentation
 
 Please note that Squishy is released with a [Contributor Code of Conduct]. By participating in this project you agree to abide by its terms.
 
@@ -44,7 +44,7 @@ This policy covers all parts of the project, including, but not limited to code,
 > incorrect and pass it off with confidence, thus misleading.
 
 [BSD-3-Clause]: ./LICENSE.software
-[CC-BY-SA]: ./LICENSE.docs
+[CC-BY-SA 4.0]: ./LICENSE.docs
 [Contributor Code of Conduct]: ./CODE_OF_CONDUCT.md
 [Installation]: https://docs.scsi.moe/install.html
 [nox]: https://nox.thea.codes/
