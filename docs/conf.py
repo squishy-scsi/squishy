@@ -102,10 +102,13 @@ typehints_use_signature_return = True
 offline_skin_js_path = '_static/js/wavedrom.skin.js'
 offline_wavedrom_js_path = '_static/js/wavedrom.min.js'
 
-linkcheck_anchors_ignore_for_url = [
-	r'^https://web\.libera\.chat/',
+
+linkcheck_retries = 2
+linkcheck_workers = 1 # At the cost of speed try to prevent rate-limiting
+linkcheck_ignore  = [
+	r'https://www\.codesrc\.com/.*', # SSL is broken
 ]
 
-linkcheck_ignore = [
-	r'https://www\.codesrc\.com/.*', # SSL is broken
+linkcheck_anchors_ignore_for_url = [
+	r'^https://web\.libera\.chat/',
 ]
