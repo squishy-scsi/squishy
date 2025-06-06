@@ -69,8 +69,8 @@ def test(session: Session) -> None:
 			f'--rcfile={CNTRB_DIR / "coveragerc"}'
 		)
 
-@nox.session
-def docs(session: Session) -> None:
+@nox.session(name = 'build-docs')
+def build_docs(session: Session) -> None:
 	out_dir = (BUILD_DIR / 'docs')
 	shutil.rmtree(out_dir, ignore_errors = True)
 	session.install('-r', str(DOCS_DIR / 'requirements.txt'))
@@ -78,8 +78,8 @@ def docs(session: Session) -> None:
 	session.run('sphinx-build', '-b', 'html', str(DOCS_DIR), str(out_dir))
 	shutil.copy(ROOT_DIR / 'LICENSE.docs', out_dir / 'LICENSE')
 
-@nox.session
-def docs_linkcheck(session: Session) -> None:
+@nox.session(name = 'linkcheck-docs')
+def linkcheck_docs(session: Session) -> None:
 	out_dir = (BUILD_DIR / 'docs-linkcheck')
 	shutil.rmtree(out_dir, ignore_errors = True)
 	session.install('-r', str(DOCS_DIR / 'requirements.txt'))
