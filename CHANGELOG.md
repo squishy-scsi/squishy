@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD024 -->
 # Changelog
 
 All notable changes to this project will be documented in this file.
@@ -19,7 +20,16 @@ Unreleased template stuff
 
 ## [Unreleased]
 
+### Added
 
+### Changed
 
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
 
 [unreleased]: https://github.com/squishy-scsi/squishy/compare/543f4d29...main
