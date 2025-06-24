@@ -2,6 +2,8 @@
 branch = False
 omit =
   */setup.py
+  */noxfile.py
+  */__main__.py
 
 [report]
 show_missing = True
@@ -19,6 +21,10 @@ exclude_lines =
   : \.\.\.(\s*#.*)?$
   ^ +\.\.\.$
   -> ['"]?NoReturn['"]?:
+
+  # Skipped/Failed tests
+  ^\s*self\.skipTest\b
+  ^\s*self\.fail\b
 
 partial_branches =
    :nobr:
