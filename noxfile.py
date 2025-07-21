@@ -54,7 +54,7 @@ def test(session: Session) -> None:
 		session.install('coverage')
 		coverage_args = (
 			'-m', 'coverage', 'run',
-			f'--rcfile={CNTRB_DIR / "coveragerc"}'
+			f'--rcfile={ROOT_DIR / "pyproject.toml"}'
 		)
 	else:
 		coverage_args = ()
@@ -66,7 +66,7 @@ def test(session: Session) -> None:
 	if ENABLE_COVERAGE:
 		session.run(
 			'python', '-m', 'coverage', 'xml',
-			f'--rcfile={CNTRB_DIR / "coveragerc"}'
+			f'--rcfile={ROOT_DIR / "pyproject.toml"}'
 		)
 
 @nox.session(name = 'build-docs')

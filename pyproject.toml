@@ -91,3 +91,34 @@ namespaces = false
 [tool.setuptools_scm]
 version_scheme = 'guess-next-dev'
 local_scheme   = 'node-and-date'
+
+# Testing Coverage
+[tool.coverage.run]
+branch = true
+omit = [
+	'*/noxfile.py',
+	'*/__main__.py',
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_lines = [
+	':nocov:',
+	# Allow defensive code
+	'^\s*raise AssertionError\b',
+	'^\s*raise NotImplementedError\b',
+	'^\s*raise NotImplemented\b',
+	'^\s*raise$',
+	# Typing-Related
+	'^\s*if (False|TYPE_CHECKING):',
+	': \.\.\.(\s*#.*)?$',
+	'^ +\.\.\.$',
+	'''-> ['"]?NoReturn['"]?:''',
+	# Skipped/Failed tests
+	'^\s*self\.skipTest\b',
+	'^\s*self\.fail\b',
+]
+partial_branches = [
+	':nobr:'
+]
