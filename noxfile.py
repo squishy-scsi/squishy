@@ -98,7 +98,6 @@ def typecheck(session: Session) -> None:
 	session.run(
 		'mypy', '--non-interactive', '--install-types', '--pretty',
 		'--cache-dir', str((out_dir / '.mypy-cache').resolve()),
-		'--config-file', str((CNTRB_DIR / '.mypy.ini').resolve()),
 		'-p', 'squishy', '--html-report', str(out_dir.resolve())
 	)
 
