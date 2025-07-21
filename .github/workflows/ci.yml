@@ -42,7 +42,7 @@ jobs:
         shell: bash
         continue-on-error: true
         run: |
-          nox -s typecheck
+          nox -s typecheck-mypy
 
   test-squishy:
     runs-on: ubuntu-latest
@@ -70,7 +70,6 @@ jobs:
         run: |
           echo "$HOME/.local/bin:$PATH" >> $GITHUB_PATH
           echo "GITHUB_WORKSPACE=\"`pwd`\"" >> $GITHUB_ENV
-          echo "COVERAGE_CORE=sysmon" >> $GITHUB_ENV
 
       - name: 'Install Dependencies'
         shell: bash
