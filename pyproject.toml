@@ -1,0 +1,93 @@
+# SPDX-License-Identifier: BSD-3-Clause
+[project]
+dynamic         = [ 'version' ]
+name            = 'squishy'
+description     = 'SCSI Multitool and Torii HDL Library'
+authors         = [
+	{ name = 'Aki Van Ness', email = 'aki@lethalbit.net' }
+]
+license         = 'BSD-3-Clause'
+license-files   = [
+	'LICENSE.software', 'LICENSE.docs'
+]
+readme          = 'README.md'
+requires-python = '>=3.11'
+dependencies    = [
+	'Jinja2',
+	'construct>=2.10.67',
+	'arrow',
+	'libusb1>=1.8.1',
+	'rich',
+	'torii>=0.7.7,<1.0',
+	'torii-usb>=0.7.1,<1.0',
+	'platformdirs~=4.2.1'
+]
+keywords        = [
+	'SCSI',
+	'Torii',
+	'HDL',
+	'retro computing',
+	'legacy computing',
+	'archivist tool',
+	'hardware interface',
+]
+classifiers     = [
+	'Development Status :: 4 - Beta',
+
+	'Environment :: Console',
+
+	'Intended Audience :: Developers',
+	'Intended Audience :: Information Technology',
+	'Intended Audience :: System Administrators',
+
+	'License :: OSI Approved :: BSD License',
+
+	'Operating System :: MacOS :: MacOS X',
+	'Operating System :: Microsoft :: Windows',
+	'Operating System :: POSIX :: Linux',
+
+	'Programming Language :: Python :: 3.11',
+	'Programming Language :: Python :: 3.12',
+	'Programming Language :: Python :: 3.13',
+
+	'Topic :: Software Development',
+	'Topic :: System :: Hardware',
+	'Typing :: Typed',
+]
+
+[project.optional-dependencies]
+dev = [
+	'nox',
+	'meson',
+]
+
+[project.urls]
+source        = 'https://github.com/squishy-scsi/squishy'
+issues        = 'https://github.com/squishy-scsi/squishy/issues'
+documentation = 'https://docs.scsi.moe/'
+changelog     = 'https://github.com/squishy-scsi/squishy/blob/main/CHANGELOG.md'
+
+[project.scripts]
+squishy = 'squishy.cli:main'
+
+[build-system]
+requires = ['setuptools>=66', 'setuptools-scm>=8']
+build-backend = 'setuptools.build_meta'
+
+[tool.setuptools.packages.find]
+where = ['.']
+exclude = [
+	'contrib',
+	'contrib.*',
+	'docs',
+	'docs.*',
+	'examples',
+	'examples.*',
+	'tests',
+	'tests.*',
+]
+namespaces = false
+
+[tool.setuptools_scm]
+version_scheme = 'guess-next-dev'
+local_scheme   = 'node-and-date'
