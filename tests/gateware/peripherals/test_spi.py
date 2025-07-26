@@ -1,14 +1,13 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii.hdl                        import Signal, Module, Elaboratable, ClockDomain
+from torii.hdl                        import ClockDomain, Elaboratable, Module, Signal
+from torii.lib.soc.csr.bus            import Element, Multiplexer
 from torii.sim                        import Settle
 from torii.test                       import ToriiTestCase
 from torii.test.mock                  import MockPlatform
 
-from torii.lib.soc.csr.bus            import Multiplexer, Element
-
+from squishy.gateware.peripherals.spi import SPICPOL, SPIController, SPIPeripheral
 from squishy.support.test             import SPIGatewareTest
-from squishy.gateware.peripherals.spi import SPIInterface, SPIController, SPIPeripheral, SPIInterfaceMode, SPICPOL
 
 clk  = Signal(name = 'bus_clk' )
 cs   = Signal(name = 'bus_cs'  )

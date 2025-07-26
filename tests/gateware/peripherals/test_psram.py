@@ -4,15 +4,15 @@
 from os                                 import getenv
 from random                             import randbytes
 
-from torii.hdl                          import Elaboratable, Module, Signal, ClockDomain
+from torii.hdl                          import ClockDomain, Elaboratable, Module, Signal
 from torii.lib.fifo                     import AsyncFIFO
 from torii.sim                          import Settle
 from torii.test                         import ToriiTestCase
 from torii.test.mock                    import MockPlatform
 
-from squishy.support.test               import SPIGatewareTest
-from squishy.gateware.peripherals.spi   import SPIController, SPICPOL
 from squishy.gateware.peripherals.psram import SPIPSRAM, SPIPSRAMCmd
+from squishy.gateware.peripherals.spi   import SPICPOL, SPIController
+from squishy.support.test               import SPIGatewareTest
 
 if getenv('GITHUB_WORKSPACE') is not None:
 	_PSRAM_DATA = randbytes(1536) # 1024 to get an addr wrap + a bit

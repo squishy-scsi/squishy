@@ -7,11 +7,10 @@ from torii.sim                          import Settle
 from torii.test                         import ToriiTestCase
 from torii.test.mock                    import MockPlatform
 
-
-from squishy.support.test               import SPIGatewareTest
-from squishy.core.flash                 import Geometry
 from squishy.core.config                import FlashConfig
+from squishy.core.flash                 import Geometry
 from squishy.gateware.peripherals.flash import SPIFlash
+from squishy.support.test               import SPIGatewareTest
 
 _FLASH_DATA = (
 	0xff, 0x00, 0x00, 0xff, 0x7e, 0xaa, 0x99, 0x7e, 0x51, 0x00, 0x01, 0x05, 0x92, 0x00, 0x20, 0x62,
