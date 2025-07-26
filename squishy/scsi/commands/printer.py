@@ -4,7 +4,7 @@
 This module defines the commands that are specific to printers
 '''
 
-from construct import *
+from construct import BitsInteger, BitStruct, Int24ul
 
 __all__ = (
 	'format_printer',

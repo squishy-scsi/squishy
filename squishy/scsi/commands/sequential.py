@@ -5,7 +5,7 @@ This module defines the commands that are specific to sequential
 access devices.
 '''
 
-from construct import *
+from construct import BitsInteger, BitStruct, Flag, Int8ul, Int24ul
 
 __all__ = (
 	'rewind',

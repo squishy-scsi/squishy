@@ -6,7 +6,7 @@ This module defines the commands that are specific to direct
 access devices.
 '''
 
-from construct import *
+from construct import BitsInteger, BitStruct, Flag, Int8ul, Int16ul, Int24ul, Int32ul
 
 __all__ = (
 	'rezero_unit',

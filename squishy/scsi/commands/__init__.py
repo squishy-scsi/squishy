@@ -4,13 +4,7 @@
 
 '''
 
-from . import common
-from . import direct
-from . import sequential
-from . import printer
-from . import processor
-from . import worm
-from . import ro_direct
+from . import common, direct, printer, processor, ro_direct, sequential, worm
 
 __all__ = (
 	'common',
