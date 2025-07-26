@@ -4,12 +4,11 @@
 This module contains the Squishy supervisor interface CSR map and register definitions.
 
 '''
-from torii.hdl             import Module, Signal, Record
+from torii.hdl             import Module, Record, Signal
 from torii.hdl.rec         import Direction
-from torii.lib.soc.csr.bus import Multiplexer, Element
+from torii.lib.soc.csr.bus import Element, Multiplexer
 
 from ..platform            import SquishyPlatformType
-
 
 __all__ = (
 	'SupervisorCSRMap',

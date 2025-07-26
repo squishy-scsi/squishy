@@ -9,21 +9,21 @@ found at https://github.com/squishy-scsi/wireshark-scsi/blob/main/docs/LINKTYPE_
 
 '''
 
+from collections.abc import Iterable
+from datetime        import timedelta
+from enum            import IntEnum
+from io              import SEEK_END, SEEK_SET, BytesIO
+from pathlib         import Path
+from typing          import BinaryIO, Final, Self
 
-from datetime  import timedelta
-from enum      import IntEnum
-from io        import SEEK_END, SEEK_SET, BytesIO
-from pathlib   import Path
-from typing    import BinaryIO, Final, Iterable, Self
-
-from arrow     import Arrow, now
-from construct import (
+from arrow           import Arrow, now
+from construct       import (
 	Aligned, BitsInteger, BitStruct, Bytes, Check, Computed, Const, CString, Default, Enum, Flag, GreedyRange, Hex,
 	HexDump, If, Int8ul, Int16ul, Int32ul, Int64ul, PaddedString, Pass, Rebuild, RepeatUntil, Struct, Switch,
 	len_, this,
 )
 
-from .linktype import (
+from .linktype       import (
 	SCSIDataRate, SCSIFrameType, SCSISpeed, SCSIType, SCSIWidth, linktype_parallel_scsi, scsi_bus_opt,
 )
 
