@@ -18,22 +18,20 @@ away.
 
 '''
 
-import logging       as log
 import json
-
+import logging       as log
 from abc             import ABCMeta, abstractmethod
 from argparse        import ArgumentParser, Namespace
 from pathlib         import Path
 from subprocess      import CalledProcessError
 
-from rich.progress   import Progress, SpinnerColumn, BarColumn, TextColumn
-
-from torii.hdl       import Elaboratable
+from rich.progress   import BarColumn, Progress, SpinnerColumn, TextColumn
 from torii.build.run import BuildPlan, LocalBuildProducts
+from torii.hdl       import Elaboratable
 
-from ..device        import SquishyDevice
-from ..core.config   import USB_VID, USB_APP_PID, USB_DFU_PID
 from ..core.cache    import SquishyCache
+from ..core.config   import USB_APP_PID, USB_DFU_PID, USB_VID
+from ..device        import SquishyDevice
 from ..gateware      import AVAILABLE_PLATFORMS, SquishyPlatformType
 
 __all__ = (

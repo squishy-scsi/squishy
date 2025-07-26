@@ -4,12 +4,12 @@ import logging     as log
 from argparse      import ArgumentParser, Namespace
 from pathlib       import Path
 
-from rich.progress import Progress, SpinnerColumn, BarColumn, TextColumn
+from rich.progress import BarColumn, Progress, SpinnerColumn, TextColumn
 
-from .             import SquishySynthAction
-from ..paths       import SQUISHY_BUILD_BOOT
 from ..device      import SquishyDevice
 from ..gateware    import SquishyBootloader
+from ..paths       import SQUISHY_BUILD_BOOT
+from .             import SquishySynthAction
 
 __all__ = (
 	'ProvisionAction',

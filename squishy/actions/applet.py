@@ -1,18 +1,18 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 import logging         as log
-from pathlib           import Path
 from argparse          import ArgumentParser, Namespace
+from pathlib           import Path
 
+from rich.progress     import BarColumn, Progress, SpinnerColumn, TextColumn
 from rich.prompt       import Confirm
-from rich.progress     import Progress, SpinnerColumn, BarColumn, TextColumn
 
-from .                 import SquishySynthAction
 from ..applets         import SquishyApplet
-from ..paths           import SQUISHY_APPLETS, SQUISHY_BUILD_APPLET
-from ..device          import SquishyDevice
 from ..core.reflection import collect_members, is_applet
+from ..device          import SquishyDevice
 from ..gateware        import Squishy as SquishyGateware
+from ..paths           import SQUISHY_APPLETS, SQUISHY_BUILD_APPLET
+from .                 import SquishySynthAction
 
 __all__ = (
 	'AppletAction',
