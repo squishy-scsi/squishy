@@ -5,6 +5,7 @@
 '''
 
 from torii.hdl  import Elaboratable, Module
+
 from ..platform import SquishyPlatformType
 
 __all__ = (

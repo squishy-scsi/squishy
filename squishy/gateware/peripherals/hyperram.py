@@ -5,8 +5,8 @@
 '''
 
 from torii.hdl  import Elaboratable, Module
-from ..platform import SquishyPlatformType
 
+from ..platform import SquishyPlatformType
 
 __all__ = (
 	'HyperRAM',

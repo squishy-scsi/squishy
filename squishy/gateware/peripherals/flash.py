@@ -8,9 +8,10 @@ from enum           import IntEnum, auto, unique
 
 from torii.hdl      import Elaboratable, Module, Signal
 from torii.lib.fifo import AsyncFIFO
-from .spi           import SPIController
-from ..platform     import SquishyPlatformType
+
 from ...core.flash  import Geometry
+from ..platform     import SquishyPlatformType
+from .spi           import SPIController
 
 __all__ = (
 	'SPIFlash',
