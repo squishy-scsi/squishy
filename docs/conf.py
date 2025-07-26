@@ -1,6 +1,5 @@
 # SPDX-License-Identifier: BSD-3-Clause
-import os, sys, datetime
-sys.path.insert(0, os.path.abspath('.'))
+from datetime import date
 
 from torii   import __version__ as torii_version
 from squishy import __version__ as squishy_version
@@ -8,7 +7,7 @@ from squishy import __version__ as squishy_version
 project   = 'Squishy'
 version   = squishy_version
 release   = version.split('+')[0]
-copyright = f'{datetime.date.today().year}, Aki "lethalbit" Van Ness, et. al.'
+copyright = f'{date.today().year}, Aki "lethalbit" Van Ness, et. al.'
 language  = 'en'
 
 extensions = [
