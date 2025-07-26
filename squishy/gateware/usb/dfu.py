@@ -4,19 +4,17 @@
 
 '''
 
-from torii.hdl                           import Module, Signal, Cat
+from torii.hdl                           import Cat, Module, Signal
 from torii.hdl.ast                       import Operator
 from torii.lib.fifo                      import AsyncFIFO
-
-from usb_construct.types                 import USBRequestType, USBRequestRecipient, USBStandardRequests
+from torii_usb.stream.generator          import StreamSerializer
+from torii_usb.usb.stream                import USBInStreamInterface, USBOutStreamInterface
+from torii_usb.usb.usb2.request          import SetupPacket, USBRequestHandler
+from usb_construct.types                 import USBRequestRecipient, USBRequestType, USBStandardRequests
 from usb_construct.types.descriptors.dfu import DFURequests
 
-from torii_usb.usb.usb2.request          import USBRequestHandler, SetupPacket
-from torii_usb.usb.stream                import USBInStreamInterface, USBOutStreamInterface
-from torii_usb.stream.generator          import StreamSerializer
-
-from ...core.dfu   import DFUState, DFUStatus
-from ..platform    import SquishyPlatformType
+from ...core.dfu                         import DFUState, DFUStatus
+from ..platform                          import SquishyPlatformType
 
 __all__ = (
 	'DFURequestHandler',

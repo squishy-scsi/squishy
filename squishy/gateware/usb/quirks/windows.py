@@ -4,19 +4,15 @@
 
 '''
 
-from typing                                       import Type
-
 from struct                                       import pack, unpack
 
-from torii.hdl                                    import Module, Signal, Elaboratable, Memory, DomainRenamer
+from torii.hdl                                    import DomainRenamer, Elaboratable, Memory, Module, Signal
 from torii.hdl.ast                                import Operator
-
-from usb_construct.types                          import USBRequestType, USBRequestRecipient
-from usb_construct.types.descriptors.microsoft    import MicrosoftRequests
-from usb_construct.emitters.descriptors.microsoft import PlatformDescriptorCollection
-
 from torii_usb.usb.stream                         import USBInStreamInterface
-from torii_usb.usb.usb2.request                   import USBRequestHandler, SetupPacket
+from torii_usb.usb.usb2.request                   import SetupPacket, USBRequestHandler
+from usb_construct.emitters.descriptors.microsoft import PlatformDescriptorCollection
+from usb_construct.types                          import USBRequestRecipient, USBRequestType
+from usb_construct.types.descriptors.microsoft    import MicrosoftRequests
 
 __all__ = (
 	'WindowsRequestHandler',
@@ -79,7 +75,7 @@ class GetDescriptorSetHandler(Elaboratable):
 		self.stall     = Signal()
 
 	@classmethod
-	def _align_to_element_size(cls: Type['GetDescriptorSetHandler'], n: int) -> int:
+	def _align_to_element_size(cls: type['GetDescriptorSetHandler'], n: int) -> int:
 		''' Returns a given number rounded up to the next aligned element size. '''
 		return (n + (cls.element_size - 1)) // cls.element_size
 
