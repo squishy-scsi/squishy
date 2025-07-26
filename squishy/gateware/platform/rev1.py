@@ -21,17 +21,17 @@ import logging                           as log
 from argparse                            import Namespace
 from pathlib                             import Path
 
-from torii.hdl                           import *
-from torii.build                         import *
+from torii.build                         import Attrs, Clock, Pins, PinsN, Resource, Subsignal
 from torii.build.run                     import BuildProducts
-from torii.platform.vendor.lattice.ice40 import ICE40Platform
+from torii.hdl                           import ClockDomain, ClockSignal, Const, Elaboratable, Instance, Module, ResetSignal, Signal
+from torii.platform.resources.interface  import UARTResource
 from torii.platform.resources.memory     import SPIFlashResources
 from torii.platform.resources.user       import LEDResources
-from torii.platform.resources.interface  import UARTResource
+from torii.platform.vendor.lattice.ice40 import ICE40Platform
 
-from .                                   import SquishyPlatform
-from ...core.flash                       import Geometry as FlashGeometry
 from ...core.config                      import FlashConfig, ICE40PLLConfig
+from ...core.flash                       import Geometry as FlashGeometry
+from .                                   import SquishyPlatform
 
 __all__ = (
 	'SquishyRev1',

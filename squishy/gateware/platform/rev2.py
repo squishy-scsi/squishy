@@ -21,19 +21,20 @@ import logging                          as log
 from argparse                           import Namespace
 from pathlib                            import Path
 
-from torii.hdl                          import *
-from torii.build                        import *
+from torii.build                        import Attrs, Clock, DiffPairs, PinsN, Resource, Subsignal
 from torii.build.run                    import BuildProducts
-from torii.platform.vendor.lattice.ecp5 import ECP5Platform
+from torii.hdl                          import ClockDomain, ClockSignal, Const, Elaboratable, Instance, Module, ResetSignal, Signal
+from torii.platform.resources.interface import ULPIResource
 from torii.platform.resources.memory    import SDCardResources
 from torii.platform.resources.user      import LEDResources
-from torii.platform.resources.interface import ULPIResource
+from torii.platform.vendor.lattice.ecp5 import ECP5Platform
 
+from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
+from ...core.flash                      import FPGAID, rev2_flash_layout, rev2_flash_slot
+from ...core.flash                      import Geometry as FlashGeometry
 from .                                  import SquishyPlatform
 from .resources                         import BankedHyperRAM, PDController, PhyADC, SquishySupervisor, USB3SerDesPHY
 from .resources.scsi                    import SquishySCSIPhy
-from ...core.flash                      import Geometry as FlashGeometry, FPGAID, rev2_flash_slot, rev2_flash_layout
-from ...core.config                     import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
 
 __all__ = (
 	'SquishyRev2',
