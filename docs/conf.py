@@ -2,6 +2,7 @@
 import os, sys, datetime
 sys.path.insert(0, os.path.abspath('.'))
 
+from torii   import __version__ as torii_version
 from squishy import __version__ as squishy_version
 
 project   = 'Squishy'
@@ -49,7 +50,7 @@ todo_include_todos          = True
 
 intersphinx_mapping = {
 	'python'    : ('https://docs.python.org/3', None),
-	'torii'     : ('https://torii.shmdn.link/', None),
+	'torii'     : (f'https://torii.shmdn.link/v{torii_version}', None),
 	'torii-usb' : ('https://torii-usb.shmdn.link/', None),
 	'construct' : ('https://construct.readthedocs.io/en/latest', None),
 }
