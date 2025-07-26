@@ -13,14 +13,12 @@ The framing itself is fairly simple, most of the magic involved is within the ca
 wireshark dissector.
 '''
 
+from enum      import IntEnum
 from typing    import Final
 
-from enum      import IntEnum
-
 from construct import (
-	Aligned, BitsInteger, BitStruct, Bytes, Const, Default, Enum, Flag, HexDump,
-	Int8ul, Int32ul, Rebuild, Struct, Int16ul, Hex,
-	len_, this
+	Aligned, BitsInteger, BitStruct, Bytes, Const, Default, Enum, Flag, Hex, HexDump,
+	Int8ul, Int16ul, Int32ul, Rebuild, Struct, len_, this,
 )
 
 __all__ = (

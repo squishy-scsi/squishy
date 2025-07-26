@@ -12,13 +12,13 @@ objects as returned from the the gateware synthesis process.
 
 import logging           as log
 from io                  import BytesIO
-from tarfile             import open as tf_open
 from tarfile             import TarInfo
+from tarfile             import open as tf_open
 
 from torii.build.run     import BuildPlan, BuildProducts, LocalBuildProducts
 
-from ..paths             import SQUISHY_ASSET_CACHE
 from ..gateware.platform import SquishyPlatformType
+from ..paths             import SQUISHY_ASSET_CACHE
 
 __all__ = (
 	'SquishyCache',

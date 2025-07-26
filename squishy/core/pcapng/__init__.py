@@ -18,13 +18,13 @@ from typing    import BinaryIO, Final, Iterable, Self
 
 from arrow     import Arrow, now
 from construct import (
-	Aligned, BitsInteger, BitStruct, Bytes, Check, Computed, Const, CString, Default, Enum, Flag, GreedyRange,
-	Hex, HexDump, If, Int8ul, Int16ul, Int32ul, Int64ul, PaddedString, Pass, Rebuild, RepeatUntil, Struct,
-	Switch, len_, this
+	Aligned, BitsInteger, BitStruct, Bytes, Check, Computed, Const, CString, Default, Enum, Flag, GreedyRange, Hex,
+	HexDump, If, Int8ul, Int16ul, Int32ul, Int64ul, PaddedString, Pass, Rebuild, RepeatUntil, Struct, Switch,
+	len_, this,
 )
 
 from .linktype import (
-	SCSIDataRate, SCSISpeed, SCSIType, SCSIWidth, SCSIFrameType, linktype_parallel_scsi, scsi_bus_opt
+	SCSIDataRate, SCSIFrameType, SCSISpeed, SCSIType, SCSIWidth, linktype_parallel_scsi, scsi_bus_opt,
 )
 
 __all__ = (

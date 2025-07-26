@@ -8,7 +8,7 @@ the DFU upload portion of :py:class:`squishy.device.SquishyDevice`.
 
 from enum                            import IntEnum, unique
 
-from usb_construct.types.descriptors import InterfaceClassCodes, ApplicationSubclassCodes
+from usb_construct.types.descriptors import ApplicationSubclassCodes, InterfaceClassCodes
 
 __all__ = (
 	'DFUState',

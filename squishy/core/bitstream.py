@@ -10,18 +10,15 @@ Currently this is only used by the iCE40 platform (a.k.a Rev1)
 '''
 
 
-import logging      as log
-from enum           import IntEnum, IntFlag, unique
+import logging as log
+from enum      import IntEnum, IntFlag, unique
 
-from construct      import (
-	this,
-	Switch, StopIf, Rebuild, Padded, GreedyRange,
-	Struct, BitStruct, Enum, FlagsEnum,
-	Bytewise, Const,
-	Nibble, Int8ub, Int16ub, Int24ub, Int32ub
+from construct import (
+	BitStruct, Bytewise, Const, Enum, FlagsEnum, GreedyRange, Int8ub, Int16ub, Int24ub, Int32ub,
+	Nibble, Padded, Rebuild, StopIf, Struct, Switch, this,
 )
 
-from .flash         import Geometry, Partition
+from .flash    import Geometry, Partition
 
 __all__ = (
 	'iCE40BitstreamSlots',

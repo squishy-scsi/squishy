@@ -6,10 +6,10 @@ module/package contents and the like.
 
 '''
 
-from pkgutil    import walk_packages
-from importlib  import import_module
-from inspect    import getmembers, isclass
-from typing     import Callable
+from collections.abc import Callable
+from importlib       import import_module
+from inspect         import getmembers, isclass
+from pkgutil         import walk_packages
 
 __all__ = (
 	'collect_members',
@@ -33,7 +33,7 @@ def is_applet(member: object) -> bool:
 		Returns True if the given ``member`` object is an instance of :py:class:`SquishyApplet`, otherwise False.
 	'''
 
-	from ..applets  import SquishyApplet
+	from ..applets import SquishyApplet
 	if isclass(member):
 		return issubclass(member, SquishyApplet) and member is not SquishyApplet
 	return False

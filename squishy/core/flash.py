@@ -5,10 +5,10 @@ This module contains the structures and constants used for generating SPI Flash 
 for Squishy hardware.
 '''
 
-from enum import IntEnum, IntFlag
+from enum      import IntEnum, IntFlag
 
 from construct import (
-	Struct, Int8ul, Int32ul, Int24ul, Array, Byte, len_, this, Enum, FlagsEnum, Padding, Rebuild
+	Array, Byte, Enum, FlagsEnum, Int8ul, Int24ul, Int32ul, Padding, Rebuild, Struct, len_, this,
 )
 
 __all__ = (

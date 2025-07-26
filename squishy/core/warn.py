@@ -10,16 +10,15 @@ also :py:meth:`remove_handler` to replace the "original" ``showwarning`` handler
 
 '''
 
-import logging  as log
-import warnings
 import linecache
-
+import logging    as log
+import warnings
 from typing       import TypedDict
 
 from rich         import get_console
-from rich.syntax  import Syntax
-from rich.panel   import Panel
 from rich.padding import Padding
+from rich.panel   import Panel
+from rich.syntax  import Syntax
 
 __all__ = (
 	'install_handler',
