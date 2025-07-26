@@ -4,29 +4,26 @@
 
 '''
 
-from torii.hdl                                       import (
-	Elaboratable, Module, ResetSignal, Signal, Cat
-)
+from torii.hdl                                       import Cat, Elaboratable, Module, ResetSignal, Signal
 from torii.lib.fifo                                  import AsyncFIFO
-
 from torii_usb.usb2                                  import USBDevice
 
+from usb_construct.contextmgrs.descriptors.dfu       import FunctionalDescriptor
+from usb_construct.contextmgrs.descriptors.microsoft import PlatformDescriptor, PlatformDescriptorCollection
 from usb_construct.emitters.descriptors.standard     import (
-	DeviceDescriptorCollection, LanguageIDs, DeviceClassCodes,
-	InterfaceClassCodes, ApplicationSubclassCodes, DFUProtocolCodes
+	ApplicationSubclassCodes, DeviceClassCodes, DeviceDescriptorCollection,
+	DFUProtocolCodes, InterfaceClassCodes, LanguageIDs
 )
-from usb_construct.types.descriptors.dfu             import *
-from usb_construct.contextmgrs.descriptors.dfu       import *
-from usb_construct.types.descriptors.microsoft       import *
-from usb_construct.contextmgrs.descriptors.microsoft import *
+from usb_construct.types.descriptors.dfu             import (
+	DFUCanDownload, DFUCanUpload, DFUManifestationTolerant, DFUWillDetach
+)
 
-from .rev1                                           import Rev1
-from .rev2                                           import Rev2
+from ...core.config                                  import USB_DFU_CONFIG
 from ..platform                                      import SquishyPlatformType
 from ..usb.dfu                                       import DFURequestHandler
 from ..usb.quirks.windows                            import WindowsRequestHandler
-from ...core.config                                  import USB_DFU_CONFIG
-
+from .rev1                                           import Rev1
+from .rev2                                           import Rev2
 
 __all__ = (
 	'SquishyBootloader',

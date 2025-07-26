@@ -68,13 +68,13 @@ Upon the FPGA entering the bootloader:
 ''' # noqa: E101
 
 from torii.hdl             import Elaboratable, Module, Signal
-from torii.lib.fifo        import AsyncFIFO
 from torii.lib.cdc         import FFSynchronizer, PulseSynchronizer
+from torii.lib.fifo        import AsyncFIFO
 
 from ..core.supervisor_csr import SupervisorCSRMap
-from ..platform            import SquishyPlatformType
-from ..peripherals.spi     import SPIInterface, SPIInterfaceMode, SPICPOL
 from ..peripherals.psram   import SPIPSRAM
+from ..peripherals.spi     import SPICPOL, SPIInterface, SPIInterfaceMode
+from ..platform            import SquishyPlatformType
 
 __all__ = (
 	'Rev2',
