@@ -28,6 +28,8 @@ defined applets.
 
 '''
 
+from platformdirs import user_data_path, user_config_path, user_cache_path
+
 __all__ = (
 	# Root directories
 	'SQUISHY_CACHE',
@@ -45,8 +47,6 @@ __all__ = (
 	# Helpers
 	'initialize_dirs',
 )
-
-from platformdirs import user_data_path, user_config_path, user_cache_path
 
 # Squishy-specific base directories
 SQUISHY_CACHE  = user_cache_path('squishy',  False)

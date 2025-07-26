@@ -1,19 +1,16 @@
 # SPDX-License-Identifier: BSD-3-Clause
 import logging          as log
-from argparse           import ArgumentParser, ArgumentDefaultsHelpFormatter
+from argparse           import ArgumentDefaultsHelpFormatter, ArgumentParser
 
 from rich               import traceback
 from rich.logging       import RichHandler
 
-from .paths             import initialize_dirs
-
+from .                  import __version__
 from .actions           import SquishyAction
 from .actions.applet    import AppletAction
 from .actions.provision import ProvisionAction
-
 from .device            import SquishyDevice
-
-from .                  import __version__
+from .paths             import initialize_dirs
 
 __all__ = (
 	'main',

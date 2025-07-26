@@ -15,27 +15,24 @@ host OS will treat Squishy like any other UAS device, assuming it has drivers fo
 '''
 
 import logging                           as log
-
+from collections.abc                     import Callable, Iterable
 from contextlib                          import contextmanager
-from typing                              import TypeAlias, TypeVar, Iterable, Callable, TYPE_CHECKING, Self
-from time                                import sleep
 from datetime                            import datetime, timezone
 from itertools                           import zip_longest
+from time                                import sleep
+from typing                              import TYPE_CHECKING, Self, TypeAlias, TypeVar
 
+from rich.progress                       import Progress
 from usb1                                import USBContext, USBDevice, USBError
 from usb1.libusb1                        import (
-	LIBUSB_REQUEST_TYPE_CLASS, LIBUSB_RECIPIENT_INTERFACE, LIBUSB_ERROR_IO, LIBUSB_ERROR_NO_DEVICE
+	LIBUSB_ERROR_IO, LIBUSB_ERROR_NO_DEVICE, LIBUSB_RECIPIENT_INTERFACE, LIBUSB_REQUEST_TYPE_CLASS
 )
-
 from usb_construct.types                 import LanguageIDs
 from usb_construct.types.descriptors.dfu import FunctionalDescriptor
 
-from rich.progress                       import Progress
-
+from .core.config                        import USB_APP_PID, USB_DFU_PID, USB_VID
 from .core.dfu                           import DFU_CLASS, DFURequests, DFUState, DFUStatus
-from .core.config                        import USB_VID, USB_APP_PID, USB_DFU_PID
-
-from .gateware                           import SquishyPlatformType, AVAILABLE_PLATFORMS
+from .gateware                           import AVAILABLE_PLATFORMS, SquishyPlatformType
 
 __all__ = (
 	'SquishyDevice',
