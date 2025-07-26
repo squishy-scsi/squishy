@@ -1,25 +1,17 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from os                          import getenv
-from random                      import randbytes
-from typing                      import Literal, Iterable
-
-from torii.hdl                   import Record, Elaboratable, Module, Signal
-from torii.hdl.rec               import Direction
-from torii.sim                   import Settle
-from torii.test                  import ToriiTestCase
-
-from usb_construct.types         import USBPacketID, USBStandardRequests
-from usb_construct.types.descriptors.dfu import DFURequests
+from torii.hdl                                 import Elaboratable, Module, Record, Signal
+from torii.hdl.rec                             import Direction
+from torii.test                                import ToriiTestCase
+from usb_construct.types                       import USBPacketID
+from usb_construct.types.descriptors.dfu       import DFURequests
 from usb_construct.types.descriptors.microsoft import MicrosoftRequests
 
-from squishy.core.config         import FlashConfig, ECP5PLLConfig, ECP5PLLOutput
-from squishy.core.flash          import Geometry
-from squishy.support.test        import USBGatewarePHYTest
-from squishy.core.dfu            import DFUState, DFUStatus
-
-
-from squishy.gateware.bootloader import SquishyBootloader
+from squishy.core.config                       import ECP5PLLConfig, ECP5PLLOutput, FlashConfig
+from squishy.core.dfu                          import DFUState, DFUStatus
+from squishy.core.flash                        import Geometry
+from squishy.gateware.bootloader               import SquishyBootloader
+from squishy.support.test                      import USBGatewarePHYTest
 
 __all__ = ()
 

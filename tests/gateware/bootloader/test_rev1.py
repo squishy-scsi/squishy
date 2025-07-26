@@ -1,19 +1,18 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from random                              import randbytes
+from random                           import randbytes
 
-from torii.hdl                           import Record, Elaboratable, Module
-from torii.hdl.rec                       import Direction
-from torii.lib.fifo                      import AsyncFIFO
-from torii.sim                           import Settle
-from torii.test                          import ToriiTestCase
+from torii.hdl                        import Elaboratable, Module, Record
+from torii.hdl.rec                    import Direction
+from torii.lib.fifo                   import AsyncFIFO
+from torii.sim                        import Settle
+from torii.test                       import ToriiTestCase
 
-from squishy.support.test                import USBGatewareTest, DFUGatewareTest
-from squishy.core.config                 import FlashConfig
-from squishy.core.flash                  import Geometry
-
-from squishy.gateware.usb.dfu            import DFURequestHandler, DFUState
-from squishy.gateware.bootloader.rev1    import Rev1
+from squishy.core.config              import FlashConfig
+from squishy.core.flash               import Geometry
+from squishy.gateware.bootloader.rev1 import Rev1
+from squishy.gateware.usb.dfu         import DFURequestHandler, DFUState
+from squishy.support.test             import DFUGatewareTest, USBGatewareTest
 
 _DFU_DATA = randbytes(256)
 

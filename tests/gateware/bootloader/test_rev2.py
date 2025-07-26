@@ -1,21 +1,20 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from os                                  import getenv
-from random                              import randbytes
+from os                                 import getenv
+from random                             import randbytes
 
-from torii.hdl                           import Record, Elaboratable, Module, ClockDomain, Signal
-from torii.hdl.rec                       import Direction
-from torii.lib.fifo                      import AsyncFIFO
-from torii.sim                           import Settle
-from torii.test                          import ToriiTestCase
+from torii.hdl                          import ClockDomain, Elaboratable, Module, Record, Signal
+from torii.hdl.rec                      import Direction
+from torii.lib.fifo                     import AsyncFIFO
+from torii.sim                          import Settle
+from torii.test                         import ToriiTestCase
 
-from squishy.support.test                import USBGatewareTest, DFUGatewareTest
-from squishy.core.config                 import FlashConfig
-from squishy.core.flash                  import Geometry
-
-from squishy.gateware.usb.dfu            import DFURequestHandler, DFUState
-from squishy.gateware.bootloader.rev2    import Rev2
-from squishy.gateware.peripherals.psram  import SPIPSRAMCmd
+from squishy.core.config                import FlashConfig
+from squishy.core.flash                 import Geometry
+from squishy.gateware.bootloader.rev2   import Rev2
+from squishy.gateware.peripherals.psram import SPIPSRAMCmd
+from squishy.gateware.usb.dfu           import DFURequestHandler, DFUState
+from squishy.support.test               import DFUGatewareTest, USBGatewareTest
 
 if getenv('GITHUB_WORKSPACE') is not None:
 	_DFU_DATA = randbytes(1536) # 1024 to get an addr wrap + a bit
