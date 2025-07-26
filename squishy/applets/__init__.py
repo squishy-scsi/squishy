@@ -15,11 +15,11 @@ something such as a SCSI disk endpoint over USB and let th host OS drivers deal 
 
 '''
 
-from abc           import ABCMeta, abstractmethod
-from argparse      import ArgumentParser, Namespace
+from abc        import ABCMeta, abstractmethod
+from argparse   import ArgumentParser, Namespace
 
-from ..device      import SquishyDevice
-from ..gateware    import SquishyPlatformType, AppletElaboratable
+from ..device   import SquishyDevice
+from ..gateware import AppletElaboratable, SquishyPlatformType
 
 __all__ = (
 	'SquishyApplet',
