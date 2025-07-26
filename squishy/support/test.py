@@ -15,16 +15,16 @@ functionality to help with writing and running Squishy-related gateware tests. T
 
 '''
 
-from typing                                   import Literal, Iterable
+from collections.abc                          import Iterable
+from typing                                   import Literal
 
 from torii.sim                                import Settle
 from torii.test                               import ToriiTestCase
-
 from usb_construct.types                      import (
-	USBRequestRecipient, USBRequestType, USBStandardRequests, USBPacketID, LanguageIDs
+	LanguageIDs, USBPacketID, USBRequestRecipient, USBRequestType, USBStandardRequests
 )
-from usb_construct.types.descriptors.standard import StandardDescriptorNumbers
 from usb_construct.types.descriptors.dfu      import DFURequests
+from usb_construct.types.descriptors.standard import StandardDescriptorNumbers
 
 __all__ = (
 	'SquishyGatewareTest',
