@@ -6,7 +6,7 @@ SCSI interfaces.
 
 '''
 
-from torii.build.dsl import Attrs, Pins, PinsN, Resource, Subsignal, DiffPairs, SubsigArgT, ResourceConn
+from torii.build.dsl import Attrs, DiffPairs, Pins, PinsN, Resource, ResourceConn, SubsigArgT, Subsignal
 
 __all__ = (
 	'SquishySCSIPhy',

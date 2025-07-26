@@ -6,7 +6,7 @@ This module contains a collection of mostly Squishy-specific resources, for the 
 
 '''
 
-from torii.build.dsl import Attrs, Pins, PinsN, Resource, Subsignal, DiffPairs, SubsigArgT, ResourceConn
+from torii.build.dsl import Attrs, DiffPairs, Pins, PinsN, Resource, ResourceConn, SubsigArgT, Subsignal
 
 __all__ = (
 	'BankedHyperRAM',
