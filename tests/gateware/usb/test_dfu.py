@@ -1,15 +1,15 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
-from torii.hdl                           import Record, Elaboratable, Module
-from torii.hdl.rec                       import Direction
-from torii.lib.fifo                      import AsyncFIFO
-from torii.sim                           import Settle
-from torii.test                          import ToriiTestCase
+from torii.hdl                import Elaboratable, Module, Record
+from torii.hdl.rec            import Direction
+from torii.lib.fifo           import AsyncFIFO
+from torii.sim                import Settle
+from torii.test               import ToriiTestCase
 
-from squishy.support.test                import USBGatewareTest, DFUGatewareTest
-from squishy.gateware.usb.dfu            import DFURequestHandler, DFUState
-from squishy.core.config                 import FlashConfig
-from squishy.core.flash                  import Geometry
+from squishy.core.config      import FlashConfig
+from squishy.core.flash       import Geometry
+from squishy.gateware.usb.dfu import DFURequestHandler, DFUState
+from squishy.support.test     import DFUGatewareTest, USBGatewareTest
 
 _DFU_DATA = (
 	0xff, 0x00, 0x00, 0xff, 0x7e, 0xaa, 0x99, 0x7e, 0x51, 0x00, 0x01, 0x05, 0x92, 0x00, 0x20, 0x62,

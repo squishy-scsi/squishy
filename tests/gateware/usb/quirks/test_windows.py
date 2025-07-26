@@ -2,13 +2,12 @@
 
 from torii.sim                                    import Settle
 from torii.test                                   import ToriiTestCase
-
 from usb_construct.emitters.descriptors.microsoft import PlatformDescriptorCollection, SetHeaderDescriptorEmitter
 from usb_construct.types                          import USBRequestRecipient, USBRequestType
 from usb_construct.types.descriptors.microsoft    import MicrosoftRequests
 
-from squishy.support.test                         import USBGatewareTest
 from squishy.gateware.usb.quirks.windows          import GetDescriptorSetHandler, WindowsRequestHandler
+from squishy.support.test                         import USBGatewareTest
 
 def _make_platform_descriptors():
 	desc_collection = PlatformDescriptorCollection()
