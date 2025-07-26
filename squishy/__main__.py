@@ -13,4 +13,4 @@ except ImportError:
 
 	from squishy.cli import main
 
-sys.exit(main())
+raise SystemExit(main())
