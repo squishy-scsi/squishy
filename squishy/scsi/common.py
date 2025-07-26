@@ -4,7 +4,7 @@
 
 '''
 
-from enum   import auto, unique, IntEnum
+from enum import IntEnum, auto, unique
 
 __all__ = (
 	'SCSIInterface',

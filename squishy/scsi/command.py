@@ -10,13 +10,10 @@ from itertools import takewhile
 from typing    import Any
 
 from construct import (
-	Struct, Subconstruct, Const, Default,
-	Int8ul, Int16ul, Int24ul, Int32ul, Int64ul,
-	Int8sl, Int16sl, Int24sl, Int32sl, Int64sl,
-	Int8ub, Int16ub, Int24ub, Int32ub, Int64ub,
-	Int8sb, Int16sb, Int24sb, Int32sb, Int64sb,
-	BytesInteger, Bytewise,
-	BitStruct, BitsInteger, Bitwise
+	BitsInteger, BitStruct, Bitwise, BytesInteger, Bytewise, Const, Default,
+	Int8sb, Int8sl, Int8ub, Int8ul, Int16sb, Int16sl, Int16ub, Int16ul,
+	Int24sb, Int24sl, Int24ub, Int24ul, Int32sb, Int32sl, Int32ub, Int32ul,
+	Int64sb, Int64sl, Int64ub, Int64ul, Struct, Subconstruct,
 )
 
 __all__ = (

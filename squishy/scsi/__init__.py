@@ -8,9 +8,7 @@ SCSI messages, as well as helpers for dealing with SCSI devices and SCSI traffic
 
 '''
 
-
-from . import messages
-from . import commands
+from . import commands, messages
 
 __all__ = (
 	'messages',
