@@ -1,3 +1,5 @@
-*.elf   filter=lfs diff=lfs merge=lfs -text
-*.bin   filter=lfs diff=lfs merge=lfs -text
-*.bit   filter=lfs diff=lfs merge=lfs -text
+# SPDX-License-Identifier: BSD-3-Clause
+
+* text=auto eol=lf
+
+docs/** linguist-documentation

@@ -1,28 +1,51 @@
+# SPDX-License-Identifier: BSD-3-Clause
+
+/build
+
+# Python
 __pycache__/
-_autosave-*
-_build/
-.coverage
-.eggs/
-.pyc
-.pytest_cache/
-.venv/
-.vscode/
+*.py[codz]
 *.egg-info/
-*.FCStd[0-9]
-*.kicad_pcb-bak
-*.sch-bak
-*.slvs~
-*.tar*
-*.zip
-\#auto_saved_files\#
-fp-info-cache
-build/
-dist/
-htmlcov/
-kibus.log
-pyoxidizer.bzl
-test-vcds/
-*.bkp
+*.eggs/
+.venv/
+.env/
 .nox/
 .mypy_cache/
-.flatpak-builder/
+.ruff_cache/
+
+# Coverage Artifacts
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Test Artifacts
+tests/**/spec_*/
+*.vcd
+*.fst
+*.ghw
+*.ftr
+*.gtkw
+*.surf.ron
+
+# Miscellaneous Artifacts
+*.il
+*.v
+*.sv
+*.vhd
+*.vhdl
+*.bkp
+
+# Docs Inversions
+# NOTE(aki): We want to include some files we exclude here in the docs
+!docs/_code/**/*.il
+!docs/_code/**/*.v
+!docs/_code/**/*.sv
+!docs/_code/**/*.vhd
+!docs/_code/**/*.vhdl
+!docs/_code/**/*.vcd
+!docs/_code/**/*.gtkw
+!docs/_code/**/*.surf.ron
+
+# Code Editors/IDEs
+.vscode/*
