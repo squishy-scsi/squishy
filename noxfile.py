@@ -114,11 +114,14 @@ def typecheck_mypy(session: Session) -> None:
 @nox.session(reuse_venv = True)
 def lint(session: Session) -> None:
 	session.install('flake8')
+	session.install('ruff')
 
 	session.run(
 		'flake8', '--config', str((CNTRB_DIR / '.flake8').resolve()),
 		'./squishy', './tests', './examples', './docs'
 	)
+	session.run('ruff', 'check', './squishy', './tests', './examples', './docs')
+
 
 @nox.session(reuse_venv = True)
 def dist(session: Session) -> None:
