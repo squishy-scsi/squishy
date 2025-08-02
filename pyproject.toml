@@ -134,3 +134,52 @@ module = [
 	'usb1.*',
 ]
 ignore_missing_imports = true
+
+# Code Formatting
+[tool.ruff]
+cache-dir = 'build/.ruff_cache'
+src = [
+	'examples', 'tests', 'squishy', 'docs'
+]
+indent-width = 4
+line-length = 120
+respect-gitignore = true
+target-version = 'py311'
+
+# NOTE(aki):
+# We can't use the Ruff formatter as is, and they refuse to add support for single quotes
+# on docstring, among some other things, so this is just mostly here for reference.
+[tool.ruff.format]
+docstring-code-format = true
+indent-style = 'tab'
+line-ending = 'lf'
+# Due to Ruff being stupid and not letting us use `'''` we have to use this
+quote-style = 'preserve'
+
+[tool.ruff.lint]
+select = ['E', 'F', 'W']
+# NOTE(aki):
+# Commented out ignores are not supported by Ruff but are by Flake8,
+# they are present in `contrib/.flake8`.
+ignore = [
+	# 'E126', # Continuation line over-indented for hanging indent
+	'E201', # Whitespace after '('
+	'E202', # Whitespace before ')'
+	'E221', # Multiple spaces before operator
+	'E241', # Multiple spaces after ','
+	'E251', # Unexpected spaces around keyword / parameter equals
+	'E261', # At least two spaces before inline comment
+	'E272', # Multiple spaces before keyword
+	'E302', # Expected 2 blank lines, found n
+	'E305', # Expected 2 blank lines after end of function or class
+	'W191', # Indentation contains tabs
+	# 'W504', # line break after binary operator
+]
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = 'single'
+inline-quotes  = 'single'
+multiline-quotes = 'single'
+
+[tool.ruff.lint.isort]
+lines-after-imports = 1
