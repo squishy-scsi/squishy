@@ -33,24 +33,16 @@ _FLASH_DATA = (
 
 
 _SPI_RECORD = Record((
-	('clk', [
-		('o', 1, Direction.FANOUT),
-	]),
-	('cs', [
-		('o', 1, Direction.FANOUT),
-	]),
-	('copi', [
-		('o', 1, Direction.FANOUT),
-	]),
-	('cipo', [
-		('i', 1, Direction.FANIN),
-	]),
+	('clk', [ ('o', 1, Direction.FANOUT), ]),
+	('cs', [ ('o', 1, Direction.FANOUT), ]),
+	('copi', [ ('o', 1, Direction.FANOUT), ]),
+	('cipo', [ ('i', 1, Direction.FANIN), ]),
 ))
 
 class DUTPlatform:
 	flash = FlashConfig(
 		geometry = Geometry(
-			size       = 512*1024,
+			size       = 512 * 1024,
 			page_size  = 64,
 			erase_size = 256,
 			slot_size  = 262144,
@@ -111,8 +103,9 @@ class SPIFlashTests(SPIGatewareTest):
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 
-	def spi_trans(self, *,
-		copi: tuple[int, ...] | None = None, cipo: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False
+	def spi_trans(
+		self, *, copi: tuple[int, ...] | None = None, cipo: tuple[int, ...] | None = None, partial: bool = False,
+		continuation: bool = False
 	):
 		if cipo is not None and copi is not None:
 			self.assertEqual(len(cipo), len(copi))

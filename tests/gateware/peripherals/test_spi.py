@@ -162,7 +162,6 @@ class TestRegisters(Multiplexer):
 		self._test1   = Element(self._data_width, Element.Access.RW,  name = 'test1')
 		self._test2   = Element(self._data_width, Element.Access.RW,  name = 'test2')
 
-
 		self.add(self._test1, addr = 0x0)
 		self.add(self._test2, addr = 0x1)
 
@@ -186,8 +185,6 @@ class TestRegisters(Multiplexer):
 			m.d.sync += [ self.test2_w.eq(self._test2.w_data), ]
 
 		return m
-
-
 
 class PeripheralDUTWrapper(Elaboratable):
 	def __init__(self) -> None:
@@ -257,7 +254,6 @@ class SPIPeripheralTests(SPIGatewareTest):
 		yield
 		self.assertEqual((yield cipo), ((data_out >> 7) & 1))
 
-
 	@ToriiTestCase.simulation
 	def test_spi_peripheral(self):
 
@@ -302,7 +298,6 @@ class SPIPeripheralTests(SPIGatewareTest):
 			self.assertEqual((yield csr_bus.addr), 1)
 			self.assertEqual((yield csr_bus.w_data), 0xAA)
 
-
 		@ToriiTestCase.sync_domain(domain = 'test')
 		def spi_domain(self: SPIPeripheralTests):
 			yield
@@ -317,7 +312,6 @@ class SPIPeripheralTests(SPIGatewareTest):
 			yield
 			yield from self.send_recv(0, 0xF0, 0x55, False)
 			yield from self.send_recv(None, 0xAA, 0x0F, True)
-
 
 		sync_domain(self)
 		spi_domain(self)

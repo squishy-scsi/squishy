@@ -40,7 +40,6 @@ class DUTWrapper(Elaboratable):
 			controller = self._spi, write_fifo = self._write_fifo, read_fifo = self._read_fifo
 		)
 
-
 		self.ready      = self._psram.ready
 		self.done       = self._psram.done
 		self.start_r    = self._psram.start_r
@@ -52,7 +51,6 @@ class DUTWrapper(Elaboratable):
 		self.byte_count = self._psram.byte_count
 
 		self.itr = Signal(range(len(_PSRAM_DATA)))
-
 
 	def elaborate(self, _) -> Module:
 		m = Module()
@@ -68,7 +66,6 @@ class DUTWrapper(Elaboratable):
 			m.d.sync += [ self.itr.inc(), ]
 
 		return m
-
 
 class SPIPSRAMTests(SPIGatewareTest):
 	dut: DUTWrapper = DUTWrapper
@@ -106,11 +103,13 @@ class SPIPSRAMTests(SPIGatewareTest):
 				yield from self.step(10)
 				self.assertEqual((yield cs), 1)
 				yield from self.spi_trans(
-					copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True, continuation = True
+					copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True,
+					continuation = True
 				)
 
-	def spi_trans(self, *,
-		copi_data: tuple[int, ...] | None = None, cipo_data: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False
+	def spi_trans(
+		self, *, copi_data: tuple[int, ...] | None = None, cipo_data: tuple[int, ...] | None = None,
+		partial: bool = False, continuation: bool = False
 	):
 		if cipo_data is not None and copi_data is not None:
 			self.assertEqual(len(cipo_data), len(copi_data))
@@ -160,7 +159,6 @@ class SPIPSRAMTests(SPIGatewareTest):
 			yield Settle()
 			yield
 
-
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'sync')
 	def test_psram_write(self):
@@ -198,7 +196,9 @@ class SPIPSRAMTests(SPIGatewareTest):
 		self.assertEqual((yield cs), 1)
 		yield from self.step(11)
 		self.assertEqual((yield cs), 1)
-		yield from self.spi_trans(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True, continuation = True)
+		yield from self.spi_trans(
+			copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True, continuation = True
+		)
 		self.assertEqual((yield self.dut._write_fifo.r_rdy), 0)
 		yield
 		yield Settle()
@@ -257,7 +257,6 @@ class SPIPSRAMTests(SPIGatewareTest):
 			yield from self.wait_until_low(self.dut._read_fifo.w_level)
 			yield
 
-
 		@ToriiTestCase.sync_domain(domain = 'sync')
 		def psram_read(self: SPIPSRAMTests):
 			yield
@@ -294,7 +293,9 @@ class SPIPSRAMTests(SPIGatewareTest):
 			self.assertEqual((yield cs), 1)
 			yield from self.step(11)
 			self.assertEqual((yield cs), 1)
-			yield from self.spi_trans(copi_data = (SPIPSRAMCmd.READ, 0xA5, 0xA5, 0xA5), partial = True, continuation = True)
+			yield from self.spi_trans(
+				copi_data = (SPIPSRAMCmd.READ, 0xA5, 0xA5, 0xA5), partial = True, continuation = True
+			)
 
 			for idx, byte in enumerate(_PSRAM_DATA):
 				final   = idx == len(_PSRAM_DATA) - 1
@@ -307,7 +308,7 @@ class SPIPSRAMTests(SPIGatewareTest):
 					yield from self.wait_until_high(self.dut._read_fifo.w_rdy)
 					yield
 
-				yield from self.spi_trans(cipo_data = (byte,) , partial = do_cont, continuation = True)
+				yield from self.spi_trans(cipo_data = (byte,), partial = do_cont, continuation = True)
 
 				# We are wrapping addresses
 				if not do_cont:
@@ -318,8 +319,8 @@ class SPIPSRAMTests(SPIGatewareTest):
 						yield from self.step(10)
 						self.assertEqual((yield cs), 1)
 						yield from self.spi_trans(
-							copi_data = (SPIPSRAMCmd.READ, *(idx + 0xA5A5A6).to_bytes(3, byteorder = 'big')), partial = True,
-							continuation = True
+							copi_data = (SPIPSRAMCmd.READ, *(idx + 0xA5A5A6).to_bytes(3, byteorder = 'big')),
+							partial = True, continuation = True
 						)
 						yield
 
@@ -365,7 +366,6 @@ class SPIPSRAMTests(SPIGatewareTest):
 			ValueError, r'^One or both of `write_fifo` or `read_fifo` is required to be set$'
 		):
 			_ = SPIPSRAM(controller = spi)
-
 
 		# Ensure we can construct a write-only SPIPSRAM controller
 		dut = SPIPSRAM(controller = spi, write_fifo = fifo)
