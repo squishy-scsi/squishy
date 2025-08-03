@@ -129,7 +129,9 @@ class SquishyPlatform(metaclass = ABCMeta):
 		raise NotImplementedError('SquishyPlatform requires pack_artifact to be implemented')
 
 	@abstractmethod
-	def build_image(self, name: str, build_dir: Path, boot_name: str, products: BuildProducts, *, args: Namespace) -> Path:
+	def build_image(
+		self, name: str, build_dir: Path, boot_name: str, products: BuildProducts, *, args: Namespace
+	) -> Path:
 		'''
 		Build a platform compatible flash image for provisioning.
 

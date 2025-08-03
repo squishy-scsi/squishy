@@ -23,7 +23,9 @@ from pathlib                            import Path
 
 from torii.build                        import Attrs, Clock, DiffPairs, PinsN, Resource, Subsignal
 from torii.build.run                    import BuildProducts
-from torii.hdl                          import ClockDomain, ClockSignal, Const, Elaboratable, Instance, Module, ResetSignal, Signal
+from torii.hdl                          import (
+	ClockDomain, ClockSignal, Const, Elaboratable, Instance, Module, ResetSignal, Signal
+)
 from torii.platform.resources.interface import ULPIResource
 from torii.platform.resources.memory    import SDCardResources
 from torii.platform.resources.user      import LEDResources
@@ -203,19 +205,17 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 	ephemeral_slot = 3
 
 	resources  = [
-		Resource('clk', 0,
-			DiffPairs('P3', 'P4', dir = 'i'),
-			Clock(100e6),
-			Attrs(IO_TYPE = 'LVDS')
-		),
+		Resource('clk', 0, DiffPairs('P3', 'P4', dir = 'i'), Clock(100e6), Attrs(IO_TYPE = 'LVDS')),
 
 		# Ext Trigger
-		Resource('trig', 0,
+		Resource(
+			'trig', 0,
 			Subsignal('trigger', PinsN('H1', dir = 'io')),
 			Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
-		*SDCardResources('sd_card', 0,
+		*SDCardResources(
+			'sd_card', 0,
 			clk = 'M1', cmd = 'L2', cd = 'N2',
 			dat0 = 'M3', dat1 = 'N1', dat2 = 'L3', dat3 = 'L1',
 			attrs = Attrs(IO_TYPE = 'LVCMOS33')
@@ -245,7 +245,8 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		),
 
 		# HyperRAM Cache, This is a weird 2-banked w/ 2 chips per bank layout
-		BankedHyperRAM('ram', 0,
+		BankedHyperRAM(
+			'ram', 0,
 			data_even = 'E18 E17 D18 E19 E20 F19 F18 F17', # DQ[0:7]
 			cs_even   = 'D20 C18', # CS0/CS1
 			clk_even  = 'C20 D19', # P/N
@@ -259,7 +260,8 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			attrs     = Attrs(IO_TYPE = 'LVCMOS18', SLEWRATE = 'FAST')
 		),
 
-		ULPIResource('ulpi', 0,
+		ULPIResource(
+			'ulpi', 0,
 			#        D0  D1  D2  D3  D4  D5  D6  D7
 			data = 'R18 R20 P19 P20 N20 N19 M20 M19',
 			clk  = 'P18', clk_dir = 'i', # NOTE(aki): This /not technically/ a clock input pin, oops
@@ -272,13 +274,15 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		),
 
 		# The USB 3.1 Super-Speed is bound to DCU 1, CH 1, refclk is 200MHz
-		USB3SerDesPHY('usb3', 0,
+		USB3SerDesPHY(
+			'usb3', 0,
 			rx_p = 'Y16', rx_n = 'Y17',
 			tx_p = 'W17', tx_n = 'W18',
 			refclk_p = 'Y19', refclk_n = 'W20', # NOTE(aki): Polarity inverted
 		),
 
-		PDController('usb_pd', 0,
+		PDController(
+			'usb_pd', 0,
 			scl = 'M18',
 			# Errata: The schematic has a typo calling it `PD_SCA` rather than `PD_SDA`
 			sda = 'N17',
@@ -286,12 +290,14 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 			attrs = Attrs(IO_TYPE = 'LVCMOS33')
 		),
 
-		SquishySCSIPhy('scsi_phy', 0,
+		SquishySCSIPhy(
+			'scsi_phy', 0,
 			#              0  1  2  3  4  5  6   7  P0
 			data_lower = 'B5 A6 B6 A8 B8 A9 B9 A10 B10',
 			#               8   9  10  11 12 13 14 15 P1
 			data_upper = 'A18 B18 A19 B19 A2 B1 A4 B2 A5',
-			atn = 'B11', bsy = 'A11', ack = 'C11', rst = 'A13', msg = 'B13', sel = 'A15', cd = 'B15', req = 'A17', io = '16',
+			atn = 'B11', bsy = 'A11', ack = 'C11', rst = 'A13', msg = 'B13', sel = 'A15', cd = 'B15', req = 'A17',
+			io = '16',
 			data_lower_dir = 'B3', data_upper_dir = 'C1',
 			target_dir = 'B17', initiator_dir = 'B12', bsy_dir = 'A12', rst_dir = 'A14', sel_dir = 'A16',
 			scl = 'F2', sda = 'E1', termpwr_en = 'D1', prsnt = 'E2',
@@ -300,7 +306,8 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 		),
 
 		# SCSI PHY Current ADC
-		PhyADC('phy_adc', 0,
+		PhyADC(
+			'phy_adc', 0,
 			clk = 'F1', dat = 'G2', chan = 'G1',
 			attrs = Attrs(IO_TYPE = 'LVCMOS33')
 		),
@@ -344,8 +351,9 @@ class SquishyRev2(SquishyPlatform, ECP5Platform):
 
 		return slot
 
-
-	def build_image(self, name: str, build_dir: Path, boot_name: str, products: BuildProducts, *, args: Namespace) -> Path:
+	def build_image(
+		self, name: str, build_dir: Path, boot_name: str, products: BuildProducts, *, args: Namespace
+	) -> Path:
 		'''
 		Build multi-boot compatible flash image to provision onto the device.
 

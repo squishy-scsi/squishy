@@ -23,7 +23,9 @@ from pathlib                             import Path
 
 from torii.build                         import Attrs, Clock, Pins, PinsN, Resource, Subsignal
 from torii.build.run                     import BuildProducts
-from torii.hdl                           import ClockDomain, ClockSignal, Const, Elaboratable, Instance, Module, ResetSignal, Signal
+from torii.hdl                           import (
+	ClockDomain, ClockSignal, Const, Elaboratable, Instance, Module, ResetSignal, Signal
+)
 from torii.platform.resources.interface  import UARTResource
 from torii.platform.resources.memory     import SPIFlashResources
 from torii.platform.resources.user       import LEDResources
@@ -109,8 +111,8 @@ class SquishyRev1(SquishyPlatform, ICE40Platform):
 	Squishy hardware, Revision 1.
 
 	This `Torii <https://torii.shmdn.link/>`_ platform is for the first revision of the Squishy SCSI hardware. It
-	is based on the `Lattice iCE40-HX8K <https://www.latticesemi.com/iCE40>`_ and was primarily built to target SCSI-1 HVD
-	only.
+	is based on the `Lattice iCE40-HX8K <https://www.latticesemi.com/iCE40>`_ and was primarily built to target SCSI-1
+	HVD only.
 
 	The hardware `design files <https://github.com/squishy-scsi/hardware/tree/main/release/rev1>`_ can be found
 	in the hardware repository on `GitHub <https://github.com/squishy-scsi/hardware>`_ under the ``release/rev1`` tree.
@@ -149,34 +151,17 @@ class SquishyRev1(SquishyPlatform, ICE40Platform):
 	clk_domain_generator = Rev1ClockDomainGenerator
 
 	resources = [
-		Resource('clk', 0,
-			Pins('L5', dir = 'i'),
-			Clock(48e6),
-			Attrs(GLOBAL = True, IO_STANDARD = 'SB_LVCMOS')
-		),
+		Resource('clk', 0, Pins('L5', dir = 'i'), Clock(48e6), Attrs(GLOBAL = True, IO_STANDARD = 'SB_LVCMOS')),
 
-		Resource('ulpi', 0,
-			Subsignal('clk',
-				Pins('G1', dir = 'i'),
-				Clock(60e6),
-				Attrs(GLOBAL = True)
-			),
-			Subsignal('data',
-				Pins('E1 E2 F1 F2 G2 H1 H2 J1', dir = 'io')
-			),
-			Subsignal('dir',
-				Pins('D1', dir = 'i')
-			),
-			Subsignal('nxt',
-				Pins('D2', dir = 'i')
-			),
-			Subsignal('stp',
-				Pins('C2', dir = 'o')
-			),
-			Subsignal('rst',
-				PinsN('C1', dir = 'o')
-			),
-
+		# TODO(aki): Replace with ULPIResource
+		Resource(
+			'ulpi', 0,
+			Subsignal('clk', Pins('G1', dir = 'i'), Clock(60e6), Attrs(GLOBAL = True)),
+			Subsignal('data', Pins('E1 E2 F1 F2 G2 H1 H2 J1', dir = 'io')),
+			Subsignal('dir', Pins('D1', dir = 'i')),
+			Subsignal('nxt', Pins('D2', dir = 'i')),
+			Subsignal('stp', Pins('C2', dir = 'o')),
+			Subsignal('rst', PinsN('C1', dir = 'o')),
 			Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 
@@ -207,13 +192,14 @@ class SquishyRev1(SquishyPlatform, ICE40Platform):
 			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS'),
 		),
 
-		*SPIFlashResources(0,
+		*SPIFlashResources(
+			0,
 			cs_n = 'K10', clk = 'L10', copi = 'K9', cipo = 'J9',
-
 			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
 
-		UARTResource(0,
+		UARTResource(
+			0,
 			rx = 'L7', tx = 'K7',
 			attrs = Attrs(IO_STANDARD = 'SB_LVCMOS')
 		),
@@ -250,7 +236,6 @@ class SquishyRev1(SquishyPlatform, ICE40Platform):
 
 		return artifact
 
-
 	def _build_slots(self, geometry: FlashGeometry) -> bytes:
 		'''
 		Construct an iCE40 multi-boot viable flash image based on the platform flash topology.
@@ -278,7 +263,9 @@ class SquishyRev1(SquishyPlatform, ICE40Platform):
 
 		return bytes(slot_data)
 
-	def build_image(self, name: str, build_dir: Path, boot_name: str, products: BuildProducts, *, args: Namespace) -> Path:
+	def build_image(
+		self, name: str, build_dir: Path, boot_name: str, products: BuildProducts, *, args: Namespace
+	) -> Path:
 		'''
 		Build multi-boot compatible flash image to provision onto the device.
 
