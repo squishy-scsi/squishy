@@ -134,7 +134,6 @@ class DFURequestHandler(USBRequestHandler):
 		self.trigger_reboot = Signal()
 		self.slot_selection = Signal(2)
 
-
 	def elaborate(self, platform: SquishyPlatformType) -> Module:
 		m = Module()
 
@@ -158,7 +157,6 @@ class DFURequestHandler(USBRequestHandler):
 				self.dl_finish.eq(0),
 				self.slot_changed.eq(0),
 			]
-
 
 		m.submodules.transmitter = transmitter = StreamSerializer(
 			data_length = 6, domain = 'usb', stream_type = USBInStreamInterface, max_length_width = 3
@@ -237,7 +235,6 @@ class DFURequestHandler(USBRequestHandler):
 							m.d.usb += [ dfu_cfg.state.eq(DFUState.DlIdle), ]
 
 					m.next = 'IDLE'
-
 
 			with m.State('HANDLE_GET_STATE'):
 				m.d.comb += [
@@ -356,7 +353,6 @@ class DFURequestHandler(USBRequestHandler):
 				with m.If(interface.data_requested | interface.status_requested):
 					m.d.comb += [ interface.handshakes_out.stall.eq(1), ]
 					m.next = 'IDLE'
-
 
 		if not self._is_stub:
 			m.d.comb += [
