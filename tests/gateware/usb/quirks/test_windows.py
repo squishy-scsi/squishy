@@ -39,7 +39,6 @@ class GetDescriptorSetHandlerTests(USBGatewareTest):
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 
-
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'usb')
 	def test_get_desc_set(self):
