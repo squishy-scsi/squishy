@@ -165,7 +165,6 @@ class SquishyApplet(metaclass = ABCMeta):
 		'''
 		raise NotImplementedError('Applets must implement this method')
 
-
 	@abstractmethod
 	def run(self, args: Namespace, dev: SquishyDevice) -> int:
 		'''
