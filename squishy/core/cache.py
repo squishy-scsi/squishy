@@ -105,7 +105,6 @@ class SquishyCache:
 			log.debug('No cache entry found, creating')
 			cache_dir.mkdir(parents = True)
 
-
 		# Archive build assets
 		arc_name = f'{name}.src.tar.xz'
 		arc_path = cache_dir / arc_name

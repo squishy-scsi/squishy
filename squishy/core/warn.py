@@ -102,14 +102,14 @@ def _warning_handler(msg: Warning | str, cat: type[Warning], fname: str, lineno:
 	if isinstance(msg, Warning):
 		pass
 
-
 	log.warning(f'[green]{cat.__name__}[/][white]:[/] {msg}', extra = { 'markup': True })
 	# If we are allowed to dump the source and it's not the magic sys module then do so.
 	if do_src_dump:
 		_dump_file_lines(fname, lineno)
 	else:
-		log.warning(f'Warning originated from: [cyan]{fname}[/][white]:[/][magenta]{lineno}[/]', extra = { 'markup': True })
-
+		log.warning(
+			f'Warning originated from: [cyan]{fname}[/][white]:[/][magenta]{lineno}[/]', extra = { 'markup': True }
+		)
 
 
 def install_handler(reset_filter: bool = False) -> None:
@@ -130,5 +130,8 @@ def install_handler(reset_filter: bool = False) -> None:
 	warnings.showwarning = _warning_handler
 
 def remove_handler() -> None:
-	''' Replace the original value of ``warnings.showwarning`` from when this module was loaded, may not be the built-in '''
+	'''
+	Replace the original value of ``warnings.showwarning`` from when this module was loaded, may not be the built-in
+	'''
+
 	warnings.showwarning = _original_handler

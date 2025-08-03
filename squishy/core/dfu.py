@@ -33,17 +33,17 @@ class DFUState(IntEnum):
 
 	def __str__(self) -> str:
 		return {
-			DFUState.AppIdle    : 'Device is running normal application',
-			DFUState.AppDetach  : 'Device is running normal application, waiting to reset',
-			DFUState.DFUIdle    : 'Device is in DFU mode',
-			DFUState.DlSync     : 'Device has received a block',
-			DFUState.DlBusy     : 'Device is programming a block',
-			DFUState.DlIdle     : 'Device is processing a download',
-			DFUState.DFUMFSync  : 'Device has received the final block',
+			DFUState.AppIdle: 'Device is running normal application',
+			DFUState.AppDetach: 'Device is running normal application, waiting to reset',
+			DFUState.DFUIdle: 'Device is in DFU mode',
+			DFUState.DlSync: 'Device has received a block',
+			DFUState.DlBusy: 'Device is programming a block',
+			DFUState.DlIdle: 'Device is processing a download',
+			DFUState.DFUMFSync: 'Device has received the final block',
 			DFUState.DFUManifest: 'Device is manifesting',
-			DFUState.DFUMFWait  : 'Device had programmed its memory',
-			DFUState.UpIdle     : 'Device is processing an upload',
-			DFUState.Error      : 'Device failed the vibe check',
+			DFUState.DFUMFWait: 'Device had programmed its memory',
+			DFUState.UpIdle: 'Device is processing an upload',
+			DFUState.Error: 'Device failed the vibe check',
 		}.get(self, f'Unknown DFU State: {int(self)}')
 
 	def __int__(self) -> int:
@@ -70,17 +70,17 @@ class DFUStatus(IntEnum):
 
 	def __str__(self) -> str:
 		return {
-			DFUStatus.Okay              : 'No error condition is present',
-			DFUStatus.TargetError       : 'File is not targeted for this device',
-			DFUStatus.FileError         : 'File is for device but fails vendor vibe check',
-			DFUStatus.WriteError        : 'Device is unable to write memory',
-			DFUStatus.EraseError        : 'Memory erase function failed',
-			DFUStatus.CheckErasedError  : 'Memory erase check failed',
-			DFUStatus.ProgramError      : 'Program memory function failed',
-			DFUStatus.VerifyError       : 'Programmed memory failed verification',
-			DFUStatus.AddressError      : 'Cannot program memory, address out of range',
-			DFUStatus.NotDoneError      : 'Received DFU_DNLOAD with length 0 but device does not think it\'s done',
-			DFUStatus.FirmwareError     : 'Unknown error occurred',
+			DFUStatus.Okay: 'No error condition is present',
+			DFUStatus.TargetError: 'File is not targeted for this device',
+			DFUStatus.FileError: 'File is for device but fails vendor vibe check',
+			DFUStatus.WriteError: 'Device is unable to write memory',
+			DFUStatus.EraseError: 'Memory erase function failed',
+			DFUStatus.CheckErasedError: 'Memory erase check failed',
+			DFUStatus.ProgramError: 'Program memory function failed',
+			DFUStatus.VerifyError: 'Programmed memory failed verification',
+			DFUStatus.AddressError: 'Cannot program memory, address out of range',
+			DFUStatus.NotDoneError: 'Received DFU_DNLOAD with length 0 but device does not think it\'s done',
+			DFUStatus.FirmwareError: 'Unknown error occurred',
 			DFUStatus.StalledPacketError: 'Device stalled an unexpected request'
 		}.get(self, f'Unknown DFU Status: {int(self)}')
 

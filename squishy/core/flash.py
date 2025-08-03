@@ -174,7 +174,9 @@ class Geometry:
 
 	'''
 
-	def __init__(self, *, size: int, page_size: int, erase_size: int, slot_size: int, slot_count: int = 4, addr_width: int = 24) -> None:
+	def __init__(
+		self, *, size: int, page_size: int, erase_size: int, slot_size: int, slot_count: int = 4, addr_width: int = 24
+	) -> None:
 		self.size       = size
 		self.page_size  = page_size
 		self.erase_size = erase_size
