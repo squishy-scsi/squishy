@@ -39,18 +39,15 @@ class AppletElaboratable(Elaboratable, metaclass = ABCMeta):
 	def __init__(self) -> None:
 		super().__init__()
 
-
 	@property
 	def usb_request_handlers(self) -> list[USBRequestHandler] | None:
 		''' Returns a list of USB request handlers '''
 		return None
 
-
 	@classmethod
 	def usb_init_descriptors(cls: Self, desc_collection: DeviceDescriptorCollection) -> int:
 		''' Initialize USB descriptors'''
 		return 0
-
 
 	@abstractmethod
 	def elaborate(self, platform: SquishyPlatformType) -> Module:
