@@ -131,7 +131,6 @@ class SupervisorCSRMap(Multiplexer):
 		self.slot       = SlotRegister()
 		self.irq_reason = IRQRegister()
 
-
 	def elaborate(self, platform: SquishyPlatformType | None) -> Module:
 		m = super().elaborate(platform)
 
@@ -147,6 +146,5 @@ class SupervisorCSRMap(Multiplexer):
 			m.d.sync += [ self.ctrl.eq(self._ctrl_sts.w_data), ]
 		with m.Elif(self.ctrl_rst):
 			m.d.sync += [ self.ctrl.eq(0), ]
-
 
 		return m
