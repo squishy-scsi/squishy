@@ -23,33 +23,31 @@ else:
 
 
 _SUPERVISOR_RECORD = Record((
-	('clk', [
-		('o', 1 , Direction.FANOUT),
-		('i',  1, Direction.FANIN ),
-		('oe', 1, Direction.FANOUT),
-	]),
-	('copi', [
-		('o',  1, Direction.FANOUT),
-		('i',  1, Direction.FANIN ),
-		('oe', 1, Direction.FANOUT),
-	]),
-	('cipo', [
-		('o',  1, Direction.FANOUT),
-		('i',  1, Direction.FANIN ),
-		('oe', 1, Direction.FANOUT),
-	]),
-	('attn', [
-		('i',  1, Direction.FANIN ),
-	]),
-	('psram', [
-		('o',  1, Direction.FANOUT ),
-	]),
-	('su_irq', [
-		('o',  1, Direction.FANOUT ),
-	]),
-	('bus_hold', [
-		('o',  1, Direction.FANOUT ),
-	]),
+	(
+		'clk', [
+			('o', 1, Direction.FANOUT),
+			('i', 1, Direction.FANIN ),
+			('oe', 1, Direction.FANOUT),
+		]
+	),
+	(
+		'copi', [
+			('o',  1, Direction.FANOUT),
+			('i',  1, Direction.FANIN ),
+			('oe', 1, Direction.FANOUT),
+		]
+	),
+	(
+		'cipo', [
+			('o',  1, Direction.FANOUT),
+			('i',  1, Direction.FANIN ),
+			('oe', 1, Direction.FANOUT),
+		]
+	),
+	('attn', [ ('i',  1, Direction.FANIN ), ]),
+	('psram', [ ('o',  1, Direction.FANOUT ), ]),
+	('su_irq', [ ('o',  1, Direction.FANOUT ), ]),
+	('bus_hold', [ ('o',  1, Direction.FANOUT ), ]),
 ))
 
 class DUTPlatform:
@@ -122,7 +120,6 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 
-
 	def send_recv_supervisor(self, addr: int | None, data_in: int, data_out: int, term: bool = True):
 		self.assertEqual((yield _SUPERVISOR_RECORD.clk.i), 0)
 		# Select the peripheral so we go into `READ_ADDR`
@@ -155,8 +152,9 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 		yield Settle()
 		yield
 
-	def send_recv_psram(self, *,
-		copi_data: tuple[int, ...] | None = None, cipo_data: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False
+	def send_recv_psram(
+		self, *, copi_data: tuple[int, ...] | None = None, cipo_data: tuple[int, ...] | None = None,
+		partial: bool = False, continuation: bool = False
 	):
 		if cipo_data is not None and copi_data is not None:
 			self.assertEqual(len(cipo_data), len(copi_data))
@@ -205,7 +203,6 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			yield Settle()
 			yield
 
-
 	@ToriiTestCase.simulation
 	def test_integration(self):
 		PAYLOAD_SIZE = len(_DFU_DATA).to_bytes(2, byteorder = 'little')
@@ -248,7 +245,6 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			yield from self.receive_data(data = (DFUState.DlIdle,))
 			yield
 
-
 			yield from self.send_dfu_download(length = 128)
 			yield from self.send_data(data = _DFU_DATA[:128])
 			yield from self.send_dfu_get_status()
@@ -270,7 +266,6 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			yield from self.send_dfu_get_state()
 			yield from self.receive_data(data = (DFUState.DlIdle,))
 			yield
-
 
 			yield from self.send_dfu_download(length = 0)
 			yield from self.send_data(data = ())
@@ -303,12 +298,14 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
 			yield from self.step(10)
 			self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
-			yield from self.send_recv_psram(copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True, continuation = True)
+			yield from self.send_recv_psram(
+				copi_data = (SPIPSRAMCmd.WRITE, 0x00, 0x00, 0x00), partial = True, continuation = True
+			)
 			for idx, byte in enumerate(_DFU_DATA):
 				final   = idx == len(_DFU_DATA) - 1
 				do_cont = (idx & 1023) != 1023
 
-				yield from self.send_recv_psram(copi_data = (byte,) , partial = not final, continuation = True)
+				yield from self.send_recv_psram(copi_data = (byte,), partial = not final, continuation = True)
 
 				# We are wrapping addresses
 				if not do_cont:
@@ -321,9 +318,9 @@ class Rev2BootloaderTests(USBGatewareTest, DFUGatewareTest):
 						yield from self.step(10)
 						self.assertEqual((yield _SUPERVISOR_RECORD.psram.o), 1)
 						yield from self.send_recv_psram(
-							copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True, continuation = True
+							copi_data = (SPIPSRAMCmd.WRITE, *(idx + 1).to_bytes(3, byteorder = 'big')), partial = True,
+							continuation = True
 						)
-
 
 		@ToriiTestCase.sync_domain(domain = 'supervisor')
 		def supervisor(self: Rev2BootloaderTests):

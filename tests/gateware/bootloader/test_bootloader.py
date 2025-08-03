@@ -16,46 +16,48 @@ from squishy.support.test                      import USBGatewarePHYTest
 __all__ = ()
 
 _SUPERVISOR_RECORD = Record((
-	('clk', [
-		('o', 1 , Direction.FANOUT),
-		('i',  1, Direction.FANIN ),
-		('oe', 1, Direction.FANOUT),
-	]),
-	('copi', [
-		('o',  1, Direction.FANOUT),
-		('i',  1, Direction.FANIN ),
-		('oe', 1, Direction.FANOUT),
-	]),
-	('cipo', [
-		('o',  1, Direction.FANOUT),
-		('i',  1, Direction.FANIN ),
-		('oe', 1, Direction.FANOUT),
-	]),
-	('attn', [
-		('i',  1, Direction.FANIN ),
-	]),
-	('psram', [
-		('o',  1, Direction.FANOUT ),
-	]),
-	('su_irq', [
-		('o',  1, Direction.FANOUT ),
-	]),
-	('bus_hold', [
-		('o',  1, Direction.FANOUT ),
-	]),
+	(
+		'clk', [
+			('o',  1, Direction.FANOUT),
+			('i',  1, Direction.FANIN ),
+			('oe', 1, Direction.FANOUT),
+		]
+	),
+	(
+		'copi', [
+			('o',  1, Direction.FANOUT),
+			('i',  1, Direction.FANIN ),
+			('oe', 1, Direction.FANOUT),
+		]
+	),
+	(
+		'cipo', [
+			('o',  1, Direction.FANOUT),
+			('i',  1, Direction.FANIN ),
+			('oe', 1, Direction.FANOUT),
+		]
+	),
+	('attn', [ ('i', 1, Direction.FANIN ), ]),
+	('psram', [ ('o', 1, Direction.FANOUT ), ]),
+	('su_irq', [ ('o', 1, Direction.FANOUT ), ]),
+	('bus_hold', [ ('o', 1, Direction.FANOUT ), ]),
 ))
 
 _USB_RECORD = Record((
-	('d_p', [
-		('o',  1, Direction.FANOUT),
-		('i',  1, Direction.FANIN ),
-		('oe', 1, Direction.FANOUT),
-	]),
-	('d_n', [
-		('o',  1, Direction.FANOUT),
-		('i',  1, Direction.FANIN ),
-		('oe', 1, Direction.FANOUT),
-	])
+	(
+		'd_p', [
+			('o',  1, Direction.FANOUT),
+			('i',  1, Direction.FANIN ),
+			('oe', 1, Direction.FANOUT),
+		]
+	),
+	(
+		'd_n', [
+			('o',  1, Direction.FANOUT),
+			('i',  1, Direction.FANIN ),
+			('oe', 1, Direction.FANOUT),
+		]
+	)
 ))
 
 _LEDS = (
@@ -182,7 +184,8 @@ class BootloaderTests(USBGatewarePHYTest):
 		crc = self.crc16_buff(descriptor)
 
 		# Send the SETUP packet to the device
-		yield from self.usb_send_setup_pkt(addr, (0xc0, *vendor_id.to_bytes(1), 0x00, 0x00,
+		yield from self.usb_send_setup_pkt(addr, (
+			0xc0, *vendor_id.to_bytes(1), 0x00, 0x00,
 			*MicrosoftRequests.GET_DESCRIPTOR_SET.to_bytes(2, byteorder = 'little'),
 			*len(descriptor).to_bytes(2, byteorder = 'little'),
 		))
@@ -249,7 +252,6 @@ class BootloaderTests(USBGatewarePHYTest):
 		@ToriiTestCase.sync_domain(domain = 'sync')
 		def sync(self: BootloaderTests):
 			yield from self.step(50)
-
 
 		usb(self)
 		usb_io(self)

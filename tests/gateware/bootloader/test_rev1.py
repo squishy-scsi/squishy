@@ -17,18 +17,10 @@ from squishy.support.test             import DFUGatewareTest, USBGatewareTest
 _DFU_DATA = randbytes(256)
 
 _SPI_RECORD = Record((
-	('clk', [
-		('o', 1, Direction.FANOUT),
-	]),
-	('cs', [
-		('o', 1, Direction.FANOUT),
-	]),
-	('copi', [
-		('o', 1, Direction.FANOUT),
-	]),
-	('cipo', [
-		('i', 1, Direction.FANIN),
-	]),
+	('clk', [ ('o', 1, Direction.FANOUT), ]),
+	('cs', [ ('o', 1, Direction.FANOUT), ]),
+	('copi', [ ('o', 1, Direction.FANOUT), ]),
+	('cipo', [ ('i', 1, Direction.FANIN), ]),
 ))
 
 class DFUPlatform:
@@ -92,8 +84,9 @@ class Rev1BootloaderTests(USBGatewareTest, DFUGatewareTest):
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
 
-	def spi_trans(self, *,
-		copi: tuple[int, ...] | None = None, cipo: tuple[int, ...] | None = None, partial: bool = False, continuation: bool = False
+	def spi_trans(
+		self, *, copi: tuple[int, ...] | None = None, cipo: tuple[int, ...] | None = None, partial: bool = False,
+		continuation: bool = False
 	):
 		if cipo is not None and copi is not None:
 			self.assertEqual(len(cipo), len(copi))
@@ -200,7 +193,6 @@ class Rev1BootloaderTests(USBGatewareTest, DFUGatewareTest):
 			self.assertEqual((yield _SPI_RECORD.clk.o),  1)
 			self.assertEqual((yield _SPI_RECORD.copi.o), 0)
 			self.assertEqual((yield _SPI_RECORD.cipo.i), 0)
-
 
 		dfu(self)
 		flash(self)
