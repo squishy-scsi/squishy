@@ -96,28 +96,23 @@ class iCE40BitstreamSlots:
 
 	_payload = Switch(
 		this.instruction, {
-			Opcodes.SPECIAL    : _special,
-			Opcodes.BOOT_ADDR  : _bootaddr,
+			Opcodes.SPECIAL: _special,
+			Opcodes.BOOT_ADDR: _bootaddr,
 			Opcodes.BANK_OFFSET: _bankoffset,
-			Opcodes.BOOT_MODE  : _bootmode,
+			Opcodes.BOOT_MODE: _bootmode,
 		}
 	)
 
 	_instruction = BitStruct(
 		'instruction' / Enum(Nibble, Opcodes),
 		StopIf(this.instruction == 0xF),
-		'byte_count' / Rebuild(Nibble, lambda this:
-			this._subcons.payload.sizeof(**this) // 8
-		),
+		'byte_count' / Rebuild(Nibble, lambda this: this._subcons.payload.sizeof(**this) // 8),
 		'payload' / Bytewise(_payload),
 	)
 
 	_slot = Struct(
 		'magic' / Const(0x7EAA997E, Int32ub),
-		'bitstream' / Padded(28,
-			GreedyRange(_instruction),
-			pattern = b'\xFF'
-		)
+		'bitstream' / Padded(28, GreedyRange(_instruction), pattern = b'\xFF')
 	)
 
 	def __init__(self, flash_geometry: Geometry) -> None:
@@ -180,7 +175,6 @@ class iCE40BitstreamSlots:
 			slots.append(iCE40BitstreamSlots._build_slot(partitions[slot]))
 
 		return slots
-
 
 	@staticmethod
 	def _build_slot(partition: Partition) -> bytes:
