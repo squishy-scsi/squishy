@@ -48,7 +48,9 @@ class GetDescriptorSetHandler(Elaboratable):
 	'''
 	element_size = 4
 
-	def __init__(self, desc_collection: PlatformDescriptorCollection, max_packet_len: int = 64, domain: str = 'usb') -> None:
+	def __init__(
+		self, desc_collection: PlatformDescriptorCollection, max_packet_len: int = 64, domain: str = 'usb'
+	) -> None:
 		'''
 		Parameters
 		----------
@@ -191,7 +193,6 @@ class GetDescriptorSetHandler(Elaboratable):
 
 		desc_len            = Signal.like(length)
 		desc_data_base_addr = Signal(read_port.addr.width)
-
 
 		on_first_packet = pos_in_stream == self.start_pos
 		on_last_packet  = (
