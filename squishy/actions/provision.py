@@ -131,7 +131,6 @@ class ProvisionAction(SquishySynthAction):
 				log.info(self.dfu_util_msg(p_name, 0, build_dir, dev))
 				return 0
 
-
 		if dev is None:
 			log.error('No device specified, however we were asked to program the device, aborting')
 			return 1

@@ -248,7 +248,6 @@ class SquishySynthAction(SquishyAction):
 		script_pre_synth = ''
 		script_post_synth = ''
 
-
 		if not build_dir.exists():
 			log.debug(f'Creating build directory {build_dir}')
 			build_dir.mkdir(parents = True)
@@ -276,7 +275,6 @@ class SquishySynthAction(SquishyAction):
 		if not args.no_routed_netlist:
 			pnr_opts.append(f'--write {name}.pnr.json')
 
-
 		# Check to see if we're overloading the default PNR seed, and said seed is the default
 		if pnr_seed is not None and args.pnr_seed == 0:
 			pnr_opts.append(f'--seed {pnr_seed}')
@@ -285,7 +283,6 @@ class SquishySynthAction(SquishyAction):
 			pnr_opts.append('-r')
 		else:
 			pnr_opts.append(f'--seed {args.pnr_seed}')
-
 
 		# Packing Options
 		if not args.dont_compress:
@@ -336,7 +333,9 @@ class SquishySynthAction(SquishyAction):
 
 			# Run the build
 			if prod is None:
-				log.info('Bitstream is not cached, this might take [yellow][i]a while[/][/]', extra = { 'markup': True })
+				log.info(
+					'Bitstream is not cached, this might take [yellow][i]a while[/][/]', extra = { 'markup': True }
+				)
 				progress.update(task, description = 'Building bitstream')
 				try:
 					prod = plan.execute_local(build_dir)
@@ -345,8 +344,14 @@ class SquishySynthAction(SquishyAction):
 					#            and point users to that rather than make them reach into the cache dir?
 					log.error(f'Building bitstream for \'{name}\' failed')
 					log.error(f'Consult the following log files in {build_dir} for more details:')
-					log.error(f'  [cyan]*[/] [link={build_dir}/{name}.rpt]\'{name}.rpt\'[/] [dim](Synthesis Report)[/]', extra = { 'markup': True })
-					log.error(f'  [cyan]*[/] [link={build_dir}/{name}.tim]\'{name}.tim\'[/] [dim](PnR Report)[/]', extra = { 'markup': True })
+					log.error(
+						f'  [cyan]*[/] [link={build_dir}/{name}.rpt]\'{name}.rpt\'[/] [dim](Synthesis Report)[/]',
+						extra = { 'markup': True }
+					)
+					log.error(
+						f'  [cyan]*[/] [link={build_dir}/{name}.tim]\'{name}.tim\'[/] [dim](PnR Report)[/]',
+						extra = { 'markup': True }
+					)
 					return None
 
 				# If we're allowed to, cache the products and then return that cached version
@@ -363,7 +368,6 @@ class SquishySynthAction(SquishyAction):
 			self.dump_utilization(name, prod)
 
 		return prod
-
 
 	def register_synth_args(self, parser: ArgumentParser, cacheable: bool = True) -> None:
 		'''
@@ -426,7 +430,8 @@ class SquishySynthAction(SquishyAction):
 		synth_options.add_argument(
 			'--no-aggressive-mapping',
 			action = 'store_true',
-			help   = 'Disable multiple `abc9` mapping passes, resulting in faster synth time but worse overall gateware performance.'
+			help   = 'Disable multiple `abc9` mapping passes, resulting in faster synth time but worse overall '
+			'gateware performance.'
 		)
 
 		pnr_options = parser.add_argument_group('Place-and-Route Options')
@@ -495,7 +500,8 @@ class SquishySynthAction(SquishyAction):
 			serial = f' -S {dev.serial}'
 
 		msg = f'Use \'dfu-util\' to flash \'{artifact_file}\' into slot {slot}\n'
-		msg += f'e.g. \'dfu-util -d {USB_VID:04X}:{USB_APP_PID:04X},:{USB_DFU_PID:04X}{serial} -a {slot} -R -D {artifact_file}\'\n'
+		msg += f'e.g. \'dfu-util -d {USB_VID:04X}:{USB_APP_PID:04X},:{USB_DFU_PID:04X}{serial}'
+		msg += f' -a {slot} -R -D {artifact_file}\'\n'
 
 		return msg
 
@@ -522,4 +528,4 @@ class SquishySynthAction(SquishyAction):
 		for name, util in pnr_rpt['utilization'].items():
 			used: int      = util['used']
 			available: int = util['available']
-			log.debug(f'    {name:>15}: {used:>5}/{available:>5} ({(used/available) * 100.0:>6.2f}%)')
+			log.debug(f'    {name:>15}: {used:>5}/{available:>5} ({(used / available) * 100.0:>6.2f}%)')

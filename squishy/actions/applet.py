@@ -166,7 +166,6 @@ class AppletAction(SquishySynthAction):
 		if slot is None or args.flash:
 			slot = 1
 
-
 		# Construct the gateware
 		gateware = SquishyGateware(
 			revision = plat.revision,
@@ -199,7 +198,6 @@ class AppletAction(SquishySynthAction):
 
 			log.info(self.dfu_util_msg(p_name, slot, build_dir, dev))
 			return 0
-
 
 		# If we *are* programming the device, then
 		with Progress(
