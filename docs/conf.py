@@ -48,10 +48,10 @@ graphviz_output_format      = 'svg'
 todo_include_todos          = True
 
 intersphinx_mapping = {
-	'python'    : ('https://docs.python.org/3', None),
-	'torii'     : (f'https://torii.shmdn.link/v{torii_version}', None),
-	'torii-usb' : ('https://torii-usb.shmdn.link/', None),
-	'construct' : ('https://construct.readthedocs.io/en/latest', None),
+	'python': ('https://docs.python.org/3', None),
+	'torii': (f'https://torii.shmdn.link/v{torii_version}', None),
+	'torii-usb': ('https://torii-usb.shmdn.link/', None),
+	'construct': ('https://construct.readthedocs.io/en/latest', None),
 }
 
 napoleon_google_docstring              = True
