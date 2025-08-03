@@ -314,22 +314,22 @@ class SCSICommandField(Subconstruct):
 	'''
 
 	TYPE_PREFIXES = {
-		'u8l' : Int8ul,
+		'u8l':  Int8ul,
 		'u16l': Int16ul,
 		'u24l': Int24ul,
 		'u32l': Int32ul,
 		'u64l': Int64ul,
-		's8l' : Int8sl,
+		's8l':  Int8sl,
 		's16l': Int16sl,
 		's24l': Int24sl,
 		's32l': Int32sl,
 		's64l': Int64sl,
-		'u8b' : Int8ub,
+		'u8b':  Int8ub,
 		'u16b': Int16ub,
 		'u24b': Int24ub,
 		'u32b': Int32ub,
 		'u64b': Int64ub,
-		's8b' : Int8sb,
+		's8b':  Int8sb,
 		's16b': Int16sb,
 		's24b': Int24sb,
 		's32b': Int32sb,
@@ -364,7 +364,7 @@ class SCSICommandField(Subconstruct):
 			The field name to extract type information from.
 		'''
 
-		def _get_prefix(name : str) -> str:
+		def _get_prefix(name: str) -> str:
 			return ''.join(takewhile(lambda c: not c.isupper(), name))
 
 		pfx = _get_prefix(field_name)
@@ -408,7 +408,6 @@ class SCSICommandField(Subconstruct):
 		else:
 			return BitsInteger(size)
 
-
 	def __init__(self, description: str = '', default: Any = None, *, length: int | None = None) -> None:
 		self.description = description
 		self.default = default
@@ -443,8 +442,6 @@ class SCSICommandField(Subconstruct):
 
 LUN = SCSICommandField('Logical Unit Number', default = 0, length = 3)
 ''' A :py:class:`SCSICommandField` convenience type for LUNs '''
-
-
 
 class SCSICommand(Struct):
 	'''
@@ -493,7 +490,7 @@ class SCSICommand(Struct):
 
 	Due to the split between ``group code`` and ``command code`` as well as the different classes that implement
 	commands, there is a large re-use of ``opcode``'s, this complicates things, as we need to know ahead of time what
-	the device is in order to succesfully dispatch and parse commands.
+	the device is in order to successfully dispatch and parse commands.
 
 	The ``control`` byte also has it's own 'sub structure'.
 
@@ -586,7 +583,7 @@ class SCSICommand(Struct):
 	the size in bytes either call the ``len()`` method or divide the result of the ``sizeof()``
 	call by ``8``.
 
-	''' # noqa: E101
+	''' # noqa: E501, E101
 
 	opcode_layout = 'opcode' / BitStruct(
 		'group'   / BitsInteger(3),
@@ -622,7 +619,9 @@ class SCSICommand(Struct):
 		), **subconskw)
 
 		# if (self.sizeof() // 8) != self.command_size:
-		# 	raise RuntimeError(f'Structure is actually {self.sizeof() // 8} bytes long but must be {self.command_size} bytes long.')
+		# 	raise RuntimeError(
+		# 		f'Structure is actually {self.sizeof() // 8} bytes long but must be {self.command_size} bytes long.'
+		# )
 
 	def __repr__(self):
 		return f'\n<SCSICommand opcode:{self.opcode:02X} group:{self.group_code:X} fields: {len(self.subcons) - 2}>'
@@ -691,7 +690,7 @@ class SCSICommand6(SCSICommand):
 	the size in bytes either call the ``len()`` method or divide the result of the ``sizeof()``
 	call by ``8``.
 
-	'''
+	''' # noqa: E501
 
 	def __init__(self, opcode: int, *subcons, **subconmskw) -> None:
 		super().__init__(opcode, GroupCode.GROUP0, *subcons, **subconmskw)
@@ -755,7 +754,7 @@ class SCSICommand10(SCSICommand):
 	the size in bytes either call the ``len()`` method or divide the result of the ``sizeof()``
 	call by ``8``.
 
-	'''
+	''' # noqa: E501
 
 	def __init__(self, opcode: int, *subcons, **subconmskw) -> None:
 		super().__init__(opcode, GroupCode.GROUP1, *subcons, **subconmskw)
@@ -823,7 +822,8 @@ class SCSICommand12(SCSICommand):
 	the size in bytes either call the ``len()`` method or divide the result of the ``sizeof()``
 	call by ``8``.
 
-	'''
+	''' # noqa: E501
+
 	def __init__(self, opcode: int, *subcons, **subconmskw) -> None:
 		super().__init__(opcode, GroupCode.GROUP5, *subcons, **subconmskw)
 
