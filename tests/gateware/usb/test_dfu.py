@@ -31,18 +31,10 @@ _DFU_DATA = (
 )
 
 _SPI_RECORD = Record((
-	('clk', [
-		('o', 1, Direction.FANOUT),
-	]),
-	('cs', [
-		('o', 1, Direction.FANOUT),
-	]),
-	('copi', [
-		('o', 1, Direction.FANOUT),
-	]),
-	('cipo', [
-		('i', 1, Direction.FANIN),
-	]),
+	('clk', [ ('o', 1, Direction.FANOUT), ]),
+	('cs', [ ('o', 1, Direction.FANOUT), ]),
+	('copi', [ ('o', 1, Direction.FANOUT), ]),
+	('cipo', [ ('i', 1, Direction.FANIN), ]),
 ))
 
 class DFUPlatform:
@@ -73,7 +65,6 @@ class DFURequestHandlerStubTests(USBGatewareTest, DFUGatewareTest):
 
 	def __init__(self, *args, **kwargs) -> None:
 		super().__init__(*args, **kwargs)
-
 
 	@ToriiTestCase.simulation
 	@ToriiTestCase.sync_domain(domain = 'usb')
