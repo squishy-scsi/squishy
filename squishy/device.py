@@ -59,7 +59,7 @@ def _find_if(collection: Iterable[T], predicate: Callable[[T], bool]) -> T | Non
 
 # TODO(aki): This kinda sucks, can we directly slice bytearrays?
 def _chunker(size: int, data: Iterable[T]):
-	return zip_longest(*[iter(data)]*size)
+	return zip_longest(*[iter(data)] * size)
 
 @contextmanager
 def usb_device_handle(dev: USBDevice):
@@ -191,7 +191,6 @@ class SquishyDevice:
 		# Otherwise, return the State and Status
 		return (DFUStatus(data[0]), DFUState(data[4]))
 
-
 	def _get_dfu_state(self) -> DFUState:
 		'''
 		Get the state for the DFU endpoint.
@@ -270,7 +269,9 @@ class SquishyDevice:
 					sent = 0
 				# Otherwise bubble it up
 				else:
-					raise RuntimeError(f'Unable to send DFU detach to `{self._usb_dev_str}` on interface `{interface_id}`')
+					raise RuntimeError(
+						f'Unable to send DFU detach to `{self._usb_dev_str}` on interface `{interface_id}`'
+					)
 
 		return sent == 0
 
@@ -562,7 +563,9 @@ class SquishyDevice:
 			found_device = attached[0]
 		# We're not yoinking the first, but we don't have a serial number
 		elif serial is None and not first:
-			log.error(f'No serial number specified and I\'m not allowed to pick the first of the {count} devices attached.')
+			log.error(
+				f'No serial number specified and I\'m not allowed to pick the first of the {count} devices attached.'
+			)
 			log.error('Please specify a serial number')
 			return None
 		# There are more the once device, and we have a serial number to look for
@@ -583,7 +586,6 @@ class SquishyDevice:
 		(serial_number, _, dev) = found_device
 		# We-forward propagate the serial number incase the input one is None
 		return cls(dev, serial_number)
-
 
 	@classmethod
 	def enumerate(cls: type[Self]) -> list[DeviceContainer]:
@@ -728,7 +730,8 @@ class SquishyDevice:
 		Raises
 		------
 		RuntimeError
-			If the DFU interface is unknown, the DFU control request times out, or we can't determine the transaction size
+			If the DFU interface is unknown, the DFU control request times out, or we can't determine the transaction
+			size.
 		'''
 
 		# First try to enter DFU mode
