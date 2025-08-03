@@ -13,7 +13,7 @@ functionality to help with writing and running Squishy-related gateware tests. T
 	* :py:class:`SPIGatewareTest` - Tests for SPI related gateware, contains helpers for driving a SPI bus for tests.
 	* :py:class:`SCSIGatewareTest` - Tests for SCSI related gateware.
 
-'''
+''' # noqa: E501
 
 from collections.abc                          import Iterable
 from typing                                   import Literal
@@ -326,7 +326,6 @@ class USBGatewarePHYTest(SquishyGatewareTest):
 		yield from self.usb_assert_k()
 		yield
 
-
 	def usb_eop(self):
 		'''
 		Emit a USB End-of-packet onto the bus.
@@ -496,7 +495,6 @@ class USBGatewarePHYTest(SquishyGatewareTest):
 		yield from self.usb_get_ack()
 		yield from self.step(10)
 
-
 	def usb_set_addr(self, addr: int):
 		'''
 		Emit a USB Set Address packet.
@@ -616,7 +614,7 @@ class USBGatewarePHYTest(SquishyGatewareTest):
 		))
 		last_data = USBPacketID.DATA0
 		for offset in range(0, len(data), 64):
-			chunk = data[offset : offset + 64]
+			chunk = data[offset:offset + 64]
 			crc = self.crc16_buff(chunk)
 			match last_data:
 				case USBPacketID.DATA0:
@@ -688,7 +686,6 @@ class USBGatewarePHYTest(SquishyGatewareTest):
 			The collection of bytes to assert against.
 		'''
 
-
 		yield from self.usb_assert_sync()
 		self._last_state = 'k'
 
@@ -714,7 +711,6 @@ class USBGatewareTest(SquishyGatewareTest):
 	def __init__(self, *args, **kwargs):
 		self.domains = (('usb', 60e6), *self.domains)
 		super().__init__(*args, **kwargs)
-
 
 	def setup_received(self):
 		''' Trigger a setup received event on the USB interface. '''
@@ -919,7 +915,6 @@ class USBGatewareTest(SquishyGatewareTest):
 		yield Settle()
 		yield
 
-
 	def send_get_desc(self, *, vendor_code, length, index):
 		'''
 		Inject a Get Descriptor request into the USB interface.
@@ -950,7 +945,6 @@ class DFUGatewareTest(SquishyGatewareTest):
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
 
-
 	def send_dfu_detach(self):
 		''' Inject a DFU Detach into the USB interface. '''
 
@@ -969,7 +963,8 @@ class DFUGatewareTest(SquishyGatewareTest):
 		'''
 
 		yield from self.send_setup(
-			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DOWNLOAD, value = 0, index = 0, length = length
+			type = USBRequestType.CLASS, retrieve = False, req = DFURequests.DOWNLOAD, value = 0, index = 0,
+			length = length
 		)
 
 	def send_dfu_get_status(self):
@@ -993,8 +988,6 @@ class SPIGatewareTest(SquishyGatewareTest):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-
-
 
 class SCSIGatewareTest(SquishyGatewareTest):
 	''' '''
