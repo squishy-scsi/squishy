@@ -172,7 +172,8 @@ class Rev2(Elaboratable):
 
 		m.d.comb += [
 			regs.ctrl_rst.eq(0),
-			spi.active_mode.eq(bus_hold), # We should always be a peripheral unless we're explicitly writing to the PSRAM
+			# We should always be a peripheral unless we're explicitly writing to the PSRAM
+			spi.active_mode.eq(bus_hold),
 
 			dl_ready.eq(psram.ready),
 			slot_ack.eq(0),
@@ -215,7 +216,6 @@ class Rev2(Elaboratable):
 				]
 				m.next = 'IDLE'
 
-
 			with m.State('DFU_TRANSFER_START'):
 				with m.If(dl_finish):
 					m.next = 'IDLE'
@@ -244,7 +244,6 @@ class Rev2(Elaboratable):
 					regs.irq_reason.boot.eq(1),
 					su_irq.eq(1),
 				]
-
 
 		m.submodules.ffs_reboot   = FFSynchronizer(self.trigger_reboot, trigger_reboot)
 		m.submodules.ffs_dl_size  = FFSynchronizer(self.dl_size, dl_size, stages = 3)

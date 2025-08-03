@@ -93,7 +93,9 @@ class Rev1(Elaboratable):
 		slot_rom = self._mk_rom(platform.flash.geometry)
 		m.submodules.slots = slots = slot_rom.read_port(transparent = False)
 
-		flash = SPIFlash(flash_resource = ('spi_flash_1x', 0), flash_geometry = platform.flash.geometry, fifo = self._bit_fifo)
+		flash = SPIFlash(
+			flash_resource = ('spi_flash_1x', 0), flash_geometry = platform.flash.geometry, fifo = self._bit_fifo
+		)
 
 		m.submodules.flash = flash
 
@@ -159,7 +161,6 @@ class Rev1(Elaboratable):
 		m.submodules.ps_dl_ready = ps_dl_ready = PulseSynchronizer(i_domain = 'sync', o_domain = 'usb')
 		m.submodules.ps_slot_ack = ps_slot_ack = PulseSynchronizer(i_domain = 'sync', o_domain = 'usb')
 
-
 		m.d.comb += [
 			ps_dl_ready.i.eq(dl_ready & ~dl_ready_delay),
 			self.dl_ready.eq(ps_dl_ready.o),
@@ -167,7 +168,6 @@ class Rev1(Elaboratable):
 			ps_slot_ack.i.eq(slot_ack),
 			self.slot_ack.eq(ps_slot_ack.o),
 		]
-
 
 		return m
 
