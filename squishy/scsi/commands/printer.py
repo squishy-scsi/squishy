@@ -11,7 +11,6 @@ __all__ = (
 	'print_cmd',
 	'slew_and_print',
 	'flush_buffer',
-	'recover_buffered_data',
 )
 
 format_printer = 'Format (Printer)' / BitStruct(

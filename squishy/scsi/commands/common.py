@@ -18,7 +18,8 @@ __all__ = (
 	'CopyAndVerify',
 )
 
-TestUnitReady = SCSICommand6(0x00,
+TestUnitReady = SCSICommand6(
+	0x00,
 	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
 	'Reserved' / SCSICommandField(default = 0, length = 29),
 )
@@ -36,7 +37,8 @@ return a ``GOOD`` status.
 
 '''
 
-RequestSense = SCSICommand6(0x03,
+RequestSense = SCSICommand6(
+	0x03,
 	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
 	'Reserved' / SCSICommandField(default = 0, length = 21),
 	'AllocLen' / SCSICommandField('Receive buffer size allocation', length = 8)
@@ -274,9 +276,10 @@ define the nature of the ``CHECK CONDITION`` status. The :py:data:`Copy`, :py:da
 and :py:data:`SearchData` commands define a standard purpose for some of the bytes. Unless described in said commands,
 all additional sense bytes are vendor unique.
 
-''' # noqa: E101
+''' # noqa: E501, E101
 
-Inquiry = SCSICommand6(0x12,
+Inquiry = SCSICommand6(
+	0x12,
 	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
 	'Reserved' / SCSICommandField(default = 0, length = 21),
 	'AllocLen' / SCSICommandField('Receive buffer size allocation', length = 8)
@@ -363,7 +366,8 @@ data, the additional length is **NOT** adjusted to reflect the truncation.
 
 '''
 
-Copy = SCSICommand6(0x18,
+Copy = SCSICommand6(
+	0x18,
 	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
 	'Reserved' / SCSICommandField(default = 0, length = 5),
 	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 24)
@@ -625,7 +629,8 @@ logical unit during this segment of the ``COPY`` command.
 
 '''
 
-ReceiveDiagnosticResults = SCSICommand6(0x1C,
+ReceiveDiagnosticResults = SCSICommand6(
+	0x1C,
 	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
 	'Reserved' / SCSICommandField(default = 0, length = 13),
 	'AllocLen' / SCSICommandField('Length of the receiving buffer', length = 16)
@@ -637,7 +642,8 @@ Receive Diagnostic Results
 
 '''
 
-SendDiagnostic = SCSICommand6(0x1D,
+SendDiagnostic = SCSICommand6(
+	0x1D,
 	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
 	'Reserved' / SCSICommandField(default = 0, length = 2),
 	'SelfTest' / SCSICommandField('', default = 0, length = 1),
@@ -653,7 +659,8 @@ Send Diagnostic
 
 '''
 
-Compare = SCSICommand10(0x19,
+Compare = SCSICommand10(
+	0x19,
 	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
 	'Reserved' / SCSICommandField(default = 0, length = 13),
 	'ParamLen' / SCSICommandField('Length of the parameter list in bytes', length = 24),
@@ -666,7 +673,8 @@ Compare
 
 '''
 
-CopyAndVerify = SCSICommand10(0x1A,
+CopyAndVerify = SCSICommand10(
+	0x1A,
 	'LUN'      / SCSICommandField('Logical Unit Number', default = 0, length = 3),
 	'Reserved' / SCSICommandField(default = 0, length = 3),
 	'BytChk'   / SCSICommandField('', default = 0, length = 1),
