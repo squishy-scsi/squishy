@@ -24,7 +24,7 @@ from construct       import (
 )
 
 from .linktype       import (
-	SCSIDataRate, SCSIFrameType, SCSISpeed, SCSIType, SCSIWidth, linktype_parallel_scsi, scsi_bus_opt,
+	SCSIFrameType, linktype_parallel_scsi, scsi_bus_opt,
 )
 
 __all__ = (
@@ -507,7 +507,6 @@ def write_shb(
 		Any extra options to attach to the block. (default: [])
 	'''
 
-
 	_options = [
 		*options,
 	]
@@ -713,7 +712,7 @@ def write_nrb(
 
 
 def write_isb(
-	stream: BinaryIO, /, interface: int , ts: Arrow | None = None, *, options: Iterable = ()
+	stream: BinaryIO, /, interface: int, ts: Arrow | None = None, *, options: Iterable = ()
 ) -> int:
 	'''
 	Write an Interface Statistics Block
@@ -987,7 +986,6 @@ class PCAPNGStream:
 			raise TypeError(f'`file` must be either a string, path, bytes, bytearray, or BinaryIO, not {file!r}')
 
 		self._last_interface = -1
-
 
 	def close(self) -> None:
 		if not self._data.closed:
