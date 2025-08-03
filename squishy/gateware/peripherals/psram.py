@@ -70,12 +70,12 @@ class SPIPSRAM(Elaboratable):
 		The number of bytes to be transferred in the given read or write request
 
 	start_r : Signal, in
-		Starts a read transaction of `byte_count` bytes from the device into the `read_fifo`, starting from `curr_addr`, setting
-		up the address as needed for the device.
+		Starts a read transaction of `byte_count` bytes from the device into the `read_fifo`, starting from `curr_addr`,
+		setting up the address as needed for the device.
 
 	start_w : Signal, in
-		Starts a write transaction of `byte_count` bytes from the `write_fifo`, starting from `curr_addr`, setting up the address
-		as needed for the device.
+		Starts a write transaction of `byte_count` bytes from the `write_fifo`, starting from `curr_addr`, setting up
+		the address as needed for the device.
 
 	done : Signal, out
 		The Transaction was fully completed and the FSM is about to transition into the `IDLE` state waiting for another
@@ -115,7 +115,6 @@ class SPIPSRAM(Elaboratable):
 		# Read if 1, otherwise Write
 		self._rnw_op = Signal()
 
-
 	def elaborate(self, _: SquishyPlatformType | None) -> Module:
 		m = Module()
 
@@ -135,12 +134,10 @@ class SPIPSRAM(Elaboratable):
 		wait_cntr     = Signal(range(10))
 		wait_resume   = Signal(WaitResumeState)
 
-
 		m.d.comb += [
 			self.done.eq(0),
 			spi.xfr.eq(0),
 		]
-
 
 		if write_fifo is not None:
 			m.d.comb += [
@@ -230,7 +227,6 @@ class SPIPSRAM(Elaboratable):
 								spi.xfr.eq(1),
 								spi.wdat.eq(self.curr_addr[0:8]),
 							]
-
 
 							with m.If(self._rnw_op):
 								# Because Read is wiggly we need to stall a cycle
@@ -377,6 +373,5 @@ class SPIPSRAM(Elaboratable):
 
 				with m.If(self.finish):
 					m.next = 'IDLE'
-
 
 		return m

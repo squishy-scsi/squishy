@@ -194,8 +194,8 @@ class SPIController(Elaboratable):
 	'''
 
 	def __init__(
-		self, *,
-		clk: Signal, cipo: Signal, copi: Signal, cs: Signal, cpol: SPICPOL = SPICPOL.HIGH, cpha: SPICPHA = SPICPHA.RISING
+		self, *, clk: Signal, cipo: Signal, copi: Signal, cs: Signal, cpol: SPICPOL = SPICPOL.HIGH,
+		cpha: SPICPHA = SPICPHA.RISING
 	) -> None:
 
 		self._clk  = clk
@@ -293,7 +293,9 @@ class SPIPeripheral(Elaboratable):
 
 	'''
 
-	def __init__(self, *, clk: Signal, cipo: Signal, copi: Signal, cs: Signal, reg_map: Multiplexer | None = None) -> None:
+	def __init__(
+		self, *, clk: Signal, cipo: Signal, copi: Signal, cs: Signal, reg_map: Multiplexer | None = None
+	) -> None:
 		self._clk  = clk
 		self._cipo = cipo
 		self._copi = copi
@@ -389,7 +391,6 @@ class SPIPeripheral(Elaboratable):
 						m.next = 'STORE_DATA'
 					with m.Elif(~cs):
 						m.next = 'IDLE'
-
 
 			with m.State('STORE_DATA'):
 				m.d.comb += [

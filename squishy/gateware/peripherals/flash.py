@@ -43,7 +43,9 @@ class SPIFlashCmd(IntEnum):
 	RELEASE_PWRDWN = 0xAB
 
 class SPIFlash(Elaboratable):
-	def __init__(self, *, flash_resource: tuple[str, int], flash_geometry: Geometry, fifo: AsyncFIFO, erase_cmd: int = None):
+	def __init__(
+		self, *, flash_resource: tuple[str, int], flash_geometry: Geometry, fifo: AsyncFIFO, erase_cmd: int = None
+	):
 		self._flash_resource = flash_resource
 		self.geometry        = flash_geometry
 		self._fifo           = fifo
@@ -72,7 +74,8 @@ class SPIFlash(Elaboratable):
 		flash_resource = platform.request(*self._flash_resource)
 
 		m.submodules.spi = spi = self._spi = SPIController(
-			clk = flash_resource.clk.o, cipo = flash_resource.cipo.i, copi = flash_resource.copi.o, cs = flash_resource.cs.o
+			clk = flash_resource.clk.o, cipo = flash_resource.cipo.i, copi = flash_resource.copi.o,
+			cs = flash_resource.cs.o
 		)
 
 		fifo = self._fifo
@@ -89,7 +92,6 @@ class SPIFlash(Elaboratable):
 		writeTrigger    = Signal()
 		writeCount      = Signal(range(self.geometry.page_size + 1))
 		byteCount       = Signal.like(self.byteCount)
-
 
 		m.d.comb += [
 			self.ready.eq(0),
