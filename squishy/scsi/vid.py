@@ -5,7 +5,7 @@ This files contains the full map of SCSI VID to Vendor Name.
 
 Source: https://www.t10.org/ftp/t10/vendorid.txt
 
-It is up-to-date as of 2024-11-10
+It is up-to-date as of 2025-08-06
 
 '''
 
@@ -752,6 +752,8 @@ VID_MAP = {
 	'SUSE':     'SUSE Linux',
 	'Swinxs':   'Swinxs BV',
 	'SWISSLUN': 'Cleondris GmbH',
+	'SXLT': 'Shanxi Lightchan Technology Industrial Development Co.',
+	'SXOSI': 'Shanxi Optical Storage Information Industry Development Co.',
 	'SYMANTEC': 'Symantec Corporation',
 	'SYMBIOS':  'Symbios Logic Inc. (now Broadcom, Inc.)',
 	'SYMPLY':   'Symply, Inc.',
