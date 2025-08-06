@@ -7,6 +7,14 @@ Source: https://www.t10.org/ftp/t10/vendorid.txt
 
 It is up-to-date as of 2025-08-06
 
+Rough processing steps:
+
+* s/^[\w\W]+Organization\n[-\s]+\n//g # Remove preamble/headers
+* s/\n\s{8}\s+/ /g # Fix vendor names split over lines
+* s/'/\'/g # Escape apostrophes
+* s/^\s([\x20-\x7E]{8})\s+([\x20-\x7E]+)$/'\1': '\2',/gm # Turn into Python dict entries
+* s/^'([\x21-\x7E]+\s?[\x21-\x7E]+)\s*':/'\1':/gm # Truncate whitespace
+
 '''
 
 __all__ = (
