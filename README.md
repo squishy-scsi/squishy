@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD041 MD022 MD033 -->
 [<img src="https://raw.githubusercontent.com/squishy-scsi/squishy/main/contrib/img/sachi/electrichearts_20220323A_sachi_trans.png" align="right" width="400"/>](https://docs.scsi.moe/mascot.html)
 # Squishy: The SCSI Multitool
 
@@ -48,7 +49,7 @@ The software and gateware are licensed under the [BSD-3-Clause], the full text o
 
 The documentation is licensed under the Creative Commons [CC-BY-SA 4.0], the full text of which can be found in the [`LICENSE.docs`] file.
 
-Sachi, the mascot is dual-licensed under the [BSD-3-Clause] and the Creative Commons [CC-BY-SA].
+Sachi, the mascot is dual-licensed under the [BSD-3-Clause] and the Creative Commons [CC-BY-SA 4.0].
 
 [taperipper]: https://lethalbit.net/projects/taperipper/
 [Torii]: https://github.com/shrine-maiden-heavy-industries/torii-hdl
