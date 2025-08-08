@@ -2,7 +2,7 @@
 
 ## BSD-3-Clause
 
-```{literalinclude} ../LICENSE.software
+```{literalinclude} ../LICENSE
 ---
 language: text
 ---

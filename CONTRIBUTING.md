@@ -43,7 +43,7 @@ This policy covers all parts of the project, including, but not limited to code,
 > These tools often fabricate plausible sounding information that is entirely incorrect, or often subtly
 > incorrect and pass it off with confidence, thus misleading.
 
-[BSD-3-Clause]: ./LICENSE.software
+[BSD-3-Clause]: ./LICENSE
 [CC-BY-SA 4.0]: ./LICENSE.docs
 [Contributor Code of Conduct]: ./CODE_OF_CONDUCT.md
 [Installation]: https://docs.scsi.moe/install.html

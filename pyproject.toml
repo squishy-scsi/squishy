@@ -8,7 +8,7 @@ authors         = [
 ]
 license         = 'BSD-3-Clause'
 license-files   = [
-	'LICENSE.software', 'LICENSE.docs'
+	'LICENSE', 'LICENSE.docs'
 ]
 readme          = 'README.md'
 requires-python = '>=3.11'

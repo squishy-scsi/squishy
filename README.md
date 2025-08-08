@@ -44,7 +44,7 @@ The Squishy project is licensed under 3 individual licenses, one for the hardwar
 
 The hardware is licensed under the [CERN-OHL-S], the full text of which can be found in the [`squishy-scsi/hardware/LICENSE`] file.
 
-The software and gateware are licensed under the [BSD-3-Clause], the full text of which can be found in the [`LICENSE.software`] file.
+The software and gateware are licensed under the [BSD-3-Clause], the full text of which can be found in the [`LICENSE`] file.
 
 The documentation is licensed under the Creative Commons [CC-BY-SA 4.0], the full text of which can be found in the [`LICENSE.docs`] file.
 
@@ -63,6 +63,6 @@ Sachi, the mascot is dual-licensed under the [BSD-3-Clause] and the Creative Com
 [CERN-OHL-S]: https://ohwr.org/cern_ohl_s_v2.txt
 [`squishy-scsi/hardware/LICENSE`]: https://github.com/squishy-scsi/hardware/tree/main/LICENSE
 [BSD-3-Clause]: https://spdx.org/licenses/BSD-3-Clause.html
-[`LICENSE.software`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.software
+[`LICENSE`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE
 [CC-BY-SA 4.0]: https://creativecommons.org/licenses/by-sa/4.0/
 [`LICENSE.docs`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.docs
