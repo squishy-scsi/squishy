@@ -6,7 +6,6 @@ The following instructions are a work-in-progress and may not be entirely up to 
 
 Squishy is a python application that can be installed via [`pip`],  either from the [git repository] or via a [wheel] package.
 
-
 ## System Requirements
 
 Squishy is officially supported on most Linux distributions, the primary one being [Arch Linux] and variants there of. However other Linux distributions are supported as well.
@@ -15,11 +14,9 @@ Support for Microsoft Windows is preliminary, and due to lack of testing and dev
 
 Support for Apple macOS is also unofficial, however due to its similarity to Linux and Unix-like operating systems, using Squishy on macOS should be just as painless as it is on Linux. Official support for macOS and other BSD-Family operating systems is planned.
 
-
 Regardless of the operating system, there are some core dependencies that Squishy requires. This includes Python >= 3.10, [Yosys] >= 0.39, and [nextpnr] >= 0.7.
 
 Squishy has been tested with [CPython], but might possibly run under [PyPy].
-
 
 ## Installing Prerequisites
 

@@ -1,6 +1,5 @@
 # Mascot - Sachi
 
-
 ```{eval-rst}
 .. image:: ../contrib/img/sachi/electrichearts_20211013A_sachi_trans.png
 	:align: right
@@ -44,16 +43,16 @@ Full-resolution images with and without transparent backgrounds can be downloade
 
 Sachi was designed and illustrated by the amazing [Tyson Tan (tysontan.com)]. He provides mascot design service for free and open source software projects, free of charge, under free license.
 
-She is dual-licensed under the [BSD-3-Clause] and the Creative Commons [CC-BY-SA]
+She is dual-licensed under the [BSD-3-Clause] and the Creative Commons [CC-BY-SA 4.0]
 
-The full text of the [BSD-3-Clause] can be found in the [LICENSE] file in the root of the repository
+The full text of the [BSD-3-Clause] can be found in the [`LICENSE`] file in the root of the repository
 
-The full text of the Creative Commons [CC-BY-SA] can be found in the [LICENSE.docs] file in the root of the repository
+The full text of the Creative Commons [CC-BY-SA 4.0] can be found in the [`LICENSE.docs`] file in the root of the repository
 
 [GitHub Repository]: https://github.com/squishy-scsi/squishy/tree/main/
 [`etc/img/sachi`]: https://github.com/squishy-scsi/squishy/tree/main/contrib/img/sachi
 [Tyson Tan (tysontan.com)]: https://tysontan.com
 [BSD-3-Clause]: https://spdx.org/licenses/BSD-3-Clause.html
-[LICENSE]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE
-[CC-BY-SA]: https://creativecommons.org/licenses/by-sa/2.0/
-[LICENSE.docs]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.docs
+[`LICENSE`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE
+[CC-BY-SA 4.0]: https://creativecommons.org/licenses/by-sa/4.0/
+[`LICENSE.docs`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.docs

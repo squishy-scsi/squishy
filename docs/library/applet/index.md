@@ -46,4 +46,3 @@ The second location Squishy searches for applets in is partially platform depend
 ```
 
 [Applets Tutorial]: ../../tutorials/applets/index.md
-[CLI]: ./cli.md

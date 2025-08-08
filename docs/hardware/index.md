@@ -1,3 +1,5 @@
+<!-- markdownlint-disable MD041 -->
+
 ```{warning}
 Squishy hardware is specially designed and **is not** able to be substituted for other hardware at the moment. This include any popular development or eval boards.
 ```
@@ -23,8 +25,6 @@ The format follows the `rev<#>[.#]` format, where `rev<#>` is the hardware revis
 
 Currently there are two hardware releases [`rev1`] and [`rev2`], see each page for details on each respective hardware revision.
 
-
-
 ## Getting Squishy Hardware
 
 There are two main ways to get squishy hardware, buying it, or building it.
@@ -45,11 +45,9 @@ The smallest parts are 0402 and all revisions contain at least one large BGA par
 
 If you buy a pre-built Squishy, it will already be provisioned, but in case something goes catastrophically wrong with an update, or you build your own hardware, see the section on [provisioning] to learn how to provision new hardware or re-provision existing hardware.
 
-
 ### Work-In-Progress Hardware
 
-The hardware is always a work in progress, you can view a live rendering of the WIP hardware in your web browser [here](https://kicanvas.org/?github=https://github.com/squishy-scsi/hardware/blob/main/boards/squishy/main-unit/squishy-main.kicad_pro), thanks to [KiCanvas].
-
+The hardware is always a work in progress, you can view a live rendering of the WIP hardware in your web browser [here], thanks to [KiCanvas].
 
 [provisioning]: ../tutorials/provisioning.md
 [`rev1`]: ./rev1.md

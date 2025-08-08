@@ -10,9 +10,7 @@ analyzer
 Flesh this section out
 ```
 
-
 Squishy allows for the development of modular pieces of combined code and [Torii HDL] gateware called an applet. It gives Squishy it's functionality and allows for the extension of said functionality and/or entirely new custom functionality.
-
 
 There is currently one built-in applet, the [analyzer], with more built-in applets are planned for the future.
 

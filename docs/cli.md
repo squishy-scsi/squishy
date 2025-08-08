@@ -24,13 +24,9 @@ Where `-v` is for verbose/debug logging, `-d DEVICE` is a specified Squishy hard
 
 If you only have one hardware Squishy device attached to your system, you can omit `-d DEVICE` from most if not all commands, as it will automatically be detected and used if needed.
 
-
-
-
 ## Shell Completions
 
 We maintain a [zsh] shell [completion provider] that can be installed by copying the `contrib/squishy-completion.zsh` into the directory where your zsh completions are stored under the name `_squishy`. This will allow for full tab-completion of the Squishy CLI, including device selection.
-
 
 [programmatically]: ./library/applet/device.md
 [zsh]: https://www.zsh.org/

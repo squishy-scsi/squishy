@@ -1,3 +1,4 @@
+<!-- markdownlint-disable MD041 MD022 MD033 -->
 ```{toctree}
 :hidden:
 
@@ -36,7 +37,6 @@ license
 
 This is the documentation for [Squishy] and its supporting components, as well as a collection of guides and tutorials for the Squishy ecosystem.
 
-
 ## What Squishy Isn't
 
 It's important to detail what Squishy isn't, as it differs a lot from other devices intended to interact with older SCSI systems.
@@ -52,7 +52,6 @@ Squishy is a platform, it allows you to accomplish almost any goal you wish to t
 You can think of Squishy as being "Software Defined SCSI", much like how a Software Defined Radio works with a hardware transceiver and a software ecosystem, Squishy provides the same, but for SCSI.
 
 It is comprised of a [gateware] and [python] library as well as a [hardware] platform that acts as a bridge between the software and SCSI bus. Squishy allows for powerful and flexible control over all things SCSI, and using its [powerful applet system] it gives that power to you.
-
 
 For a more detailed introduction to Squishy and it's components, see the [Introduction] section of the documentation. Then, when you're ready visit the [Getting Started] section to get up an running.
 
@@ -94,17 +93,16 @@ Squishy is entirely open source, and under permissive licenses. The full source 
 
 <small>**8:** This includes only the PiSCSI interface itself, and not the needed RaspberryPi SOM as well.</small>
 
-
 ## Community
 
 Squishy has a dedicated IRC channel, [#squishy on libera.chat]. Join to ask questions, discuss ongoing development, or just hang out.
 
 There are also [GitHub Discussions] enabled on the repository if you have any questions or comments.
 
-
 ```{note}
 Squishy does not have an official discord, nor any endorsed discord servers, for an explanation as to why, see the [F.A.Q.]
 ```
+
 [sniff, analyze, and replay SCSI bus traffic]: ./applets/analyzer.md
 [gateware]: ./library/gateware/index.md
 [python]: ./library/python/index.md

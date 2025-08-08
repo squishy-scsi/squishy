@@ -6,6 +6,7 @@ applets/index
 provisioning
 
 ```
+
 ## Hardware Usage
 
 ```{todo}

@@ -2,13 +2,11 @@
 
 The following are some commonly asked questions, while this section is not exhaustive it will be updated when appropriate. For more specific questions, please join the IRC channel [#squishy on libera.chat] or use the [GitHub Discussions].
 
-
 ## Why should I use Squishy rather than one of the other SCSI projects?
 
 That really depends on what you need. If you just want/need storage emulation, then please do go with one of the other projects, [BlueSCSI] et. al. are awesome projects and deserve your support.
 
 But if you need something more flexible, or support for arcane hardware, then Squishy might be the right choice. It's not as turnkey as the other projects, but it is far more capable in more ways than one.
-
 
 ## Why is Squishy so complex?
 
@@ -22,21 +20,17 @@ The reason for this is due to the fact ties into the original reason why Torii f
 
 When using Torii, we have more tight integration in the development process between Squishy and Torii, they can effect and influence each other. We can also more rapidly respond to any bugs in the HDL without having to wait for a third party upstream.
 
-
 ## Why is Squishy so expensive?
 
 This goes in tandem with [Why is Squishy so complex?](#why-is-squishy-so-complex). It is not expensive for the sake of being expensive, the upmost care and detail has been put in to the design, as such I like to say that Squishy is not built down to a price, but up to a standard, and that standard is very high.
 
 This, unfortunately leads to the hardware being expensive, there is sadly nothing that can be done about that. However, as Squishy is 100% Open Source Hardware under the [CERN-OHL-S v2], you can go and build it yourself to try to cut down on costs. However, assembling Squishy yourself is not a trivial task due to several large BGA components and fairly tight tolerances for manufacturing.
 
-
 ## Why Does Squishy not have a Discord?
 
 Squishy likes to do things out in the open, this means that Discords model of walled-off communities is not conducive to how we want to do things. In addition to this, there is a trend to moving documentation away from things like Wiki's and websites into Discord servers, which causes that information to no longer be publicly accessible, this is a huge problem when it comes to things like Open Source projects such as Squishy.
 
-All in all, to make things easier on both the maintainers and community members, we are staying away from Discord for the forseeable future. We have an <a href="irc://irc.libera.chat:6667/#squishy">IRC chanel</a> for developer talk and general chatting, and for everything else we have the [GitHub Discussions], [Issue tracker], and this website.
-
-
+All in all, to make things easier on both the maintainers and community members, we are staying away from Discord for the foreseeable future. We have an <a href="irc://irc.libera.chat:6667/#squishy">IRC chanel</a> for developer talk and general chatting, and for everything else we have the [GitHub Discussions], [Issue tracker], and this website.
 
 [#squishy on libera.chat]: https://web.libera.chat/#squishy
 [GitHub Discussions]: https://github.com/squishy-scsi/squishy/discussions

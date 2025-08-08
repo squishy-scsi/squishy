@@ -8,15 +8,12 @@ Squishy is a set of utilities, gateware, and hardware for interacting with and d
 
 Once you've read the sections below and are ready to get started, see the [Installation] and the [Getting Started] sections.
 
-
 ## Overview
 
 Squishy has many moving parts, the following diagram illustrates a rough overview of how
 everything in the Squishy system interacts.
 
 ![](_images/squishy-arch-overview.svg)
-
-
 
 ## Hardware
 
@@ -40,10 +37,7 @@ The Squishy gateware works in combination with the hardware to allow for the rap
 
 The [gateware library] allows for applets to be built on the Squishy platform, and for other devices that wish to leverage SCSI in some aspect of their design to do so with [Torii].
 
-
 For more information, see the [gateware library] documentation.
-
-
 
 [Installation]: ./install.md
 [Getting Started]: ./getting_started.md
