@@ -48,8 +48,6 @@ The software and gateware are licensed under the [BSD-3-Clause], the full text o
 
 The documentation is licensed under the Creative Commons [CC-BY-SA 4.0], the full text of which can be found in the [`LICENSE.docs`] file.
 
-The icons used in the GUI are from the [KDE] project. They are the [breeze-icons] and they are licensed under the [LGPL v2.1], the full text of which can be found in the [`LICENSE.icons`] file.
-
 Sachi, the mascot is dual-licensed under the [BSD-3-Clause] and the Creative Commons [CC-BY-SA].
 
 [taperipper]: https://lethalbit.net/projects/taperipper/
@@ -68,7 +66,3 @@ Sachi, the mascot is dual-licensed under the [BSD-3-Clause] and the Creative Com
 [`LICENSE.software`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.software
 [CC-BY-SA 4.0]: https://creativecommons.org/licenses/by-sa/4.0/
 [`LICENSE.docs`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.docs
-[KDE]: https://kde.org
-[breeze-icons]: https://github.com/KDE/breeze-icons/
-[LGPL v2.1]: https://spdx.org/licenses/LGPL-2.1-only.html
-[`LICENSE.icons`]: https://github.com/squishy-scsi/squishy/tree/main/LICENSE.icons

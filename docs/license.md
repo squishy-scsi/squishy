@@ -16,10 +16,4 @@ language: text
 ---
 ```
 
-## LGPL v2.1
 
-```{literalinclude} ../LICENSE.icons
----
-language: text
----
-```
