@@ -1,0 +1,23 @@
+{
+	// !IMPORTANT NOTE!
+	// All user-specific changes should live in a local `.code-workspace` file
+	"flake8.args": [
+		"--config", "${workspaceFolder}/contrib/.flake8"
+	],
+
+	"python.testing.cwd": "${workspaceFolder}/build",
+	"python.testing.autoTestDiscoverOnSaveEnabled": false,
+	"python.testing.unittestArgs": [
+		"discover",
+		"-v",
+		"-s",
+		".."
+	],
+	"python.testing.pytestEnabled": false,
+	"python.testing.unittestEnabled": true,
+
+	"C_Cpp.default.compileCommands": "${workspaceFolder}/build/firmware/compile_commands.json",
+	"C_Cpp.default.configurationProvider": "mesonbuild.mesonbuild",
+
+	"mesonbuild.buildFolder": "${workspaceFolder}/build/firmware"
+}

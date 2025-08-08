@@ -1,0 +1,18 @@
+{
+    "configurations": [
+        {
+            "name": "firmware",
+            "includePath": [
+                "${workspaceFolder}/firmware"
+            ],
+            "defines": [
+
+            ],
+            "compilerPath": "/usr/bin/arm-none-eabi-gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++23",
+            "intelliSenseMode": "linux-gcc-arm"
+        }
+    ],
+    "version": 4
+}

@@ -1,0 +1,27 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Test (With Nox)",
+			"group": "test",
+			"type": "process",
+			"command": "python",
+			"args": [
+				"-m", "nox",
+				"-s", "test"
+			],
+			"problemMatcher": "$python"
+		},
+		{
+			"label": "Lint (With Nox)",
+			"group": "test",
+			"type": "process",
+			"command": "python",
+			"args": [
+				"-m", "nox",
+				"-s", "lint"
+			],
+			"problemMatcher": "$python"
+		},
+	]
+}
