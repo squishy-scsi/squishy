@@ -2,4 +2,7 @@
 
 * text=auto eol=lf
 
+## Documentation Things
+
 docs/** linguist-documentation
+contrib/docs-redirect.html linguist-documentation

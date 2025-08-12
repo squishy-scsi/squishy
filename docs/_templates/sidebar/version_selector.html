@@ -1,0 +1,15 @@
+{% if versions %}
+<div class="sidebar-tree">
+	<p class="caption" role="heading">
+		<span class="caption-text">{{ _('Versions') }}</span>
+	</p>
+	{%- if current_version.is_released  %}
+	<a class="reference" href="{{ versions.branches[0].url }}">Development</a>
+	{%- endif %}
+	<ul>
+		{%- for release in versions.releases|sort(attribute = 'name', reverse = True) %}
+		<li class="toctree-l1"><a class="reference" href="{{ release.url }}">{{ release.name }}</a></li>
+		{%- endfor %}
+	</ul>
+</div>
+{% endif %}

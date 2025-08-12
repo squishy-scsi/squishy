@@ -2,6 +2,7 @@
 
 from os             import devnull, getenv
 from pathlib        import Path
+from shutil         import copy
 
 import nox
 from nox.sessions   import Session
@@ -85,6 +86,63 @@ def build_docs(session: Session) -> None:
 	session.install('-e', '.')
 
 	session.run('sphinx-build', '-b', 'html', str(DOCS_DIR), str(OUTPUT_DIR))
+
+@nox.session(name = 'build-docs-multiversion', reuse_venv = True)
+def build_docs_multiversion(session: Session) -> None:
+	OUTPUT_DIR = BUILD_DIR / 'mv-docs'
+
+	redirect_index = (CNTRB_DIR / 'docs-redirect.html')
+
+	session.install('-r', str(DOCS_DIR / 'requirements.txt'))
+	session.install('-e', '.')
+
+	# Workaround for sphinx-contrib/multiversion#58
+	# Ask git for the list of tags matching `v*`, and sort them in reverse order by name
+	git_tags: str = session.run(
+		'git', 'tag', '-l', 'v*', '--sort=-v:refname',
+		external = True, silent = True
+	) # type: ignore
+	# Split the tags and get the first, it *should* be the most recent
+	tags = git_tags.splitlines()
+	if len(tags) > 0:
+		latest_tag = tags.pop(0)
+		latest = ('-D', f'smv_latest_version={latest_tag}',)
+	else:
+		latest_tag = '_INVALID_'
+		latest = tuple[str, ...]()
+
+	# Build the multi-version docs
+	session.run(
+		'sphinx-multiversion', *latest, str(DOCS_DIR), str(OUTPUT_DIR)
+	)
+
+	session.log('Copying docs redirect...')
+	# Copy the docs redirect index
+	copy(redirect_index, OUTPUT_DIR / 'index.html')
+
+	with session.chdir(OUTPUT_DIR):
+		latest_link = Path('latest')
+		docs_dev    = Path('main')
+		docs_tag    = Path(latest_tag)
+
+		session.log('Copying needed GitHub pages files...')
+
+		copy(docs_dev / 'CNAME', 'CNAME')
+		copy(docs_dev / '.nojekyll', '.nojekyll')
+
+		session.log('Creating symlink to latest docs...')
+		# If the symlink exists, unlink it
+		if latest_link.exists():
+			latest_link.unlink()
+
+		# Check to make sure the latest tag has some docs
+		if docs_tag.exists():
+			# Create a symlink from `/latest` to the latest tag
+			latest_link.symlink_to(docs_tag)
+		else:
+			session.warn(f'Docs for {latest_tag} did not seem to be built, using development docs instead')
+			# Otherwise, link to `main`
+			latest_link.symlink_to(docs_dev)
 
 @nox.session(name = 'linkcheck-docs', reuse_venv = True)
 def linkcheck_docs(session: Session) -> None:

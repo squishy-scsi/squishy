@@ -22,6 +22,21 @@ div.toc-drawer {
     width: 20em;
 }
 
+div.multiver {
+	background-color: var(--color-brand-primary);
+	color: var(--color-background-secondary);
+}
+
+aside.multiver-content a {
+	color: var(--color-background-secondary);
+	text-decoration-color: var(--color-background-secondary);
+}
+
+aside.multiver-content a:hover {
+	color: var(--color-background-secondary);
+}
+
+
 svg.WaveDrom {
     padding: 10px;
     border-radius: .2em;
