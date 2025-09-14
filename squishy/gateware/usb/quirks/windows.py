@@ -8,8 +8,9 @@ from struct                                       import pack, unpack
 
 from torii.hdl                                    import DomainRenamer, Elaboratable, Memory, Module, Signal
 from torii.hdl.ast                                import Operator
+from torii_usb.usb.request                        import SetupPacket
 from torii_usb.usb.stream                         import USBInStreamInterface
-from torii_usb.usb.usb2.request                   import SetupPacket, USBRequestHandler
+from torii_usb.usb.usb2.request                   import USBRequestHandler
 from usb_construct.emitters.descriptors.microsoft import PlatformDescriptorCollection
 from usb_construct.types                          import USBRequestRecipient, USBRequestType
 from usb_construct.types.descriptors.microsoft    import MicrosoftRequests

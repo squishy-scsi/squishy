@@ -9,13 +9,15 @@ from torii.lib.fifo                                  import AsyncFIFO
 from torii_usb.usb2                                  import USBDevice
 
 from usb_construct.contextmgrs.descriptors.dfu       import FunctionalDescriptor
-from usb_construct.contextmgrs.descriptors.microsoft import PlatformDescriptor, PlatformDescriptorCollection
-from usb_construct.emitters.descriptors.standard     import (
-	ApplicationSubclassCodes, DeviceClassCodes, DeviceDescriptorCollection,
-	DFUProtocolCodes, InterfaceClassCodes, LanguageIDs
-)
+from usb_construct.contextmgrs.descriptors.microsoft import PlatformDescriptor
+from usb_construct.emitters.descriptors.microsoft    import PlatformDescriptorCollection
+from usb_construct.emitters.descriptors.standard     import DeviceDescriptorCollection
+from usb_construct.types                             import LanguageIDs
 from usb_construct.types.descriptors.dfu             import (
 	DFUCanDownload, DFUCanUpload, DFUManifestationTolerant, DFUWillDetach
+)
+from usb_construct.types.descriptors.standard        import (
+	ApplicationSubclassCodes, DeviceClassCodes, DFUProtocolCodes, InterfaceClassCodes
 )
 
 from ...core.config                                  import USB_DFU_CONFIG
