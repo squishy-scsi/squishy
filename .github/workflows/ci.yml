@@ -18,6 +18,10 @@ on:
     branches:
       - main
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.job }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   TOOL_PYTHON_VERSION: '3.11'
 
