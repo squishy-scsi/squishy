@@ -77,6 +77,9 @@ jobs:
         python-version: [ '3.11', '3.12', '3.13', '3.14', ]
         allow-failure:
          - false
+        include:
+         - python-version: '3.15-dev'
+           allow-failure: true
 
     name: 'Squishy - Test (Python ${{ matrix.python-version }})'
     continue-on-error: ${{ matrix.allow-failure }}
