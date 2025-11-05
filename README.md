@@ -1,5 +1,5 @@
 <!-- markdownlint-disable MD041 MD022 MD033 -->
-[<img src="https://raw.githubusercontent.com/squishy-scsi/squishy/main/contrib/img/sachi/electrichearts_20220323A_sachi_trans.png" align="right" width="400"/>](https://docs.scsi.moe/mascot.html)
+[<img src="https://raw.githubusercontent.com/squishy-scsi/squishy/main/contrib/img/sachi/electrichearts_20220323A_sachi_trans.png" align="right" width="400"/>](https://docs.scsi.moe/latest/mascot.html)
 # Squishy: The SCSI Multitool
 
 Squishy is a platform for working with old SCSI devices with modern systems in a flexible manner. It was originally developed as a one-off solution for the [taperipper] project, which was to boot a modern system off of a IBM 9348-002 9-track magnetic tape drive.
@@ -54,13 +54,13 @@ Sachi, the mascot is dual-licensed under the [BSD-3-Clause] and the Creative Com
 [taperipper]: https://lethalbit.net/projects/taperipper/
 [Torii]: https://github.com/shrine-maiden-heavy-industries/torii-hdl
 [https://docs.scsi.moe]: https://docs.scsi.moe
-[Installation Instructions]: https://docs.scsi.moe/install.html
+[Installation Instructions]: https://docs.scsi.moe/latest/install.html
 [`squishy-scsi/hardware`]: https://github.com/squishy-scsi/hardware
-[Hardware]: https://docs.scsi.moe/hardware/index.html
-[mascot page]: https://docs.scsi.moe/mascot.html
+[Hardware]: https://docs.scsi.moe/latest/hardware/index.html
+[mascot page]: https://docs.scsi.moe/latest/mascot.html
 [Tyson Tan (tysontan.com)]: https://tysontan.com
 [#squishy on libera.chat]: https://web.libera.chat/#squishy
-[F.A.Q.]: https://docs.scsi.moe/faq.html
+[F.A.Q.]: https://docs.scsi.moe/latest/faq.html
 [CERN-OHL-S]: https://ohwr.org/cern_ohl_s_v2.txt
 [`squishy-scsi/hardware/LICENSE`]: https://github.com/squishy-scsi/hardware/tree/main/LICENSE
 [BSD-3-Clause]: https://spdx.org/licenses/BSD-3-Clause.html

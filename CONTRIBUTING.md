@@ -46,5 +46,5 @@ This policy covers all parts of the project, including, but not limited to code,
 [BSD-3-Clause]: ./LICENSE
 [CC-BY-SA 4.0]: ./LICENSE.docs
 [Contributor Code of Conduct]: ./CODE_OF_CONDUCT.md
-[Installation]: https://docs.scsi.moe/install.html
+[Installation]: https://docs.scsi.moe/latest/install.html
 [nox]: https://nox.thea.codes/

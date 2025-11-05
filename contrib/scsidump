@@ -184,7 +184,7 @@ def _setup_logging() -> None:
 def extcap_list_interfaces() -> int:
 	log.info('Enumerating extcap interfaces')
 
-	print(f'extcap {{version={__version__}}}{{help=https://docs.scsi.moe/extra.html#scsidump}}')
+	print(f'extcap {{version={__version__}}}{{help=https://docs.scsi.moe/latest/extra.html#scsidump}}')
 
 	# Enumerate attached Squishy devices
 	for (sn, rev, _) in SquishyDevice.enumerate():
