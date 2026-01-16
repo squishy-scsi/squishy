@@ -300,6 +300,7 @@ jobs:
           ssh-key: ${{ secrets.DEPLOY_KEY }}
           folder: built_docs/
           clean: true
+          single-commit: true
 
   publish-pypi:
     name: 'Squishy - Publish PyPi package'
