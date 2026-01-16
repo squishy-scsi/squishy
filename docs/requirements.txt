@@ -1,7 +1,7 @@
 furo
 matplotlib
 myst-parser
-sphinx
+sphinx<9
 sphinx-autodoc-typehints
 sphinx-codeautolink
 sphinx-copybutton
